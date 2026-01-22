@@ -1225,8 +1225,8 @@
     <Compile Include="Models\EdiSegments.cs" />
     <Compile Include="Models\UserAuthorizations.cs" />
     <Compile Include="Models\Users.cs" />
-    <Compile Include="Packages\Epplus_Excel.cs" />
-    <Compile Include="Packages\OfficeInteropExcel_Export.cs" />
+    <Compile Include="NugetPac\Epplus_Excel.cs" />
+    <Compile Include="NugetPac\OfficeInteropExcel_Export.cs" />
     <Compile Include="Print\ErrorAnalyse.cs" />
     <Compile Include="Print\PrinterSettings_Printer.cs" />
     <Compile Include="Print\TelerikPrint.cs" />

@@ -77,7 +77,7 @@ namespace LVS.Communicator.CronJob
                         FileName += "_KD_" + adrVD.Address.ViewId + "_" + adrVD.Address.Name1;
                         helper_IOFile.CheckPath(AttachmentPath);
                         string FilePath = Path.Combine(AttachmentPath, FileName + ".xlsx");
-                        LVS.Packages.Epplus_Excel export = new Packages.Epplus_Excel(dtGewBestand, FilePath);
+                        LVS.NugetPac.Epplus_Excel export = new NugetPac.Epplus_Excel(dtGewBestand, FilePath);
                         //if(export.pa)
 
                         List<string> listAttach = new List<string>();

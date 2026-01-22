@@ -299,7 +299,7 @@ namespace LVS
                         //closedXml_Excel ExcelExport = new closedXml_Excel(dtGewBestand, FilePath);
                         //clsExcel exp = new clsExcel();
                         //exp.ExportDataTableToExcel(dtGewBestand, FileName, AttachmentPath);
-                        LVS.Packages.Epplus_Excel export = new Packages.Epplus_Excel(dtGewBestand, FilePath);
+                        LVS.NugetPac.Epplus_Excel export = new NugetPac.Epplus_Excel(dtGewBestand, FilePath);
 
                         List<string> listAttach = new List<string>();
                         listAttach.Add(FilePath);
