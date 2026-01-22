@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:vm="clr-namespace:LvsScan.Portable.ViewModels.Inventory"
+             x:Class="LvsScan.Portable.Views.Inventory.InventoryArtikelPage"
+             Title="Inventur Artikelliste"
+             >
+    <ContentPage.BindingContext>
+        <vm:InventoryArtikelViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Test" 
+                     IconImageSource="bullet_ball_green"
+                     Order="Primary"
+                     Priority="0"
+                     />
+        <ToolbarItem Text="Test1" 
+                     Order="Secondary"
+                     Priority="0"
+                     />
+        <ToolbarItem Text="Test2" 
+                     Order="Secondary"
+                     Priority="0"
+                     />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+
+        <Grid x:Name="gridInventoryArticle">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Text="{Binding SelectedInventory.Name}"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand"
+                   FontAttributes="Bold"                   
+                   />
+
+            <StackLayout Grid.Row="1"
+                         Grid.Column="0"
+                         >
+                
+                <telerikPrimitives:RadTabView x:Name="tabViewArticle" 
+                                              FlowDirection="LeftToRight"
+                                              IsContentSwipingAnimationEnabled="True"
+                                              SelectedItem="{Binding SelectedInventoryArticle}"
+                                              >
+                    <telerikPrimitives:RadTabView.Items>
+                        <telerikPrimitives:TabViewItem HeaderText="All">
+                            <telerikPrimitives:TabViewItem.Content>
+
+                                <StackLayout>
+                                    <telerikInput:RadDataForm x:Name="dataForm"
+                                                              Source="{Binding InventoryArticles}"
+                                                              >
+                                    </telerikInput:RadDataForm>
+
+                                    <!--<Label Text="Content of the All tab" />--><!--
+                                    <ListView x:Name="lvDevice"
+                                              ItemsSource="{Binding InventoryArticles}"
+                                              HasUnevenRows="True"
+                                              >
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <Label Text="{Binding Id}" />
+                                                        --><!--<Label Text="{Binding ArtikelId}" />
+                                                        <Label Text="{Binding Description}" />--><!--
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>-->
+                                    
+                                </StackLayout>
+
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+
+                        <telerikPrimitives:TabViewItem HeaderText="Checked">
+                            <telerikPrimitives:TabViewItem.Content>
+
+                                <TableView Intent="Settings"
+                                           
+                                           >
+                                    <TableRoot>
+                                        <TableSection Title="RingTEst">
+                                            <SwitchCell Text="New Voice Mail" />
+                                            <SwitchCell Text="New Mail" On="true" />
+                                        </TableSection>
+                                        <TableSection Title="Getting Started">
+                                            <ViewCell >
+                                                <StackLayout>                                                    
+                                                    <Label Text="left"
+                                                             TextColor="#f35e20" />
+                                                    <Label Text="right"
+                                                             HorizontalOptions="EndAndExpand"
+                                                             TextColor="#503026" />
+                                                </StackLayout>                                            
+                                            </ViewCell>
+                                        </TableSection>
+                                        <!--<TableSection Title="Test">
+                                            <SwitchCell Text="Voice" />
+                                            <SwitchCell Text="Mail" On="true" />
+                                            <Entry Text="1234"/>
+                                            <Label Text="neues Label" TextColor="Black" />
+                                        </TableSection>-->
+                                    </TableRoot>
+                                </TableView>
+
+
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+                        <telerikPrimitives:TabViewItem HeaderText="Error">
+                            <telerikPrimitives:TabViewItem.Content>
+                                <StackLayout>
+                                    
+
+                                    
+                                </StackLayout>
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+                    </telerikPrimitives:RadTabView.Items>
+                </telerikPrimitives:RadTabView>
+
+            </StackLayout>
+
+
+        </Grid>
+        
+        
+        
+ 
+    </ContentPage.Content>
+</ContentPage>

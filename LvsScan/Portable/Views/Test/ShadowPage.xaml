@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             x:Class="LvsScan.Portable.Views.Test.ShadowPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Shadow Test Page !!!!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <telerikPrimitives:RadShadow CornerRadius="10" Margin="10,10,10,10" Padding="20,20,20,20">
+                <telerikPrimitives:RadShadow.BackgroundColor>
+                    <OnPlatform x:TypeArguments="Color" Default="Default">
+                        <On Platform="UWP" Value="#F1F2F5"/>
+                    </OnPlatform>
+                </telerikPrimitives:RadShadow.BackgroundColor>
+                    <StackLayout>
+                    <Frame BorderColor="Black"
+                           Margin="10,10,10,10"
+                           >
+                        <Button Text="Click me"
+                            BackgroundColor="#D6D7D7"
+                            BorderColor= "DarkBlue"
+                            BorderWidth="1"
+                            HeightRequest="50"
+                            Padding="20, 0, 0 , 20"
+                            CornerRadius="10"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            />
+                    </Frame>
+                </StackLayout>
+            </telerikPrimitives:RadShadow>
+
+            <Label Text="Test Label"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <StackLayout>
+                <Frame BorderColor="Black"
+                           Margin="10,10,10,10"
+                           Padding="20,20,20,20"
+                           >
+                    <Button Text="Press"
+                            BackgroundColor="#D6D7D7"
+                            BorderColor= "DarkBlue"
+                            BorderWidth="1"
+                            HeightRequest="50"
+                            Padding="20, 0, 0 , 20"
+                            CornerRadius="10"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            />
+                </Frame>
+            </StackLayout>
+
+            <telerikPrimitives:RadShadow BlurRadius="5" 
+                                         Margin="10,10,10,10" 
+                                         Padding="20,20,20,20"
+                                         Color="DarkBlue"
+                                         BackgroundColor="White"
+                                         >
+                <telerikPrimitives:RadShadow.BackgroundColor>
+                    <OnPlatform x:TypeArguments="Color" Default="Default">
+                        <On Platform="UWP" Value="#F1F2F5"/>
+                    </OnPlatform>
+                </telerikPrimitives:RadShadow.BackgroundColor>
+                <StackLayout>
+                    <Label Text="Menuname"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               FontSize="Large"
+                               FontAttributes="Bold"
+                               TextColor="DarkSlateGray"
+                               />
+                    <Label Text="Subtext für den Button"
+                               VerticalOptions="StartAndExpand"
+                               HorizontalOptions="Center"
+                               FontSize="Subtitle"                               
+                               TextColor="DarkSlateBlue"
+                               />
+                </StackLayout>
+            </telerikPrimitives:RadShadow>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LvsScan.Portable.ViewModels.StoreOut.Open" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             x:Class="LvsScan.Portable.Views.StoreOut.Open.oa1_OpenStoreOutListPage">
+    <ContentPage.BindingContext>
+        <vm:oa1_OpenStoreOutListViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Text="Refresh"
+                     IconImageSource="mi_arrow_circle2_32x32.png"                   
+                     Order="Primary"
+                     Priority="0"                     
+                     Clicked="Refresh_Clicked"
+                     />
+        
+        <ToolbarItem Text="Home"
+                     IconImageSource="mi_home_32x32.png"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="Home_Clicked"
+                     />
+
+
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout HeightRequest="500" IsVisible="{Binding ShowBusyIndicator}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="200" />
+                    </Grid.RowDefinitions>
+
+                    <telerikPrimitives:RadBusyIndicator Grid.Row="1"
+                                                        AnimationContentHeightRequest="100"
+                                                        AnimationContentWidthRequest="100"
+                                                        AnimationType="Animation6"
+                                                        AnimationContentColor="Blue"
+                                                        InputTransparent="True"
+                                                        IsBusy="{Binding ShowBusyIndicator}">
+                        <telerikPrimitives:RadBusyIndicator.BusyContent>
+                            <Label Grid.Row="2" 
+                                       Text="Daten werden geladen...." 
+                                       TextColor="DarkBlue" 
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       />
+                        </telerikPrimitives:RadBusyIndicator.BusyContent>
+                    </telerikPrimitives:RadBusyIndicator>
+                </Grid>
+            </StackLayout>
+
+
+            <StackLayout x:Name="slViewList" IsVisible="{Binding ShowContent}">
+                <CollectionView x:Name="viewList"
+                                IsVisible="{Binding ShowContent}"
+                                ItemsSource="{Binding AusgaengeOpen}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedAusgang}"
+                                SelectionChanged="viewList_SelectionChanged"
+                                BackgroundColor="WhiteSmoke"
+                                EmptyView="Es liegen keine Daten vor"                                
+                                >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <StackLayout Padding="0, 0, 0, 0">
+
+                                <telerikPrimitives:RadBadgeView BadgeText="{Binding ArticleCount}" 
+                                                                BadgeBackgroundColor="{Binding BadgeBackgroundColorStoreOut}" 
+                                                                BadgeFontAttributes="None" 
+                                                                BadgeFontSize="Small">
+                                    <telerikPrimitives:RadBadgeView.Content>
+                                        <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                            Margin="10,10,10,10" 
+                                                            Padding="0,5,0,0"
+                                                            Color="DarkBlue"
+                                                            BackgroundColor="{Binding ViewBackgroundcolor}"
+                                                            >
+                                            
+                                            <StackLayout x:Name="slCardAusgang">
+                                                <StackLayout x:Name="slHead">
+                                                    <StackLayout x:Name="slAusgangsdaten" Orientation="Vertical">
+                                                        <Label  HorizontalOptions="CenterAndExpand"
+                                                                Padding="5,0,0,0" 
+                                                                FontSize="20"
+                                                                FontAttributes="Bold"
+                                                                TextColor="DarkSlateGray"                                                            
+                                                                >
+                                                            <Label.Text>
+                                                                <MultiBinding StringFormat="[{0}]- AusgangID: {1}">
+                                                                    <Binding Path="Id" />
+                                                                    <Binding Path="LAusgangID" />                                                                  
+                                                                </MultiBinding>
+                                                            </Label.Text>
+                                                        </Label>
+                                                        <Label  HorizontalOptions="CenterAndExpand"
+                                                                Padding="5,0,0,0" 
+                                                                FontSize="Medium"
+                                                                FontAttributes="Bold"
+                                                                TextColor="DarkSlateGray"
+                                                                >
+                                                                <Label.Text>
+                                                                    <MultiBinding StringFormat="[{0}]- {1}">
+                                                                        <Binding Path="ArbeitsbereichId" />
+                                                                        <Binding Path="Workspace.Name" />
+                                                                    </MultiBinding>
+                                                                </Label.Text>
+                                                        </Label>
+
+
+                                                    </StackLayout>
+                                                    <BoxView Color= "DarkSlateBlue"
+                                                                    HeightRequest="1"                                                
+                                                                    HorizontalOptions="Fill" />
+                                                </StackLayout>                                               
+                                                <StackLayout x:Name="slAusgangdaten" Orientation="Vertical">
+                                                    <StackLayout x:Name="slTermin" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                FontAttributes="Bold"
+                                                                TextColor="DimGray"
+                                                                Text="Termin: "
+                                                                WidthRequest="105"
+                                                                >
+                                                        </Label>
+                                                        <Label  HorizontalOptions="EndAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Default"
+                                                                TextColor="DimGray"
+                                                                FontAttributes="Bold,Italic"
+                                                                Text="{Binding Termin , StringFormat='{0:dd.MM.yyyy HH:mm} Uhr'}"
+                                                                >
+                                                        </Label>
+                                                    </StackLayout>
+                                                    <StackLayout x:Name="slLfs" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                FontAttributes="Bold"
+                                                                TextColor="DimGray"
+                                                                Text="Lfs-Nr:"
+                                                                WidthRequest="105"
+                                                                >
+                                                        </Label>
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                TextColor="DimGray"
+                                                                Text="{Binding LfsNr}"
+                                                                >
+                                                        </Label>
+                                                    </StackLayout>
+                                                    <StackLayout x:Name="slDatum" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                FontAttributes="Bold"
+                                                                TextColor="DimGray"
+                                                                Text="Datum:"
+                                                                WidthRequest="105"
+                                                                >
+                                                        </Label>
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                TextColor="DimGray"
+                                                                Text="{Binding Datum, StringFormat='{0:dd.MM.yyyy}'}"
+                                                                >
+                                                        </Label>
+                                                    </StackLayout>                                                  
+                                                    <StackLayout x:Name="slAuftraggeber" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                FontAttributes="Bold"
+                                                                TextColor="DimGray"
+                                                                Text="Auftraggeber:"
+                                                                WidthRequest="105"
+                                                                >
+                                                        </Label>
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                TextColor="DimGray"
+                                                                Text="{Binding AuftraggeberString}"
+                                                                >
+                                                        </Label>
+                                                    </StackLayout>
+                                                    <StackLayout x:Name="slEmpfaenger" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                FontAttributes="Bold"
+                                                                TextColor="DimGray"
+                                                                Text="Empfänger:"
+                                                                WidthRequest="105"
+                                                                >
+                                                        </Label>
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                TextColor="DimGray"
+                                                                Text="{Binding EmpfaengerString}"
+                                                                >
+                                                        </Label>
+                                                    </StackLayout>
+                                                    <BoxView Color= "DarkSlateBlue"
+                                                                    HeightRequest="1"                                                
+                                                                    HorizontalOptions="Fill" />
+                                                    <StackLayout x:Name="Fahrzeugdaten" Orientation="Horizontal">
+                                                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                                            <Label  HorizontalOptions="StartAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                FontAttributes="Bold"
+                                                                TextColor="DimGray"
+                                                                Text="KFZ"
+                                                                >
+                                                            </Label>
+                                                            <Label  HorizontalOptions="StartAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                TextColor="DimGray"
+                                                                Text="{Binding KFZ}"
+                                                                >
+                                                            </Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                                            <Label  HorizontalOptions="CenterAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                FontAttributes="Bold"
+                                                                TextColor="DimGray"
+                                                                Text="Trailer"
+                                                                >
+                                                            </Label>
+                                                            <Label  HorizontalOptions="CenterAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                TextColor="DimGray"
+                                                                Text="{Binding Trailer}"
+                                                                >
+                                                            </Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                                            <Label  HorizontalOptions="EndAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                FontAttributes="Bold"
+                                                                TextColor="DimGray"
+                                                                Text="Fahrer"
+                                                                >
+                                                            </Label>
+                                                            <Label  HorizontalOptions="EndAndExpand"
+                                                                Padding="15,0,0,0"
+                                                                FontSize="Small"
+                                                                TextColor="DimGray"
+                                                                Text="{Binding Fahrer}"
+                                                                >
+                                                            </Label>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            
+                                        </telerikPrimitives:RadShadow>
+                                    </telerikPrimitives:RadBadgeView.Content>
+                                </telerikPrimitives:RadBadgeView>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

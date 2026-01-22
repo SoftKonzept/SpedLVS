@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             x:Class="LvsScan.Portable.Views.Wizard.wiz_PrintSetting">
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout>
+                    <StackLayout x:Name="BusyIndicator"
+                                Padding="5,5,5,1"
+                                IsVisible="{Binding ShowBusyIndicator}">
+
+                        <telerikPrimitives:RadBusyIndicator AnimationContentHeightRequest="100"
+                                                    AnimationContentWidthRequest="100"
+                                                    AnimationType="Animation6"
+                                                    AnimationContentColor="Blue"
+                                                    InputTransparent="True"
+                                                    IsBusy="{Binding ShowBusyIndicator}"
+                                                    >
+                            <telerikPrimitives:RadBusyIndicator.BusyContent>
+                                <Label Grid.Row="2" 
+                                           Text="Daten werden geladen...." 
+                                           TextColor="DarkBlue" 
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           />
+                            </telerikPrimitives:RadBusyIndicator.BusyContent>
+                        </telerikPrimitives:RadBusyIndicator>
+                    </StackLayout>
+
+                    <StackLayout IsVisible="{Binding ShowContent}">
+                        <Grid BackgroundColor="White" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition x:Name="rowHead" Height="150" />
+                                <RowDefinition x:Name="rowPrintCount" Height="auto" />
+                                <RowDefinition x:Name="rowPrinterSelection" Height="*" />
+                            </Grid.RowDefinitions>  
+
+
+                            <StackLayout x:Name="slHead" Grid.Row="0">
+                                <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                            Margin="10,10,10,10" 
+                                                            Padding="0,5,0,0"
+                                                            Color="DarkBlue"
+                                                            BackgroundColor="Snow"
+                                                            >
+
+                                    <StackLayout x:Name="slArticleData">
+
+                                        <StackLayout Orientation="Horizontal">
+
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="5,0,0,0" 
+                                                    FontSize="Subtitle"
+                                                    FontAttributes="Bold"
+                                                    TextColor="DarkSlateGray"
+                                                    >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}LVS: {0} - [ {1} ] |  Ort: {2} ">
+                                                        <Binding Path="SelectedArticle.LVS_ID" />
+                                                        <Binding Path="SelectedArticle.Id" />
+                                                        <Binding Path="SelectedArticle.LagerOrtAsString" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Image>
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding SelectedArticle.AusgangChecked}" Value="False" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding SelectedArticle.AusgangChecked}" Value="True" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+
+                                        </StackLayout>
+                                        <BoxView Color= "DarkSlateBlue"
+                                                    HeightRequest="1"                                                
+                                                    HorizontalOptions="Fill" />
+
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}ProduktionsNr.: {0}">
+                                                        <Binding Path="SelectedArticle.Produktionsnummer" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Werksnummer: {0}">
+                                                        <Binding Path="SelectedArticle.Werksnummer" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Brutto KG: {0:N2}">
+                                                        <Binding Path="SelectedArticle.Brutto" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                </telerikPrimitives:RadShadow>
+                            </StackLayout>
+
+                            <StackLayout x:Name="slPrintCount" Grid.Row="1">
+                                <Grid Padding="25,5,5,5"
+                                  BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout>
+
+                                    </StackLayout>
+                                    <Label Grid.Row="0"
+                                        Grid.Column="0"                                   
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Center"
+                                        FontSize="Medium"
+                                        Text="Anzahl:" />
+                                    <telerikInput:RadNumericInput x:Name="numPrintCount" Grid.Row="0"
+                                                              Grid.Column="1"
+                                                              Value="{Binding PrintCount, Mode=TwoWay}" 
+                                                              Minimum="{Binding Minimum}"
+                                                              Maximum="{Binding Maximum}"
+                                                              Step="{Binding Step}"
+                                                              IncreaseCommand="{Binding CustomIncreaseCommand}"
+                                                              DecreaseCommand="{Binding CustomDecreaseCommand}"
+                                                              Padding="10,0,10,0"                                                              
+                                                              />
+                                </Grid>
+                            </StackLayout>
+
+                            
+                            
+                            
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+
+
+    </ContentView.Content>
+</ContentView>

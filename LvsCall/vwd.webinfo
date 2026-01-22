@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+<!-- 
+  Visual Studio global web project settings.
+-->
+<VisualWebDeveloper>
+
+  <Globals>
+    
+  
+    <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True"/>
+  </Globals>
+
+  <iisExpressSettings sslPort="44300" windowsAuthentication="disabled" anonymousAuthentication="enabled" useClassicPipelineMode="false"/>
+
+  <comReferences>
+    <reference Name="interop.fileviewlib" ID="{BE79C475-D632-4A57-91B3-DA044FA27CDA}\1.0\0"/>
+    <reference Name="interop.acrobat" ID="{E64169B3-3592-47D2-816E-602C5C13F328}\1.1\0"/>
+  </comReferences>
+</VisualWebDeveloper>

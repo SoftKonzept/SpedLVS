@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+             xmlns:slideView="clr-namespace:Telerik.XamarinForms.Primitives.SlideView;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:common="clr-namespace:Telerik.XamarinForms.Common;assembly=Telerik.XamarinForms.Common"
+             x:Class="LvsScan.Portable.App">
+	<Application.Resources>
+
+		<!-- Application resource dictionary -->
+        <!-- https://docs.telerik.com/devtools/xamarin/styling-and-appearance/telerik-font-icons -->
+        <ResourceDictionary>
+
+            <x:String x:Key="Icon_Add">&#xe813;</x:String>
+            <x:String x:Key="Icon_Cam">&#xe86a;</x:String>
+            <x:String x:Key="Icon_Cancel">&#xe80a;</x:String>
+            <x:String x:Key="Icon_Check">&#xe876;</x:String>
+            <x:String x:Key="Icon_Configure">&#xe80f;</x:String>
+            <x:String x:Key="Icon_Copy">&#xe819;</x:String>
+            <x:String x:Key="Icon_DeleteFirstChar">&#xe883;</x:String>
+            <x:String x:Key="Icon_DeleteLastChar">&#xe882;</x:String>
+            <x:String x:Key="Icon_Edit">&#xe818;</x:String>
+            <x:String x:Key="Icon_Garbage">&#xe827;</x:String>
+            <x:String x:Key="Icon_Info">&#xe815;</x:String>
+            <x:String x:Key="Icon_Menu">&#xe808;</x:String>
+            <x:String x:Key="Icon_MenuCustom">&#xe87d;</x:String>
+            <x:String x:Key="Icon_MinusSquared">&#xf147;</x:String>
+            <x:String x:Key="Icon_PlusSquared">&#xf196;</x:String>
+            <x:String x:Key="Icon_Save">&#xe87b;</x:String>
+            <x:String x:Key="Icon_Search">&#xe810;</x:String>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="IconsFont">
+                <On Platform="iOS">telerikfontexamples</On>
+                <On Platform="Android">Fonts/telerikfontexamples.ttf#telerikfontexamples</On>
+                <On Platform="UWP">/Assets/Fonts/telerikfontexamples.ttf#telerikfontexamples</On>
+            </OnPlatform>
+        <!--</ResourceDictionary>-->
+
+
+        
+            <!--Recource TabView-->
+        
+            <Style x:Key="DefaultTabViewHeaderItem" TargetType="telerikPrimitives:TabViewHeaderItem">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=#fcfdff, Dark=#F8FAFA}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#fcfdff, Dark=#4A4E52}" />
+                <Setter Property="WidthRequest" Value="70" />
+            </Style>
+
+            <Style x:Key="DefaultTabViewHeaderItemSmall" TargetType="telerikPrimitives:TabViewHeaderItem">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=#fcfdff, Dark=#F8FAFA}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#fcfdff, Dark=#4A4E52}" />
+                <Setter Property="WidthRequest" Value="70" />
+                <Setter Property="HeightRequest" Value="50" />
+            </Style>
+
+        
+            <!--Recource BadgeView-->
+            <Style x:Key="DefaultBadgeViewStyle" TargetType="telerikPrimitives:RadBadgeView">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="70"/>
+                <Setter Property="BadgeTextColor" Value="White" />
+                <Setter Property="BadgeBackgroundColor" Value="Blue" />
+                <Setter Property="BadgeOffsetX" Value="10" />
+                <Setter Property="BadgeOffsetY" Value="-5" />
+            </Style>
+        
+            <!--<Style x:Key="DefaultBadgeViewStyleViewHeaderItem" TargetType="telerikPrimitives:RadBadgeView">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="70"/>
+                <Setter Property="BadgeTextColor" Value="White" />
+                <Setter Property="BadgeBackgroundColor" Value="Blue" />
+                <Setter Property="BadgeOffsetX" Value="10" />
+                <Setter Property="BadgeOffsetY" Value="-5" />
+            </Style>-->
+        
+            <Style x:Key="DefaultBadgeViewStyleViewHeaderItemChecked" TargetType="telerikPrimitives:RadBadgeView">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="70"/>
+                <Setter Property="BadgeTextColor" Value="White" />
+                <Setter Property="BadgeBackgroundColor" Value="LawnGreen" />
+                <Setter Property="BadgeOffsetX" Value="10" />
+                <Setter Property="BadgeOffsetY" Value="-5" />
+            </Style>
+
+            <Style x:Key="DefaultBadgeViewStyleViewHeaderItemError" TargetType="telerikPrimitives:RadBadgeView">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="70"/>
+                <Setter Property="BadgeTextColor" Value="White" />
+                <Setter Property="BadgeBackgroundColor" Value="Tomato" />
+                <Setter Property="BadgeOffsetX" Value="10" />
+                <Setter Property="BadgeOffsetY" Value="-5" />
+            </Style>
+
+
+
+
+            <!--Resource SlideView-->
+
+
+            <!-- IndicatorTemplate -->
+            <ControlTemplate x:Key="RadSlideView_IndicatorTemplate">
+                
+                <Label Text="{TemplateBinding IndicatorText}" 
+                   FontSize="{TemplateBinding IndicatorFontSize}" 
+                   FontFamily="{TemplateBinding IndicatorFontFamily}" 
+                   VerticalOptions="Center" 
+                   TextColor="{TemplateBinding IndicatorColor}"
+                      
+                       />
+            </ControlTemplate>
+
+            <!-- SelectedIndicator ControlTemplate -->
+            <ControlTemplate x:Key="RadSlideView_SelectedIndicatorTemplate">
+                <Label Text="{TemplateBinding SelectedIndicatorText}" 
+                   FontSize="{TemplateBinding SelectedIndicatorFontSize}" 
+                   FontFamily="{TemplateBinding SelectedIndicatorFontFamily}" 
+                   VerticalOptions="Center" 
+                   TextColor="{TemplateBinding SelectedIndicatorColor}" />
+            </ControlTemplate>
+
+            <!-- SlideView ControlTemplate -->
+            <ControlTemplate x:Key="RadSlideView_ItemTemplate_Article">
+                <StackLayout>
+                    <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                Margin="10,10,10,10"                                                               
+                                                Color="DarkBlue"
+                                                Padding="0,0,0,0"
+                                                HorizontalOptions="Fill"
+                                                BackgroundColor="{TemplateBinding ViewBackgroundColor}">
+                        <StackLayout Orientation="Vertical">
+
+                            <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="5,-1,0,-2" 
+                                                FontSize="Subtitle"
+                                                FontAttributes="Bold"
+                                                TextColor="DarkSlateGray"
+                                                Text="{TemplateBinding Id}" />
+                            <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="5,-2,0,-2" 
+                                                FontSize="Subtitle"
+                                                FontAttributes="Bold"
+                                                TextColor="DarkSlateGray"
+                                                Text="{TemplateBinding Title}" />
+                            <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="5,-2,0,-2" 
+                                                FontSize="Subtitle"
+                                                FontAttributes="Bold"
+                                                TextColor="DarkSlateGray"
+                                                Text="{TemplateBinding SubText}"                                                    
+                                                />
+                            <BoxView Color= "DarkSlateBlue"                             
+                                     HeightRequest="1"                                                
+                                     HorizontalOptions="Fill" />
+
+                            <StackLayout Orientation="Vertical">
+
+                                <StackLayout x:Name="slProduktionsnummer" Orientation="Horizontal" Padding="0,-4,0,-1">
+                                    <Label  HorizontalOptions="Start"
+                                                        Padding="15,0,0,0"
+                                                        FontSize="Small"
+                                                        TextColor="DimGray"
+                                                        FontAttributes="Bold"
+                                                        Text="Produktions-Nr:"
+                                                        WidthRequest="140"/>
+                                    <Label  HorizontalOptions="Start"
+                                                        FontSize="Small"
+                                                        TextColor="DimGray"
+                                                        Text="98765432" />
+                                </StackLayout>
+
+                                <StackLayout x:Name="slWerksnummer" Orientation="Horizontal" Padding="0,-5,0,-1">
+                                    <Label  HorizontalOptions="Start"
+                                                        Padding="15,0,0,0"
+                                                        FontSize="Small"
+                                                        TextColor="DimGray"
+                                                        FontAttributes="Bold"
+                                                        Text="Werksnummer:"
+                                                        WidthRequest="140"/>
+                                    <Label  HorizontalOptions="Start"
+                                                        FontSize="Small"
+                                                        TextColor="DimGray"
+                                                        Text="QWE 123 456 789" />
+                                </StackLayout>
+
+                                <StackLayout x:Name="slBrutto" Orientation="Horizontal" Padding="0,-5,0,1">
+                                    <Label  HorizontalOptions="Start"
+                                                        Padding="15,0,0,0"
+                                                        FontSize="Small"
+                                                        TextColor="DimGray"
+                                                        FontAttributes="Bold"
+                                                        Text="Gewicht [kg]:"
+                                                        WidthRequest="140"/>
+                                    <Label  HorizontalOptions="Start"
+                                                        FontSize="Small"
+                                                        TextColor="DimGray"
+                                                        Text="23.345,11"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </telerikPrimitives:RadShadow>
+                </StackLayout>
+            </ControlTemplate>
+            
+            
+            <!--Listpicker Control Template-->
+                <!--Test Suchfeld in popup-->
+
+            <!--<Style x:Key="picker_Addresses_HeaderStyle" TargetType="telerikInput:PickerPopupHeaderView" >
+                <Setter Property="BackgroundColor" Value="#1188FF"/>
+                <Setter Property="HeightRequest" Value="120"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>-->
+
+            <Style x:Key="picker_Addresses_HeaderStyle" TargetType="telerikInput:PickerPopupHeaderView" >
+                <Setter Property="BackgroundColor" Value="DodgerBlue"/>
+                <Setter Property="HeightRequest" Value="60"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>
+
+            <!--letzter Stand Test Suchfeld in Popup-->
+            <!--<ControlTemplate x:Key="picker_Addresses_HeaderTemplate">
+                <StackLayout>
+                    <Label Text="Adressauswahl:" 
+                           TextColor="White"
+                           FontSize="20"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           HeightRequest="50"
+                           BackgroundColor="DodgerBlue"
+                           />
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Suche:" 
+                               FontAttributes="Bold" 
+                               FontSize="16" 
+                               Padding="10,5,5,10" 
+                               WidthRequest="65" />
+                        <Frame BorderColor="Red"
+                           HasShadow="True"
+                           CornerRadius="0"
+                           Padding="2"
+                           Margin="2"
+                           BackgroundColor="White"
+                           >
+                            <Entry Placeholder="[Suche]"
+                                   WidthRequest="160"
+                                   PlaceholderColor="Black"
+                                   FontSize="16"
+                                   IsEnabled="False"
+                                   effects:KeyboardEffect.EnableKeyboard="True"
+                                   Keyboard="Default"
+                                   Text="{Binding SearchString}"
+                                   ReturnType="Search"
+                                   IsSpellCheckEnabled="false"
+                                   IsTextPredictionEnabled="false"
+                                   HeightRequest="20"
+                                   >
+                                <Entry.Effects>
+                                    <effects:KeyboardEnableEffect/>
+                                </Entry.Effects>
+                            </Entry>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+            </ControlTemplate>-->
+
+
+            <ControlTemplate x:Key="picker_Addresses_HeaderTemplate">
+                <StackLayout>
+                    <Label Text="Adressauswahl:" 
+                           TextColor="White"
+                           FontSize="16"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           BackgroundColor="DodgerBlue"/>               
+                </StackLayout>
+            </ControlTemplate>
+            <DataTemplate x:Key="picker_Addresses_ItemTemplate">
+
+                <Frame BorderColor="DarkBlue"
+                   HasShadow="True"
+                   CornerRadius="3"
+                   Padding="5"
+                   Margin="5"
+                   BackgroundColor="White"
+                   >
+                    <StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding ViewIdString}" 
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               Padding="5,0,0,0"
+                               />
+                            <Label Text="{Binding AddressStringShort}" 
+                               FontSize="14"
+                               Padding="15,0,0,0"
+                               />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+            </DataTemplate>
+            <DataTemplate x:Key="picker_Addresses_SelectedItemTemplate">
+                <Frame BorderColor="DarkBlue"
+                   HasShadow="True"
+                   CornerRadius="3"
+                   Padding="5"
+                   Margin="5"
+                   BackgroundColor="Beige"
+                   >
+                    <StackLayout
+                             >
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding ViewIdString}" 
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               Padding="5,0,0,0"
+                               />
+                            <Label Text="{Binding AddressStringShort}" 
+                               FontSize="14"
+                               Padding="15,0,0,0"
+                               />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </DataTemplate>
+            <ControlTemplate x:Key="picker_Addresses_FooterTemplate">
+                <StackLayout Orientation="Horizontal" Spacing="5" BackgroundColor="DodgerBlue">
+                    <Button Text="Abbrechen" 
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="StartAndExpand"
+                        Command="{TemplateBinding CancelCommand}" />
+                    <Button Text="Übernehmen" 
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="EndAndExpand"
+                        Command="{TemplateBinding AcceptCommand}" />
+                </StackLayout>
+            </ControlTemplate>
+            
+            
+            <!--ENDE-->
+
+
+
+        </ResourceDictionary>
+
+
+    </Application.Resources>
+</Application>

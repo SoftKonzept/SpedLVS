@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:vm="clr-namespace:LvsScan.Portable.ViewModels.StoredLocation"
+             x:Class="LvsScan.Portable.Views.StoredLocation.sl3_StoreLocationChangeFinishPage">
+    <ContentPage.BindingContext>
+        <vm:sl3_StoreLocationChangeFinishViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="tbiUB"                     
+                     Text="weitere Umlagerung"
+                     IconImageSource="mi_document_pinned_32x32.png"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="tbiUB_Clicked"
+                     />
+        <ToolbarItem x:Name="tbiHome"                     
+                     Text="zur Mainpage"
+                     IconImageSource="mi_home_32x32.png"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="tbiHome_Clicked"
+                     />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+
+
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Schritt 3 von 3"
+                       VerticalOptions="End" 
+                       HorizontalOptions="EndAndExpand" 
+                       Padding="0,0,10,0"
+                       FontSize="13"
+                       FontAttributes="Bold"
+                       />
+            </StackLayout>
+            <StackLayout>
+
+                <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                    Margin="10,10,10,10" 
+                                                    Padding="0,5,0,0"
+                                                    Color="DarkBlue"
+                                                    BackgroundColor="Snow"
+                                                    >
+                    <StackLayout>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+
+                                <Label  HorizontalOptions="StartAndExpand"
+                                            Padding="5,0,0,0" 
+                                            FontSize="Large"
+                                            FontAttributes="Bold"
+                                            TextColor="DarkSlateGray"
+                                            >
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}LVS: {0} - [ {1} ]">
+                                            <Binding Path="Article.LVS_ID" />
+                                            <Binding Path="Article.Id" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label Text="{Binding Id}" BackgroundColor="Aqua"/>
+
+                            </StackLayout>
+                            <BoxView Color= "DarkSlateBlue"
+                                            HeightRequest="1"                                                
+                                            HorizontalOptions="Fill" />
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical">
+                            <Label  HorizontalOptions="StartAndExpand"
+                                        Padding="15,0,0,0"
+                                        FontSize="Medium"
+                                        TextColor="DimGray"
+                                        >
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}ProduktionsNr.: {0}">
+                                        <Binding Path="Article.Produktionsnummer" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                            <Label  HorizontalOptions="StartAndExpand"
+                                        Padding="15,0,0,0"
+                                        FontSize="Medium"
+                                        TextColor="DimGray"
+                                        >
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}Werksnummer: {0}">
+                                        <Binding Path="Article.Werksnummer" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                            <Label  HorizontalOptions="StartAndExpand"
+                                        Padding="15,0,0,0"
+                                        FontSize="Medium"
+                                        TextColor="DimGray"
+                                        >
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}Brutto KG: {0:N2}">
+                                        <Binding Path="Article.Brutto" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                        </StackLayout>
+
+                        <BoxView Color= "DarkSlateBlue"
+                                            HeightRequest="1"                                                
+                                            HorizontalOptions="Fill" />
+
+                        <StackLayout>
+                            <!--aktueller Lagerort-->
+                            <Label  HorizontalOptions="StartAndExpand"
+                                    Padding="15,0,0,0"
+                                    TextColor="DimGray"
+                                    Text="aktueller Lagerort:"
+                                    FontAttributes="Bold"
+                                    FontSize="Large"
+                                    />
+
+                            <StackLayout Orientation="Horizontal">
+
+                                <StackLayout Orientation="Vertical">
+                                    <Label  HorizontalOptions="Center"
+                                            Padding="15,0,0,0"
+                                            FontSize="Small"
+                                            TextColor="DimGray"
+                                            Text="Werk"
+                                            />
+                                    <Label  HorizontalOptions="Center"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                Text="{Binding Article.Werk}"
+                                                />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical">
+                                    <Label  HorizontalOptions="Center"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                Text="Halle"
+                                                />
+                                    <Label  HorizontalOptions="Center"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    Text="{Binding Article.Halle}"
+                                                    />
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                    <Label  HorizontalOptions="Center"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                Text="Reihe"
+                                                />
+                                    <Label  HorizontalOptions="Center"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    Text="{Binding Article.Reihe}"
+                                                    />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical">
+                                    <Label  HorizontalOptions="Center"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    Text="Ebene"
+                                                    />
+                                    <Label  HorizontalOptions="Center"
+                                                        Padding="15,0,0,0"
+                                                        FontSize="Small"
+                                                        TextColor="DimGray"
+                                                        Text="{Binding Article.Ebene}"
+                                                        />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical">
+                                    <Label  HorizontalOptions="Center"
+                                                        Padding="15,0,0,0"
+                                                        FontSize="Small"
+                                                        TextColor="DimGray"
+                                                        Text="Platz"
+                                                        />
+                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="{Binding Article.Platz}"
+                                                            />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
+                </telerikPrimitives:RadShadow>
+
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,1464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\SixLabors.ImageSharp.3.1.12\build\SixLabors.ImageSharp.props" Condition="Exists('..\packages\SixLabors.ImageSharp.3.1.12\build\SixLabors.ImageSharp.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1AF4608-B83C-4664-8A3C-FB6EA3DB10DD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LVS</RootNamespace>
+    <AssemblyName>LVS</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <HotReloadEnabled>false</HotReloadEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.AcroPDFLib">
+      <HintPath>..\..\lib\AxInterop.AcroPDFLib.dll</HintPath>
+    </Reference>
+    <Reference Include="BitMiracle.LibTiff.NET, Version=2.4.649.0, Culture=neutral, PublicKeyToken=53879b3e20e7a7d6, processorArchitecture=MSIL">
+      <HintPath>..\packages\BitMiracle.LibTiff.NET.2.4.649\lib\net40\BitMiracle.LibTiff.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="clsINI">
+      <HintPath>..\..\lib\clsINI.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=3.1.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.3.1.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml.Framework, Version=3.1.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.Framework.3.1.1\lib\net46\DocumentFormat.OpenXml.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlusFree, Version=4.5.3.8, Culture=neutral, PublicKeyToken=85bfa0499e2db48a, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlusFree.4.5.3.8\lib\net40\EPPlusFree.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="ExCSS, Version=4.3.0.0, Culture=neutral, PublicKeyToken=bdbe16be9b936b9a, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExCSS.4.3.0\lib\net48\ExCSS.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.23.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.23.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Core.Api, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grpc.Core.Api.2.62.0\lib\net462\Grpc.Core.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Net.Client, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grpc.Net.Client.2.62.0\lib\net462\Grpc.Net.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Net.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grpc.Net.Common.2.62.0\lib\netstandard2.0\Grpc.Net.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="HarfBuzzSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\HarfBuzzSharp.8.3.0.1\lib\net462\HarfBuzzSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.2\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.Cryptography, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Cryptography.9.0.2\lib\net462\Microsoft.Bcl.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DotNet.PlatformAbstractions, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.DotNet.PlatformAbstractions.3.1.6\lib\net45\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.9.0.2\lib\net462\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.9.0.2\lib\net462\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.9.0.2\lib\net462\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.FileExtensions.9.0.2\lib\net462\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Json, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Json.9.0.2\lib\net462\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.9.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.9.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyModel, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyModel.9.0.2\lib\net462\Microsoft.Extensions.DependencyModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.9.0.2\lib\net462\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Physical.9.0.2\lib\net462\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileSystemGlobbing.9.0.2\lib\net462\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.9.0.2\lib\net462\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.9.0.2\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Configuration, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Configuration.9.0.2\lib\net462\Microsoft.Extensions.Logging.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Console, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Console.9.0.2\lib\net462\Microsoft.Extensions.Logging.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.9.0.2\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options.ConfigurationExtensions, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.ConfigurationExtensions.9.0.2\lib\net462\Microsoft.Extensions.Options.ConfigurationExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=9.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.9.0.2\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.1\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfiumViewer, Version=2.13.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
+      <HintPath>..\packages\PdfiumViewer.2.13.0.0\lib\net20\PdfiumViewer.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=6.2.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.1\lib\netstandard2.0\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.BarCodes, Version=6.2.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.1\lib\netstandard2.0\PdfSharp.BarCodes.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=6.2.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.1\lib\netstandard2.0\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Cryptography, Version=6.2.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.1\lib\netstandard2.0\PdfSharp.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Quality, Version=6.2.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.1\lib\netstandard2.0\PdfSharp.Quality.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Shared, Version=6.2.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.1\lib\netstandard2.0\PdfSharp.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Snippets, Version=6.2.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.1\lib\netstandard2.0\PdfSharp.Snippets.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.System, Version=6.2.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.1\lib\netstandard2.0\PdfSharp.System.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.WPFonts, Version=6.2.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.2.1\lib\netstandard2.0\PdfSharp.WPFonts.dll</HintPath>
+    </Reference>
+    <Reference Include="Pkcs11Interop, Version=5.3.0.0, Culture=neutral, PublicKeyToken=c10e9c2d8c006d2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pkcs11Interop.5.3.0\lib\net45\Pkcs11Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="RBush, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RBush.4.0.0\lib\net47\RBush.dll</HintPath>
+    </Reference>
+    <Reference Include="s2industries.ZUGFeRD, Version=17.4.0.0, Culture=neutral, PublicKeyToken=eae19aa9fbd2251d, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZUGFeRD-csharp.17.4.0\lib\net48\s2industries.ZUGFeRD.dll</HintPath>
+    </Reference>
+    <Reference Include="ShimSkiaSharp, Version=2.0.0.4, Culture=neutral, PublicKeyToken=dafe96fe6c845a74, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShimSkiaSharp.2.0.0.4\lib\net461\ShimSkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.ImageSharp.Drawing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.ImageSharp.Drawing.1.0.0\lib\net472\SixLabors.ImageSharp.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp, Version=3.116.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\SkiaSharp.3.116.1\lib\net462\SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.HarfBuzz, Version=3.116.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\SkiaSharp.HarfBuzz.3.116.1\lib\net462\SkiaSharp.HarfBuzz.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg.Custom, Version=2.0.0.4, Culture=neutral, PublicKeyToken=dafe96fe6c845a74, processorArchitecture=MSIL">
+      <HintPath>..\packages\Svg.Custom.2.0.0.4\lib\netstandard2.0\Svg.Custom.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg.Model, Version=2.0.0.4, Culture=neutral, PublicKeyToken=dafe96fe6c845a74, processorArchitecture=MSIL">
+      <HintPath>..\packages\Svg.Model.2.0.0.4\lib\net461\Svg.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg.Skia, Version=2.0.0.4, Culture=neutral, PublicKeyToken=dafe96fe6c845a74, processorArchitecture=MSIL">
+      <HintPath>..\packages\Svg.Skia.2.0.0.4\lib\net461\Svg.Skia.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.0\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=9.0.0.7, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.9.0.7\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.9.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.PerformanceCounter, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.PerformanceCounter.9.0.2\lib\net462\System.Diagnostics.PerformanceCounter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Formats.Asn1, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Formats.Asn1.9.0.2\lib\net462\System.Formats.Asn1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=9.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.9.0.2\lib\net462\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.9.0.2\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.0\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Json, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Json.9.0.2\lib\net462\System.Net.Http.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WinHttpHandler, Version=9.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.WinHttpHandler.9.0.2\lib\net462\System.Net.Http.WinHttpHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.0\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.0\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.1\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=9.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.9.0.2\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=8.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Xml.8.0.2\lib\net462\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.9.0.2\lib\net462\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.Encoding.CodePages, Version=9.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.9.0.2\lib\net462\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.9.0.2\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.9.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.6.0\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XmlDocument, Version=4.7.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XPath.XmlDocument.4.7.0\lib\net462\System.Xml.XPath.XmlDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting, Version=16.2.22.914, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Html5.WebForms, Version=16.2.22.914, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.ReportViewer.Html5.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=16.2.22.914, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents, Version=2025.4.1111.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.AIConnector, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.AIConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.CMapUtils, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.CMapUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.DrawingML, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.DrawingML.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed.FormatProviders.Ocr, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Fixed.FormatProviders.Ocr.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Flow.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Doc, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Flow.FormatProviders.Doc.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Json, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.TesseractOcr, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.TesseractOcr.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinUI.Controls">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.1.0\Binaries\Win32\Telerik.WinUI.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Tesseract, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tesseract.5.2.0\lib\net48\Tesseract.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ASN\ASNFormatFunctions\Cut0ValueLeft.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\Format_Anzahl.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\Format_DateTimeFromEDI.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\Format_GlowDateToEdi.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\Format_GlowDateFromEDI.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\Format_Netto_WISCO.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\Format_Einheit.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\DeleteHyphen.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\LKZ.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\S715F10AbmessungenSAG.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\S715F10LenghtTATA.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\FillTo9With0Left.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\S715F10Abmessungen.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\Div1000.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\UNOC_Zeichensatz.cs" />
+    <Compile Include="ASN\ASNFormatFunctions\ValOrNullSegElementField.cs" />
+    <Compile Include="ASN\clsASN.cs" />
+    <Compile Include="ASN\clsASNCall.cs" />
+    <Compile Include="ASN\clsASNTransfer.cs" />
+    <Compile Include="ASN\clsASNTyp.cs" />
+    <Compile Include="ASN\clsASNWizzard.cs" />
+    <Compile Include="ASN\clsBSInfoArt.cs" />
+    <Compile Include="ASN\clsLagerMeldungen.cs" />
+    <Compile Include="ASN\clsQueue.cs" />
+    <Compile Include="ASN\clsUniport.cs" />
+    <Compile Include="ASN\clsVDA4984.cs" />
+    <Compile Include="ASN\clsVDA4905.cs" />
+    <Compile Include="ASN\clsASNFormatFunctions.cs" />
+    <Compile Include="ASN\clsASNAction.cs" />
+    <Compile Include="ASN\Defaults\Default_DESADV_D07A.cs" />
+    <Compile Include="ASN\Defaults\Default_DESADV_D96A.cs" />
+    <Compile Include="ASN\Defaults\Default_INVRPTD96A.cs" />
+    <Compile Include="ASN\Defaults\Default_DESADV_D97A.cs" />
+    <Compile Include="ASN\Defaults\Default_DESADV_BMW_4b_ST.cs" />
+    <Compile Include="ASN\Defaults\Default_DELFOR_DESADV.cs" />
+    <Compile Include="ASN\Defaults\Default_DESADV_BMW_6 _UB.cs" />
+    <Compile Include="ASN\Defaults\Default_DESADV_BMW_6.cs" />
+    <Compile Include="ASN\Defaults\Default_DESADV_BMW_4b_RL.cs" />
+    <Compile Include="ASN\Defaults\Default_DESADV_BMW_4b.cs" />
+    <Compile Include="ASN\Defaults\Default_VDAClientOut_SetArticleItem.cs" />
+    <Compile Include="ASN\Defaults\Default_VDAClientOut.cs" />
+    <Compile Include="ASN\EDIFACT\ALI.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\BGM_1225_1225_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\GIN_C208_7402_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\IMD_7383_7383_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\IMD_C273_7008_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\INV_C522_3055_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\INV_C522_4403_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\INV_4503_4503_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\INV_4499_4499_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\INV_7491_7491_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\INV_4501_4501_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\GIN_7405_7405_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\LIN_C212_7143_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\LIN_C212_7140_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\LIN_1229_1229_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\LIN_LIN_LIN_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\LIN_1082_1082_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\PAC_C202_1131_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\PIA_C212_7143_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\PIA_C212_7140_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\PIA_4347_4347_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\PCI_C827_7511_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\PCI_4233_4233_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\INV_INV_INV_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\PIA_PIA_PIA_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\IMD_IMD_IMD_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\PAC_C202_3055_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\PAC_C202_7065_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\QTY_C186_6411_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\QTY_C186_6060_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\QTY_C186_6063_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\PAC_C531_7075_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\PAC_7224_7224_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\PAC_PAC_PAC_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\NAD_C082_1131_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\NAD_C080_3036_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\NAD_3207_3207_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\NAD_C082_3055_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\NAD_C082_3039_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\NAD_NAD_NAD_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\BGM_C002_1001_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\BGM_C106_1004_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\NAD_3035_3035_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\RFF_C506_4000_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\RFF_C506_1156_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\RFF_C506_1154_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\RFF_C506_1153_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\DTM_C507_2380_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\QTY_QTY_QTY_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\CPS_7164_7164_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNH_0062_0062_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNB_0020_0020_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNH_S009_0051_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNH_S009_0057_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNH_S009_0054_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNH_S009_0052_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\BGM_BGM_BGM_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\DTM_C507_2005_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\DTM_DTM_DTM_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\RFF_RFF_RFF_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNH_UNH_UNH_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNH_S009_0065_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNB_S005_0022_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNB_0026_0026_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNB_S004_0019_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNB_S004_0017_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNB_S003_0010_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNB_S002_0004_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNB_S001_0002_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNB_S001_0001_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\Defaults\UNB_UNB_UNB_DefaultsValue.cs" />
+    <Compile Include="ASN\EDIFACT\DGS_C234.cs" />
+    <Compile Include="ASN\EDIFACT\DGS_C205.cs" />
+    <Compile Include="ASN\EDIFACT\DGS.cs" />
+    <Compile Include="ASN\EDIFACT\CPS.cs" />
+    <Compile Include="ASN\EDIFACT\GIS_C529.cs" />
+    <Compile Include="ASN\EDIFACT\GIS.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitALI.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitINV.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitGIN.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitLOC.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitMEA.cs" />
+    <Compile Include="ASN\EDIFACT\INV_C522.cs" />
+    <Compile Include="ASN\EDIFACT\INV.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitGIR.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitPIA.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitPCI.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitCPS.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitEQD.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitSSC.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitUNA.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitPAC.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitUNZ.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitUNT.cs" />
+    <Compile Include="ASN\EDIFACT\SCC_C329.cs" />
+    <Compile Include="ASN\EDIFACT\SCC.cs" />
+    <Compile Include="ASN\EDIFACT\IMD_C273.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitGIS.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitIMD.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitNAD.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitDTM.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitBGM.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitLIN.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitQTY.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitRFF.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitUNH.cs" />
+    <Compile Include="ASN\EDIFACT\Initialisierung\InitUNB.cs" />
+    <Compile Include="ASN\EDIFACT\LIN_C829.cs" />
+    <Compile Include="ASN\EDIFACT\LIN_C212.cs" />
+    <Compile Include="ASN\EDIFACT\LIN.cs" />
+    <Compile Include="ASN\EDIFACT\GIN.cs" />
+    <Compile Include="ASN\EDIFACT\COD.cs" />
+    <Compile Include="ASN\EDIFACT\GIR.cs" />
+    <Compile Include="ASN\EDIFACT\GIN_C208.cs" />
+    <Compile Include="ASN\EDIFACT\COD_C823.cs" />
+    <Compile Include="ASN\EDIFACT\GIR_C206.cs" />
+    <Compile Include="ASN\EDIFACT\IMD.cs" />
+    <Compile Include="ASN\EDIFACT\IMD_C272.cs" />
+    <Compile Include="ASN\EDIFACT\LOC_C553.cs" />
+    <Compile Include="ASN\EDIFACT\LOC_C519.cs" />
+    <Compile Include="ASN\EDIFACT\PAC_C532.cs" />
+    <Compile Include="ASN\EDIFACT\PIA.cs" />
+    <Compile Include="ASN\EDIFACT\PIA_C212.cs" />
+    <Compile Include="ASN\EDIFACT\PCI_C827.cs" />
+    <Compile Include="ASN\EDIFACT\PCI_C210.cs" />
+    <Compile Include="ASN\EDIFACT\PCI.cs" />
+    <Compile Include="ASN\EDIFACT\PAC_C402.cs" />
+    <Compile Include="ASN\EDIFACT\PAC_C202.cs" />
+    <Compile Include="ASN\EDIFACT\QTY.cs" />
+    <Compile Include="ASN\EDIFACT\QTY_C186.cs" />
+    <Compile Include="ASN\EDIFACT\SEL.cs" />
+    <Compile Include="ASN\EDIFACT\FTX_C108.cs" />
+    <Compile Include="ASN\EDIFACT\NAD.cs" />
+    <Compile Include="ASN\EDIFACT\NAD_C059.cs" />
+    <Compile Include="ASN\EDIFACT\NAD_C058.cs" />
+    <Compile Include="ASN\EDIFACT\NAD_C819.cs" />
+    <Compile Include="ASN\EDIFACT\NAD_C080.cs" />
+    <Compile Include="ASN\EDIFACT\NAD_C082.cs" />
+    <Compile Include="ASN\EDIFACT\LOC.cs" />
+    <Compile Include="ASN\EDIFACT\LOC_C517.cs" />
+    <Compile Include="ASN\EDIFACT\FTX.cs" />
+    <Compile Include="ASN\EDIFACT\FTX_C107.cs" />
+    <Compile Include="ASN\EDIFACT\EQD.cs" />
+    <Compile Include="ASN\EDIFACT\EQD_C237.cs" />
+    <Compile Include="ASN\EDIFACT\PAC.cs" />
+    <Compile Include="ASN\EDIFACT\TDT.cs" />
+    <Compile Include="ASN\EDIFACT\PAC_C531.cs" />
+    <Compile Include="ASN\EDIFACT\TDT_C222.cs" />
+    <Compile Include="ASN\EDIFACT\TDT_C401.cs" />
+    <Compile Include="ASN\EDIFACT\TDT_C040.cs" />
+    <Compile Include="ASN\EDIFACT\TDT_C001.cs" />
+    <Compile Include="ASN\EDIFACT\TDT_C220.cs" />
+    <Compile Include="ASN\EDIFACT\TOD_C100.cs" />
+    <Compile Include="ASN\EDIFACT\TOD.cs" />
+    <Compile Include="ASN\EDIFACT\RFF_C506.cs" />
+    <Compile Include="ASN\EDIFACT\RFF.cs" />
+    <Compile Include="ASN\EDIFACT\MEA_C174.cs" />
+    <Compile Include="ASN\EDIFACT\MEA_C502.cs" />
+    <Compile Include="ASN\EDIFACT\MEA.cs" />
+    <Compile Include="ASN\EDIFACT\DTM_C507.cs" />
+    <Compile Include="ASN\EDIFACT\DTM.cs" />
+    <Compile Include="ASN\EDIFACT\BGM.cs" />
+    <Compile Include="ASN\EDIFACT\BGM_C106.cs" />
+    <Compile Include="ASN\EDIFACT\BGM_C002.cs" />
+    <Compile Include="ASN\EDIFACT\UNH_S010.cs" />
+    <Compile Include="ASN\EDIFACT\UNZ.cs" />
+    <Compile Include="ASN\EDIFACT\UNT.cs" />
+    <Compile Include="ASN\EDIFACT\UNH_S009.cs" />
+    <Compile Include="ASN\EDIFACT\UNH.cs" />
+    <Compile Include="ASN\EDIFACT\UNB_S005.cs" />
+    <Compile Include="ASN\EDIFACT\UNB_S004.cs" />
+    <Compile Include="ASN\EDIFACT\UNB_S003.cs" />
+    <Compile Include="ASN\EDIFACT\UNB_S002.cs" />
+    <Compile Include="ASN\EDIFACT\UNB_S001.cs" />
+    <Compile Include="ASN\EDIFACT\UNB.cs" />
+    <Compile Include="ASN\EDIFACT\UNA.cs" />
+    <Compile Include="ASN\GlobalValues\GlobalFieldVal_DeliveryNote.cs" />
+    <Compile Include="ASN\GlobalValues\GlobalFieldVal_ArticleCountInEdi.cs" />
+    <Compile Include="ASN\GlobalValues\GlobalFieldVal_FilterByGlobalFieldVal.cs" />
+    <Compile Include="ASN\GlobalValues\GlobalFieldVal_ListVar.cs" />
+    <Compile Include="ASN\vda4913\Satz716.cs" />
+    <Compile Include="ASN\vda4913\Satz715.cs" />
+    <Compile Include="ASN\VDA4987\clsVDAClientOutVDA4987DefaultSchema.cs" />
+    <Compile Include="CALL\clsCompany.cs" />
+    <Compile Include="CALL\clsCompanyGroup.cs" />
+    <Compile Include="Clients\ClientSettings\ClientFunctions\sil_ctrJournal_ExcelHeaderText.cs" />
+    <Compile Include="Clients\ClientSettings\ClientFunctions\sil_ctrEinlagerung_SetInputFieldReadOnly.cs" />
+    <Compile Include="Clients\ClientSettings\ClientFunctions\szg_ctrEinlagerung_SetInputFieldReadOnly.cs" />
+    <Compile Include="Clients\ClientSettings\ClientFunctions\szg_ctrUmbuchung_Customize_SetLieferantenNr.cs" />
+    <Compile Include="Clients\ClientSettings\ClientFunctions\sle_ArtikelIDReferenz.cs" />
+    <Compile Include="Clients\ClientSettings\ClientFunctions\vw_ArtikelIDReferenz.cs" />
+    <Compile Include="Clients\ClientSettings\set_HEISIEP.cs" />
+    <Compile Include="Clients\ClientSettings\set_ALTHAUS.cs" />
+    <Compile Include="Clients\ClientSettings\set_COMTEC.cs" />
+    <Compile Include="Clients\ClientSettings\set_Muster.cs" />
+    <Compile Include="Clients\ClientSettings\set_SIL.cs" />
+    <Compile Include="Clients\ClientSettings\set_SLE.cs" />
+    <Compile Include="Clients\ClientSettings\set_SZG.cs" />
+    <Compile Include="Clients\clsClient.cs" />
+    <Compile Include="Clients\clsModule.cs" />
+    <Compile Include="Clients\clsSystem.cs" />
+    <Compile Include="clsArbeitsbereichDefaultValue.cs" />
+    <Compile Include="clsObjPropertyChanges.cs" />
+    <Compile Include="clsMailingListCombiAdr.cs" />
+    <Compile Include="clsUser.cs" />
+    <Compile Include="clsUserBerechtigungen.cs" />
+    <Compile Include="Communicator\AsnCreateLfsView.cs" />
+    <Compile Include="Communicator\AsnCreateStoreIn.cs" />
+    <Compile Include="Communicator\BMWCall4913\clsBMWCall4913.cs" />
+    <Compile Include="Communicator\clsWD_SignOfLife.cs" />
+    <Compile Include="Communicator\CronJob\CronJob_CleanUpEdiMessages.cs" />
+    <Compile Include="Communicator\CronJob\CronJob_StoclistAutoSend.cs" />
+    <Compile Include="Communicator\EdiVDA\ClientAdrFunctions\SLE_spFunc.cs" />
+    <Compile Include="ASN\Defaults\Default_DESADV_BMW_4a.cs" />
+    <Compile Include="Communicator\EdiVDA\clsEdiDesadvD07A_Read.cs" />
+    <Compile Include="Communicator\EdiVDA\clsEdiDesadv96A_Read.cs" />
+    <Compile Include="Communicator\EdiVDA\clsEdiQalityD96A.cs" />
+    <Compile Include="Communicator\EdiVDA\clsEdiDelforD97A_Read.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_EdiEDIFACT_ASN_Check.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_EdiEDIFACT_ASN_CheckAsnArt.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_EdiEDIFACT_ASN_CheckProcessableASN.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_UNB_S004_0017_DateOfCreation.cs" />
+    <Compile Include="Communicator\EdiVDA\VdaMessageToClasses.cs" />
+    <Compile Include="Communicator\EdiVDA\EdifactMessageToClasses.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_CheckArtChangedProperties.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_AdrVerweis.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_EdiEDIFACT_ASN_D07A_GetAdrVerweis.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_EdiEDIFACT_ASN_D07A_CheckProcessableASN.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_EdiEDIFACT_ASN_D97A_CheckProcessableASN.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_EdiEDIFACT_ASN_D96A_GetAdrVerweis.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_EdiXML_ZQMQALITY02_CheckProcessable.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_EdiEDIFACT_ASN_D96A_CheckProcessableASN.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_EdiQuality_CheckProcessableASN.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_SegmentSplitt.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_FillValueToLength.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_712_TM.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_EdiDelfor_CheckProcessableASN.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiSegmentCheck_INVRPTD96A_IsStoreOutMovement.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiSegmentCheck_BMW.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiSegmentCheck.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDA4984Value.cs" />
+    <Compile Include="Communicator\EdiVDA\clsEdiSegmentElementField.cs" />
+    <Compile Include="Communicator\EdiVDA\clsEdiSegmentElement.cs" />
+    <Compile Include="Communicator\EdiVDA\clsEdiSegment.cs" />
+    <Compile Include="Communicator\clsWatchDogClient.cs" />
+    <Compile Include="Clients\clsINIDocuments.cs" />
+    <Compile Include="clsDocKey.cs" />
+    <Compile Include="clsADR.cs" />
+    <Compile Include="clsADRCat.cs" />
+    <Compile Include="clsADRMan.cs" />
+    <Compile Include="clsADRText.cs" />
+    <Compile Include="clsADRVerweis.cs" />
+    <Compile Include="clsArbeitsbereiche.cs" />
+    <Compile Include="clsArbeitsbereichGArten.cs" />
+    <Compile Include="clsArbeitsbereichTarif.cs" />
+    <Compile Include="clsArtikel.cs" />
+    <Compile Include="clsArtikelVita.cs" />
+    <Compile Include="clsASNArtFieldAssignment.cs" />
+    <Compile Include="clsAufgabe.cs" />
+    <Compile Include="clsAuftrag.cs" />
+    <Compile Include="clsAuftragPos.cs" />
+    <Compile Include="clsAuftragRead.cs" />
+    <Compile Include="clsAuftragsstatus.cs" />
+    <Compile Include="clsComTecCheck.cs" />
+    <Compile Include="clsDispoCheck.cs" />
+    <Compile Include="clsDistance.cs" />
+    <Compile Include="clsDocScan.cs" />
+    <Compile Include="clsDruck.cs" />
+    <Compile Include="clsEbene.cs" />
+    <Compile Include="clsEmails.cs" />
+    <Compile Include="clsError.cs" />
+    <Compile Include="clsExcel.cs" />
+    <Compile Include="clsExtraCharge.cs" />
+    <Compile Include="clsExtraChargeADR.cs" />
+    <Compile Include="clsExtraChargeAssignment.cs" />
+    <Compile Include="clsFahrzeuge.cs" />
+    <Compile Include="clsFaktLager.cs" />
+    <Compile Include="clsFakturierung.cs" />
+    <Compile Include="clsFileIconLoader.cs" />
+    <Compile Include="clsGut.cs" />
+    <Compile Include="clsHalle.cs" />
+    <Compile Include="clsImages.cs" />
+    <Compile Include="clsKommission.cs" />
+    <Compile Include="clsKontakte.cs" />
+    <Compile Include="clsKunde.cs" />
+    <Compile Include="clsKundenTarife.cs" />
+    <Compile Include="clsKundGArtDefault.cs" />
+    <Compile Include="clsLager.cs" />
+    <Compile Include="clsReportDocSettingAssignment.cs" />
+    <Compile Include="clsRGNr.cs" />
+    <Compile Include="clsPersonal.cs" />
+    <Compile Include="clsRGVorlagenTxt.cs" />
+    <Compile Include="Communicator\clsWatchDog.cs" />
+    <Compile Include="Communicator\EdiVDA\ClientAdrFunctions\SIL_spFunc.cs" />
+    <Compile Include="Communicator\EdiVDA\ClientAdrFunctions\SZG_spFunc.cs" />
+    <Compile Include="Communicator\EdiVDA\clsEdiVDA4984Read.cs" />
+    <Compile Include="Communicator\EdiVDA\clsEdiVDAValueAlias.cs" />
+    <Compile Include="Communicator\EdiVDA\clsVDAClientOutVDA4913DefaultSchema.cs" />
+    <Compile Include="Communicator\EdiVDA\clsVDAClientWorkspaceValue.cs" />
+    <Compile Include="Communicator\EdiVDA\clsEdiVDACreate.cs" />
+    <Compile Include="Communicator\EdiVDA\clsEdiVDAAssignValueAlias.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_VDA4984_CheckProcessableASN.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_UnitQuantity.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_FormatString.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_Format.cs" />
+    <Compile Include="Communicator\EdiVDA\ediHelper_Status.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_714F06Brutto.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_EingangId.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_AusgangId.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_NAD_C082_3039_DP_DeliveryPart.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_UNB_S003_0010_Client.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdifactINVRPT_INV_4499_4499_MovementReason.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdifactINVRPT_INV_4503_4503_BalanceMethod.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdifactINVRPT_INV_7491_7491_TypeMovement.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdifactINVRPT_INV_4501_4501_MessageType.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_NAD_C082_3039_CN_Consignee.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_NAD_C082_3039_GM_InventoryController.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_NAD_C082_3039_BY_Buyer.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_NAD_C082_3039_WH_Warehouse.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_NAD_C082_3039_SE_Seller.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\MENDRITZKI_Charge.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Novelis_F13F03_LfsNo.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\GlowDateDefaultBlank.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_UNB_S003_0010_Receiver.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_UNB_S002_0004_Sender.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_NAD_C082_3039_ST_RecipienNo.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_NAD_C082_3039_SU_SupplierNo.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_KFZ.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_MEA_C174_6314_KGorStkBruttoTO.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_MEA_C174_6314_ArticleNettoTO.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_EANo.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_BGM_C002_1000.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_UNB_S003_0010.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_UNB_S002_0004.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_RFF_ACD_C506_1154.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Datetime_NOWTime.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Datetime_NOW.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Artikel_Gueterart.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Artikel_Anzahl.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Artikel_Netto.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Artikel_Brutto.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_BGM_C106_1004_EANr.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\MENDRITZKI_Produktionsnummer.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_713F17KGorSTK.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_GlowDate.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\DUNSNr.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_ArtPosEoA.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Hydro_712F03SLB.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\MUBEA_712F03SLB.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_714F09Einheit.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_714F08Netto.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_MATTime.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_MATDate.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_Einheit.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_Schaden.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Arcelor_EA_BMWFormat.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_EANoWithPrefix.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_AnzahlX1000.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_ArtikelCount.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_Anzahl.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_Termin.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VW_RFF_ON_C506.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VW_SupplierNo.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VOEST_EA_SLB.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_SLB.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\SLBWithPrefix.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\TMN.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\TMS.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_VGS.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_SLB.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Artikel_NettoTO.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Artikel_BruttoTO.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_MATTime.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_MATDate.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_Datum.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_Netto.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_Brutto.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_LfsNr.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_NoWithPrefix.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_No.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\ProduktionsnummerFillTo9With0.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\PACBolzenQuantity.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\BMW_PACNumbeBolzen.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\PACNumber.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VGS.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Tata_713F03LfsNr.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\QueueID.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VW_EinheitKGorST .cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VW_GIN_ML_C208.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VW_NettoKGorST.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VW_LVSForVW.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VW_BruttoKGorST.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\SZG_TMN.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VW_QTY_BruttoOrStk.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VW_QTY_EinheitPCIorKGM.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VW_SchadenText.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VW_TMN.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\VW_WerksnummerFormat.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\WerksnummerMitFBlank.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\WerksnummerOhneBlank.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\WerksnummerWithOutHyphen.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\WerksnummerWithHyphen.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\LiefNrDeleteSlash.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\ReceiverNo.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Sender.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\SupplierNo.cs" />
+    <Compile Include="Constants\constValue_Article.cs" />
+    <Compile Include="Constants\constValue_Invoice.cs" />
+    <Compile Include="Constants\constValue_ScanApp_IniDefault.cs" />
+    <Compile Include="Constants\constValue_Tarifposition_DataFields.cs" />
+    <Compile Include="Converter\ArticleClassConverter.cs" />
+    <Compile Include="Converter\AsnArticleEdifactViewToAsnArticleView.cs" />
+    <Compile Include="Converter\AsnEdifactViewToAsnLfsView.cs" />
+    <Compile Include="CustomProcesses\CustomProcess_SLEArcelor_CreateTeslaPNNo.cs" />
+    <Compile Include="CustomProcesses\CustomProcess_Novelis_AccessByArticleCert.cs" />
+    <Compile Include="Communicator\Views\clsViewLog.cs" />
+    <Compile Include="Communicator\ZQM\ZQM_NodeE1EDLIN.cs" />
+    <Compile Include="Communicator\ZQM\ZQM_NodeE1EDP02.cs" />
+    <Compile Include="Communicator\ZQM\ZQM_NodeE1EDK02.cs" />
+    <Compile Include="Communicator\ZQM\ZQM_NodeE1EDK03.cs" />
+    <Compile Include="Communicator\ZQM\ZQM_NodeEDI_DC40.cs" />
+    <Compile Include="Communicator\ZQM\ZQM_Quality02.cs" />
+    <Compile Include="Constants\constValue_AsnTyp.cs" />
+    <Compile Include="Constants\constValue_AsnArt.cs" />
+    <Compile Include="Constants\constValue_CustomProcesses.cs" />
+    <Compile Include="Constants\constValue_Edifact.cs" />
+    <Compile Include="Constants\constValue_PrinterIni.cs" />
+    <Compile Include="Constants\constValue_Report.cs" />
+    <Compile Include="Converter\EdifactToTextToSaveInDBConverter.cs" />
+    <Compile Include="Converter\EnumConverter.cs" />
+    <Compile Include="DataObjects\Dokument.cs" />
+    <Compile Include="Communicator\clsASNArt.cs" />
+    <Compile Include="Communicator\clsASNArtSatz.cs" />
+    <Compile Include="Communicator\clsASNArtSatzFeld.cs" />
+    <Compile Include="Communicator\clsASNTyp.cs" />
+    <Compile Include="Communicator\clsASNValue.cs" />
+    <Compile Include="Communicator\clsCronJobs.cs" />
+    <Compile Include="Communicator\clsLagerdaten.cs" />
+    <Compile Include="clsLagerOrt.cs" />
+    <Compile Include="clsLAusgang.cs" />
+    <Compile Include="clsLEingang.cs" />
+    <Compile Include="clsLogbuch.cs" />
+    <Compile Include="clsLogbuchCon.cs" />
+    <Compile Include="clsLogin.cs" />
+    <Compile Include="clsMail.cs" />
+    <Compile Include="clsMailingList.cs" />
+    <Compile Include="clsMailingListAssignment.cs" />
+    <Compile Include="clsMandanten.cs" />
+    <Compile Include="clsMessages.cs" />
+    <Compile Include="clsOrderPosRectangle.cs" />
+    <Compile Include="clsPDF.cs" />
+    <Compile Include="clsPlatz.cs" />
+    <Compile Include="clsPrimeKeys.cs" />
+    <Compile Include="clsPrint.cs" />
+    <Compile Include="clsReadINI.cs" />
+    <Compile Include="clsRechnung.cs" />
+    <Compile Include="clsReihe.cs" />
+    <Compile Include="clsRGPosArtikel.cs" />
+    <Compile Include="clsRGPositionen.cs" />
+    <Compile Include="clsSchaeden.cs" />
+    <Compile Include="clsSPL.cs" />
+    <Compile Include="clsStyleSheetColumn.cs" />
+    <Compile Include="clsTableOfAccount.cs" />
+    <Compile Include="clsTarif.cs" />
+    <Compile Include="clsTarifGArtZuweisung.cs" />
+    <Compile Include="clsTarifPosition.cs" />
+    <Compile Include="clsTour.cs" />
+    <Compile Include="clsUmbuchung.cs" />
+    <Compile Include="clsWerk.cs" />
+    <Compile Include="Communicator\clsFTP.cs" />
+    <Compile Include="Communicator\clsJobs.cs" />
+    <Compile Include="Communicator\clsOrga.cs" />
+    <Compile Include="Communicator\clsQueue.cs" />
+    <Compile Include="Communicator\clsSFTP.cs" />
+    <Compile Include="Communicator\clsTP.cs" />
+    <Compile Include="Communicator\clsXmlMessages.cs" />
+    <Compile Include="Communicator\clsXmlStructure.cs" />
+    <Compile Include="Communicator\Uniport\clsUniPort.cs" />
+    <Compile Include="Communicator\EdiVDA\clsVDAClientValue.cs" />
+    <Compile Include="Communicator\EdiVDA\clsVDACreate.cs" />
+    <Compile Include="Dokumente\clsBriefkopfdaten.cs" />
+    <Compile Include="Dokumente\clsLieferscheine.cs" />
+    <Compile Include="Dokumente\clsRechnungen.cs" />
+    <Compile Include="Dokumente\docAbholschein.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\docAbholschein.Designer.cs">
+      <DependentUpon>docAbholschein.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumente\docAuftragScan.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\docAuftragScan.Designer.cs">
+      <DependentUpon>docAuftragScan.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Dokumente\docBriefkopf.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\docBriefkopf.Designer.cs">
+      <DependentUpon>docBriefkopf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumente\docBriefkopfComtecLager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\docBriefkopfComtecLager.Designer.cs">
+      <DependentUpon>docBriefkopfComtecLager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumente\docBriefkopfHeisiep.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\docBriefkopfHeisiep.Designer.cs">
+      <DependentUpon>docBriefkopfHeisiep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumente\docBriefkopfHeisiepLager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\docBriefkopfHeisiepLager.Designer.cs">
+      <DependentUpon>docBriefkopfHeisiepLager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumente\docFrachtauftragSU.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\docFrachtauftragSU.Designer.cs">
+      <DependentUpon>docFrachtauftragSU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumente\docLagerRechnung.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\docLagerRechnung.Designer.cs">
+      <DependentUpon>docLagerRechnung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumente\docLieferschein.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\docLieferschein.Designer.cs">
+      <DependentUpon>docLieferschein.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumente\docList_Avisierung.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\docList_Avisierung.Designer.cs">
+      <DependentUpon>docList_Avisierung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumente\docManRGGS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\docManRGGS.Designer.cs">
+      <DependentUpon>docManRGGS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumente\docRechnung.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\docRechnung.Designer.cs">
+      <DependentUpon>docRechnung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumente\fDocs_Holzrichter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dokumente\fDocs_Holzrichter.Designer.cs">
+      <DependentUpon>fDocs_Holzrichter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enumerations\enumAnrede.cs" />
+    <Compile Include="Enumerations\enumUserListAction.cs" />
+    <Compile Include="Enumerations\enumFahrzeuglistenSortierung.cs" />
+    <Compile Include="Enumerations\enumStatistikArt.cs" />
+    <Compile Include="Enumerations\enumLagerOrtTable.cs" />
+    <Compile Include="Enumerations\enumFDocs.cs" />
+    <Compile Include="Enumerations\enumSkinAuftragsListe.cs" />
+    <Compile Include="Enumerations\enumAbrechnungsart.cs" />
+    <Compile Include="Enumerations\enumIniDocKey.cs" />
+    <Compile Include="Enumerations\enumAbteilung.cs" />
+    <Compile Include="Enumerations\enumTarifArt.cs" />
+    <Compile Include="Enumerations\enumTarifArtLager.cs" />
+    <Compile Include="Enumerations\enumSpedAuftragStatus.cs" />
+    <Compile Include="Enumerations\enumLagerMeldungen.cs" />
+    <Compile Include="Enumerations\enumBeruf.cs" />
+    <Compile Include="Enumerations\enumLagerAktionen.cs" />
+    <Compile Include="Enumerations\enumLand.cs" />
+    <Compile Include="Enumerations\enumFBez.cs" />
+    <Compile Include="Enumerations\enumFibuExportListe.cs" />
+    <Compile Include="Enumerations\enumLadestelle.cs" />
+    <Compile Include="Enumerations\enumAbgasnorm.cs" />
+    <Compile Include="Enumerations\enumLogbuchAktion.cs" />
+    <Compile Include="Enumerations\enumADRBezeichung.cs" />
+    <Compile Include="Enumerations\enumJobDirection.cs" />
+    <Compile Include="Enumerations\enumLogArtItem.cs" />
+    <Compile Include="Enumerations\enumInventoryArticleStatus.cs" />
+    <Compile Include="Enumerations\enumInventoryStatus.cs" />
+    <Compile Include="Enumerations\enumInventoryArt.cs" />
+    <Compile Include="Enumerations\enumBrowseAcivity.cs" />
+    <Compile Include="Enumerations\enumClsStatus.cs" />
+    <Compile Include="Enumerations\enumVDA4913_712F14_TMS.cs" />
+    <Compile Include="Enumerations\enumEdi4984SegmQualifier_RFF.cs" />
+    <Compile Include="Enumerations\enumEdi4984SegmQualifier_NAD.cs" />
+    <Compile Include="Enumerations\enumEdi4984SegmQualifier_SSC.cs" />
+    <Compile Include="Enumerations\enumEdi4984SegmQualifier_QTY.cs" />
+    <Compile Include="Enumerations\enumEdi4984SegmQualifier_DTM.cs" />
+    <Compile Include="Enumerations\enumEdifactFormatString.cs" />
+    <Compile Include="Enumerations\enumEdifactUnit.cs" />
+    <Compile Include="Enumerations\enumEdifactStatus.cs" />
+    <Compile Include="Enumerations\enumBestandTypes.cs" />
+    <Compile Include="Enumerations\enumAutoMailingListTypes.cs" />
+    <Compile Include="Enumerations\enumCronJobAction.cs" />
+    <Compile Include="Enumerations\enumASNFileTyp.cs" />
+    <Compile Include="Enumerations\enumCalcultationModus.cs" />
+    <Compile Include="Enumerations\enumDirections.cs" />
+    <Compile Include="Enumerations\enumEinheitLM.cs" />
+    <Compile Include="Enumerations\enumPeriode.cs" />
+    <Compile Include="Enumerations\enumPostBy.cs" />
+    <Compile Include="Fakturierung\Fakt_CalculateArticlePosition.cs" />
+    <Compile Include="Fakturierung\Fakt_CalcModusValue.cs" />
+    <Compile Include="Fakturierung\Fakt_ConversionUnitBasicToCalcUnit.cs" />
+    <Compile Include="Globals\backup\clsSQL.cs" />
+    <Compile Include="Globals\clsSQLDiverse.cs" />
+    <Compile Include="Globals\clsSQLcon.cs" />
+    <Compile Include="Globals\clsSQLARCHIVE.cs" />
+    <Compile Include="Globals\clsSQLconImport.cs" />
+    <Compile Include="Globals\clsSQLconCom.cs" />
+    <Compile Include="Globals\Functions.cs" />
+    <Compile Include="Globals\backup\clsSQLcon.cs" />
+    <Compile Include="Globals\backup\clsSQLconCOM.cs" />
+    <Compile Include="Globals\Globals.cs" />
+    <Compile Include="clsASNTableCombiValue.cs" />
+    <Compile Include="clsArbeitsbereichUser.cs" />
+    <Compile Include="clsGueterartADR.cs" />
+    <Compile Include="clsLieferantenGruppe.cs" />
+    <Compile Include="clsLieferanten.cs" />
+    <Compile Include="Globals\clsSQLconCall.cs" />
+    <Compile Include="clsRandomPass.cs" />
+    <Compile Include="clsStringCheck.cs" />
+    <Compile Include="Globals\INI.cs" />
+    <Compile Include="Helper\helper_CheckAndGetFilePathWithStartupPath.cs" />
+    <Compile Include="Helper\helper_EmailValidator.cs" />
+    <Compile Include="Helper\helper_Queue_CreateQueueDetailString.cs" />
+    <Compile Include="Helper\helper_DokumentenArt.cs" />
+    <Compile Include="Helper\helper_CheckAndGetPathWithoutStartupPath.cs" />
+    <Compile Include="Helper\helper_InvoiceFileName.cs" />
+    <Compile Include="Helper\helper_Article_CreateArticleIgnEdiDetailString.cs" />
+    <Compile Include="Helper\helper_StringManipulation.cs" />
+    <Compile Include="Helper\helper_Laenderkennzeichen.cs" />
+    <Compile Include="Helper\helper_Kontoarten.cs" />
+    <Compile Include="Helper\helper_Image.cs" />
+    <Compile Include="Helper\helper_ArtikelArbeitsbereichCheck.cs" />
+    <Compile Include="Helper\helper_Job_ActionDate.cs" />
+    <Compile Include="Helper\helper_IOFile.cs" />
+    <Compile Include="Helper\helper_MandantenReportPath.cs" />
+    <Compile Include="Helper\helper_FilePrefixAfterComProzess.cs" />
+    <Compile Include="Helper\helper_DateTimeFunctions.cs" />
+    <Compile Include="Helper\helper_sqlServers.cs" />
+    <Compile Include="Helper\Helper_VAT_Validation.cs" />
+    <Compile Include="Helper\helper_VDALogText.cs" />
+    <Compile Include="Helper\helper_WIndowsFromsdll.cs" />
+    <Compile Include="InitValueCommunicator\InitValueCom_RetentionDays.cs" />
+    <Compile Include="InitValueCommunicator\InitValueCom_TaskCustomizedProcessThreadDuration.cs" />
+    <Compile Include="InitValueCommunicator\InitValueCom_Client.cs" />
+    <Compile Include="InitValueSped4\SystemSped.cs" />
+    <Compile Include="InitValue\DefaultPath_Lvs.cs" />
+    <Compile Include="InitValue\DefaultPath_LvsExport.cs" />
+    <Compile Include="InitValue\InitValue_System_VE_eInvoiceLogActivatet.cs" />
+    <Compile Include="InitValue\InitValue_SystemInfo_IsTestsystem.cs" />
+    <Compile Include="InitValue\InitValue_SystemInfo_ID.cs" />
+    <Compile Include="InitValue\InitValue_Client.cs" />
+    <Compile Include="InitValueWDService\InitValue_CIntervall.cs" />
+    <Compile Include="InitValueWDService\InitValue_VE_MailCountSignOfLife.cs" />
+    <Compile Include="InitValueWDService\InitValue_VE_SignOfLifeIntervall.cs" />
+    <Compile Include="InitValueWDService\InitValue_VE_TaskReadThreadDuration.cs" />
+    <Compile Include="InitValueWDService\InitValue_VE_Autostart.cs" />
+    <Compile Include="InitValueWDService\InitValue_VE_TaskWriteThreadDuration.cs" />
+    <Compile Include="InitValueWDService\InitValue_VE_MainThreadDuration.cs" />
+    <Compile Include="InitValueWDService\InitValue_VE_OdettePath.cs" />
+    <Compile Include="InitValueWDService\InitValue_VE_TaskWriteSingleModus.cs" />
+    <Compile Include="InitValueWDService\InitValue_WD_ListCMailSoL.cs" />
+    <Compile Include="InitValueWDService\InitValue_WD_ListWDClient.cs" />
+    <Compile Include="InitValueWDService\InitValue_WD_IsWatchDog.cs" />
+    <Compile Include="InitValueWDService\InitValue_WD_SENDCLIENTFILE.cs" />
+    <Compile Include="InitValueWDService\InitValue_WD_OdetteProcessName.cs" />
+    <Compile Include="InitValueWDService\InitValue_WD_WDFTPPath.cs" />
+    <Compile Include="InitValueWDService\InitValue_WD_WDClientCount.cs" />
+    <Compile Include="InitValueWDService\InitValue_WD_ListCMail.cs" />
+    <Compile Include="InitValueWDService\InitValue_CMailCount.cs" />
+    <Compile Include="InitValueWDService\InitValue_VE_FilePathCheckNotFTP.cs" />
+    <Compile Include="InitValueWDService\InitValue_VE_GetFilesByFTP.cs" />
+    <Compile Include="InitValueWDService\InitValue_VE_Alarmfactor.cs" />
+    <Compile Include="InitValueSped4\InitValueSped4_Client.cs" />
+    <Compile Include="InitValue\InitValue_Printer.cs" />
+    <Compile Include="InitValueLvsPrinterService\InitValue_Settings.cs" />
+    <Compile Include="InitValueLvsPrinterService\InitValue_DefaultPrinter.cs" />
+    <Compile Include="InitValue\InitValue_GlobalSettings.cs" />
+    <Compile Include="IniValuePrinter\InitValuePrinter_Druckereinstellungen.cs" />
+    <Compile Include="Models\ArticleVita.cs" />
+    <Compile Include="Models\AsnTableCombiValues.cs" />
+    <Compile Include="Models\AsnValues.cs" />
+    <Compile Include="Models\Asn.cs" />
+    <Compile Include="Models\ASNArtFieldAssignment.cs" />
+    <Compile Include="Models\CronJobs.cs" />
+    <Compile Include="Models\CustomProcessExceptions.cs" />
+    <Compile Include="Models\CustomProcesses.cs" />
+    <Compile Include="Models\EdiClientWorkspaceValue.cs" />
+    <Compile Include="Models\AsnArt.cs" />
+    <Compile Include="Models\EdiDelforD97AValues.cs" />
+    <Compile Include="Models\EdifactValue.cs" />
+    <Compile Include="Models\EdiZQMQalityXml.cs" />
+    <Compile Include="Models\InvoiceItems.cs" />
+    <Compile Include="Models\Invoices.cs" />
+    <Compile Include="Models\_EdiQalityD96A.cs" />
+    <Compile Include="Models\_EdiQalityD96AValue.cs" />
+    <Compile Include="Models\VDAClientValues.cs" />
+    <Compile Include="Models\EdiSegmentElementFields.cs" />
+    <Compile Include="Models\EdiSegmentElements.cs" />
+    <Compile Include="Models\EdiSegments.cs" />
+    <Compile Include="Models\UserAuthorizations.cs" />
+    <Compile Include="Models\Users.cs" />
+    <Compile Include="Packages\Epplus_Excel.cs" />
+    <Compile Include="Packages\OfficeInteropExcel_Export.cs" />
+    <Compile Include="Print\ErrorAnalyse.cs" />
+    <Compile Include="Print\PrinterSettings_Printer.cs" />
+    <Compile Include="Print\TelerikPrint.cs" />
+    <Compile Include="Print\TelerikPrint_DirectPrintToPDF.cs" />
+    <Compile Include="Print\TelerikPrint_DirectPrint.cs" />
+    <Compile Include="Print\TelerikUriReportSource.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="clsReportDocSetting.cs" />
+    <Compile Include="ReportClasses\clsRepBestand.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_ArticleVitaVM.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_CronJob.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_CronJobCleanUpEdiMessages_Eingang.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_CronJobCleanUpEdiMessages_EingangArticle.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_CustomProcess_Novelis_AccessByArticleCert.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Eingang.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_ArticleNotPlaced.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_DailyStockAcrossAllWorkspaces.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_DailyStockReceiver.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_DailyStockExSPL.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_StockChargePerDay.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_StoreOUT_Unchecked.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_StoreIN_Unchecked.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Article_UncheckedStoreIN.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Article_UncheckedStoreOUT.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_ArticleUnchecked_StoreOUT.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_ASNValue.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_AddressCustumer.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_ArticleUnchecked_StoreIN.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_DirectDelivery.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_RL.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_DailyStockSPL.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_DailyStockAll.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_Inventory.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_DailyStock.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Stocks_Select.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_InvoiceItem.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Invoice.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_Call.cs" />
+    <Compile Include="sqlStatementCreater\sqlCreater_EdiZQMQalityXml.cs" />
+    <Compile Include="Tmp\clsTmpVerwTWB.cs" />
+    <Compile Include="ViewData\AddressReferenceViewData.cs" />
+    <Compile Include="ViewData\AddressCustomViewData.cs" />
+    <Compile Include="ViewData\AsnTableCombiValueViewData.cs" />
+    <Compile Include="ViewData\ASNArtFieldAssignmentViewData.cs" />
+    <Compile Include="ViewData\AsnValueViewData.cs" />
+    <Compile Include="ViewData\ASNArtFieldAssignmentViewData.cs" />
+    <Compile Include="ViewData\CronJobViewData.cs" />
+    <Compile Include="ViewData\CustomProcessExceptionsViewData.cs" />
+    <Compile Include="ViewData\InvoiceItemViewData.cs" />
+    <Compile Include="ViewData\InvoiceViewData.cs" />
+    <Compile Include="ViewData\SperrlagerViewData.cs" />
+    <Compile Include="ViewData\UnitViewData.cs" />
+    <Compile Include="ViewData\EdiClientWorkspaceValueViewData.cs" />
+    <Compile Include="ViewData\AsnViewData.cs" />
+    <Compile Include="ViewData\EdifactValueViewData.cs" />
+    <Compile Include="ViewData\EdiQalityD96AValueViewData.cs" />
+    <Compile Include="ViewData\CustomProcessesViewData.cs" />
+    <Compile Include="ViewData\EdiZQMQalityXmlViewData.cs" />
+    <Compile Include="ViewData\EdiQalityD96AViewData.cs" />
+    <Compile Include="ViewData\StockViewData.cs" />
+    <Compile Include="ViewData\EdiDelforViewData.cs" />
+    <Compile Include="ViewData\VDAClientValueViewData.cs" />
+    <Compile Include="ViewData\EdiSegmentElementFieldViewData.cs" />
+    <Compile Include="ViewData\EdiSegmentElementViewData.cs" />
+    <Compile Include="ViewData\EdiSegmentViewData.cs" />
+    <Compile Include="ViewData\AsnArtViewData.cs" />
+    <Compile Include="ViewData\VersionARCHIVViewModel.cs" />
+    <Compile Include="ViewData\VehicleViewData.cs" />
+    <Compile Include="ViewData\GoodstypeViewData.cs" />
+    <Compile Include="ViewData\PrimeKeyViewData.cs" />
+    <Compile Include="ViewData\StoreInScannerViewData.cs" />
+    <Compile Include="ViewData\PrintQueueViewData.cs" />
+    <Compile Include="ViewData\ImageViewData.cs" />
+    <Compile Include="ViewData\ArchiveViewData.cs" />
+    <Compile Include="ViewData\DamageArticleAssignmentViewData.cs" />
+    <Compile Include="ViewData\AsnReadViewData.cs" />
+    <Compile Include="ViewData\DamageViewData.cs" />
+    <Compile Include="ViewData\WarehouseViewData.cs" />
+    <Compile Include="ViewData\EingangViewData.cs" />
+    <Compile Include="ViewData\MandantenViewData.cs" />
+    <Compile Include="ViewData\WorkspaceViewData.cs" />
+    <Compile Include="ViewData\AddressViewData.cs" />
+    <Compile Include="ViewData\CallViewData.cs" />
+    <Compile Include="ViewData\AusgangViewData.cs" />
+    <Compile Include="ViewData\UserAuthorizationsViewData.cs" />
+    <Compile Include="ViewData\ArticleViewData.cs" />
+    <Compile Include="ViewData\UsersViewData.cs" />
+    <Compile Include="ViewData\InventoryViewData.cs" />
+    <Compile Include="ViewData\InvnetoryArticleViewData.cs" />
+    <Compile Include="Communicator\AsnConvertToStoreInValue.cs" />
+    <Compile Include="Views\ctrAsnArtFieldAssignment_DgvEdifactViewSub.cs" />
+    <Compile Include="Views\ctrASNRead_AsnArticleVdaView.cs" />
+    <Compile Include="Views\ctrASNRead_AsnArticleEdifactView.cs" />
+    <Compile Include="Views\ctrAsnArtFieldAssignment_DgvEdifactView.cs" />
+    <Compile Include="Views\ctrASNRead_Helper_SetGArtValueToArticle.cs" />
+    <Compile Include="Views\ctrASNRead_Helper_EditVdaValueTableToUser.cs" />
+    <Compile Include="Views\ctrASNRead_AsnVdaView.cs" />
+    <Compile Include="Views\ctrASNRead_AsnEdifactView.cs" />
+    <Compile Include="Views\ctrCleanAsnTables_EingangArtikel.cs" />
+    <Compile Include="Views\ctrCleanAsnTables_Eingang.cs" />
+    <Compile Include="Views\viewSql_Journal.cs" />
+    <Compile Include="ZUGFeRD\InvoiceToZUGFeRD_Head.cs" />
+    <Compile Include="ZUGFeRD\MergeEInvoicewithPDF.cs" />
+    <Compile Include="ZUGFeRD\TelerikReporting_CreateEmbeddedPdfFile.cs" />
+    <Compile Include="ZUGFeRD\ZUGFeRDInvoice.cs" />
+    <Compile Include="ZUGFeRD\ZUGFeRD_ErrorMail.cs" />
+    <Compile Include="ZUGFeRD\ZUGFeRD_IsAvailable.cs" />
+    <Compile Include="ZUGFeRD\ZUGFeRD_Party.cs" />
+    <Compile Include="ZUGFeRD\ZUGFeRD_QuantityCode.cs" />
+    <Compile Include="ZUGFeRD\ZUGFeRD_Country.cs" />
+    <Compile Include="ZUGFeRD\ZUGFeRD_TradeLineItem.cs" />
+    <Compile Include="ZUGFeRD\ZUGFeRD_ReferenceDocument.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Dokumente\docAbholschein.resx">
+      <DependentUpon>docAbholschein.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumente\docAuftragScan.resx">
+      <DependentUpon>docAuftragScan.cs</DependentUpon>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumente\docBriefkopfComtecLager.resx">
+      <DependentUpon>docBriefkopfComtecLager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumente\docBriefkopfHeisiep.resx">
+      <DependentUpon>docBriefkopfHeisiep.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumente\docBriefkopfHeisiepLager.resx">
+      <DependentUpon>docBriefkopfHeisiepLager.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumente\docFrachtauftragSU.resx">
+      <DependentUpon>docFrachtauftragSU.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumente\docLagerRechnung.resx">
+      <DependentUpon>docLagerRechnung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumente\docLieferschein.resx">
+      <DependentUpon>docLieferschein.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumente\docList_Avisierung.resx">
+      <DependentUpon>docList_Avisierung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumente\docManRGGS.resx">
+      <DependentUpon>docManRGGS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumente\docRechnung.resx">
+      <DependentUpon>docRechnung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumente\fDocs_Holzrichter.resx">
+      <DependentUpon>fDocs_Holzrichter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\comtec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo_HeisiepLager.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Zert_Heisiep9001.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{76ac9af0-217e-487b-85b8-6ca890f75e05}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Renci.SshNet\Renci.SshNet.csproj">
+      <Project>{2f5f8c90-0bd1-424f-997c-7bc6280919d1}</Project>
+      <Name>Renci.SshNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ASN\ASNArtFieldAssignmentFunctions\" />
+    <Folder Include="InitValueLvsMobileAPI\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
+    <Error Condition="!Exists('..\packages\SixLabors.ImageSharp.3.1.12\build\SixLabors.ImageSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SixLabors.ImageSharp.3.1.12\build\SixLabors.ImageSharp.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

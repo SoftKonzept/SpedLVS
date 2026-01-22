@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"    
+             x:Class="LvsScan.Portable.Views.StoreIn.Manual.me_InputClient">
+    <ContentView.Resources>
+
+        <!--<ControlTemplate x:Key="picker_Addresses_HeaderTemplate">
+            <StackLayout>
+                <Label Text="Adressauswahl:" 
+                       TextColor="White"
+                       FontSize="16"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       BackgroundColor="DodgerBlue"/>
+                <Frame BorderColor="Red"
+                       HasShadow="True"
+                       CornerRadius="0"
+                       Padding="2"
+                       Margin="2"
+                       BackgroundColor="White"
+                       >
+                    <StackLayout>
+                        <Entry Placeholder="[Suche]"
+                               PlaceholderColor="Black"
+                               FontSize="16"
+                               IsEnabled="False"
+                               effects:KeyboardEffect.EnableKeyboard="True"
+                               Keyboard="Default"
+                               Text="{Binding SearchString}"
+                               >
+                            <Entry.Effects>
+                                <effects:KeyboardEnableEffect/>
+                            </Entry.Effects>
+                        </Entry>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="picker_Addresses_ItemTemplate">
+
+            <Frame BorderColor="DarkBlue"
+                   HasShadow="True"
+                   CornerRadius="3"
+                   Padding="5"
+                   Margin="5"
+                   BackgroundColor="White"
+                   >
+                <StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding ViewIdString}" 
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               Padding="5,0,0,0"
+                               />
+                        <Label Text="{Binding AddressStringShort}" 
+                               FontSize="14"
+                               Padding="15,0,0,0"
+                               />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="picker_Addresses_SelectedItemTemplate">
+            <Frame BorderColor="DarkBlue"
+                   HasShadow="True"
+                   CornerRadius="3"
+                   Padding="5"
+                   Margin="5"
+                   BackgroundColor="Beige"
+                   >
+                <StackLayout
+                             >
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding ViewIdString}" 
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               Padding="5,0,0,0"
+                               />
+                        <Label Text="{Binding AddressStringShort}" 
+                               FontSize="14"
+                               Padding="15,0,0,0"
+                               />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <ControlTemplate x:Key="picker_Addresses_FooterTemplate">
+            <StackLayout Orientation="Horizontal" Spacing="5" BackgroundColor="DodgerBlue">
+                <Button Text="Abbrechen" 
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="StartAndExpand"
+                        Command="{TemplateBinding CancelCommand}" />
+                <Button Text="Übernehmen" 
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="EndAndExpand"
+                        Command="{TemplateBinding AcceptCommand}" />
+            </StackLayout>
+        </ControlTemplate>-->
+
+    </ContentView.Resources>
+    <ContentView.Content>
+
+        <ScrollView>
+            <StackLayout>
+                <StackLayout x:Name="BusyIndicator"
+                                 Padding="5,5,5,1"
+                                 IsVisible="{Binding ShowBusyIndicator}">
+
+                    <telerikPrimitives:RadBusyIndicator AnimationContentHeightRequest="100"
+                                                    AnimationContentWidthRequest="100"
+                                                    AnimationType="Animation6"
+                                                    AnimationContentColor="Blue"
+                                                    InputTransparent="True"
+                                                    IsBusy="{Binding ShowBusyIndicator}"
+                                                    >
+                        <telerikPrimitives:RadBusyIndicator.BusyContent>
+                            <Label Grid.Row="2" 
+                                           Text="Daten werden geladen...." 
+                                           TextColor="DarkBlue" 
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           />
+                        </telerikPrimitives:RadBusyIndicator.BusyContent>
+                    </telerikPrimitives:RadBusyIndicator>
+                </StackLayout>
+
+                <StackLayout x:Name="slContent" IsVisible="{Binding ShowContent}">
+                    <Grid BackgroundColor="White" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="rowHead" Height="auto" />
+                            <RowDefinition x:Name="rowClient" Height="auto" />
+                            <RowDefinition x:Name="rowReciepin" Height="auto" />
+                            <!--<RowDefinition x:Name="rowDate" Height="auto" />
+                            <RowDefinition x:Name="rowLfs" Height="auto" />-->
+                        </Grid.RowDefinitions>
+
+                        <StackLayout x:Name="StoreInHead"
+                                Grid.Row="0"
+                                Padding="5,5,5,1"
+                                IsVisible="{Binding ShowContent}"
+                                >
+                            <Frame BorderColor="#4488F6"
+                                   BackgroundColor="{Binding BackgroundColorHead}"
+                                   HorizontalOptions="FillAndExpand"
+                                   CornerRadius="5"                       
+                                   >
+                                <StackLayout>
+                                    <Label Text="{Binding EingangIdString}" 
+                                           FontSize="Large"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="StartAndExpand" 
+                                           HorizontalOptions="CenterAndExpand"/>
+                                    <Label Text="{Binding EingangDateString}" 
+                                           FontSize="Default"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="StartAndExpand" 
+                                           HorizontalOptions="CenterAndExpand"/>
+                                    <Label Text="{Binding WorkspaceString}" 
+                                           FontSize="Small"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="StartAndExpand" 
+                                           HorizontalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </Frame>
+
+                        </StackLayout>
+
+                        <StackLayout x:Name="ClientData"
+                                     Grid.Row="1">
+                            <Grid Padding="5,5,5,10"
+                                  BackgroundColor="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <telerikInput:RadButton Grid.RowSpan="2"
+                                                        Grid.Column="0"                                            
+                                                        x:Name="btnClient" 
+                                                        IsEnabled="{Binding IsBtnClientEnabled}"
+                                                        Padding="0,0,0,0" 
+                                                        BorderThickness="5" 
+                                                        BorderColor="LightSeaGreen"
+                                                        BackgroundColor="Snow"
+                                                        Command="{Binding Source={x:Reference pickerClientAddress}, Path=ToggleCommand}"
+                                                        Clicked="btnClient_Clicked"
+                                                        >
+                                    <telerikInput:RadButton.ImageSource>
+                                        <FontImageSource Glyph="{StaticResource Icon_Edit}"
+                                                 Color="DarkSlateGray"                                      
+                                                 FontFamily="{StaticResource IconsFont}"                                          
+                                                 />
+                                    </telerikInput:RadButton.ImageSource>
+                                </telerikInput:RadButton>
+                                <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       FontAttributes="Bold"
+                                       FontSize="Small"
+                                       Text="Auftraggeber:" />
+                                <Entry Grid.Row="1"
+                                       Grid.Column="1"
+                                       Placeholder="[Auftraggeber]"
+                                       PlaceholderColor="Black"
+                                       IsEnabled="False"
+                                       Text="{Binding ClientString}"
+                                       BackgroundColor="{Binding BackgroundColorInputClient}"
+                                       />
+                            </Grid>
+                            <telerikInput:RadListPicker x:Name="pickerClientAddress"                                            
+                                                    SelectedItemTemplate="{StaticResource picker_Addresses_SelectedItemTemplate}"
+                                                    ItemLength="100"
+                                                    ItemSpacing="10"
+                                                    ItemsSource="{Binding ListAddressesClients}" 
+                                                    ItemTemplate="{StaticResource  picker_Addresses_ItemTemplate}"                                                                                     
+                                                    SelectedItem="{Binding PickerSelectedItemClientAddress}"
+                                                    HeightRequest="80"
+                                                    IsLooping="False"              
+                                                    IsVisible="false">
+                                <telerikInput:RadListPicker.SelectorSettings>
+                                    <telerikInput:PickerPopupSelectorSettings HeaderTemplate="{StaticResource picker_Addresses_HeaderTemplate}"
+                                                                          FooterTemplate="{StaticResource  picker_Addresses_FooterTemplate}"
+                                                                         />
+                                </telerikInput:RadListPicker.SelectorSettings>
+                            </telerikInput:RadListPicker>
+                        </StackLayout>
+
+                        <StackLayout x:Name="ReceipinData"
+                                 Grid.Row="2"
+                                 >
+                            <Grid Padding="5,5,5,10"
+                              BackgroundColor="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <telerikInput:RadButton Grid.RowSpan="2"
+                                                    Grid.Column="0"                                            
+                                                    x:Name="btnReceipin"                                            
+                                                    IsEnabled="{Binding IsBtnReciepinEnabled}"
+                                                    Padding="0,0,0,0" 
+                                                    BorderThickness="5" 
+                                                    BorderColor="LightSeaGreen"
+                                                    BackgroundColor="Snow"
+                                                    Command="{Binding Source={x:Reference pickerReceipinAddress}, Path=ToggleCommand}"
+                                                    Clicked="btnReceipin_Clicked"
+                                                    >
+                                    <telerikInput:RadButton.ImageSource>
+                                        <FontImageSource Glyph="{StaticResource Icon_Edit}"
+                                                 Color="DarkSlateGray"                                      
+                                                 FontFamily="{StaticResource IconsFont}"                                          
+                                                 />
+                                    </telerikInput:RadButton.ImageSource>
+                                </telerikInput:RadButton>
+                                <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                   FontAttributes="Bold"
+                                   FontSize="Small"
+                                   Text="Empfänger:" />
+
+                                <Entry Grid.Row="1"
+                                   Grid.Column="1"
+                                   Placeholder="[Empfänger]"
+                                   PlaceholderColor="Black"
+                                   IsEnabled="False"
+                                   BackgroundColor="{Binding BackgroundColorInputReceipin}"
+                                   Text="{Binding RecipientString}" />
+                            </Grid>
+                            <StackLayout>
+                                <telerikInput:RadListPicker x:Name="pickerReceipinAddress"                                            
+                                                            SelectedItemTemplate="{StaticResource picker_Addresses_SelectedItemTemplate}"
+                                                            ItemTemplate="{StaticResource  picker_Addresses_ItemTemplate}"                                                                                     
+                                                            SelectedItem="{Binding PickerSelectedItemReceipinAddress}"
+                                                            ItemLength="90"
+                                                            ItemSpacing="10"
+                                                            ItemsSource="{Binding ListAddressesRecipien}" 
+
+                                                            HeightRequest="70"
+                                                            IsLooping="False"              
+                                                            IsVisible="false"                                                
+                                                            >
+                                    <telerikInput:RadListPicker.SelectorSettings>
+                                        <telerikInput:PickerPopupSelectorSettings HeaderTemplate="{StaticResource picker_Addresses_HeaderTemplate}"
+                                                                                  HeaderStyle="{StaticResource picker_Addresses_HeaderStyle}"
+                                                                                  FooterTemplate="{StaticResource  picker_Addresses_FooterTemplate}"
+                                                                                 />
+                                    </telerikInput:RadListPicker.SelectorSettings>
+
+                                </telerikInput:RadListPicker>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </Grid>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

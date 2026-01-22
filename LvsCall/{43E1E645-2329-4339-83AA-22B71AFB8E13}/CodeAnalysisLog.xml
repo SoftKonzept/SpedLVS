@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 11.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="11.0">
+ <Targets>
+  <Target Name="C:\Users\mr\AppData\Local\Temp\tmpF1F3.tmp.cadir\bin\App_Code.dll">
+   <Modules>
+    <Module Name="app_code.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="clsSQLcon_Call" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implementieren Sie IDisposable für "'clsSQLcon_Call'", weil Member der folgenden IDisposable-Typen instanziiert werden: 'SqlConnection'. Wenn "'clsSQLcon_Call'" bereits veröffentlicht wurde, wird das Hinzufügen von neuen Membern, die IDisposable für diesen Typ implementieren, für vorhandene Benutzer als fehlerhafte Änderung angesehen, die die Lauffähigkeit der Anwendung beeinträchtigt.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#ExecuteSQL(System.String,System.Decimal)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\develop\comTEC\LvsCall_Telerik\LvsCall\LvsCall\App_Code\Classes" File="clsSQLcon_Call.cs" Line="133">Die in 'clsSQLcon_Call.ExecuteSQL(string, decimal)' an 'SqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'strSQL'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecuteSQL_GetDataTable(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\develop\comTEC\LvsCall_Telerik\LvsCall\LvsCall\App_Code\Classes" File="clsSQLcon_Call.cs" Line="261">Die in 'clsSQLcon_Call.ExecuteSQL_GetDataTable(string, string)' an 'SqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'strSQL'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecuteSQL_GetValue(System.String,System.Decimal)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\develop\comTEC\LvsCall_Telerik\LvsCall\LvsCall\App_Code\Classes" File="clsSQLcon_Call.cs" Line="307">Die in 'clsSQLcon_Call.ExecuteSQL_GetValue(string, decimal)' an 'SqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'strSQL'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecuteSQL_GetValueBool(System.String,System.Decimal)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\develop\comTEC\LvsCall_Telerik\LvsCall\LvsCall\App_Code\Classes" File="clsSQLcon_Call.cs" Line="365">Die in 'clsSQLcon_Call.ExecuteSQL_GetValueBool(string, decimal)' an 'SqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'strSQL'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecuteSQLWithTRANSACTION(System.String,System.String,System.Decimal)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\develop\comTEC\LvsCall_Telerik\LvsCall\LvsCall\App_Code\Classes" File="clsSQLcon_Call.cs" Line="181">Die in 'clsSQLcon_Call.ExecuteSQLWithTRANSACTION(string, string, decimal)' an 'SqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'strSQL'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecuteSQLWithTRANSACTIONGetValue(System.String,System.String,System.Decimal)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\develop\comTEC\LvsCall_Telerik\LvsCall\LvsCall\App_Code\Classes" File="clsSQLcon_Call.cs" Line="216">Die in 'clsSQLcon_Call.ExecuteSQLWithTRANSACTIONGetValue(string, string, decimal)' an 'SqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'strSQL'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="clsSQLcon_LVS" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implementieren Sie IDisposable für "'clsSQLcon_LVS'", weil Member der folgenden IDisposable-Typen instanziiert werden: 'SqlConnection'. Wenn "'clsSQLcon_LVS'" bereits veröffentlicht wurde, wird das Hinzufügen von neuen Membern, die IDisposable für diesen Typ implementieren, für vorhandene Benutzer als fehlerhafte Änderung angesehen, die die Lauffähigkeit der Anwendung beeinträchtigt.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#ExecuteSQL(System.String,System.Decimal)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\develop\comTEC\LvsCall_Telerik\LvsCall\LvsCall\App_Code\Classes" File="clsSQLcon_LVS.cs" Line="132">Die in 'clsSQLcon_LVS.ExecuteSQL(string, decimal)' an 'SqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'strSQL'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecuteSQL_GetDataTable(System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\develop\comTEC\LvsCall_Telerik\LvsCall\LvsCall\App_Code\Classes" File="clsSQLcon_LVS.cs" Line="314">Die in 'clsSQLcon_LVS.ExecuteSQL_GetDataTable(string, string)' an 'SqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'strSQL'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecuteSQL_GetValue(System.String,System.Decimal)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\develop\comTEC\LvsCall_Telerik\LvsCall\LvsCall\App_Code\Classes" File="clsSQLcon_LVS.cs" Line="360">Die in 'clsSQLcon_LVS.ExecuteSQL_GetValue(string, decimal)' an 'SqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'strSQL'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecuteSQL_GetValueBool(System.String,System.Decimal)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\develop\comTEC\LvsCall_Telerik\LvsCall\LvsCall\App_Code\Classes" File="clsSQLcon_LVS.cs" Line="418">Die in 'clsSQLcon_LVS.ExecuteSQL_GetValueBool(string, decimal)' an 'SqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'strSQL'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecuteSQLWithTRANSACTION(System.String,System.String,System.Decimal)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\develop\comTEC\LvsCall_Telerik\LvsCall\LvsCall\App_Code\Classes" File="clsSQLcon_LVS.cs" Line="180">Die in 'clsSQLcon_LVS.ExecuteSQLWithTRANSACTION(string, string, decimal)' an 'SqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'strSQL'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecuteSQLWithTRANSACTIONGetValue(System.String,System.String,System.Decimal)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2015-01-07 12:09:04Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="c:\develop\comTEC\LvsCall_Telerik\LvsCall\LvsCall\App_Code\Classes" File="clsSQLcon_LVS.cs" Line="215">Die in 'clsSQLcon_LVS.ExecuteSQLWithTRANSACTIONGetValue(string, string, decimal)' an 'SqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'strSQL'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100">
+   <Name>SQL-Abfragen auf Sicherheitsrisiken überprüfen</Name>
+   <Description>Eine SQL-Befehlszeichenfolge, die aus Benutzereingaben erstellt wird, ist anfällig für Angriffe durch Einschleusung von SQL-Befehlen. Microsoft SQL Server und andere Datenbankserver unterstützen gespeicherte Prozeduren und parametrisierte SQL-Abfragen, durch die das Risiko von Angriffen durch Einschleusung von Befehlen reduziert wird.</Description>
+   <Resolution Name="WithNonLiterals">Die in {1} an {0} übergebene Abfragezeichenfolge könnte die folgenden {2}-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182310(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001">
+   <Name>Typen, die löschbare Felder besitzen, müssen gelöscht werden können</Name>
+   <Description>Typen, die löschbare Member deklarieren, müssen auch IDisposable implementieren. Wenn der Typ keine nicht verwalteten Ressourcen besitzt, implementieren Sie dafür keinen Finalizer.</Description>
+   <Resolution Name="DependsOnFix">Implementieren Sie IDisposable für "{0}", weil Member der folgenden IDisposable-Typen instanziiert werden: {1}. Wenn "{0}" bereits veröffentlicht wurde, wird das Hinzufügen von neuen Membern, die IDisposable für diesen Typ implementieren, für vorhandene Benutzer als fehlerhafte Änderung angesehen, die die Lauffähigkeit der Anwendung beeinträchtigt.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182172(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Kategorie</String>
+  <String Key="Certainty">Sicherheit</String>
+  <String Key="CollapseAll">Alle reduzieren</String>
+  <String Key="CheckId">Prüf-ID</String>
+  <String Key="Error">Fehler</String>
+  <String Key="Errors">Fehler</String>
+  <String Key="ExpandAll">Alle erweitern</String>
+  <String Key="Help">Hilfe</String>
+  <String Key="Line">Zeile</String>
+  <String Key="Messages">Meldung(en)</String>
+  <String Key="LocationNotStoredInPdb">[Nicht in PDB gespeicherter Speicherort]</String>
+  <String Key="Project">Projekt</String>
+  <String Key="Resolution">Auflösung</String>
+  <String Key="Rule">Regel</String>
+  <String Key="RuleFile">Regeldatei</String>
+  <String Key="RuleDescription">Regelbeschreibung</String>
+  <String Key="Source">Quelle</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Ziel</String>
+  <String Key="Warning">Warnung</String>
+  <String Key="Warnings">Warnung(en)</String>
+  <String Key="ReportTitle">Codeanalysebericht</String>
+ </Localized>
+</FxCopReport>

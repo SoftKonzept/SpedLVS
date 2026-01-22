@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"  
+             x:Class="LvsScan.Portable.Views.StoreIn.e1w6_einInputPrint">
+  <ContentView.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout x:Name="BusyIndicator"
+                        Padding="5,5,5,1"
+                        IsVisible="{Binding ShowBusyIndicator}">
+
+                    <telerikPrimitives:RadBusyIndicator AnimationContentHeightRequest="100"
+                                                    AnimationContentWidthRequest="100"
+                                                    AnimationType="Animation6"
+                                                    AnimationContentColor="Blue"
+                                                    InputTransparent="True"
+                                                    IsBusy="{Binding ShowBusyIndicator}"
+                                                    >
+                        <telerikPrimitives:RadBusyIndicator.BusyContent>
+                            <Label Grid.Row="2" 
+                                           Text="Daten werden geladen...." 
+                                           TextColor="DarkBlue" 
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           />
+                        </telerikPrimitives:RadBusyIndicator.BusyContent>
+                    </telerikPrimitives:RadBusyIndicator>
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding ShowContent}">
+                    <Grid BackgroundColor="White" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="rowHead" Height="auto" />
+                            <RowDefinition x:Name="rowPrintAllLabelt" Height="auto" />
+                            <RowDefinition x:Name="rowPrintEingangsliste" Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout x:Name="StoreInHead"
+                                     Grid.Row="0"
+                                     Padding="5,5,5,10"
+                                     IsVisible="{Binding ShowContent}"
+                                     >
+                            <Frame BorderColor="#4488F6"
+                                   BackgroundColor="{Binding BackgroundColorHead}"
+                                   HorizontalOptions="FillAndExpand"
+                                   CornerRadius="5"                       
+                                   >
+                                <StackLayout>
+                                    <Label Text="{Binding EingangIdString}" 
+                                           FontSize="20"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="StartAndExpand" 
+                                           HorizontalOptions="CenterAndExpand"/>
+                                    <Label Text="{Binding EingangDateString}" 
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="StartAndExpand" 
+                                           HorizontalOptions="CenterAndExpand"/>
+                                    <Label Text="{Binding WorkspaceString}" 
+                                           FontSize="Small"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="StartAndExpand" 
+                                           HorizontalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </Frame>
+
+                        </StackLayout>
+
+                        <StackLayout x:Name="slPrintAllLabel" Grid.Row="1" >
+                            <Grid Padding="25,5,5,5"
+                                  BackgroundColor="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0"
+                                        Grid.Column="0"                                   
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Center"
+                                        FontSize="Medium"
+                                        Text="Druck: All Label " />
+                                <telerikPrimitives:RadCheckBox x:Name="checkboxPrintAllLabel" 
+                                                           Grid.Row="0"
+                                                           Grid.Column="1"
+                                                           VerticalOptions="Center"
+                                                           HorizontalOptions="Center"
+                                                           IsChecked="{Binding PrintAllLable}" 
+                                                           IsThreeState="False"
+                                                           CheckedColor="Green"
+                                                           UncheckedColor="Green"
+                                                           CheckedSymbolColor="Snow"
+                                                           Length="50"
+                                                           StrokeWidth="5"
+                                                           />
+                                
+                            </Grid>
+                        </StackLayout>
+
+                        <StackLayout x:Name="slPrintEingangsliste" Grid.Row="2">
+                            <Grid Padding="25,5,5,5"
+                                  BackgroundColor="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0"
+                                        Grid.Column="0"                                   
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Center"
+                                        FontSize="Medium"
+                                        Text="Druck: Eingangsliste" />
+                                <telerikPrimitives:RadCheckBox x:Name="checkboxPrintEingangsliste" 
+                                                           Grid.Row="0"
+                                                           Grid.Column="1"
+                                                           VerticalOptions="Center"
+                                                           HorizontalOptions="Center"
+                                                           IsChecked="{Binding PrintEingangsliste}" 
+                                                           IsThreeState="False"
+                                                           CheckedColor="Green"
+                                                           UncheckedColor="Green"
+                                                           CheckedSymbolColor="Snow"
+                                                           Length="50"
+                                                           StrokeWidth="5"/>
+                            </Grid>
+                        </StackLayout>
+
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

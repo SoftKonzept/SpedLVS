@@ -1,0 +1,1134 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             x:Class="LvsScan.Portable.Views.StoreOut.Call.c2w1_wizView">
+  <ContentView.Content>
+        <ScrollView>
+            <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <!--<RowDefinition Height="auto"/>-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <telerikPrimitives:RadSlideView x:Name="slideViewCall" Grid.Row="1"
+                                                    ItemsSource="{Binding CallArticlesUnChecked}"    
+                                                    IndicatorColor="Blue"
+                                                    HorizontalOptions="Center"
+                                                    BackgroundColor="WhiteSmoke"
+                                                    Padding="0,0,0,0"
+                                                    Orientation="Horizontal"
+                                                    HorizontalContentOptions="Fill"
+                                                    IsSwipingEnabled="False"
+                                                    HeightRequest="180"
+                                                    WidthRequest="350"
+                                                    >
+                        <telerikPrimitives:RadSlideView.ItemTemplate>
+                            <DataTemplate>
+                                <ContentView>
+                                    <StackLayout Padding="15, 0, 15, 0" >
+                                        <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                                    Margin="10,10,10,10" 
+                                                                    Padding="0,5,0,0"
+                                                                    Color="DarkBlue"
+                                                                    BackgroundColor="{Binding ViewBackgroundColor}">
+                                            <StackLayout x:Name="slArticleInformation">
+
+                                                <StackLayout x:Name="slHeadArticle">
+                                                    <StackLayout x:Name="slLVSNr" Orientation="Horizontal">
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                Padding="5,0,0,0" 
+                                                                FontSize="Subtitle"
+                                                                FontAttributes="Bold"
+                                                                TextColor="DarkSlateGray"
+                                                                >
+                                                            <Label.Text>
+                                                                <MultiBinding StringFormat="{}LVS: {0} | Ort: {1}">
+                                                                    <Binding Path="LVSNr" />
+                                                                    <!--<Binding Path="ArtikelId" />-->
+                                                                    <Binding Path="Artikel.LagerOrtAsString" />
+                                                                </MultiBinding>
+                                                            </Label.Text>
+                                                        </Label>
+                                                        <Image>
+                                                            <Image.Style>
+                                                                <Style TargetType="{x:Type Image}">
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding IsScanned}" Value="False" TargetType="{x:Type Image}">
+                                                                            <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding IsScanned}" Value="True" TargetType="{x:Type Image}">
+                                                                            <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Image.Style>
+                                                        </Image>
+                                                    </StackLayout>
+                                                    <Label x:Name="lTermin"  
+                                                           HorizontalOptions="StartAndExpand"
+                                                            Padding="5,0,0,0" 
+                                                            FontSize="Default"
+                                                            FontAttributes="Bold"
+                                                            TextColor="DarkSlateGray"
+                                                            >
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}Termin: {0:dd.MM.yyyy} {1:HH:mm} Uhr">
+                                                                <Binding Path="EintreffDatum" />
+                                                                <Binding Path="EintreffZeit" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                    <Label x:Name="lWorkspace"  
+                                                           HorizontalOptions="StartAndExpand"
+                                                            Padding="5,0,0,0" 
+                                                            FontSize="Small"
+                                                            FontAttributes="Bold"
+                                                            TextColor="DarkSlateGray"
+                                                            >
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}[Arbeitsbereich: {0}]">
+                                                                <Binding Path="Workspace.Name" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                </StackLayout>
+
+                                                <BoxView x:Name="bvLine" Color= "DarkSlateBlue" HeightRequest="1" HorizontalOptions="Fill" />
+
+                                                <StackLayout x:Name="slProduktionsnummer" Orientation="Horizontal" Padding="0,-4,0,-1">
+                                                    <Label HorizontalOptions="Start"
+                                                                                Padding="10,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                Text="Produktionsnummer:"
+                                                                                WidthRequest="140"
+                                                                                />
+                                                    <Label  HorizontalOptions="Start"
+                                                                                Padding="0,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                        >
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}{0}">
+                                                                <Binding Path="Produktionsnummer" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+
+                                                </StackLayout>
+                                                <StackLayout x:Name="slWerksnummer" Orientation="Horizontal" Padding="0,-5,0,-1">
+                                                    <Label HorizontalOptions="Start"
+                                                                                Padding="10,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                Text="Werksnummer:"
+                                                                                WidthRequest="140"
+                                                                                />
+
+                                                    <Label  HorizontalOptions="Start"
+                                                                                Padding="0,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}{0}">
+                                                                <Binding Path="Werksnummer" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                </StackLayout>
+                                                <StackLayout x:Name="slBrutto" Orientation="Horizontal" Padding="0,-5,0,-1">
+                                                    <Label HorizontalOptions="Start"
+                                                                                Padding="10,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                Text="Brutto KG:"
+                                                                                WidthRequest="140"
+                                                                                />
+                                                    <Label  HorizontalOptions="Start"
+                                                                                Padding="0,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}{0:N2}">
+                                                                <Binding Path="Brutto" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                        </telerikPrimitives:RadShadow>
+                                    </StackLayout>
+                                </ContentView>
+                            </DataTemplate>
+                        </telerikPrimitives:RadSlideView.ItemTemplate>
+                    </telerikPrimitives:RadSlideView>          
+                                       
+
+
+                </Grid>
+            </StackLayout>
+            <!--<StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <telerikPrimitives:RadTabView x:Name="tabViewArtikel" Grid.Row="1"
+                                                  IsContentSwipingEnabled="True"
+                                                  HorizontalOptions="CenterAndExpand"
+                                                  HeaderPosition="Top"
+                                                  Padding="0,-20,0,0">
+                        <telerikPrimitives:RadTabView.Items>
+                            <telerikPrimitives:TabViewItem x:Name="tabItemCalls" HeaderText="Abrufe">
+                                <telerikPrimitives:TabViewItem.Header>
+                                    <telerikPrimitives:TabViewHeaderItem Style="{StaticResource DefaultTabViewHeaderItem}">
+                                        <telerikPrimitives:RadBadgeView BadgeText="{Binding CountUnCheck}"
+                                                                                Style="{StaticResource DefaultBadgeViewStyle}">
+                                            <telerikPrimitives:RadBadgeView.Content>
+                                                <Label Text="Abrufe" HorizontalOptions="Center" />
+                                            </telerikPrimitives:RadBadgeView.Content>
+                                        </telerikPrimitives:RadBadgeView>
+                                    </telerikPrimitives:TabViewHeaderItem>
+                                </telerikPrimitives:TabViewItem.Header>
+                                <telerikPrimitives:TabViewItem.Content>
+                                    
+                                    <telerikPrimitives:RadSlideView x:Name="slideViewCall"  
+                                                                    ItemsSource="{Binding CallArticlesUnChecked}"    
+                                                                    IndicatorColor="Blue"
+                                                                    HorizontalOptions="Center"
+                                                                    BackgroundColor="WhiteSmoke"
+                                                                    Padding="0,0,0,0"
+                                                                    Orientation="Horizontal"
+                                                                    HorizontalContentOptions="Fill"
+                                                                    IsSwipingEnabled="False"
+                                                                    HeightRequest="180"
+                                                                    WidthRequest="350"
+                                                                    >
+                                        <telerikPrimitives:RadSlideView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ContentView>
+
+                                                    <StackLayout Padding="15, 0, 15, 0" >
+                                                        <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                                                         Margin="10,10,10,10" 
+                                                                                         Padding="0,5,0,0"
+                                                                                         Color="DarkBlue"
+                                                                                         BackgroundColor="{Binding ViewBackgroundColor}">
+                                                            <StackLayout x:Name="slArticleInformation">
+
+                                                                <StackLayout x:Name="slHeadArticle">
+                                                                    <StackLayout x:Name="slLVSNr" Orientation="Horizontal">
+                                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                                    Padding="5,0,0,0" 
+                                                                                    FontSize="Subtitle"
+                                                                                    FontAttributes="Bold"
+                                                                                    TextColor="DarkSlateGray"
+                                                                                    >
+                                                                            <Label.Text>
+                                                                                <MultiBinding StringFormat="{}LVS: {0} | Ort: {1}">
+                                                                                    <Binding Path="LVSNr" />
+                                                                                    <Binding Path="ArtikelId" />
+                                                                                    <Binding Path="Artikel.LagerOrtAsString" />
+                                                                                </MultiBinding>
+                                                                            </Label.Text>
+                                                                        </Label>
+                                                                        <Image>
+                                                                            <Image.Style>
+                                                                                <Style TargetType="{x:Type Image}">
+                                                                                    <Style.Triggers>
+                                                                                        <DataTrigger Binding="{Binding IsScanned}" Value="False" TargetType="{x:Type Image}">
+                                                                                            <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                                                        </DataTrigger>
+                                                                                        <DataTrigger Binding="{Binding IsScanned}" Value="True" TargetType="{x:Type Image}">
+                                                                                            <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                                                        </DataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </Image.Style>
+                                                                        </Image>
+                                                                    </StackLayout>
+                                                                    <Label x:Name="lTermin"  HorizontalOptions="StartAndExpand"
+                                                                                Padding="5,0,0,0" 
+                                                                                FontSize="Default"
+                                                                                FontAttributes="Bold"
+                                                                                TextColor="DarkSlateGray"
+                                                                                >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}Termin: {0:dd.MM.yyyy} {1:HH:mm} Uhr">
+                                                                                <Binding Path="EintreffDatum" />
+                                                                                <Binding Path="EintreffZeit" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                    <Label x:Name="lWorkspace"  HorizontalOptions="StartAndExpand"
+                                                                                    Padding="5,0,0,0" 
+                                                                                    FontSize="Small"
+                                                                                    FontAttributes="Bold"
+                                                                                    TextColor="DarkSlateGray"
+                                                                                    >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}[Arbeitsbereich: {0}]">
+                                                                                <Binding Path="Workspace.Name" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                </StackLayout>
+
+                                                                <BoxView x:Name="bvLine" Color= "DarkSlateBlue" HeightRequest="1" HorizontalOptions="Fill" />
+
+                                                                <StackLayout x:Name="slProduktionsnummer" Orientation="Horizontal" Padding="0,-4,0,-1">
+                                                                    <Label HorizontalOptions="Start"
+                                                                                Padding="10,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                Text="Produktionsnummer:"
+                                                                                WidthRequest="140"
+                                                                                />
+                                                                    <Label  HorizontalOptions="Start"
+                                                                                Padding="0,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                        >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}{0}">
+                                                                                <Binding Path="Produktionsnummer" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+
+                                                                </StackLayout>
+                                                                <StackLayout x:Name="slWerksnummer" Orientation="Horizontal" Padding="0,-5,0,-1">
+                                                                    <Label HorizontalOptions="Start"
+                                                                                Padding="10,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                Text="Werksnummer:"
+                                                                                WidthRequest="140"
+                                                                                />
+
+                                                                    <Label  HorizontalOptions="Start"
+                                                                                Padding="0,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}{0}">
+                                                                                <Binding Path="Werksnummer" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                </StackLayout>
+                                                                <StackLayout x:Name="slBrutto" Orientation="Horizontal" Padding="0,-5,0,-1">
+                                                                    <Label HorizontalOptions="Start"
+                                                                                Padding="10,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                Text="Brutto KG:"
+                                                                                WidthRequest="140"
+                                                                                />
+                                                                    <Label  HorizontalOptions="Start"
+                                                                                Padding="0,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}{0:N2}">
+                                                                                <Binding Path="Brutto" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                </StackLayout>
+
+                                                            </StackLayout>
+                                                        </telerikPrimitives:RadShadow>
+                                                    </StackLayout>
+
+                                                    <StackLayout Padding="10,0,10,0">
+                                                    <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                                            Margin="10,10,10,10" 
+                                                                            Padding="0,0,0,0"
+                                                                            Color="DarkBlue"
+                                                                            BackgroundColor="{Binding ViewBackgroundColor}">
+                                                        <StackLayout>
+                                                            <StackLayout>
+                                                                    <StackLayout Orientation="Horizontal">
+                                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="5,-1,0,-2" 
+                                                                                FontSize="Subtitle"
+                                                                                FontAttributes="Bold"
+                                                                                TextColor="DarkSlateGray"
+                                                                                >
+                                                                        <Label.Text>
+                                                                                <MultiBinding StringFormat="{}LVS: {0}-[{1}] |Ort: {2}">
+                                                                                    <Binding Path="LVSNr" />
+                                                                                    <Binding Path="ArtikelId" />
+                                                                                    <Binding Path="Artikel.LagerOrtAsString" />
+                                                                                </MultiBinding>
+                                                                            </Label.Text>
+                                                                    </Label>
+                                                                        <Image>
+                                                                            <Image.Style>
+                                                                                <Style TargetType="{x:Type Image}">
+                                                                                    <Style.Triggers>
+                                                                                        <DataTrigger Binding="{Binding IsScanned}" Value="False" TargetType="{x:Type Image}">
+                                                                                            <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                                                        </DataTrigger>
+                                                                                        <DataTrigger Binding="{Binding IsScanned}" Value="True" TargetType="{x:Type Image}">
+                                                                                            <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                                                        </DataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </Image.Style>
+                                                                        </Image>
+                                                                    </StackLayout>
+                                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                                            Padding="5,-1,0,-2"
+                                                                            FontSize="Default"
+                                                                            FontAttributes="Bold"
+                                                                            TextColor="DarkSlateGray"
+                                                                            >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}Termin: {0:dd.MM.yyyy} {1:HH:mm} Uhr">
+                                                                                <Binding Path="EintreffDatum" />
+                                                                                <Binding Path="EintreffZeit" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                            </StackLayout>
+                                                            <StackLayout>
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                        Padding="5,-1,0,-2"
+                                                                        FontSize="Small"
+                                                                        FontAttributes="Bold"
+                                                                        TextColor="DarkSlateGray"
+                                                                        >
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}[Arbeitsbereich: {0}]">
+                                                                            <Binding Path="Workspace.Name" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                            </StackLayout>
+                                                            
+                                                            <BoxView Color= "DarkSlateBlue"
+                                                                        HeightRequest="1"                                                
+                                                                        HorizontalOptions="Fill" />
+                                                            
+                                                            <StackLayout Orientation="Vertical">                                                                
+                                                                <StackLayout x:Name="slProduktionsnummer" Orientation="Horizontal" Padding="0,-4,0,-1">
+                                                                    <Label HorizontalOptions="Start"
+                                                                           Padding="10,0,0,0"
+                                                                           FontSize="Small"
+                                                                           TextColor="DimGray"
+                                                                           Text="Produktionsnummer:"
+                                                                           WidthRequest="140"
+                                                                           />
+                                                                    <Label  HorizontalOptions="Start"
+                                                                            Padding="0,0,0,0"
+                                                                            FontSize="Small"
+                                                                            TextColor="DimGray"
+                                                                                    >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}{0}">
+                                                                                <Binding Path="Produktionsnummer" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+
+                                                                </StackLayout>
+                                                                <StackLayout x:Name="slWerksnummer" Orientation="Horizontal" Padding="0,-5,0,-1">
+                                                                    <Label HorizontalOptions="Start"
+                                                                           Padding="10,0,0,0"
+                                                                           FontSize="Small"
+                                                                           TextColor="DimGray"
+                                                                           Text="Werksnummer:"
+                                                                           WidthRequest="140"
+                                                                            />
+
+                                                                    <Label  HorizontalOptions="Start"
+                                                                            Padding="0,0,0,0"
+                                                                            FontSize="Small"
+                                                                            TextColor="DimGray"
+                                                                            >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}{0}">
+                                                                                <Binding Path="Werksnummer" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                </StackLayout>
+                                                                <StackLayout x:Name="slBrutto" Orientation="Horizontal" Padding="0,-5,0,-1">
+                                                                    <Label HorizontalOptions="Start"
+                                                                           Padding="10,0,0,0"
+                                                                           FontSize="Small"
+                                                                           TextColor="DimGray"
+                                                                           Text="Brutto KG:"
+                                                                           WidthRequest="140"
+                                                                           />
+                                                                    <Label  HorizontalOptions="Start"
+                                                                            Padding="0,0,0,0"
+                                                                            FontSize="Small"
+                                                                            TextColor="DimGray"
+                                                                            >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}{0:N2}">
+                                                                                <Binding Path="Brutto" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                </StackLayout>
+                                                            </StackLayout>
+                                                        </StackLayout>
+
+                                                    </telerikPrimitives:RadShadow>
+
+                                                </StackLayout>
+
+                                            </ContentView>
+                                            </DataTemplate>
+                                        </telerikPrimitives:RadSlideView.ItemTemplate>
+                                    </telerikPrimitives:RadSlideView>
+
+                                </telerikPrimitives:TabViewItem.Content>
+                            </telerikPrimitives:TabViewItem>
+
+
+                            <telerikPrimitives:TabViewItem x:Name="tabItemSelectedCall" HeaderText="Check">
+                                <telerikPrimitives:TabViewItem.Header>
+                                    <telerikPrimitives:TabViewHeaderItem Style="{StaticResource DefaultTabViewHeaderItemSmall}" HeightRequest="35">
+                                        <telerikPrimitives:RadBadgeView BadgeText="{Binding CountCheck}"
+                                                                        Style="{StaticResource DefaultBadgeViewStyleViewHeaderItemChecked}"
+                                                                        >
+                                            <telerikPrimitives:RadBadgeView.Content>
+                                                <Label Text="Check" HorizontalOptions="Center" />
+                                            </telerikPrimitives:RadBadgeView.Content>
+                                        </telerikPrimitives:RadBadgeView>
+                                    </telerikPrimitives:TabViewHeaderItem>
+                                </telerikPrimitives:TabViewItem.Header>
+                            <telerikPrimitives:TabViewItem.Content>
+
+                                <telerikPrimitives:RadSlideView x:Name="slideViewChecked"  
+                                                                ItemsSource="{Binding CallArticlesChecked}"    
+                                                                IndicatorColor="Blue"
+                                                                HorizontalOptions="Center"
+                                                                BackgroundColor="WhiteSmoke"
+                                                                Padding="0,0,0,0"
+                                                                Orientation="Horizontal"
+                                                                HorizontalContentOptions="Fill"
+                                                                IsSwipingEnabled="False"
+                                                                HeightRequest="180"
+                                                                WidthRequest="350"
+                                                                >
+                                        <telerikPrimitives:RadSlideView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ContentView>
+                                                    
+                                                    <StackLayout Padding="15, 0, 15, 0" >
+                                                        <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                                                     Margin="10,10,10,10" 
+                                                                                     Padding="0,5,0,0"
+                                                                                     Color="DarkBlue"
+                                                                                     BackgroundColor="{Binding ViewBackgroundColor}">
+                                                            <StackLayout x:Name="slArticleInformation">
+                                                                
+                                                                <StackLayout x:Name="slHeadArticle">
+                                                                    <StackLayout x:Name="slLVSNr" Orientation="Horizontal">
+                                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="5,0,0,0" 
+                                                                                FontSize="Subtitle"
+                                                                                FontAttributes="Bold"
+                                                                                TextColor="DarkSlateGray"
+                                                                                >
+                                                                            <Label.Text>
+                                                                                <MultiBinding StringFormat="{}LVS: {0} | Ort: {1}">
+                                                                                    <Binding Path="LVSNr" />
+                                                                                    <Binding Path="ArtikelId" />
+                                                                                    <Binding Path="Artikel.LagerOrtAsString" />
+                                                                                </MultiBinding>
+                                                                            </Label.Text>
+                                                                        </Label>
+                                                                        <Image>
+                                                                            <Image.Style>
+                                                                                <Style TargetType="{x:Type Image}">
+                                                                                    <Style.Triggers>
+                                                                                        <DataTrigger Binding="{Binding IsScanned}" Value="False" TargetType="{x:Type Image}">
+                                                                                            <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                                                        </DataTrigger>
+                                                                                        <DataTrigger Binding="{Binding IsScanned}" Value="True" TargetType="{x:Type Image}">
+                                                                                            <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                                                        </DataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </Image.Style>
+                                                                        </Image>
+                                                                    </StackLayout>
+                                                                    <Label x:Name="lTermin"  HorizontalOptions="StartAndExpand"
+                                                                            Padding="5,0,0,0" 
+                                                                            FontSize="Default"
+                                                                            FontAttributes="Bold"
+                                                                            TextColor="DarkSlateGray"
+                                                                            >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}Termin: {0:dd.MM.yyyy} {1:HH:mm} Uhr">
+                                                                                <Binding Path="EintreffDatum" />
+                                                                                <Binding Path="EintreffZeit" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                    <Label x:Name="lWorkspace"  HorizontalOptions="StartAndExpand"
+                                                                                Padding="5,0,0,0" 
+                                                                                FontSize="Small"
+                                                                                FontAttributes="Bold"
+                                                                                TextColor="DarkSlateGray"
+                                                                                >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}[Arbeitsbereich: {0}]">
+                                                                                <Binding Path="Workspace.Name" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                </StackLayout>                                                              
+                                                                                                                               
+                                                                <BoxView x:Name="bvLine" Color= "DarkSlateBlue" HeightRequest="1" HorizontalOptions="Fill" />
+                                                                
+                                                                <StackLayout x:Name="slProduktionsnummer" Orientation="Horizontal" Padding="0,-4,0,-1">
+                                                                    <Label HorizontalOptions="Start"
+                                                                            Padding="10,0,0,0"
+                                                                            FontSize="Small"
+                                                                            TextColor="DimGray"
+                                                                            Text="Produktionsnummer:"
+                                                                            WidthRequest="140"
+                                                                            />
+                                                                    <Label  HorizontalOptions="Start"
+                                                                            Padding="0,0,0,0"
+                                                                            FontSize="Small"
+                                                                            TextColor="DimGray"
+                                                                                    >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}{0}">
+                                                                                <Binding Path="Produktionsnummer" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+
+                                                                </StackLayout>
+                                                                <StackLayout x:Name="slWerksnummer" Orientation="Horizontal" Padding="0,-5,0,-1">
+                                                                    <Label HorizontalOptions="Start"
+                                                                            Padding="10,0,0,0"
+                                                                            FontSize="Small"
+                                                                            TextColor="DimGray"
+                                                                            Text="Werksnummer:"
+                                                                            WidthRequest="140"
+                                                                            />
+
+                                                                    <Label  HorizontalOptions="Start"
+                                                                            Padding="0,0,0,0"
+                                                                            FontSize="Small"
+                                                                            TextColor="DimGray"
+                                                                            >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}{0}">
+                                                                                <Binding Path="Werksnummer" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                </StackLayout>
+                                                                <StackLayout x:Name="slBrutto" Orientation="Horizontal" Padding="0,-5,0,-1">
+                                                                    <Label HorizontalOptions="Start"
+                                                                            Padding="10,0,0,0"
+                                                                            FontSize="Small"
+                                                                            TextColor="DimGray"
+                                                                            Text="Brutto KG:"
+                                                                            WidthRequest="140"
+                                                                            />
+                                                                    <Label  HorizontalOptions="Start"
+                                                                            Padding="0,0,0,0"
+                                                                            FontSize="Small"
+                                                                            TextColor="DimGray"
+                                                                            >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}{0:N2}">
+                                                                                <Binding Path="Brutto" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                </StackLayout>
+
+                                                            </StackLayout>
+                                                        </telerikPrimitives:RadShadow>
+                                                    </StackLayout>
+
+                                                </ContentView>
+                                            </DataTemplate>
+                                        </telerikPrimitives:RadSlideView.ItemTemplate>
+                                    </telerikPrimitives:RadSlideView>
+                                </telerikPrimitives:TabViewItem.Content>
+                            </telerikPrimitives:TabViewItem>
+                        </telerikPrimitives:RadTabView.Items>
+                    </telerikPrimitives:RadTabView>
+
+
+                    <telerikPrimitives:RadSlideView x:Name="slideView" Grid.Row="1" 
+                                                    ItemsSource="{Binding CallArticlesUnChecked}"                                                     
+                                                    HeightRequest="190">
+                        <telerikPrimitives:RadSlideView.ItemTemplate>
+                            <DataTemplate>
+                                <ContentView>
+                                    <StackLayout Padding="15, 0, 15, 0" >
+                                        <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                                    Margin="10,10,10,10" 
+                                                                    Padding="0,5,0,0"
+                                                                    Color="DarkBlue"
+                                                                    BackgroundColor="{Binding ViewBackgroundColor}"
+                                                                    >
+                                            <StackLayout>
+                                                <StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                        Padding="5,0,0,0" 
+                                                                        FontSize="Subtitle"
+                                                                        FontAttributes="Bold"
+                                                                        TextColor="DarkSlateGray"
+                                                                        >
+                                                            <Label.Text>
+                                                                <MultiBinding StringFormat="{}LVS: {0} - [ {1} ]|Ort: {2}">
+                                                                    <Binding Path="LVSNr" />
+                                                                    <Binding Path="ArtikelId" />
+                                                                    <Binding Path="Artikel.LagerOrtAsString" />
+                                                                </MultiBinding>
+                                                            </Label.Text>
+                                                        </Label>
+                                                        <Image>
+                                                            <Image.Style>
+                                                                <Style TargetType="{x:Type Image}">
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding IsScanned}" Value="False" TargetType="{x:Type Image}">
+                                                                            <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding IsScanned}" Value="True" TargetType="{x:Type Image}">
+                                                                            <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Image.Style>
+                                                        </Image>
+                                                    </StackLayout>
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                                    Padding="5,0,0,0" 
+                                                                    FontSize="Default"
+                                                                    FontAttributes="Bold"
+                                                                    TextColor="DarkSlateGray"
+                                                                    >
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}Termin: {0:dd.MM.yyyy} {1:HH:mm} Uhr">
+                                                                <Binding Path="EintreffDatum" />
+                                                                <Binding Path="EintreffZeit" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                </StackLayout>
+                                                <StackLayout>
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                                    Padding="5,0,0,0" 
+                                                                    FontSize="Small"
+                                                                    FontAttributes="Bold"
+                                                                    TextColor="DarkSlateGray"
+                                                                    >
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}[Arbeitsbereich: {0}]">
+                                                                <Binding Path="Workspace.Name" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                </StackLayout>
+                                                <BoxView Color= "DarkSlateBlue"
+                                                                         HeightRequest="1"                                                
+                                                                         HorizontalOptions="Fill" />
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                                        Padding="15,0,0,0"
+                                                                        FontSize="Small"
+                                                                        TextColor="DimGray"
+                                                                                >
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}Prod - Nr. : {0}">
+                                                                <Binding Path="Produktionsnummer" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                                        Padding="15,0,0,0"
+                                                                        FontSize="Small"
+                                                                        TextColor="DimGray"
+                                                                        >
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}Werks - Nr.: {0}">
+                                                                <Binding Path="Werksnummer" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                                        Padding="15,0,0,0"
+                                                                        FontSize="Small"
+                                                                        TextColor="DimGray"
+                                                                        >
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}Brutto KG: {0:N2}">
+                                                                <Binding Path="Brutto" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </telerikPrimitives:RadShadow>
+                                    </StackLayout>
+
+
+                                </ContentView>
+                            </DataTemplate>
+                        </telerikPrimitives:RadSlideView.ItemTemplate>
+                    </telerikPrimitives:RadSlideView>
+
+                    <StackLayout x:Name="sl" Grid.Row="0">
+                        <telerikPrimitives:RadSlideView x:Name="slideView" 
+                                                        ItemsSource="{Binding CallArticlesUnChecked}" 
+                                                        HeightRequest="190"
+                                                        >
+                            <telerikPrimitives:RadSlideView.ItemTemplate>
+                                <DataTemplate>
+                                    <ContentView>
+                                        <StackLayout Padding="15, 0, 15, 0" >
+                                            <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                                            Margin="10,10,10,10" 
+                                                                            Padding="0,5,0,0"
+                                                                            Color="DarkBlue"
+                                                                            BackgroundColor="{Binding ViewBackgroundColor}"
+                                                                            >
+                                                <StackLayout>
+                                                    <StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label  HorizontalOptions="StartAndExpand"
+                                                                        Padding="5,0,0,0" 
+                                                                        FontSize="Subtitle"
+                                                                        FontAttributes="Bold"
+                                                                        TextColor="DarkSlateGray"
+                                                                        >
+                                                                <Label.Text>
+                                                                    <MultiBinding StringFormat="{}LVS: {0} - [ {1} ]|Ort: {2}">
+                                                                        <Binding Path="LVSNr" />
+                                                                        <Binding Path="ArtikelId" />
+                                                                        <Binding Path="Artikel.LagerOrtAsString" />
+                                                                    </MultiBinding>
+                                                                </Label.Text>
+                                                            </Label>
+                                                            <Image>
+                                                                <Image.Style>
+                                                                    <Style TargetType="{x:Type Image}">
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding IsScanned}" Value="False" TargetType="{x:Type Image}">
+                                                                                <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding IsScanned}" Value="True" TargetType="{x:Type Image}">
+                                                                                <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Image.Style>
+                                                            </Image>
+                                                        </StackLayout>
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                    Padding="5,0,0,0" 
+                                                                    FontSize="Default"
+                                                                    FontAttributes="Bold"
+                                                                    TextColor="DarkSlateGray"
+                                                                    >
+                                                            <Label.Text>
+                                                                <MultiBinding StringFormat="{}Termin: {0:dd.MM.yyyy} {1:HH:mm} Uhr">
+                                                                    <Binding Path="EintreffDatum" />
+                                                                    <Binding Path="EintreffZeit" />
+                                                                </MultiBinding>
+                                                            </Label.Text>
+                                                        </Label>
+                                                    </StackLayout>
+                                                    <StackLayout>
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                    Padding="5,0,0,0" 
+                                                                    FontSize="Small"
+                                                                    FontAttributes="Bold"
+                                                                    TextColor="DarkSlateGray"
+                                                                    >
+                                                            <Label.Text>
+                                                                <MultiBinding StringFormat="{}[Arbeitsbereich: {0}]">
+                                                                    <Binding Path="Workspace.Name" />
+                                                                </MultiBinding>
+                                                            </Label.Text>
+                                                        </Label>
+                                                    </StackLayout>
+                                                    <BoxView Color= "DarkSlateBlue"
+                                                                         HeightRequest="1"                                                
+                                                                         HorizontalOptions="Fill" />
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                        Padding="15,0,0,0"
+                                                                        FontSize="Small"
+                                                                        TextColor="DimGray"
+                                                                                >
+                                                            <Label.Text>
+                                                                <MultiBinding StringFormat="{}Prod - Nr. : {0}">
+                                                                    <Binding Path="Produktionsnummer" />
+                                                                </MultiBinding>
+                                                            </Label.Text>
+                                                        </Label>
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                        Padding="15,0,0,0"
+                                                                        FontSize="Small"
+                                                                        TextColor="DimGray"
+                                                                        >
+                                                            <Label.Text>
+                                                                <MultiBinding StringFormat="{}Werks - Nr.: {0}">
+                                                                    <Binding Path="Werksnummer" />
+                                                                </MultiBinding>
+                                                            </Label.Text>
+                                                        </Label>
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                        Padding="15,0,0,0"
+                                                                        FontSize="Small"
+                                                                        TextColor="DimGray"
+                                                                        >
+                                                            <Label.Text>
+                                                                <MultiBinding StringFormat="{}Brutto KG: {0:N2}">
+                                                                    <Binding Path="Brutto" />
+                                                                </MultiBinding>
+                                                            </Label.Text>
+                                                        </Label>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </telerikPrimitives:RadShadow>
+                                        </StackLayout>
+
+
+                                    </ContentView>
+                                </DataTemplate>
+                            </telerikPrimitives:RadSlideView.ItemTemplate>
+                        </telerikPrimitives:RadSlideView>
+                    </StackLayout>
+                    
+                    
+
+                    <StackLayout x:Name="slScanInput" Grid.Row="2">
+                        <telerikPrimitives:RadTabView x:Name="tabView"
+                                                    IsContentSwipingEnabled="True"  
+                                                    SelectedItem="{Binding SelectedTabViewItem, Mode=TwoWay}"
+                                                    PropertyChanged="tabView_PropertyChanged"
+                                                    Padding="0,-20,0,0"
+                                                    >
+                            <telerikPrimitives:RadTabView.Items>                     
+                                <telerikPrimitives:TabViewItem x:Name="tabItemScan" HeaderText="Scan">
+                                    <telerikPrimitives:TabViewItem.Content>
+
+                                        <StackLayout x:Name="slTabScanInput" Padding="10,10,10,0">
+
+                                            <StackLayout Orientation="Horizontal">
+                                                <StackLayout BackgroundColor="{Binding BackgroundColorSearchLvsNr}">
+                                                    <Entry  x:Name="searchLvsNo"
+                                                        Placeholder="LVS - Nr" 
+                                                        PlaceholderColor="LightGray"
+                                                        Text="{Binding SearchLvsNo}"
+                                                        effects:KeyboardEffect.EnableKeyboard="False"   
+                                                        WidthRequest="200"
+                                                        >
+                                                        <Entry.Effects>
+                                                            <effects:KeyboardEnableEffect/>
+                                                        </Entry.Effects>
+                                                    </Entry>
+                                                </StackLayout>
+                                                <telerikInput:RadButton x:Name="btnTakeOverLvsScan"                                                                  
+                                                                        WidthRequest="50"
+                                                                        BackgroundColor="White"
+                                                                        HorizontalOptions="End"
+                                                                        BorderColor="Blue"
+                                                                        BorderThickness="2"
+                                                                        Clicked="btnTakeOverLvs_Clicked">
+                                                    <telerikInput:RadButton.ImageSource>
+                                                        <FontImageSource Glyph="{StaticResource Icon_Add}"
+                                                                        Color="Blue"                                      
+                                                                        FontFamily="{StaticResource IconsFont}"                                          
+                                                                        />
+                                                    </telerikInput:RadButton.ImageSource>
+                                                </telerikInput:RadButton>
+                                                <telerikInput:RadButton x:Name="btnClearLVSNoScan"                                                                  
+                                                                        WidthRequest="50"              
+                                                                        HorizontalOptions="End"
+                                                                        BorderColor="Blue"
+                                                                        BorderThickness="2"
+                                                                        BackgroundColor="White"
+                                                                        Clicked="btnClearLVSNo_Clicked">                          
+                                                    <telerikInput:RadButton.ImageSource>
+                                                        <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                        Color="Blue"                                      
+                                                                        FontFamily="{StaticResource IconsFont}"                                          
+                                                                        />
+                                                    </telerikInput:RadButton.ImageSource>
+                                                </telerikInput:RadButton>
+
+                                            </StackLayout>                              
+                                                                       
+                                            <StackLayout Orientation="Horizontal">
+                                                <StackLayout BackgroundColor="{Binding BackgroundColorSearchProductionNo}">
+                                                    <Entry x:Name="searchProductionsNo" 
+                                                            Placeholder="Produktionsnummer" 
+                                                            PlaceholderColor="LightGray"
+                                                            Text="{Binding SearchProduktionsnummer}"
+                                                            effects:KeyboardEffect.EnableKeyboard="False"  
+                                                            WidthRequest="200"
+                                                            >
+                                                                <Entry.Effects>
+                                                                    <effects:KeyboardEnableEffect/>
+                                                                </Entry.Effects>
+                                                            </Entry>
+                                                </StackLayout>
+                                                <telerikInput:RadButton x:Name="btnClearPrductionNo"                                                                  
+                                                                        WidthRequest="50"
+                                                                        BackgroundColor="White"
+                                                                        HorizontalOptions="End"
+                                                                        BorderColor="Blue"
+                                                                        BorderThickness="2"
+                                                                        Clicked="btnClearPrductionNo_Clicked"
+                                                                        Padding="-50,0,0,0"                                                             
+                                                                        >
+                                                    <telerikInput:RadButton.ImageSource>
+                                                        <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                        Color="Blue"                                      
+                                                                        FontFamily="{StaticResource IconsFont}"                                          
+                                                                        />
+                                                    </telerikInput:RadButton.ImageSource>
+                                                </telerikInput:RadButton>
+                                    
+                                            </StackLayout>                                   
+                                                                    
+
+                                        </StackLayout>
+
+                                    </telerikPrimitives:TabViewItem.Content>
+
+                                </telerikPrimitives:TabViewItem>
+
+
+                                <telerikPrimitives:TabViewItem x:Name="tabItemManual" HeaderText="manuell">
+                                    <telerikPrimitives:TabViewItem.Content>
+
+                                        <StackLayout x:Name="slManuallyInpnut" Padding="10,10,10,0">
+
+                                            <StackLayout x:Name="slInputLvsNr" Orientation="Horizontal">
+                                                <StackLayout BackgroundColor="{Binding BackgroundColorSearchLvsNr}">
+                                                    <Entry  x:Name="searchLvsNoManual"
+                                                            Placeholder="LVS - Nr" 
+                                                            PlaceholderColor="LightGray"
+                                                            Text="{Binding SearchLvsNo}"
+                                                            effects:KeyboardEffect.EnableKeyboard="True"   
+                                                            Keyboard="Numeric"
+                                                            WidthRequest="200">
+                                                        <Entry.Effects>
+                                                            <effects:KeyboardEnableEffect/>
+                                                        </Entry.Effects>
+                                                    </Entry>
+                                                </StackLayout>
+                                                <telerikInput:RadButton x:Name="btnTakeOverLvsManual"                                                                  
+                                                                        WidthRequest="50"
+                                                                        BackgroundColor="White"
+                                                                        HorizontalOptions="End"
+                                                                        BorderColor="Blue"
+                                                                        BorderThickness="2"
+                                                                        Clicked="btnTakeOverLvs_Clicked">
+                                                    <telerikInput:RadButton.ImageSource>
+                                                        <FontImageSource Glyph="{StaticResource Icon_Add}"
+                                                                        Color="Blue"                                      
+                                                                        FontFamily="{StaticResource IconsFont}"                                          
+                                                                        />
+                                                    </telerikInput:RadButton.ImageSource>
+                                                </telerikInput:RadButton>
+                                                <telerikInput:RadButton x:Name="btnClearLVSNoManual"                                                                  
+                                                                        WidthRequest="50"              
+                                                                        HorizontalOptions="End"
+                                                                        BorderColor="Blue"
+                                                                        BorderThickness="2"
+                                                                        BackgroundColor="White"
+                                                                        Clicked="btnClearLVSNo_Clicked">
+                                                    <telerikInput:RadButton.ImageSource>
+                                                        <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                        Color="Blue"                                      
+                                                                        FontFamily="{StaticResource IconsFont}"                                          
+                                                                        />
+                                                    </telerikInput:RadButton.ImageSource>
+                                                </telerikInput:RadButton>
+
+                                            </StackLayout>
+
+                                            <StackLayout x:Name="slInputProduktionsnummer" Orientation="Horizontal">
+                                                <StackLayout BackgroundColor="{Binding BackgroundColorSearchProductionNo}">
+                                                    <Entry x:Name="searchProductionsNoManual" 
+                                                            Placeholder="Produktionsnummer" 
+                                                            PlaceholderColor="LightGray"
+                                                            Text="{Binding SearchProduktionsnummer}"
+                                                            effects:KeyboardEffect.EnableKeyboard="True"  
+                                                            Keyboard="Default"
+                                                            WidthRequest="200"
+                                                            >
+                                                        <Entry.Effects>
+                                                            <effects:KeyboardEnableEffect/>
+                                                        </Entry.Effects>
+                                                    </Entry>
+                                                </StackLayout>
+                                                <telerikInput:RadButton x:Name="btnClearPrductionNoManual"                                                                  
+                                                                        WidthRequest="50"
+                                                                        BackgroundColor="White"
+                                                                        HorizontalOptions="End"
+                                                                        BorderColor="Blue"
+                                                                        BorderThickness="2"
+                                                                        Clicked="btnClearPrductionNo_Clicked"
+                                                                        Padding="-50,0,0,0"                                                             
+                                                                        >
+                                                    <telerikInput:RadButton.ImageSource>
+                                                        <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                        Color="Blue"                                      
+                                                                        FontFamily="{StaticResource IconsFont}"                                          
+                                                                        />
+                                                    </telerikInput:RadButton.ImageSource>
+                                                </telerikInput:RadButton>
+
+                                            </StackLayout>
+
+                                        </StackLayout>
+
+                                    </telerikPrimitives:TabViewItem.Content>
+                                </telerikPrimitives:TabViewItem>
+
+
+                            </telerikPrimitives:RadTabView.Items>
+                        </telerikPrimitives:RadTabView>
+                    </StackLayout>
+
+
+                </Grid>
+            </StackLayout>-->
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

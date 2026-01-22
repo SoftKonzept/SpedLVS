@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             x:Class="LvsScan.Portable.Views.StoreOut.Call.c2w2_wizView">
+  <ContentView.Content>
+      <StackLayout>
+            <!--<Label Text="Wizard Page 2" />
+            <Button Text="SET ENABLED" Clicked="Button_Clicked"/>-->
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

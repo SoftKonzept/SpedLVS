@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Abbruch" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Abruf" xml:space="preserve">
+    <value>Call</value>
+  </data>
+  <data name="AbrufAnlegen" xml:space="preserve">
+    <value>Create a call</value>
+  </data>
+  <data name="AbrufStornieren" xml:space="preserve">
+    <value>Cancell a sent call</value>
+  </data>
+  <data name="Ausgelagert" xml:space="preserve">
+    <value>Released</value>
+  </data>
+  <data name="Benutzer" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Bestand" xml:space="preserve">
+    <value>Stock</value>
+  </data>
+  <data name="Breite" xml:space="preserve">
+    <value>WID</value>
+  </data>
+  <data name="Brutto" xml:space="preserve">
+    <value>GROSS</value>
+  </data>
+  <data name="Charge" xml:space="preserve">
+    <value>Charge</value>
+  </data>
+  <data name="DFUENr" xml:space="preserve">
+    <value>RemoteNr</value>
+  </data>
+  <data name="Dicke" xml:space="preserve">
+    <value>THI</value>
+  </data>
+  <data name="EingangsNr" xml:space="preserve">
+    <value>ReceiptNr</value>
+  </data>
+  <data name="Eingegangen" xml:space="preserve">
+    <value>Receipt</value>
+  </data>
+  <data name="Empfaenger" xml:space="preserve">
+    <value>Recipient</value>
+  </data>
+  <data name="Empfangen" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="Firma" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Gesendet" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="Gut" xml:space="preserve">
+    <value>Good</value>
+  </data>
+  <data name="Hilfe" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="InBearbeitung" xml:space="preserve">
+    <value>In Progress</value>
+  </data>
+  <data name="Journal" xml:space="preserve">
+    <value>Journal</value>
+  </data>
+  <data name="JournalBenutzen" xml:space="preserve">
+    <value>Use the Journal</value>
+  </data>
+  <data name="Kontakt" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Kunde" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="Laenge" xml:space="preserve">
+    <value>LEN</value>
+  </data>
+  <data name="Lager" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="LVSNr" xml:space="preserve">
+    <value>LVS-ID</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>Material</value>
+  </data>
+  <data name="ME" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="Menge" xml:space="preserve">
+    <value>Quant</value>
+  </data>
+  <data name="Netto" xml:space="preserve">
+    <value>NET</value>
+  </data>
+  <data name="Passwort" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="ProdNr" xml:space="preserve">
+    <value>ProdNr</value>
+  </data>
+  <data name="ProgrammBenutzen" xml:space="preserve">
+    <value>Handle the application</value>
+  </data>
+  <data name="Schaden" xml:space="preserve">
+    <value>Damage</value>
+  </data>
+  <data name="Senden" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Sperrlager" xml:space="preserve">
+    <value>Quarantine Store</value>
+  </data>
+  <data name="Statistik" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="Stornierung" xml:space="preserve">
+    <value>Cancellation</value>
+  </data>
+  <data name="Suchen" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Abschicken" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Angelegt" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Ankunft" xml:space="preserve">
+    <value>Arrival</value>
+  </data>
+  <data name="Ja" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Jahr" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="Nein" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="txtAbbruchFrage" xml:space="preserve">
+    <value>Do you really want to cancel all your calls?</value>
+  </data>
+  <data name="txtAbrufFrage" xml:space="preserve">
+    <value>Please select a date for your call!</value>
+  </data>
+  <data name="txtDanke" xml:space="preserve">
+    <value>Thanks for your offer, in Section Journal; you can check the status of your Calls.</value>
+  </data>
+  <data name="Typ" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="GewichtBrutto" xml:space="preserve">
+    <value>brutweight</value>
+  </data>
+  <data name="Positionen" xml:space="preserve">
+    <value>positions</value>
+  </data>
+  <data name="imAbruf" xml:space="preserve">
+    <value>in Call</value>
+  </data>
+</root>

@@ -1,0 +1,53 @@
+﻿namespace LVS
+{
+    public enum enumDokumentenart
+    {
+        Briefkopf = 1,
+        AuftragScan = 2,
+        FrachtauftragAnSU = 3,
+        Anmeldeschein = 4,
+        Bestandsliste = 5,
+        Journal = 6,
+        Lieferschein = 7,
+        Fremdlieferschein = 8,
+        Abholschein = 9,
+        Lademittelschein = 10,  //Imagedruck
+        Rechnung = 11,
+        manuelleRGGS = 12,
+        Gutschrift = 13,
+        OwnDoc = 14,
+        ArtikelLabel = 15,
+        LagerEingangDoc = 16,
+        LagerEingangAnzeige = 17,
+        LagerEingangAnzeigePerDay = 18,
+        LagerEingangLfs = 19,
+        LagerAusgangDoc = 20,
+        LagerAusgangAnzeige = 21,
+        Ausgangsliste = 22,
+        LagerAusgangAnzeigePerDay = 23,
+        LagerAusgangLfs = 24,
+        LagerRechnung = 25,
+        LagerEingangKomplett = 26,
+        LagerAusgangKomplett = 27,
+        LagerAusgangNeutralDoc = 28,
+        RGAnhang = 29,
+        RGBuch = 30,
+        Inventurliste = 31,
+        Kundenliste = 32,
+        LagerEingangDocMat = 33,
+        Adressliste = 34,
+        ManuelleGutschrift = 35,
+        LagerAusgangLfsMat = 36,
+        RGAnhangMat = 37,
+        KundenInformationen = 38,
+        SPLLabel = 39,
+        Bilder = 40,
+        SPLDoc = 41,
+        LabelAll = 42,
+        Eingangsliste = 43,
+        SchadenLabel = 44,
+        SchadenDoc = 45,
+        DEFAULT = 46
+
+    }
+}

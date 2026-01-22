@@ -1,0 +1,41 @@
+﻿namespace Common.Enumerations
+{
+    public enum enumDatabaseSped4_TableNames
+    {
+        NotSet,
+        Abrufe,
+        ADR,
+        ADRMAn,
+        ADRText,
+        ADRVerweis,
+        Arbeitsbereich,
+        ArbeitsbereichDefaultValue,
+        ArbeitsbereichGArten,
+        ArbeitsbereichTarif,
+        ArbeitsbereichUser,
+        Archive,
+        Artikel,
+        Ebene,
+        Gueterart,
+        GueterartADR,
+        Halle,
+        Invnetory,
+        InventoryArticle,
+        LEingang,
+        LAusgang,
+        Platz,
+        Rechnungen,
+        Reihe,
+        Schaeden,
+        Sperrlager,
+        Umbuchungen,
+        User,
+        Userberechtigungen,
+        UserList,
+        UserListDaten,
+        VehicleRecource,
+        Version,
+        Werk,
+
+    }
+}

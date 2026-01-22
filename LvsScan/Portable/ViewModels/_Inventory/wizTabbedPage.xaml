@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LvsScan.Portable.ViewModels.Inventory.wizTabbedPage"
+             xmlns:local="clr-namespace:LvsScan.Portable.ViewModels.Inventory"
+             CurrentPageChanged="TabbedPage_CurrentPageChanged"
+             >
+
+    <!--<local:wizStartPage/>-->
+    
+    <!--<NavigationPage Title="Step 1">
+        <x:Arguments>
+            <local:wizInventoryViewModel_Search/>
+        </x:Arguments>       
+    </NavigationPage>
+
+    <NavigationPage Title="Step 2">
+        <x:Arguments>
+            <local:wizInventoryViewModel_SearchResult/>
+        </x:Arguments>
+    </NavigationPage>-->
+
+
+</TabbedPage>

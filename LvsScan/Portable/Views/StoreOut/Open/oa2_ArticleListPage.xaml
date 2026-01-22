@@ -1,0 +1,545 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LvsScan.Portable.ViewModels.StoreOut.Open" 
+             xmlns:enum="clr-namespace:Common.Enumerations;assembly=Common"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             x:Class="LvsScan.Portable.Views.StoreOut.Open.oa2_ArticleListPage">
+    <ContentPage.BindingContext>
+        <vm:oa2_ArticleListViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+
+      
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+       
+            <StackLayout x:Name="StoreOutHead"
+                                Grid.Row="0"
+                                Padding="5,5,5,1"
+                                IsVisible="{Binding ShowContent}"
+                                >
+                <Frame BorderColor="#4488F6"
+                                   BackgroundColor="{Binding BackgroundColorHead}"
+                                   HorizontalOptions="FillAndExpand"
+                                   CornerRadius="5"                       
+                                   >
+                    <StackLayout>
+                        <StackLayout Padding="0,-10,0,0">
+                            <Label Text="{Binding AusgangIdString}" 
+                                               FontSize="Medium"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="StartAndExpand" 
+                                               HorizontalOptions="CenterAndExpand"/>
+                            <Label Text="{Binding AusgangDateString}" 
+                                               FontSize="Default"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="StartAndExpand" 
+                                               HorizontalOptions="CenterAndExpand"/>
+                            <Label Text="{Binding WorkspaceString}" 
+                                               FontSize="Small"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="StartAndExpand" 
+                                               HorizontalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                        <BoxView Color= "DarkSlateBlue"
+                                     HeightRequest="1"                                                
+                                     HorizontalOptions="Fill"                                 
+                                     />
+                        <StackLayout Orientation="Horizontal" Padding="0,0,0,-10" VerticalOptions="CenterAndExpand">
+                            <StackLayout x:Name="sldocList" Orientation="Horizontal" WidthRequest="130" Padding="10,0,0,0">
+                                <Label x:Name="docList" Text="Liste: " />
+                                <Image>
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_List}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_List.NotSet}" TargetType="{x:Type Image}">
+                                                    <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_List}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_List.PrintOrderSet}" TargetType="{x:Type Image}">
+                                                    <Setter Property="Source" Value="bullet_ball_yellow_16x16.png" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_List}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_List.Printed}" TargetType="{x:Type Image}">
+                                                    <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackLayout>
+                            <StackLayout x:Name="sldocLfs" Orientation="Horizontal" WidthRequest="130" Padding="10,0,0,0">
+                                <Label x:Name="docLfs" Text="Lfs"/>
+                                <Image>
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_Lfs}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_Lfs.NotSet}" TargetType="{x:Type Image}">
+                                                    <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_Lfs}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_Lfs.PrintOrderSet}" TargetType="{x:Type Image}">
+                                                    <Setter Property="Source" Value="bullet_ball_yellow_16x16.png" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_Lfs}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_Lfs.Printed}" TargetType="{x:Type Image}">
+                                                    <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackLayout>
+                            <StackLayout x:Name="sldocFB" Orientation="Horizontal" WidthRequest="130"  Padding="10,0,0,0">
+                                <Label x:Name="docFB" Text="FB"/>
+                                <Image>
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_Frachtbrief}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_Frachtbrief.NotSet}" TargetType="{x:Type Image}">
+                                                    <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_Frachtbrief}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_Frachtbrief.PrintOrderSet}" TargetType="{x:Type Image}">
+                                                    <Setter Property="Source" Value="bullet_ball_yellow_16x16.png" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_Frachtbrief}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_Frachtbrief.Printed}" TargetType="{x:Type Image}">
+                                                    <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+
+            <StackLayout x:Name="BusyIndicator"
+                         HeightRequest="500" 
+                         IsVisible="{Binding ShowBusyIndicator}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="200" />
+                    </Grid.RowDefinitions>
+
+                    <telerikPrimitives:RadBusyIndicator Grid.Row="1"
+                                                        AnimationContentHeightRequest="100"
+                                                        AnimationContentWidthRequest="100"
+                                                        AnimationType="Animation6"
+                                                        AnimationContentColor="Blue"
+                                                        InputTransparent="True"
+                                                        IsBusy="{Binding ShowBusyIndicator}">
+                        <telerikPrimitives:RadBusyIndicator.BusyContent>
+                            <Label Grid.Row="2" 
+                                   Text="Daten werden geladen...." 
+                                   TextColor="DarkBlue" 
+                                   HorizontalOptions="CenterAndExpand"
+                                   VerticalTextAlignment="Center"
+                                   />
+                        </telerikPrimitives:RadBusyIndicator.BusyContent>
+                    </telerikPrimitives:RadBusyIndicator>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout IsVisible="{Binding ShowContent}">
+                <telerikPrimitives:RadTabView x:Name="tabViewArticle" 
+                                              FlowDirection="LeftToRight"
+                                              IsContentSwipingAnimationEnabled="False">
+                    <telerikPrimitives:RadTabView.Items>
+
+                        <telerikPrimitives:TabViewItem x:Name="tabOpen">
+                            <telerikPrimitives:TabViewItem.Header>
+                                <telerikPrimitives:TabViewHeaderItem Style="{StaticResource DefaultTabViewHeaderItem}">
+                                    <telerikPrimitives:RadBadgeView BadgeText="{Binding CountUnCheck}"
+                                                                    Style="{StaticResource DefaultBadgeViewStyle}"
+                                                                    >
+                                        <telerikPrimitives:RadBadgeView.Content>
+                                            <Label Text="offene" HorizontalOptions="Center" />
+                                        </telerikPrimitives:RadBadgeView.Content>
+                                    </telerikPrimitives:RadBadgeView>
+                                </telerikPrimitives:TabViewHeaderItem>
+                            </telerikPrimitives:TabViewItem.Header>
+                            <telerikPrimitives:TabViewItem.Content>
+
+                                <StackLayout>
+                                    <CollectionView x:Name="viewItemUnedited"                                                    
+                                                    ItemsSource="{Binding ArticlesUnChecked}"
+                                                    SelectedItem="{Binding SelectedArticle}"
+                                                    SelectionMode="Single"                                                    
+                                                    EmptyView="Es liegen keine Daten vor"
+                                                    >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+
+                                                <StackLayout Padding="5, 0, 5, 0" >
+                                                    <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                                                            Margin="10,10,10,10" 
+                                                                                            Padding="0,5,0,0"
+                                                                                            Color="DarkBlue"
+                                                                                            BackgroundColor="Snow"
+                                                                                            >
+                                                        <StackLayout>
+                                                            <StackLayout>
+                                                                <StackLayout Orientation="Horizontal">
+
+                                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                                                    Padding="5,0,0,0" 
+                                                                                    FontSize="Subtitle"
+                                                                                    FontAttributes="Bold"
+                                                                                    TextColor="DarkSlateGray"
+                                                                                    >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}LVS: {0} - [ {1} ] |  Ort: {2} ">
+                                                                                <Binding Path="LVS_ID" />
+                                                                                <Binding Path="Id" />
+                                                                                <Binding Path="LagerOrtAsString" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                    <Image>
+                                                                        <Image.Style>
+                                                                            <Style TargetType="{x:Type Image}">
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding AusgangChecked}" Value="False" TargetType="{x:Type Image}">
+                                                                                        <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                                                    </DataTrigger>
+                                                                                    <DataTrigger Binding="{Binding AusgangChecked}" Value="True" TargetType="{x:Type Image}">
+                                                                                        <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </Image.Style>
+                                                                    </Image>
+                                                                </StackLayout>
+                                                                <BoxView Color= "DarkSlateBlue"
+                                                                                HeightRequest="1"                                                
+                                                                                HorizontalOptions="Fill" />
+                                                            </StackLayout>
+
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="15,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Prod-Nr.: {0}">
+                                                                            <Binding Path="Produktionsnummer" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="15,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Werks-Nr: {0}">
+                                                                            <Binding Path="Werksnummer" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="15,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Brutto KG: {0:N2}">
+                                                                            <Binding Path="Brutto" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                            </StackLayout>
+                                                            
+                                                            <!--<StackLayout>
+
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="15,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Description: {0}">
+                                                                            <Binding Path="Description" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                    <Label.Triggers>
+                                                                        <DataTrigger TargetType="Label" 
+                                                                                     Binding="{Binding Description}" 
+                                                                                     Value="">
+                                                                            <Setter Property="IsVisible" Value="False" />
+                                                                        </DataTrigger>
+                                                                    </Label.Triggers>
+                                                                </Label>
+
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="15,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Notiz: {0}">
+                                                                            <Binding Path="Text" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                    <Label.Triggers>
+                                                                        <DataTrigger TargetType="Label" 
+                                                                                     Binding="{Binding Text}" 
+                                                                                     Value="">
+                                                                            <Setter Property="IsVisible" Value="False" />
+                                                                        </DataTrigger>
+                                                                    </Label.Triggers>
+                                                                </Label>
+
+                                                            </StackLayout>-->
+                                                            
+                                                        </StackLayout>
+                                                    </telerikPrimitives:RadShadow>
+                                                </StackLayout>
+
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+
+                        <telerikPrimitives:TabViewItem x:Name="tabChecked">
+                            <telerikPrimitives:TabViewItem.Header>
+                                <telerikPrimitives:TabViewHeaderItem Style="{StaticResource DefaultTabViewHeaderItem}">
+                                    <telerikPrimitives:RadBadgeView BadgeText="{Binding CountCheck}" 
+                                                                    Style="{StaticResource DefaultBadgeViewStyleViewHeaderItemChecked}">
+                                        <telerikPrimitives:RadBadgeView.Content>
+                                            <Label Text="check" HorizontalOptions="Center" />
+                                        </telerikPrimitives:RadBadgeView.Content>
+                                    </telerikPrimitives:RadBadgeView>
+                                </telerikPrimitives:TabViewHeaderItem>
+                            </telerikPrimitives:TabViewItem.Header>
+                            <telerikPrimitives:TabViewItem.Content>
+
+                                <StackLayout>
+                                    <CollectionView x:Name="viewItemChecked"                                                    
+                                                    ItemsSource="{Binding ArticlesChecked}"
+                                                    SelectionMode="Single"                                                    
+                                                    EmptyView="Es liegen keine Daten vor"                                
+                                                    >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+
+                                                <StackLayout Padding="5, 0, 5, 0" >
+                                                    <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                                                Margin="10,10,10,10" 
+                                                                                Padding="0,2,0,0"
+                                                                                Color="DarkBlue"
+                                                                                 WidthRequest="350"
+                                                                                BackgroundColor="PaleGreen">
+                                                        <StackLayout>
+                                                            <StackLayout>
+                                                                <StackLayout Orientation="Horizontal">
+
+                                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                                                    Padding="5,0,0,0" 
+                                                                                    FontSize="Subtitle"
+                                                                                    FontAttributes="Bold"
+                                                                                    TextColor="DarkSlateGray"
+                                                                                    >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}LVS: {0} - [ {1} ]| Ort: {2}">
+                                                                                <Binding Path="LVS_ID" />
+                                                                                <Binding Path="Id" />
+                                                                                <Binding Path="LagerOrtAsString" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                    <Image>
+                                                                        <Image.Style>
+                                                                            <Style TargetType="{x:Type Image}">
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding EingangChecked}" Value="False" TargetType="{x:Type Image}">
+                                                                                        <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                                                    </DataTrigger>
+                                                                                    <DataTrigger Binding="{Binding EingangChecked}" Value="True" TargetType="{x:Type Image}">
+                                                                                        <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </Image.Style>
+                                                                    </Image>
+                                                                </StackLayout>
+                                                                <BoxView Color= "DarkSlateBlue"
+                                                                                HeightRequest="1"                                                
+                                                                                HorizontalOptions="Fill" />
+                                                            </StackLayout>
+
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="15,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Prod-Nr.: {0}">
+                                                                            <Binding Path="Produktionsnummer" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="15,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Werks-Nr.: {0}">
+                                                                            <Binding Path="Werksnummer" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="15,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Brutto KG: {0:N2}">
+                                                                            <Binding Path="Brutto" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                            </StackLayout>
+
+                                                        </StackLayout>
+                                                    </telerikPrimitives:RadShadow>
+                                                </StackLayout>
+
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+
+                        <telerikPrimitives:TabViewItem x:Name="tabAll">
+                            <telerikPrimitives:TabViewItem.Header>
+                                <telerikPrimitives:TabViewHeaderItem Style="{StaticResource DefaultTabViewHeaderItem}">
+                                    <telerikPrimitives:RadBadgeView BadgeText="{Binding CountAll}" 
+                                                                    Style="{StaticResource DefaultBadgeViewStyle}">
+                                        <telerikPrimitives:RadBadgeView.Content>
+                                            <Label Text="all" HorizontalOptions="Center" />
+                                        </telerikPrimitives:RadBadgeView.Content>
+                                    </telerikPrimitives:RadBadgeView>
+                                </telerikPrimitives:TabViewHeaderItem>
+                            </telerikPrimitives:TabViewItem.Header>
+                            <telerikPrimitives:TabViewItem.Content>
+                                <StackLayout>
+                                    <CollectionView x:Name="viewItemAll"                                                    
+                                                    ItemsSource="{Binding ArticlesInAusgang}"
+                                                    SelectionMode="Single"                                                    
+                                                    EmptyView="Es liegen keine Daten vor"                                
+                                                    >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Padding="5, 0, 5, 0" >
+                                                    <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                                                Margin="10,10,10,10" 
+                                                                                Padding="0,5,0,0"
+                                                                                Color="DarkBlue"
+                                                                                BackgroundColor="Snow"
+                                                                                >
+                                                        <StackLayout>
+                                                            <StackLayout>
+                                                                <StackLayout Orientation="Horizontal">
+
+                                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                                                    Padding="5,0,0,0" 
+                                                                                    FontSize="Subtitle"
+                                                                                    FontAttributes="Bold"
+                                                                                    TextColor="DarkSlateGray"
+                                                                                    >
+                                                                        <Label.Text>
+                                                                            <MultiBinding StringFormat="{}LVS: {0} - [ {1} ] |  Ort: {2} ">
+                                                                                <Binding Path="LVS_ID" />
+                                                                                <Binding Path="Id" />
+                                                                                <Binding Path="LagerOrtAsString" />
+                                                                            </MultiBinding>
+                                                                        </Label.Text>
+                                                                    </Label>
+                                                                    <Image>
+                                                                        <Image.Style>
+                                                                            <Style TargetType="{x:Type Image}">
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding AusgangChecked}" Value="False" TargetType="{x:Type Image}">
+                                                                                        <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                                                    </DataTrigger>
+                                                                                    <DataTrigger Binding="{Binding AusgangChecked}" Value="True" TargetType="{x:Type Image}">
+                                                                                        <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </Image.Style>
+                                                                    </Image>
+                                                                </StackLayout>
+                                                                <BoxView Color= "DarkSlateBlue"
+                                                                                HeightRequest="1"                                                
+                                                                                HorizontalOptions="Fill" />
+                                                            </StackLayout>
+
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="15,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Prod-Nr.: {0}">
+                                                                            <Binding Path="Produktionsnummer" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="15,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Werks-Nr.: {0}">
+                                                                            <Binding Path="Werksnummer" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                                Padding="15,0,0,0"
+                                                                                FontSize="Small"
+                                                                                TextColor="DimGray"
+                                                                                >
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Brutto KG: {0:N2}">
+                                                                            <Binding Path="Brutto" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                            </StackLayout>
+
+                                                        </StackLayout>
+                                                        
+                                                    </telerikPrimitives:RadShadow>
+                                                </StackLayout>
+
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+
+                    </telerikPrimitives:RadTabView.Items>
+                </telerikPrimitives:RadTabView>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LvsScan.Portable.Views.TestWizard.tw1_SelectionPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Selection Page !!! - tw1_SelectionPage"
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="StartAndExpand" 
+                    BackgroundColor="Aqua"
+                   />
+            <Button Text="Go To Wizard" 
+                    Clicked="Button_Clicked" 
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="StartAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report Width="29.7000016653538cm" DocumentName="Bestandsliste" Name="Bestandsliste" SnapGridSize="0.1cm" xmlns="http://schemas.telerik.com/reporting/2012/4.1">
+  <DataSources>
+    <ObjectDataSource DataMember="Data" Name="objectDataSource1">
+      <DataSource>
+        <ClrType FullName="LVS.ReportClasses.clsRepBestand" Assembly="LVS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+      </DataSource>
+    </ObjectDataSource>
+  </DataSources>
+  <Items>
+    <DetailSection Height="1.6535435517629in" Name="detailSection1">
+      <Items>
+        <Panel Width="29.7000016653538cm" Height="4.20000014238311cm" Left="0cm" Top="0cm" Docking="Top" Name="panLEingangsdaten">
+          <Items>
+            <Table DataSourceName="objectDataSource1" Width="28.7000057882527cm" Height="1.70895811047528cm" Left="0.499999949534735cm" Top="0.299999848604206cm" ColumnHeadersPrintOnEveryPage="True" Name="tableArtikel">
+              <Body>
+                <Cells>
+                  <TableCell RowIndex="1" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="0.961112470675583cm" Height="0.479374556998043cm" Left="8.09999954581262cm" Top="0cm" Value="=Fields.LVS" Name="textBox3">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="15" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.31276715796853cm" Height="0.479374556998043cm" Left="8.09999954581262cm" Top="0cm" Value="=Fields.ID" Name="textBox4">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.527432335416cm" Height="0.479374539433793cm" Left="8.09999954581262cm" Top="0cm" Value="=Fields.Auftraggeber" Name="textBox8">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="2" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.95814241245475cm" Height="0.479374539433793cm" Left="8.09999954581262cm" Top="0cm" Value="=Fields.Produktionsnummer" Name="textBox9">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="4" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.64623980539793cm" Height="0.479374539433793cm" Left="8.09999954581262cm" Top="0cm" Value="=Fields.Anzahl" Name="textBox10">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="3" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="3.47677623617065cm" Height="0.479374539433793cm" Left="8.09999954581262cm" Top="0cm" Value="=Fields.Gut" Name="textBox11">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="5" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.63362662173869cm" Height="0.479374539433793cm" Left="8.09999954581262cm" Top="0cm" Value="=Fields.Netto" Name="textBox12">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="6" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.7586240811547cm" Height="0.479374539433793cm" Left="8.09999954581262cm" Top="0cm" Value="=Fields.Brutto" Name="textBox13">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="7" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.46512264359241cm" Height="0.479374539433793cm" Left="8.09999954581262cm" Top="0cm" Value="=Fields.Dicke" Name="textBox14">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="14" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.35140073296674cm" Height="0.479374539433793cm" Left="16.0999987383684cm" Top="0cm" Value="=Fields.Werksnummer" Name="textBox41">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="13" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.72569303688442cm" Height="0.479374539433793cm" Left="16.0999987383684cm" Top="0cm" Value="=Fields.Ausgangsdatum" Name="textBox42">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="12" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.75862493648151cm" Height="0.479374539433793cm" Left="16.0999987383684cm" Top="0cm" Value="=Fields.Eingangsdatum" Name="textBox43">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="11" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.13291608964748cm" Height="0.479374556998043cm" Left="16.0999987383684cm" Top="0cm" Value="=Fields.Platz" Name="textBox44">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="10" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.16584873839162cm" Height="0.479374556998043cm" Left="16.0999987383684cm" Top="0cm" Value="=Fields.Reihe" Name="textBox45">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="9" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.49516909820975cm" Height="0.479374539433793cm" Left="16.0999987383684cm" Top="0cm" Value="=Fields.Laenge" Name="textBox47">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="8" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.33050898846843cm" Height="0.479374556998043cm" Left="16.0999987383684cm" Top="0cm" Value="=Fields.Breite" Name="textBox48">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="0.961112577591436cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox1" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.52743260574022cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox6" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="2" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.95814247857439cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox15" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="3" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="3.47677631388266cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox16" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="4" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.64623984219426cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox18" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="5" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.63362665825309cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox19" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="6" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.75862412046301cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox21" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="7" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.46512289017216cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox25" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="8" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.33050898846843cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox27" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="9" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.49516913162938cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox29" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="10" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.16584884530747cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox33" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="11" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.13291608964748cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox34" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="12" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.75862486887398cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox35" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="13" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.72569307545667cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox37" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="14" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.35140078552464cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox38" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="15" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.31276726488439cm" Height="0.629583338410016cm" Left="0cm" Top="0cm" Name="textBox40" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Name="Arial" Size="6pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                </Cells>
+                <Columns>
+                  <Column Width="0.961112470675583cm" />
+                  <Column Width="2.52743260574022cm" />
+                  <Column Width="2.95814226474268cm" />
+                  <Column Width="3.47677588621924cm" />
+                  <Column Width="1.6462397352784cm" />
+                  <Column Width="1.63362655133724cm" />
+                  <Column Width="1.75862390663131cm" />
+                  <Column Width="1.46512289017216cm" />
+                  <Column Width="1.33050909538428cm" />
+                  <Column Width="1.49516913162938cm" />
+                  <Column Width="1.16584884530747cm" />
+                  <Column Width="1.13291619656334cm" />
+                  <Column Width="1.75862486887398cm" />
+                  <Column Width="1.72569286162496cm" />
+                  <Column Width="2.35140057169293cm" />
+                  <Column Width="1.31276726488439cm" />
+                </Columns>
+                <Rows>
+                  <Row Height="0.629583338410015cm" />
+                  <Row Height="0.479374556998043cm" />
+                </Rows>
+              </Body>
+              <Corner />
+              <Style>
+                <Font Name="Arial" Size="8pt" />
+              </Style>
+              <RowGroups>
+                <TableGroup Name="group6">
+                  <ChildGroups>
+                    <TableGroup Name="group9" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="detailTableGroup">
+                  <ChildGroups>
+                    <TableGroup Name="group11" />
+                  </ChildGroups>
+                  <Groupings>
+                    <Grouping />
+                  </Groupings>
+                </TableGroup>
+              </RowGroups>
+              <ColumnGroups>
+                <TableGroup Name="group10">
+                  <ReportItem>
+                    <TextBox Width="0.961112470675583cm" Height="0.600000164136302cm" Left="0cm" Top="0cm" Value="LVS" Name="textBox2" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group17" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group2">
+                  <ReportItem>
+                    <TextBox Width="2.527432335416cm" Height="0.600000167219229cm" Left="0cm" Top="0cm" Value="Kunde" Name="textBox46" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Default="None" Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group7" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group">
+                  <ReportItem>
+                    <TextBox Width="2.95814241245475cm" Height="0.600000167219229cm" Left="0cm" Top="0cm" Value="Prod-Nr" Name="textBox32" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Default="None" Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group16" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group1">
+                  <ReportItem>
+                    <TextBox Width="3.47677623617065cm" Height="0.600000167219229cm" Left="0cm" Top="0cm" Value="Gut" Name="textBox7" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group3" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group20">
+                  <ReportItem>
+                    <TextBox Width="1.64623980539793cm" Height="0.600000167219229cm" Left="0cm" Top="0cm" Value="Anzahl" Name="textBox23" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group21" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group18">
+                  <ReportItem>
+                    <TextBox Width="1.63362662173869cm" Height="0.600000167219229cm" Left="0cm" Top="0cm" Value="Netto" Name="textBox17" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group19" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group4">
+                  <ReportItem>
+                    <TextBox Width="1.7586240811547cm" Height="0.600000167219229cm" Left="0cm" Top="0cm" Value="Brutto" Name="textBox5" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group23" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group5">
+                  <ReportItem>
+                    <TextBox Width="1.46512264359241cm" Height="0.600000167219229cm" Left="0cm" Top="0cm" Value="Dicke" Name="textBox22" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group8" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group14">
+                  <ReportItem>
+                    <TextBox Width="1.33050898846843cm" Height="0.600000164136302cm" Left="0cm" Top="0cm" Value="Breite" Name="textBox20" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group15" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group22">
+                  <ReportItem>
+                    <TextBox Width="1.49516909820975cm" Height="0.600000167219229cm" Left="0cm" Top="0cm" Value="Laenge" Name="textBox24" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group24" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group25">
+                  <ReportItem>
+                    <TextBox Width="1.16584873839162cm" Height="0.600000164136302cm" Left="0cm" Top="0cm" Value="Reihe" Name="textBox26" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group26" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group27">
+                  <ReportItem>
+                    <TextBox Width="1.13291608964748cm" Height="0.600000164136302cm" Left="0cm" Top="0cm" Value="Platz" Name="textBox28" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group28" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group29">
+                  <ReportItem>
+                    <TextBox Width="1.75862493648151cm" Height="0.600000167219229cm" Left="0cm" Top="0cm" Value="E-Datum" Name="textBox30" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group30" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group31">
+                  <ReportItem>
+                    <TextBox Width="1.72569303688442cm" Height="0.600000167219229cm" Left="0cm" Top="0cm" Value="A-Datum" Name="textBox36" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group32" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group33">
+                  <ReportItem>
+                    <TextBox Width="2.35140073296674cm" Height="0.600000167219229cm" Left="0cm" Top="0cm" Value="WerksNr" Name="textBox39" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group34" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group12">
+                  <ReportItem>
+                    <TextBox Width="1.31276715796853cm" Height="0.600000164136302cm" Left="0cm" Top="0cm" Value="ID" Name="textBox31" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <Font Name="Arial" Size="8pt" Bold="True" />
+                        <BorderStyle Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group13" />
+                  </ChildGroups>
+                </TableGroup>
+              </ColumnGroups>
+            </Table>
+          </Items>
+        </Panel>
+      </Items>
+    </DetailSection>
+    <PageFooterSection Height="1.6999988624255cm" Name="pageFooterSection1" />
+    <PageHeaderSection PrintOnLastPage="True" Height="0.551181077957154in" Name="pageHeaderSection1">
+      <Items>
+        <Panel Width="29.7000016653538cm" Height="0.551181077957154in" Left="0cm" Top="0cm" Docking="Fill" Name="panPageHead" />
+      </Items>
+    </PageHeaderSection>
+  </Items>
+  <PageSettings PaperKind="A4" Landscape="True">
+    <Margins>
+      <MarginsU Left="0cm" Right="0cm" Top="0cm" Bottom="0cm" />
+    </Margins>
+  </PageSettings>
+  <StyleSheet>
+    <StyleRule>
+      <Style>
+        <Padding Left="2pt" Right="2pt" />
+      </Style>
+      <Selectors>
+        <TypeSelector Type="TextItemBase" />
+        <TypeSelector Type="HtmlTextBox" />
+      </Selectors>
+    </StyleRule>
+  </StyleSheet>
+</Report>

@@ -1,0 +1,239 @@
+Data Source=SQLSERVER2014\sql2008R2EX;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=LvsUser;Password=Lvs@comTEC.24
+Data Source=SE-MAIN\SPED;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey
+
+sqlAusgangSource:
+==============================
+Select a.ID 
+, a.LAusgangID
+, CASE WHEN ((a.KFZ IS NOT NULL)
+			AND (a.KFZ <> ''))
+	   THEN a.KFZ
+	   WHEN ((a.WaggonNo IS NOT NULL)
+			AND (a.WaggonNo <> ''))
+	   THEN a.WaggonNo
+	   ELSE ''
+	   END as KFZ
+, CONVERT(varchar(10),a.Datum,104) as LagerAusgangsDatum
+, a.Versender
+, a.LfsNr
+, a.Termin
+, a.WaggonNo
+, a.Info 
+, (Select KD_ID FROM ADR WHERE ID=a.Auftraggeber) as KDNrAuftraggeber
+, (Select KD_ID FROM ADR WHERE ID=a.Empfaenger) as KDNrEmpfaenger
+, (Select SUM(Brutto) FROM Artikel WHERE LAusgangTableID=@LAusgangTableID) as SumBrutto
+, CASE	WHEN (((Select a.KFZ ) is null)
+			OR ((Select a.KFZ ) = ''))	
+			THEN ((Select a.WaggonNo ) + char(13))
+			else
+			(SELECT a.KFZ)
+			END as lkwwagon
+
+, CASE	WHEN ((((Select Name1 FROM [LvsHonselmann].[dbo].ADR WHERE a.Spedid=ID) IS NULL)
+			OR ((Select Name1 FROM [LvsHonselmann].[dbo].ADR WHERE a.Spedid=ID) = ''))
+			and (((Select Fbez FROM [LvsHonselmann].[dbo].ADR WHERE a.Spedid=ID) IS NULL)
+			OR ((Select Fbez FROM [LvsHonselmann].[dbo].ADR WHERE a.Spedid=ID) = '')))	
+			THEN (Select ADRMan.Name1 FROM ADRMan 
+				INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+				WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=4)
+			else
+			(Select Name1 FROM ADR WHERE a.Spedid=ID)
+			END as spedname
+			
+, CASE WHEN (((Select Name1 FROM ADR WHERE ID=a.Auftraggeber)IS null)
+		OR ((Select Name1 FROM ADR WHERE ID=a.Auftraggeber) = ''))
+   THEN ((Select ADRMan.FBez FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) +
+	(CASE WHEN ((Select ADRMan.FBez FROM ADRMan 
+			INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+			WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) <> '')
+		THEN char(13)
+		ELSE ''
+		END) +
+	(Select ADRMan.Name1 FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) +
+	(CASE WHEN ((Select ADRMan.Name1 FROM ADRMan 
+			INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+			WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) <> '')
+		THEN char(13)
+		ELSE ''
+		END) +
+	(Select ADRMan.Name2 FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) +
+	(CASE WHEN ((Select ADRMan.Name2 FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) <> '')
+		THEN char(13)
+		ELSE ''
+		END) +
+	(Select ADRMan.Strasse FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) + ' ' +
+	(Select ADRMan.HausNr FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) +
+	(CASE WHEN ((Select ADRMan.Strasse FROM ADRMan 
+			INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+			WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) <> '')
+		THEN CHAR(13)
+		ELSE ''
+		END) +
+	(Select ADRMan.PLZ FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) + ' ' +
+	(Select ADRMan.Ort FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) +
+	(CASE WHEN ((Select ADRMan.Ort FROM ADRMan 
+			INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+			WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) <> '')
+		THEN char(13)
+		ELSE ''
+		END))
+   ELSE   
+	(
+	CASE
+	WHEN ((Select Name1 FROM ADR WHERE ID=a.Auftraggeber)IS NOT null)
+	THEN (
+			(Select Fbez FROM ADR WHERE ID=a.Auftraggeber) +
+			(CASE WHEN ((Select Fbez FROM ADR WHERE ID=a.Auftraggeber) <> '')
+				  THEN char(13)
+				  ELSE ''
+				  END)+
+			(Select Name1 FROM ADR WHERE ID=a.Auftraggeber) +
+			(CASE WHEN ((Select Name1 FROM ADR WHERE ID=a.Auftraggeber) <> '')
+				  THEN char(13)
+				  ELSE ''
+				  END) +				  +
+			(CASE WHEN ((Select Name2 FROM ADR WHERE ID=a.Auftraggeber)IS NULL)
+				  THEN ''
+		    	  ELSE (Select Name2 FROM ADR WHERE ID=a.Auftraggeber)+char(13)
+				  END) +
+		    (CASE WHEN ((Select Str FROM ADR WHERE ID=a.Auftraggeber)IS NULL)
+				  THEN ''
+		    	  ELSE (Select Str FROM ADR WHERE ID=a.Auftraggeber)+' '+ (Select HausNr FROM ADR WHERE ID=a.Empfaenger)+char(13)
+				  END) +
+			(CASE WHEN ((Select PLZ FROM ADR WHERE ID=a.Auftraggeber)IS NULL)
+				  THEN ''
+		    	  ELSE char(13)+(Select PLZ FROM ADR WHERE ID=a.Auftraggeber)
+				  END) +
+		    (CASE WHEN ((Select Ort FROM ADR WHERE ID=a.Auftraggeber)IS NULL)
+				  THEN ''
+		    	  ELSE ' '+(Select Ort FROM ADR WHERE ID=a.Auftraggeber)
+				  END)
+		 )
+		ELSE 'END'
+		END
+	)
+   END as AuftragggeberAdressblock		
+			
+, CASE WHEN (((Select Name1 FROM ADR WHERE ID=a.Empfaenger)IS null)
+		OR ((Select Name1 FROM ADR WHERE ID=a.Empfaenger) = ''))
+   THEN ((Select ADRMan.FBez FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) +
+	(CASE WHEN ((Select ADRMan.FBez FROM ADRMan 
+			INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+			WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) <> '')
+		THEN char(13)
+		ELSE ''
+		END) +
+	(Select ADRMan.Name1 FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) +
+	(CASE WHEN ((Select ADRMan.Name1 FROM ADRMan 
+			INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+			WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) <> '')
+		THEN char(13)
+		ELSE ''
+		END) +
+	(Select ADRMan.Name2 FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) +
+	(CASE WHEN ((Select ADRMan.Name2 FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) <> '')
+		THEN char(13)
+		ELSE ''
+		END) +
+	(Select ADRMan.Strasse FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) + ' ' +
+	(Select ADRMan.HausNr FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) +
+	(CASE WHEN ((Select ADRMan.Strasse FROM ADRMan 
+			INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+			WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) <> '')
+		THEN CHAR(13)
+		ELSE ''
+		END) +
+	(Select ADRMan.PLZ FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) + ' ' +
+	(Select ADRMan.Ort FROM ADRMan 
+		INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+		WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) +
+	(CASE WHEN ((Select ADRMan.Ort FROM ADRMan 
+			INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+			WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0) <> '')
+		THEN char(13)
+		ELSE ''
+		END))
+   ELSE
+	(
+			CASE
+			WHEN ((Select Name1 FROM ADR WHERE ID=a.Empfaenger)IS NOT null)
+			THEN (
+					(Select Fbez FROM ADR WHERE ID=a.Empfaenger) +
+					(CASE WHEN ((Select Fbez FROM ADR WHERE ID=a.Empfaenger) <> '')
+						  THEN char(13)
+						  ELSE ''
+						  END)+
+					(Select Name1 FROM ADR WHERE ID=a.Empfaenger) +
+					(CASE WHEN ((Select Name1 FROM ADR WHERE ID=a.Empfaenger) <> '')
+						  THEN char(13)
+						  ELSE ''
+						  END) +				  +
+					(CASE WHEN ((Select Name2 FROM ADR WHERE ID=a.Empfaenger)IS NULL)
+						  THEN ''
+		    			  ELSE (Select Name2 FROM ADR WHERE ID=a.Empfaenger)+char(13)
+						  END) +
+					(CASE WHEN ((Select Str FROM ADR WHERE ID=a.Empfaenger)IS NULL)
+						  THEN ''
+		    			  ELSE (Select Str FROM ADR WHERE ID=a.Empfaenger)+' '+ (Select HausNr FROM ADR WHERE ID=a.Empfaenger)+char(13)
+						  END) +
+					(CASE WHEN ((Select PLZ FROM ADR WHERE ID=a.Empfaenger)IS NULL)
+						  THEN ''
+		    			  ELSE char(13)+(Select PLZ FROM ADR WHERE ID=a.Empfaenger)
+						  END) +
+					(CASE WHEN ((Select Ort FROM ADR WHERE ID=a.Empfaenger)IS NULL)
+						  THEN ''
+		    			  ELSE ' '+(Select Ort FROM ADR WHERE ID=a.Empfaenger)
+						  END)
+				 )
+			ELSE 'Fehler AdrID Null'
+		   END	
+	)
+   END as EAdressblock
+, (Select Vorname +' '+ Name FROM [User] WHERE ID=@BenuzterID) as Sachbearbeiter
+, (Select Tel FROM [User] WHERE ID=@BenuzterID) as Telefon
+
+FROM LAusgang a
+WHERE a.ID=@LAusgangTableID
+
+sqlArtikelSource:
+============================
+Select 
+a.*
+, CASE
+	WHEN (a.Laenge>0)
+		THEN CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))+'x'+CAST(a.Laenge as varchar(20))
+	
+	ELSE CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))
+	END as Abmessung
+FROM Artikel a
+WHERE a.LAusgangTableID=@LAusgangTableID

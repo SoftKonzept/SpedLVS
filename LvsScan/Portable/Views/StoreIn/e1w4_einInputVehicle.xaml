@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input" 
+             x:Class="LvsScan.Portable.Views.StoreIn.e1w4_einInputVehicle">
+    <ContentView.Resources>
+        <ControlTemplate x:Key="picker_Vehicle_HeaderTemplate">
+            <Label Text="Fahrzeug-Auswahl:" 
+                   TextColor="White"
+                   FontSize="16"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   BackgroundColor="DodgerBlue"/>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="picker_Vehicle_ItemTemplate">
+
+            <Frame BorderColor="DarkBlue"
+                   HasShadow="True"
+                   CornerRadius="2"
+                   Padding="5"
+                   Margin="3"
+                   BackgroundColor="White"
+                   >
+                <StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding VehicleStringShort}" 
+                               FontSize="18"
+                               Padding="5,5,5,5"
+                               />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="picker_Vehicle_SelectedItemTemplate">
+            <Frame BorderColor="DarkBlue"
+                   HasShadow="True"
+                   CornerRadius="2"
+                   Padding="5"
+                   Margin="5"
+                   BackgroundColor="Beige"
+                   >
+                <StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding VehicleStringShort}" 
+                               FontSize="20"
+                               Padding="5,5,5,5"
+                               />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <ControlTemplate x:Key="picker_Vehicle_FooterTemplate">
+            <StackLayout Orientation="Horizontal" Spacing="5" BackgroundColor="DodgerBlue">
+                <Button Text="Abbrechen" 
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="StartAndExpand"
+                        Command="{TemplateBinding CancelCommand}" />
+                <Button Text="Übernehmen" 
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="EndAndExpand"
+                        Command="{TemplateBinding AcceptCommand}" />
+            </StackLayout>
+        </ControlTemplate> 
+
+    </ContentView.Resources>
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout>
+                    <StackLayout x:Name="BusyIndicator"
+                            Padding="5,5,5,1"
+                            IsVisible="{Binding ShowBusyIndicator}"
+                            >
+
+                        <telerikPrimitives:RadBusyIndicator AnimationContentHeightRequest="100"
+                                                        AnimationContentWidthRequest="100"
+                                                        AnimationType="Animation6"
+                                                        AnimationContentColor="Blue"
+                                                        InputTransparent="True"
+                                                        IsBusy="{Binding ShowBusyIndicator}"
+                                                        >
+                            <telerikPrimitives:RadBusyIndicator.BusyContent>
+                                <Label Grid.Row="2" 
+                                               Text="Daten werden geladen...." 
+                                               TextColor="DarkBlue" 
+                                               HorizontalOptions="CenterAndExpand"
+                                               VerticalTextAlignment="Center"
+                                               />
+                            </telerikPrimitives:RadBusyIndicator.BusyContent>
+                        </telerikPrimitives:RadBusyIndicator>
+                    </StackLayout>
+
+                    <StackLayout IsVisible="{Binding ShowContent}">
+                        <Grid BackgroundColor="White" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition x:Name="rowHead" Height="auto" />
+                                <RowDefinition x:Name="rowVehicleSelection" Height="auto" />
+                                <RowDefinition x:Name="rowWaggon" Height="auto" />
+                                <RowDefinition x:Name="rowKfz" Height="auto" />
+                                <RowDefinition x:Name="rowDriver" Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout x:Name="StoreOutHead" Grid.Row="0"
+                                         Padding="5,5,5,5"
+                                         IsVisible="{Binding ShowContent}"
+                                         >
+                                <Frame BorderColor="#4488F6"
+                                        BackgroundColor="{Binding BackgroundColorHead}"
+                                        HorizontalOptions="FillAndExpand"
+                                        CornerRadius="5"                       
+                                        >
+                                    <StackLayout>
+                                        <Label Text="{Binding EingangIdString}" 
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="StartAndExpand" 
+                                       HorizontalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding EingangDateString}" 
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="StartAndExpand" 
+                                       HorizontalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding WorkspaceString}" 
+                                       FontSize="Small"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="StartAndExpand" 
+                                       HorizontalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                </Frame>
+
+                            </StackLayout>
+
+                            <StackLayout x:Name="slVehicleSelection" Grid.Row="1">
+                                <Grid BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="75" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="180" />
+                                        <ColumnDefinition Width="180" />
+                                    </Grid.ColumnDefinitions>
+                                
+                                    <StackLayout x:Name="slSelectionLKW" Grid.Row="0"
+                                                 Grid.Column="0"
+                                                 Orientation="Horizontal"
+                                                 Padding ="20,0,0,0">
+                                        <Label x:Name="LKW" 
+                                               FontAttributes="Bold"
+                                               FontSize="Small"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="Center"
+                                               WidthRequest="80"
+                                               Text="LKW:" />
+                                        <telerikPrimitives:RadCheckBox x:Name="checkboxLKW" 
+                                                           Grid.Row="0"
+                                                           Grid.Column="1"
+                                                           VerticalOptions="Center"
+                                                           HorizontalOptions="Center"
+                                                           IsThreeState="False"
+                                                           CheckedColor="Green"
+                                                           UncheckedColor="Green"
+                                                           CheckedSymbolColor="Snow"
+                                                           Length="50"
+                                                           StrokeWidth="5"
+                                                           IsEnabled="True"
+                                                           IsChecked="{Binding IsKfz}"
+                                                           />
+                                    </StackLayout>
+                                    <StackLayout x:Name="slSelectionWaggon" Grid.Row="0"
+                                                 Grid.Column="1"
+                                                 Orientation="Horizontal">
+                                        <Label x:Name="lWaggon"
+                                                FontAttributes="Bold"
+                                                FontSize="Small"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center"
+                                               WidthRequest="80"
+                                                Text="Waggon:" />
+                                        <telerikPrimitives:RadCheckBox x:Name="checkboxWaggon" 
+                                                           Grid.Row="0"
+                                                           Grid.Column="1"
+                                                           VerticalOptions="Center"
+                                                           HorizontalOptions="Center"
+                                                           IsThreeState="False"
+                                                           CheckedColor="Green"
+                                                           UncheckedColor="Green"
+                                                           CheckedSymbolColor="Snow"
+                                                           Length="50"
+                                                           StrokeWidth="5"
+                                                           IsEnabled="True"
+                                                           IsChecked="{Binding IsWaggon}"
+                                                           />
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+
+                            <StackLayout x:Name="WaggonData" Grid.Row="2"
+                                         IsVisible="{Binding IsWaggon}">
+                                <Grid Padding="5,5,5,5"
+                                      BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <telerikInput:RadButton Grid.Row="0"
+                                                            Grid.RowSpan="2"
+                                                            Grid.Column="0"                                            
+                                                            x:Name="btnWaggon" 
+                                                            Padding="0,0,0,0"
+                                                            IsEnabled="{Binding IsBtnWaggonEnabled}"
+                                                            BorderThickness="5" 
+                                                            BorderColor="LightSeaGreen"
+                                                            BackgroundColor="Snow"
+                                                            Clicked="btnWaggon_Clicked">
+                                        <telerikInput:RadButton.ImageSource>
+                                            <FontImageSource Glyph="{StaticResource Icon_Edit}"
+                                                         Color="DarkSlateGray"                                      
+                                                         FontFamily="{StaticResource IconsFont}"                                          
+                                                         />
+                                        </telerikInput:RadButton.ImageSource>
+                                    </telerikInput:RadButton>
+                                    <Label Grid.Row="0"
+                                           Grid.Column="1"
+                                           Grid.ColumnSpan="2"
+                                           FontAttributes="Bold"
+                                           FontSize="Small"
+                                           Text="Waggon-Nr:" />
+
+                                    <Entry x:Name="inputWaggon"
+                                           Grid.Row="1"
+                                           Grid.Column="1"
+                                           Grid.ColumnSpan="2"
+                                           Placeholder="[Waggon-Nr]"
+                                           PlaceholderColor="Black"
+                                           IsEnabled="{Binding IsInputWaggonEnabled}"
+                                           BackgroundColor="{Binding BackgroundColorInputWaggon}"
+                                           Text="{Binding Waggon}"
+                                           Completed="inputWaggon_Completed"/>
+                                </Grid>
+                            </StackLayout>
+
+                            <StackLayout x:Name="KFZData" Grid.Row="3"
+                                         IsVisible="{Binding IsKfz}">
+                                <Grid Padding="5,5,5,5"
+                                      BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <telerikInput:RadButton Grid.Row="1"
+                                                            Grid.RowSpan="2"
+                                                            Grid.Column="0"                                            
+                                                            x:Name="btnKFZ" 
+                                                            Padding="0,0,0,0" 
+                                                            IsEnabled="{Binding IsBtnKFZEnabled}"
+                                                            BorderThickness="5" 
+                                                            BorderColor="LightSeaGreen"
+                                                            BackgroundColor="Snow"
+                                                            Clicked="btnKFZ_Clicked"
+                                                            >
+                                        <telerikInput:RadButton.ImageSource>
+                                            <FontImageSource Glyph="{StaticResource Icon_Edit}"
+                                                             Color="DarkSlateGray"                                      
+                                                             FontFamily="{StaticResource IconsFont}" />
+                                        </telerikInput:RadButton.ImageSource>
+                                    </telerikInput:RadButton>
+                                    <telerikInput:RadButton Grid.Row="1"
+                                                            Grid.RowSpan="2"
+                                                            Grid.Column="1"                                            
+                                                            x:Name="btnKFZList" 
+                                                            Padding="0,0,0,0" 
+                                                            IsEnabled="{Binding IsBtnKFZEnabled}"
+                                                            BorderThickness="5" 
+                                                            BorderColor="LightSeaGreen"
+                                                            BackgroundColor="Snow"
+                                                            Command="{Binding Source={x:Reference pickerVehicleZM}, Path=ToggleCommand}" 
+                                                            >
+                                        <telerikInput:RadButton.ImageSource>
+                                            <FontImageSource Glyph="{StaticResource Icon_MenuCustom}"
+                                                         Color="DarkSlateGray"                                      
+                                                         FontFamily="{StaticResource IconsFont}"                                          
+                                                         />
+                                        </telerikInput:RadButton.ImageSource>
+                                    </telerikInput:RadButton>
+
+
+                                    <Label Grid.Row="1"
+                                           Grid.Column="2"
+                                           Grid.ColumnSpan="2"
+                                           FontAttributes="Bold"
+                                           FontSize="Small"
+                                           Text="KFZ:" />
+
+                                    <Entry x:Name="inputKFZ"
+                                           Grid.Row="2"
+                                           Grid.Column="2"
+                                           Grid.ColumnSpan="2"
+                                           Placeholder="[KFZ - Kennzeichen]"
+                                           PlaceholderColor="Black"
+                                           IsEnabled="{Binding IsInputKFZEnabled}"
+                                           BackgroundColor="{Binding BackgroundColorInputKFZ}"
+                                           Text="{Binding KFZ}"
+                                           Completed="inputKFZ_Completed"/>
+                                </Grid>
+
+                                <StackLayout x:Name="slPickerZM">
+                                    <telerikInput:RadListPicker x:Name="pickerVehicleZM"  
+                                                            SelectedItemTemplate="{StaticResource picker_Vehicle_SelectedItemTemplate}"
+                                                            ItemLength="80"
+                                                            ItemSpacing="10"
+                                                            ItemsSource="{Binding VehiclesZM}" 
+                                                            ItemTemplate="{StaticResource  picker_Vehicle_ItemTemplate}"                                                                                     
+                                                            SelectedItem="{Binding PickerSelectedItemVehicleZM}"
+                                                            
+                                                            IsLooping="false"              
+                                                            IsVisible="false"                                                            
+                                                            >
+                                        <telerikInput:RadListPicker.SelectorSettings>
+                                            <telerikInput:PickerPopupSelectorSettings HeaderTemplate="{StaticResource picker_Vehicle_HeaderTemplate}"
+                                                                                  FooterTemplate="{StaticResource  picker_Vehicle_FooterTemplate}"
+                                                                                 />
+                                        </telerikInput:RadListPicker.SelectorSettings>
+
+                                    </telerikInput:RadListPicker>
+                                </StackLayout>
+
+                            </StackLayout>
+
+                            <StackLayout x:Name="DriverData" Grid.Row="4"
+                                         IsVisible="{Binding IsKfz}">
+                                <Grid Padding="5,5,5,5"
+                                      BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <telerikInput:RadButton Grid.RowSpan="2"
+                                                            Grid.Column="0"                                            
+                                                            x:Name="btnDriver" 
+                                                            Padding="0,0,0,0" 
+                                                            IsEnabled="{Binding IsBtnDriverEnabled}"
+                                                            BorderThickness="5" 
+                                                            BackgroundColor="Snow"
+                                                            BorderColor="LightSeaGreen"
+                                                            Clicked="btnDriver_Clicked"
+                                                            >
+                                        <telerikInput:RadButton.ImageSource>
+                                            <FontImageSource Glyph="{StaticResource Icon_Edit}"
+                                                             Color="DarkSlateGray"                                      
+                                                             FontFamily="{StaticResource IconsFont}"                                          
+                                                             />
+                                        </telerikInput:RadButton.ImageSource>
+                                    </telerikInput:RadButton>
+                                    <Label Grid.Row="0"
+                                           Grid.Column="1"
+                                           Grid.ColumnSpan="2"
+                                           FontAttributes="Bold"
+                                           FontSize="Small"
+                                           Text="Fahrer:" />
+
+                                    <Entry x:Name="inputDriver"
+                                           Grid.Row="1"
+                                           Grid.Column="1"
+                                           Grid.ColumnSpan="2"
+                                           Placeholder="[Vor- und Zuname]"
+                                           PlaceholderColor="Black"
+                                           IsEnabled="{Binding IsInputDriverEnabled}"
+                                           BackgroundColor="{Binding BackgroundColorInputDriver}"
+                                           Text="{Binding Driver}"
+                                           Completed="inputDriver_Completed"
+                                           />
+                                </Grid>
+
+                            </StackLayout>
+
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

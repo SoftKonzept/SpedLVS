@@ -1,0 +1,352 @@
+﻿using LVS.Models;
+using LVS.ViewData;
+using System;
+using System.Collections.Generic;
+
+namespace LVS.ASN.EDIFACT.Initialisierung
+{
+    public class InitLIN
+    {
+        public EdiSegmentViewData ediSegmentVD;
+        internal AsnArt asnArt = new AsnArt();
+        public InitLIN(AsnArt myAsnArt, string myCode)
+        {
+            asnArt = myAsnArt.Copy();
+
+            ediSegmentVD = new EdiSegmentViewData();
+            ediSegmentVD.EdiSegment.AsnArtId = (int)asnArt.Id;
+            ediSegmentVD.EdiSegment.Name = LIN.Name.ToUpper();
+            ediSegmentVD.EdiSegment.Status = "M";
+            ediSegmentVD.EdiSegment.RepeatCount = 1;
+            ediSegmentVD.EdiSegment.Ebene = 0;
+            ediSegmentVD.EdiSegment.Description = "LINE ITEM";
+            ediSegmentVD.EdiSegment.Created = DateTime.Now;
+            ediSegmentVD.EdiSegment.tmpId = 0;
+            ediSegmentVD.EdiSegment.Storable = false;
+            ediSegmentVD.EdiSegment.Code = myCode;
+            ediSegmentVD.EdiSegment.SortId = 1;
+            ediSegmentVD.EdiSegment.IsActive = true;
+            ediSegmentVD.EdiSegment.EdiSegmentCheckFunction = string.Empty;
+
+
+            ediSegmentVD.EdiSegment.ListEdiSegmentElements = new List<Models.EdiSegmentElements>();
+
+            EdiSegmentElements ese = new EdiSegmentElements();
+            ese.Id = 0;
+            ese.EdiSegmentId = 0;
+            ese.Name = LIN.Name;
+            ese.Description = "LINE ITEM";
+            ese.Position = 1;
+            ese.Created = DateTime.Now;
+            ese.tmpId = 0;
+            ese.Code = ediSegmentVD.EdiSegment.Code;
+            ese.SortId = 1;
+            ese.Kennung = ediSegmentVD.EdiSegment.Name + " | " + ese.Name;
+            ese.IsActive = true;
+            ese.ListEdiSegmentElementFields = new List<EdiSegmentElementFields>();
+
+            EdiSegmentElementFields esef = new EdiSegmentElementFields();
+            esef.Id = 0;
+            esef.EdiSemgentElementId = 0;
+            esef.Shortcut = LIN.Name;
+            esef.Name = "ALINE ITEM";
+            esef.Status = "M";
+            esef.Format = "a3";
+            esef.Description = "const";
+            esef.constValue = "LIN";
+            esef.Position = 1;
+            esef.Created = DateTime.Now;
+            esef.FormatString = string.Empty;
+            esef.Code = ediSegmentVD.EdiSegment.Code;
+            esef.SortId = 1;
+            esef.Kennung = ese.Kennung + " | " + esef.Shortcut;
+            esef.EdiSegmentId = 0;
+            esef.AsnArtId = (int)asnArt.Id;
+            ese.ListEdiSegmentElementFields.Add(esef);
+            ediSegmentVD.EdiSegment.ListEdiSegmentElements.Add(ese);
+
+            ese = new EdiSegmentElements();
+            ese.Id = 0;
+            ese.EdiSegmentId = 0;
+            ese.Name = LIN.Kennung_1082;
+            ese.Description = "Line item number";
+            ese.Position = 2;
+            ese.Created = DateTime.Now;
+            ese.tmpId = 0;
+            ese.Code = ediSegmentVD.EdiSegment.Code;
+            ese.SortId = 1;
+            ese.Kennung = ediSegmentVD.EdiSegment.Name + " | " + LIN.Kennung_1082;
+            ese.IsActive = true;
+            ese.ListEdiSegmentElementFields = new List<EdiSegmentElementFields>();
+
+            esef = new EdiSegmentElementFields();
+            esef.Id = 0;
+            esef.EdiSemgentElementId = 0;
+            esef.Shortcut = LIN.Kennung_1082;
+            esef.Name = "Line item number";
+            esef.Status = "O";
+            esef.Format = "a6";
+            esef.Description = "not used";
+            esef.constValue = "";
+            esef.Position = 1;
+            esef.Created = DateTime.Now;
+            esef.FormatString = string.Empty;
+            esef.Code = ediSegmentVD.EdiSegment.Code;
+            esef.SortId = 1;
+            esef.Kennung = ese.Kennung + " | " + LIN.Kennung_1082;
+            esef.EdiSegmentId = 0;
+            esef.AsnArtId = (int)asnArt.Id;
+            ese.ListEdiSegmentElementFields.Add(esef);
+            ediSegmentVD.EdiSegment.ListEdiSegmentElements.Add(ese);
+
+            ese = new EdiSegmentElements();
+            ese.Id = 0;
+            ese.EdiSegmentId = 0;
+            ese.Name = LIN.Kennung_1229;
+            ese.Description = "Action request/notification,";
+            ese.Position = 3;
+            ese.Created = DateTime.Now;
+            ese.tmpId = 0;
+            ese.Code = ediSegmentVD.EdiSegment.Code;
+            ese.SortId = 1;
+            ese.Kennung = ediSegmentVD.EdiSegment.Name + " | " + LIN.Kennung_1229;
+            ese.IsActive = true;
+            ese.ListEdiSegmentElementFields = new List<EdiSegmentElementFields>();
+
+            esef = new EdiSegmentElementFields();
+            esef.Id = 0;
+            esef.EdiSemgentElementId = 0;
+            esef.Shortcut = LIN.Kennung_1229;
+            esef.Name = "Action request/notification,";
+            esef.Status = "N";
+            esef.Format = "a3";
+            esef.Description = "#NOTUSED#";
+            esef.constValue = "#NOTUSED#";
+            esef.Position = 1;
+            esef.Created = DateTime.Now;
+            esef.FormatString = string.Empty;
+            esef.Code = ediSegmentVD.EdiSegment.Code;
+            esef.SortId = 1;
+            esef.Kennung = ese.Kennung + " | " + esef.Shortcut;
+            esef.EdiSegmentId = 0;
+            esef.AsnArtId = (int)asnArt.Id;
+            ese.ListEdiSegmentElementFields.Add(esef);
+            ediSegmentVD.EdiSegment.ListEdiSegmentElements.Add(ese);
+
+
+            ese = new EdiSegmentElements();
+            ese.Id = 0;
+            ese.EdiSegmentId = 0;
+            ese.Name = LIN_C212.Kennung_C212;
+            ese.Description = "Item number identification";
+            ese.Position = 4;
+            ese.Created = DateTime.Now;
+            ese.tmpId = 0;
+            ese.Code = ediSegmentVD.EdiSegment.Code;
+            ese.SortId = 1;
+            ese.Kennung = ediSegmentVD.EdiSegment.Name + " | " + ese.Name;
+            ese.IsActive = true;
+            ese.ListEdiSegmentElementFields = new List<EdiSegmentElementFields>();
+
+            esef = new EdiSegmentElementFields();
+            esef.Id = 0;
+            esef.EdiSemgentElementId = 0;
+            esef.Shortcut = LIN_C212.Kennung_7140;
+            esef.Name = "Item number";
+            esef.Status = "N";
+            esef.Format = "a35";
+            esef.Description = "Item number";
+            esef.constValue = "#Empty#";
+            esef.Position = 1;
+            esef.Created = DateTime.Now;
+            esef.FormatString = string.Empty;
+            esef.Code = ediSegmentVD.EdiSegment.Code;
+            esef.SortId = 1;
+            esef.Kennung = ese.Kennung + " | " + esef.Shortcut;
+            esef.EdiSegmentId = 0;
+            esef.AsnArtId = (int)asnArt.Id;
+            ese.ListEdiSegmentElementFields.Add(esef);
+
+
+            esef = new EdiSegmentElementFields();
+            esef.Id = 0;
+            esef.EdiSemgentElementId = 0;
+            esef.Shortcut = LIN_C212.Kennung_7143;
+            esef.Name = "Item number type, coded";
+            esef.Status = "N";
+            esef.Format = "a3";
+            esef.Description = "IN Buyer's item number";
+            esef.constValue = "IN";
+            esef.Position = 1;
+            esef.Created = DateTime.Now;
+            esef.FormatString = string.Empty;
+            esef.Code = ediSegmentVD.EdiSegment.Code;
+            esef.SortId = 1;
+            esef.Kennung = ese.Kennung + " | " + esef.Shortcut;
+            esef.EdiSegmentId = 0;
+            esef.AsnArtId = (int)asnArt.Id;
+            ese.ListEdiSegmentElementFields.Add(esef);
+
+            esef = new EdiSegmentElementFields();
+            esef.Id = 0;
+            esef.EdiSemgentElementId = 0;
+            esef.Shortcut = LIN_C212.Kennung_1131;
+            esef.Name = "Code list responsible agency";
+            esef.Status = "N";
+            esef.Format = "a3";
+            esef.Description = "Not used";
+            esef.constValue = "#Empty#";
+            esef.Position = 1;
+            esef.Created = DateTime.Now;
+            esef.FormatString = string.Empty;
+            esef.Code = ediSegmentVD.EdiSegment.Code;
+            esef.SortId = 1;
+            esef.Kennung = ese.Kennung + " | " + esef.Shortcut;
+            esef.EdiSegmentId = 0;
+            esef.AsnArtId = (int)asnArt.Id;
+            ese.ListEdiSegmentElementFields.Add(esef);
+
+            esef = new EdiSegmentElementFields();
+            esef.Id = 0;
+            esef.EdiSemgentElementId = 0;
+            esef.Shortcut = LIN_C212.Kennung_3055;
+            esef.Name = "Item identifier";
+            esef.Status = "R";
+            esef.Format = "a3";
+            esef.Description = "Not used";
+            esef.constValue = "";
+            esef.Position = 1;
+            esef.Created = DateTime.Now;
+            esef.FormatString = string.Empty;
+            esef.Code = ediSegmentVD.EdiSegment.Code;
+            esef.SortId = 1;
+            esef.Kennung = ese.Kennung + " | " + esef.Shortcut;
+            esef.EdiSegmentId = 0;
+            esef.AsnArtId = (int)asnArt.Id;
+            ese.ListEdiSegmentElementFields.Add(esef);
+            ediSegmentVD.EdiSegment.ListEdiSegmentElements.Add(ese);
+
+            ese = new EdiSegmentElements();
+            ese.Id = 0;
+            ese.EdiSegmentId = 0;
+            ese.Name = LIN_C829.Kennung_C829;
+            ese.Description = "Sub-line information";
+            ese.Position = 5;
+            ese.Created = DateTime.Now;
+            ese.tmpId = 0;
+            ese.Code = ediSegmentVD.EdiSegment.Code;
+            ese.SortId = 1;
+            ese.Kennung = ediSegmentVD.EdiSegment.Name + " | " + ese.Name;
+            ese.IsActive = true;
+            ese.ListEdiSegmentElementFields = new List<EdiSegmentElementFields>();
+
+            esef = new EdiSegmentElementFields();
+            esef.Id = 0;
+            esef.EdiSemgentElementId = 0;
+            esef.Shortcut = LIN_C829.Kennung_5495;
+            esef.Name = "Sub-line indicator, coded";
+            esef.Status = "N";
+            esef.Format = "a3";
+            esef.Description = "Not used";
+            esef.constValue = "#Blank#";
+            esef.Position = 1;
+            esef.Created = DateTime.Now;
+            esef.FormatString = string.Empty;
+            esef.Code = ediSegmentVD.EdiSegment.Code;
+            esef.SortId = 1;
+            esef.Kennung = ese.Kennung + " | " + esef.Shortcut;
+            esef.EdiSegmentId = 0;
+            esef.AsnArtId = (int)asnArt.Id;
+            ese.ListEdiSegmentElementFields.Add(esef);
+
+            esef = new EdiSegmentElementFields();
+            esef.Id = 0;
+            esef.EdiSemgentElementId = 0;
+            esef.Shortcut = LIN.Kennung_1082;
+            esef.Name = "Line Item identifier";
+            esef.Status = "N";
+            esef.Format = "a3";
+            esef.Description = "Not used";
+            esef.constValue = "#Blank#";
+            esef.Position = 1;
+            esef.Created = DateTime.Now;
+            esef.FormatString = string.Empty;
+            esef.Code = ediSegmentVD.EdiSegment.Code;
+            esef.SortId = 1;
+            esef.Kennung = ese.Kennung + " | " + esef.Shortcut;
+            esef.EdiSegmentId = 0;
+            esef.AsnArtId = (int)asnArt.Id;
+            ese.ListEdiSegmentElementFields.Add(esef);
+            ediSegmentVD.EdiSegment.ListEdiSegmentElements.Add(ese);
+
+            ese = new EdiSegmentElements();
+            ese.Id = 0;
+            ese.EdiSegmentId = 0;
+            ese.Name = LIN.Kennung_1222;
+            ese.Description = "Configuration level number";
+            ese.Position = 6;
+            ese.Created = DateTime.Now;
+            ese.tmpId = 0;
+            ese.Code = ediSegmentVD.EdiSegment.Code;
+            ese.SortId = 1;
+            ese.Kennung = ediSegmentVD.EdiSegment.Name + " | " + ese.Name;
+            ese.IsActive = true;
+            ese.ListEdiSegmentElementFields = new List<EdiSegmentElementFields>();
+
+            esef = new EdiSegmentElementFields();
+            esef.Id = 0;
+            esef.EdiSemgentElementId = 0;
+            esef.Shortcut = LIN.Kennung_1222;
+            esef.Name = "Configuration level number";
+            esef.Status = "O";
+            esef.Format = "n2";
+            esef.Description = "Not used";
+            esef.constValue = "#Blank#";
+            esef.Position = 1;
+            esef.Created = DateTime.Now;
+            esef.FormatString = string.Empty;
+            esef.Code = ediSegmentVD.EdiSegment.Code;
+            esef.SortId = 1;
+            esef.Kennung = ese.Kennung + " | " + esef.Shortcut;
+            esef.EdiSegmentId = 0;
+            esef.AsnArtId = (int)asnArt.Id;
+            ese.ListEdiSegmentElementFields.Add(esef);
+            ediSegmentVD.EdiSegment.ListEdiSegmentElements.Add(ese);
+
+            ese = new EdiSegmentElements();
+            ese.Id = 0;
+            ese.EdiSegmentId = 0;
+            ese.Name = LIN.Kennung_7083;
+            ese.Description = "Configuration, coded";
+            ese.Position = 7;
+            ese.Created = DateTime.Now;
+            ese.tmpId = 0;
+            ese.Code = ediSegmentVD.EdiSegment.Code;
+            ese.SortId = 1;
+            ese.Kennung = ediSegmentVD.EdiSegment.Name + " | " + ese.Name;
+            ese.IsActive = true;
+            ese.ListEdiSegmentElementFields = new List<EdiSegmentElementFields>();
+
+            esef = new EdiSegmentElementFields();
+            esef.Id = 0;
+            esef.EdiSemgentElementId = 0;
+            esef.Shortcut = LIN.Kennung_7083;
+            esef.Name = "Configuration operation code";
+            esef.Status = "N";
+            esef.Format = "n2";
+            esef.Description = "not used";
+            esef.constValue = "#Blank#";
+            esef.Position = 1;
+            esef.Created = DateTime.Now;
+            esef.FormatString = string.Empty;
+            esef.Code = ediSegmentVD.EdiSegment.Code;
+            esef.SortId = 1;
+            esef.Kennung = ese.Kennung + " | " + esef.Shortcut;
+            esef.EdiSegmentId = 0;
+            esef.AsnArtId = (int)asnArt.Id;
+            ese.ListEdiSegmentElementFields.Add(esef);
+            ediSegmentVD.EdiSegment.ListEdiSegmentElements.Add(ese);
+        }
+    }
+
+}

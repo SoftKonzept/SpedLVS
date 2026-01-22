@@ -1,0 +1,507 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>False</EnableNETAnalyzers>
+    <Version>25.09.04.1</Version>
+    <UserSecretsId>f309a03a-1001-47a7-90cc-021188779f37</UserSecretsId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="ViewModels\_Inventory\**" />
+    <Compile Remove="Views\StoreIn\Manually\**" />
+    <Compile Remove="Views\StoreOut\Manually\**" />
+    <Compile Remove="Views\Wizard\NewFolder\**" />
+    <Compile Remove="Views\_Inventory\**" />
+    <EmbeddedResource Remove="ViewModels\_Inventory\**" />
+    <EmbeddedResource Remove="Views\StoreIn\Manually\**" />
+    <EmbeddedResource Remove="Views\StoreOut\Manually\**" />
+    <EmbeddedResource Remove="Views\Wizard\NewFolder\**" />
+    <EmbeddedResource Remove="Views\_Inventory\**" />
+    <None Remove="ViewModels\_Inventory\**" />
+    <None Remove="Views\StoreIn\Manually\**" />
+    <None Remove="Views\StoreOut\Manually\**" />
+    <None Remove="Views\Wizard\NewFolder\**" />
+    <None Remove="Views\_Inventory\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Converter\ValueToColorConverter.cs" />
+    <Compile Remove="Views\StoreOut\Call\out_c1_ArticleListPage.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\StoreOut\Call\out_c1_ArticleListPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\LVS\LVS.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.AcroPDFLib">
+      <HintPath>..\..\..\lib\AxInterop.AcroPDFLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.AcroPDFLib">
+      <HintPath>..\..\..\lib\Interop.AcroPDFLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android">
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\PresentationCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.CMapUtils">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.CMapUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Core">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.DrawingML">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.DrawingML.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Fixed">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Fixed.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Fixed.FormatProviders.Image.Skia">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Fixed.FormatProviders.Image.Skia.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Flow">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Flow.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Flow.FormatProviders.Doc">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Flow.FormatProviders.Doc.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Flow.FormatProviders.Pdf">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.ImageUtils">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.ImageUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Spreadsheet">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Spreadsheet.FormatProviders.OpenXml">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Spreadsheet.FormatProviders.Pdf">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Spreadsheet.FormatProviders.Xls">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Spreadsheet.FormatProviders.Xls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.SpreadsheetStreaming">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Barcode">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Chart">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Common">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.ConversationalUI">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.ConversationalUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataControls">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.DataControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataGrid">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataVisualization">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.ImageEditor">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.ImageEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Input">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Map">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.Map.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.PdfViewer">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.PdfViewer.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Primitives">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.RichTextEditor">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.RichTextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.SkiaSharp">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Zip">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Zip.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\e1w1_einInputAdr.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>e1w1_einInputAdr.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\e1w2_einInputLfs.xaml.cs">
+      <DependentUpon>e1w2_einInputLfs.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\e1w5_einInputArt.xaml.cs">
+      <DependentUpon>e1w5_einInputArt.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\e1w4_einInputVehicle.xaml.cs">
+      <DependentUpon>e1w4_einInputVehicle.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\e1w3_einInputCarrier.xaml.cs">
+      <DependentUpon>e1w3_einInputCarrier.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\e1w7_einInputPrintSetting.xaml.cs">
+      <DependentUpon>e1w7_einInputPrintSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\e1w8_einCheck.xaml.cs">
+      <DependentUpon>e1w8_einCheck.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\e1w6_einInputPrint.xaml.cs">
+      <DependentUpon>e1w6_einInputPrint.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\Manual\me_art_InputReferences.xaml.cs">
+      <DependentUpon>me_art_InputReferences.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\Manual\me_StartInput.xaml.cs">
+      <DependentUpon>me_StartInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\pw0_PrintHost.xaml.cs">
+      <DependentUpon>pw0_PrintHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Test\me_TestFirstPage.xaml.cs">
+      <DependentUpon>me_TestFirstPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Test\me_wArticleInput_wizHost.xaml.cs">
+      <DependentUpon>me_wArticleInput_wizHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\Manual\me_InputClient.xaml.cs">
+      <DependentUpon>me_InputClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\Manual\me_art_InputWeight.xaml.cs">
+      <DependentUpon>me_art_InputWeight.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\Manual\me_art_InputDimensions.xaml.cs">
+      <DependentUpon>me_art_InputDimensions.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\Manual\me_art_InputProductionNo.xaml.cs">
+      <DependentUpon>me_art_InputProductionNo.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\Manual\me_wArticleInput_wizHost.xaml.cs">
+      <DependentUpon>me_wArticleInput_wizHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\Manual\me_WorkspaceSelection.xaml.cs">
+      <DependentUpon>me_WorkspaceSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\Manual\me_wEingang_wizHost.xaml.cs">
+      <DependentUpon>me_wEingang_wizHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\Edi\ee1_w0_wizHost.xaml.cs">
+      <DependentUpon>ee1_w0_wizHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\ArticleListPage.xaml.cs">
+      <DependentUpon>ArticleListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\Open\oe_SelectFromSearchedResult.xaml.cs">
+      <DependentUpon>oe_SelectFromSearchedResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\Open\oe3_w0_wizArticleHost.xaml.cs">
+      <DependentUpon>oe3_w0_wizArticleHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\a1w3_InputTermin.xaml.cs">
+      <DependentUpon>a1w3_InputTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\a1w1_InputAdr.xaml.cs">
+      <DependentUpon>a1w1_InputAdr.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\a1w4_InputVehicle.xaml.cs">
+      <DependentUpon>a1w4_InputVehicle.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\a1w5_InputInfo.xaml.cs">
+      <DependentUpon>a1w5_InputInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\a1w7_InputPrintSetting.xaml.cs">
+      <DependentUpon>a1w7_InputPrintSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\Open\oa3w1_wizArticelScan.xaml.cs">
+      <DependentUpon>oa3w1_wizArticelScan.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Wizard\wiz_PrintSetting.xaml.cs">
+      <DependentUpon>wiz_PrintSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Wizard\wiz_ArticleCheck.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>wiz_ArticleCheck.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Wizard\wiz_Signature.xaml.cs">
+      <DependentUpon>wiz_Signature.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="_old\oe3_w2_wizArticleView.xaml.cs">
+      <DependentUpon>oe3_w2_wizArticleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreIn\SubMenuStoreInPage.xaml.cs">
+      <DependentUpon>SubMenuStoreInPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\a1w0_StoreOutHost.xaml.cs">
+      <DependentUpon>a1w0_StoreOutHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\a1w8_InputCheck.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>a1w8_InputCheck.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\a1w6_InputPrint.xaml.cs">
+      <DependentUpon>a1w6_InputPrint.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\a1w2_InputCarrier.xaml.cs">
+      <DependentUpon>a1w2_InputCarrier.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\Call\c1_CallArticleListPage.xaml.cs">
+      <DependentUpon>c1_CallArticleListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\Call\c2w1_wizView.xaml.cs">
+      <DependentUpon>c2w1_wizView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="_old\c2w2_wizView.xaml.cs">
+      <DependentUpon>c2w2_wizView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\Call\c2_w0_wizHost.xaml.cs">
+      <DependentUpon>c2_w0_wizHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Home\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Inventory\i2_InventoryArtikelListPage.xaml.cs">
+      <DependentUpon>i2_InventoryArtikelListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Inventory\i1_InventoryPage.xaml.cs">
+      <DependentUpon>i1_InventoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Inventory\i3w2_wizInventory_Result.xaml.cs">
+      <DependentUpon>i3w2_wizInventory_Result.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Inventory\i3w3_wizInventory_Edit.xaml.cs">
+      <DependentUpon>i3w3_wizInventory_Edit.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Inventory\i3w0_wizInventoryHost.xaml.cs">
+      <DependentUpon>i3w0_wizInventoryHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Inventory\i3w1_wizInventory_Search.xaml.cs">
+      <DependentUpon>i3w1_wizInventory_Search.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Settings\NetworkCheckPage.xaml.cs">
+      <DependentUpon>NetworkCheckPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoredLocation\sl1_ArticleSelectionPage.xaml.cs">
+      <DependentUpon>sl1_ArticleSelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoredLocation\sl3_StoreLocationChangeFinishPage.xaml.cs">
+      <DependentUpon>sl3_StoreLocationChangeFinishPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoredLocation\sl2_StoreLocationChangePage.xaml.cs">
+      <DependentUpon>sl2_StoreLocationChangePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\Open\oa1_OpenStoreOutListPage.xaml.cs">
+      <DependentUpon>oa1_OpenStoreOutListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\Open\oa2_ArticleListPage.xaml.cs">
+      <DependentUpon>oa2_ArticleListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\Open\oa3_wizHost.xaml.cs">
+      <DependentUpon>oa3_wizHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StoreOut\SubMenuStoreOutPage.xaml.cs">
+      <DependentUpon>SubMenuStoreOutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\TestWizard\tw2_wizHost.xaml.cs">
+      <DependentUpon>tw2_wizHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Test\DbTestInventoryPage.xaml.cs">
+      <DependentUpon>DbTestInventoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Test\DbTestConnectionExternPage.xaml.cs">
+      <DependentUpon>DbTestConnectionExternPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Test\DbTestConnectionInternPage.xaml.cs">
+      <DependentUpon>DbTestConnectionInternPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Wizard\wiz_TakePhoto.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>wiz_TakePhoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Wizard\wiz_DamageSelection.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>wiz_DamageSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Wizard\wiz_ScanSearchArticle.xaml.cs">
+      <DependentUpon>wiz_ScanSearchArticle.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AboutUs\AboutUsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreIn\e1w0_StorInHost.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreIn\e1w1_einInputAdr.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreIn\e1w2_einInputLfs.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreIn\e1w3_einInputCarrier.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreIn\e1_EingangInputDataPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreIn\Edi\ee1_EdiLfsArticleList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreIn\Open\oe1_OpenStoreInListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreIn\Open\oe2_ArticleListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TestWizard\tw2w1_wizView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TestWizard\tw2w2_wizView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Test\TestPage1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Wizard\wiz_ArticleCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="_old\oe3_w1_wizArticleView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreIn\Open\oe3_w0_wizArticleHost.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Test\SearchByProductionnumber.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreOut\a1w0_StoreOutHost.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreOut\a1w1_InputAdr.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreOut\a1w8_InputCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="_old\a1_AusgangInputDataPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreOut\Call\c1_CallArticleListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Inventory\i3w1_wizInventory_Search.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Inventory\i3w0_wizInventoryHost.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoredLocation\sl1_ArticleSelectionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoredLocation\sl2_StoreLocationChangePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreOut\Open\oa3w1_wizArticelScan.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StoreOut\SubMenuStoreOutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TestWizard\tw1_SelectionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Test\ListViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Test\WeatherForecastPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Wizard\WizardContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Home\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Logout\LogoutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Menu\FlyoutMenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Menu\FlyoutMenuPageDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Menu\FlyoutMenuPageFlyout.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\NetworkCheckPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\SettingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Test\ShadowPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Wizard\wiz_TakePhoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Wizard\wiz_DamageSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.2" />
+    <PackageReference Include="SkiaSharp" Version="3.116.1" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.3" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Net.Http.Json" Version="9.0.2" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
+    <PackageReference Include="Xamarin.KeyboardHelper" Version="3.0.1" />
+  </ItemGroup>
+</Project>

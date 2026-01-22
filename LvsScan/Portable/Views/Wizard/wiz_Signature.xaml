@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             x:Class="LvsScan.Portable.Views.Wizard.wiz_Signature">
+    <ContentView.Content>
+        <ScrollView>
+            <Grid x:Name="grdMain">
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="rowBusyIndicator" Height="auto"/>
+                    <RowDefinition x:Name="rowContent" Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout x:Name="BusyIndicator" Grid.Row="0"
+                         Padding="5,5,5,1"
+                         IsVisible="{Binding ShowBusyIndicator}">
+
+                    <telerikPrimitives:RadBusyIndicator AnimationContentHeightRequest="100"
+                                                    AnimationContentWidthRequest="100"
+                                                    AnimationType="Animation6"
+                                                    AnimationContentColor="Blue"
+                                                    InputTransparent="True"
+                                                    IsBusy="{Binding ShowBusyIndicator}"
+                                                    >
+                        <telerikPrimitives:RadBusyIndicator.BusyContent>
+                            <Label Grid.Row="2" 
+                                           Text="Daten werden geladen...." 
+                                           TextColor="DarkBlue" 
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           />
+                        </telerikPrimitives:RadBusyIndicator.BusyContent>
+                    </telerikPrimitives:RadBusyIndicator>
+                </StackLayout>
+                
+                <Grid x:Name="gridContent" Grid.Row="1" IsVisible="{Binding ShowContent}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="160" />
+                    </Grid.ColumnDefinitions>
+
+                    <telerikInput:RadButton x:Name="btnGarbage" Grid.Row="0"
+                                            Grid.Column="0"
+                                            ContentLayout="Left,10"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="Blue"
+                                            BorderThickness="1"
+                                            WidthRequest="50"
+                                            HeightRequest="50"
+                                            Command="{Binding Source={x:Reference signaturePad}, Path=ClearCommand}" 
+                                            >
+                        <telerikInput:RadButton.ImageSource>
+                            <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                Color="Blue"                                      
+                                                FontFamily="{StaticResource IconsFont}"                                          
+                                                />
+                        </telerikInput:RadButton.ImageSource>
+                    </telerikInput:RadButton>
+
+                    <telerikInput:RadButton x:Name="btnSavePhoto" Grid.Row="0"
+                                            Grid.Column="1"
+                                            ContentLayout="Left,10"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="Blue"
+                                            BorderThickness="1"
+                                            WidthRequest="50"
+                                            HeightRequest="50"
+                                            IsEnabled="{Binding BtnSaveEnabeld}"
+                                            Clicked="btnSavePhoto_Clicked"
+                                            >
+                        <telerikInput:RadButton.ImageSource>
+                            <FontImageSource Glyph="{StaticResource Icon_Save}"
+                                                Color="Blue"                                      
+                                                FontFamily="{StaticResource IconsFont}"                                          
+                                                />
+                        </telerikInput:RadButton.ImageSource>
+                    </telerikInput:RadButton>
+
+                    <Label x:Name="lConfirmation" Grid.Row="1" Grid.ColumnSpan="2" 
+                           Text="Mit der Unterschrift wird die ordnungs- gemäße Übernahme des Materials bestätigt!"
+                           FontSize="Subtitle"
+                           HorizontalTextAlignment="Center"
+                           Padding="0,10,0,0"
+                           />
+
+                    <StackLayout x:Name="slSignature" Grid.Row="2" Grid.ColumnSpan="2">
+                        <Label x:Name="lSign" Text="Unterschrift:" FontAttributes="Bold" FontSize="Medium" />
+                        <telerikInput:RadSignaturePad x:Name="signaturePad" 
+                                                      BorderThickness="1" 
+                                                      BorderColor="LightGray"
+                                                      CornerRadius="25"
+                                                      StrokeColor="Black" 
+                                                      StrokeThickness="5"
+                                                      HeightRequest="180"
+                                                      BackgroundColor="BlanchedAlmond"
+                                                      Cleared="signaturePad_Cleared"
+                                                      StrokeStarted="signaturePad_StrokeStarted"
+                                                      StrokeCompleted="signaturePad_StrokeCompleted"
+                                                      />
+                    </StackLayout>
+
+
+                </Grid>
+            </Grid>
+
+        </ScrollView>
+
+        
+        
+    </ContentView.Content>
+</ContentView>

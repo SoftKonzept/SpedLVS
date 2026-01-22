@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"           
+             xmlns:vm="clr-namespace:LvsScan.Portable.ViewModels.Inventory"
+             xmlns:enum="clr-namespace:Common.Enumerations;assembly=Common" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             x:Class="LvsScan.Portable.Views.Inventory.i1_InventoryPage"
+             >    
+    <ContentPage.BindingContext>
+        <vm:i1_InventoryViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh"
+                     IconImageSource="mi_arrow_circle2_32x32.png"                   
+                     Order="Primary"
+                     Priority="0"                     
+                     Clicked="RefreshInventories_Clicked"
+                     >
+            
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout HeightRequest="500" IsVisible="{Binding ShowBusyIndicator}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="200" />
+                    </Grid.RowDefinitions>
+
+                    <telerikPrimitives:RadBusyIndicator Grid.Row="1"
+                                                        AnimationContentHeightRequest="100"
+                                                        AnimationContentWidthRequest="100"
+                                                        AnimationType="Animation6"
+                                                        AnimationContentColor="Blue"
+                                                        InputTransparent="True"
+                                                        IsBusy="{Binding ShowBusyIndicator}">
+                        <telerikPrimitives:RadBusyIndicator.BusyContent>
+                            <Label Grid.Row="2" 
+                                       Text="Daten werden geladen...." 
+                                       TextColor="DarkBlue" 
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       />
+                        </telerikPrimitives:RadBusyIndicator.BusyContent>
+                    </telerikPrimitives:RadBusyIndicator>
+                </Grid>
+            </StackLayout>
+
+            <!--<StackLayout IsVisible="{Binding ShowContent}">
+                <BoxView Grid.Row="1" HeightRequest="150" BackgroundColor="Bisque" />
+            </StackLayout>-->
+
+            <!-- Contains the Content -->
+            <StackLayout IsVisible="{Binding ShowContent}">
+                <CollectionView x:Name="viewInventories"
+                                IsVisible="{Binding ShowContent}"
+                                ItemsSource="{Binding Inventories}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedItem}"
+                                SelectionChanged="viewInventories_SelectionChanged"
+                                BackgroundColor="WhiteSmoke"
+                                EmptyView="Es liegen keine Daten vor"                                
+                                >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            
+                            <StackLayout Padding="0, 0, 0, 0" >
+
+                                <telerikPrimitives:RadBadgeView BadgeText="{Binding CountArticle}" 
+                                                                            BadgeBackgroundColor="Blue" 
+                                                                            BadgeFontAttributes="None" 
+                                                                            BadgeFontSize="Small">
+                                    <telerikPrimitives:RadBadgeView.Content>
+                                        <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                            Margin="10,10,10,10" 
+                                                            Padding="0,5,0,0"
+                                                            Color="DarkBlue"
+                                                            BackgroundColor="White"
+                                                            >
+                                            <StackLayout>
+                                                <StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label  HorizontalOptions="StartAndExpand"
+                                                                        Padding="5,0,0,0" 
+                                                                        FontSize="Large"
+                                                                        FontAttributes="Bold"
+                                                                        TextColor="DarkSlateGray"
+                                                                    >
+                                                            <Label.Text>
+                                                                <MultiBinding StringFormat="{} {0} - {1} ">
+                                                                    <Binding Path="Id" />
+                                                                    <Binding Path="Name" />
+                                                                </MultiBinding>
+                                                            </Label.Text>
+                                                        </Label>
+                                                        <Image>
+                                                            <Image.Style>
+                                                                <Style TargetType="{x:Type Image}">
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Status}" Value="{x:Static enum:enumInventoryStatus.erstellt}" TargetType="{x:Type Image}">
+                                                                            <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Status}" Value="{x:Static enum:enumInventoryStatus.InBearbeitung}" TargetType="{x:Type Image}">
+                                                                            <Setter Property="Source" Value="bullet_ball_yellow_16x16.png" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Status}" Value="{x:Static enum:enumInventoryStatus.erledigt}" TargetType="{x:Type Image}">
+                                                                            <Setter Property="Source" Value="bullet_ball_red_16x16.png" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Status}" Value="{x:Static enum:enumInventoryStatus.NotSet}" TargetType="{x:Type Image}">
+                                                                            <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Image.Style>
+                                                        </Image>
+
+                                                    </StackLayout>
+                                                    <BoxView Color= "DarkSlateBlue"
+                                                                    HeightRequest="1"                                                
+                                                                    HorizontalOptions="Fill" />
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                                    Padding="15,0,0,0"
+                                                                    FontSize="Small"
+                                                                    TextColor="DimGray"
+                                                                    >
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="Erstellt {0:dd.MM.yyyy}">
+                                                                <Binding Path="Created" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+
+                                                    <Label  Padding="0,0,10,0" 
+                                                                    FontSize="Small"
+                                                                    TextColor="DarkSlateGray"
+                                                                    Text="{Binding Art, StringFormat='Art: {0}'}"
+                                                                    VerticalTextAlignment="End"
+                                                                    >
+                                                    </Label>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </telerikPrimitives:RadShadow>
+                                    </telerikPrimitives:RadBadgeView.Content>
+                                </telerikPrimitives:RadBadgeView>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LvsScan.Portable.Views.Inventory._wizInventory_Search"   
+             xmlns:local="clr-namespace:LvsScan.Portable.ViewModels.Inventory"
+             >
+    <ContentPage.BindingContext>
+        <local:wizInventoryViewModel_Search/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+      
+      <StackLayout Padding="20, 50, 20,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="80" />
+                </Grid.RowDefinitions>
+
+          
+          <Label Grid.Row="0"
+                 Text="Bitte geben Sie die folgenden Artikeldaten ein:" 
+                 FontAttributes="Bold" 
+                 FontSize="Large"/>
+                <StackLayout Grid.Row="1" >
+                  <Entry 
+                         x:Name="searchArtikelId" 
+                         Placeholder="Artikel Id" 
+                         Text="{Binding SearchArtikelId, Mode=OneWayToSource}"/>
+                  <Entry x:Name="searchProduktionsnummer" 
+                         Placeholder="Produktionsnummer" 
+                         Text="{Binding SearchProduktionsnummer, Mode=OneWayToSource}"/>
+                </StackLayout>
+                <StackLayout Grid.Row="2" 
+                             Orientation="Horizontal">
+                    <Button x:Name="btnBack" Text="Back" BackgroundColor="Aqua" Clicked="btnBack_Clicked"/>
+                    <Button x:Name="btnNext" Text="Next" BackgroundColor="Beige" Clicked="btnNext_Clicked" />
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LvsScan.Portable.Views.StoreOut.Call.c2_w0_wizHost"
+             Title="Wizard Artikel-Check"
+             >
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Text="Auslagerung Submenu"
+                     IconImageSource="mi_elements2_32x32.png"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="SubmenuStoreOut_Clicked"
+                     />
+
+        <!--<ToolbarItem Text="Refresh"
+                     IconImageSource="mi_arrow_circle2_32x32.png"                   
+                     Order="Primary"
+                     Priority="0"                     
+                     Clicked="Refresh_Clicked"
+                     />-->
+        <ToolbarItem Text="Home"
+                     IconImageSource="mi_home_32x32.png"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="Home_Clicked"
+                     />
+
+    </ContentPage.ToolbarItems>
+</ContentPage>

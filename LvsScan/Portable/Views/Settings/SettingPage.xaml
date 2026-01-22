@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:vm="clr-namespace:LvsScan.Portable.ViewModels.Settings"
+             x:Class="LvsScan.Portable.Views.Settings.SettingPage"
+             >
+    <ContentPage.BindingContext>
+        <vm:SettingViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<Label Text="Settings"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />-->
+
+            <ListView x:Name="SettingMenuSubItemView"
+                      SeparatorVisibility="None"
+                      ItemsSource="{Binding SubMenuItems}"
+                      HasUnevenRows="True"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="WhiteSmoke">
+                                <telerikPrimitives:RadShadow BlurRadius="5" 
+                                         Margin="15, 5, 15,10" 
+                                         Padding="10,5,10,5"
+                                         Color="DarkBlue"
+                                         BackgroundColor="White"
+                                         >
+
+                                    <StackLayout>
+                                        <Label Text="{Binding Title}"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"
+                                               FontSize="Large"
+                                               FontAttributes="Bold"
+                                               TextColor="DarkSlateGray"
+                                               />
+                                        <Label Text="{Binding SubText}"
+                                               VerticalOptions="StartAndExpand"
+                                               HorizontalOptions="StartAndExpand"
+                                               FontSize="Subtitle"                               
+                                               TextColor="DarkSlateBlue"
+                                               Padding="20,0,0,0"
+                                               />
+                                    </StackLayout>
+                                </telerikPrimitives:RadShadow>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                    
+                </ListView.ItemTemplate>
+            </ListView>
+                      
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

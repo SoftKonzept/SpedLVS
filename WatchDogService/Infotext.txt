@@ -1,0 +1,14 @@
+1. 
+CMD
+cd C:\Windows\Microsoft.NET\Framework\v4.0.30319 
+
+2. DEBUG
+InstallUtil.exe F:\Develop\SpedLVS\WatchDogService\bin\Debug\WatchDogService.exe
+InstallUtil.exe -u F:\Develop\SpedLVS\WatchDogService\bin\Debug\WatchDogService.exe
+
+2. RELEASE
+installation:
+InstallUtil.exe F:\Develop\SpedLVS\WatchDogService\bin\Release\WatchDogService.exe
+
+deinstallation:
+InstallUtil.exe -u F:\Develop\SpedLVS\WatchDogService\bin\Release\WatchDogService.exe

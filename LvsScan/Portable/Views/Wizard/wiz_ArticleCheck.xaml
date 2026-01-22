@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             x:Class="LvsScan.Portable.Views.Wizard.wiz_ArticleCheck">
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout>
+                    <StackLayout x:Name="BusyIndicator"
+                                Padding="5,5,5,1"
+                                IsVisible="{Binding ShowBusyIndicator}">
+
+                        <telerikPrimitives:RadBusyIndicator AnimationContentHeightRequest="100"
+                                                    AnimationContentWidthRequest="100"
+                                                    AnimationType="Animation6"
+                                                    AnimationContentColor="Blue"
+                                                    InputTransparent="True"
+                                                    IsBusy="{Binding ShowBusyIndicator}"
+                                                    >
+                            <telerikPrimitives:RadBusyIndicator.BusyContent>
+                                <Label Grid.Row="2" 
+                                           Text="Daten werden geladen...." 
+                                           TextColor="DarkBlue" 
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           />
+                            </telerikPrimitives:RadBusyIndicator.BusyContent>
+                        </telerikPrimitives:RadBusyIndicator>
+                    </StackLayout>
+
+                    <StackLayout IsVisible="{Binding ShowContent}">
+                        <Grid BackgroundColor="White" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition x:Name="rowHead" Height="auto" />
+                                <RowDefinition x:Name="rowCheck" Height="auto" />
+                            </Grid.RowDefinitions>
+
+
+                            <StackLayout>
+                                <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                            Margin="10,10,10,10" 
+                                                            Padding="0,5,0,0"
+                                                            Color="DarkBlue"
+                                                            BackgroundColor="Snow"
+                                                            >
+
+                                    <StackLayout x:Name="slArticleData">
+
+                                        <StackLayout x:Name="slArticleDataHead" Orientation="Horizontal">
+
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="5,0,0,0" 
+                                                    FontSize="Subtitle"
+                                                    FontAttributes="Bold"
+                                                    TextColor="DarkSlateGray"
+                                                    
+                                                    >
+                                                <!--<Label.Text>
+                                                    <MultiBinding StringFormat="{}LVS: {0} - [ {1} ] |  Ort: {2} ">
+                                                        <Binding Path="SelectedArticle.LVS_ID" />
+                                                        <Binding Path="SelectedArticle.Id" />
+                                                        <Binding Path="SelectedArticle.LagerOrtAsString" />
+                                                    </MultiBinding>
+                                                </Label.Text>-->
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}LVS: {0} - [ {1} ] ">
+                                                        <Binding Path="SelectedArticle.LVS_ID" />
+                                                        <Binding Path="SelectedArticle.Id" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Image>
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding SelectedArticle.AusgangChecked}" Value="False" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding SelectedArticle.AusgangChecked}" Value="True" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+
+                                        </StackLayout>
+
+                                        <BoxView Color= "DarkSlateBlue"
+                                                    HeightRequest="1"                                                
+                                                    HorizontalOptions="Fill" />
+
+                                        <StackLayout x:Name="slArticleDataFirstRow" Orientation="Horizontal">
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Prod. - Nr.: {0}">
+                                                        <Binding Path="SelectedArticle.Produktionsnummer" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Werksnummer: {0}">
+                                                        <Binding Path="SelectedArticle.Werksnummer" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Brutto KG: {0:N2}">
+                                                        <Binding Path="SelectedArticle.Brutto" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </StackLayout>
+
+                                        <BoxView Color= "DarkSlateBlue"
+                                                    HeightRequest="1"                                                
+                                                    HorizontalOptions="Fill" />
+
+                                        <StackLayout x:Name="slStoredLocation" Orientation="Horizontal">
+                                            <StackLayout x:Name="slWerk" Orientation="Vertical">
+                                                <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"                                                            
+                                                            TextColor="DimGray"
+                                                            Text="Werk"
+                                                            />
+                                                <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="{Binding SelectedArticle.Werk}"
+                                                            />
+                                            </StackLayout>
+                                            <StackLayout x:Name="slHalle" Orientation="Vertical">
+                                                <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="Halle"
+                                                            />
+                                                <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="{Binding SelectedArticle.Halle}"
+                                                            />
+                                            </StackLayout>
+                                            <StackLayout x:Name="slReihe" Orientation="Vertical">
+                                                <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="Reihe"
+                                                            />
+                                                <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="{Binding SelectedArticle.Reihe}"
+                                                            />
+                                            </StackLayout>
+                                            <StackLayout x:Name="slEbene" Orientation="Vertical">
+                                                <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="Ebene"
+                                                            />
+                                                <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="{Binding SelectedArticle.Ebene}"
+                                                            />
+                                            </StackLayout>
+                                            <StackLayout x:Name="slPlatz" Orientation="Vertical">
+                                                <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="Platz"
+                                                            />
+                                                <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="{Binding SelectedArticle.Platz}"
+                                                            />
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                    </StackLayout>
+                                </telerikPrimitives:RadShadow>
+
+                            </StackLayout>
+
+                            <StackLayout x:Name="Checked" 
+                                     Grid.Row="1">
+                                <Grid Padding="5,5,5,5"
+                                  BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <telerikInput:RadButton Grid.Row="0"                                         
+                                                        x:Name="btnCheck" 
+                                                        Padding="0,0,0,0" 
+                                                        BorderThickness="5" 
+                                                        BackgroundColor="Transparent"
+                                                        BorderColor="LightSeaGreen"                                                        
+                                                        ImageSource="{Binding BackgroundImage}"
+                                                        Clicked="btnCheck_Clicked"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        HeightRequest="175"
+                                                        WidthRequest="200"
+                                                        >
+                                    </telerikInput:RadButton>
+                                </Grid>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+
+
+    </ContentView.Content>
+</ContentView>

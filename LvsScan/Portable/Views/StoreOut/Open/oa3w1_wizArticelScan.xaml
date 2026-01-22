@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             x:Class="LvsScan.Portable.Views.StoreOut.Open.oa3w1_wizArticelScan">
+  <ContentView.Content>
+ 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="slCarouselView" Grid.Row="1">
+                <CarouselView x:Name="carouselViewArticle" 
+                            EmptyView="Es sind keine Daten vorhanden!"
+                            ItemsSource="{Binding ArticlesToCheck}"                               
+                            IndicatorView="indicatorView"                              
+                            IsScrollAnimated="False"                              
+                            Loop="False"
+                            Position="{Binding PositionCarouselView}"
+                            CurrentItemChanged="carouselViewArticle_CurrentItemChanged"
+                            HeightRequest="120"
+                            >
+                    <CarouselView.GestureRecognizers>
+                        <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_Swiped"/>
+                        <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_Swiped"/>
+                    </CarouselView.GestureRecognizers>
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"                                           
+                                        SnapPointsType="MandatorySingle"                                           
+                                        />
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+
+                                <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                            Margin="10,10,10,10" 
+                                                            Padding="0,5,0,0"
+                                                            Color="DarkBlue"
+                                                            BackgroundColor="Snow"
+                                                            >
+
+                                    <StackLayout x:Name="slArticleData">
+
+                                        <StackLayout Orientation="Horizontal">
+
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="5,0,0,0" 
+                                                    FontSize="Subtitle"
+                                                    FontAttributes="Bold"
+                                                    TextColor="DarkSlateGray"
+                                                    >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}LVS: {0} - [ {1} ] |  Ort: {2} ">
+                                                        <Binding Path="LVS_ID" />
+                                                        <Binding Path="Id" />
+                                                        <Binding Path="LagerOrtAsString" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Image>
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding AusgangChecked}" Value="False" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding AusgangChecked}" Value="True" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+
+                                        </StackLayout>
+                                        <BoxView Color= "DarkSlateBlue"
+                                                    HeightRequest="1"                                                
+                                                    HorizontalOptions="Fill" />
+
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Prod-Nr.: {0}">
+                                                        <Binding Path="Produktionsnummer" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Werks-Nr.: {0}">
+                                                        <Binding Path="Werksnummer" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Brutto KG: {0:N2}">
+                                                        <Binding Path="Brutto" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                </telerikPrimitives:RadShadow>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView x:Name="indicatorView"
+                            IndicatorColor="LightGray"
+                            SelectedIndicatorColor="DarkGray"
+                            HorizontalOptions="Center" />
+
+            </StackLayout>
+
+
+            <StackLayout x:Name="slScanInput" Grid.Row="2">
+                
+                <Frame BorderColor="Blue" 
+                           CornerRadius="7" 
+                           Padding="0,0,0,0"
+                           HeightRequest="170"
+                           >
+                    <telerikPrimitives:RadTabView x:Name="tabView"
+                                            IsContentSwipingEnabled="True"  
+                                            SelectedItem="{Binding SelectedTabViewItem, Mode=TwoWay}"
+                                            PropertyChanged="tabView_PropertyChanged"
+                                            >
+                        <telerikPrimitives:RadTabView.Items>
+
+                            <telerikPrimitives:TabViewItem x:Name="tabItemScan"
+                                                           HeaderText="Scan">
+                                <telerikPrimitives:TabViewItem.Content>
+
+                                    <StackLayout x:Name="slTabScanInput" Padding="10,5,10,5">
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout BackgroundColor="{Binding BackgroundColorSearchLvsNr}">
+                                                 <Entry  x:Name="searchLvsNo"
+                                                        Placeholder="LVS - Nr" 
+                                                        PlaceholderColor="LightGray"
+                                                        Text="{Binding SearchLvsNo}"
+                                                        effects:KeyboardEffect.EnableKeyboard="False"  
+                                                        WidthRequest="200">
+                                                    <Entry.Effects>
+                                                        <effects:KeyboardEnableEffect/>
+                                                    </Entry.Effects>
+                                                </Entry>                                               
+                                            </StackLayout>
+
+                                            <telerikInput:RadButton x:Name="btnSearchLvsNoDeleteFirtsChar"                                                                  
+                                                                    HeightRequest="50"
+                                                                    WidthRequest="50"
+                                                                    BackgroundColor="White"
+                                                                    Padding="10,10,10,10"
+                                                                    BorderColor="Blue"
+                                                                    BorderThickness="1"
+                                                                    Clicked="btnSearchLvsNoDeleteFirtsChar_Clicked"
+                                                                    VerticalOptions="End"
+                                                                    >
+                                                <telerikInput:RadButton.ImageSource>
+                                                    <FontImageSource Glyph="{StaticResource Icon_DeleteFirstChar}"
+                                                                    Color="Blue"                                      
+                                                                    FontFamily="{StaticResource IconsFont}"                                          
+                                                                    />
+                                                </telerikInput:RadButton.ImageSource>
+                                            </telerikInput:RadButton>
+                                            <telerikInput:RadButton x:Name="btnClearLVSNo"                                                                  
+                                                                    HeightRequest="50"
+                                                                    WidthRequest="50"
+                                                                    BackgroundColor="White"
+                                                                    Padding="10,10,10,10"
+                                                                    BorderColor="Blue"
+                                                                    BorderThickness="1"
+                                                                    Clicked="btnClearLVSNo_Clicked">
+                                                <telerikInput:RadButton.ImageSource>
+                                                    <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                Color="Blue"                                      
+                                                                FontFamily="{StaticResource IconsFont}"                                          
+                                                                />
+                                                </telerikInput:RadButton.ImageSource>
+                                            </telerikInput:RadButton>                                          
+                                            
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout BackgroundColor="{Binding BackgroundColorSearchProductionNo}">
+                                                <Entry x:Name="searchProductionsNo" 
+                                                        Placeholder="Produktionsnummer" 
+                                                        PlaceholderColor="LightGray"
+                                                        Text="{Binding SearchProduktionsnummer}"
+                                                        effects:KeyboardEffect.EnableKeyboard="False"  
+                                                        WidthRequest="200"
+                                                        >
+                                                    <Entry.Effects>
+                                                        <effects:KeyboardEnableEffect/>
+                                                    </Entry.Effects>
+                                                </Entry>
+                                            </StackLayout>
+                                           
+                                            <telerikInput:RadButton x:Name="btnSearchProdNoDeleteFirtsChar"                                                                  
+                                                                    HeightRequest="50"
+                                                                    WidthRequest="50"
+                                                                    BackgroundColor="White"
+                                                                    Padding="10,10,10,10"
+                                                                    BorderColor="Blue"
+                                                                    BorderThickness="1"
+                                                                    Clicked="btnSearchProductionNoDeleteFirtsChar_Clicked"
+                                                                    >
+                                                <telerikInput:RadButton.ImageSource>
+                                                    <FontImageSource Glyph="{StaticResource Icon_DeleteFirstChar}"
+                                                                    Color="Blue"                                      
+                                                                    FontFamily="{StaticResource IconsFont}"                                          
+                                                                    />
+                                                </telerikInput:RadButton.ImageSource>
+                                            </telerikInput:RadButton>
+                                            <telerikInput:RadButton x:Name="btnClearPrductionNo"                                                                  
+                                                                    HeightRequest="40"
+                                                                    WidthRequest="50"
+                                                                    BackgroundColor="White"
+                                                                    Padding="10,10,10,10"
+                                                                    BorderColor="Blue"
+                                                                    BorderThickness="1"
+                                                                    Clicked="btnClearPrductionNo_Clicked"
+                                                                    >
+                                                <telerikInput:RadButton.ImageSource>
+                                                    <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                Color="Blue"                                      
+                                                                FontFamily="{StaticResource IconsFont}"                                          
+                                                                />
+                                                </telerikInput:RadButton.ImageSource>
+                                            </telerikInput:RadButton>
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                </telerikPrimitives:TabViewItem.Content>
+                            </telerikPrimitives:TabViewItem>
+
+
+                            <telerikPrimitives:TabViewItem x:Name="tabItemManual"
+                                                    HeaderText="manuell"
+                                                    >
+                                <telerikPrimitives:TabViewItem.Content>
+
+                                    <StackLayout x:Name="slManuallyInpnut" Padding="10,5,10,5">
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout BackgroundColor="{Binding BackgroundColorSearchLvsNr}">
+                                                <Entry  x:Name="searchLvsNoManual"
+                                                        Placeholder="LVS - Nr" 
+                                                        PlaceholderColor="LightGray"
+                                                        Text="{Binding SearchLvsNo}"
+                                                        WidthRequest="200"
+                                                        effects:KeyboardEffect.EnableKeyboard="True"
+                                                        Keyboard="Numeric"
+                                                        IsSpellCheckEnabled="false"
+                                                        IsTextPredictionEnabled="false"
+                                                        >
+                                                    <Entry.Effects>
+                                                        <effects:KeyboardEnableEffect/>
+                                                    </Entry.Effects>
+                                                </Entry>
+                                            </StackLayout>
+
+
+                                            <telerikInput:RadButton x:Name="btnSearchLvsNoDeleteFirtsCharManual"                                                                  
+                                                                    HeightRequest="50"
+                                                                    WidthRequest="50"
+                                                                    BackgroundColor="White"
+                                                                    Padding="10,10,10,10"
+                                                                    BorderColor="Blue"
+                                                                    BorderThickness="1"
+                                                                    Clicked="btnSearchLvsNoDeleteFirtsChar_Clicked"
+                                                                    VerticalOptions="End"
+                                                                    >
+                                                <telerikInput:RadButton.ImageSource>
+                                                    <FontImageSource Glyph="{StaticResource Icon_DeleteFirstChar}"
+                                                                    Color="Blue"                                      
+                                                                    FontFamily="{StaticResource IconsFont}"                                          
+                                                                    />
+                                                </telerikInput:RadButton.ImageSource>
+                                            </telerikInput:RadButton>
+                                            
+                                            <telerikInput:RadButton x:Name="btnClearLVSNoManual"                                                                  
+                                                                    HeightRequest="50"
+                                                                    WidthRequest="50"
+                                                                    BackgroundColor="White"
+                                                                    Padding="10,10,10,10"
+                                                                    BorderColor="Blue"
+                                                                    BorderThickness="1"
+                                                                    Clicked="btnClearLVSNo_Clicked"
+                                                                    >
+                                                <telerikInput:RadButton.ImageSource>
+                                                    <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                Color="Blue"                                      
+                                                                FontFamily="{StaticResource IconsFont}"                                          
+                                                                />
+                                                </telerikInput:RadButton.ImageSource>
+                                            </telerikInput:RadButton>
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout BackgroundColor="{Binding BackgroundColorSearchProductionNo}">
+                                                <Entry x:Name="searchProductionsNoManual" 
+                                                        Placeholder="Produktionsnummer" 
+                                                        PlaceholderColor="LightGray"
+                                                        Text="{Binding SearchProduktionsnummer}"
+                                                        WidthRequest="200"
+                                                        effects:KeyboardEffect.EnableKeyboard="True"
+                                                        Keyboard="Default"
+                                                        ReturnType="Search"
+                                                        IsSpellCheckEnabled="false"
+                                                        IsTextPredictionEnabled="false"
+                                                        >
+                                                    <Entry.Effects>
+                                                        <effects:KeyboardEnableEffect/>
+                                                    </Entry.Effects>
+                                                </Entry>
+                                            </StackLayout>
+
+                                            <telerikInput:RadButton x:Name="btnSearchProdNoDeleteFirtsCharManual"                                                                  
+                                                                    HeightRequest="50"
+                                                                    WidthRequest="50"
+                                                                    BackgroundColor="White"
+                                                                    Padding="10,10,10,10"
+                                                                    BorderColor="Blue"
+                                                                    BorderThickness="1"
+                                                                    Clicked="btnSearchProductionNoDeleteFirtsChar_Clicked"
+                                                                    >
+                                                <telerikInput:RadButton.ImageSource>
+                                                    <FontImageSource Glyph="{StaticResource Icon_DeleteFirstChar}"
+                                                                    Color="Blue"                                      
+                                                                    FontFamily="{StaticResource IconsFont}"                                          
+                                                                    />
+                                                </telerikInput:RadButton.ImageSource>
+                                            </telerikInput:RadButton>
+
+                                            <telerikInput:RadButton x:Name="btnClearPrductionNoManual"                                                                  
+                                                                    HeightRequest="50"
+                                                                    WidthRequest="50"
+                                                                    BackgroundColor="White"
+                                                                    Padding="10,10,10,10"
+                                                                    BorderColor="Blue"
+                                                                    BorderThickness="1"
+                                                                    Clicked="btnClearPrductionNo_Clicked"
+                                                                    >
+                                                <telerikInput:RadButton.ImageSource>
+                                                    <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                Color="Blue"                                      
+                                                                FontFamily="{StaticResource IconsFont}"                                          
+                                                                />
+                                                </telerikInput:RadButton.ImageSource>
+                                            </telerikInput:RadButton>
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </telerikPrimitives:TabViewItem.Content>
+                            </telerikPrimitives:TabViewItem>
+
+
+                        </telerikPrimitives:RadTabView.Items>
+                    </telerikPrimitives:RadTabView>
+                </Frame>
+            </StackLayout>
+
+
+        </Grid>
+
+    </ContentView.Content>
+</ContentView>

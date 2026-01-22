@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"    
+             x:Class="LvsScan.Portable.Views.Test.me_TestFirstPage">
+    <ContentView.Resources>
+
+        <ControlTemplate x:Key="picker_Addresses_HeaderTemplate">
+            <Label Text="Adressauswahl:" 
+                   TextColor="White"
+                   FontSize="16"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   BackgroundColor="DodgerBlue"/>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="picker_Addresses_ItemTemplate">
+
+            <Frame BorderColor="DarkBlue"
+                   HasShadow="True"
+                   CornerRadius="3"
+                   Padding="5"
+                   Margin="5"
+                   BackgroundColor="White"
+                   >
+                <StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding ViewIdString}" 
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               Padding="5,0,0,0"
+                               />
+                        <Label Text="{Binding AddressStringShort}" 
+                               FontSize="14"
+                               Padding="15,0,0,0"
+                               />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="picker_Addresses_SelectedItemTemplate">
+            <Frame BorderColor="DarkBlue"
+                   HasShadow="True"
+                   CornerRadius="3"
+                   Padding="5"
+                   Margin="5"
+                   BackgroundColor="Beige"
+                   >
+                <StackLayout
+                             >
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding ViewIdString}" 
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               Padding="5,0,0,0"
+                               />
+                        <Label Text="{Binding AddressStringShort}" 
+                               FontSize="14"
+                               Padding="15,0,0,0"
+                               />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <ControlTemplate x:Key="picker_Addresses_FooterTemplate">
+            <StackLayout Orientation="Horizontal" Spacing="5" BackgroundColor="DodgerBlue">
+                <Button Text="Abbrechen" 
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="StartAndExpand"
+                        Command="{TemplateBinding CancelCommand}" />
+                <Button Text="Übernehmen" 
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="EndAndExpand"
+                        Command="{TemplateBinding AcceptCommand}" />
+            </StackLayout>
+        </ControlTemplate>
+
+    </ContentView.Resources>
+    <ContentView.Content>
+
+        <ScrollView>
+            <StackLayout>
+                <!--<Label Text="Input Artikeldaten Produktionsnummer" />-->
+                <StackLayout>
+
+                    <Label Text="ArtikelId:" />
+                    <Entry  x:Name="eArtikelId"
+                            Placeholder="ArtikelId" 
+                            PlaceholderColor="LightGray"
+                            Text="{Binding ArticleIdString}"
+                            effects:KeyboardEffect.EnableKeyboard="true"   
+                            Keyboard="Numeric"
+                            WidthRequest="180"
+                            >
+                        <Entry.Effects>
+                            <effects:KeyboardEnableEffect/>
+                        </Entry.Effects>
+                    </Entry>
+                    <Stepper x:Name="stepperArticleId" 
+                             Minimum="0" 
+                             Maximum="10" 
+                             Increment="1" 
+                             Value="{Binding ArticleId, Mode=TwoWay}"
+                             HorizontalOptions="Center"
+                             VerticalOptions="CenterAndExpand"
+                             ValueChanged="stepperArticleId_ValueChanged" />
+                    <Button x:Name="btnGetArticle" Text="Artikel" Clicked="btnGetArticle_Clicked"/>
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:enum="clr-namespace:Common.Enumerations;assembly=Common"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:behavior="clr-namespace:LvsScan.Portable.Behaviors" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             x:Class="LvsScan.Portable.Views.Inventory.i3w1_wizInventory_Search">
+  <ContentView.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="*"/>
+                <!--<RowDefinition Height="*"/>-->
+            </Grid.RowDefinitions>
+
+            <!--Head-->
+            <StackLayout Grid.Row="0"  
+                         BackgroundColor="Blue"  
+                         Padding="0,5,0,5"
+                         >
+                <StackLayout Orientation="Horizontal">
+                    <Label  HorizontalOptions="CenterAndExpand"
+                            Padding="5,0,0,0" 
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            >
+                        <Label.Text>
+                            <MultiBinding StringFormat="{}[{0}] - {1}">
+                                <Binding Path="SelectedInventory.Id" />
+                                <Binding Path="SelectedInventory.Name" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+                    <Image>
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedInventory.Status}" Value="{x:Static enum:enumInventoryStatus.erstellt}" TargetType="{x:Type Image}">
+                                        <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedInventory.Status}" Value="{x:Static enum:enumInventoryStatus.NotSet}" TargetType="{x:Type Image}">
+                                        <Setter Property="Source" Value="bullet_ball_red_16x16.png" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedInventory.Status}" Value="{x:Static enum:enumInventoryStatus.InBearbeitung}" TargetType="{x:Type Image}">
+                                        <Setter Property="Source" Value="bullet_ball_yellow_16x16.png" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedInventory.Status}" Value="{x:Static enum:enumInventoryStatus.erledigt}" TargetType="{x:Type Image}">
+                                        <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+
+                </StackLayout>
+            </StackLayout>
+
+            <!--Carousel layout-->
+            <StackLayout Grid.Row="1">
+                <CarouselView x:Name="carouselViewArticle" 
+                              EmptyView="Es sind keine Daten vorhanden!"
+                              ItemsSource="{Binding InventoriesArticlesToEdit}"
+                              Position="{Binding PositionCarouselView}"
+                              CurrentItemChanged="carouselViewArticle_CurrentItemChanged"
+                              IndicatorView="indicatorView"                              
+                              IsScrollAnimated="False"                              
+                              Loop="False"
+                              >
+                    <CarouselView.GestureRecognizers>
+                        <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_Swiped"/>
+                        <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_Swiped"/>
+                    </CarouselView.GestureRecognizers>
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"                                           
+                                           SnapPointsType="MandatorySingle"                                           
+                                           />
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+
+                                <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                             Margin="10,10,10,10" 
+                                                             Padding="0,5,0,0"
+                                                             Color="DarkBlue"
+                                                             BackgroundColor="Snow"
+                                                             >
+                                    <StackLayout>
+                                        <StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <Label  HorizontalOptions="StartAndExpand"
+                                                        Padding="5,0,0,0" 
+                                                        FontSize="Subtitle"
+                                                        FontAttributes="Bold"
+                                                        TextColor="DarkSlateGray"
+                                                        >
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}LVS: {0} - [ {1} ] |  Ort: {2} ">
+                                                            <Binding Path="Artikel.LVS_ID" />
+                                                            <Binding Path="Artikel.Id" />
+                                                            <Binding Path="Artikel.LagerOrtAsString" />
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Image>
+                                                    <Image.Style>
+                                                        <Style TargetType="{x:Type Image}">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Status}" Value="{x:Static enum:enumInventoryArticleStatus.Neu}" TargetType="{x:Type Image}">
+                                                                    <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Status}" Value="{x:Static enum:enumInventoryArticleStatus.Fehlt}" TargetType="{x:Type Image}">
+                                                                    <Setter Property="Source" Value="bullet_ball_red_16x16.png" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Status}" Value="{x:Static enum:enumInventoryArticleStatus.NotSet}" TargetType="{x:Type Image}">
+                                                                    <Setter Property="Source" Value="bullet_ball_yellow_16x16.png" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Status}" Value="{x:Static enum:enumInventoryArticleStatus.OK}" TargetType="{x:Type Image}">
+                                                                    <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Image.Style>
+                                                </Image>
+
+                                            </StackLayout>
+                                            <BoxView Color= "DarkSlateBlue"
+                                                     HeightRequest="1"                                                
+                                                     HorizontalOptions="Fill" />
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}ProduktionsNr.: {0}">
+                                                        <Binding Path="Artikel.Produktionsnummer" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Werksnummer: {0}">
+                                                        <Binding Path="Artikel.Werksnummer" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Brutto KG: {0:N2}">
+                                                        <Binding Path="Artikel.Brutto" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </StackLayout>
+
+                                        <StackLayout>
+                                            <!--text and description-->
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Description: {0}">
+                                                        <Binding Path="Description" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label" 
+                                                                 Binding="{Binding Description}" 
+                                                                 Value="">
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                            <!--user and scan date-->
+                                            <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    >
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}Notiz: {0}">
+                                                        <Binding Path="Text" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label" 
+                                                                 Binding="{Binding Text}" 
+                                                                 Value="">
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+
+                                        </StackLayout>
+                                    </StackLayout>
+                                </telerikPrimitives:RadShadow>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView x:Name="indicatorView"
+                               IndicatorColor="LightGray"
+                               SelectedIndicatorColor="DarkGray"
+                               HorizontalOptions="Center" />
+            </StackLayout>
+
+            <!--Article Input Data-->
+            <StackLayout Grid.Row="2">
+
+                <telerikPrimitives:RadTabView x:Name="tabView"
+                                              IsContentSwipingEnabled="True"  
+                                              SelectedItem="{Binding SelectedTabViewItem, Mode=TwoWay}"
+                                              PropertyChanged="tabView_PropertyChanged"
+                                              >
+                    <telerikPrimitives:RadTabView.Items>
+                        <!--scan input-->
+                        <telerikPrimitives:TabViewItem x:Name="tabItemScan"
+                                                       HeaderText="Scan"
+                                                       >
+                            <telerikPrimitives:TabViewItem.Content>
+
+                                <StackLayout Padding="10,10,10,0">
+
+                                    <StackLayout  x:Name="slInputLvsNr"  Orientation="Horizontal" BackgroundColor="{Binding BackgroundColorSearchLvsNr}">
+                                        <Entry  x:Name="searchLvsNo"
+                                                Placeholder="LVS - Nr" 
+                                                PlaceholderColor="LightGray"
+                                                Text="{Binding SearchLvsNo}"
+                                                effects:KeyboardEffect.EnableKeyboard="False"   
+                                                WidthRequest="200"
+                                            >
+                                            <Entry.Effects>
+                                                <effects:KeyboardEnableEffect/>
+                                            </Entry.Effects>
+                                        </Entry>
+                                        <telerikInput:RadButton x:Name="btnClearLVSNo"                                                                  
+                                                                ContentLayout="Left,10"
+                                                                BackgroundColor="Transparent"
+                                                                Clicked="btnClearLVSNo_Clicked"
+                                                                >
+                                            <telerikInput:RadButton.ImageSource>
+                                                <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                 Color="Blue"                                      
+                                                                 FontFamily="{StaticResource IconsFont}"                                          
+                                                                 />
+                                            </telerikInput:RadButton.ImageSource>
+                                        </telerikInput:RadButton>
+                                    </StackLayout>
+
+                                    <!--<StackLayout Orientation="Horizontal"
+                                                 BackgroundColor="{Binding BackgroundColorSearchProductionNo}"
+                                                 >
+                                        <Entry x:Name="searchProductionsNo" 
+                                               Placeholder="Produktionsnummer" 
+                                               PlaceholderColor="LightGray"
+                                               Text="{Binding SearchProduktionsnummer}"
+                                               effects:KeyboardEffect.EnableKeyboard="False"  
+                                               WidthRequest="250"
+                                               >
+                                            <Entry.Effects>
+                                                <effects:KeyboardEnableEffect/>
+                                            </Entry.Effects>
+                                        </Entry>
+                                        <telerikInput:RadButton x:Name="btnClearPrductionNo"                                                                  
+                                                                ContentLayout="Left,10"
+                                                                BackgroundColor="Transparent"
+                                                                Clicked="btnClearPrductionNo_Clicked"
+                                                                >
+                                            <telerikInput:RadButton.ImageSource>
+                                                <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                 Color="Blue"                                      
+                                                                 FontFamily="{StaticResource IconsFont}"                                          
+                                                                 />
+                                            </telerikInput:RadButton.ImageSource>
+                                        </telerikInput:RadButton>
+                                    </StackLayout>-->
+
+                                </StackLayout>
+
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+
+                        <!--manuell input-->
+                        <telerikPrimitives:TabViewItem x:Name="tabItemManual"
+                                                       HeaderText="manuell"
+                                                       >
+                            <telerikPrimitives:TabViewItem.Content>
+
+                                <StackLayout Padding="10,10,10,0">
+
+                                    <StackLayout Orientation="Horizontal" BackgroundColor="{Binding BackgroundColorSearchLvsNr}" >
+                                        <Entry  x:Name="searchLvsNoManual"
+                                                Placeholder="LVS - Nr" 
+                                                PlaceholderColor="LightGray"
+                                                Text="{Binding SearchLvsNo}"
+                                                WidthRequest="200"
+                                                effects:KeyboardEffect.EnableKeyboard="True"
+                                                Keyboard="Numeric"
+                                                IsSpellCheckEnabled="false"
+                                                IsTextPredictionEnabled="false"
+                                            >
+                                            <Entry.Effects>
+                                                <effects:KeyboardEnableEffect/>
+                                            </Entry.Effects>
+                                        </Entry>
+                                        <telerikInput:RadButton x:Name="btnClearLVSNoManual"                                                                  
+                                                                ContentLayout="Left,10"
+                                                                BackgroundColor="Transparent"
+                                                                Clicked="btnClearLVSNo_Clicked"
+                                                                >
+                                            <telerikInput:RadButton.ImageSource>
+                                                <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                 Color="Blue"                                      
+                                                                 FontFamily="{StaticResource IconsFont}"                                          
+                                                                 />
+                                            </telerikInput:RadButton.ImageSource>
+                                        </telerikInput:RadButton>
+                                    </StackLayout>
+
+                                    <!--<StackLayout Orientation="Horizontal"
+                                                 BackgroundColor="{Binding BackgroundColorSearchProductionNo}"
+                                                 >
+                                        <Entry x:Name="searchProductionsNoManual" 
+                                               Placeholder="Produktionsnummer" 
+                                               PlaceholderColor="LightGray"
+                                               Text="{Binding SearchProduktionsnummer}"
+                                               WidthRequest="250"
+                                               effects:KeyboardEffect.EnableKeyboard="True"
+                                               Keyboard="Default"
+                                               ReturnType="Search"
+                                               IsSpellCheckEnabled="false"
+                                               IsTextPredictionEnabled="false"
+                                               >
+                                            <Entry.Effects>
+                                                <effects:KeyboardEnableEffect/>
+                                            </Entry.Effects>
+                                        </Entry>
+                                        <telerikInput:RadButton x:Name="btnClearPrductionNoManual"                                                                  
+                                                                ContentLayout="Left,10"
+                                                                BackgroundColor="Transparent"
+                                                                Clicked="btnClearPrductionNo_Clicked"
+                                                                >
+                                            <telerikInput:RadButton.ImageSource>
+                                                <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                 Color="Blue"                                      
+                                                                 FontFamily="{StaticResource IconsFont}"                                          
+                                                                 />
+                                            </telerikInput:RadButton.ImageSource>
+                                        </telerikInput:RadButton>
+                                    </StackLayout>-->
+
+                                </StackLayout>
+
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+
+
+                    </telerikPrimitives:RadTabView.Items>
+                </telerikPrimitives:RadTabView>
+
+            </StackLayout>
+            <!--<StackLayout>
+                <Button x:Name="TestEnabled" Text="Test" Clicked="TestEnabled_Clicked" />
+            </StackLayout>-->
+        </Grid>    
+    
+    </ContentView.Content>
+</ContentView>

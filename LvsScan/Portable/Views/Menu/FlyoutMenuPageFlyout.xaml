@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LvsScan.Portable.Views.Menu.FlyoutMenuPageFlyout"
+             xmlns:vm="clr-namespace:LvsScan.Portable.ViewModels.Menu"             
+             Title="Flyout">
+    <ContentPage.BindingContext>
+        <vm:FlyoutMenuPageFlyoutViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+      <StackLayout>
+        <ListView x:Name="MenuItemsListView"
+                  SeparatorVisibility="None"
+                  HasUnevenRows="true"
+                  ItemsSource="{Binding MenuItems}">
+            <ListView.Header>
+                    <Grid BackgroundColor="#03A9F4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="55"/>
+                            <RowDefinition Height="20"/>
+                            <!--<RowDefinition Height="Auto"/>-->
+                            <RowDefinition Height="3"/>
+                        </Grid.RowDefinitions>
+
+                        <!--<Label Grid.Row="0" Grid.ColumnSpan="3" Text="" />-->
+                        <Label Grid.Row="0" Grid.ColumnSpan="3" Text="LvsScan - App" FontSize="Medium" FontAttributes="Bold" TextColor="WhiteSmoke" Padding="10,0,0,0" />
+
+                        <StackLayout Grid.Row="1" Grid.Column="1" BackgroundColor="WhiteSmoke">
+                            <StackLayout Orientation="Horizontal" Padding="10,0,0,0">
+                                <StackLayout Padding="0,15,0,0">
+                                    <Image Source="user_smartphone_24x24.png" Aspect="Fill" HorizontalOptions="Start" VerticalOptions="StartAndExpand" />
+                                </StackLayout>
+
+                                <StackLayout Padding="10,10,0,0">
+                                    <Label Text="{Binding InfoText}" TextColor="Black" />
+                                    <Label Text="{Binding LoginName}" TextColor="Black" />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="2" Grid.Column="1" BackgroundColor="WhiteSmoke">
+                            <StackLayout Padding="10,0,0,0">
+                                <Label Text="{Binding BuiltVersionString}" TextColor="Black" FontSize="Small" HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding IconSource}"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                />
+                                <Label VerticalOptions="FillAndExpand" 
+                                VerticalTextAlignment="Center" 
+                                Text="{Binding Title}" 
+                                Padding="10,0,0,0"
+                                FontSize="22"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+      </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

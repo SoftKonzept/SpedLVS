@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report Width="6.5in" Name="DispoSalzgitter" SnapGridSize="0.1cm" xmlns="http://schemas.telerik.com/reporting/2012/3.5">
+  <DataSources>
+    <SqlDataSource ConnectionString="Data Source=SE-MAIN\SPED;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey" ProviderName="System.Data.SqlClient" SelectCommand="Select b.ExTransportRef as Plannummer,SUM(a.BRUTTO) as Gewicht, &#xD;&#xA;Stuff((Select distinct CAST(',' + a1.Halle as nvarchar)&#xD;&#xA;FROM Artikel a1&#xD;&#xA;where a1.ID in(Select Artikel.ID from Artikel left join Lausgang on Artikel.LAusgangTableID=LAusgang.ID where LAusgang.LAusgangID=b.LAusgangID)&#xD;&#xA;FOR XML PATH ('')),1,1,'') as Halle, b.LAusgangID as ASchein from Artikel a&#xD;&#xA;left join Lausgang b on a.LausgangTableId=b.ID&#xD;&#xA;group by b.ASN,b.LAusgangID,b.ExTransportRef&#xD;&#xA;having b.ASN in &#xD;&#xA;(&#xD;&#xA;    select ID from ComLVSHonselmann.dbo.ASN &#xD;&#xA;    where Datediff(MINUTE,Datum,GETDATE())&lt;60 and &#xD;&#xA;        ASNTypID=14 &#xD;&#xA;        &#xD;&#xA;)" Name="sqlDataSource1" />
+  </DataSources>
+  <Items>
+    <PageHeaderSection Height="0.511811017990112in" Name="pageHeaderSection1">
+      <Items>
+        <TextBox Width="8.40009992122372cm" Height="0.600000100930529cm" Left="0.00009992122372211cm" Top="0.4cm" Value="Eingegangene Abrufe Salzgitter " Name="textBox15" />
+      </Items>
+    </PageHeaderSection>
+    <DetailSection Height="2in" Name="detailSection1">
+      <Items>
+        <Table DataSourceName="sqlDataSource1" Width="16.5097990069112cm" Height="1.29999974767368cm" Left="0.00009992122372211cm" Top="0.600000100930529cm" Name="table1">
+          <Body>
+            <Cells>
+              <TableCell RowIndex="0" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="7.6501405688509cm" Height="0.649999873836839cm" Left="5.30010027448057cm" Top="0.8cm" Value="=Fields.Plannummer" Name="textBox9" />
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="4" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.33731121896479cm" Height="0.649999873836839cm" Left="5.30010027448057cm" Top="0.8cm" Value="=Fields.Halle" Name="textBox10" />
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="2" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.99220484829805cm" Height="0.649999873836839cm" Left="5.30010027448057cm" Top="0.8cm" Value="=Fields.Gewicht" Format="{0:N0}" Name="textBox11">
+                    <Style TextAlign="Right" />
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="3.17486053803338cm" Height="0.649999873836839cm" Left="5.30010027448057cm" Top="0.8cm" Value="=Fields.ASchein" Name="textBox12" />
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="3" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="0.350763351897304cm" Height="0.649999873836839cm" Left="0cm" Top="0cm" Name="textBox14" StyleName="">
+                    <Style TextAlign="Right" />
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+            </Cells>
+            <Columns>
+              <Column Width="7.65014082618716cm" />
+              <Column Width="3.17486048245297cm" />
+              <Column Width="2.992204810069cm" />
+              <Column Width="0.355280261419402cm" />
+              <Column Width="2.33731124294729cm" />
+            </Columns>
+            <Rows>
+              <Row Height="0.649999873836839cm" />
+            </Rows>
+          </Body>
+          <Corner />
+          <RowGroups>
+            <TableGroup Name="detailTableGroup">
+              <Groupings>
+                <Grouping />
+              </Groupings>
+            </TableGroup>
+          </RowGroups>
+          <ColumnGroups>
+            <TableGroup Name="tableGroup">
+              <ReportItem>
+                <TextBox Width="7.6501405688509cm" Height="0.649999873836839cm" Left="0cm" Top="0cm" Value="Plannummer" Name="textBox1">
+                  <Style>
+                    <Font Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup Name="tableGroup1">
+              <ReportItem>
+                <TextBox Width="3.17486053803338cm" Height="0.649999873836839cm" Left="0cm" Top="0cm" Value="ASchein" Name="textBox3">
+                  <Style>
+                    <Font Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup Name="tableGroup2">
+              <ReportItem>
+                <TextBox Width="2.99220484829805cm" Height="0.649999873836839cm" Left="0cm" Top="0cm" Value="Gewicht" Name="textBox5">
+                  <Style TextAlign="Right">
+                    <Font Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup Name="group1">
+              <ReportItem>
+                <TextBox Width="0.350763351897304cm" Height="0.649999873836839cm" Left="0cm" Top="0cm" Name="textBox13" StyleName="">
+                  <Style TextAlign="Right">
+                    <Font Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup Name="group">
+              <ReportItem>
+                <TextBox Width="2.33731121896479cm" Height="0.649999873836839cm" Left="0cm" Top="0cm" Value="Halle(n)" Name="textBox7" StyleName="">
+                  <Style>
+                    <Font Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+          </ColumnGroups>
+        </Table>
+      </Items>
+    </DetailSection>
+    <PageFooterSection Height="0.480315208435059in" Name="pageFooterSection1" />
+  </Items>
+  <StyleSheet>
+    <StyleRule>
+      <Style>
+        <Padding Left="2pt" Right="2pt" />
+      </Style>
+      <Selectors>
+        <TypeSelector Type="TextItemBase" />
+        <TypeSelector Type="HtmlTextBox" />
+      </Selectors>
+    </StyleRule>
+  </StyleSheet>
+  <PageSettings>
+    <PageSettings PaperKind="Letter" Landscape="False">
+      <Margins>
+        <MarginsU Left="1in" Right="1in" Top="1in" Bottom="1in" />
+      </Margins>
+    </PageSettings>
+  </PageSettings>
+</Report>

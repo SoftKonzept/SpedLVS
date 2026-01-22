@@ -1,0 +1,112 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="LVSCallStyle.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>LvsCall By ComTEC Nöker GmbH</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .btnGerman
+        {}
+        .auto-style1
+        {
+            width: 129px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <telerik:RadScriptManager ID="RadScriptManager1" Runat="server">
+    </telerik:RadScriptManager>
+        <telerik:RadFormDecorator ID="RadFormDecorator1" Runat="server" Height="16px" Skin="Office2010Blue" />
+    <div id="All">
+        <div id="divHead">
+ 
+            <table id="TableUserInfo" width="100%" border="0" cellpadding="0" cellspacing="0">  
+                <tr >
+                    <td width="200px" rowspan="3">
+                        <telerik:RadBinaryImage ID="RadBinaryImage1" runat="server" CropPosition="Left" Height="47px" ImageAlign="Middle" ImageUrl="~/Images/logoSZG.jpg" PersistDataIfNotVisible="True" ResizeMode="Fit" ToolTip="comTEC Nöker GmbH" Width="180px" Visible="False" VisibleWithoutSource="False" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">                        
+                        <asp:Label ID="lblCaption" runat="server" Font-Bold="True" Font-Italic="True" 
+                                    Font-Names="Arial" Font-Size="Small" ForeColor="#666666" Visible="False"></asp:Label>  
+                    </td>
+                </tr>
+                <tr>
+                    <td width="15%">
+                        <asp:Label ID="lUserInfoHead" runat="server" ForeColor="Black" Font-Bold="true" Text="User-Infotext: " Visible="False"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:Label ID="LInfoText" runat="server" Text="InfoText" Visible="False" ForeColor="Black"></asp:Label>  
+                    </td>
+                </tr>
+            </table>                
+        </div>
+        <div id="divLeer"></div>
+        <div id="divMenu"> 
+              <table id="TableCountry" border="0" style=" width: 100%">    
+                <tr>
+                    <td style=" width: 20px">                       
+                    </td>
+                    <td>                       
+                        <asp:ImageButton ID="btnGerman" runat="server" CssClass="btnGerman" 
+                            ImageUrl="~/Images/flag_germany.png" onclick="btnGerman_Click" Width="20px" Visible="False" />
+                    </td>
+                    <td>
+                        <asp:ImageButton ID="btnEnglish" runat="server" CssClass="btnEnglish" 
+                            ImageUrl="~/Images/flag_united_kingdom.png" onclick="btnEnglish_Click" Visible="False" Width="20px" />
+                    </td>
+                    <td>
+                        <asp:ImageButton ID="btnFrance" runat="server" CssClass="LangButton" 
+                            ImageUrl="~/Images/flag_france.png" onclick="btnFrance_Click" Visible="False" Width="20px" />                        
+                    </td>                   
+                </tr>
+                <tr>
+                    <td>                       
+                    </td>
+                    <td colspan="3">                       
+                            <asp:Panel ID="PanMenu" runat="server" Visible="False">
+                                <telerik:RadMenu ID="Menu" Runat="server" Skin="Office2010Blue"></telerik:RadMenu>
+                            
+                            </asp:Panel>
+                    </td>                   
+                </tr>
+            </table> 
+        </div>
+
+        <div id="content">                                
+            <div id="divContentPlaceHolder">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">        
+                    <p>&nbsp;</p>        
+                </asp:ContentPlaceHolder>
+            </div>   
+        </div> 
+        <div id="divFoot">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">    
+                <tr>
+                    <td nowrap="nowrap">
+                        &nbsp;</td>
+                    <td width="100%"></td>
+                    <td nowrap="nowrap">                        
+                        <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Italic="True" 
+                            Font-Names="Arial" ForeColor="#25509E" align="right" 
+                            Font-Underline="False" Text="Support: 0 27 24 - 94 93 00 - ">
+                        </asp:Label>
+                        <asp:Label ID="Label3" runat="server" Font-Bold="True" Font-Italic="True" 
+                            Font-Names="Arial" ForeColor="#25509E" align="right" 
+                            Font-Underline="False" Text="© comTEC Noeker 2017">
+                        </asp:Label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

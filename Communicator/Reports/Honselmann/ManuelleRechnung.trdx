@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report DataSourceName="sqlRGSource" Width="21cm" DocumentName="Rechnung" Name="Rechnung" SnapGridSize="0.1cm" xmlns="http://schemas.telerik.com/reporting/2012/3.5">
+  <DataSources>
+    <SqlDataSource ConnectionString="Data Source=WS-NE-W7-64\SQL2008R2;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey" ProviderName="System.Data.SqlClient" SelectCommand="Select &#xD;&#xA;Rechnungen.*&#xD;&#xA;, ADR.KD_ID  as KdNr&#xD;&#xA;, Kunde.USt_ID as UstID&#xD;&#xA;, DATENAME(MONTH,Rechnungen.AbrZeitraumBis) as Monatsname&#xD;&#xA;,(Select NettoPreis FROM RGPositionen WHERE Abrechnungsart='Einlagerungskosten' AND RGTableID=Rechnungen.ID) as NettoEinlagerung&#xD;&#xA;,(Select NettoPreis FROM RGPositionen WHERE Abrechnungsart='Auslagerungskosten' AND RGTableID=Rechnungen.ID) as NettoAuslagerung&#xD;&#xA;,(Select NettoPreis FROM RGPositionen WHERE Abrechnungsart='Lagerkosten' AND RGTableID=Rechnungen.ID) as NettoLagergeld&#xD;&#xA;,(Select NettoPreis FROM RGPositionen WHERE Abrechnungsart='Gleisstellgebühr' AND RGTableID=Rechnungen.ID) as Gleiskosten&#xD;&#xA;,(Select NettoPreis FROM RGPositionen WHERE Abrechnungsart='Nebenkosten' AND RGTableID=Rechnungen.ID) as Nebenkosten&#xD;&#xA;&#xD;&#xA;,(Select Anfangsbestand FROM RGPositionen WHERE Abrechnungsart='Lagerkosten' AND RGTableID=Rechnungen.ID) as Anfangsbestand&#xD;&#xA;,(Select Abgang FROM RGPositionen WHERE Abrechnungsart='Lagerkosten' AND RGTableID=Rechnungen.ID) as Abgang&#xD;&#xA;,(Select Zugang FROM RGPositionen WHERE Abrechnungsart='Lagerkosten' AND RGTableID=Rechnungen.ID) as Zugang&#xD;&#xA;,(Select Endbestand FROM RGPositionen WHERE Abrechnungsart='Lagerkosten' AND RGTableID=Rechnungen.ID) as Endbestand&#xD;&#xA;,CASE&#xD;&#xA;&#x9;&#x9;&#x9;WHEN ((((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) IS NULL)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;OR ((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) = ''))&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;AND (((Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) IS NULL)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;OR ((Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) = '')))&#xD;&#xA;&#x9;&#x9;&#x9;THEN ((Select Name1 FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select Str FROM ADR WHERE ID=Rechnungen.Empfaenger) + ' '&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select HausNr FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select PLZ FROM ADR WHERE ID=Rechnungen.Empfaenger)+' '&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+(Select Ort FROM ADR WHERE ID=Rechnungen.Empfaenger))&#xD;&#xA;&#x9;&#x9;&#x9;WHEN ((((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) IS NULL)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;OR ((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) = ''))&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;AND (((Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) IS NOT NULL)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;AND ((Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) &lt;&gt; '')))&#xD;&#xA;&#x9;&#x9;&#x9;THEN ((Select Name1 FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select Str FROM ADR WHERE ID=Rechnungen.Empfaenger) + ' '&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select HausNr FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select PLZ FROM ADR WHERE ID=Rechnungen.Empfaenger)+' '&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+(Select Ort FROM ADR WHERE ID=Rechnungen.Empfaenger))&#xD;&#xA;&#x9;&#x9;&#x9;WHEN ((((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) IS NOT NULL)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;AND ((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) &lt;&gt; ''))&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;AND (((Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) IS NULL)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;OR ((Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) = '')))&#xD;&#xA;&#x9;&#x9;&#x9;THEN ((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select Name1 FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select Str FROM ADR WHERE ID=Rechnungen.Empfaenger) + ' '&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select HausNr FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select PLZ FROM ADR WHERE ID=Rechnungen.Empfaenger)+' '&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select Ort FROM ADR WHERE ID=Rechnungen.Empfaenger))&#xD;&#xA;&#x9;&#x9;&#x9;ELSE ((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select Name1 FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select Str FROM ADR WHERE ID=Rechnungen.Empfaenger) + ' '&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select HausNr FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+ (Select PLZ FROM ADR WHERE ID=Rechnungen.Empfaenger)+' '&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;+(Select Ort FROM ADR WHERE ID=Rechnungen.Empfaenger))&#xD;&#xA;&#x9;&#x9; END as EAdressblock&#xD;&#xA;FROM Rechnungen &#xD;&#xA;INNER JOIN ADR ON ADR.ID=Rechnungen.Empfaenger&#xD;&#xA;INNER JOIN Kunde ON Kunde.ADR_ID=ADR.ID&#xD;&#xA;WHERE Rechnungen.ID=@RGTableID" Name="sqlRGSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="Decimal" Name="@RGTableID">
+          <Value>
+            <String>=Parameters.RGTableID.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+      <DefaultValues>
+        <SqlDataSourceParameter DbType="Decimal" Name="@RGTableID">
+          <Value>
+            <String>1</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </DefaultValues>
+    </SqlDataSource>
+    <SqlDataSource ConnectionString="Data Source=WS-NE-W7-64\SQL2008R2;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey" ProviderName="System.Data.SqlClient" SelectCommand="Select * from RGPositionen where RGTableID=@RGTableID;" Name="sqlArtikelSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="Decimal" Name="@RGTableID">
+          <Value>
+            <String>=Parameters.RGTableID.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+      <DefaultValues>
+        <SqlDataSourceParameter DbType="Decimal" Name="@LAusgangTableID">
+          <Value>
+            <String>1</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </DefaultValues>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <PageHeaderSection Height="3.86in" Name="pageHeaderSection1">
+      <Items>
+        <Panel Width="21cm" Height="3.86in" Left="0.00010012308478013cm" Top="0cm" Docking="Fill" Name="panPageHead">
+          <Items>
+            <TextBox Width="8.49979782104492cm" Height="0.400000214576721cm" Left="1.99990048249839cm" Top="4.29999984860421cm" Value="Honselmann Lager- und Umschlags GmbH | Sedanstraße 41 | 58089 Hagen" Name="textBox44">
+              <Style>
+                <Font Size="6.5pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.39989852905273cm" Height="0.599900007247925cm" Left="12.29cm" Top="6.7cm" Value="Ihre Kunden-Nr.:" Name="textBox43">
+              <Style>
+                <Font Size="10pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="4.09979963302612cm" Height="0.599900007247925cm" Left="15.7000021700064cm" Top="6.69999944488209cm" Value="= Fields.KdNr" Name="textBox42">
+              <Style>
+                <Font Size="10pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="17.9958724975586cm" Height="0.599900007247925cm" Left="1.99990048249839cm" Top="8.9037497205486cm" Value="= 'RECHNUNG            ' + Fields.RGNr" Name="textBox13">
+              <Style BackgroundColor="238, 238, 238">
+                <Font Size="15pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="4.09979963302612cm" Height="0.599900007247925cm" Left="15.7000021700064cm" Top="7.30854109462187cm" Value="= Fields.UstID" Name="textBox4">
+              <Style>
+                <Font Size="10pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.50010323524475cm" Height="0.499999761581421cm" Left="17.2996993784193cm" Top="4.80000040372212cm" Value="= Fields.Datum&#xD;&#xA;" Format="{0:d}" Name="textBox29">
+              <Style>
+                <Font Size="8pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="1.29949831962585cm" Height="0.499999761581421cm" Left="16cm" Top="4.8cm" Value="Datum:" Name="textBox28">
+              <Style>
+                <Font Size="8pt" />
+              </Style>
+            </TextBox>
+            <Panel Width="9.19999980926514cm" Height="2.99989914894104cm" Left="1.99990048249839cm" Top="4.90854149834398cm" Name="panAdresse">
+              <Items>
+                <TextBox Width="8.79990005493164cm" Height="2.89989924430847cm" Left="0.300000041723251cm" Top="0.0999995470046997cm" Value="= Fields.EAdressblock" Name="textBox3">
+                  <Style>
+                    <Font Size="11pt" />
+                  </Style>
+                </TextBox>
+              </Items>
+            </Panel>
+            <TextBox Width="2.50010323524475cm" Height="0.499999761581421cm" Left="17.2996993784193cm" Top="5.30020039756535cm" Value="= PageNumber" Name="textBox16">
+              <Style>
+                <Font Size="8pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="1.29949748516083cm" Height="0.499999761581421cm" Left="16.0000016148885cm" Top="5.30019999384324cm" Value="Seite:" Name="textBox15">
+              <Style>
+                <Font Size="8pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.39321773547636cm" Height="0.599900007247925cm" Left="12.2998997255194cm" Top="7.30854109462187cm" Value="Ihre USt-ID-Nr.:" Name="textBox1">
+              <Style>
+                <Font Size="10pt" Bold="True" />
+              </Style>
+            </TextBox>
+          </Items>
+        </Panel>
+      </Items>
+    </PageHeaderSection>
+    <DetailSection Height="5in" Name="detailSection1">
+      <Style Visible="True" />
+      <Items>
+        <TextBox Width="18.3000005070397cm" Height="0.50019518413486cm" Left="2.00000060558317cm" Top="11.8998046489611cm" Value="Zahlungsbedingungen: Rechnung ist nach Erhalt fällig." Name="textBox6">
+          <Style VerticalAlign="Top">
+            <Font Size="10pt" />
+          </Style>
+        </TextBox>
+        <Panel Width="20.9997997283936cm" Height="7.59999932169917cm" Left="0.00010012308478014cm" Top="0.600000504652645cm" Name="panel1">
+          <Items>
+            <Table DataSourceName="sqlArtikelSource" Width="18.0155253023761cm" Height="1.12375010372618cm" Left="2.00000545024857cm" Top="0.399999798138942cm" Name="table1">
+              <Body>
+                <Cells>
+                  <TableCell RowIndex="1" ColumnIndex="3" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.14657333384895cm" Height="0.60000004331223cm" Left="7.49999904115997cm" Top="0cm" Value="=Fields.NettoPreis" Format="{0:C2}" Name="textBox2">
+                        <Style TextAlign="Right">
+                          <Font Size="11pt" Bold="True" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="12.0277000913087cm" Height="0.523750058141528cm" Left="0cm" Top="0cm" Value="" Name="textBox19" StyleName="">
+                        <Style>
+                          <Font Size="11pt" Bold="True" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="2" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.26458411779628cm" Height="0.523750058141539cm" Left="0cm" Top="0cm" Value="Einzelpreis" Name="textBox20" StyleName="">
+                        <Style>
+                          <Font Size="11pt" Bold="True" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="3" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.14657333384895cm" Height="0.523750060413961cm" Left="0cm" Top="0cm" Value="Netto" Name="textBox21" StyleName="">
+                        <Style TextAlign="Right">
+                          <Font Size="11pt" Bold="True" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.57666769010502cm" Height="0.523750042532577cm" Left="0cm" Top="0cm" Value="Anzahl" Name="textBox8" StyleName="">
+                        <Style>
+                          <Font Size="11pt" Bold="True" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.57666769010502cm" Height="0.599999994212912cm" Left="0cm" Top="0cm" Value="=Fields.Menge" Format="{0:N0}" Name="textBox5" />
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="2" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.26458411779628cm" Height="0.600000012094299cm" Left="7.4998940734098cm" Top="0.0955997821919184cm" Value="=Fields.EinzelPreis" Format="{0:C2}" Name="textBox7" />
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="12.0277000913087cm" Height="0.600000012094286cm" Left="7.4998940734098cm" Top="0.0955997821919184cm" Value="=Fields.RGText" Name="textBox9" />
+                    </ReportItem>
+                  </TableCell>
+                </Cells>
+                <Columns>
+                  <Column Width="12.0276995551798cm" />
+                  <Column Width="1.57666736190483cm" />
+                  <Column Width="2.26458486484306cm" />
+                  <Column Width="2.14657378890073cm" />
+                </Columns>
+                <Rows>
+                  <Row Height="0.52375004253256cm" />
+                  <Row Height="0.599999994212892cm" />
+                </Rows>
+              </Body>
+              <Corner />
+              <RowGroups>
+                <TableGroup Name="group3" />
+                <TableGroup Name="detailTableGroup">
+                  <Groupings>
+                    <Grouping />
+                  </Groupings>
+                </TableGroup>
+              </RowGroups>
+              <ColumnGroups>
+                <TableGroup Name="group2" />
+                <TableGroup Name="group" />
+                <TableGroup Name="group1" />
+                <TableGroup Name="tableGroup2" />
+              </ColumnGroups>
+            </Table>
+          </Items>
+        </Panel>
+        <TextBox Width="4.29587125778198cm" Height="0.600000143051147cm" Left="15.6998035387253cm" Top="10.7000006560484cm" Value="= Fields.BruttoBetrag" Format="{0:C2}" Name="textBox31">
+          <Style TextAlign="Right" VerticalAlign="Middle">
+            <BorderStyle Bottom="Double" />
+            <Font Size="11pt" Bold="True" />
+          </Style>
+        </TextBox>
+        <TextBox Width="7.09999990463257cm" Height="0.600000143051147cm" Left="8.59321878054726cm" Top="10.7000006560484cm" Value="RECHNUNGSBETRAG" Name="textBox32">
+          <Style VerticalAlign="Middle">
+            <BorderStyle Bottom="Double" />
+            <Font Size="11pt" Bold="True" />
+          </Style>
+        </TextBox>
+        <TextBox Width="11.396071434021cm" Height="0.300001055002213cm" Left="8.60897040262702cm" Top="8.50395905046577cm" Value="&#xD;&#xA;" Name="textBox41">
+          <Style>
+            <BorderStyle Bottom="Solid" />
+          </Style>
+        </TextBox>
+        <TextBox Width="4.29587125778198cm" Height="0.600000143051147cm" Left="15.6998035387253cm" Top="9.19187569799769cm" Value="= Fields.NettoBetrag" Format="{0:C2}" Name="textBox30">
+          <Style TextAlign="Right" VerticalAlign="Middle">
+            <Font Size="11pt" Bold="True" />
+          </Style>
+        </TextBox>
+        <TextBox Width="7.09999990463257cm" Height="0.600000143051147cm" Left="8.59321878054726cm" Top="9.19187569799769cm" Value="Gesamt Netto" Name="textBox27">
+          <Style VerticalAlign="Middle">
+            <Font Size="11pt" Bold="True" />
+          </Style>
+        </TextBox>
+        <TextBox Width="4.29587125778198cm" Height="0.600000143051147cm" Left="15.6998035387253cm" Top="9.80041734773747cm" Value="= Fields.MwStBetrag" Format="{0:C2}" Name="textBox26">
+          <Style TextAlign="Right" VerticalAlign="Middle">
+            <BorderStyle Bottom="Solid" />
+            <Font Size="11pt" Bold="True" />
+          </Style>
+        </TextBox>
+        <TextBox Width="7.09999990463257cm" Height="0.600000143051147cm" Left="8.59321878054726cm" Top="9.80041734773747cm" Value="='MWSt.  '+ Fields.MwStSatz+' %'" Name="textBox25">
+          <Style VerticalAlign="Middle">
+            <BorderStyle Bottom="Solid" />
+            <Font Size="11pt" Bold="True" />
+          </Style>
+        </TextBox>
+      </Items>
+    </DetailSection>
+    <PageFooterSection Height="3.1cm" Name="pageFooterSection1" />
+  </Items>
+  <StyleSheet>
+    <StyleRule>
+      <Style>
+        <Padding Left="2pt" Right="2pt" />
+      </Style>
+      <Selectors>
+        <TypeSelector Type="TextItemBase" />
+        <TypeSelector Type="HtmlTextBox" />
+      </Selectors>
+    </StyleRule>
+  </StyleSheet>
+  <PageSettings>
+    <PageSettings PaperKind="A4" Landscape="False">
+      <Margins>
+        <MarginsU Left="0mm" Right="0mm" Top="0mm" Bottom="0mm" />
+      </Margins>
+    </PageSettings>
+  </PageSettings>
+  <ReportParameters>
+    <ReportParameter Name="RGTableID" Type="Float">
+      <Value>
+        <String>57</String>
+      </Value>
+    </ReportParameter>
+  </ReportParameters>
+</Report>

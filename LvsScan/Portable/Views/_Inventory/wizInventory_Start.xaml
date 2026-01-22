@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LvsScan.Portable.ViewModels.Inventory.wizInventory_Start"
+              xmlns:vm="clr-namespace:LvsScan.Portable.ViewModels.Inventory"
+              xmlns:ctr="clr-namespace:LvsScan.Portable.Views.Inventory"
+              Title="Inventory-Start"
+             >
+
+
+    <!--<ctr:wizInventory_Search/>
+    <ctr:wizInventory_SearchResult/>
+    <ctr:InventoryPage/>-->
+    <!--<ContentPage Title="Eingabe Artikeldaten">
+        <ctr:wizInventory_Search/>
+    </ContentPage>-->
+
+
+    <!--<ContentPage Title="Suchergebnis">
+        <ctr:wizInventory_SearchResult/>
+    </ContentPage>-->
+
+
+
+    
+
+    <!--<ContentPage Title="Page3">
+        <StackLayout>
+            <Label Text="Page 3"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage>-->
+</CarouselPage>

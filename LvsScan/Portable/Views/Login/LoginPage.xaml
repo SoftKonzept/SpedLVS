@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LvsScan.Portable.ViewModels.Login" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             x:Class="LvsScan.Portable.Views.Login.LoginPage">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="StartAndExpand"
+                     VerticalOptions="StartAndExpand"
+                     Padding="20,100,0,30"
+                     >         
+
+            <!--Logo SoftKonzept-->
+            <StackLayout Padding="0,0,20,50" >
+                <Image Source="Resources/SKLogo.png"/>
+                <Label Text="LVS - SCAN"
+                       FontSize="46"
+                       FontAttributes="Bold"
+                       TextColor="Gray"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       />                
+            </StackLayout>
+          
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Username:" 
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       WidthRequest="90"
+                       />
+                <Entry x:Name="Username" 
+                       Text="{Binding Username}" 
+                       WidthRequest="220"
+                       />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Passwort:"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       WidthRequest="90"
+                       />
+                <Entry x:Name="Password" 
+                       Text="{Binding Password}" 
+                       WidthRequest="220"
+                              />
+            </StackLayout>
+
+            <StackLayout Padding="0,20,20,50">
+                <Button x:Name="btnLogin"
+                    Text="Login" 
+                    HeightRequest="60"                    
+                    Clicked="btnLogin_Clicked"
+                    />
+            </StackLayout>
+
+            <!--BusyIndicator-->
+            <StackLayout HeightRequest="500" IsVisible="{Binding ShowBusyIndicator}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="110" />
+                    </Grid.RowDefinitions>
+
+                    <telerikPrimitives:RadBusyIndicator Grid.Row="1"
+                                                        AnimationContentHeightRequest="100"
+                                                        AnimationContentWidthRequest="100"
+                                                        AnimationType="Animation6"
+                                                        AnimationContentColor="Blue"
+                                                        InputTransparent="True"
+                                                        IsBusy="{Binding ShowBusyIndicator}">
+                        <telerikPrimitives:RadBusyIndicator.BusyContent>
+                            <Label Grid.Row="2" 
+                                       Text="Daten werden geladen...." 
+                                       TextColor="DarkBlue" 
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       />
+                        </telerikPrimitives:RadBusyIndicator.BusyContent>
+                    </telerikPrimitives:RadBusyIndicator>
+                </Grid>
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

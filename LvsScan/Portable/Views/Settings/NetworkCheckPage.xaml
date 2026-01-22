@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:vm="clr-namespace:LvsScan.Portable.ViewModels.Settings"
+             x:Class="LvsScan.Portable.Views.Settings.NetworkCheckPage">
+    <ContentPage.BindingContext>
+        <vm:NetworkCheckViewModel />
+    </ContentPage.BindingContext>
+    
+    <NavigationPage.TitleView>
+
+        <Label Text="Einstellungen | Netzwerk-Prüfung" 
+               HorizontalOptions="StartAndExpand"
+               VerticalOptions="StartAndExpand"
+               TextColor="White"
+               FontSize="Medium"
+               />
+    </NavigationPage.TitleView>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <telerikPrimitives:RadTabView x:Name="tabViewResults">
+                <telerikPrimitives:RadTabView.Items>
+                    <telerikPrimitives:TabViewItem HeaderText="All">
+                        <telerikPrimitives:TabViewItem.Content>
+
+                            <StackLayout>
+                                <!--<Label Text="Content of the Device tab" />-->
+                                <ListView x:Name="lvResultAll"
+                                      ItemsSource="{Binding NetworkAnalyzingResult}"
+                                      HasUnevenRows="True"
+                                      >
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Label Text="{Binding .}" />
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+
+                        </telerikPrimitives:TabViewItem.Content>
+                    </telerikPrimitives:TabViewItem>
+
+                    <telerikPrimitives:TabViewItem HeaderText="Device">
+                        <telerikPrimitives:TabViewItem.Content>
+
+                            <StackLayout>
+                                <!--<Label Text="Content of the Device tab" />-->
+                                <ListView x:Name="lvDevice"
+                                      ItemsSource="{Binding ResultDevice}"
+                                      HasUnevenRows="True"
+                                      >
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Label Text="{Binding .}" />
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+
+                        </telerikPrimitives:TabViewItem.Content>
+                    </telerikPrimitives:TabViewItem>
+                    <telerikPrimitives:TabViewItem HeaderText="Wifi">
+                        <telerikPrimitives:TabViewItem.Content>
+
+                            <!--<Label Text="Content of the Wifi tab" />-->
+
+                            <StackLayout>
+                                <!--<Label Text="Content of the Device tab" />-->
+                                <ListView x:Name="lvNetwork"
+                                      ItemsSource="{Binding ResultNetwork}"
+                                      HasUnevenRows="True"
+                                      >
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Label Text="{Binding .}" />
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+
+                        </telerikPrimitives:TabViewItem.Content>
+                    </telerikPrimitives:TabViewItem>
+                    <telerikPrimitives:TabViewItem HeaderText="Adapter">
+                        <telerikPrimitives:TabViewItem.Content>
+
+                            <!--<Label Text="Content of the Adapter tab" />-->
+
+                            <StackLayout>
+                                <ListView x:Name="lvAdpater"
+                                      ItemsSource="{Binding ResultAdapter}"
+                                      HasUnevenRows="True"
+                                      >
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Label Text="{Binding .}" />
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+
+                        </telerikPrimitives:TabViewItem.Content>
+                    </telerikPrimitives:TabViewItem>
+                </telerikPrimitives:RadTabView.Items>
+            </telerikPrimitives:RadTabView>
+            <Button x:Name="btnAnalyse" Text="Ausühren" Clicked="btnAnalyse_Clicked" />
+            <Button x:Name="SaveButton" Text="Save als txt" Clicked="SaveButton_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

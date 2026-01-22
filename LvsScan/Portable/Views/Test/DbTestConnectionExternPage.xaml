@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:vm="clr-namespace:LvsScan.Portable.ViewModels.Test"
+             x:Class="LvsScan.Portable.Views.Test.DbTestConnectionExternPage">
+    
+    <ContentPage.BindingContext>
+        <vm:DbTestConnectionExternViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+
+        <StackLayout>
+            <Button Text="GET LIST" Clicked="Button_Clicked" />
+            <ScrollView>
+                <Label Text="{Binding ConnectionResult}"
+                   FontSize="Small"/>
+            </ScrollView>
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

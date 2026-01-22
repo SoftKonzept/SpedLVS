@@ -1,0 +1,1517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LvsSZGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'LvsSZG.dbo.ABRUF' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="ABRUF">
+          <Key>
+            <PropertyRef Name="DFUENR" />
+            <PropertyRef Name="ACTION" />
+            <PropertyRef Name="EINHEIT" />
+            <PropertyRef Name="QUANTITY" />
+          </Key>
+          <Property Name="LNR" Type="int" />
+          <Property Name="STATUS" Type="char" MaxLength="5" />
+          <Property Name="ABDATLVS" Type="datetime" />
+          <Property Name="ABDAT" Type="datetime" />
+          <Property Name="BEARBLVS" Type="char" MaxLength="3" />
+          <Property Name="BEARB" Type="char" MaxLength="3" />
+          <Property Name="SCHICHT" Type="char" MaxLength="20" />
+          <Property Name="WNR" Type="char" MaxLength="24" />
+          <Property Name="CPNR" Type="char" MaxLength="12" />
+          <Property Name="ERSTELLT" Type="datetime" />
+          <Property Name="MAT" Type="datetime" />
+          <Property Name="EIN" Type="datetime" />
+          <Property Name="UB" Type="char" MaxLength="1" />
+          <Property Name="ABRUFREF" Type="char" MaxLength="30" />
+          <Property Name="BRUTTO" Type="float" />
+          <Property Name="NETTO" Type="float" />
+          <Property Name="ABLADESTELLE" Type="char" MaxLength="20" />
+          <Property Name="STAHLLIEFERANT" Type="char" MaxLength="20" />
+          <Property Name="DFUENR" Type="int" Nullable="false" />
+          <Property Name="ACTION" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="EINHEIT" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="QUANTITY" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'LvsSZG.dbo.ABRUFSPEED' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="ABRUFSPEED">
+          <Key>
+            <PropertyRef Name="SATZNR" />
+            <PropertyRef Name="TESTWERT" />
+          </Key>
+          <Property Name="SATZNR" Type="int" Nullable="false" />
+          <Property Name="TESTWERT" Type="int" Nullable="false" />
+          <Property Name="DURCHLAUF" Type="real" />
+          <Property Name="ZEIT" Type="datetime" />
+          <Property Name="ABLAUF" Type="datetime" />
+          <Property Name="LOCKS" Type="int" />
+          <Property Name="NOFINDS" Type="numeric" Precision="9" Scale="2" />
+          <Property Name="DUMBOOL" Type="char" MaxLength="1" />
+          <Property Name="STRING_1" Type="char" MaxLength="60" />
+          <Property Name="STRING_2" Type="varchar" MaxLength="120" />
+          <Property Name="STRING_B" Type="varchar" MaxLength="4096" />
+        </EntityType>
+        <EntityType Name="ADR">
+          <Key>
+            <PropertyRef Name="INCNR" />
+          </Key>
+          <Property Name="INCNR" Type="int" Nullable="false" />
+          <Property Name="ADRNR" Type="char" MaxLength="30" />
+          <Property Name="SUCHB" Type="char" MaxLength="30" />
+          <Property Name="TYP" Type="char" MaxLength="4" />
+          <Property Name="WERKCODE" Type="char" MaxLength="3" />
+          <Property Name="ERF" Type="datetime" />
+          <Property Name="F1" Type="char" MaxLength="30" />
+          <Property Name="F2" Type="char" MaxLength="30" />
+          <Property Name="F3" Type="char" MaxLength="30" />
+          <Property Name="STRA" Type="char" MaxLength="30" />
+          <Property Name="PLZ" Type="char" MaxLength="10" />
+          <Property Name="ORT" Type="char" MaxLength="30" />
+          <Property Name="AP1" Type="char" MaxLength="30" />
+          <Property Name="T1" Type="char" MaxLength="15" />
+          <Property Name="AP2" Type="char" MaxLength="30" />
+          <Property Name="T2" Type="char" MaxLength="15" />
+          <Property Name="FAX" Type="char" MaxLength="15" />
+          <Property Name="PF" Type="char" MaxLength="15" />
+          <Property Name="AKEK" Type="char" MaxLength="1" />
+          <Property Name="BEM" Type="text" />
+          <Property Name="WAGGON" Type="float" />
+          <Property Name="LKW" Type="float" />
+          <Property Name="VERWEIS" Type="char" MaxLength="30" />
+          <Property Name="KREDKTO" Type="char" MaxLength="7" />
+          <Property Name="DEBKTO" Type="char" MaxLength="7" />
+          <Property Name="PFORM" Type="int" />
+          <Property Name="ALLGT" Type="char" MaxLength="1" />
+          <Property Name="EKAKUB" Type="char" MaxLength="1" />
+          <Property Name="VERWEIS4913" Type="char" MaxLength="30" />
+          <Property Name="VERWEISJOB" Type="char" MaxLength="9" />
+          <Property Name="VERWEIS4905" Type="char" MaxLength="30" />
+          <Property Name="EMAIL" Type="char" MaxLength="60" />
+          <Property Name="RF1" Type="char" MaxLength="30" />
+          <Property Name="RF2" Type="char" MaxLength="30" />
+          <Property Name="RSTRA" Type="char" MaxLength="30" />
+          <Property Name="RPLZ" Type="char" MaxLength="10" />
+          <Property Name="RORT" Type="char" MaxLength="30" />
+          <Property Name="RAP" Type="char" MaxLength="30" />
+          <Property Name="SHORTNAME" Type="char" MaxLength="10" />
+          <Property Name="ZTEXT" Type="text" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'LvsSZG.dbo.ADRGT' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="ADRGT">
+          <Key>
+            <PropertyRef Name="ADRNR" />
+            <PropertyRef Name="GTNR" />
+          </Key>
+          <Property Name="ADRNR" Type="int" Nullable="false" />
+          <Property Name="GTNR" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'LvsSZG.dbo.ART' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="ART">
+          <Key>
+            <PropertyRef Name="STORNO" />
+            <PropertyRef Name="EM2" />
+            <PropertyRef Name="AM2" />
+            <PropertyRef Name="SM2" />
+            <PropertyRef Name="RL" />
+            <PropertyRef Name="RLM" />
+            <PropertyRef Name="IGNVDA" />
+            <PropertyRef Name="IGNVDA2" />
+            <PropertyRef Name="SPL" />
+            <PropertyRef Name="PM" />
+            <PropertyRef Name="ISPROBLEM" />
+            <PropertyRef Name="ABRUFREF" />
+            <PropertyRef Name="AV" />
+            <PropertyRef Name="TRANSAUFTRAGREF" />
+            <PropertyRef Name="TQ" />
+            <PropertyRef Name="UB_SEND" />
+          </Key>
+          <Property Name="LNR" Type="int" />
+          <Property Name="BKZ" Type="int" />
+          <Property Name="DI" Type="float" />
+          <Property Name="BR" Type="float" />
+          <Property Name="LAE" Type="float" />
+          <Property Name="BRU" Type="float" />
+          <Property Name="NET" Type="float" />
+          <Property Name="CPNR" Type="char" MaxLength="12" />
+          <Property Name="EDAT" Type="datetime" />
+          <Property Name="ADAT" Type="datetime" />
+          <Property Name="BEM" Type="text" />
+          <Property Name="ABEM" Type="text" />
+          <Property Name="GT" Type="int" />
+          <Property Name="GTTEXT" Type="char" MaxLength="40" />
+          <Property Name="ENR" Type="char" MaxLength="13" />
+          <Property Name="ANR" Type="char" MaxLength="13" />
+          <Property Name="MENGE" Type="float" />
+          <Property Name="EINHEIT" Type="char" MaxLength="5" />
+          <Property Name="KDNR" Type="char" MaxLength="30" />
+          <Property Name="KUNDEF1" Type="char" MaxLength="30" />
+          <Property Name="UKNR" Type="char" MaxLength="9" />
+          <Property Name="UKF1" Type="char" MaxLength="25" />
+          <Property Name="EMNR" Type="char" MaxLength="9" />
+          <Property Name="EMF1" Type="char" MaxLength="25" />
+          <Property Name="RAL" Type="char" MaxLength="10" />
+          <Property Name="WERT" Type="float" />
+          <Property Name="UPD" Type="datetime" />
+          <Property Name="TBRU" Type="float" />
+          <Property Name="TNET" Type="float" />
+          <Property Name="TMENGE" Type="float" />
+          <Property Name="TBKZ" Type="int" />
+          <Property Name="POS" Type="int" />
+          <Property Name="UB" Type="char" MaxLength="1" />
+          <Property Name="VF" Type="char" MaxLength="1" />
+          <Property Name="SA" Type="char" MaxLength="1" />
+          <Property Name="COILD" Type="float" />
+          <Property Name="VVF" Type="char" MaxLength="8" />
+          <Property Name="KDBEST" Type="char" MaxLength="14" />
+          <Property Name="VNR" Type="char" MaxLength="10" />
+          <Property Name="SCHADEN" Type="char" MaxLength="40" />
+          <Property Name="FRACHT" Type="int" />
+          <Property Name="KDGT" Type="char" MaxLength="10" />
+          <Property Name="REFNR" Type="char" MaxLength="10" />
+          <Property Name="PZ" Type="int" />
+          <Property Name="INFOORT" Type="char" MaxLength="60" />
+          <Property Name="ARTCHECK" Type="char" MaxLength="1" />
+          <Property Name="DFUENR" Type="int" />
+          <Property Name="TRANSNR" Type="int" />
+          <Property Name="LIEFNR" Type="int" />
+          <Property Name="POSNR" Type="int" />
+          <Property Name="EM" Type="char" MaxLength="1" />
+          <Property Name="AM" Type="char" MaxLength="1" />
+          <Property Name="HALLE" Type="int" />
+          <Property Name="REIHE" Type="int" />
+          <Property Name="PREIHE" Type="int" />
+          <Property Name="ARTCHECKA" Type="char" MaxLength="1" />
+          <Property Name="INDART" Type="char" MaxLength="30" />
+          <Property Name="SM" Type="char" MaxLength="1" />
+          <Property Name="ABRUFZEIT" Type="datetime" />
+          <Property Name="WNR" Type="char" MaxLength="24" />
+          <Property Name="AUGE" Type="float" />
+          <Property Name="STORNO" Type="int" Nullable="false" />
+          <Property Name="EM2" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="AM2" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="SM2" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="WNRL" Type="char" MaxLength="24" />
+          <Property Name="RL" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="RLM" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="LSNRL" Type="char" MaxLength="8" />
+          <Property Name="SWNR" Type="char" MaxLength="24" />
+          <Property Name="IGNVDA" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IGNVDA2" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="SPL" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="LNR_VORUB" Type="int" />
+          <Property Name="PREIHEA" Type="char" MaxLength="3" />
+          <Property Name="PM" Type="float" Nullable="false" />
+          <Property Name="ISPROBLEM" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ABRUFREF" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AV" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TRANSAUFTRAGREF" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="TQ" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="UB_SEND" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="REBOOKSPL" Type="datetime" />
+          <Property Name="ABLADESTELLE" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'LvsSZG.dbo.ARTST' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="ARTST">
+          <Key>
+            <PropertyRef Name="STORNO" />
+            <PropertyRef Name="EM2" />
+            <PropertyRef Name="AM2" />
+            <PropertyRef Name="SM2" />
+            <PropertyRef Name="RL" />
+            <PropertyRef Name="RLM" />
+            <PropertyRef Name="IGNVDA" />
+            <PropertyRef Name="IGNVDA2" />
+            <PropertyRef Name="SPL" />
+            <PropertyRef Name="ABRUFREF" />
+            <PropertyRef Name="AV" />
+            <PropertyRef Name="TRANSAUFTRAGREF" />
+            <PropertyRef Name="TQ" />
+            <PropertyRef Name="UB_SEND" />
+          </Key>
+          <Property Name="LNR" Type="int" />
+          <Property Name="BKZ" Type="int" />
+          <Property Name="DI" Type="float" />
+          <Property Name="BR" Type="float" />
+          <Property Name="LAE" Type="float" />
+          <Property Name="BRU" Type="float" />
+          <Property Name="NET" Type="float" />
+          <Property Name="CPNR" Type="char" MaxLength="12" />
+          <Property Name="EDAT" Type="datetime" />
+          <Property Name="ADAT" Type="datetime" />
+          <Property Name="BEM" Type="text" />
+          <Property Name="ABEM" Type="text" />
+          <Property Name="GT" Type="int" />
+          <Property Name="GTTEXT" Type="char" MaxLength="40" />
+          <Property Name="ENR" Type="char" MaxLength="13" />
+          <Property Name="ANR" Type="char" MaxLength="13" />
+          <Property Name="MENGE" Type="float" />
+          <Property Name="EINHEIT" Type="char" MaxLength="5" />
+          <Property Name="KDNR" Type="char" MaxLength="30" />
+          <Property Name="KUNDEF1" Type="char" MaxLength="30" />
+          <Property Name="UKNR" Type="char" MaxLength="9" />
+          <Property Name="UKF1" Type="char" MaxLength="25" />
+          <Property Name="EMNR" Type="char" MaxLength="9" />
+          <Property Name="EMF1" Type="char" MaxLength="25" />
+          <Property Name="RAL" Type="char" MaxLength="10" />
+          <Property Name="WERT" Type="float" />
+          <Property Name="UPD" Type="datetime" />
+          <Property Name="TBRU" Type="float" />
+          <Property Name="TNET" Type="float" />
+          <Property Name="TMENGE" Type="float" />
+          <Property Name="TBKZ" Type="int" />
+          <Property Name="POS" Type="int" />
+          <Property Name="UB" Type="char" MaxLength="1" />
+          <Property Name="VF" Type="char" MaxLength="1" />
+          <Property Name="SA" Type="char" MaxLength="1" />
+          <Property Name="COILD" Type="float" />
+          <Property Name="VVF" Type="char" MaxLength="8" />
+          <Property Name="KDBEST" Type="char" MaxLength="14" />
+          <Property Name="VNR" Type="char" MaxLength="10" />
+          <Property Name="SCHADEN" Type="char" MaxLength="40" />
+          <Property Name="FRACHT" Type="int" />
+          <Property Name="KDGT" Type="char" MaxLength="10" />
+          <Property Name="REFNR" Type="char" MaxLength="10" />
+          <Property Name="PZ" Type="int" />
+          <Property Name="INFOORT" Type="char" MaxLength="60" />
+          <Property Name="ARTCHECK" Type="char" MaxLength="1" />
+          <Property Name="DFUENR" Type="int" />
+          <Property Name="TRANSNR" Type="int" />
+          <Property Name="LIEFNR" Type="int" />
+          <Property Name="POSNR" Type="int" />
+          <Property Name="EM" Type="char" MaxLength="1" />
+          <Property Name="AM" Type="char" MaxLength="1" />
+          <Property Name="HALLE" Type="int" />
+          <Property Name="REIHE" Type="int" />
+          <Property Name="PREIHE" Type="int" />
+          <Property Name="ARTCHECKA" Type="char" MaxLength="1" />
+          <Property Name="INDART" Type="char" MaxLength="30" />
+          <Property Name="SM" Type="char" MaxLength="1" />
+          <Property Name="ABRUFZEIT" Type="datetime" />
+          <Property Name="WNR" Type="char" MaxLength="24" />
+          <Property Name="AUGE" Type="float" />
+          <Property Name="STORNO" Type="int" Nullable="false" />
+          <Property Name="EM2" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="AM2" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="SM2" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="WNRL" Type="char" MaxLength="24" />
+          <Property Name="RL" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="RLM" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="LSNRL" Type="char" MaxLength="8" />
+          <Property Name="IGNVDA" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IGNVDA2" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="SPL" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="LNR_VORUB" Type="int" />
+          <Property Name="PREIHEA" Type="char" MaxLength="3" />
+          <Property Name="ISPROBLEM" Type="char" MaxLength="3" />
+          <Property Name="ABRUFREF" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AV" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TRANSAUFTRAGREF" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="TQ" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="UB_SEND" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="REBOOKSPL" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EA">
+          <Key>
+            <PropertyRef Name="XNR" />
+          </Key>
+          <Property Name="XNR" Type="char" MaxLength="13" Nullable="false" />
+          <Property Name="TYP" Type="char" MaxLength="1" />
+          <Property Name="XDAT" Type="datetime" />
+          <Property Name="KUNR" Type="char" MaxLength="30" />
+          <Property Name="KF1" Type="char" MaxLength="30" />
+          <Property Name="KF2" Type="char" MaxLength="30" />
+          <Property Name="KF3" Type="char" MaxLength="30" />
+          <Property Name="KPLZ" Type="char" MaxLength="10" />
+          <Property Name="KORT" Type="char" MaxLength="30" />
+          <Property Name="VENR" Type="char" MaxLength="30" />
+          <Property Name="VEF1" Type="char" MaxLength="25" />
+          <Property Name="VEF2" Type="char" MaxLength="25" />
+          <Property Name="VEF3" Type="char" MaxLength="25" />
+          <Property Name="VEPLZ" Type="char" MaxLength="10" />
+          <Property Name="VEORT" Type="char" MaxLength="25" />
+          <Property Name="BENR" Type="char" MaxLength="30" />
+          <Property Name="BEF1" Type="char" MaxLength="30" />
+          <Property Name="BEF2" Type="char" MaxLength="30" />
+          <Property Name="BEF3" Type="char" MaxLength="30" />
+          <Property Name="BEPLZ" Type="char" MaxLength="10" />
+          <Property Name="BEORT" Type="char" MaxLength="30" />
+          <Property Name="SPED" Type="char" MaxLength="30" />
+          <Property Name="FZ" Type="char" MaxLength="28" />
+          <Property Name="LSNR" Type="char" MaxLength="10" />
+          <Property Name="LTAG" Type="datetime" />
+          <Property Name="XBEM" Type="text" />
+          <Property Name="GBRU" Type="float" />
+          <Property Name="GNET" Type="float" />
+          <Property Name="EKOEMNR" Type="char" MaxLength="16" />
+          <Property Name="SPNR" Type="char" MaxLength="30" />
+          <Property Name="SPF1" Type="char" MaxLength="30" />
+          <Property Name="SPF2" Type="char" MaxLength="30" />
+          <Property Name="SPF3" Type="char" MaxLength="30" />
+          <Property Name="SPPLZ" Type="char" MaxLength="10" />
+          <Property Name="SPORT" Type="char" MaxLength="30" />
+          <Property Name="FREI" Type="char" MaxLength="1" />
+          <Property Name="UNFREI" Type="char" MaxLength="1" />
+          <Property Name="FAHRER" Type="char" MaxLength="30" />
+          <Property Name="GENNR" Type="char" MaxLength="10" />
+          <Property Name="FABNR" Type="char" MaxLength="10" />
+          <Property Name="ANH" Type="char" MaxLength="10" />
+          <Property Name="ORT" Type="char" MaxLength="9" />
+          <Property Name="VERSADR" Type="char" MaxLength="15" />
+          <Property Name="OF1" Type="char" MaxLength="30" />
+          <Property Name="OF2" Type="char" MaxLength="30" />
+          <Property Name="OF3" Type="char" MaxLength="30" />
+          <Property Name="OORT" Type="char" MaxLength="30" />
+          <Property Name="OPLZ" Type="char" MaxLength="10" />
+          <Property Name="BEARB" Type="char" MaxLength="3" />
+          <Property Name="PRINT" Type="char" MaxLength="1" />
+          <Property Name="DFUENR" Type="int" />
+          <Property Name="TRANSNR" Type="int" />
+          <Property Name="LIEFNR" Type="int" />
+          <Property Name="LIEFERNR" Type="char" MaxLength="20" />
+          <Property Name="XCHECK" Type="char" MaxLength="1" />
+          <Property Name="MAT" Type="datetime" />
+          <Property Name="SLB" Type="char" MaxLength="8" />
+          <Property Name="XCHECKDT" Type="datetime" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'LvsSZG.dbo.GT' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="GT">
+          <Key>
+            <PropertyRef Name="PM" />
+            <PropertyRef Name="GBER" />
+            <PropertyRef Name="DELBLANK" />
+            <PropertyRef Name="AKTIV" />
+            <PropertyRef Name="VERPACKUNGSNR" />
+            <PropertyRef Name="ABSTBOLZNR" />
+            <PropertyRef Name="ME_ABSTBOLZ" />
+            <PropertyRef Name="BESTELLNR" />
+            <PropertyRef Name="ART" />
+            <PropertyRef Name="LIEFERANT" />
+          </Key>
+          <Property Name="NR" Type="int" />
+          <Property Name="TEXT1" Type="char" MaxLength="30" />
+          <Property Name="TEXT2" Type="char" MaxLength="30" />
+          <Property Name="EINHEIT" Type="char" MaxLength="10" />
+          <Property Name="WERTTO" Type="float" />
+          <Property Name="MASSE" Type="int" />
+          <Property Name="VERWEIS" Type="char" MaxLength="30" />
+          <Property Name="BRU" Type="float" />
+          <Property Name="NET" Type="float" />
+          <Property Name="DI" Type="float" />
+          <Property Name="BR" Type="float" />
+          <Property Name="LAE" Type="float" />
+          <Property Name="ORT" Type="char" MaxLength="1" />
+          <Property Name="MINDEST" Type="float" />
+          <Property Name="PM" Type="float" Nullable="false" />
+          <Property Name="GBER" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DELBLANK" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="AKTIV" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="VERPACKUNGSNR" Type="char" MaxLength="14" Nullable="false" />
+          <Property Name="ABSTBOLZNR" Type="char" MaxLength="14" Nullable="false" />
+          <Property Name="ME_ABSTBOLZ" Type="int" Nullable="false" />
+          <Property Name="BESTELLNR" Type="char" MaxLength="14" Nullable="false" />
+          <Property Name="ART" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="LIEFERANT" Type="char" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="KDNR" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="LvsSZGModelStoreContainer">
+          <EntitySet Name="ADR" EntityType="Self.ADR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EA" EntityType="Self.EA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV" EntityType="Self.INV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ABRUF" EntityType="Self.ABRUF" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ABRUF].[LNR] AS [LNR], 
+    [ABRUF].[STATUS] AS [STATUS], 
+    [ABRUF].[ABDATLVS] AS [ABDATLVS], 
+    [ABRUF].[ABDAT] AS [ABDAT], 
+    [ABRUF].[BEARBLVS] AS [BEARBLVS], 
+    [ABRUF].[BEARB] AS [BEARB], 
+    [ABRUF].[SCHICHT] AS [SCHICHT], 
+    [ABRUF].[WNR] AS [WNR], 
+    [ABRUF].[CPNR] AS [CPNR], 
+    [ABRUF].[ERSTELLT] AS [ERSTELLT], 
+    [ABRUF].[MAT] AS [MAT], 
+    [ABRUF].[EIN] AS [EIN], 
+    [ABRUF].[UB] AS [UB], 
+    [ABRUF].[ABRUFREF] AS [ABRUFREF], 
+    [ABRUF].[BRUTTO] AS [BRUTTO], 
+    [ABRUF].[NETTO] AS [NETTO], 
+    [ABRUF].[ABLADESTELLE] AS [ABLADESTELLE], 
+    [ABRUF].[STAHLLIEFERANT] AS [STAHLLIEFERANT], 
+    [ABRUF].[DFUENR] AS [DFUENR], 
+    [ABRUF].[ACTION] AS [ACTION], 
+    [ABRUF].[EINHEIT] AS [EINHEIT], 
+    [ABRUF].[QUANTITY] AS [QUANTITY]
+    FROM [dbo].[ABRUF] AS [ABRUF]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ABRUFSPEED" EntityType="Self.ABRUFSPEED" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ABRUFSPEED].[SATZNR] AS [SATZNR], 
+    [ABRUFSPEED].[TESTWERT] AS [TESTWERT], 
+    [ABRUFSPEED].[DURCHLAUF] AS [DURCHLAUF], 
+    [ABRUFSPEED].[ZEIT] AS [ZEIT], 
+    [ABRUFSPEED].[ABLAUF] AS [ABLAUF], 
+    [ABRUFSPEED].[LOCKS] AS [LOCKS], 
+    [ABRUFSPEED].[NOFINDS] AS [NOFINDS], 
+    [ABRUFSPEED].[DUMBOOL] AS [DUMBOOL], 
+    [ABRUFSPEED].[STRING_1] AS [STRING_1], 
+    [ABRUFSPEED].[STRING_2] AS [STRING_2], 
+    [ABRUFSPEED].[STRING_B] AS [STRING_B]
+    FROM [dbo].[ABRUFSPEED] AS [ABRUFSPEED]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ADRGT" EntityType="Self.ADRGT" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ADRGT].[ADRNR] AS [ADRNR], 
+    [ADRGT].[GTNR] AS [GTNR]
+    FROM [dbo].[ADRGT] AS [ADRGT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ART" EntityType="Self.ART" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ART].[LNR] AS [LNR], 
+    [ART].[BKZ] AS [BKZ], 
+    [ART].[DI] AS [DI], 
+    [ART].[BR] AS [BR], 
+    [ART].[LAE] AS [LAE], 
+    [ART].[BRU] AS [BRU], 
+    [ART].[NET] AS [NET], 
+    [ART].[CPNR] AS [CPNR], 
+    [ART].[EDAT] AS [EDAT], 
+    [ART].[ADAT] AS [ADAT], 
+    [ART].[BEM] AS [BEM], 
+    [ART].[ABEM] AS [ABEM], 
+    [ART].[GT] AS [GT], 
+    [ART].[GTTEXT] AS [GTTEXT], 
+    [ART].[ENR] AS [ENR], 
+    [ART].[ANR] AS [ANR], 
+    [ART].[MENGE] AS [MENGE], 
+    [ART].[EINHEIT] AS [EINHEIT], 
+    [ART].[KDNR] AS [KDNR], 
+    [ART].[KUNDEF1] AS [KUNDEF1], 
+    [ART].[UKNR] AS [UKNR], 
+    [ART].[UKF1] AS [UKF1], 
+    [ART].[EMNR] AS [EMNR], 
+    [ART].[EMF1] AS [EMF1], 
+    [ART].[RAL] AS [RAL], 
+    [ART].[WERT] AS [WERT], 
+    [ART].[UPD] AS [UPD], 
+    [ART].[TBRU] AS [TBRU], 
+    [ART].[TNET] AS [TNET], 
+    [ART].[TMENGE] AS [TMENGE], 
+    [ART].[TBKZ] AS [TBKZ], 
+    [ART].[POS] AS [POS], 
+    [ART].[UB] AS [UB], 
+    [ART].[VF] AS [VF], 
+    [ART].[SA] AS [SA], 
+    [ART].[COILD] AS [COILD], 
+    [ART].[VVF] AS [VVF], 
+    [ART].[KDBEST] AS [KDBEST], 
+    [ART].[VNR] AS [VNR], 
+    [ART].[SCHADEN] AS [SCHADEN], 
+    [ART].[FRACHT] AS [FRACHT], 
+    [ART].[KDGT] AS [KDGT], 
+    [ART].[REFNR] AS [REFNR], 
+    [ART].[PZ] AS [PZ], 
+    [ART].[INFOORT] AS [INFOORT], 
+    [ART].[ARTCHECK] AS [ARTCHECK], 
+    [ART].[DFUENR] AS [DFUENR], 
+    [ART].[TRANSNR] AS [TRANSNR], 
+    [ART].[LIEFNR] AS [LIEFNR], 
+    [ART].[POSNR] AS [POSNR], 
+    [ART].[EM] AS [EM], 
+    [ART].[AM] AS [AM], 
+    [ART].[HALLE] AS [HALLE], 
+    [ART].[REIHE] AS [REIHE], 
+    [ART].[PREIHE] AS [PREIHE], 
+    [ART].[ARTCHECKA] AS [ARTCHECKA], 
+    [ART].[INDART] AS [INDART], 
+    [ART].[SM] AS [SM], 
+    [ART].[ABRUFZEIT] AS [ABRUFZEIT], 
+    [ART].[WNR] AS [WNR], 
+    [ART].[AUGE] AS [AUGE], 
+    [ART].[STORNO] AS [STORNO], 
+    [ART].[EM2] AS [EM2], 
+    [ART].[AM2] AS [AM2], 
+    [ART].[SM2] AS [SM2], 
+    [ART].[WNRL] AS [WNRL], 
+    [ART].[RL] AS [RL], 
+    [ART].[RLM] AS [RLM], 
+    [ART].[LSNRL] AS [LSNRL], 
+    [ART].[SWNR] AS [SWNR], 
+    [ART].[IGNVDA] AS [IGNVDA], 
+    [ART].[IGNVDA2] AS [IGNVDA2], 
+    [ART].[SPL] AS [SPL], 
+    [ART].[LNR_VORUB] AS [LNR_VORUB], 
+    [ART].[PREIHEA] AS [PREIHEA], 
+    [ART].[PM] AS [PM], 
+    [ART].[ISPROBLEM] AS [ISPROBLEM], 
+    [ART].[ABRUFREF] AS [ABRUFREF], 
+    [ART].[AV] AS [AV], 
+    [ART].[TRANSAUFTRAGREF] AS [TRANSAUFTRAGREF], 
+    [ART].[TQ] AS [TQ], 
+    [ART].[UB_SEND] AS [UB_SEND], 
+    [ART].[REBOOKSPL] AS [REBOOKSPL], 
+    [ART].[ABLADESTELLE] AS [ABLADESTELLE]
+    FROM [dbo].[ART] AS [ART]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ARTST" EntityType="Self.ARTST" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ARTST].[LNR] AS [LNR], 
+    [ARTST].[BKZ] AS [BKZ], 
+    [ARTST].[DI] AS [DI], 
+    [ARTST].[BR] AS [BR], 
+    [ARTST].[LAE] AS [LAE], 
+    [ARTST].[BRU] AS [BRU], 
+    [ARTST].[NET] AS [NET], 
+    [ARTST].[CPNR] AS [CPNR], 
+    [ARTST].[EDAT] AS [EDAT], 
+    [ARTST].[ADAT] AS [ADAT], 
+    [ARTST].[BEM] AS [BEM], 
+    [ARTST].[ABEM] AS [ABEM], 
+    [ARTST].[GT] AS [GT], 
+    [ARTST].[GTTEXT] AS [GTTEXT], 
+    [ARTST].[ENR] AS [ENR], 
+    [ARTST].[ANR] AS [ANR], 
+    [ARTST].[MENGE] AS [MENGE], 
+    [ARTST].[EINHEIT] AS [EINHEIT], 
+    [ARTST].[KDNR] AS [KDNR], 
+    [ARTST].[KUNDEF1] AS [KUNDEF1], 
+    [ARTST].[UKNR] AS [UKNR], 
+    [ARTST].[UKF1] AS [UKF1], 
+    [ARTST].[EMNR] AS [EMNR], 
+    [ARTST].[EMF1] AS [EMF1], 
+    [ARTST].[RAL] AS [RAL], 
+    [ARTST].[WERT] AS [WERT], 
+    [ARTST].[UPD] AS [UPD], 
+    [ARTST].[TBRU] AS [TBRU], 
+    [ARTST].[TNET] AS [TNET], 
+    [ARTST].[TMENGE] AS [TMENGE], 
+    [ARTST].[TBKZ] AS [TBKZ], 
+    [ARTST].[POS] AS [POS], 
+    [ARTST].[UB] AS [UB], 
+    [ARTST].[VF] AS [VF], 
+    [ARTST].[SA] AS [SA], 
+    [ARTST].[COILD] AS [COILD], 
+    [ARTST].[VVF] AS [VVF], 
+    [ARTST].[KDBEST] AS [KDBEST], 
+    [ARTST].[VNR] AS [VNR], 
+    [ARTST].[SCHADEN] AS [SCHADEN], 
+    [ARTST].[FRACHT] AS [FRACHT], 
+    [ARTST].[KDGT] AS [KDGT], 
+    [ARTST].[REFNR] AS [REFNR], 
+    [ARTST].[PZ] AS [PZ], 
+    [ARTST].[INFOORT] AS [INFOORT], 
+    [ARTST].[ARTCHECK] AS [ARTCHECK], 
+    [ARTST].[DFUENR] AS [DFUENR], 
+    [ARTST].[TRANSNR] AS [TRANSNR], 
+    [ARTST].[LIEFNR] AS [LIEFNR], 
+    [ARTST].[POSNR] AS [POSNR], 
+    [ARTST].[EM] AS [EM], 
+    [ARTST].[AM] AS [AM], 
+    [ARTST].[HALLE] AS [HALLE], 
+    [ARTST].[REIHE] AS [REIHE], 
+    [ARTST].[PREIHE] AS [PREIHE], 
+    [ARTST].[ARTCHECKA] AS [ARTCHECKA], 
+    [ARTST].[INDART] AS [INDART], 
+    [ARTST].[SM] AS [SM], 
+    [ARTST].[ABRUFZEIT] AS [ABRUFZEIT], 
+    [ARTST].[WNR] AS [WNR], 
+    [ARTST].[AUGE] AS [AUGE], 
+    [ARTST].[STORNO] AS [STORNO], 
+    [ARTST].[EM2] AS [EM2], 
+    [ARTST].[AM2] AS [AM2], 
+    [ARTST].[SM2] AS [SM2], 
+    [ARTST].[WNRL] AS [WNRL], 
+    [ARTST].[RL] AS [RL], 
+    [ARTST].[RLM] AS [RLM], 
+    [ARTST].[LSNRL] AS [LSNRL], 
+    [ARTST].[IGNVDA] AS [IGNVDA], 
+    [ARTST].[IGNVDA2] AS [IGNVDA2], 
+    [ARTST].[SPL] AS [SPL], 
+    [ARTST].[LNR_VORUB] AS [LNR_VORUB], 
+    [ARTST].[PREIHEA] AS [PREIHEA], 
+    [ARTST].[ISPROBLEM] AS [ISPROBLEM], 
+    [ARTST].[ABRUFREF] AS [ABRUFREF], 
+    [ARTST].[AV] AS [AV], 
+    [ARTST].[TRANSAUFTRAGREF] AS [TRANSAUFTRAGREF], 
+    [ARTST].[TQ] AS [TQ], 
+    [ARTST].[UB_SEND] AS [UB_SEND], 
+    [ARTST].[REBOOKSPL] AS [REBOOKSPL]
+    FROM [dbo].[ARTST] AS [ARTST]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GT" EntityType="Self.GT" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GT].[NR] AS [NR], 
+    [GT].[TEXT1] AS [TEXT1], 
+    [GT].[TEXT2] AS [TEXT2], 
+    [GT].[EINHEIT] AS [EINHEIT], 
+    [GT].[WERTTO] AS [WERTTO], 
+    [GT].[MASSE] AS [MASSE], 
+    [GT].[VERWEIS] AS [VERWEIS], 
+    [GT].[BRU] AS [BRU], 
+    [GT].[NET] AS [NET], 
+    [GT].[DI] AS [DI], 
+    [GT].[BR] AS [BR], 
+    [GT].[LAE] AS [LAE], 
+    [GT].[ORT] AS [ORT], 
+    [GT].[MINDEST] AS [MINDEST], 
+    [GT].[PM] AS [PM], 
+    [GT].[GBER] AS [GBER], 
+    [GT].[DELBLANK] AS [DELBLANK], 
+    [GT].[AKTIV] AS [AKTIV], 
+    [GT].[VERPACKUNGSNR] AS [VERPACKUNGSNR], 
+    [GT].[ABSTBOLZNR] AS [ABSTBOLZNR], 
+    [GT].[ME_ABSTBOLZ] AS [ME_ABSTBOLZ], 
+    [GT].[BESTELLNR] AS [BESTELLNR], 
+    [GT].[ART] AS [ART], 
+    [GT].[LIEFERANT] AS [LIEFERANT]
+    FROM [dbo].[GT] AS [GT]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LvsSZGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="INV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="KDNR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ABRUF">
+          <Key>
+            <PropertyRef Name="DFUENR" />
+            <PropertyRef Name="ACTION" />
+            <PropertyRef Name="EINHEIT" />
+            <PropertyRef Name="QUANTITY" />
+          </Key>
+          <Property Name="LNR" Type="Int32" />
+          <Property Name="STATUS" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="ABDATLVS" Type="DateTime" Precision="3" />
+          <Property Name="ABDAT" Type="DateTime" Precision="3" />
+          <Property Name="BEARBLVS" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="BEARB" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="SCHICHT" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="WNR" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="CPNR" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="ERSTELLT" Type="DateTime" Precision="3" />
+          <Property Name="MAT" Type="DateTime" Precision="3" />
+          <Property Name="EIN" Type="DateTime" Precision="3" />
+          <Property Name="UB" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ABRUFREF" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="BRUTTO" Type="Double" />
+          <Property Name="NETTO" Type="Double" />
+          <Property Name="ABLADESTELLE" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="STAHLLIEFERANT" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="DFUENR" Type="Int32" Nullable="false" />
+          <Property Name="ACTION" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="EINHEIT" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="QUANTITY" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ABRUFSPEED">
+          <Key>
+            <PropertyRef Name="SATZNR" />
+            <PropertyRef Name="TESTWERT" />
+          </Key>
+          <Property Name="SATZNR" Type="Int32" Nullable="false" />
+          <Property Name="TESTWERT" Type="Int32" Nullable="false" />
+          <Property Name="DURCHLAUF" Type="Single" />
+          <Property Name="ZEIT" Type="DateTime" Precision="3" />
+          <Property Name="ABLAUF" Type="DateTime" Precision="3" />
+          <Property Name="LOCKS" Type="Int32" />
+          <Property Name="NOFINDS" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="DUMBOOL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="STRING_1" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="STRING_2" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="STRING_B" Type="String" MaxLength="4096" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ADRGT">
+          <Key>
+            <PropertyRef Name="ADRNR" />
+            <PropertyRef Name="GTNR" />
+          </Key>
+          <Property Name="ADRNR" Type="Int32" Nullable="false" />
+          <Property Name="GTNR" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ART">
+          <Key>
+            <PropertyRef Name="STORNO" />
+            <PropertyRef Name="EM2" />
+            <PropertyRef Name="AM2" />
+            <PropertyRef Name="SM2" />
+            <PropertyRef Name="RL" />
+            <PropertyRef Name="RLM" />
+            <PropertyRef Name="IGNVDA" />
+            <PropertyRef Name="IGNVDA2" />
+            <PropertyRef Name="SPL" />
+            <PropertyRef Name="PM" />
+            <PropertyRef Name="ISPROBLEM" />
+            <PropertyRef Name="ABRUFREF" />
+            <PropertyRef Name="AV" />
+            <PropertyRef Name="TRANSAUFTRAGREF" />
+            <PropertyRef Name="TQ" />
+            <PropertyRef Name="UB_SEND" />
+          </Key>
+          <Property Name="LNR" Type="Int32" />
+          <Property Name="BKZ" Type="Int32" />
+          <Property Name="DI" Type="Double" />
+          <Property Name="BR" Type="Double" />
+          <Property Name="LAE" Type="Double" />
+          <Property Name="BRU" Type="Double" />
+          <Property Name="NET" Type="Double" />
+          <Property Name="CPNR" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="EDAT" Type="DateTime" Precision="3" />
+          <Property Name="ADAT" Type="DateTime" Precision="3" />
+          <Property Name="BEM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ABEM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GT" Type="Int32" />
+          <Property Name="GTTEXT" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="ENR" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="ANR" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="MENGE" Type="Double" />
+          <Property Name="EINHEIT" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="KDNR" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="KUNDEF1" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="UKNR" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="UKF1" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="EMNR" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="EMF1" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="RAL" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WERT" Type="Double" />
+          <Property Name="UPD" Type="DateTime" Precision="3" />
+          <Property Name="TBRU" Type="Double" />
+          <Property Name="TNET" Type="Double" />
+          <Property Name="TMENGE" Type="Double" />
+          <Property Name="TBKZ" Type="Int32" />
+          <Property Name="POS" Type="Int32" />
+          <Property Name="UB" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VF" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="SA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="COILD" Type="Double" />
+          <Property Name="VVF" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="KDBEST" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="VNR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="SCHADEN" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="FRACHT" Type="Int32" />
+          <Property Name="KDGT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="REFNR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="PZ" Type="Int32" />
+          <Property Name="INFOORT" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="ARTCHECK" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DFUENR" Type="Int32" />
+          <Property Name="TRANSNR" Type="Int32" />
+          <Property Name="LIEFNR" Type="Int32" />
+          <Property Name="POSNR" Type="Int32" />
+          <Property Name="EM" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="AM" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="HALLE" Type="Int32" />
+          <Property Name="REIHE" Type="Int32" />
+          <Property Name="PREIHE" Type="Int32" />
+          <Property Name="ARTCHECKA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="INDART" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="SM" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ABRUFZEIT" Type="DateTime" Precision="3" />
+          <Property Name="WNR" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="AUGE" Type="Double" />
+          <Property Name="STORNO" Type="Int32" Nullable="false" />
+          <Property Name="EM2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AM2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SM2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="WNRL" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="RL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="RLM" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LSNRL" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="SWNR" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="IGNVDA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IGNVDA2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SPL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LNR_VORUB" Type="Int32" />
+          <Property Name="PREIHEA" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="PM" Type="Double" Nullable="false" />
+          <Property Name="ISPROBLEM" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ABRUFREF" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AV" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TRANSAUFTRAGREF" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TQ" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UB_SEND" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="REBOOKSPL" Type="DateTime" Precision="3" />
+          <Property Name="ABLADESTELLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ARTST">
+          <Key>
+            <PropertyRef Name="STORNO" />
+            <PropertyRef Name="EM2" />
+            <PropertyRef Name="AM2" />
+            <PropertyRef Name="SM2" />
+            <PropertyRef Name="RL" />
+            <PropertyRef Name="RLM" />
+            <PropertyRef Name="IGNVDA" />
+            <PropertyRef Name="IGNVDA2" />
+            <PropertyRef Name="SPL" />
+            <PropertyRef Name="ABRUFREF" />
+            <PropertyRef Name="AV" />
+            <PropertyRef Name="TRANSAUFTRAGREF" />
+            <PropertyRef Name="TQ" />
+            <PropertyRef Name="UB_SEND" />
+          </Key>
+          <Property Name="LNR" Type="Int32" />
+          <Property Name="BKZ" Type="Int32" />
+          <Property Name="DI" Type="Double" />
+          <Property Name="BR" Type="Double" />
+          <Property Name="LAE" Type="Double" />
+          <Property Name="BRU" Type="Double" />
+          <Property Name="NET" Type="Double" />
+          <Property Name="CPNR" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="EDAT" Type="DateTime" Precision="3" />
+          <Property Name="ADAT" Type="DateTime" Precision="3" />
+          <Property Name="BEM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ABEM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GT" Type="Int32" />
+          <Property Name="GTTEXT" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="ENR" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="ANR" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="MENGE" Type="Double" />
+          <Property Name="EINHEIT" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="KDNR" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="KUNDEF1" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="UKNR" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="UKF1" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="EMNR" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="EMF1" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="RAL" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WERT" Type="Double" />
+          <Property Name="UPD" Type="DateTime" Precision="3" />
+          <Property Name="TBRU" Type="Double" />
+          <Property Name="TNET" Type="Double" />
+          <Property Name="TMENGE" Type="Double" />
+          <Property Name="TBKZ" Type="Int32" />
+          <Property Name="POS" Type="Int32" />
+          <Property Name="UB" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VF" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="SA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="COILD" Type="Double" />
+          <Property Name="VVF" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="KDBEST" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="VNR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="SCHADEN" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+          <Property Name="FRACHT" Type="Int32" />
+          <Property Name="KDGT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="REFNR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="PZ" Type="Int32" />
+          <Property Name="INFOORT" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="ARTCHECK" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DFUENR" Type="Int32" />
+          <Property Name="TRANSNR" Type="Int32" />
+          <Property Name="LIEFNR" Type="Int32" />
+          <Property Name="POSNR" Type="Int32" />
+          <Property Name="EM" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="AM" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="HALLE" Type="Int32" />
+          <Property Name="REIHE" Type="Int32" />
+          <Property Name="PREIHE" Type="Int32" />
+          <Property Name="ARTCHECKA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="INDART" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="SM" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ABRUFZEIT" Type="DateTime" Precision="3" />
+          <Property Name="WNR" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="AUGE" Type="Double" />
+          <Property Name="STORNO" Type="Int32" Nullable="false" />
+          <Property Name="EM2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AM2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SM2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="WNRL" Type="String" MaxLength="24" FixedLength="true" Unicode="false" />
+          <Property Name="RL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="RLM" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LSNRL" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="IGNVDA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IGNVDA2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SPL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LNR_VORUB" Type="Int32" />
+          <Property Name="PREIHEA" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="ISPROBLEM" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="ABRUFREF" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AV" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TRANSAUFTRAGREF" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TQ" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UB_SEND" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="REBOOKSPL" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GT">
+          <Key>
+            <PropertyRef Name="PM" />
+            <PropertyRef Name="GBER" />
+            <PropertyRef Name="DELBLANK" />
+            <PropertyRef Name="AKTIV" />
+            <PropertyRef Name="VERPACKUNGSNR" />
+            <PropertyRef Name="ABSTBOLZNR" />
+            <PropertyRef Name="ME_ABSTBOLZ" />
+            <PropertyRef Name="BESTELLNR" />
+            <PropertyRef Name="ART" />
+            <PropertyRef Name="LIEFERANT" />
+          </Key>
+          <Property Name="NR" Type="Int32" />
+          <Property Name="TEXT1" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="TEXT2" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="EINHEIT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WERTTO" Type="Double" />
+          <Property Name="MASSE" Type="Int32" />
+          <Property Name="VERWEIS" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="BRU" Type="Double" />
+          <Property Name="NET" Type="Double" />
+          <Property Name="DI" Type="Double" />
+          <Property Name="BR" Type="Double" />
+          <Property Name="LAE" Type="Double" />
+          <Property Name="ORT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MINDEST" Type="Double" />
+          <Property Name="PM" Type="Double" Nullable="false" />
+          <Property Name="GBER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DELBLANK" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AKTIV" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="VERPACKUNGSNR" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ABSTBOLZNR" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ME_ABSTBOLZ" Type="Int32" Nullable="false" />
+          <Property Name="BESTELLNR" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ART" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LIEFERANT" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="LvsSZGEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="INV" EntityType="Self.INV" />
+          <EntitySet Name="ABRUF" EntityType="Self.ABRUF" />
+          <EntitySet Name="ABRUFSPEED" EntityType="Self.ABRUFSPEED" />
+          <EntitySet Name="ADRGT" EntityType="Self.ADRGT" />
+          <EntitySet Name="ART" EntityType="Self.ART" />
+          <EntitySet Name="ARTST" EntityType="Self.ARTST" />
+          <EntitySet Name="GT" EntityType="Self.GT" />
+          <EntitySet Name="EAs" EntityType="LvsSZGModel.EA" />
+          <EntitySet Name="ADRs" EntityType="LvsSZGModel.ADR" />
+        </EntityContainer>
+        <EntityType Name="EA">
+          <Key>
+            <PropertyRef Name="XNR" />
+          </Key>
+          <Property Name="XNR" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="TYP" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="XDAT" Type="DateTime" Precision="3" />
+          <Property Name="KUNR" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="KF1" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="KF2" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="KF3" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="KPLZ" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="KORT" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="VENR" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="VEF1" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="VEF2" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="VEF3" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="VEPLZ" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="VEORT" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="BENR" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="BEF1" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="BEF2" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="BEF3" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="BEPLZ" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="BEORT" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="SPED" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="FZ" Type="String" MaxLength="28" FixedLength="true" Unicode="false" />
+          <Property Name="LSNR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="LTAG" Type="DateTime" Precision="3" />
+          <Property Name="XBEM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GBRU" Type="Double" />
+          <Property Name="GNET" Type="Double" />
+          <Property Name="EKOEMNR" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="SPNR" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="SPF1" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="SPF2" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="SPF3" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="SPPLZ" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="SPORT" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="FREI" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="UNFREI" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FAHRER" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="GENNR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="FABNR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ANH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ORT" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="VERSADR" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="OF1" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="OF2" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="OF3" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="OORT" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="OPLZ" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="BEARB" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="PRINT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DFUENR" Type="Int32" />
+          <Property Name="TRANSNR" Type="Int32" />
+          <Property Name="LIEFNR" Type="Int32" />
+          <Property Name="LIEFERNR" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="XCHECK" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MAT" Type="DateTime" Precision="3" />
+          <Property Name="SLB" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="XCHECKDT" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ADR">
+          <Key>
+            <PropertyRef Name="INCNR" />
+          </Key>
+          <Property Name="INCNR" Type="Int32" Nullable="false" />
+          <Property Name="ADRNR" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="SUCHB" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="TYP" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="WERKCODE" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="ERF" Type="DateTime" Precision="3" />
+          <Property Name="F1" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="F2" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="F3" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="STRA" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="PLZ" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ORT" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="AP1" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="T1" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="AP2" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="T2" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="FAX" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="PF" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="AKEK" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="BEM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="WAGGON" Type="Double" />
+          <Property Name="LKW" Type="Double" />
+          <Property Name="VERWEIS" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="KREDKTO" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="DEBKTO" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="PFORM" Type="Int32" />
+          <Property Name="ALLGT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EKAKUB" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VERWEIS4913" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="VERWEISJOB" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="VERWEIS4905" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="RF1" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="RF2" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="RSTRA" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="RPLZ" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="RORT" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="RAP" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="SHORTNAME" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ZTEXT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LvsSZGModelStoreContainer" CdmEntityContainer="LvsSZGEntities">
+          <EntitySetMapping Name="INV">
+            <EntityTypeMapping TypeName="LvsSZGModel.INV">
+              <MappingFragment StoreEntitySet="INV">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="KDNR" ColumnName="KDNR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ABRUF">
+            <EntityTypeMapping TypeName="LvsSZGModel.ABRUF">
+              <MappingFragment StoreEntitySet="ABRUF">
+                <ScalarProperty Name="LNR" ColumnName="LNR" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="ABDATLVS" ColumnName="ABDATLVS" />
+                <ScalarProperty Name="ABDAT" ColumnName="ABDAT" />
+                <ScalarProperty Name="BEARBLVS" ColumnName="BEARBLVS" />
+                <ScalarProperty Name="BEARB" ColumnName="BEARB" />
+                <ScalarProperty Name="SCHICHT" ColumnName="SCHICHT" />
+                <ScalarProperty Name="WNR" ColumnName="WNR" />
+                <ScalarProperty Name="CPNR" ColumnName="CPNR" />
+                <ScalarProperty Name="ERSTELLT" ColumnName="ERSTELLT" />
+                <ScalarProperty Name="MAT" ColumnName="MAT" />
+                <ScalarProperty Name="EIN" ColumnName="EIN" />
+                <ScalarProperty Name="UB" ColumnName="UB" />
+                <ScalarProperty Name="ABRUFREF" ColumnName="ABRUFREF" />
+                <ScalarProperty Name="BRUTTO" ColumnName="BRUTTO" />
+                <ScalarProperty Name="NETTO" ColumnName="NETTO" />
+                <ScalarProperty Name="ABLADESTELLE" ColumnName="ABLADESTELLE" />
+                <ScalarProperty Name="STAHLLIEFERANT" ColumnName="STAHLLIEFERANT" />
+                <ScalarProperty Name="DFUENR" ColumnName="DFUENR" />
+                <ScalarProperty Name="ACTION" ColumnName="ACTION" />
+                <ScalarProperty Name="EINHEIT" ColumnName="EINHEIT" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ABRUFSPEED">
+            <EntityTypeMapping TypeName="LvsSZGModel.ABRUFSPEED">
+              <MappingFragment StoreEntitySet="ABRUFSPEED">
+                <ScalarProperty Name="SATZNR" ColumnName="SATZNR" />
+                <ScalarProperty Name="TESTWERT" ColumnName="TESTWERT" />
+                <ScalarProperty Name="DURCHLAUF" ColumnName="DURCHLAUF" />
+                <ScalarProperty Name="ZEIT" ColumnName="ZEIT" />
+                <ScalarProperty Name="ABLAUF" ColumnName="ABLAUF" />
+                <ScalarProperty Name="LOCKS" ColumnName="LOCKS" />
+                <ScalarProperty Name="NOFINDS" ColumnName="NOFINDS" />
+                <ScalarProperty Name="DUMBOOL" ColumnName="DUMBOOL" />
+                <ScalarProperty Name="STRING_1" ColumnName="STRING_1" />
+                <ScalarProperty Name="STRING_2" ColumnName="STRING_2" />
+                <ScalarProperty Name="STRING_B" ColumnName="STRING_B" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADRGT">
+            <EntityTypeMapping TypeName="LvsSZGModel.ADRGT">
+              <MappingFragment StoreEntitySet="ADRGT">
+                <ScalarProperty Name="ADRNR" ColumnName="ADRNR" />
+                <ScalarProperty Name="GTNR" ColumnName="GTNR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ART">
+            <EntityTypeMapping TypeName="LvsSZGModel.ART">
+              <MappingFragment StoreEntitySet="ART">
+                <ScalarProperty Name="LNR" ColumnName="LNR" />
+                <ScalarProperty Name="BKZ" ColumnName="BKZ" />
+                <ScalarProperty Name="DI" ColumnName="DI" />
+                <ScalarProperty Name="BR" ColumnName="BR" />
+                <ScalarProperty Name="LAE" ColumnName="LAE" />
+                <ScalarProperty Name="BRU" ColumnName="BRU" />
+                <ScalarProperty Name="NET" ColumnName="NET" />
+                <ScalarProperty Name="CPNR" ColumnName="CPNR" />
+                <ScalarProperty Name="EDAT" ColumnName="EDAT" />
+                <ScalarProperty Name="ADAT" ColumnName="ADAT" />
+                <ScalarProperty Name="BEM" ColumnName="BEM" />
+                <ScalarProperty Name="ABEM" ColumnName="ABEM" />
+                <ScalarProperty Name="GT" ColumnName="GT" />
+                <ScalarProperty Name="GTTEXT" ColumnName="GTTEXT" />
+                <ScalarProperty Name="ENR" ColumnName="ENR" />
+                <ScalarProperty Name="ANR" ColumnName="ANR" />
+                <ScalarProperty Name="MENGE" ColumnName="MENGE" />
+                <ScalarProperty Name="EINHEIT" ColumnName="EINHEIT" />
+                <ScalarProperty Name="KDNR" ColumnName="KDNR" />
+                <ScalarProperty Name="KUNDEF1" ColumnName="KUNDEF1" />
+                <ScalarProperty Name="UKNR" ColumnName="UKNR" />
+                <ScalarProperty Name="UKF1" ColumnName="UKF1" />
+                <ScalarProperty Name="EMNR" ColumnName="EMNR" />
+                <ScalarProperty Name="EMF1" ColumnName="EMF1" />
+                <ScalarProperty Name="RAL" ColumnName="RAL" />
+                <ScalarProperty Name="WERT" ColumnName="WERT" />
+                <ScalarProperty Name="UPD" ColumnName="UPD" />
+                <ScalarProperty Name="TBRU" ColumnName="TBRU" />
+                <ScalarProperty Name="TNET" ColumnName="TNET" />
+                <ScalarProperty Name="TMENGE" ColumnName="TMENGE" />
+                <ScalarProperty Name="TBKZ" ColumnName="TBKZ" />
+                <ScalarProperty Name="POS" ColumnName="POS" />
+                <ScalarProperty Name="UB" ColumnName="UB" />
+                <ScalarProperty Name="VF" ColumnName="VF" />
+                <ScalarProperty Name="SA" ColumnName="SA" />
+                <ScalarProperty Name="COILD" ColumnName="COILD" />
+                <ScalarProperty Name="VVF" ColumnName="VVF" />
+                <ScalarProperty Name="KDBEST" ColumnName="KDBEST" />
+                <ScalarProperty Name="VNR" ColumnName="VNR" />
+                <ScalarProperty Name="SCHADEN" ColumnName="SCHADEN" />
+                <ScalarProperty Name="FRACHT" ColumnName="FRACHT" />
+                <ScalarProperty Name="KDGT" ColumnName="KDGT" />
+                <ScalarProperty Name="REFNR" ColumnName="REFNR" />
+                <ScalarProperty Name="PZ" ColumnName="PZ" />
+                <ScalarProperty Name="INFOORT" ColumnName="INFOORT" />
+                <ScalarProperty Name="ARTCHECK" ColumnName="ARTCHECK" />
+                <ScalarProperty Name="DFUENR" ColumnName="DFUENR" />
+                <ScalarProperty Name="TRANSNR" ColumnName="TRANSNR" />
+                <ScalarProperty Name="LIEFNR" ColumnName="LIEFNR" />
+                <ScalarProperty Name="POSNR" ColumnName="POSNR" />
+                <ScalarProperty Name="EM" ColumnName="EM" />
+                <ScalarProperty Name="AM" ColumnName="AM" />
+                <ScalarProperty Name="HALLE" ColumnName="HALLE" />
+                <ScalarProperty Name="REIHE" ColumnName="REIHE" />
+                <ScalarProperty Name="PREIHE" ColumnName="PREIHE" />
+                <ScalarProperty Name="ARTCHECKA" ColumnName="ARTCHECKA" />
+                <ScalarProperty Name="INDART" ColumnName="INDART" />
+                <ScalarProperty Name="SM" ColumnName="SM" />
+                <ScalarProperty Name="ABRUFZEIT" ColumnName="ABRUFZEIT" />
+                <ScalarProperty Name="WNR" ColumnName="WNR" />
+                <ScalarProperty Name="AUGE" ColumnName="AUGE" />
+                <ScalarProperty Name="STORNO" ColumnName="STORNO" />
+                <ScalarProperty Name="EM2" ColumnName="EM2" />
+                <ScalarProperty Name="AM2" ColumnName="AM2" />
+                <ScalarProperty Name="SM2" ColumnName="SM2" />
+                <ScalarProperty Name="WNRL" ColumnName="WNRL" />
+                <ScalarProperty Name="RL" ColumnName="RL" />
+                <ScalarProperty Name="RLM" ColumnName="RLM" />
+                <ScalarProperty Name="LSNRL" ColumnName="LSNRL" />
+                <ScalarProperty Name="SWNR" ColumnName="SWNR" />
+                <ScalarProperty Name="IGNVDA" ColumnName="IGNVDA" />
+                <ScalarProperty Name="IGNVDA2" ColumnName="IGNVDA2" />
+                <ScalarProperty Name="SPL" ColumnName="SPL" />
+                <ScalarProperty Name="LNR_VORUB" ColumnName="LNR_VORUB" />
+                <ScalarProperty Name="PREIHEA" ColumnName="PREIHEA" />
+                <ScalarProperty Name="PM" ColumnName="PM" />
+                <ScalarProperty Name="ISPROBLEM" ColumnName="ISPROBLEM" />
+                <ScalarProperty Name="ABRUFREF" ColumnName="ABRUFREF" />
+                <ScalarProperty Name="AV" ColumnName="AV" />
+                <ScalarProperty Name="TRANSAUFTRAGREF" ColumnName="TRANSAUFTRAGREF" />
+                <ScalarProperty Name="TQ" ColumnName="TQ" />
+                <ScalarProperty Name="UB_SEND" ColumnName="UB_SEND" />
+                <ScalarProperty Name="REBOOKSPL" ColumnName="REBOOKSPL" />
+                <ScalarProperty Name="ABLADESTELLE" ColumnName="ABLADESTELLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ARTST">
+            <EntityTypeMapping TypeName="LvsSZGModel.ARTST">
+              <MappingFragment StoreEntitySet="ARTST">
+                <ScalarProperty Name="LNR" ColumnName="LNR" />
+                <ScalarProperty Name="BKZ" ColumnName="BKZ" />
+                <ScalarProperty Name="DI" ColumnName="DI" />
+                <ScalarProperty Name="BR" ColumnName="BR" />
+                <ScalarProperty Name="LAE" ColumnName="LAE" />
+                <ScalarProperty Name="BRU" ColumnName="BRU" />
+                <ScalarProperty Name="NET" ColumnName="NET" />
+                <ScalarProperty Name="CPNR" ColumnName="CPNR" />
+                <ScalarProperty Name="EDAT" ColumnName="EDAT" />
+                <ScalarProperty Name="ADAT" ColumnName="ADAT" />
+                <ScalarProperty Name="BEM" ColumnName="BEM" />
+                <ScalarProperty Name="ABEM" ColumnName="ABEM" />
+                <ScalarProperty Name="GT" ColumnName="GT" />
+                <ScalarProperty Name="GTTEXT" ColumnName="GTTEXT" />
+                <ScalarProperty Name="ENR" ColumnName="ENR" />
+                <ScalarProperty Name="ANR" ColumnName="ANR" />
+                <ScalarProperty Name="MENGE" ColumnName="MENGE" />
+                <ScalarProperty Name="EINHEIT" ColumnName="EINHEIT" />
+                <ScalarProperty Name="KDNR" ColumnName="KDNR" />
+                <ScalarProperty Name="KUNDEF1" ColumnName="KUNDEF1" />
+                <ScalarProperty Name="UKNR" ColumnName="UKNR" />
+                <ScalarProperty Name="UKF1" ColumnName="UKF1" />
+                <ScalarProperty Name="EMNR" ColumnName="EMNR" />
+                <ScalarProperty Name="EMF1" ColumnName="EMF1" />
+                <ScalarProperty Name="RAL" ColumnName="RAL" />
+                <ScalarProperty Name="WERT" ColumnName="WERT" />
+                <ScalarProperty Name="UPD" ColumnName="UPD" />
+                <ScalarProperty Name="TBRU" ColumnName="TBRU" />
+                <ScalarProperty Name="TNET" ColumnName="TNET" />
+                <ScalarProperty Name="TMENGE" ColumnName="TMENGE" />
+                <ScalarProperty Name="TBKZ" ColumnName="TBKZ" />
+                <ScalarProperty Name="POS" ColumnName="POS" />
+                <ScalarProperty Name="UB" ColumnName="UB" />
+                <ScalarProperty Name="VF" ColumnName="VF" />
+                <ScalarProperty Name="SA" ColumnName="SA" />
+                <ScalarProperty Name="COILD" ColumnName="COILD" />
+                <ScalarProperty Name="VVF" ColumnName="VVF" />
+                <ScalarProperty Name="KDBEST" ColumnName="KDBEST" />
+                <ScalarProperty Name="VNR" ColumnName="VNR" />
+                <ScalarProperty Name="SCHADEN" ColumnName="SCHADEN" />
+                <ScalarProperty Name="FRACHT" ColumnName="FRACHT" />
+                <ScalarProperty Name="KDGT" ColumnName="KDGT" />
+                <ScalarProperty Name="REFNR" ColumnName="REFNR" />
+                <ScalarProperty Name="PZ" ColumnName="PZ" />
+                <ScalarProperty Name="INFOORT" ColumnName="INFOORT" />
+                <ScalarProperty Name="ARTCHECK" ColumnName="ARTCHECK" />
+                <ScalarProperty Name="DFUENR" ColumnName="DFUENR" />
+                <ScalarProperty Name="TRANSNR" ColumnName="TRANSNR" />
+                <ScalarProperty Name="LIEFNR" ColumnName="LIEFNR" />
+                <ScalarProperty Name="POSNR" ColumnName="POSNR" />
+                <ScalarProperty Name="EM" ColumnName="EM" />
+                <ScalarProperty Name="AM" ColumnName="AM" />
+                <ScalarProperty Name="HALLE" ColumnName="HALLE" />
+                <ScalarProperty Name="REIHE" ColumnName="REIHE" />
+                <ScalarProperty Name="PREIHE" ColumnName="PREIHE" />
+                <ScalarProperty Name="ARTCHECKA" ColumnName="ARTCHECKA" />
+                <ScalarProperty Name="INDART" ColumnName="INDART" />
+                <ScalarProperty Name="SM" ColumnName="SM" />
+                <ScalarProperty Name="ABRUFZEIT" ColumnName="ABRUFZEIT" />
+                <ScalarProperty Name="WNR" ColumnName="WNR" />
+                <ScalarProperty Name="AUGE" ColumnName="AUGE" />
+                <ScalarProperty Name="STORNO" ColumnName="STORNO" />
+                <ScalarProperty Name="EM2" ColumnName="EM2" />
+                <ScalarProperty Name="AM2" ColumnName="AM2" />
+                <ScalarProperty Name="SM2" ColumnName="SM2" />
+                <ScalarProperty Name="WNRL" ColumnName="WNRL" />
+                <ScalarProperty Name="RL" ColumnName="RL" />
+                <ScalarProperty Name="RLM" ColumnName="RLM" />
+                <ScalarProperty Name="LSNRL" ColumnName="LSNRL" />
+                <ScalarProperty Name="IGNVDA" ColumnName="IGNVDA" />
+                <ScalarProperty Name="IGNVDA2" ColumnName="IGNVDA2" />
+                <ScalarProperty Name="SPL" ColumnName="SPL" />
+                <ScalarProperty Name="LNR_VORUB" ColumnName="LNR_VORUB" />
+                <ScalarProperty Name="PREIHEA" ColumnName="PREIHEA" />
+                <ScalarProperty Name="ISPROBLEM" ColumnName="ISPROBLEM" />
+                <ScalarProperty Name="ABRUFREF" ColumnName="ABRUFREF" />
+                <ScalarProperty Name="AV" ColumnName="AV" />
+                <ScalarProperty Name="TRANSAUFTRAGREF" ColumnName="TRANSAUFTRAGREF" />
+                <ScalarProperty Name="TQ" ColumnName="TQ" />
+                <ScalarProperty Name="UB_SEND" ColumnName="UB_SEND" />
+                <ScalarProperty Name="REBOOKSPL" ColumnName="REBOOKSPL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GT">
+            <EntityTypeMapping TypeName="LvsSZGModel.GT">
+              <MappingFragment StoreEntitySet="GT">
+                <ScalarProperty Name="NR" ColumnName="NR" />
+                <ScalarProperty Name="TEXT1" ColumnName="TEXT1" />
+                <ScalarProperty Name="TEXT2" ColumnName="TEXT2" />
+                <ScalarProperty Name="EINHEIT" ColumnName="EINHEIT" />
+                <ScalarProperty Name="WERTTO" ColumnName="WERTTO" />
+                <ScalarProperty Name="MASSE" ColumnName="MASSE" />
+                <ScalarProperty Name="VERWEIS" ColumnName="VERWEIS" />
+                <ScalarProperty Name="BRU" ColumnName="BRU" />
+                <ScalarProperty Name="NET" ColumnName="NET" />
+                <ScalarProperty Name="DI" ColumnName="DI" />
+                <ScalarProperty Name="BR" ColumnName="BR" />
+                <ScalarProperty Name="LAE" ColumnName="LAE" />
+                <ScalarProperty Name="ORT" ColumnName="ORT" />
+                <ScalarProperty Name="MINDEST" ColumnName="MINDEST" />
+                <ScalarProperty Name="PM" ColumnName="PM" />
+                <ScalarProperty Name="GBER" ColumnName="GBER" />
+                <ScalarProperty Name="DELBLANK" ColumnName="DELBLANK" />
+                <ScalarProperty Name="AKTIV" ColumnName="AKTIV" />
+                <ScalarProperty Name="VERPACKUNGSNR" ColumnName="VERPACKUNGSNR" />
+                <ScalarProperty Name="ABSTBOLZNR" ColumnName="ABSTBOLZNR" />
+                <ScalarProperty Name="ME_ABSTBOLZ" ColumnName="ME_ABSTBOLZ" />
+                <ScalarProperty Name="BESTELLNR" ColumnName="BESTELLNR" />
+                <ScalarProperty Name="ART" ColumnName="ART" />
+                <ScalarProperty Name="LIEFERANT" ColumnName="LIEFERANT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EAs">
+            <EntityTypeMapping TypeName="LvsSZGModel.EA">
+              <MappingFragment StoreEntitySet="EA">
+                <ScalarProperty Name="XCHECKDT" ColumnName="XCHECKDT" />
+                <ScalarProperty Name="SLB" ColumnName="SLB" />
+                <ScalarProperty Name="MAT" ColumnName="MAT" />
+                <ScalarProperty Name="XCHECK" ColumnName="XCHECK" />
+                <ScalarProperty Name="LIEFERNR" ColumnName="LIEFERNR" />
+                <ScalarProperty Name="LIEFNR" ColumnName="LIEFNR" />
+                <ScalarProperty Name="TRANSNR" ColumnName="TRANSNR" />
+                <ScalarProperty Name="DFUENR" ColumnName="DFUENR" />
+                <ScalarProperty Name="PRINT" ColumnName="PRINT" />
+                <ScalarProperty Name="BEARB" ColumnName="BEARB" />
+                <ScalarProperty Name="OPLZ" ColumnName="OPLZ" />
+                <ScalarProperty Name="OORT" ColumnName="OORT" />
+                <ScalarProperty Name="OF3" ColumnName="OF3" />
+                <ScalarProperty Name="OF2" ColumnName="OF2" />
+                <ScalarProperty Name="OF1" ColumnName="OF1" />
+                <ScalarProperty Name="VERSADR" ColumnName="VERSADR" />
+                <ScalarProperty Name="ORT" ColumnName="ORT" />
+                <ScalarProperty Name="ANH" ColumnName="ANH" />
+                <ScalarProperty Name="FABNR" ColumnName="FABNR" />
+                <ScalarProperty Name="GENNR" ColumnName="GENNR" />
+                <ScalarProperty Name="FAHRER" ColumnName="FAHRER" />
+                <ScalarProperty Name="UNFREI" ColumnName="UNFREI" />
+                <ScalarProperty Name="FREI" ColumnName="FREI" />
+                <ScalarProperty Name="SPORT" ColumnName="SPORT" />
+                <ScalarProperty Name="SPPLZ" ColumnName="SPPLZ" />
+                <ScalarProperty Name="SPF3" ColumnName="SPF3" />
+                <ScalarProperty Name="SPF2" ColumnName="SPF2" />
+                <ScalarProperty Name="SPF1" ColumnName="SPF1" />
+                <ScalarProperty Name="SPNR" ColumnName="SPNR" />
+                <ScalarProperty Name="EKOEMNR" ColumnName="EKOEMNR" />
+                <ScalarProperty Name="GNET" ColumnName="GNET" />
+                <ScalarProperty Name="GBRU" ColumnName="GBRU" />
+                <ScalarProperty Name="XBEM" ColumnName="XBEM" />
+                <ScalarProperty Name="LTAG" ColumnName="LTAG" />
+                <ScalarProperty Name="LSNR" ColumnName="LSNR" />
+                <ScalarProperty Name="FZ" ColumnName="FZ" />
+                <ScalarProperty Name="SPED" ColumnName="SPED" />
+                <ScalarProperty Name="BEORT" ColumnName="BEORT" />
+                <ScalarProperty Name="BEPLZ" ColumnName="BEPLZ" />
+                <ScalarProperty Name="BEF3" ColumnName="BEF3" />
+                <ScalarProperty Name="BEF2" ColumnName="BEF2" />
+                <ScalarProperty Name="BEF1" ColumnName="BEF1" />
+                <ScalarProperty Name="BENR" ColumnName="BENR" />
+                <ScalarProperty Name="VEORT" ColumnName="VEORT" />
+                <ScalarProperty Name="VEPLZ" ColumnName="VEPLZ" />
+                <ScalarProperty Name="VEF3" ColumnName="VEF3" />
+                <ScalarProperty Name="VEF2" ColumnName="VEF2" />
+                <ScalarProperty Name="VEF1" ColumnName="VEF1" />
+                <ScalarProperty Name="VENR" ColumnName="VENR" />
+                <ScalarProperty Name="KORT" ColumnName="KORT" />
+                <ScalarProperty Name="KPLZ" ColumnName="KPLZ" />
+                <ScalarProperty Name="KF3" ColumnName="KF3" />
+                <ScalarProperty Name="KF2" ColumnName="KF2" />
+                <ScalarProperty Name="KF1" ColumnName="KF1" />
+                <ScalarProperty Name="KUNR" ColumnName="KUNR" />
+                <ScalarProperty Name="XDAT" ColumnName="XDAT" />
+                <ScalarProperty Name="TYP" ColumnName="TYP" />
+                <ScalarProperty Name="XNR" ColumnName="XNR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADRs">
+            <EntityTypeMapping TypeName="LvsSZGModel.ADR">
+              <MappingFragment StoreEntitySet="ADR">
+                <ScalarProperty Name="ZTEXT" ColumnName="ZTEXT" />
+                <ScalarProperty Name="SHORTNAME" ColumnName="SHORTNAME" />
+                <ScalarProperty Name="RAP" ColumnName="RAP" />
+                <ScalarProperty Name="RORT" ColumnName="RORT" />
+                <ScalarProperty Name="RPLZ" ColumnName="RPLZ" />
+                <ScalarProperty Name="RSTRA" ColumnName="RSTRA" />
+                <ScalarProperty Name="RF2" ColumnName="RF2" />
+                <ScalarProperty Name="RF1" ColumnName="RF1" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="VERWEIS4905" ColumnName="VERWEIS4905" />
+                <ScalarProperty Name="VERWEISJOB" ColumnName="VERWEISJOB" />
+                <ScalarProperty Name="VERWEIS4913" ColumnName="VERWEIS4913" />
+                <ScalarProperty Name="EKAKUB" ColumnName="EKAKUB" />
+                <ScalarProperty Name="ALLGT" ColumnName="ALLGT" />
+                <ScalarProperty Name="PFORM" ColumnName="PFORM" />
+                <ScalarProperty Name="DEBKTO" ColumnName="DEBKTO" />
+                <ScalarProperty Name="KREDKTO" ColumnName="KREDKTO" />
+                <ScalarProperty Name="VERWEIS" ColumnName="VERWEIS" />
+                <ScalarProperty Name="LKW" ColumnName="LKW" />
+                <ScalarProperty Name="WAGGON" ColumnName="WAGGON" />
+                <ScalarProperty Name="BEM" ColumnName="BEM" />
+                <ScalarProperty Name="AKEK" ColumnName="AKEK" />
+                <ScalarProperty Name="PF" ColumnName="PF" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="T2" ColumnName="T2" />
+                <ScalarProperty Name="AP2" ColumnName="AP2" />
+                <ScalarProperty Name="T1" ColumnName="T1" />
+                <ScalarProperty Name="AP1" ColumnName="AP1" />
+                <ScalarProperty Name="ORT" ColumnName="ORT" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="STRA" ColumnName="STRA" />
+                <ScalarProperty Name="F3" ColumnName="F3" />
+                <ScalarProperty Name="F2" ColumnName="F2" />
+                <ScalarProperty Name="F1" ColumnName="F1" />
+                <ScalarProperty Name="ERF" ColumnName="ERF" />
+                <ScalarProperty Name="WERKCODE" ColumnName="WERKCODE" />
+                <ScalarProperty Name="TYP" ColumnName="TYP" />
+                <ScalarProperty Name="SUCHB" ColumnName="SUCHB" />
+                <ScalarProperty Name="ADRNR" ColumnName="ADRNR" />
+                <ScalarProperty Name="INCNR" ColumnName="INCNR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

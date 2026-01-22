@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{077A162F-446C-4405-A5BE-ECAA6A8681DD}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>LvsScan.Android</RootNamespace>
+    <AssemblyName>LvsScan.Android</AssemblyName>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
+    <AndroidDexTool>d8</AndroidDexTool>
+    <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <AndroidSupportedAbis>
+    </AndroidSupportedAbis>
+    <AndroidTlsProvider>btls</AndroidTlsProvider>
+    <MandroidI18n>
+    </MandroidI18n>
+    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
+    <AndroidDexTool>d8</AndroidDexTool>
+    <AndroidSupportedAbis>
+    </AndroidSupportedAbis>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <MandroidI18n>
+    </MandroidI18n>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <AndroidLinkTool>r8</AndroidLinkTool>
+    <AndroidKeyStore>false</AndroidKeyStore>
+    <AndroidSigningKeyStore>
+    </AndroidSigningKeyStore>
+    <AndroidSigningStorePass>
+    </AndroidSigningStorePass>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="Mono.Android.Export" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Xamarin.Android.Chart">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.Xamarin.Android.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Common">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.Xamarin.Android.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Data">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.Xamarin.Android.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Input">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.Xamarin.Android.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.List">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.Xamarin.Android.List.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Xamarin.Android.Primitives">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.Xamarin.Android.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Barcode">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Chart">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Common">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.ConversationalUI">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.ConversationalUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataControls">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.DataControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataGrid">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.DataVisualization">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.ImageEditor">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.ImageEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Input">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Map">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.Map.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.PdfViewer">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.PdfViewer.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.Primitives">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.RichTextEditor">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.RichTextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.XamarinForms.SkiaSharp">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Android\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http">
+      <Version>7.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualBasic">
+      <Version>10.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="NETStandard.Library">
+      <Version>2.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp">
+      <Version>2.80.3</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp.Views">
+      <Version>2.80.3</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp.Views.Forms">
+      <Version>2.80.3</Version>
+    </PackageReference>
+    <PackageReference Include="System.Management">
+      <Version>7.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Http">
+      <Version>4.3.4</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Http.Json">
+      <Version>9.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Settings">
+      <Version>3.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Browser">
+      <Version>1.8.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Fragment">
+      <Version>1.6.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4">
+      <Version>1.0.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
+      <Version>2.7.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>1.8.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>5.0.0.2662</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Android.Material">
+      <Version>1.10.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.KeyboardHelper">
+      <Version>3.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HTTPClientHandlerCreationService_Android.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Fonts\telerikfontexamples.ttf" />
+    <None Include=".editorconfig" />
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\layout\Tabbar.axml" />
+    <AndroidResource Include="Resources\layout\Toolbar.axml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\styles.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\icon_r.xml" />
+    <AndroidResource Include="Resources\mipmap-hdpi\l_fg.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\l_fg.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\l_fg.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\l_fg.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\l_fg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\gearwheels.png" />
+    <AndroidResource Include="Resources\drawable\home_16x16.png" />
+    <AndroidResource Include="Resources\drawable\home_24x24.png" />
+    <AndroidResource Include="Resources\drawable\home_32x32.png" />
+    <AndroidResource Include="Resources\drawable\about.png" />
+    <AndroidResource Include="Resources\drawable\barcode.png" />
+    <AndroidResource Include="Resources\drawable\barcode_scanner.png" />
+    <AndroidResource Include="Resources\drawable\door_exit.png" />
+    <AndroidResource Include="Resources\drawable\about_16x16.png" />
+    <AndroidResource Include="Resources\drawable\about_24x24.png" />
+    <AndroidResource Include="Resources\drawable\about_36x36.png" />
+    <AndroidResource Include="Resources\drawable\barcode_24x24.png" />
+    <AndroidResource Include="Resources\drawable\barcode_32x32.png" />
+    <AndroidResource Include="Resources\drawable\barcode_48x48.png" />
+    <AndroidResource Include="Resources\drawable\mi_box_out_32x32.png" />
+    <AndroidResource Include="Resources\drawable\delete_128x128.png" />
+    <AndroidResource Include="Resources\drawable\delete_256x256.png" />
+    <AndroidResource Include="Resources\drawable\check_128x128.png" />
+    <AndroidResource Include="Resources\drawable\check_256x256.png" />
+    <AndroidResource Include="Resources\drawable\download_48x48.png" />
+    <AndroidResource Include="Resources\drawable\download_24x24.png" />
+    <AndroidResource Include="Resources\drawable\download_32x32.png" />
+    <Content Include="Resources\drawable\icon_sped.ico" />
+    <AndroidResource Include="Resources\drawable\list_style_numbered.png" />
+    <AndroidResource Include="Resources\drawable\list_style_numbered_24x24.png" />
+    <AndroidResource Include="Resources\drawable\list_style_numbered_32x32.png" />
+    <AndroidResource Include="Resources\drawable\portable_barcode_scanner_16x16.png" />
+    <AndroidResource Include="Resources\drawable\portable_barcode_scanner_24x24.png" />
+    <AndroidResource Include="Resources\drawable\portable_barcode_scanner_32x32.png" />
+    <AndroidResource Include="Resources\drawable\information_16x16.png" />
+    <AndroidResource Include="Resources\drawable\information_24x24.png" />
+    <AndroidResource Include="Resources\drawable\information_32x32.png" />
+    <AndroidResource Include="Resources\drawable\log_in_16x16.png" />
+    <AndroidResource Include="Resources\drawable\log_in_24x24.png" />
+    <AndroidResource Include="Resources\drawable\log_in_32x32.png" />
+    <AndroidResource Include="Resources\drawable\sign_warning_16x16.png" />
+    <AndroidResource Include="Resources\drawable\sign_warning_24x24.png" />
+    <AndroidResource Include="Resources\drawable\sign_warning_32x32.png" />
+    <AndroidResource Include="Resources\drawable\user_smartphone_16x16.png" />
+    <AndroidResource Include="Resources\drawable\user_smartphone_24x24.png" />
+    <AndroidResource Include="Resources\drawable\user_smartphone_32x32.png" />
+    <AndroidResource Include="Resources\drawable\user_smartphone_48x48.png" />
+    <AndroidResource Include="Resources\drawable\logoComtec_90.jpg" />
+    <AndroidResource Include="Resources\drawable\logoComtec.jpg" />
+    <AndroidResource Include="Resources\drawable\mi_home_32x32.png" />
+    <AndroidResource Include="Resources\drawable\mi_edit_32x32.png" />
+    <AndroidResource Include="Resources\drawable\mi_document_pinned_32x32.png" />
+    <AndroidResource Include="Resources\drawable\mi_cancel_32x32.png" />
+    <AndroidResource Include="Resources\drawable\mf_document_pinned_32x32.png" />
+    <AndroidResource Include="Resources\drawable\mf_box_into_32x32.png" />
+    <AndroidResource Include="Resources\drawable\mf_box_out_32x32.png" />
+    <AndroidResource Include="Resources\drawable\mf_shelf_full_32x32.png" />
+    <AndroidResource Include="Resources\drawable\mi_arrow_from_32x32.png" />
+    <AndroidResource Include="Resources\drawable\mi_arrow_circle2_48x48.png" />
+    <AndroidResource Include="Resources\drawable\mi_arrow_circle2_32x32.png" />
+    <AndroidResource Include="Resources\drawable\mi_elements2_32x32.png" />
+    <AndroidResource Include="Resources\drawable\lock_64x64.png" />
+    <AndroidResource Include="Resources\drawable\lock_128x128.png" />
+    <AndroidResource Include="Resources\drawable\lock_256x256.png" />
+    <AndroidResource Include="Resources\drawable\lock_open_64x64.png" />
+    <AndroidResource Include="Resources\drawable\lock_open_128x128.png" />
+    <AndroidResource Include="Resources\drawable\lock_open_256x256.png" />
+    <AndroidResource Include="Resources\drawable\mi_box_into_32x32.png" />
+    <AndroidResource Include="Resources\xml\file_paths.xml" />
+    <AndroidResource Include="Resources\drawable\mi_printer_32x32.png" />
+    <AndroidResource Include="Resources\drawable\SKLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\SKLogo_90Grad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bullet_ball_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bullet_ball_green_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bullet_ball_grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bullet_ball_grey_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bullet_ball_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bullet_ball_red_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bullet_ball_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bullet_ball_yellow_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Portable\LvsScan.Portable.csproj">
+      <Project>{99c42209-7d72-463c-90db-3861a795c2b7}</Project>
+      <Name>LvsScan.Portable</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+     Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:enum="clr-namespace:Common.Enumerations;assembly=Common"
+             xmlns:behavior="clr-namespace:LvsScan.Portable.Behaviors" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             x:Class="LvsScan.Portable.Views.Inventory.i3w2_wizInventory_Result">
+  <ContentView.Content>
+        <ScrollView>
+            <StackLayout>
+
+            <!--Head-->
+            <StackLayout  BackgroundColor="Blue">
+                <StackLayout Orientation="Horizontal">
+                    <Label  HorizontalOptions="CenterAndExpand"
+                            Padding="5,0,0,0" 
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            >
+                        <Label.Text>
+                            <MultiBinding StringFormat="{}[{0}] - {1}">
+                                <Binding Path="SelectedInventory.Id" />
+                                <Binding Path="SelectedInventory.Name" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+                    <Image>
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedInventory.Status}" Value="{x:Static enum:enumInventoryStatus.erstellt}" TargetType="{x:Type Image}">
+                                        <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedInventory.Status}" Value="{x:Static enum:enumInventoryStatus.NotSet}" TargetType="{x:Type Image}">
+                                        <Setter Property="Source" Value="bullet_ball_red_16x16.png" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedInventory.Status}" Value="{x:Static enum:enumInventoryStatus.InBearbeitung}" TargetType="{x:Type Image}">
+                                        <Setter Property="Source" Value="bullet_ball_yellow_16x16.png" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedInventory.Status}" Value="{x:Static enum:enumInventoryStatus.erledigt}" TargetType="{x:Type Image}">
+                                        <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </StackLayout>
+            </StackLayout>
+
+                <!--Show Article data-->
+                <StackLayout>
+                    <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                 Margin="10,10,10,10" 
+                                                 Padding="0,5,0,0"
+                                                 Color="DarkBlue"
+                                                 BackgroundColor="Snow"
+                                                 >
+                        <StackLayout>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+
+                                    <Label  HorizontalOptions="StartAndExpand"
+                                                        Padding="5,0,0,0" 
+                                                        FontSize="Subtitle"
+                                                        FontAttributes="Bold"
+                                                        TextColor="DarkSlateGray"
+                                                        >
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}LVS: {0} - [ {1} ] |  Ort: {2} ">
+                                                <Binding Path="Article.LVS_ID" />
+                                                <Binding Path="Article.Id" />
+                                                <Binding Path="Article.LagerOrtAsString" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                    <Image>
+                                        <Image.Style>
+                                            <Style TargetType="{x:Type Image}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding  SelectedInventoryArticle.Status}" Value="{x:Static enum:enumInventoryArticleStatus.Neu}" TargetType="{x:Type Image}">
+                                                        <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding SelectedInventoryArticle.Status}" Value="{x:Static enum:enumInventoryArticleStatus.Fehlt}" TargetType="{x:Type Image}">
+                                                        <Setter Property="Source" Value="bullet_ball_red_16x16.png" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding SelectedInventoryArticle.Status}" Value="{x:Static enum:enumInventoryArticleStatus.NotSet}" TargetType="{x:Type Image}">
+                                                        <Setter Property="Source" Value="bullet_ball_yellow_16x16.png" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding SelectedInventoryArticle.Status}" Value="{x:Static enum:enumInventoryArticleStatus.OK}" TargetType="{x:Type Image}">
+                                                        <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+
+                                </StackLayout>
+                                <BoxView Color= "DarkSlateBlue"
+                                                     HeightRequest="1"                                                
+                                                     HorizontalOptions="Fill" />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    >
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}ProduktionsNr.: {0}">
+                                            <Binding Path="Article.Produktionsnummer" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    >
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}Werksnummer: {0}">
+                                            <Binding Path="Article.Werksnummer" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    >
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}Brutto KG: {0:N2}">
+                                            <Binding Path="Article.Brutto" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </StackLayout>
+
+                            <StackLayout>
+                                <!--text and description-->
+                                <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    >
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}Description: {0}">
+                                            <Binding Path="SelectedInventoryArticle.Description" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" 
+                                                                 Binding="{Binding InventoriesArticle.Description}" 
+                                                                 Value="">
+                                            <Setter Property="IsVisible" Value="False" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <!--user and scan date-->
+                                <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    >
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}Text: {0}">
+                                            <Binding Path="SelectedInventoryArticle.Text" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" 
+                                                                 Binding="{Binding SelectedInventoryArticle.Text}" 
+                                                                 Value="">
+                                            <Setter Property="IsVisible" Value="False" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+
+                            </StackLayout>
+                            <!--</StackLayout>-->
+                            <StackLayout>
+                                <BoxView Color= "DarkSlateBlue"
+                                                     HeightRequest="1"                                                
+                                                     HorizontalOptions="Fill" />
+                                <StackLayout Orientation="Horizontal"
+                                             BackgroundColor="{Binding BackgroundColorStoreLocation}"
+                                             >
+
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="Werk"
+                                                            FontAttributes="Bold"
+                                                            />
+                                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="{Binding Article.Werk}"
+                                                            />
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="Halle"
+                                                            FontAttributes="Bold"
+                                                            />
+                                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="{Binding Article.Halle}"
+                                                            />
+                                                </StackLayout>
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="Reihe"
+                                                            FontAttributes="Bold"
+                                                            />
+                                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="{Binding Article.Reihe}"
+                                                            />
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="Ebene"
+                                                            FontAttributes="Bold"
+                                                            />
+                                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="{Binding Article.Ebene}"
+                                                            />
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="Platz"
+                                                            FontAttributes="Bold"
+                                                            />
+                                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="{Binding Article.Platz}"
+                                                            />
+                                                </StackLayout>
+                                            </StackLayout>
+
+                            </StackLayout>
+                        </StackLayout>
+                    </telerikPrimitives:RadShadow>
+
+                </StackLayout>
+
+                <StackLayout>
+
+                    <!--Button for store location change-->
+                    <StackLayout>
+                        <Button x:Name="btnStoreLocationChange"
+                                Text="Lagerort Korrektur durchführen!"
+                                IsVisible="{Binding DoStoreLocationChange}"
+                                Clicked="btnStoreLocationChange_Clicked"
+                                BackgroundColor="LawnGreen"
+                                />
+                    </StackLayout>
+
+                    <StackLayout>
+                        <telerikPrimitives:RadTabView x:Name="tabView" 
+                                                      IsContentSwipingEnabled="True"  
+                                                      SelectedItem="{Binding SelectedTabViewItem, Mode=TwoWay}"
+                                                      PropertyChanged="tabView_PropertyChanged"
+                                                      >
+                            <telerikPrimitives:RadTabView.Items>
+
+                                <!--scan input-->
+                                <telerikPrimitives:TabViewItem x:Name="tabItemScan"
+                                                                HeaderText="Scan"
+                                                                >
+                                    <telerikPrimitives:TabViewItem.Content>
+
+                                            <StackLayout Padding="5,5,10,5" >
+                                                <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                                        Margin="5,5,5,5" 
+                                                                        Padding="0,5,0,0"
+                                                                        Color="Red"
+                                                                        BackgroundColor="White"
+                                                                        HeightRequest="75"
+                                                                        WidthRequest="200"
+                                                                        >
+                                                    <StackLayout Padding="5,5,0,0">
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Entry x:Name="entryScannedStorePlace" 
+                                                                   Placeholder="#1#23#45#6#789"
+                                                                   WidthRequest="200"
+                                                                   Text="{Binding ScannedLagerOrt}"                                                               
+                                                                   />
+
+                                                            <telerikInput:RadButton x:Name="btnClearScanInput"                                                                  
+                                                                                    ContentLayout="40"
+                                                                                    BackgroundColor="Transparent"
+                                                                                    Clicked="btnClearScanInput_Clicked"
+                                                                                    >
+                                                                <telerikInput:RadButton.ImageSource>
+                                                                    <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                                     Color="Blue"                                      
+                                                                                     FontFamily="{StaticResource IconsFont}"                                          
+                                                                                     />
+                                                                </telerikInput:RadButton.ImageSource>
+                                                            </telerikInput:RadButton>
+
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </telerikPrimitives:RadShadow>
+                                            </StackLayout>
+                                    </telerikPrimitives:TabViewItem.Content>
+                                </telerikPrimitives:TabViewItem>
+
+                                <!--manuell input-->
+                                <telerikPrimitives:TabViewItem x:Name="tabItemManual"
+                                                               HeaderText="manuell"
+                                                               >
+                                    <telerikPrimitives:TabViewItem.Content>
+                                    
+                                        <StackLayout Padding="10,5,10,5" >
+                                            <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                                        Margin="10,10,10,10" 
+                                                                        Padding="0,5,0,0"
+                                                                        Color="Red"
+                                                                        BackgroundColor="White"
+                                                                        HeightRequest="75"
+                                                                        WidthRequest="200"
+                                                                        >
+                                                <StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+
+                                                        <StackLayout Orientation="Vertical">
+                                                            <Label  HorizontalOptions="Center"
+                                                                    VerticalOptions="Center"   
+                                                                    Padding="10,0,0,0"
+                                                                    FontSize="Small"                                            
+                                                                    TextColor="DimGray"
+                                                                    FontAttributes="Bold"
+                                                                    Text="Werk"
+                                                                    />
+                                                            <Entry x:Name="entryWerk"
+                                                                    FontSize="Default"
+                                                                    TextColor="DimGray"
+                                                                    Text="{Binding WerkInput}"
+                                                                    HorizontalTextAlignment="Center"
+                                                                    effects:KeyboardEffect.EnableKeyboard="True"
+                                                                    Keyboard="Default"
+                                                                    ReturnType="Search"
+                                                                    IsSpellCheckEnabled="false"
+                                                                    IsTextPredictionEnabled="false"
+                                                                    >
+                                                                    <Entry.Effects>
+                                                                        <effects:KeyboardEnableEffect/>
+                                                                    </Entry.Effects>
+                                                                </Entry>
+                                                            </StackLayout>
+                                                        <StackLayout Orientation="Vertical">
+                                                            <Label  HorizontalOptions="Center"
+                                                                    VerticalOptions="Center"
+                                                                    Padding="10,0,0,0"
+                                                                    FontSize="Small"
+                                                                    TextColor="DimGray"
+                                                                    FontAttributes="Bold"
+                                                                    Text="Halle"
+                                                                    />
+                                                            <Entry x:Name="entryHalle"
+                                                                    FontSize="Default"
+                                                                    TextColor="DimGray"
+                                                                    Text="{Binding HalleInput}"
+                                                                    HorizontalTextAlignment="Center"
+                                                                    effects:KeyboardEffect.EnableKeyboard="True"
+                                                                    Keyboard="Default"
+                                                                    ReturnType="Search"
+                                                                    IsSpellCheckEnabled="false"
+                                                                    IsTextPredictionEnabled="false"
+                                                                    >
+                                                                    <Entry.Effects>
+                                                                        <effects:KeyboardEnableEffect/>
+                                                                    </Entry.Effects>
+                                                                </Entry>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Vertical">
+                                                            <Label  HorizontalOptions="Center"
+                                                                    Padding="10,0,0,0"
+                                                                    FontSize="Small"
+                                                                    TextColor="DimGray"
+                                                                    FontAttributes="Bold"
+                                                                    Text="Reihe"
+                                                                    />
+                                                            <Entry x:Name="entryReihe"
+                                                                    FontSize="Default"
+                                                                    TextColor="DimGray"
+                                                                    Text="{Binding ReiheInput}"
+                                                                    HorizontalTextAlignment="Center"
+                                                                    effects:KeyboardEffect.EnableKeyboard="True"
+                                                                    Keyboard="Default"
+                                                                    ReturnType="Search"
+                                                                    IsSpellCheckEnabled="false"
+                                                                    IsTextPredictionEnabled="false"
+                                                                    >
+                                                                    <Entry.Effects>
+                                                                        <effects:KeyboardEnableEffect/>
+                                                                    </Entry.Effects>
+                                                                </Entry>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Vertical">
+                                                            <Label  HorizontalOptions="Center"
+                                                                    VerticalOptions="Center"
+                                                                    Padding="10,0,0,0"
+                                                                    FontSize="Small"
+                                                                    TextColor="DimGray"
+                                                                    FontAttributes="Bold"
+                                                                    Text="Ebene"
+                                                                    />
+                                                            <Entry x:Name="entryEbene"
+                                                                    FontSize="Default"
+                                                                    TextColor="DimGray"
+                                                                    Text="{Binding EbeneInput}"
+                                                                    HorizontalTextAlignment="Center"
+                                                                    effects:KeyboardEffect.EnableKeyboard="True"
+                                                                    Keyboard="Default"
+                                                                    ReturnType="Search"
+                                                                    IsSpellCheckEnabled="false"
+                                                                    IsTextPredictionEnabled="false"
+                                                                    >
+                                                                    <Entry.Effects>
+                                                                        <effects:KeyboardEnableEffect/>
+                                                                    </Entry.Effects>
+                                                                </Entry>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Vertical">
+                                                            <Label  HorizontalOptions="Center"
+                                                                    Padding="10,0,0,0"
+                                                                    FontSize="Small"
+                                                                    TextColor="DimGray"
+                                                                    FontAttributes="Bold"
+                                                                    Text="Platz"
+                                                                    />
+                                                            <Entry x:Name="entryPlatz"
+                                                                    FontSize="Default"
+                                                                    TextColor="DimGray"
+                                                                    Text="{Binding PlatzInput}"
+                                                                    HorizontalTextAlignment="Center"
+                                                                    effects:KeyboardEffect.EnableKeyboard="True"
+                                                                    Keyboard="Default"
+                                                                    ReturnType="Search"
+                                                                    IsSpellCheckEnabled="false"
+                                                                    IsTextPredictionEnabled="false"
+                                                                    >
+                                                                    <Entry.Effects>
+                                                                        <effects:KeyboardEnableEffect/>
+                                                                    </Entry.Effects>
+                                                                </Entry>
+                                                        </StackLayout>
+                                                    
+                                                    </StackLayout>
+
+                                                </StackLayout>
+                                            </telerikPrimitives:RadShadow>
+                                        </StackLayout>
+
+                                    </telerikPrimitives:TabViewItem.Content>
+                                </telerikPrimitives:TabViewItem>
+
+
+                            </telerikPrimitives:RadTabView.Items>
+                        </telerikPrimitives:RadTabView>
+                    </StackLayout>
+
+
+                    <!--<Button x:Name="TestNEXT" Text="Test next" Clicked="TestNEXT_Clicked"/>-->
+
+                </StackLayout>
+
+        </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

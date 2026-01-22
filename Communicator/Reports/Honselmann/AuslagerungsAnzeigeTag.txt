@@ -1,0 +1,72 @@
+
+Data Source=SE-MAIN\SPED;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey
+
+
+sqlLAusgangSouce
+=====================
+SET @strTmp='';
+SET @strTmp =(SELECT Fbez FROM ADR WHERE ID=@Auftraggeber);
+IF((@strTmp<>'')) SET @strADRAuftraggeber =@strTmp;
+SET @strTmp='';
+SET @strTmp =(SELECT Name1 FROM ADR WHERE ID=@Auftraggeber);
+IF((@strTmp<>'')) SET @strADRAuftraggeber =@strADRAuftraggeber + nchar(13) + nchar(10)+ @strTmp;
+SET @strTmp='';
+SET @strTmp =(SELECT Name2 FROM ADR WHERE ID=@Auftraggeber);
+IF((@strTmp<>'')) SET @strADRAuftraggeber =@strADRAuftraggeber + nchar(13) + nchar(10)+ @strTmp;
+SET @strTmp='';
+SET @strTmp =(SELECT Name3 FROM ADR WHERE ID=@Auftraggeber);
+IF((@strTmp<>'')) SET @strADRAuftraggeber =@strADRAuftraggeber + nchar(13) + nchar(10)+ @strTmp;
+SET @strTmp='';
+SET @strTmp =(SELECT Str + ' '+HausNr FROM ADR WHERE ID=@Auftraggeber);
+IF((@strTmp<>'')) SET @strADRAuftraggeber =@strADRAuftraggeber + nchar(13) + nchar(10)+ @strTmp + nchar(13) + nchar(10);
+SET @strTmp='';
+SET @strTmp =(SELECT PLZ + ' '+Ort FROM ADR WHERE ID=@Auftraggeber);
+IF((@strTmp<>'')) SET @strADRAuftraggeber = @strADRAuftraggeber + nchar(13) + nchar(10)+ @strTmp;
+
+
+SELECT 
+KD_ID as ANr
+, @strADRAuftraggeber as AAdressblock
+FROM Adr
+WHERE ID=@Auftraggeber
+
+sqlArtikelSource
+=======================
+Select a.*
+, b.Bezeichnung as GArt
+, b.Zusatz
+, c.LAusgangID as AusgangID
+, CONVERT(varchar(10), c.Datum, 104) as Ausgangsdatum
+,CASE WHEN IsVerpackt = 1
+      THEN 'Bemerkung: ist verpackt' + char(13)
+      ELSE ''
+      END as Verpackt
+,CASE WHEN (SELECT COUNT (*)
+	    FROM Artikel a1
+	    INNER JOIN LAusgang c1 ON c1.ID=a1.LAusgangTableID
+	    INNER JOIN SchadenZuweisung d1 ON d1.ArtikelID=a1.ID
+	    INNER JOIN Schaeden e1 ON e1.ID=d1.SchadenID
+	    WHERE a1.LAusgangTableID=@LAusgangTableID) > 0
+      THEN 'Schaden: ' + STUFF((SELECT ', ' + e2.Bezeichnung
+				FROM Artikel a2
+				INNER JOIN LAusgang c2 ON c2.ID=a2.LAusgangTableID
+				LEFT OUTER JOIN SchadenZuweisung d2 ON d2.ArtikelID=a2.ID
+				LEFT OUTER JOIN Schaeden e2 ON e2.ID=d2.SchadenID
+				WHERE a2.LAusgangTableID=@LAusgangTableID
+				FOR XML PATH (''))
+			  ,1,2,'') 
+      ELSE ''
+      END as Schaden
+, CASE
+	WHEN (a.Laenge>0)
+		THEN CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))+'x'+CAST(a.Laenge as varchar(20))
+	
+	ELSE CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))
+	END as Abmessung
+FROM Artikel a
+INNER JOIN LAusgang c ON c.ID=a.LAusgangTableID
+INNER JOIN Gueterart b ON b.ID=a.GArtID
+WHERE 
+c.Auftraggeber=@Auftraggeber 
+AND DATEDIFF(dd,c.Datum,@Stichtag)=0
+ORDER BY c.ID

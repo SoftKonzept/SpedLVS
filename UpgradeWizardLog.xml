@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="_UpgradeWizard_Files\UpgradeWizardLog.xslt"?>
+<log>
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\Common\Common.csproj" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\Develop\SpedLVS\Common\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="Common" path="D:\Develop\SpedLVS\Common\Common.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\Reporting\ReportingX.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.exe.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.exe.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.exe.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.exe.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.exe.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.exe.config" />
+  <event action="Analyze" type="Success" name="Telerik.ReportDesigner.exe.config" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.exe.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.x86.exe.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.x86.exe.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.x86.exe.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.x86.exe.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.x86.exe.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.x86.exe.config" />
+  <event action="Analyze" type="Success" name="Telerik.ReportDesigner.x86.exe.config" path="D:\Develop\SpedLVS\Reporting\Telerik.ReportDesigner.x86.exe.config" />
+  <event action="Analyze" type="Success" name="ReportingX" path="D:\Develop\SpedLVS\Reporting\ReportingX.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\Renci.SshNet\Renci.SshNet.csproj" />
+  <event action="Analyze" type="Success" name="Renci.SshNet" path="D:\Develop\SpedLVS\Renci.SshNet\Renci.SshNet.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\LVS\LVS.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\LVS\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\LVS\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\LVS\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\LVS\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\LVS\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\LVS\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="D:\Develop\SpedLVS\LVS\app.config" />
+  <event action="Analyze" type="Success" name="docAbholschein.resx" path="D:\Develop\SpedLVS\LVS\Dokumente\docAbholschein.resx" />
+  <event action="Analyze" type="Success" name="docAuftragScan.resx" path="D:\Develop\SpedLVS\LVS\Dokumente\docAuftragScan.resx" />
+  <event action="Analyze" type="Success" name="docBriefkopfComtecLager.resx" path="D:\Develop\SpedLVS\LVS\Dokumente\docBriefkopfComtecLager.resx" />
+  <event action="Analyze" type="Success" name="docBriefkopfHeisiep.resx" path="D:\Develop\SpedLVS\LVS\Dokumente\docBriefkopfHeisiep.resx" />
+  <event action="Analyze" type="Success" name="docBriefkopfHeisiepLager.resx" path="D:\Develop\SpedLVS\LVS\Dokumente\docBriefkopfHeisiepLager.resx" />
+  <event action="Analyze" type="Success" name="docFrachtauftragSU.resx" path="D:\Develop\SpedLVS\LVS\Dokumente\docFrachtauftragSU.resx" />
+  <event action="Analyze" type="Success" name="docLagerRechnung.resx" path="D:\Develop\SpedLVS\LVS\Dokumente\docLagerRechnung.resx" />
+  <event action="Analyze" type="Success" name="docLieferschein.resx" path="D:\Develop\SpedLVS\LVS\Dokumente\docLieferschein.resx" />
+  <event action="Analyze" type="Success" name="docList_Avisierung.resx" path="D:\Develop\SpedLVS\LVS\Dokumente\docList_Avisierung.resx" />
+  <event action="Analyze" type="Success" name="docManRGGS.resx" path="D:\Develop\SpedLVS\LVS\Dokumente\docManRGGS.resx" />
+  <event action="Analyze" type="Success" name="docRechnung.resx" path="D:\Develop\SpedLVS\LVS\Dokumente\docRechnung.resx" />
+  <event action="Analyze" type="Success" name="fDocs_Holzrichter.resx" path="D:\Develop\SpedLVS\LVS\Dokumente\fDocs_Holzrichter.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\LVS\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\LVS\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\LVS\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\LVS\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\LVS\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\LVS\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\Develop\SpedLVS\LVS\packages.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\Develop\SpedLVS\LVS\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="LVS" path="D:\Develop\SpedLVS\LVS\LVS.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\LvsScan\Portable\LvsScan.Portable.csproj" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\Develop\SpedLVS\LvsScan\Portable\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="LvsScan.Portable" path="D:\Develop\SpedLVS\LvsScan\Portable\LvsScan.Portable.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\LvsScan\Android\LvsScan.Android.csproj" />
+  <event action="Analyze" type="Success" name="LvsScan.Android" path="D:\Develop\SpedLVS\LvsScan\Android\LvsScan.Android.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\Sped4\Sped4.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\Sped4\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\Sped4\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\Sped4\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\Sped4\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\Sped4\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\Sped4\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="D:\Develop\SpedLVS\Sped4\app.config" />
+  <event action="Analyze" type="Success" name="Binary References" path="D:\Develop\SpedLVS\Sped4\bin\" />
+  <event action="Analyze" type="Success" name="ctrComMailingLists.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AdminCockpit\ctrComMailingLists.resx" />
+  <event action="Analyze" type="Success" name="ctrCronJobs.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AdminCockpit\ctrCronJobs.resx" />
+  <event action="Analyze" type="Success" name="ctrReportSetting.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AdminCockpit\ctrReportSetting.resx" />
+  <event action="Analyze" type="Success" name="frmAdminCockpit.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AdminCockpit\frmAdminCockpit.resx" />
+  <event action="Analyze" type="Success" name="frmAdminCockpit.cs.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AdminCockpit\frmAdminCockpit.cs.resx" />
+  <event action="Analyze" type="Success" name="AFButton.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AFButton.resx" />
+  <event action="Analyze" type="Success" name="AFButton_Form.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AFButton_Form.resx" />
+  <event action="Analyze" type="Success" name="AFColorLabel.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AFColorLabel.resx" />
+  <event action="Analyze" type="Success" name="AFGrid.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AFGrid.resx" />
+  <event action="Analyze" type="Success" name="AFLineLabel.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AFLineLabel.resx" />
+  <event action="Analyze" type="Success" name="AFMenuStrip.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AFMenuStrip.resx" />
+  <event action="Analyze" type="Success" name="AFMinMaxPanel.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AFMinMaxPanel.resx" />
+  <event action="Analyze" type="Success" name="AFOrderPosRectangle.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AFOrderPosRectangle.resx" />
+  <event action="Analyze" type="Success" name="AFStatusStrip.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AFStatusStrip.resx" />
+  <event action="Analyze" type="Success" name="AFToolStrip.resx" path="D:\Develop\SpedLVS\Sped4\Controls\AFToolStrip.resx" />
+  <event action="Analyze" type="Success" name="ctrAdrVerweis.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrAdrVerweis.resx" />
+  <event action="Analyze" type="Success" name="ctrASNAction.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrASNAction.resx" />
+  <event action="Analyze" type="Success" name="ctrASNActionSelectToCopy.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrASNActionSelectToCopy.resx" />
+  <event action="Analyze" type="Success" name="ctrASNArtFieldAssignment.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrASNArtFieldAssignment.resx" />
+  <event action="Analyze" type="Success" name="ctrASNArtFieldAssignSelectToCopy.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrASNArtFieldAssignSelectToCopy.resx" />
+  <event action="Analyze" type="Success" name="ctrASNMain.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrASNMain.resx" />
+  <event action="Analyze" type="Success" name="ctrASNMessage.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrASNMessage.resx" />
+  <event action="Analyze" type="Success" name="ctrEDIFACTClientOut.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrEDIFACTClientOut.resx" />
+  <event action="Analyze" type="Success" name="ctrEdifactImport.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrEdifactImport.resx" />
+  <event action="Analyze" type="Success" name="ctrJob.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrJob.resx" />
+  <event action="Analyze" type="Success" name="ctrJobSelectToCopy.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrJobSelectToCopy.resx" />
+  <event action="Analyze" type="Success" name="ctrOrga.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrOrga.resx" />
+  <event action="Analyze" type="Success" name="ctrVDAClientOut.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrVDAClientOut.resx" />
+  <event action="Analyze" type="Success" name="ctrVDAClientOutUpdate.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrVDAClientOutUpdate.resx" />
+  <event action="Analyze" type="Success" name="ctrVDAClientWorkspaceValue.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrVDAClientWorkspaceValue.resx" />
+  <event action="Analyze" type="Success" name="ctrVDAClientWorkspaceValueSelectToCopy.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ASNCenter\ctrVDAClientWorkspaceValueSelectToCopy.resx" />
+  <event action="Analyze" type="Success" name="ctrAsnArt.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Edifact\ctrAsnArt.resx" />
+  <event action="Analyze" type="Success" name="ctrCreateEdiStruckture.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Edifact\ctrCreateEdiStruckture.resx" />
+  <event action="Analyze" type="Success" name="ctrEdiClientWorkspaceValue.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Edifact\ctrEdiClientWorkspaceValue.resx" />
+  <event action="Analyze" type="Success" name="AFKalenderItem.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Kalender\AFKalenderItem.resx" />
+  <event action="Analyze" type="Success" name="AFKalenderItemKommi.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Kalender\AFKalenderItemKommi.resx" />
+  <event action="Analyze" type="Success" name="AFKalenderItemLeerKM.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Kalender\AFKalenderItemLeerKM.resx" />
+  <event action="Analyze" type="Success" name="AFKalenderItemRecource.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Kalender\AFKalenderItemRecource.resx" />
+  <event action="Analyze" type="Success" name="AFKalenderItemTour.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Kalender\AFKalenderItemTour.resx" />
+  <event action="Analyze" type="Success" name="AFKalenderRecource.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Kalender\AFKalenderRecource.resx" />
+  <event action="Analyze" type="Success" name="AFKalenderRow.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Kalender\AFKalenderRow.resx" />
+  <event action="Analyze" type="Success" name="ctrCalRow.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Kalender\ctrCalRow.resx" />
+  <event action="Analyze" type="Success" name="ctrTourItem.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Kalender\ctrTourItem.resx" />
+  <event action="Analyze" type="Success" name="ctrCustomProcess.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Processes\ctrCustomProcess.resx" />
+  <event action="Analyze" type="Success" name="ctrCustomProcessExcesption.resx" path="D:\Develop\SpedLVS\Sped4\Controls\Processes\ctrCustomProcessExcesption.resx" />
+  <event action="Analyze" type="Success" name="ctrAnonymousDatabase.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ToDo\ctrAnonymousDatabase.resx" />
+  <event action="Analyze" type="Success" name="ctrCleanAsnTables.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ToDo\ctrCleanAsnTables.resx" />
+  <event action="Analyze" type="Success" name="ctrPdfCombinationTest.resx" path="D:\Develop\SpedLVS\Sped4\Controls\ToDo\ctrPdfCombinationTest.resx" />
+  <event action="Analyze" type="Success" name="ctrADR_List.resx" path="D:\Develop\SpedLVS\Sped4\ctrADR_List.resx" />
+  <event action="Analyze" type="Success" name="ctrADRManAdd.resx" path="D:\Develop\SpedLVS\Sped4\ctrADRManAdd.resx" />
+  <event action="Analyze" type="Success" name="ctrADRSearch.resx" path="D:\Develop\SpedLVS\Sped4\ctrADRSearch.resx" />
+  <event action="Analyze" type="Success" name="ctrAppInfo.resx" path="D:\Develop\SpedLVS\Sped4\ctrAppInfo.resx" />
+  <event action="Analyze" type="Success" name="ctrAppInfo.cs.resx" path="D:\Develop\SpedLVS\Sped4\ctrAppInfo.cs.resx" />
+  <event action="Analyze" type="Success" name="ctrArbeistlisteAufgaben.resx" path="D:\Develop\SpedLVS\Sped4\ctrArbeistlisteAufgaben.resx" />
+  <event action="Analyze" type="Success" name="ctrArbeitsbereichAdd.resx" path="D:\Develop\SpedLVS\Sped4\ctrArbeitsbereichAdd.resx" />
+  <event action="Analyze" type="Success" name="ctrArbeitsbereichList.resx" path="D:\Develop\SpedLVS\Sped4\ctrArbeitsbereichList.resx" />
+  <event action="Analyze" type="Success" name="ctrArbeitsliste.resx" path="D:\Develop\SpedLVS\Sped4\ctrArbeitsliste.resx" />
+  <event action="Analyze" type="Success" name="ctrArtDetails.resx" path="D:\Develop\SpedLVS\Sped4\ctrArtDetails.resx" />
+  <event action="Analyze" type="Success" name="ctrArtSearchFilter.resx" path="D:\Develop\SpedLVS\Sped4\ctrArtSearchFilter.resx" />
+  <event action="Analyze" type="Success" name="ctrASNCall.resx" path="D:\Develop\SpedLVS\Sped4\ctrASNCall.resx" />
+  <event action="Analyze" type="Success" name="ctrASNRead.resx" path="D:\Develop\SpedLVS\Sped4\ctrASNRead.resx" />
+  <event action="Analyze" type="Success" name="ctrAuftrag.resx" path="D:\Develop\SpedLVS\Sped4\ctrAuftrag.resx" />
+  <event action="Analyze" type="Success" name="ctrAuftragDetails.resx" path="D:\Develop\SpedLVS\Sped4\ctrAuftragDetails.resx" />
+  <event action="Analyze" type="Success" name="ctrAuslagerung.resx" path="D:\Develop\SpedLVS\Sped4\ctrAuslagerung.resx" />
+  <event action="Analyze" type="Success" name="ctrBestand.resx" path="D:\Develop\SpedLVS\Sped4\ctrBestand.resx" />
+  <event action="Analyze" type="Success" name="ctrBSInfo4905.resx" path="D:\Develop\SpedLVS\Sped4\ctrBSInfo4905.resx" />
+  <event action="Analyze" type="Success" name="ctrCalcSped.resx" path="D:\Develop\SpedLVS\Sped4\ctrCalcSped.resx" />
+  <event action="Analyze" type="Success" name="ctrComLog.resx" path="D:\Develop\SpedLVS\Sped4\ctrComLog.resx" />
+  <event action="Analyze" type="Success" name="ctrComunicatorLog.resx" path="D:\Develop\SpedLVS\Sped4\ctrComunicatorLog.resx" />
+  <event action="Analyze" type="Success" name="ctrDelforDeliveryForecast.resx" path="D:\Develop\SpedLVS\Sped4\ctrDelforDeliveryForecast.resx" />
+  <event action="Analyze" type="Success" name="ctrDispoKommiDetails.resx" path="D:\Develop\SpedLVS\Sped4\ctrDispoKommiDetails.resx" />
+  <event action="Analyze" type="Success" name="ctrDistance.resx" path="D:\Develop\SpedLVS\Sped4\ctrDistance.resx" />
+  <event action="Analyze" type="Success" name="ctrEinheitenListe.resx" path="D:\Develop\SpedLVS\Sped4\ctrEinheitenListe.resx" />
+  <event action="Analyze" type="Success" name="ctrEinlagerung.resx" path="D:\Develop\SpedLVS\Sped4\ctrEinlagerung.resx" />
+  <event action="Analyze" type="Success" name="ctrExtraCharge.resx" path="D:\Develop\SpedLVS\Sped4\ctrExtraCharge.resx" />
+  <event action="Analyze" type="Success" name="ctrExtraChargeAssignment.resx" path="D:\Develop\SpedLVS\Sped4\ctrExtraChargeAssignment.resx" />
+  <event action="Analyze" type="Success" name="ctrFahrzeug_List.resx" path="D:\Develop\SpedLVS\Sped4\ctrFahrzeug_List.resx" />
+  <event action="Analyze" type="Success" name="ctrFaktArtikelList.resx" path="D:\Develop\SpedLVS\Sped4\ctrFaktArtikelList.resx" />
+  <event action="Analyze" type="Success" name="ctrFaktLager.resx" path="D:\Develop\SpedLVS\Sped4\ctrFaktLager.resx" />
+  <event action="Analyze" type="Success" name="ctrFaktSpedition.resx" path="D:\Develop\SpedLVS\Sped4\ctrFaktSpedition.resx" />
+  <event action="Analyze" type="Success" name="ctrFilterSelect.resx" path="D:\Develop\SpedLVS\Sped4\ctrFilterSelect.resx" />
+  <event action="Analyze" type="Success" name="ctrFormList.resx" path="D:\Develop\SpedLVS\Sped4\ctrFormList.resx" />
+  <event action="Analyze" type="Success" name="ctrFreeForCall.resx" path="D:\Develop\SpedLVS\Sped4\ctrFreeForCall.resx" />
+  <event action="Analyze" type="Success" name="ctrGridPrinter.resx" path="D:\Develop\SpedLVS\Sped4\ctrGridPrinter.resx" />
+  <event action="Analyze" type="Success" name="ctrGueterArtListe.resx" path="D:\Develop\SpedLVS\Sped4\ctrGueterArtListe.resx" />
+  <event action="Analyze" type="Success" name="ctrInfoPanel.resx" path="D:\Develop\SpedLVS\Sped4\ctrInfoPanel.resx" />
+  <event action="Analyze" type="Success" name="ctrInventory.resx" path="D:\Develop\SpedLVS\Sped4\ctrInventory.resx" />
+  <event action="Analyze" type="Success" name="ctrInventoryAdd.resx" path="D:\Develop\SpedLVS\Sped4\ctrInventoryAdd.resx" />
+  <event action="Analyze" type="Success" name="ctrJournal.resx" path="D:\Develop\SpedLVS\Sped4\ctrJournal.resx" />
+  <event action="Analyze" type="Success" name="ctrLagerOrt.resx" path="D:\Develop\SpedLVS\Sped4\ctrLagerOrt.resx" />
+  <event action="Analyze" type="Success" name="ctrLieferEinteilung.resx" path="D:\Develop\SpedLVS\Sped4\ctrLieferEinteilung.resx" />
+  <event action="Analyze" type="Success" name="ctrLogbuch.resx" path="D:\Develop\SpedLVS\Sped4\ctrLogbuch.resx" />
+  <event action="Analyze" type="Success" name="ctrMailCockpit.resx" path="D:\Develop\SpedLVS\Sped4\ctrMailCockpit.resx" />
+  <event action="Analyze" type="Success" name="ctrMenu.resx" path="D:\Develop\SpedLVS\Sped4\ctrMenu.resx" />
+  <event action="Analyze" type="Success" name="ctrPersonal_List.resx" path="D:\Develop\SpedLVS\Sped4\ctrPersonal_List.resx" />
+  <event action="Analyze" type="Success" name="ctrPostCenter.resx" path="D:\Develop\SpedLVS\Sped4\ctrPostCenter.resx" />
+  <event action="Analyze" type="Success" name="ctrPrint.resx" path="D:\Develop\SpedLVS\Sped4\ctrPrint.resx" />
+  <event action="Analyze" type="Success" name="ctrPrinter.resx" path="D:\Develop\SpedLVS\Sped4\ctrPrinter.resx" />
+  <event action="Analyze" type="Success" name="ctrPrintLager.resx" path="D:\Develop\SpedLVS\Sped4\ctrPrintLager.resx" />
+  <event action="Analyze" type="Success" name="ctrPrintLagerOrtLabel.resx" path="D:\Develop\SpedLVS\Sped4\ctrPrintLagerOrtLabel.resx" />
+  <event action="Analyze" type="Success" name="ctrRaltionen.resx" path="D:\Develop\SpedLVS\Sped4\ctrRaltionen.resx" />
+  <event action="Analyze" type="Success" name="ctrReihen.resx" path="D:\Develop\SpedLVS\Sped4\ctrReihen.resx" />
+  <event action="Analyze" type="Success" name="ctrRetoure.resx" path="D:\Develop\SpedLVS\Sped4\ctrRetoure.resx" />
+  <event action="Analyze" type="Success" name="ctrRGList.resx" path="D:\Develop\SpedLVS\Sped4\ctrRGList.resx" />
+  <event action="Analyze" type="Success" name="ctrRGManuell.resx" path="D:\Develop\SpedLVS\Sped4\ctrRGManuell.resx" />
+  <event action="Analyze" type="Success" name="ctrSchaeden.resx" path="D:\Develop\SpedLVS\Sped4\ctrSchaeden.resx" />
+  <event action="Analyze" type="Success" name="ctrSearch.resx" path="D:\Develop\SpedLVS\Sped4\ctrSearch.resx" />
+  <event action="Analyze" type="Success" name="ctrSendToSPL.resx" path="D:\Develop\SpedLVS\Sped4\ctrSendToSPL.resx" />
+  <event action="Analyze" type="Success" name="ctrSperrlager.resx" path="D:\Develop\SpedLVS\Sped4\ctrSperrlager.resx" />
+  <event action="Analyze" type="Success" name="ctrSPLAdd.resx" path="D:\Develop\SpedLVS\Sped4\ctrSPLAdd.resx" />
+  <event action="Analyze" type="Success" name="ctrStatistik.resx" path="D:\Develop\SpedLVS\Sped4\ctrStatistik.resx" />
+  <event action="Analyze" type="Success" name="ctrSUList.resx" path="D:\Develop\SpedLVS\Sped4\ctrSUList.resx" />
+  <event action="Analyze" type="Success" name="ctrTableOfAccount.resx" path="D:\Develop\SpedLVS\Sped4\ctrTableOfAccount.resx" />
+  <event action="Analyze" type="Success" name="ctrTarifErfassung.resx" path="D:\Develop\SpedLVS\Sped4\ctrTarifErfassung.resx" />
+  <event action="Analyze" type="Success" name="ctrTourDetails.resx" path="D:\Develop\SpedLVS\Sped4\ctrTourDetails.resx" />
+  <event action="Analyze" type="Success" name="ctrUmbuchung.resx" path="D:\Develop\SpedLVS\Sped4\ctrUmbuchung.resx" />
+  <event action="Analyze" type="Success" name="ctrUserList.resx" path="D:\Develop\SpedLVS\Sped4\ctrUserList.resx" />
+  <event action="Analyze" type="Success" name="ctrVDA4984Details.resx" path="D:\Develop\SpedLVS\Sped4\ctrVDA4984Details.resx" />
+  <event action="Analyze" type="Success" name="ctrWaggonbuch.resx" path="D:\Develop\SpedLVS\Sped4\ctrWaggonbuch.resx" />
+  <event action="Analyze" type="Success" name="ctrWorklist.resx" path="D:\Develop\SpedLVS\Sped4\ctrWorklist.resx" />
+  <event action="Analyze" type="Success" name="frmAbrechnungslisteZeitraum.resx" path="D:\Develop\SpedLVS\Sped4\frmAbrechnungslisteZeitraum.resx" />
+  <event action="Analyze" type="Success" name="frmADR.resx" path="D:\Develop\SpedLVS\Sped4\frmADR.resx" />
+  <event action="Analyze" type="Success" name="frmADRPanelFakturierung.resx" path="D:\Develop\SpedLVS\Sped4\frmADRPanelFakturierung.resx" />
+  <event action="Analyze" type="Success" name="frmADRPanelFrachtvergabe.resx" path="D:\Develop\SpedLVS\Sped4\frmADRPanelFrachtvergabe.resx" />
+  <event action="Analyze" type="Success" name="frmADRSearch.resx" path="D:\Develop\SpedLVS\Sped4\frmADRSearch.resx" />
+  <event action="Analyze" type="Success" name="frmAMengeChange.resx" path="D:\Develop\SpedLVS\Sped4\frmAMengeChange.resx" />
+  <event action="Analyze" type="Success" name="frmAnmeldeschein.resx" path="D:\Develop\SpedLVS\Sped4\frmAnmeldeschein.resx" />
+  <event action="Analyze" type="Success" name="frmArbeitsbereiche.de.resx" path="D:\Develop\SpedLVS\Sped4\frmArbeitsbereiche.de.resx" />
+  <event action="Analyze" type="Success" name="frmArbeitsbereiche.en.resx" path="D:\Develop\SpedLVS\Sped4\frmArbeitsbereiche.en.resx" />
+  <event action="Analyze" type="Success" name="frmArbeitsbereiche.resx" path="D:\Develop\SpedLVS\Sped4\frmArbeitsbereiche.resx" />
+  <event action="Analyze" type="Success" name="frmArchiveView.resx" path="D:\Develop\SpedLVS\Sped4\frmArchiveView.resx" />
+  <event action="Analyze" type="Success" name="frmArchiveView.cs.resx" path="D:\Develop\SpedLVS\Sped4\frmArchiveView.cs.resx" />
+  <event action="Analyze" type="Success" name="frmAuftrag_Fast.resx" path="D:\Develop\SpedLVS\Sped4\frmAuftrag_Fast.resx" />
+  <event action="Analyze" type="Success" name="frmAuftrag_Splitting.resx" path="D:\Develop\SpedLVS\Sped4\frmAuftrag_Splitting.resx" />
+  <event action="Analyze" type="Success" name="frmAuftragslisteZeitraum.resx" path="D:\Develop\SpedLVS\Sped4\frmAuftragslisteZeitraum.resx" />
+  <event action="Analyze" type="Success" name="frmAuftragView.resx" path="D:\Develop\SpedLVS\Sped4\frmAuftragView.resx" />
+  <event action="Analyze" type="Success" name="frmDialog.resx" path="D:\Develop\SpedLVS\Sped4\frmDialog.resx" />
+  <event action="Analyze" type="Success" name="frmDispo.resx" path="D:\Develop\SpedLVS\Sped4\frmDispo.resx" />
+  <event action="Analyze" type="Success" name="frmDispoAufliegerListe.resx" path="D:\Develop\SpedLVS\Sped4\frmDispoAufliegerListe.resx" />
+  <event action="Analyze" type="Success" name="frmDispoFahrer.resx" path="D:\Develop\SpedLVS\Sped4\frmDispoFahrer.resx" />
+  <event action="Analyze" type="Success" name="frmDispoFrachtvergabe.resx" path="D:\Develop\SpedLVS\Sped4\frmDispoFrachtvergabe.resx" />
+  <event action="Analyze" type="Success" name="frmDispoKalender.resx" path="D:\Develop\SpedLVS\Sped4\frmDispoKalender.resx" />
+  <event action="Analyze" type="Success" name="frmDispoRecourceChange.resx" path="D:\Develop\SpedLVS\Sped4\frmDispoRecourceChange.resx" />
+  <event action="Analyze" type="Success" name="frmDispoTourChange.resx" path="D:\Develop\SpedLVS\Sped4\frmDispoTourChange.resx" />
+  <event action="Analyze" type="Success" name="frmFahrzeuge.resx" path="D:\Develop\SpedLVS\Sped4\frmFahrzeuge.resx" />
+  <event action="Analyze" type="Success" name="frmFakturierung.resx" path="D:\Develop\SpedLVS\Sped4\frmFakturierung.resx" />
+  <event action="Analyze" type="Success" name="frmFDocs.resx" path="D:\Develop\SpedLVS\Sped4\frmFDocs.resx" />
+  <event action="Analyze" type="Success" name="frmFibuExport.resx" path="D:\Develop\SpedLVS\Sped4\frmFibuExport.resx" />
+  <event action="Analyze" type="Success" name="frmGArtenAuftragserfassung.resx" path="D:\Develop\SpedLVS\Sped4\frmGArtenAuftragserfassung.resx" />
+  <event action="Analyze" type="Success" name="frmGueterArten.resx" path="D:\Develop\SpedLVS\Sped4\frmGueterArten.resx" />
+  <event action="Analyze" type="Success" name="frmInfoSchadstoffklassen.resx" path="D:\Develop\SpedLVS\Sped4\frmInfoSchadstoffklassen.resx" />
+  <event action="Analyze" type="Success" name="frmKDFrachtKonditionen.resx" path="D:\Develop\SpedLVS\Sped4\frmKDFrachtKonditionen.resx" />
+  <event action="Analyze" type="Success" name="frmKommiDetailsPanel.resx" path="D:\Develop\SpedLVS\Sped4\frmKommiDetailsPanel.resx" />
+  <event action="Analyze" type="Success" name="frmKunde.resx" path="D:\Develop\SpedLVS\Sped4\frmKunde.resx" />
+  <event action="Analyze" type="Success" name="frmLiestViewer.resx" path="D:\Develop\SpedLVS\Sped4\frmLiestViewer.resx" />
+  <event action="Analyze" type="Success" name="frmLogin.resx" path="D:\Develop\SpedLVS\Sped4\frmLogin.resx" />
+  <event action="Analyze" type="Success" name="frmMAIN.resx" path="D:\Develop\SpedLVS\Sped4\frmMAIN.resx" />
+  <event action="Analyze" type="Success" name="frmMandanten.de.resx" path="D:\Develop\SpedLVS\Sped4\frmMandanten.de.resx" />
+  <event action="Analyze" type="Success" name="frmMandanten.resx" path="D:\Develop\SpedLVS\Sped4\frmMandanten.resx" />
+  <event action="Analyze" type="Success" name="frmMenge.resx" path="D:\Develop\SpedLVS\Sped4\frmMenge.resx" />
+  <event action="Analyze" type="Success" name="frmPersonal.resx" path="D:\Develop\SpedLVS\Sped4\frmPersonal.resx" />
+  <event action="Analyze" type="Success" name="frmPrintCenter.resx" path="D:\Develop\SpedLVS\Sped4\frmPrintCenter.resx" />
+  <event action="Analyze" type="Success" name="frmPrintRepViewer.resx" path="D:\Develop\SpedLVS\Sped4\frmPrintRepViewer.resx" />
+  <event action="Analyze" type="Success" name="frmProcessBar.de-DE.resx" path="D:\Develop\SpedLVS\Sped4\frmProcessBar.de-DE.resx" />
+  <event action="Analyze" type="Success" name="frmProcessBar.resx" path="D:\Develop\SpedLVS\Sped4\frmProcessBar.resx" />
+  <event action="Analyze" type="Success" name="frmRelation.resx" path="D:\Develop\SpedLVS\Sped4\frmRelation.resx" />
+  <event action="Analyze" type="Success" name="frmReportViewer.resx" path="D:\Develop\SpedLVS\Sped4\frmReportViewer.resx" />
+  <event action="Analyze" type="Success" name="frmRGGSErstellen.resx" path="D:\Develop\SpedLVS\Sped4\frmRGGSErstellen.resx" />
+  <event action="Analyze" type="Success" name="frmSettingsView.resx" path="D:\Develop\SpedLVS\Sped4\frmSettingsView.resx" />
+  <event action="Analyze" type="Success" name="frmStatusChange.resx" path="D:\Develop\SpedLVS\Sped4\frmStatusChange.resx" />
+  <event action="Analyze" type="Success" name="frmStatusInfoAuftrag.resx" path="D:\Develop\SpedLVS\Sped4\frmStatusInfoAuftrag.resx" />
+  <event action="Analyze" type="Success" name="frmStatusLegende.resx" path="D:\Develop\SpedLVS\Sped4\frmStatusLegende.resx" />
+  <event action="Analyze" type="Success" name="frmTEMPLATE.resx" path="D:\Develop\SpedLVS\Sped4\frmTEMPLATE.resx" />
+  <event action="Analyze" type="Success" name="frmTestForm.resx" path="D:\Develop\SpedLVS\Sped4\frmTestForm.resx" />
+  <event action="Analyze" type="Success" name="frmTmp.resx" path="D:\Develop\SpedLVS\Sped4\frmTmp.resx" />
+  <event action="Analyze" type="Success" name="frmTwain.resx" path="D:\Develop\SpedLVS\Sped4\frmTwain.resx" />
+  <event action="Analyze" type="Success" name="frmTwainInfoForm.resx" path="D:\Develop\SpedLVS\Sped4\frmTwainInfoForm.resx" />
+  <event action="Analyze" type="Success" name="frmTwainPicForm.resx" path="D:\Develop\SpedLVS\Sped4\frmTwainPicForm.resx" />
+  <event action="Analyze" type="Success" name="frmUpdateMirror.resx" path="D:\Develop\SpedLVS\Sped4\frmUpdateMirror.resx" />
+  <event action="Analyze" type="Success" name="frmUserverwaltung.resx" path="D:\Develop\SpedLVS\Sped4\frmUserverwaltung.resx" />
+  <event action="Analyze" type="Success" name="frmWait.resx" path="D:\Develop\SpedLVS\Sped4\frmWait.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\Sped4\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\Sped4\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\Sped4\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\Sped4\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\Sped4\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\Sped4\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\Develop\SpedLVS\Sped4\packages.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\Develop\SpedLVS\Sped4\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="rfrmTmp.resx" path="D:\Develop\SpedLVS\Sped4\rfrmTmp.resx" />
+  <event action="Analyze" type="Success" name="Sped4" path="D:\Develop\SpedLVS\Sped4\Sped4.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\Communicator\Communicator.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\Communicator\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\Communicator\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\Communicator\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\Communicator\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\Communicator\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\Communicator\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="D:\Develop\SpedLVS\Communicator\App.config" />
+  <event action="Analyze" type="Success" name="frmAdminCockpit.resx" path="D:\Develop\SpedLVS\Communicator\Controls\AdminCockpit\frmAdminCockpit.resx" />
+  <event action="Analyze" type="Success" name="frmAdminCockpit.resx" path="D:\Develop\SpedLVS\Communicator\frmAdminCockpit.resx" />
+  <event action="Analyze" type="Success" name="frmMainCom.resx" path="D:\Develop\SpedLVS\Communicator\frmMainCom.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\Communicator\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\Communicator\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\Communicator\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\Communicator\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\Communicator\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\Communicator\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\Develop\SpedLVS\Communicator\packages.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\Develop\SpedLVS\Communicator\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="Communicator" path="D:\Develop\SpedLVS\Communicator\Communicator.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\LvsMobileAPI\LvsMobileAPI.csproj" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\Develop\SpedLVS\LvsMobileAPI\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\LvsMobileAPI\web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\LvsMobileAPI\web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\LvsMobileAPI\web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\LvsMobileAPI\web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\LvsMobileAPI\web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\LvsMobileAPI\web.config" />
+  <event action="Analyze" type="Success" name="web.config" path="D:\Develop\SpedLVS\LvsMobileAPI\web.config" />
+  <event action="Analyze" type="Success" name="LvsMobileAPI" path="D:\Develop\SpedLVS\LvsMobileAPI\LvsMobileAPI.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\WatchDogService\WatchDogService.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\WatchDogService\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\WatchDogService\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\WatchDogService\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\WatchDogService\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\WatchDogService\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\WatchDogService\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="D:\Develop\SpedLVS\WatchDogService\App.config" />
+  <event action="Analyze" type="Success" name="WDProjectInstaller.resx" path="D:\Develop\SpedLVS\WatchDogService\WDProjectInstaller.resx" />
+  <event action="Analyze" type="Success" name="WDService.resx" path="D:\Develop\SpedLVS\WatchDogService\WDService.resx" />
+  <event action="Analyze" type="Success" name="WatchDogService" path="D:\Develop\SpedLVS\WatchDogService\WatchDogService.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\WatchDog\WatchDog.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\WatchDog\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\WatchDog\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\WatchDog\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\WatchDog\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\WatchDog\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\WatchDog\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="D:\Develop\SpedLVS\WatchDog\app.config" />
+  <event action="Analyze" type="Success" name="frmMain.resx" path="D:\Develop\SpedLVS\WatchDog\frmMain.resx" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\Develop\SpedLVS\WatchDog\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="WatchDog" path="D:\Develop\SpedLVS\WatchDog\WatchDog.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\LvsPrintService\LvsPrintService.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\LvsPrintService\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\LvsPrintService\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\LvsPrintService\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\LvsPrintService\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\LvsPrintService\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\LvsPrintService\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="D:\Develop\SpedLVS\LvsPrintService\App.config" />
+  <event action="Analyze" type="Success" name="LvsPrintService.resx" path="D:\Develop\SpedLVS\LvsPrintService\LvsPrintService.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\LvsPrintService\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\LvsPrintService\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\LvsPrintService\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\LvsPrintService\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\LvsPrintService\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\LvsPrintService\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\Develop\SpedLVS\LvsPrintService\packages.config" />
+  <event action="Analyze" type="Success" name="ProjectInstaller.resx" path="D:\Develop\SpedLVS\LvsPrintService\ProjectInstaller.resx" />
+  <event action="Analyze" type="Success" name="LvsPrintService" path="D:\Develop\SpedLVS\LvsPrintService\LvsPrintService.csproj" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\Abruf.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\Abruf.aspx" />
+  <event action="Analyze" type="Success" name="Abruf.aspx" path="D:\Develop\SpedLVS\LvsCall\Abruf.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\AbrufEdit.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\AbrufEdit.aspx" />
+  <event action="Analyze" type="Success" name="AbrufEdit.aspx" path="D:\Develop\SpedLVS\LvsCall\AbrufEdit.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\AbrufList.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\AbrufList.aspx" />
+  <event action="Analyze" type="Success" name="AbrufList.aspx" path="D:\Develop\SpedLVS\LvsCall\AbrufList.aspx" />
+  <event action="Analyze" type="Success" name="Text.de.resx" path="D:\Develop\SpedLVS\LvsCall\App_GlobalResources\Text.de.resx" />
+  <event action="Analyze" type="Success" name="Text.fr.resx" path="D:\Develop\SpedLVS\LvsCall\App_GlobalResources\Text.fr.resx" />
+  <event action="Analyze" type="Success" name="Text.resx" path="D:\Develop\SpedLVS\LvsCall\App_GlobalResources\Text.resx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\ArtikelListToSelect.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\ArtikelListToSelect.aspx" />
+  <event action="Analyze" type="Success" name="ArtikelListToSelect.aspx" path="D:\Develop\SpedLVS\LvsCall\ArtikelListToSelect.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\Bestand.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\Bestand.aspx" />
+  <event action="Analyze" type="Success" name="Bestand.aspx" path="D:\Develop\SpedLVS\LvsCall\Bestand.aspx" />
+  <event action="Analyze" type="Success" name="Binary References" path="D:\Develop\SpedLVS\LvsCall\Bin\" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\Journal.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\Journal.aspx" />
+  <event action="Analyze" type="Success" name="Journal.aspx" path="D:\Develop\SpedLVS\LvsCall\Journal.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\Login.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\Login.aspx" />
+  <event action="Analyze" type="Success" name="Login.aspx" path="D:\Develop\SpedLVS\LvsCall\Login.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\LogOut.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\LogOut.aspx" />
+  <event action="Analyze" type="Success" name="LogOut.aspx" path="D:\Develop\SpedLVS\LvsCall\LogOut.aspx" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\Main.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\Main.aspx" />
+  <event action="Analyze" type="Success" name="Main.aspx" path="D:\Develop\SpedLVS\LvsCall\Main.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\Manual.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\Manual.aspx" />
+  <event action="Analyze" type="Success" name="Manual.aspx" path="D:\Develop\SpedLVS\LvsCall\Manual.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\MasterPage.master" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\MasterPage.master" />
+  <event action="Analyze" type="Success" name="MasterPage.master" path="D:\Develop\SpedLVS\LvsCall\MasterPage.master" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\LvsCall\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\LvsCall\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\LvsCall\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\LvsCall\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\LvsCall\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\LvsCall\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\Develop\SpedLVS\LvsCall\packages.config" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\TelerikWebForm.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\TelerikWebForm.aspx" />
+  <event action="Analyze" type="Success" name="TelerikWebForm.aspx" path="D:\Develop\SpedLVS\LvsCall\TelerikWebForm.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\Test.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\Test.aspx" />
+  <event action="Analyze" type="Success" name="Test.aspx" path="D:\Develop\SpedLVS\LvsCall\Test.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\UserEdit.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\UserEdit.aspx" />
+  <event action="Analyze" type="Success" name="UserEdit.aspx" path="D:\Develop\SpedLVS\LvsCall\UserEdit.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="D:\Develop\SpedLVS\LvsCall\UserList.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="D:\Develop\SpedLVS\LvsCall\UserList.aspx" />
+  <event action="Analyze" type="Success" name="UserList.aspx" path="D:\Develop\SpedLVS\LvsCall\UserList.aspx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\LvsCall\web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\LvsCall\web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\LvsCall\web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\LvsCall\web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\LvsCall\web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\LvsCall\web.config" />
+  <event action="Analyze" type="Success" name="web.config" path="D:\Develop\SpedLVS\LvsCall\web.config" />
+  <event action="Analyze" type="Success" name="D:\...\LvsCall\" path="D:\Develop\SpedLVS\LvsCall" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\CustomizedUpdates\CustomizedUpdates.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\CustomizedUpdates\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\CustomizedUpdates\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\CustomizedUpdates\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\CustomizedUpdates\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\CustomizedUpdates\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\CustomizedUpdates\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="D:\Develop\SpedLVS\CustomizedUpdates\App.config" />
+  <event action="Analyze" type="Success" name="ctrAMChange2024.resx" path="D:\Develop\SpedLVS\CustomizedUpdates\ArcelorUmstellung2024\ctrAMChange2024.resx" />
+  <event action="Analyze" type="Success" name="frmMain.resx" path="D:\Develop\SpedLVS\CustomizedUpdates\frmMain.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\SpedLVS\CustomizedUpdates\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\SpedLVS\CustomizedUpdates\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\SpedLVS\CustomizedUpdates\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\SpedLVS\CustomizedUpdates\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\SpedLVS\CustomizedUpdates\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\SpedLVS\CustomizedUpdates\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\Develop\SpedLVS\CustomizedUpdates\packages.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\Develop\SpedLVS\CustomizedUpdates\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="CustomizedUpdates" path="D:\Develop\SpedLVS\CustomizedUpdates\CustomizedUpdates.csproj" />
+  <event action="Analyze" type="Success" name="SpedLvs" path="D:\Develop\SpedLVS\SpedLvs.sln" />
+</log>

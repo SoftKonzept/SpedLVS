@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             xmlns:vm="clr-namespace:LvsScan.Portable.ViewModels.StoredLocation"
+             x:Class="LvsScan.Portable.Views.StoredLocation.sl2_StoreLocationChangePage">
+    <ContentPage.BindingContext>
+        <vm:sl2_StoreLocationChangeViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="tbiStoreLocationChange"                     
+                     Text="Umbuchung durchführen"
+                     IconImageSource="mi_edit_32x32.png"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="tbiStoreLocationChange_Clicked"
+                     />
+        <ToolbarItem x:Name="tbiHome"                     
+                     Text="zur Mainpage"
+                     IconImageSource="mi_home_32x32.png"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="tbiHome_Clicked"
+                     />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+
+
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Schritt 2 von 3"
+                       VerticalOptions="End" 
+                       HorizontalOptions="EndAndExpand" 
+                       Padding="0,0,10,0"
+                       FontSize="13"
+                       FontAttributes="Bold"
+                       />
+            </StackLayout>
+
+            <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                    Margin="10,10,10,10" 
+                                                    Padding="0,5,0,0"
+                                                    Color="DarkBlue"
+                                                    BackgroundColor="Snow"
+                                                    >
+                <StackLayout>
+                    <StackLayout x:Name="slArticleHead">
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label  HorizontalOptions="StartAndExpand"
+                                            Padding="5,0,0,0" 
+                                            FontSize="Large"
+                                            FontAttributes="Bold"
+                                            TextColor="DarkSlateGray"
+                                            >
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}LVS: {0} - [ {1} ]">
+                                        <Binding Path="Article.LVS_ID" />
+                                        <Binding Path="Article.Id" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                            <Label Text="{Binding Id}" BackgroundColor="Aqua"/>
+
+                        </StackLayout>
+                        <BoxView Color= "DarkSlateBlue"
+                                            HeightRequest="1"                                                
+                                            HorizontalOptions="Fill" />
+                    </StackLayout>
+
+                    <StackLayout x:Name="slArticleData" Orientation="Vertical">
+                        <Label  HorizontalOptions="StartAndExpand"
+                                        Padding="15,0,0,0"
+                                        FontSize="Medium"
+                                        TextColor="DimGray"
+                                        >
+                            <Label.Text>
+                                <MultiBinding StringFormat="{}ProduktionsNr.: {0}">
+                                    <Binding Path="Article.Produktionsnummer" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                    </StackLayout>
+
+                    <BoxView Color= "DarkSlateBlue"
+                                            HeightRequest="1"                                                
+                                            HorizontalOptions="Fill" />
+
+                    <StackLayout x:Name="slStoredLocation">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical">
+                                <Label  HorizontalOptions="Center"
+                                            Padding="15,0,0,0"
+                                            FontSize="Small"
+                                            TextColor="DimGray"
+                                            Text="Werk"
+                                            />
+                                <Label  HorizontalOptions="Center"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                Text="{Binding Article.Werk}"
+                                                />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical">
+                                <Label  HorizontalOptions="Center"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                Text="Halle"
+                                                />
+                                <Label  HorizontalOptions="Center"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    Text="{Binding Article.Halle}"
+                                                    />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical">
+                                <Label  HorizontalOptions="Center"
+                                                Padding="15,0,0,0"
+                                                FontSize="Small"
+                                                TextColor="DimGray"
+                                                Text="Reihe"
+                                                />
+                                <Label  HorizontalOptions="Center"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    Text="{Binding Article.Reihe}"
+                                                    />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical">
+                                <Label  HorizontalOptions="Center"
+                                                    Padding="15,0,0,0"
+                                                    FontSize="Small"
+                                                    TextColor="DimGray"
+                                                    Text="Ebene"
+                                                    />
+                                <Label  HorizontalOptions="Center"
+                                                        Padding="15,0,0,0"
+                                                        FontSize="Small"
+                                                        TextColor="DimGray"
+                                                        Text="{Binding Article.Ebene}"
+                                                        />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical">
+                                <Label  HorizontalOptions="Center"
+                                                        Padding="15,0,0,0"
+                                                        FontSize="Small"
+                                                        TextColor="DimGray"
+                                                        Text="Platz"
+                                                        />
+                                <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            Text="{Binding Article.Platz}"
+                                                            />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+            </telerikPrimitives:RadShadow>
+
+
+            <StackLayout>
+                <telerikPrimitives:RadTabView x:Name="tabView"     
+                                              SelectedItem="{Binding SelectedTabViewItem, Mode=TwoWay}"
+                                              >
+                    <telerikPrimitives:RadTabView.Items>
+                        
+                        <telerikPrimitives:TabViewItem x:Name="tabScan"
+                                                       HeaderText="Scan"
+                                                       IsSelected="{Binding TabScanInputSelected}"
+                                                       >
+                            <telerikPrimitives:TabViewItem.Content>
+                                <!--<Label Margin="10" Text="This is the content of the Home tab" />-->
+                                <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                Margin="10,10,10,10" 
+                                                Padding="0,5,0,0"
+                                                Color="Red"                                                             
+                                                BackgroundColor="White"
+                                                >
+                                    <StackLayout>
+                                        <Label Text="Lagerort:"
+                                               Padding="10,0,0,0"
+                                               />
+                                        <StackLayout Orientation="Horizontal">                                       
+                                            <Entry x:Name="entryScannedStorePlace" 
+                                                   Placeholder="#1#23#45#6#789"
+                                                   WidthRequest="250"
+                                                   Text="{Binding NewStoreLocation}"
+                                                   TextChanged="entryScannedStorePlace_TextChanged"                               
+                                                   />
+
+                                            <telerikInput:RadButton x:Name="btnScannedStorePlace"                                                                  
+                                                                    ContentLayout="Left,10"
+                                                                    BackgroundColor="Transparent"
+                                                                    Clicked="btnScannedStorePlace_Clicked"
+                                                                    >
+                                                <telerikInput:RadButton.ImageSource>
+                                                    <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                     Color="Blue"                                      
+                                                                     FontFamily="{StaticResource IconsFont}"                                          
+                                                                     />
+                                                </telerikInput:RadButton.ImageSource>
+                                            </telerikInput:RadButton>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </telerikPrimitives:RadShadow>                               
+
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+                        
+                        <telerikPrimitives:TabViewItem x:Name="tabManuelle"
+                                                       HeaderText="manuell"
+                                                       IsSelected="{Binding TabManuelInputSelected}"
+                                                       >
+                            <telerikPrimitives:TabViewItem.Content>
+
+                                <StackLayout Padding="10,5,10,5"
+                                             >
+                                    <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                Margin="10,10,10,10" 
+                                                Padding="0,5,0,0"
+                                                Color="Red"
+                                                BackgroundColor="White"
+                                                >
+                                        <StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label  HorizontalOptions="Center"
+                                                            VerticalOptions="Center"   
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"                                            
+                                                            TextColor="DimGray"
+                                                            FontAttributes="Bold"
+                                                            Text="Werk"
+                                                            />
+                                                    <Entry x:Name="entryWerk"
+                                                           FontSize="Default"
+                                                           TextColor="DimGray"
+                                                           Text="{Binding WerkInput}"
+                                                           HorizontalTextAlignment="Center"
+                                                           Keyboard="Numeric"
+                                                           />
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label  HorizontalOptions="Center"
+                                                            VerticalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            FontAttributes="Bold"
+                                                            Text="Halle"
+                                                      
+                                                            />
+                                                    <Entry x:Name="entryHalle"
+                                                           FontSize="Default"
+                                                           TextColor="DimGray"
+                                                           Text="{Binding HalleInput}"
+                                                           HorizontalTextAlignment="Center"
+                                                           Keyboard="Numeric"
+                                                           />
+                                                </StackLayout>
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            FontAttributes="Bold"
+                                                            Text="Reihe"
+                                                            />
+                                                    <Entry x:Name="entryReihe"
+                                                           FontSize="Default"
+                                                           TextColor="DimGray"
+                                                           Text="{Binding ReiheInput}"
+                                                           HorizontalTextAlignment="Center"
+                                                           Keyboard="Numeric"
+                                                           />
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label  HorizontalOptions="Center"
+                                                            VerticalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            FontAttributes="Bold"
+                                                            Text="Ebene"
+                                                            />
+                                                    <Entry x:Name="entryEbene"
+                                                           FontSize="Default"
+                                                           TextColor="DimGray"
+                                                           Text="{Binding EbeneInput}"
+                                                           HorizontalTextAlignment="Center"
+                                                           Keyboard="Numeric"
+                                                           />
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label  HorizontalOptions="Center"
+                                                            Padding="15,0,0,0"
+                                                            FontSize="Small"
+                                                            TextColor="DimGray"
+                                                            FontAttributes="Bold"
+                                                            Text="Platz"
+                                                            />
+                                                    <Entry x:Name="entryPlatz"
+                                                           FontSize="Default"
+                                                           TextColor="DimGray"
+                                                           Text="{Binding PlatzInput}"
+                                                           HorizontalTextAlignment="Center"
+                                                           Keyboard="Numeric"
+                                                           />
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                        </StackLayout>
+                                    </telerikPrimitives:RadShadow>
+                                </StackLayout>
+
+
+
+
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+                        
+                        
+                    </telerikPrimitives:RadTabView.Items>
+                </telerikPrimitives:RadTabView>
+            </StackLayout>
+            
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

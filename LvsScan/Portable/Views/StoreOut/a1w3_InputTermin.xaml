@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:enum="clr-namespace:Common.Enumerations;assembly=Common"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"                     
+             x:Class="LvsScan.Portable.Views.StoreOut.a1w3_InputTermin">
+    <ContentView.Resources>
+
+        <ControlTemplate x:Key="picker_Addresses_HeaderTemplate">
+            <Label Text="Adressauswahl:" 
+                   TextColor="White"
+                   FontSize="16"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   BackgroundColor="DodgerBlue"/>
+        </ControlTemplate>
+        <DataTemplate x:Key="picker_Addresses_ItemTemplate">
+
+            <Frame BorderColor="DarkBlue"
+                   HasShadow="True"
+                   CornerRadius="3"
+                   Padding="5"
+                   Margin="5"
+                   BackgroundColor="White"
+                   >
+                <StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding ViewIdString}" 
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               Padding="5,0,0,0"
+                               />
+                        <Label Text="{Binding AddressStringShort}" 
+                               FontSize="14"
+                               Padding="15,0,0,0"
+                               />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+        </DataTemplate>
+        <DataTemplate x:Key="picker_Addresses_SelectedItemTemplate">
+            <Frame BorderColor="DarkBlue"
+                   HasShadow="True"
+                   CornerRadius="3"
+                   Padding="5"
+                   Margin="5"
+                   BackgroundColor="Beige"
+                   >
+                <StackLayout
+                             >
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding ViewIdString}" 
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               Padding="5,0,0,0"
+                               />
+                        <Label Text="{Binding AddressStringShort}" 
+                               FontSize="14"
+                               Padding="15,0,0,0"
+                               />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+        <ControlTemplate x:Key="picker_Addresses_FooterTemplate">
+            <StackLayout Orientation="Horizontal" Spacing="5" BackgroundColor="DodgerBlue">
+                <Button Text="Abbrechen" 
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="StartAndExpand"
+                        Command="{TemplateBinding CancelCommand}" />
+                <Button Text="Übernehmen" 
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="EndAndExpand"
+                        Command="{TemplateBinding AcceptCommand}" />
+            </StackLayout>
+        </ControlTemplate>
+
+    </ContentView.Resources>
+    <ContentView.Content>
+        
+        <StackLayout>
+            
+            <!--<Label Text="Erfassung Adressdaten:" 
+                   FontSize="Medium" 
+                   FontAttributes="Bold"
+                   VerticalOptions="StartAndExpand"
+                   HorizontalOptions="StartAndExpand"
+                   />-->
+
+            <StackLayout>
+
+                <StackLayout x:Name="BusyIndicator"
+                        Padding="5,5,5,1"
+                        IsVisible="{Binding ShowBusyIndicator}"
+                        >
+
+                    <telerikPrimitives:RadBusyIndicator AnimationContentHeightRequest="100"
+                                                    AnimationContentWidthRequest="100"
+                                                    AnimationType="Animation6"
+                                                    AnimationContentColor="Blue"
+                                                    InputTransparent="True"
+                                                    IsBusy="{Binding ShowBusyIndicator}"
+                                                    >
+                        <telerikPrimitives:RadBusyIndicator.BusyContent>
+                            <Label Grid.Row="2" 
+                                           Text="Daten werden geladen...." 
+                                           TextColor="DarkBlue" 
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           />
+                        </telerikPrimitives:RadBusyIndicator.BusyContent>
+                    </telerikPrimitives:RadBusyIndicator>
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding ShowContent}">
+                    <Grid BackgroundColor="White" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="rowHead" Height="150" />                            
+                            <RowDefinition x:Name="rowTermin" Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout x:Name="StoreInHead" Grid.Row="0"
+                                Padding="5,5,5,1"
+                                IsVisible="{Binding ShowContent}"
+                                >
+                            <Frame BorderColor="#4488F6"
+                                   BackgroundColor="{Binding BackgroundColorHead}"
+                                   HorizontalOptions="FillAndExpand"
+                                   CornerRadius="5"                       
+                                   >
+                                <StackLayout>
+                                    <StackLayout Padding="0,-10,0,0">
+                                        <Label Text="{Binding AusgangIdString}" 
+                                               FontSize="Medium"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="StartAndExpand" 
+                                               HorizontalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding AusgangDateString}" 
+                                               FontSize="Default"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="StartAndExpand" 
+                                               HorizontalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding WorkspaceString}" 
+                                               FontSize="Small"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="StartAndExpand" 
+                                               HorizontalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                    <BoxView Color= "DarkSlateBlue"
+                                     HeightRequest="1"                                                
+                                     HorizontalOptions="Fill"                                 
+                                     />
+                                    <StackLayout Orientation="Horizontal" Padding="0,0,0,-10" VerticalOptions="CenterAndExpand">
+                                        <StackLayout x:Name="sldocList" Orientation="Horizontal" WidthRequest="130" Padding="10,0,0,0">
+                                            <Label x:Name="docList" Text="Liste: " />
+                                            <Image>
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_List}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_List.NotSet}" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_List}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_List.PrintOrderSet}" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_yellow_16x16.png" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_List}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_List.Printed}" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+                                        </StackLayout>
+                                        <StackLayout x:Name="sldocLfs" Orientation="Horizontal" WidthRequest="130" Padding="10,0,0,0">
+                                            <Label x:Name="docLfs" Text="Lfs"/>
+                                            <Image>
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_Lfs}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_Lfs.NotSet}" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_Lfs}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_Lfs.PrintOrderSet}" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_yellow_16x16.png" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_Lfs}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_Lfs.Printed}" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+                                        </StackLayout>
+                                        <StackLayout x:Name="sldocFB" Orientation="Horizontal" WidthRequest="130"  Padding="10,0,0,0">
+                                            <Label x:Name="docFB" Text="FB"/>
+                                            <Image>
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_Frachtbrief}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_Frachtbrief.NotSet}" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_grey_16x16.png" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_Frachtbrief}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_Frachtbrief.PrintOrderSet}" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_yellow_16x16.png" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding PrintDocumentStoreOutStatus_Frachtbrief}" Value="{x:Static enum:enumPrintDocumentStoreOutStatus_Frachtbrief.Printed}" TargetType="{x:Type Image}">
+                                                                <Setter Property="Source" Value="bullet_ball_green_16x16.png" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+
+                        </StackLayout>
+
+                        <StackLayout x:Name="TerminData" Grid.Row="1">
+                            <Grid Padding="5,5,5,10"
+                                  BackgroundColor="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <telerikInput:RadButton Grid.RowSpan="2"
+                                                        Grid.Column="0"                                            
+                                                        x:Name="btnTermin" 
+                                                        Padding="0,0,0,0" 
+                                                        BorderThickness="5" 
+                                                        BorderColor="LightSeaGreen"
+                                                        BackgroundColor="Snow"
+                                                        Command="{Binding Source={x:Reference termin_DateTimePicker}, Path=ToggleCommand}"
+                                                        Clicked="btnTermin_Clicked"
+                                                        >
+                                    <telerikInput:RadButton.ImageSource>
+                                        <FontImageSource Glyph="{StaticResource Icon_Edit}"
+                                                 Color="DarkSlateGray"                                      
+                                                 FontFamily="{StaticResource IconsFont}"                                          
+                                                 />
+                                    </telerikInput:RadButton.ImageSource>
+                                </telerikInput:RadButton>
+                                <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       Grid.ColumnSpan="2"
+                                       FontAttributes="Bold"
+                                       FontSize="Small"
+                                       Text="Termin:" />
+
+                                <telerikInput:RadDateTimePicker x:Name="termin_DateTimePicker"
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                Grid.ColumnSpan="2"
+                                                                SpinnerFormat="dd.MM.yyyy HH:mm"
+                                                                MinimumDate="{Binding MinDate}"
+                                                                IsLooping="True"
+                                                                IsEnabled="{Binding IsBtnTerminEnabled}"
+                                                                AreSpinnerHeadersVisible="True"
+                                                                Date="{Binding SelectedTermin}"
+                                                                BackgroundColor="{Binding BackgroundColorInputTermin}">
+                                    <telerikInput:RadDateTimePicker.SelectorSettings>
+                                        <telerikInput:PickerPopupSelectorSettings PopupOutsideBackgroundColor="#D9D9D9CC"
+                                                                                  AcceptCommand="{Binding Accept}" 
+                                                                                  CancelCommand="{Binding Cancel}"
+                                                                                  HeaderLabelText="Termin: Datum / Uhrzeit"
+                                                                                  IsHeaderVisible="True"/>
+                                    </telerikInput:RadDateTimePicker.SelectorSettings>
+                                </telerikInput:RadDateTimePicker>
+                            </Grid>
+
+                        </StackLayout>
+
+                    </Grid>
+                </StackLayout>
+
+            </StackLayout>
+            
+            
+        </StackLayout>
+        
+    </ContentView.Content>
+</ContentView>

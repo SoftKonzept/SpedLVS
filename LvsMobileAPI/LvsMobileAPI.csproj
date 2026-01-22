@@ -1,0 +1,85 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<IsTransformWebConfigDisabled>false</IsTransformWebConfigDisabled>
+	<LangVersion>preview</LangVersion>
+	<Version>$(VersionPrefix)25.09.16.1</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="PrintServer\**" />
+    <Content Remove="PrintServer\**" />
+    <EmbeddedResource Remove="PrintServer\**" />
+    <None Remove="PrintServer\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="System.Configuration.Abstractions" Version="2.0.2.45" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.7" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.13.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LVS\LVS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="clsINI">
+      <HintPath>..\..\lib\clsINI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting">
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Html5.WebForms">
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.ReportViewer.Html5.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WinForms">
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Wpf">
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.ReportViewer.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinUI.Controls">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.1.0\Binaries\Win32\Telerik.WinUI.Controls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Config.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

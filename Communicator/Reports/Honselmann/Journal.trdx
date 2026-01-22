@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report DataSourceName="sqlLAusgangSource" Width="29.4000006055832cm" DocumentName="Bestandsliste" Name="Bestandsliste" SnapGridSize="0.1cm" xmlns="http://schemas.telerik.com/reporting/2012/3.5">
+  <DataSources>
+    <SqlDataSource ConnectionString="Data Source=WS-NE-W7-64\SQL2008R2;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey" ProviderName="System.Data.SqlClient" SelectCommand="SET @strTmp='';&#xD;&#xA;SET @strTmp =(SELECT Fbez FROM ADR WHERE ID=@AuftraggeberID);&#xD;&#xA;IF((@strTmp&lt;&gt;'')) SET @strADRAuftraggeber =@strTmp;&#xD;&#xA;SET @strTmp='';&#xD;&#xA;SET @strTmp =(SELECT Name1 FROM ADR WHERE ID=@AuftraggeberID);&#xD;&#xA;IF((@strTmp&lt;&gt;'')) SET @strADRAuftraggeber =@strADRAuftraggeber + nchar(13) + nchar(10)+ @strTmp;&#xD;&#xA;SET @strTmp='';&#xD;&#xA;SET @strTmp =(SELECT Name2 FROM ADR WHERE ID=@AuftraggeberID);&#xD;&#xA;IF((@strTmp&lt;&gt;'')) SET @strADRAuftraggeber =@strADRAuftraggeber + nchar(13) + nchar(10)+ @strTmp;&#xD;&#xA;SET @strTmp='';&#xD;&#xA;SET @strTmp =(SELECT Name3 FROM ADR WHERE ID=@AuftraggeberID);&#xD;&#xA;IF((@strTmp&lt;&gt;'')) SET @strADRAuftraggeber =@strADRAuftraggeber + nchar(13) + nchar(10)+ @strTmp;&#xD;&#xA;SET @strTmp='';&#xD;&#xA;SET @strTmp =(SELECT Str + ' '+HausNr FROM ADR WHERE ID=@AuftraggeberID);&#xD;&#xA;IF((@strTmp&lt;&gt;'')) SET @strADRAuftraggeber =@strADRAuftraggeber + nchar(13) + nchar(10)+ @strTmp + nchar(13) + nchar(10);&#xD;&#xA;SET @strTmp='';&#xD;&#xA;SET @strTmp =(SELECT PLZ + ' '+Ort FROM ADR WHERE ID=@AuftraggeberID);&#xD;&#xA;IF((@strTmp&lt;&gt;'')) SET @strADRAuftraggeber = @strADRAuftraggeber + nchar(13) + nchar(10)+ @strTmp;&#xD;&#xA;&#xD;&#xA;Select &#xD;&#xA;    @schaden = COALESCE(@schaden + ', ', '') + (Cast( ID as nvarchar) + ': ' + Bezeichnung)  &#xD;&#xA;FROM &#xD;&#xA;    Schaeden&#xD;&#xA;WHERE &#xD;&#xA;&#x9;aktiv=1;&#xD;&#xA;&#xD;&#xA;SELECT &#xD;&#xA;*&#xD;&#xA;, @strADRAuftraggeber as AAdressblock&#xD;&#xA;, @schaden as Anmerkung&#xD;&#xA;FROM Adr&#xD;&#xA;WHERE ID=@AuftraggeberID;" Name="sqlLAusgangSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="String" Name="@strTmp" />
+        <SqlDataSourceParameter DbType="String" Name="@AuftraggeberID">
+          <Value>
+            <String>=Parameters.AuftraggeberID.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="String" Name="@strADRAuftraggeber" />
+        <SqlDataSourceParameter DbType="String" Name="@schaden" />
+      </Parameters>
+      <DefaultValues>
+        <SqlDataSourceParameter DbType="String" Name="@strTmp" />
+        <SqlDataSourceParameter DbType="String" Name="@AuftraggeberID">
+          <Value>
+            <String>111</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="String" Name="@strADRAuftraggeber" />
+        <SqlDataSourceParameter DbType="String" Name="@schaden" />
+      </DefaultValues>
+    </SqlDataSource>
+    <SqlDataSource ConnectionString="Data Source=WS-NE-W7-64\SQL2008R2;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey" ProviderName="System.Data.SqlClient" SelectCommand="Select a.*&#xD;&#xA;, CONVERT(varchar(10), c.[Date], 104) as Eingangsdatum&#xD;&#xA;,CASE WHEN IsVerpackt = 1&#xD;&#xA;      THEN 'Bemerkung: ist verpackt' + char(13)&#xD;&#xA;      ELSE ''&#xD;&#xA;      END as Verpackt&#xD;&#xA;,CASE WHEN (SELECT COUNT (*)&#xD;&#xA;&#x9;    FROM Artikel a1&#xD;&#xA;&#x9;    INNER JOIN LEingang c1 on c1.ID=a1.LEingangTableID&#xD;&#xA;&#x9;    INNER JOIN SchadenZuweisung d1 ON d1.ArtikelID=a1.ID&#xD;&#xA;&#x9;    INNER JOIN Schaeden e1 ON e1.ID=d1.SchadenID&#xD;&#xA;&#x9;    WHERE c1.Auftraggeber=@AuftraggeberID) &gt; 0&#xD;&#xA;      THEN 'Schaden: ' + STUFF((SELECT ', ' + e2.Bezeichnung&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;FROM Artikel a2&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;INNER JOIN LEingang c1 on c1.ID=a2.LEingangTableID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;LEFT OUTER JOIN SchadenZuweisung d2 ON d2.ArtikelID=a2.ID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;LEFT OUTER JOIN Schaeden e2 ON e2.ID=d2.SchadenID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;WHERE c1.Auftraggeber=@AuftraggeberID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;FOR XML PATH (''))&#xD;&#xA;&#x9;&#x9;&#x9;  ,1,2,'') &#xD;&#xA;      ELSE ''&#xD;&#xA;      END as Schaden&#xD;&#xA;, STUFF(&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;(SELECT ', ' + CAST(e1.ID as nvarchar)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;FROM Artikel a1&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;INNER JOIN LEingang c1 ON c1.ID=a1.LEingangTableID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;INNER JOIN SchadenZuweisung d1 ON d1.ArtikelID=a1.ID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;INNER JOIN Schaeden e1 ON e1.ID=d1.SchadenID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;WHERE a1.ID=a.ID &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Order By e1.ID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;FOR XML PATH ('')&#xD;&#xA;&#x9;&#x9;&#x9; )&#xD;&#xA;&#x9;&#x9;,1,2,'') as Anmerkung&#xD;&#xA;, CASE&#xD;&#xA;&#x9;WHEN (a.Laenge&gt;0)&#xD;&#xA;&#x9;&#x9;THEN CAST(a.Dicke as varchar (20))+' x '+ CAST(CAST(a.Breite as int) as varchar(20))+' x '+CAST(CAST(a.Laenge as int) as varchar(20))&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;ELSE CAST(a.Dicke as varchar (20))+' x '+ CAST(Cast(a.Breite as int) as varchar(20))&#xD;&#xA;&#x9;END as Abmessung&#xD;&#xA;&#x9;,c.[Date]&#xD;&#xA;&#x9;,d.Datum&#xD;&#xA;FROM Artikel a&#xD;&#xA;Left JOIN LEingang c ON c.ID=a.LEingangTableID&#xD;&#xA;Left Join LAusgang d ON d.ID=a.LAusgangTableID&#xD;&#xA;WHERE c.Auftraggeber=@AuftraggeberID &#xD;&#xA;AND Cast(c.[Date] as Date)=Cast(@Datum as Date)&#xD;&#xA;UNION&#xD;&#xA;Select a.*&#xD;&#xA;, CONVERT(varchar(10), c.[Date], 104) as Eingangsdatum&#xD;&#xA;,CASE WHEN IsVerpackt = 1&#xD;&#xA;      THEN 'Bemerkung: ist verpackt' + char(13)&#xD;&#xA;      ELSE ''&#xD;&#xA;      END as Verpackt&#xD;&#xA;,CASE WHEN (SELECT COUNT (*)&#xD;&#xA;&#x9;    FROM Artikel a1&#xD;&#xA;&#x9;    INNER JOIN LEingang c1 on c1.ID=a1.LEingangTableID&#xD;&#xA;&#x9;    INNER JOIN SchadenZuweisung d1 ON d1.ArtikelID=a1.ID&#xD;&#xA;&#x9;    INNER JOIN Schaeden e1 ON e1.ID=d1.SchadenID&#xD;&#xA;&#x9;    WHERE c1.Auftraggeber=@AuftraggeberID) &gt; 0&#xD;&#xA;      THEN 'Schaden: ' + STUFF((SELECT ', ' + e2.Bezeichnung&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;FROM Artikel a2&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;INNER JOIN LEingang c1 on c1.ID=a2.LEingangTableID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;LEFT OUTER JOIN SchadenZuweisung d2 ON d2.ArtikelID=a2.ID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;LEFT OUTER JOIN Schaeden e2 ON e2.ID=d2.SchadenID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;WHERE c1.Auftraggeber=@AuftraggeberID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;FOR XML PATH (''))&#xD;&#xA;&#x9;&#x9;&#x9;  ,1,2,'') &#xD;&#xA;      ELSE ''&#xD;&#xA;      END as Schaden&#xD;&#xA;, STUFF(&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;(SELECT ', ' + CAST(e1.ID as nvarchar)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;FROM Artikel a1&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;INNER JOIN LEingang c1 ON c1.ID=a1.LEingangTableID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;INNER JOIN SchadenZuweisung d1 ON d1.ArtikelID=a1.ID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;INNER JOIN Schaeden e1 ON e1.ID=d1.SchadenID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;WHERE a1.ID=a.ID &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Order By e1.ID&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;FOR XML PATH ('')&#xD;&#xA;&#x9;&#x9;&#x9; )&#xD;&#xA;&#x9;&#x9;,1,2,'') as Anmerkung&#xD;&#xA;, CASE&#xD;&#xA;&#x9;WHEN (a.Laenge&gt;0)&#xD;&#xA;&#x9;&#x9;THEN CAST(a.Dicke as varchar (20))+' x '+ CAST(CAST(a.Breite as int) as varchar(20))+' x '+CAST(CAST(a.Laenge as int) as varchar(20))&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;ELSE CAST(a.Dicke as varchar (20))+' x '+ CAST(Cast(a.Breite as int) as varchar(20))&#xD;&#xA;&#x9;END as Abmessung&#xD;&#xA;&#x9;,c.[Date]&#xD;&#xA;&#x9;,d.Datum&#xD;&#xA;FROM Artikel a&#xD;&#xA;Left JOIN LEingang c ON c.ID=a.LEingangTableID&#xD;&#xA;Left Join LAusgang d ON d.ID=a.LAusgangTableID&#xD;&#xA;WHERE c.Auftraggeber=@AuftraggeberID &#xD;&#xA;AND  Cast(d.Datum as Date)=Cast(@Datum as Date)" Name="sqlArtikelSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="String" Name="@AuftraggeberID">
+          <Value>
+            <String>=Parameters.AuftraggeberID.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="DateTime" Name="@Datum">
+          <Value>
+            <String>=Parameters.Datum.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+      <DefaultValues>
+        <SqlDataSourceParameter DbType="String" Name="@AuftraggeberID">
+          <Value>
+            <String>19</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="DateTime" Name="@Datum">
+          <Value>
+            <String>07.07.2014 00:00:00.000</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </DefaultValues>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <DetailSection Height="1.6535435517629in" Name="detailSection1">
+      <Items>
+        <Panel Width="29.4000006055832cm" Height="4.20000014238311cm" Left="0cm" Top="0cm" Docking="Top" Name="panLEingangsdaten">
+          <Items>
+            <Table DataSourceName="sqlArtikelSource" Width="27.2502652009569cm" Height="1.67937478292157cm" Left="1.0214585369817cm" Top="0.299999848604206cm" ColumnHeadersPrintOnEveryPage="True" Name="tableArtikel">
+              <Body>
+                <Cells>
+                  <TableCell RowIndex="0" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.30514242247352cm" Height="0.479374848423451cm" Left="0cm" Top="0cm" Value="=Fields.LVS_ID" Name="textBox27" StyleName="">
+                        <Style TextAlign="Left" VerticalAlign="Middle">
+                          <BorderStyle Top="None" />
+                          <BorderColor Top="Black" />
+                          <BorderWidth Top="1pt" />
+                          <Font Size="10pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="5.31288736748548cm" Height="0.479374848423451cm" Left="0cm" Top="0cm" Value="=Fields.Produktionsnummer" Name="textBox68" StyleName="">
+                        <Style TextAlign="Left" VerticalAlign="Middle">
+                          <BorderStyle Top="None" />
+                          <BorderColor Top="Black" />
+                          <BorderWidth Top="1pt" />
+                          <Font Size="10pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.30514242247352cm" Height="0.599999842125888cm" Left="0cm" Top="0cm" Name="textBox5" StyleName="">
+                        <Style>
+                          <BorderStyle Top="Solid" />
+                          <BorderColor Top="Black" />
+                          <BorderWidth Top="1pt" />
+                          <Font Size="10pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="5.31288736748548cm" Height="0.599999842125888cm" Left="0cm" Top="0cm" Name="textBox6" StyleName="">
+                        <Style>
+                          <BorderStyle Top="Solid" />
+                          <BorderColor Top="Black" />
+                          <BorderWidth Top="1pt" />
+                          <Font Size="10pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="9" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.37255041976037cm" Height="0.599999842125888cm" Left="0cm" Top="0cm" Format="{0:N0}" Name="textBox19" StyleName="">
+                        <Style TextAlign="Left" VerticalAlign="Middle">
+                          <BorderStyle Top="Solid" />
+                          <BorderColor Top="Black" />
+                          <BorderWidth Top="1pt" />
+                          <Font Size="10pt" Bold="True" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="7" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.48402361252548cm" Height="0.479374848423451cm" Left="4.89990023017207cm" Top="0.61542511181841cm" Value="=Fields.Netto" Format="{0:N0}" Name="textBox8">
+                        <Style TextAlign="Right" VerticalAlign="Middle">
+                          <Font Size="10pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="8" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.98750313872696cm" Height="0.479374848423451cm" Left="4.89990023017207cm" Top="0.61542511181841cm" Value="=Fields.Brutto" Format="{0:N0}" Name="textBox18">
+                        <Style TextAlign="Right" VerticalAlign="Middle">
+                          <Font Size="10pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="7" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.48402361252548cm" Height="0.599999842125888cm" Left="0cm" Top="0cm" Name="textBox28" StyleName="">
+                        <Style TextAlign="Right" VerticalAlign="Middle">
+                          <BorderStyle Top="Solid" />
+                          <BorderColor Top="Black" />
+                          <BorderWidth Top="1pt" />
+                          <Font Bold="True" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="9" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.37255041976037cm" Height="0.479374848423451cm" Left="5.19989967505416cm" Top="0.61542511181841cm" Value="=Fields.Eingangsdatum" Name="textBox29">
+                        <Style VerticalAlign="Middle">
+                          <Font Size="10pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="10" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="4.74231792971997cm" Height="0.479374848423451cm" Left="5.29990002831101cm" Top="0.61542511181841cm" Value="=Fields.exMaterialnummer" Name="textBox30">
+                        <Style VerticalAlign="Middle">
+                          <Font Size="10pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="11" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.29724938729459cm" Height="0.599999842125888cm" Left="0cm" Top="0cm" Name="textBox35" StyleName="">
+                        <Style VerticalAlign="Middle">
+                          <BorderStyle Top="Solid" />
+                          <BorderColor Top="Black" />
+                          <BorderWidth Top="1pt" />
+                          <Font Size="10pt" Bold="True" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="12" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.74859457367699cm" Height="0.599999842125888cm" Left="0cm" Top="0cm" Name="textBox41" StyleName="">
+                        <Style VerticalAlign="Middle">
+                          <BorderStyle Top="Solid" />
+                          <BorderColor Top="Black" />
+                          <BorderWidth Top="1pt" />
+                          <Font Size="10pt" Bold="True" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="8" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="1.98750313872696cm" Height="0.599999842125888cm" Left="7.69990043203313cm" Top="0.61542511181841cm" Value="=Sum(Fields.Brutto)" Name="textBox45">
+                        <Style TextAlign="Right" VerticalAlign="Middle">
+                          <BorderStyle Top="Solid" />
+                          <BorderColor Top="Black" />
+                          <BorderWidth Top="1pt" />
+                          <Font Bold="True" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="11" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.29724938729459cm" Height="0.479374848423451cm" Left="7.49989972551943cm" Top="0.61542511181841cm" Value="=Fields.Verpackt" Name="textBox11">
+                        <Style VerticalAlign="Middle">
+                          <Font Size="10pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="12" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.74859457367699cm" Height="0.479374848423451cm" Left="7.49989972551943cm" Top="0.61542511181841cm" Value="=Fields.Anmerkung" Name="textBox47">
+                        <Style>
+                          <Font Size="10pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="10" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="4.74231792971997cm" Height="0.599999842125888cm" Left="0cm" Top="0cm" Name="textBox2" StyleName="">
+                        <Style TextAlign="Right" VerticalAlign="Middle">
+                          <BorderStyle Top="Solid" />
+                          <BorderColor Top="Black" />
+                          <BorderWidth Top="1pt" />
+                          <Font Size="10pt" Bold="True" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="5" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="0.499999975583984cm" Height="0.479374848423451cm" Left="0cm" Top="0cm" Value="x" Name="textBox9" StyleName="">
+                        <Style TextAlign="Center" VerticalAlign="Middle" />
+                        <ConditionalFormatting>
+                          <FormattingRule>
+                            <Style Visible="False" />
+                            <Filters>
+                              <Filter Expression="=Fields.Laenge" Operator="Equal" Value="=0" />
+                            </Filters>
+                          </FormattingRule>
+                        </ConditionalFormatting>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="3" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="0.500000017810032cm" Height="0.479374848423451cm" Left="0cm" Top="0cm" Value="x" Name="textBox33" StyleName="">
+                        <Style TextAlign="Center" VerticalAlign="Middle" />
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="4" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="0.999999849785117cm" Height="0.479374848423451cm" Left="12.0785405041783cm" Top="0.300000252326323cm" Value="=Fields.Breite" Name="textBox1" />
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="2" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="0.999999928948523cm" Height="0.479374848423451cm" Left="12.0785405041783cm" Top="0.300000252326323cm" Value="=Fields.Dicke" Name="textBox3" />
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="6" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="0.99999992522323cm" Height="0.479374848423451cm" Left="12.0785405041783cm" Top="0.300000252326323cm" Value="=Fields.Laenge" Name="textBox23">
+                        <ConditionalFormatting>
+                          <FormattingRule>
+                            <Style Visible="False" />
+                            <Filters>
+                              <Filter Expression="=Fields.Laenge" Operator="Equal" Value="=0" />
+                            </Filters>
+                          </FormattingRule>
+                        </ConditionalFormatting>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="2" RowSpan="1" ColumnSpan="5">
+                    <ReportItem>
+                      <TextBox Width="4.00000015165699cm" Height="0.599999842125888cm" Left="0cm" Top="0cm" Value="Gesamtgewicht" Name="textBox13" StyleName="">
+                        <Style TextAlign="Right" VerticalAlign="Middle">
+                          <BorderStyle Top="Solid" />
+                          <BorderColor Top="Black" />
+                          <BorderWidth Top="1pt" />
+                          <Font Size="10pt" Bold="True" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                </Cells>
+                <Columns>
+                  <Column Width="2.30514195668587cm" />
+                  <Column Width="5.31288775396829cm" />
+                  <Column Width="1.00000009751889cm" />
+                  <Column Width="0.500000048759447cm" />
+                  <Column Width="1.00000009751889cm" />
+                  <Column Width="0.500000048759447cm" />
+                  <Column Width="1.00000009751889cm" />
+                  <Column Width="1.48402404666405cm" />
+                  <Column Width="1.98750144626201cm" />
+                  <Column Width="2.37254842492152cm" />
+                  <Column Width="4.7423185831117cm" />
+                  <Column Width="2.29724915347185cm" />
+                  <Column Width="2.74859486700788cm" />
+                </Columns>
+                <Rows>
+                  <Row Height="0.479374848423451cm" />
+                  <Row Height="0.599999842125888cm" />
+                </Rows>
+              </Body>
+              <Corner />
+              <RowGroups>
+                <TableGroup Name="detailTableGroup">
+                  <ChildGroups>
+                    <TableGroup Name="group11" />
+                  </ChildGroups>
+                  <Groupings>
+                    <Grouping />
+                  </Groupings>
+                </TableGroup>
+                <TableGroup Name="group6">
+                  <ChildGroups>
+                    <TableGroup Name="group9" />
+                  </ChildGroups>
+                </TableGroup>
+              </RowGroups>
+              <ColumnGroups>
+                <TableGroup Name="tableGroup">
+                  <ReportItem>
+                    <TextBox Width="2.30514242247352cm" Height="0.600000092372231cm" Left="0cm" Top="0cm" Value="LVS-Nr." Name="textBox42" StyleName="">
+                      <Style TextAlign="Left" VerticalAlign="Middle">
+                        <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                        <Font Size="10pt" Bold="True" Italic="False" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group4" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group19">
+                  <ReportItem>
+                    <TextBox Width="5.31288736748548cm" Height="0.600000092372231cm" Left="0cm" Top="0cm" Value="Stück-Nr." Name="textBox66" StyleName="">
+                      <Style TextAlign="Left" VerticalAlign="Middle">
+                        <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                        <Font Size="10pt" Bold="True" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group21" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group18">
+                  <ReportItem>
+                    <TextBox Width="3.99999903778335cm" Height="0.600000092372231cm" Left="0cm" Top="0cm" Value="Abmessung" Name="textBox16" StyleName="">
+                      <Style VerticalAlign="Middle">
+                        <Font Bold="True" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group20" />
+                    <TableGroup Name="group27" />
+                    <TableGroup Name="group25" />
+                    <TableGroup Name="group7" />
+                    <TableGroup Name="group17" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group">
+                  <ReportItem>
+                    <TextBox Width="1.48402361252548cm" Height="0.600000092372231cm" Left="0cm" Top="0cm" Value="Netto" Name="textBox32" StyleName="">
+                      <Style TextAlign="Right" VerticalAlign="Middle">
+                        <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                        <Font Size="10pt" Bold="True" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group16" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group1">
+                  <ReportItem>
+                    <TextBox Width="1.98750313872696cm" Height="0.600000092372231cm" Left="0cm" Top="0cm" Value="Brutto" Name="textBox7" StyleName="">
+                      <Style TextAlign="Right" VerticalAlign="Middle">
+                        <Font Size="10pt" Bold="True" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group3" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group22">
+                  <ReportItem>
+                    <TextBox Width="2.37255041976037cm" Height="0.600000092372231cm" Left="0cm" Top="0cm" Value="E-Datum" Name="textBox10" StyleName="">
+                      <Style TextAlign="Left" VerticalAlign="Middle">
+                        <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                        <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                        <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                        <Font Size="10pt" Bold="True" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group24" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group5">
+                  <ReportItem>
+                    <TextBox Width="4.74231792971997cm" Height="0.600000092372231cm" Left="0cm" Top="0cm" Value="Mat-Nr." Name="textBox22" StyleName="">
+                      <Style VerticalAlign="Middle">
+                        <Font Size="10pt" Bold="True" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group8" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group12">
+                  <ReportItem>
+                    <TextBox Width="2.29724938729459cm" Height="0.600000092372231cm" Left="0cm" Top="0cm" Value="Bemerkung" Name="textBox31" StyleName="">
+                      <Style VerticalAlign="Middle">
+                        <Font Size="10pt" Bold="True" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group13" />
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group14">
+                  <ReportItem>
+                    <TextBox Width="2.74859457367699cm" Height="0.600000092372231cm" Left="0cm" Top="0cm" Value="Anmerkungen" Name="textBox36" StyleName="">
+                      <Style VerticalAlign="Middle">
+                        <Font Size="10pt" Bold="True" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group15" />
+                  </ChildGroups>
+                </TableGroup>
+              </ColumnGroups>
+            </Table>
+          </Items>
+        </Panel>
+      </Items>
+    </DetailSection>
+    <PageFooterSection Height="2.46000009377795cm" Name="pageFooterSection1">
+      <Items>
+        <TextBox Width="27.3999992934863cm" Height="0.600000023841858cm" Left="0.999999899069467cm" Top="0cm" Value="Dieses Dokument wurde maschinell erstellt und wird von uns nicht unterschrieben. Gerichtsstand für beide Teile ist Hagen" Name="textBox53">
+          <Style TextAlign="Center" VerticalAlign="Middle">
+            <BorderStyle Top="Solid" />
+            <BorderColor Top="Black" />
+            <BorderWidth Top="1pt" />
+            <Font Size="8pt" Bold="False" />
+          </Style>
+        </TextBox>
+        <TextBox Width="27.4000002724796cm" Height="0.79979932308197cm" Left="0.999999899069471cm" Top="0.600200750822205cm" Value="='Anmerkungen: ' + Fields.Anmerkung" Name="textBox44">
+          <Style TextAlign="Center" VerticalAlign="Top">
+            <Font Size="7pt" />
+          </Style>
+        </TextBox>
+      </Items>
+    </PageFooterSection>
+    <PageHeaderSection PrintOnLastPage="True" Height="0.590551217397055in" Name="pageHeaderSection1">
+      <Items>
+        <Panel Width="29.4000006055832cm" Height="0.590551217397055in" Left="0cm" Top="0cm" Docking="Fill" Name="panPageHead">
+          <Items>
+            <TextBox Width="4.20000068266907cm" Height="0.600000083446503cm" Left="0.999999899069471cm" Top="0.636127981929398cm" Value="Journal vom : " Name="textBox4">
+              <Style>
+                <Font Size="12pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="12.6999996467431cm" Height="0.600000100930529cm" Left="9.6cm" Top="0.636127981929398cm" Value="=Fields.Name1 +  &quot; |  Kd-Nr.: &quot; +Fields.KD_ID" Name="textBox12">
+              <Style>
+                <Font Size="12pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.90000033378601cm" Height="0.600000083446503cm" Left="5.2002000443085cm" Top="0.636127981929398cm" Value="= @Datum" Format="{0:d}" Name="textBox15">
+              <Style>
+                <Font Size="12pt" Bold="True" />
+              </Style>
+            </TextBox>
+          </Items>
+        </Panel>
+      </Items>
+    </PageHeaderSection>
+  </Items>
+  <StyleSheet>
+    <StyleRule>
+      <Style>
+        <Padding Left="2pt" Right="2pt" />
+      </Style>
+      <Selectors>
+        <TypeSelector Type="TextItemBase" />
+        <TypeSelector Type="HtmlTextBox" />
+      </Selectors>
+    </StyleRule>
+  </StyleSheet>
+  <PageSettings>
+    <PageSettings PaperKind="A4" Landscape="True">
+      <Margins>
+        <MarginsU Left="0cm" Right="0cm" Top="0cm" Bottom="0cm" />
+      </Margins>
+    </PageSettings>
+  </PageSettings>
+  <ReportParameters>
+    <ReportParameter Name="AuftraggeberID" Type="Float">
+      <Value>
+        <String>111</String>
+      </Value>
+    </ReportParameter>
+    <ReportParameter Name="Datum" Type="DateTime" Text="Datum">
+      <Value>
+        <String>07.07.2014</String>
+      </Value>
+    </ReportParameter>
+  </ReportParameters>
+</Report>

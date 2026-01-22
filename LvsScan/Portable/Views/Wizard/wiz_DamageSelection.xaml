@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives" 
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.XamarinForms.Input"
+             x:Class="LvsScan.Portable.Views.Wizard.wiz_DamageSelection">
+    <ContentView.Content>
+
+        <Grid x:Name="grdMain">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="rowBusyIndicator" Height="auto"/>
+                <RowDefinition x:Name="rowContent" Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="BusyIndicator" Grid.Row="0"
+                         Padding="5,5,5,1"
+                         IsVisible="{Binding ShowBusyIndicator}">
+
+                <telerikPrimitives:RadBusyIndicator AnimationContentHeightRequest="100"
+                                                    AnimationContentWidthRequest="100"
+                                                    AnimationType="Animation6"
+                                                    AnimationContentColor="Blue"
+                                                    InputTransparent="True"
+                                                    IsBusy="{Binding ShowBusyIndicator}"
+                                                    >
+                    <telerikPrimitives:RadBusyIndicator.BusyContent>
+                        <Label Grid.Row="2" 
+                                           Text="Daten werden geladen...." 
+                                           TextColor="DarkBlue" 
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           />
+                    </telerikPrimitives:RadBusyIndicator.BusyContent>
+                </telerikPrimitives:RadBusyIndicator>
+            </StackLayout>
+
+            <Grid x:Name="gridContent" Grid.Row="1" IsVisible="{Binding ShowContent}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="grdDamageArticleAssignment" Grid.Row="1" IsVisible="{Binding ShowArticleDamageList}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout x:Name="slBtnDamageAssignment" Grid.Row="0">
+                        <telerikInput:RadButton x:Name="btnExistDamages"
+                                            Text="Schäden dem Artikel zuweisen!"
+                                            ContentLayout="Left,10"
+                                            BackgroundColor="Snow"
+                                            BorderColor="Blue"
+                                            BorderThickness="2"
+                                            Clicked="btnExistDamages_Clicked"
+                                            >
+                        </telerikInput:RadButton>
+                    </StackLayout>
+
+                    <Label x:Name="lHeadlineDamageArticleAssignment" Grid.Row="1" Text="aktuelle Schadenszuweisungen:" FontSize="Large"/>
+
+                    <StackLayout x:Name="slDamageArticleAssignmentList" Grid.Row="2">
+
+                        <CollectionView x:Name="viewArticleDamageAssignments"                                                    
+                                                    ItemsSource="{Binding DamageArticleAssignmentList}"
+                                                    SelectedItem="{Binding SelectedArticleDamage, Mode=TwoWay}"
+                                                    SelectionChanged="viewArticleDamageAssignments_SelectionChanged"                                                    
+                                                    SelectionMode="Single"                                                    
+                                                    EmptyView="Es liegen keine Daten vor">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+
+                                    <StackLayout x:Name="slDamageArticleAssignmentItem" 
+                                                 AutomationId="{Binding Id}"
+                                                 Padding="5, 0, 5, 0">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                                        </StackLayout.GestureRecognizers>
+                                        <telerikPrimitives:RadShadow BlurRadius="3" 
+                                                            Margin="5,5,5,5" 
+                                                            Padding="0,0,0,0"
+                                                            Color="DarkBlue"                                                                
+                                                            BackgroundColor="Snow">
+
+                                            <StackLayout Orientation="Horizontal">
+                                                <StackLayout x:Name="slViewColor" 
+                                                     BackgroundColor="{Binding Damage.BackgroundColorView}"
+                                                     VerticalOptions="Fill"
+                                                     HorizontalOptions="Fill"
+                                                     WidthRequest="30"
+                                                     ></StackLayout>
+                                                <StackLayout WidthRequest="250">
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="5,0,0,0" 
+                                                    FontSize="Medium"
+                                                    FontAttributes="Bold"
+                                                    TextColor="DarkSlateGray"
+                                                    Text="{Binding Damage.Designation}"
+                                                    >
+                                                    </Label>
+                                                    <BoxView Color= "DarkSlateBlue"
+                                                     HeightRequest="1"                                                
+                                                     HorizontalOptions="Fill" />
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                    Padding="5,0,0,0" 
+                                                    FontSize="Body"
+                                                    TextColor="DarkSlateGray"
+                                                    >
+                                                        <Label.Text>
+                                                            <MultiBinding StringFormat="{}[{0}] - Erstellt:{1:dd.MM.yyyy}">
+                                                                <Binding Path="DamageId" />
+                                                                <Binding Path="Datum" />
+                                                            </MultiBinding>
+                                                        </Label.Text>
+                                                    </Label>
+                                                </StackLayout>
+                                                <telerikInput:RadButton x:Name="btnDelete"                                                                  
+                                                                ContentLayout="Left,10"
+                                                                BorderThickness="1"
+                                                                BackgroundColor="Transparent"
+                                                                Clicked="btnDelete_Clicked"
+                                                                WidthRequest="40"  
+                                                                VerticalOptions="End"
+                                                                HorizontalOptions="End"
+                                                                CommandParameter="{Binding Id}">
+                                                    <telerikInput:RadButton.ImageSource>
+                                                        <FontImageSource Glyph="{StaticResource Icon_Garbage}"
+                                                                Color="Blue"                                      
+                                                                FontFamily="{StaticResource IconsFont}"                                          
+                                                />
+                                                    </telerikInput:RadButton.ImageSource>
+                                                </telerikInput:RadButton>
+                                            </StackLayout>
+                                        </telerikPrimitives:RadShadow>
+                                    </StackLayout>
+
+
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Grid>
+
+                <Grid x:Name="grdDamageSelection" Grid.Row="2" IsVisible="{Binding ShowDamageAssignment}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+
+
+                    <StackLayout x:Name="slMenu" Grid.Row="0" Orientation="Horizontal" BackgroundColor="White">
+                        <telerikInput:RadButton x:Name="btnAdd"                                                                  
+                                                ContentLayout="Left,10"
+                                                BackgroundColor="Transparent"
+                                                BorderColor="Blue"
+                                                BorderThickness="1"
+                                                WidthRequest="50"
+                                                HeightRequest="50"
+                                                Clicked="btnAdd_Clicked"
+                                                >
+                            <telerikInput:RadButton.ImageSource>
+                                <FontImageSource Glyph="{StaticResource Icon_Add}"
+                                                Color="Blue"                                      
+                                                FontFamily="{StaticResource IconsFont}"                                          
+                                                />
+                            </telerikInput:RadButton.ImageSource>
+                        </telerikInput:RadButton>
+                        <telerikInput:RadButton x:Name="btnCancel"                                                                  
+                                                ContentLayout="Left,10"
+                                                BorderThickness="1"
+                                                BorderColor="Blue"
+                                                BackgroundColor="Transparent"
+                                                Clicked="btnCancel_Clicked"
+                                                WidthRequest="50"
+                                                HeightRequest="50"
+                                                Padding="10,0,0,0"
+                                                >
+                            <telerikInput:RadButton.ImageSource>
+                                <FontImageSource Glyph="{StaticResource Icon_Cancel}"
+                                                Color="Blue"                                      
+                                                FontFamily="{StaticResource IconsFont}"                                          
+                                                />
+                            </telerikInput:RadButton.ImageSource>
+                        </telerikInput:RadButton>
+                    </StackLayout>
+
+                    <StackLayout x:Name="slHeadlineDamageSelection" Grid.Row="1">
+                        <Label Text="Schadensauswahl:" FontSize="Large"/>
+                    </StackLayout>
+
+                    <telerikPrimitives:RadTabView x:Name="tabView" Grid.Row="2"
+                                              IsContentSwipingEnabled="True"  
+                                              SelectedItem="{Binding SelectedTabViewItem, Mode=TwoWay}"
+                                              PropertyChanged="tabView_PropertyChanged"
+                                              IsVisible="{Binding ShowContent}">
+                        <telerikPrimitives:RadTabView.Items>
+
+
+                            <telerikPrimitives:TabViewItem x:Name="tabItemCritical" HeaderText="kritische Schäden">
+                                <telerikPrimitives:TabViewItem.Content>
+
+                                    <CollectionView x:Name="viewItemCriticalDamages"                                                    
+                                                    ItemsSource="{Binding DamagesCritical}"
+                                                    SelectedItem="{Binding SelectedDamage}"
+                                                    SelectionMode="Single"                                                    
+                                                    EmptyView="Es liegen keine Daten vor"
+                                                    >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+
+                                                <StackLayout Padding="5, 0, 5, 0" >
+                                                    <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                            Margin="10,10,10,10" 
+                                                            Padding="0,0,0,0"
+                                                            Color="DarkBlue"
+                                                            BackgroundColor="Snow">
+
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <StackLayout x:Name="slViewColor" 
+                                                                     BackgroundColor="{Binding BackgroundColorView}"
+                                                                     VerticalOptions="Fill"
+                                                                     HorizontalOptions="Fill"
+                                                                     WidthRequest="30"
+                                                                     ></StackLayout>
+                                                            <StackLayout WidthRequest="250">
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                    Padding="5,0,0,0" 
+                                                                    FontSize="Medium"
+                                                                    FontAttributes="Bold"
+                                                                    TextColor="DarkSlateGray"
+                                                                    Text="{Binding Designation}"
+                                                                    >
+                                                                </Label>
+                                                                <BoxView Color= "DarkSlateBlue"
+                                                                     HeightRequest="1"                                                
+                                                                     HorizontalOptions="Fill" />
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                    Padding="5,0,0,0" 
+                                                                    FontSize="Body"                                                                    
+                                                                    TextColor="DarkSlateGray">
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Id: {0} | {1} ">
+                                                                            <Binding Path="Id" />
+                                                                            <Binding Path="Descrition" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </telerikPrimitives:RadShadow>
+                                                </StackLayout>
+
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+
+                                </telerikPrimitives:TabViewItem.Content>
+                            </telerikPrimitives:TabViewItem>
+
+                            <telerikPrimitives:TabViewItem x:Name="tabItemSlight" HeaderText="leichte Schäden">
+                                <telerikPrimitives:TabViewItem.Content>
+
+                                    <CollectionView x:Name="viewItemSlightDamages"                                                    
+                                                    ItemsSource="{Binding DamagesSlight}"
+                                                    SelectedItem="{Binding SelectedDamage}"
+                                                    SelectionMode="Single"                                                    
+                                                    EmptyView="Es liegen keine Daten vor"
+                                                    >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+
+                                                <StackLayout Padding="5, 0, 5, 0" >
+                                                    <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                            Margin="10,10,10,10" 
+                                                            Padding="0,0,0,0"
+                                                            Color="DarkBlue"
+                                                            BackgroundColor="Snow">
+
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <StackLayout x:Name="slViewColor" 
+                                                                     BackgroundColor="{Binding BackgroundColorView}"
+                                                                     VerticalOptions="Fill"
+                                                                     HorizontalOptions="Fill"
+                                                                     WidthRequest="30"
+                                                                     ></StackLayout>
+                                                            <StackLayout WidthRequest="250">
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                    Padding="5,0,0,0" 
+                                                                    FontSize="Medium"
+                                                                    FontAttributes="Bold"
+                                                                    TextColor="DarkSlateGray"
+                                                                    Text="{Binding Designation}"
+                                                                    >
+                                                                </Label>
+                                                                <BoxView Color= "DarkSlateBlue"
+                                                                     HeightRequest="1"                                                
+                                                                     HorizontalOptions="Fill" />
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                    Padding="5,0,0,0" 
+                                                                    FontSize="Body"                                                                    
+                                                                    TextColor="DarkSlateGray">
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Id: {0} | {1} ">
+                                                                            <Binding Path="Id" />
+                                                                            <Binding Path="Descrition" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </telerikPrimitives:RadShadow>
+                                                </StackLayout>
+
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+
+                                </telerikPrimitives:TabViewItem.Content>
+                            </telerikPrimitives:TabViewItem>
+
+                            <telerikPrimitives:TabViewItem x:Name="tabItemAll" HeaderText="Alle">
+                                <telerikPrimitives:TabViewItem.Content>
+
+                                    <CollectionView x:Name="viewItemAll"                                                    
+                                                    ItemsSource="{Binding Damages}"
+                                                    SelectedItem="{Binding SelectedDamage}"
+                                                    SelectionMode="Single"                                                    
+                                                    EmptyView="Es liegen keine Daten vor"
+                                                    >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+
+                                                <StackLayout Padding="5, 0, 5, 0" >
+                                                    <telerikPrimitives:RadShadow BlurRadius="8" 
+                                                            Margin="10,10,10,10" 
+                                                            Padding="0,0,0,0"
+                                                            Color="DarkBlue"
+                                                            BackgroundColor="Snow">
+
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <StackLayout x:Name="slViewColor" 
+                                                                     BackgroundColor="{Binding BackgroundColorView}"
+                                                                     VerticalOptions="Fill"
+                                                                     HorizontalOptions="Fill"
+                                                                     WidthRequest="30"
+                                                                     ></StackLayout>
+                                                            <StackLayout WidthRequest="250">
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                    Padding="5,0,0,0" 
+                                                                    FontSize="Medium"
+                                                                    FontAttributes="Bold"
+                                                                    TextColor="DarkSlateGray"
+                                                                    Text="{Binding Designation}"
+                                                                    >
+                                                                </Label>
+                                                                <BoxView Color= "DarkSlateBlue"
+                                                                     HeightRequest="1"                                                
+                                                                     HorizontalOptions="Fill" />
+                                                                <Label  HorizontalOptions="StartAndExpand"
+                                                                    Padding="5,0,0,0" 
+                                                                    FontSize="Body"                                                                    
+                                                                    TextColor="DarkSlateGray">
+                                                                    <Label.Text>
+                                                                        <MultiBinding StringFormat="{}Id: {0} | {1} ">
+                                                                            <Binding Path="Id" />
+                                                                            <Binding Path="Descrition" />
+                                                                        </MultiBinding>
+                                                                    </Label.Text>
+                                                                </Label>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </telerikPrimitives:RadShadow>
+                                                </StackLayout>
+
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+
+                                </telerikPrimitives:TabViewItem.Content>
+
+                            </telerikPrimitives:TabViewItem>
+
+
+                        </telerikPrimitives:RadTabView.Items>
+                    </telerikPrimitives:RadTabView>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

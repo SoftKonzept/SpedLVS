@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report DataSourceName="sqlLEingangSource" Width="18.0000006055832cm" DocumentName="Lagereingangslieferschein" Name="LagerEingangLieferschein" xmlns="http://schemas.telerik.com/reporting/2012/3.2">
+  <DataSources>
+    <SqlDataSource ConnectionString="Data Source=WS-NE-W7-64\SQL2008R2;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey" ProviderName="System.Data.SqlClient" SelectCommand="Select a.ID &#xD;&#xA;, a.LEingangID&#xD;&#xA;, a.KFZ as KFZ&#xD;&#xA;, a.Date as LagerEingangsDatum&#xD;&#xA;, (Select ViewID FROM ADR WHERE ID=a.Auftraggeber) as AViewID&#xD;&#xA;, (Select KD_ID FROM ADR WHERE ID=a.Auftraggeber) as AKundeID&#xD;&#xA;, (Select Fbez FROM ADR WHERE ID=a.Auftraggeber) as AAnrede&#xD;&#xA;, (Select Name1 FROM ADR WHERE ID=a.Auftraggeber)as AName1&#xD;&#xA;, (Select Name2 FROM ADR WHERE ID=a.Auftraggeber) as AName2&#xD;&#xA;, (Select Str FROM ADR WHERE ID=a.Auftraggeber) as AStr&#xD;&#xA;, (Select PLZ FROM ADR WHERE ID=a.Auftraggeber)+' '+(Select Ort FROM ADR WHERE ID=a.Auftraggeber) as APLZuOrt&#xD;&#xA;&#xD;&#xA;, (Select Fbez FROM ADR WHERE ID=a.Empfaenger) as EAnrede&#xD;&#xA;, (Select Name1 FROM ADR WHERE ID=a.Empfaenger)as EName1&#xD;&#xA;, (Select Name2 FROM ADR WHERE ID=a.Empfaenger) as EName2&#xD;&#xA;, (Select Str FROM ADR WHERE ID=a.Empfaenger) as EStr&#xD;&#xA;, (Select PLZ FROM ADR WHERE ID=a.Empfaenger)+' '+(Select Ort FROM ADR WHERE ID=a.Empfaenger) as EPLZuOrt&#xD;&#xA;, (Select Fbez FROM ADR WHERE ID=a.Versender) as VAnrede&#xD;&#xA;, (Select Name1 FROM ADR WHERE ID=a.Versender)as VName1&#xD;&#xA;, (Select Name2 FROM ADR WHERE ID=a.Versender) as VName2&#xD;&#xA;, (Select Str FROM ADR WHERE ID=a.Versender) as VStr&#xD;&#xA;, (Select PLZ FROM ADR WHERE ID=a.Versender)+' '+(Select Ort FROM ADR WHERE ID=a.Versender) as VPLZuOrt&#xD;&#xA;, (Select Fbez FROM ADR WHERE ID=a.SpedID) as SAnrede&#xD;&#xA;, (Select Name1 FROM ADR WHERE ID=a.SpedID)as SName1&#xD;&#xA;, (Select Name2 FROM ADR WHERE ID=a.SpedID) as SName2&#xD;&#xA;, (Select Str FROM ADR WHERE ID=a.SpedID) as SStr&#xD;&#xA;, (Select PLZ FROM ADR WHERE ID=a.SpedID)+' '+(Select Ort FROM ADR WHERE ID=a.SpedID) as SPLZuOrt&#xD;&#xA;&#xD;&#xA;FROM LEingang a&#xD;&#xA;WHERE a.ID=@LEingangTableID" Name="sqlLEingangSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="Decimal" Name="@LEingangTableID">
+          <Value>
+            <String>=Parameters.LEingangTableID.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+      <DefaultValues>
+        <SqlDataSourceParameter DbType="Decimal" Name="@LEingangTableID">
+          <Value>
+            <String>2</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </DefaultValues>
+    </SqlDataSource>
+    <SqlDataSource ConnectionString="Data Source=WS-NE-W7-64\SQL2008R2;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey" ProviderName="System.Data.SqlClient" SelectCommand="Select a.*,&#xD;&#xA;b.Bezeichnung as GArt &#xD;&#xA;FROM Artikel a&#xD;&#xA;INNER JOIN Gueterart b ON b.ID=a.GArtID&#xD;&#xA;WHERE a.LEingangTableID=@LEingangTableID" Name="sqlArtikelSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="Decimal" Name="@LEingangTableID">
+          <Value>
+            <String>=Parameters.LEingangTableID.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+      <DefaultValues>
+        <SqlDataSourceParameter DbType="Decimal" Name="@LEingangTableID">
+          <Value>
+            <String>2</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </DefaultValues>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <PageHeaderSection Height="3.42519696553548in" Name="pageHeaderSection1">
+      <Items>
+        <Panel Width="18.0000006055832cm" Height="3.42519696553548in" Left="0.00010012308478013cm" Top="0cm" Docking="Fill" Name="panPageHead">
+          <Items>
+            <PictureBox Value="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" Width="6.73756417289198cm" Height="2cm" Left="10.1623348461137cm" Top="0cm" Sizing="ScaleProportional" MimeType="image/jpeg" Name="pbLogo" />
+            <TextBox Width="7.19959668160607cm" Height="0.899999949534736cm" Left="10.1000066109497cm" Top="2.0002000443085cm" Value="Spedition Gustav Honselmann GmbH &amp; Co. KG&#xD;&#xA;58332 Schwelm" Name="textBox1">
+              <Style>
+                <Font Size="9pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.00000010093053cm" Height="0.499999747673678cm" Left="9.70000196814532cm" Top="6.10020080128747cm" Value="Kunden-Nr:" Name="textBox9" />
+            <TextBox Width="3.29999954581262cm" Height="0.499999747673678cm" Left="9.70000196814532cm" Top="5.09979919871253cm" Value="LAGEREINGANG" Name="textBox8">
+              <Style>
+                <Font Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3cm" Height="0.499999761581421cm" Left="9.70000116070108cm" Top="6.60040119885282cm" Value="Eingangs-Nr:" Name="textBox10" />
+            <TextBox Width="3cm" Height="0.499999761581421cm" Left="9.70000116070108cm" Top="7.10060159641818cm" Value="Eingangs-Datum:" Name="textBox11" />
+            <TextBox Width="5.29940264266404cm" Height="0.499999761581421cm" Left="12.7002023152454cm" Top="6.10020080128747cm" Value="=AKundeID" Name="textBox12" />
+            <TextBox Width="5.29940264266404cm" Height="0.499999761581421cm" Left="12.7002007003569cm" Top="6.60040119885282cm" Value="='E'+LEingangID" Name="textBox13" />
+            <TextBox Width="5.29940264266404cm" Height="0.499999761581421cm" Left="12.7002007003569cm" Top="7.10060159641818cm" Value="=LagerEingangsDatum" Format="{0:d}" Name="textBox14" />
+            <TextBox Width="1.09980040987888cm" Height="0.499999761581421cm" Left="12.7002023152454cm" Top="5.09980000615676cm" Value="Seite:" Name="textBox15" />
+            <TextBox Width="2.69980040987888cm" Height="0.499999761581421cm" Left="13.8002037787381cm" Top="5.09979919871253cm" Value="= PageNumber" Name="textBox16" />
+            <Panel Width="9.29979950150412cm" Height="3.59999979813894cm" Left="0.00009992122372211cm" Top="3.99989987691522cm" Name="panAdresse">
+              <Items>
+                <TextBox Width="9.29979950150412cm" Height="0.299899725519426cm" Left="0cm" Top="0cm" Value="Spedition Gustav Honselmann GmbH &amp; Co. KG - Steinwegstr. 22 - 58332 Schwelm" Name="textBox2">
+                  <Style>
+                    <BorderStyle Bottom="Solid" />
+                    <Font Size="7pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="8.79990028063734cm" Height="0.499999747673678cm" Left="0.00009992122372211cm" Top="0.700000050465264cm" Value="=Fields.AAnrede" Name="textBox3" />
+                <TextBox Width="8.79990005493164cm" Height="0.499999761581421cm" Left="0cm" Top="1.20009992122372cm" Value="=Fields.AName1" Name="textBox4" />
+                <TextBox Width="8.79990005493164cm" Height="0.499999761581421cm" Left="0cm" Top="1.70039963442962cm" Value="=Fields.AName2" Name="textBox5" />
+                <TextBox Width="8.79990005493164cm" Height="0.499999761581421cm" Left="0cm" Top="2.20060003199498cm" Value="=AStr" Name="textBox6" />
+                <TextBox Width="8.79990005493164cm" Height="0.899098438049598cm" Left="0cm" Top="2.70080042956033cm" Value="=APLZuOrt" Name="textBox7">
+                  <Style VerticalAlign="Bottom" />
+                </TextBox>
+              </Items>
+            </Panel>
+            <TextBox Width="3cm" Height="0.499999761581421cm" Left="9.70000196814532cm" Top="5.60000040372212cm" Value="Lagerkunde:" Name="textBox64" />
+            <TextBox Width="5.29939779799865cm" Height="0.499999761581421cm" Left="12.7002031226896cm" Top="5.59999878883365cm" Value="= Fields.AViewID" Name="textBox65" />
+          </Items>
+        </Panel>
+      </Items>
+    </PageHeaderSection>
+    <DetailSection Height="2.87401549021403in" Name="detailSection1">
+      <Items>
+        <Panel Width="18.0000006055832cm" Height="4.09999994953474cm" Left="0cm" Top="0cm" Docking="Top" Name="panLEingangsdaten">
+          <Items>
+            <Table DataSourceName="sqlArtikelSource" Width="18.0000006055832cm" Height="3.59999990463257cm" Left="0cm" Top="0cm" Docking="Top" Name="tableArtikel">
+              <Body>
+                <Cells>
+                  <TableCell RowIndex="0" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="3.10928921431428cm" Height="0.599999948342642cm" Left="0cm" Top="0cm" Value="=Fields.GArt" Name="textBox23">
+                        <Style>
+                          <Font Size="9pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="5" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.36223631103939cm" Height="0.599999948342642cm" Left="0cm" Top="0cm" Value="=Fields.Brutto" Format="{0:N2}" Name="textBox24">
+                        <Style TextAlign="Right">
+                          <Font Size="9pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="3" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="4.933831917338cm" Height="0.599999948342642cm" Left="0cm" Top="0cm" Value="= Fields.Dicke+' x '+ Fields.Breite+ ' x ' + Fields.Laenge" Name="textBox25" StyleName="">
+                        <Style TextAlign="Center">
+                          <Font Size="9pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="2" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.82147932604362cm" Height="0.599999948342642cm" Left="0cm" Top="0cm" Value="=Fields.Produktionsnummer" Name="textBox26" StyleName="">
+                        <Style>
+                          <Font Size="9pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.56831875143487cm" Height="0.599999948342642cm" Left="0cm" Top="0cm" Value="=Fields.LVS_ID" Name="textBox27" StyleName="">
+                        <Style>
+                          <Font Size="9pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.56831875143487cm" Height="0.599999948342642cm" Left="0cm" Top="0cm" Name="textBox28" StyleName="">
+                        <Style>
+                          <Font Size="9pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="3.10928921431428cm" Height="0.599999948342642cm" Left="0cm" Top="0cm" Name="textBox29" StyleName="">
+                        <Style>
+                          <Font Size="9pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="2" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.82147932604362cm" Height="0.599999948342642cm" Left="0cm" Top="0cm" Value="=Fields.Werksnummer" Name="textBox30" StyleName="">
+                        <Style>
+                          <Font Size="9pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="3" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="4.933831917338cm" Height="0.599999948342642cm" Left="0cm" Top="0cm" Name="textBox31" StyleName="">
+                        <Style>
+                          <Font Size="9pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="5" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.36223631103939cm" Height="0.599999948342642cm" Left="0cm" Top="0cm" Format="{0:N2}" Name="textBox32" StyleName="">
+                        <Style TextAlign="Right">
+                          <Font Size="9pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="1" ColumnIndex="4" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.20484642651756cm" Height="0.599999948342642cm" Left="0cm" Top="0cm" Format="{0:N2}" Name="textBox33" StyleName="">
+                        <Style TextAlign="Right">
+                          <Font Size="9pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="0" ColumnIndex="4" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.20484642651756cm" Height="0.599999948342642cm" Left="0cm" Top="0cm" Value="=Fields.Netto" Format="{0:N2}" Name="textBox34" StyleName="">
+                        <Style TextAlign="Right">
+                          <Font Size="9pt" Bold="False" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="2" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.56831875143487cm" Height="1.00000002119276cm" Left="0cm" Top="0cm" Name="textBox35" StyleName="">
+                        <Style>
+                          <BorderStyle Top="Solid" />
+                          <Font Size="9pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="2" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="3.10928921431428cm" Height="1.00000002119276cm" Left="0cm" Top="0cm" Name="textBox36" StyleName="">
+                        <Style>
+                          <BorderStyle Top="Solid" />
+                          <Font Size="9pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="2" ColumnIndex="2" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.82147932604362cm" Height="1.00000002119276cm" Left="0cm" Top="0cm" Name="textBox37" StyleName="">
+                        <Style>
+                          <BorderStyle Top="Solid" />
+                          <Font Size="9pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="2" ColumnIndex="3" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="4.933831917338cm" Height="1.00000002119276cm" Left="0cm" Top="0cm" Value="Summe:&#x9;" Name="textBox38" StyleName="">
+                        <Style TextAlign="Right">
+                          <BorderStyle Top="Solid" />
+                          <Font Size="9pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="2" ColumnIndex="4" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.20484642651756cm" Height="1.00000002119276cm" Left="0cm" Top="0cm" Value="= Sum(Fields.Netto)" Format="{0:N2}" Name="textBox39" StyleName="">
+                        <Style TextAlign="Right">
+                          <BorderStyle Top="Solid" />
+                          <Font Size="9pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                  <TableCell RowIndex="2" ColumnIndex="5" RowSpan="1" ColumnSpan="1">
+                    <ReportItem>
+                      <TextBox Width="2.36223631103939cm" Height="1.00000002119276cm" Left="0cm" Top="0cm" Value="=Sum(Fields.Brutto)" Format="{0:N2}" Name="textBox40" StyleName="">
+                        <Style TextAlign="Right">
+                          <BorderStyle Top="Solid" />
+                          <Font Size="9pt" />
+                        </Style>
+                      </TextBox>
+                    </ReportItem>
+                  </TableCell>
+                </Cells>
+                <Columns>
+                  <Column Width="2.56831848321396cm" />
+                  <Column Width="3.10928921431428cm" />
+                  <Column Width="2.82147932604362cm" />
+                  <Column Width="4.933831917338cm" />
+                  <Column Width="2.20484642651756cm" />
+                  <Column Width="2.36223631103939cm" />
+                </Columns>
+                <Rows>
+                  <Row Height="0.599999947415459cm" />
+                  <Row Height="0.599999947415459cm" />
+                  <Row Height="1.00000001964746cm" />
+                </Rows>
+              </Body>
+              <Corner />
+              <RowGroups>
+                <TableGroup Name="detailTableGroup">
+                  <ChildGroups>
+                    <TableGroup Name="group11" />
+                    <TableGroup Name="group12" />
+                  </ChildGroups>
+                  <Groupings>
+                    <Grouping />
+                  </Groupings>
+                </TableGroup>
+                <TableGroup Name="group6">
+                  <ChildGroups>
+                    <TableGroup Name="group9" />
+                  </ChildGroups>
+                </TableGroup>
+              </RowGroups>
+              <ColumnGroups>
+                <TableGroup Name="tableGroup">
+                  <ReportItem>
+                    <TextBox Width="2.56831875143487cm" Height="0.70000004702144cm" Left="0cm" Top="0cm" Value="LVS-Nr&#x9;" Name="textBox42" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <BorderStyle Top="Solid" Bottom="None" Left="Solid" Right="Solid" />
+                        <Font Size="12px" Bold="True" Italic="False" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group4">
+                      <ReportItem>
+                        <TextBox Width="2.56831875143487cm" Height="0.70000004702144cm" Left="0cm" Top="0cm" Name="textBox41" StyleName="">
+                          <Style TextAlign="Center" VerticalAlign="Middle">
+                            <BorderStyle Top="None" Bottom="Solid" Left="Solid" Right="Solid" />
+                            <Font Size="12px" Bold="True" />
+                          </Style>
+                        </TextBox>
+                      </ReportItem>
+                    </TableGroup>
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="tableGroup1">
+                  <ReportItem>
+                    <TextBox Width="3.10928921431428cm" Height="0.70000004702144cm" Left="0cm" Top="0cm" Value="Gut" Name="textBox44">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <BorderStyle Top="Solid" Bottom="None" Left="Solid" Right="Solid" />
+                        <Font Size="12px" Bold="True" Italic="False" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group5">
+                      <ReportItem>
+                        <TextBox Width="3.10928921431428cm" Height="0.70000004702144cm" Left="0cm" Top="0cm" Name="textBox43" StyleName="">
+                          <Style TextAlign="Center" VerticalAlign="Middle">
+                            <BorderStyle Top="None" Bottom="Solid" Left="Solid" Right="Solid" />
+                            <Font Size="12px" Bold="True" Italic="False" />
+                          </Style>
+                        </TextBox>
+                      </ReportItem>
+                    </TableGroup>
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group2">
+                  <ReportItem>
+                    <TextBox Width="2.82147932604362cm" Height="0.70000004702144cm" Left="0cm" Top="0cm" Value="P/C Nr" Name="textBox46" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <BorderStyle Top="Solid" Bottom="None" Left="Solid" Right="Solid" />
+                        <Font Size="12px" Bold="True" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group7">
+                      <ReportItem>
+                        <TextBox Width="2.82147932604362cm" Height="0.70000004702144cm" Left="0cm" Top="0cm" Value="Werksnummer&#x9;" Name="textBox45">
+                          <Style TextAlign="Center" VerticalAlign="Middle">
+                            <BorderStyle Top="None" Bottom="Solid" Left="Solid" Right="Solid" />
+                            <Font Size="12px" Bold="True" Italic="False" />
+                          </Style>
+                        </TextBox>
+                      </ReportItem>
+                    </TableGroup>
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group1">
+                  <ReportItem>
+                    <TextBox Width="4.933831917338cm" Height="0.70000004702144cm" Left="0cm" Top="0cm" Value="Abmessung [mm]" Name="textBox48" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <BorderStyle Top="Solid" Bottom="None" Left="Solid" Right="Solid" />
+                        <Font Size="12px" Bold="True" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group8">
+                      <ReportItem>
+                        <TextBox Width="4.933831917338cm" Height="0.70000004702144cm" Left="0cm" Top="0cm" Name="textBox47" StyleName="">
+                          <Style TextAlign="Center" VerticalAlign="Middle">
+                            <BorderStyle Top="None" Bottom="Solid" Left="Solid" Right="Solid" />
+                            <Font Size="12px" Bold="True" Italic="False" />
+                          </Style>
+                        </TextBox>
+                      </ReportItem>
+                    </TableGroup>
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="group">
+                  <ReportItem>
+                    <TextBox Width="2.20484642651756cm" Height="0.70000004702144cm" Left="0cm" Top="0cm" Value="Netto [kg]" Name="textBox50" StyleName="">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <BorderStyle Top="Solid" Bottom="None" Left="Solid" Right="Solid" />
+                        <Font Size="12px" Bold="True" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group3">
+                      <ReportItem>
+                        <TextBox Width="2.20484642651756cm" Height="0.70000004702144cm" Left="0cm" Top="0cm" Name="textBox49" StyleName="">
+                          <Style TextAlign="Center" VerticalAlign="Middle">
+                            <BorderStyle Bottom="Solid" Left="Solid" Right="Solid" />
+                            <Font Size="12px" Bold="True" Italic="False" />
+                          </Style>
+                        </TextBox>
+                      </ReportItem>
+                    </TableGroup>
+                  </ChildGroups>
+                </TableGroup>
+                <TableGroup Name="tableGroup2">
+                  <ReportItem>
+                    <TextBox Width="2.36223631103939cm" Height="0.70000004702144cm" Left="0cm" Top="0cm" Value="Brutto [kg]" Name="textBox52">
+                      <Style TextAlign="Center" VerticalAlign="Middle">
+                        <BorderStyle Top="Solid" Bottom="None" Left="Solid" Right="Solid" />
+                        <Font Size="12px" Bold="True" />
+                      </Style>
+                    </TextBox>
+                  </ReportItem>
+                  <ChildGroups>
+                    <TableGroup Name="group10">
+                      <ReportItem>
+                        <TextBox Width="2.36223631103939cm" Height="0.70000004702144cm" Left="0cm" Top="0cm" Name="textBox51" StyleName="">
+                          <Style TextAlign="Center" VerticalAlign="Middle">
+                            <BorderStyle Top="None" Bottom="Solid" Left="Solid" Right="Solid" />
+                            <Font Size="12px" Bold="True" Italic="False" />
+                          </Style>
+                        </TextBox>
+                      </ReportItem>
+                    </TableGroup>
+                  </ChildGroups>
+                </TableGroup>
+              </ColumnGroups>
+            </Table>
+          </Items>
+        </Panel>
+        <Panel Width="18.0000006055832cm" Height="3.00000010093053cm" Left="0cm" Top="4.29999904115997cm" Docking="Bottom" Name="panVersandSpedition">
+          <Style>
+            <BorderStyle Top="Solid" />
+          </Style>
+          <Items>
+            <Panel Width="7.40000030279159cm" Height="3.00000010093053cm" Left="0.00009992122372211cm" Top="0cm" Docking="Left" Name="panVersender">
+              <Items>
+                <TextBox Width="7.40000030279159cm" Height="0.499999761581421cm" Left="0cm" Top="0cm" Value="VERSENDER:" Docking="Top" Name="textBox54">
+                  <Style>
+                    <Font Bold="True" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7.40000030279159cm" Height="0.499999761581421cm" Left="0cm" Top="0.499999747673678cm" Value="=VName1" Docking="Top" Name="textBox55">
+                  <Style>
+                    <Font Size="9pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7.40000030279159cm" Height="0.499999761581421cm" Left="0cm" Top="0.999999495347355cm" Value="=VName2" Docking="Top" Name="textBox56">
+                  <Style>
+                    <Font Size="9pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7.40000030279159cm" Height="0.499999761581421cm" Left="0cm" Top="1.49999924302103cm" Value="=VStr" Docking="Top" Name="textBox57">
+                  <Style>
+                    <Font Size="9pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7.40000030279159cm" Height="0.800000807444232cm" Left="0cm" Top="1.99999899069471cm" Value="=VPLZuOrt" Docking="Top" Name="textBox58">
+                  <Style VerticalAlign="Bottom">
+                    <Font Size="9pt" />
+                  </Style>
+                </TextBox>
+              </Items>
+            </Panel>
+            <Panel Width="3.2cm" Height="3.00000010093053cm" Left="7.40000030279159cm" Top="0cm" Docking="Left" Name="panLeer" />
+            <Panel Width="7.40000030279159cm" Height="3.00000010093053cm" Left="10.6000003027916cm" Top="0cm" Docking="Fill" Name="panSped">
+              <Items>
+                <TextBox Width="7.40000030279159cm" Height="0.499999761581421cm" Left="0cm" Top="0cm" Value="Spedition:" Docking="Top" Name="textBox53">
+                  <Style>
+                    <Font Bold="True" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7.40000030279159cm" Height="0.499999761581421cm" Left="0cm" Top="0.499999747673678cm" Value="='Fahrzeug: '+ Fields.KFZ &#xD;&#xA;" Docking="Top" Name="textBox59">
+                  <Style>
+                    <Font Size="9pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7.40000030279159cm" Height="0.499999761581421cm" Left="0cm" Top="0.999999495347355cm" Value="=SName1" Docking="Top" Name="textBox60">
+                  <Style>
+                    <Font Size="9pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7.40000030279159cm" Height="0.499999761581421cm" Left="0cm" Top="1.49999924302103cm" Value="=SName2" Docking="Top" Name="textBox61">
+                  <Style>
+                    <Font Size="9pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7.40000030279159cm" Height="0.499999761581421cm" Left="0cm" Top="1.99999899069471cm" Value="=SStr" Docking="Top" Name="textBox62">
+                  <Style>
+                    <Font Size="9pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7.40000030279159cm" Height="0.499999761581421cm" Left="0cm" Top="2.49999873836839cm" Value="=SPLZuOrt" Docking="Top" Name="textBox63">
+                  <Style>
+                    <Font Size="9pt" />
+                  </Style>
+                </TextBox>
+              </Items>
+            </Panel>
+          </Items>
+        </Panel>
+      </Items>
+    </DetailSection>
+    <PageFooterSection Height="0.94488271077474in" Name="pageFooterSection1">
+      <Items>
+        <Panel Width="17.9998019743021cm" Height="1.92000064595539cm" Left="0cm" Top="0.480001372655195cm" Docking="Bottom" Name="panel1">
+          <Items>
+            <TextBox Width="17.9997010437731cm" Height="1.19989927133205cm" Left="0cm" Top="0cm" Value="Wir arbeiten ausschließlich auf Grundlage der Allgemeinen Deutschen Spediteurbedingungen - ADSp - jeweils neuste Fassung. Diese beschränken in Ziffer 23 ADSp die gesetzliche Haftung für Güterschäden nach § 431 HGB für Schäden in speditionellem Gewahrsam auf 5 €/kg. Die Verkehrshaftungsversicherung besteht bei der  Versicherung AG, Musterstr1 , 12456 Musterstadt. Gerichtsstand und Erfüllungsort für beide Teile ist Lennestadt-Grevenbrück. Geschäftsführer: Helmut Nöker" Docking="Top" Name="textBox17">
+              <Style TextAlign="Center">
+                <Font Size="7pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="4.19989977598469cm" Height="0.72010137462334cm" Left="0cm" Top="1.19989927133205cm" Value="          Sparkasse Finnentrop&#xD;&#xA;          Volksbank Grevenbrück" Docking="Left" Name="textBox18">
+              <Style>
+                <Font Size="7pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.09980020801782cm" Height="0.72010137462334cm" Left="4.19989977598469cm" Top="1.19989927133205cm" Value="Konto:  11 11 11 11&#xD;&#xA;Konto:  22 22 22 22 00" Docking="Left" Name="textBox21">
+              <Style>
+                <Font Size="7pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.59999949534736cm" Height="0.72010137462334cm" Left="7.29969998400251cm" Top="1.19989927133205cm" Value="BLZ 462 515 90&#xD;&#xA;BLZ 462 616 07&#xD;&#xA;" Docking="Left" Name="textBox20">
+              <Style>
+                <Font Size="7pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="4.40010032494584cm" Height="0.72010137462334cm" Left="9.89969907562775cm" Top="1.19989927133205cm" Value="IBAN:  DE16 4625 1590 0000 0061 55&#xD;&#xA;IBAN:  DE82 4626 1607 1000 6393 00" Docking="Left" Name="textBox19">
+              <Style>
+                <Font Size="7pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.99990159273421cm" Height="0.72010137462334cm" Left="14.2997994005736cm" Top="1.19989927133205cm" Value="BIC:  WELADEDIFT&#xD;&#xA;BIC:  GENODEM1GLG" Docking="Left" Name="textBox22">
+              <Style>
+                <Font Size="7pt" />
+              </Style>
+            </TextBox>
+          </Items>
+        </Panel>
+      </Items>
+    </PageFooterSection>
+  </Items>
+  <StyleSheet>
+    <StyleRule>
+      <Style>
+        <Padding Left="2pt" Right="2pt" />
+      </Style>
+      <Selectors>
+        <TypeSelector Type="TextItemBase" />
+        <TypeSelector Type="HtmlTextBox" />
+      </Selectors>
+    </StyleRule>
+  </StyleSheet>
+  <PageSettings>
+    <PageSettings PaperKind="A4" Landscape="False">
+      <Margins>
+        <MarginsU Left="20mm" Right="10mm" Top="5mm" Bottom="10mm" />
+      </Margins>
+    </PageSettings>
+  </PageSettings>
+  <ReportParameters>
+    <ReportParameter Name="LEingangTableID" Type="Float">
+      <Value>
+        <String>2</String>
+      </Value>
+    </ReportParameter>
+  </ReportParameters>
+</Report>
