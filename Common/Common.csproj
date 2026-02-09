@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
-    <Version>25.12.17.1</Version>
+    <Version>26.02.09.1</Version>
     <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
     <EnableNETAnalyzers>False</EnableNETAnalyzers>
     <AnalysisLevel>none</AnalysisLevel>

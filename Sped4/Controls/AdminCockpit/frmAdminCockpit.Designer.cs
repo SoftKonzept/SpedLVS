@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.pageViewAdminCockpit = new Telerik.WinControls.UI.RadPageView();
             this.pvpReport = new Telerik.WinControls.UI.RadPageViewPage();
             this.tabReport = new System.Windows.Forms.TabControl();
@@ -82,6 +82,7 @@
             this.tabPage_AnonymousDatatable = new System.Windows.Forms.TabPage();
             this.tabPage_PdfCombination = new System.Windows.Forms.TabPage();
             this.tabPage_CleanAsn = new System.Windows.Forms.TabPage();
+            this.btnSmtpResponse = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.pageViewAdminCockpit)).BeginInit();
             this.pageViewAdminCockpit.SuspendLayout();
             this.pvpReport.SuspendLayout();
@@ -121,6 +122,7 @@
             this.tabEdiBaseData.SuspendLayout();
             this.pvpToDo.SuspendLayout();
             this.tab_ToDo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSmtpResponse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,7 +142,7 @@
             this.pageViewAdminCockpit.Margin = new System.Windows.Forms.Padding(5);
             this.pageViewAdminCockpit.Name = "pageViewAdminCockpit";
             this.pageViewAdminCockpit.PageBackColor = System.Drawing.Color.White;
-            this.pageViewAdminCockpit.SelectedPage = this.pvpEDIFACT;
+            this.pageViewAdminCockpit.SelectedPage = this.pvpMail;
             this.pageViewAdminCockpit.Size = new System.Drawing.Size(947, 496);
             this.pageViewAdminCockpit.TabIndex = 0;
             this.pageViewAdminCockpit.ThemeName = "ControlDefault";
@@ -214,7 +216,7 @@
             this.comboRefArbeitsbereich.EditorControl.MasterTemplate.AllowColumnChooser = false;
             this.comboRefArbeitsbereich.EditorControl.MasterTemplate.EnableGrouping = false;
             this.comboRefArbeitsbereich.EditorControl.MasterTemplate.ShowFilteringRow = false;
-            this.comboRefArbeitsbereich.EditorControl.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.comboRefArbeitsbereich.EditorControl.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.comboRefArbeitsbereich.EditorControl.Name = "NestedRadGridView";
             this.comboRefArbeitsbereich.EditorControl.ReadOnly = true;
             this.comboRefArbeitsbereich.EditorControl.ShowGroupPanel = false;
@@ -436,6 +438,7 @@
             // 
             // panMailEdit
             // 
+            this.panMailEdit.Controls.Add(this.btnSmtpResponse);
             this.panMailEdit.Controls.Add(this.radLabel8);
             this.panMailEdit.Controls.Add(this.tbMailCheckInfo);
             this.panMailEdit.Controls.Add(this.tbtnMailCheck);
@@ -452,7 +455,7 @@
             this.panMailEdit.Controls.Add(this.tbSMTPServer);
             this.panMailEdit.Location = new System.Drawing.Point(18, 22);
             this.panMailEdit.Name = "panMailEdit";
-            this.panMailEdit.Size = new System.Drawing.Size(943, 446);
+            this.panMailEdit.Size = new System.Drawing.Size(772, 446);
             this.panMailEdit.TabIndex = 0;
             // 
             // radLabel8
@@ -469,7 +472,7 @@
             this.tbMailCheckInfo.Location = new System.Drawing.Point(395, 44);
             this.tbMailCheckInfo.Multiline = true;
             this.tbMailCheckInfo.Name = "tbMailCheckInfo";
-            this.tbMailCheckInfo.Size = new System.Drawing.Size(513, 368);
+            this.tbMailCheckInfo.Size = new System.Drawing.Size(374, 368);
             this.tbMailCheckInfo.TabIndex = 7;
             // 
             // tbtnMailCheck
@@ -479,6 +482,7 @@
             this.tbtnMailCheck.Size = new System.Drawing.Size(318, 31);
             this.tbtnMailCheck.TabIndex = 6;
             this.tbtnMailCheck.Text = "Check Mail Account";
+            this.tbtnMailCheck.ThemeName = "ControlDefault";
             this.tbtnMailCheck.Click += new System.EventHandler(this.tbtnMailCheck_Click);
             // 
             // cbSMTPSSL
@@ -704,6 +708,16 @@
             this.tabPage_CleanAsn.Text = "Clean ASN";
             this.tabPage_CleanAsn.UseVisualStyleBackColor = true;
             // 
+            // btnSmtpResponse
+            // 
+            this.btnSmtpResponse.Location = new System.Drawing.Point(39, 257);
+            this.btnSmtpResponse.Name = "btnSmtpResponse";
+            this.btnSmtpResponse.Size = new System.Drawing.Size(318, 31);
+            this.btnSmtpResponse.TabIndex = 7;
+            this.btnSmtpResponse.Text = "Check Mail SMTP Response";
+            this.btnSmtpResponse.ThemeName = "ControlDefault";
+            this.btnSmtpResponse.Click += new System.EventHandler(this.btnSmtpResponse_Click);
+            // 
             // frmAdminCockpit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -754,6 +768,7 @@
             this.tabEdiBaseData.ResumeLayout(false);
             this.pvpToDo.ResumeLayout(false);
             this.tab_ToDo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnSmtpResponse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -814,5 +829,6 @@
         private System.Windows.Forms.TabPage tabPage_AnonymousDatatable;
         private System.Windows.Forms.TabPage tabPage_PdfCombination;
         private System.Windows.Forms.TabPage tabPage_CleanAsn;
+        private Telerik.WinControls.UI.RadButton btnSmtpResponse;
     }
 }

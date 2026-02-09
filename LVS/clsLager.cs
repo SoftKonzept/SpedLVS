@@ -115,6 +115,7 @@ namespace LVS
                                                     "FROM LEingang " +
                                                         "where " +
                                                             "AbBereich = " + (int)this.AbBereichID +
+                                                            " and LEingangID IS NOT NULL "+
                                                             " GROUP by ID, LEingangID " +
                                                             " Order by ID desc ";
                 DataTable dt = clsSQLcon.ExecuteSQL_GetDataTable(strSql, this.sys._GL_User.User_ID, "LastEingang");

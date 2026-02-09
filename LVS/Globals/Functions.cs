@@ -33,13 +33,16 @@ public static class Functions
         clsSQLcon.Password = GLSystem.con_PassDB;
 
         clsSQLcon sql = new clsSQLcon();
+
+        bool bReturn = false;
         if (Globals.SQLcon.init() == false)
         {
             return false;
         }
         try
         {
-            sql.init();
+            bReturn = sql.init();
+            return bReturn;
         }
         catch (Exception ex)
         {
@@ -48,7 +51,7 @@ public static class Functions
             sql.Close();
             return false;
         }
-        return true;
+        //return true;
     }
     ///<summary>Functions / init_con</summary>
     ///<remarks>Initialisierung der SQL-Connection. Die einzelnen Parameter werden aus der 

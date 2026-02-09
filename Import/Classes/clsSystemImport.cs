@@ -150,12 +150,6 @@ namespace Import
         public string con_ServerImp { get; set; }
         public string con_DatabaseImp { get; set; }
 
-
-
-
-
-
-
         public bool CheckConnectionSped
         {
             get

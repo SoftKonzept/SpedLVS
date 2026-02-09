@@ -412,7 +412,7 @@ namespace Sped4
                 try
                 {
                     SetProzessBarMailSend(false, 1);
-                    string[] reciever = tbMailReceiver.Text.Split(',');
+                    string[] reciever = tbMailReceiver.Text.Split(',', ';');
                     Mail.ListMailReceiver = new List<string>();
                     foreach (string strEmail in reciever)
                     {

@@ -33,7 +33,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>25.12.19.%2a</ApplicationVersion>
+    <ApplicationVersion>26.02.09.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -97,7 +97,7 @@
     </Reference>
     <Reference Include="clsINI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\clsINI.dll</HintPath>
+      <HintPath>..\..\lib\clsINI.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.WIAVIDEOLib">
@@ -135,7 +135,7 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <Private>True</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\lib\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\lib\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp, Version=6.2.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.6.2.1\lib\netstandard2.0\PdfSharp.dll</HintPath>
@@ -575,6 +575,8 @@
     <Compile Include="Classes\Update\up1290.cs" />
     <Compile Include="Classes\Update\up1289.cs" />
     <Compile Include="Classes\Update\up1288.cs" />
+    <Compile Include="Configuration\DbConnectionFactory.cs" />
+    <Compile Include="Configuration\IniConfigService.cs" />
     <Compile Include="Controls\AdminCockpit\ctrArtAnalyse.cs">
       <SubType>UserControl</SubType>
     </Compile>

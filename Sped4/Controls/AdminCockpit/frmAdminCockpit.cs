@@ -325,9 +325,9 @@ namespace Sped4.Controls.AdminCockpit
             MailCheck.SMTPUser = tbSMTPUser.Text.Trim();
             MailCheck.SMTPPasswort = tbSMTPPass.Text.Trim();
             MailCheck.MailFrom = tbMailAdress.Text.Trim();
-            //MailCheck.ListMailReceiver.Add("lvsreport@comtec-noeker.de");
-
+                        
             MailCheck.ListMailReceiver.Add("support@softkonzept.com");
+            //MailCheck.ListMailReceiver.Add("support@softkonzept.com");
 
             Int32 iTmp = 0;
             Int32.TryParse(tbSMTPPort.Text.Trim(), out iTmp);
@@ -467,5 +467,41 @@ namespace Sped4.Controls.AdminCockpit
             _Cleantr.BringToFront();
         }
 
+        private void btnSmtpResponse_Click(object sender, EventArgs e)
+        {
+            string strError = string.Empty;
+            tbMailCheckInfo.Text = string.Empty;
+            tbMailCheckInfo.Text = strError;
+            clsMail MailCheck = new clsMail();
+            MailCheck.InitClass(this._ctrMenu._frmMain.GL_User, this._ctrMenu._frmMain.system);
+
+            //tbSMTPServer.Text = MailCheck.
+
+            //MailCheck.SMTPServer = tbSMTPServer.Text.Trim();
+            //MailCheck.SMTPUser = tbSMTPUser.Text.Trim();
+            //MailCheck.SMTPPasswort = tbSMTPPass.Text.Trim();
+            //MailCheck.MailFrom = tbMailAdress.Text.Trim();
+            //MailCheck.ListMailReceiver.Add("lvsreport@comtec-noeker.de");
+
+
+            MailCheck.ListMailReceiver.Add("Marco-Rinscheid@gmx.de");
+            MailCheck.ListMailReceiver.Add("info@softkonzept");
+            MailCheck.ListMailReceiver.Add("mrrrmr@softkonzept.com");
+
+            Int32 iTmp = 0;
+            Int32.TryParse(tbSMTPPort.Text.Trim(), out iTmp);
+            MailCheck.SMTPPort = iTmp;
+            MailCheck.SMTPSsl = cbSMTPSSL.Checked;
+            MailCheck.Subject = "Check SMTP Response "; // + tbMailAdress.Text.Trim();
+            strError = strError + "SMTP Response - Check gestartet! " + Environment.NewLine;
+            MailCheck.Message = string.Empty;
+            var smtpResult = MailCheck.SendMailMultiRecipient();
+
+            strError = strError + "Testmail wurde erfolgreich versandt!!! " + Environment.NewLine;
+
+
+
+            tbMailCheckInfo.Text = strError;
+        }
     }
 }

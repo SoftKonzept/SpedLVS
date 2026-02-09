@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("LVS")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("SoftKonzept GmbH")]
 [assembly: AssemblyProduct("LVS")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
@@ -32,7 +32,7 @@ using System.Runtime.InteropServices;
 // Sie können alle Werte angeben oder die standardmäßigen Build- und Revisionsnummern 
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("25.12.17.1")]
-[assembly: AssemblyFileVersion("25.12.17.1")]
+[assembly: AssemblyVersion("26.02.09.1")]
+[assembly: AssemblyFileVersion("26.02.09.1")]
 [assembly: NeutralResourcesLanguage("de-DE")]
 

@@ -94,36 +94,44 @@ namespace LVS
         public bool init()
         {
             bool bConnected = true;
-            string strConnectionString = ("Data Source = "
+            if (
+                    (!Server.Equals(string.Empty)) &&
+                    (!Database.Equals(string.Empty)) &&
+                    (!User.Equals(string.Empty)) &&
+                    (!Password.Equals(string.Empty))
+               )
+            {
+                string strConnectionString = ("Data Source = "
                 + (Server + ("; " + ("Initial Catalog = "
                 + (Database + ("; " + ("Persist Security Info = True; " + ("User ID = "
                 + (User + ("; " + ("Password = " + Password)))))))))));
 
-            try
-            {
-                //cSQLCon.ConnectionString = ("Data Source = "
-                //            + (Server + ("; " + ("Initial Catalog = "
-                //            + (Database + ("; " + ("Persist Security Info = True; " + ("User ID = "
-                //            + (User + ("; " + ("Password = " + Password)))))))))));
-                cSQLCon.ConnectionString = strConnectionString;
+                try
+                {
+                    //cSQLCon.ConnectionString = ("Data Source = "
+                    //            + (Server + ("; " + ("Initial Catalog = "
+                    //            + (Database + ("; " + ("Persist Security Info = True; " + ("User ID = "
+                    //            + (User + ("; " + ("Password = " + Password)))))))))));
+                    cSQLCon.ConnectionString = strConnectionString;
 
 
-                cSQLCon.Open();
-                cSQLCon.Close();
-            }
-            catch (Exception ex)
-            {
-                clsError Error = new clsError();
-                //Error._GL_User = 1;
-                Error.Code = clsError.code1_101;
-                Error.Aktion = "Initialisierung der DB Connection";
-                Error.exceptText += "Connectionstring: " + strConnectionString + Environment.NewLine + Environment.NewLine;
-                Error.exceptText += ex.ToString() + Environment.NewLine;
-                Error.WriteError();
+                    cSQLCon.Open();
+                    cSQLCon.Close();
+                }
+                catch (Exception ex)
+                {
+                    clsError Error = new clsError();
+                    //Error._GL_User = 1;
+                    Error.Code = clsError.code1_101;
+                    Error.Aktion = "Initialisierung der DB Connection";
+                    Error.exceptText += "Connectionstring: " + strConnectionString + Environment.NewLine + Environment.NewLine;
+                    Error.exceptText += ex.ToString() + Environment.NewLine;
+                    Error.WriteError();
 
-                //ex.ToString();
-                //clsMessages.Allgemein_ERRORTextShow(strError);
-                bConnected = false;
+                    //ex.ToString();
+                    //clsMessages.Allgemein_ERRORTextShow(strError);
+                    bConnected = false;
+                }
             }
             return bConnected;
         }

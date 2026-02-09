@@ -245,6 +245,7 @@
             this.ctrMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ctrMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.ctrMenu.Location = new System.Drawing.Point(3, 82);
+            this.ctrMenu.LogMessages = ((System.Collections.Generic.List<string>)(resources.GetObject("ctrMenu.LogMessages")));
             this.ctrMenu.Margin = new System.Windows.Forms.Padding(4);
             this.ctrMenu.Name = "ctrMenu";
             this.ctrMenu.Size = new System.Drawing.Size(187, 453);
@@ -680,7 +681,7 @@
             // backColorToolStripMenuItem
             // 
             this.backColorToolStripMenuItem.Name = "backColorToolStripMenuItem";
-            this.backColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.backColorToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.backColorToolStripMenuItem.Text = "BackColor";
             this.backColorToolStripMenuItem.Click += new System.EventHandler(this.backColorToolStripMenuItem_Click);
             // 
@@ -688,7 +689,7 @@
             // 
             this.checkLagerOrtToolStripMenuItem.Enabled = false;
             this.checkLagerOrtToolStripMenuItem.Name = "checkLagerOrtToolStripMenuItem";
-            this.checkLagerOrtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.checkLagerOrtToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.checkLagerOrtToolStripMenuItem.Text = "CheckLagerOrt";
             this.checkLagerOrtToolStripMenuItem.Click += new System.EventHandler(this.checkLagerOrtToolStripMenuItem_Click_1);
             // 
@@ -698,7 +699,7 @@
             this.aSNActionToolStripMenuItem});
             this.aSNToolStripMenuItem.Enabled = false;
             this.aSNToolStripMenuItem.Name = "aSNToolStripMenuItem";
-            this.aSNToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aSNToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.aSNToolStripMenuItem.Text = "ASN";
             // 
             // aSNActionToolStripMenuItem
@@ -719,14 +720,14 @@
             // adminCockpitToolStripMenuItem
             // 
             this.adminCockpitToolStripMenuItem.Name = "adminCockpitToolStripMenuItem";
-            this.adminCockpitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.adminCockpitToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.adminCockpitToolStripMenuItem.Text = "Admin Cockpit";
             this.adminCockpitToolStripMenuItem.Click += new System.EventHandler(this.adminCockpitToolStripMenuItem_Click);
             // 
             // tsmiTests
             // 
             this.tsmiTests.Name = "tsmiTests";
-            this.tsmiTests.Size = new System.Drawing.Size(180, 22);
+            this.tsmiTests.Size = new System.Drawing.Size(154, 22);
             this.tsmiTests.Text = "Test";
             this.tsmiTests.Click += new System.EventHandler(this.tsmiTests_Click);
             // 

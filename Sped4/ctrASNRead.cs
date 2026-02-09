@@ -115,8 +115,14 @@ namespace Sped4.Classes
             tabCtrAsnRead.SelectTab(iIndex);
             //LoadDgvForSelectedTab(iIndex);
 
+            //-- mr 2026_02_04 herausgenommen
             // Daten werden im Hintergrund geladen
-            await Task.Run(() => LoadDgvForSelectedTab(iIndex));
+            //await Task.Run(() => LoadDgvForSelectedTab(iIndex));
+
+            //-- mr 2026_02_04
+            // Wichtig: LoadDgvForSelectedTab verändert UI-Elemente (RadGridView). 
+            // Deshalb auf dem UI-Thread ausführen – nicht in Task.Run.
+            LoadDgvForSelectedTab(iIndex);
 
             //tabCtrAsnRead.Refresh();
         }
@@ -946,30 +952,39 @@ namespace Sped4.Classes
         /// <param name="e"></param>
         private void dgvEDIFACT_CellClick(object sender, GridViewCellEventArgs e)
         {
-            switch (e.ColumnIndex)
+            //-- mr 2026_02_04
+            try
             {
-                case -1:
-                    GridViewTemplateChildViewCollapseUncollapse.CollapseAllExceptCurrent(ref dgvEDIFACT);
-                    break;
-                case 0:
-                    if (!this.dgvEDIFACT.Rows[e.RowIndex].Cells["Select"].ReadOnly)
-                    {
-                        bool CellValue = (bool)this.dgvEDIFACT.Rows[e.RowIndex].Cells["Select"].Value;
-                        if (CellValue == true)
+                switch (e.ColumnIndex)
+                {
+                    case -1:
+                        GridViewTemplateChildViewCollapseUncollapse.CollapseAllExceptCurrent(ref dgvEDIFACT);
+                        break;
+                    case 0:
+                        if (!this.dgvEDIFACT.Rows[e.RowIndex].Cells["Select"].ReadOnly)
                         {
-                            this.dgvEDIFACT.Rows[e.RowIndex].Cells["Select"].Value = false;
+                            bool CellValue = (bool)this.dgvEDIFACT.Rows[e.RowIndex].Cells["Select"].Value;
+                            if (CellValue == true)
+                            {
+                                this.dgvEDIFACT.Rows[e.RowIndex].Cells["Select"].Value = false;
+                            }
+                            else
+                            {
+                                this.dgvEDIFACT.Rows[e.RowIndex].Cells["Select"].Value = true;
+                            }
                         }
                         else
                         {
-                            this.dgvEDIFACT.Rows[e.RowIndex].Cells["Select"].Value = true;
+                            string strText = "Die DFÜ / ASN konnte nicht korrekt zugeordnet werden und kann nicht verarbeitet werden!";
+                            clsMessages.Allgemein_ERRORTextShow(strText);
                         }
-                    }
-                    else
-                    {
-                        string strText = "Die DFÜ / ASN konnte nicht korrekt zugeordnet werden und kann nicht verarbeitet werden!";
-                        clsMessages.Allgemein_ERRORTextShow(strText);
-                    }
-                    break;
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                //-- mr 2026_02_04
+                string s = ex.Message;
             }
         }
         ///<summary>ctrASNRead / dgv_CellClick</summary>
