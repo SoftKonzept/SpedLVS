@@ -369,7 +369,7 @@ namespace LVS.ViewData
                     string s = string.Empty;
                 }
 
-                EdifactMessageToClasses edi = new EdifactMessageToClasses(item, BenutzerID);
+                EdifactMessageToClasses edi = new EdifactMessageToClasses(this.system, item, BenutzerID);
                 if (edi != null)
                 {
                     if (
@@ -483,7 +483,7 @@ namespace LVS.ViewData
         {
             foreach (var item in myAsnList)
             {
-                EdifactMessageToClasses edi = new EdifactMessageToClasses(item, BenutzerID);
+                EdifactMessageToClasses edi = new EdifactMessageToClasses(this.system, item, BenutzerID);
                 if (edi != null)
                 {
                     if (

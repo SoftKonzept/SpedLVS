@@ -1468,11 +1468,11 @@ namespace LVS
             switch (this.MatchCode)
             {
                 case (const_ClientMatchcode_SZG + "_"):
-                    myArt.Bestellnummer = myReplaceVal;
-                    break;
                 case (const_ClientMatchcode_SIL + "_"):
+                case (const_ClientMatchcode_SLE + "_"):
                     myArt.Bestellnummer = myReplaceVal;
                     break;
+
                 default:
                     if (myArt.Bestellnummer.Equals(string.Empty))
                     {
@@ -1481,14 +1481,13 @@ namespace LVS
                     break;
             }
         }
-        public void clsLagerdaten_Customized_ASNArtikel_Bestellnummer(ref Articles myArt, string myReplaceVal)
+        public Articles clsLagerdaten_Customized_ASNArtikel_Bestellnummer(ref Articles myArt, string myReplaceVal)
         {
             switch (this.MatchCode)
             {
                 case (const_ClientMatchcode_SZG + "_"):
-                    myArt.Bestellnummer = myReplaceVal;
-                    break;
                 case (const_ClientMatchcode_SIL + "_"):
+                case (const_ClientMatchcode_SLE + "_"):
                     myArt.Bestellnummer = myReplaceVal;
                     break;
                 default:
@@ -1498,6 +1497,25 @@ namespace LVS
                     }
                     break;
             }
+            return myArt;
+        }
+        public Articles clsLagerdaten_Customized_ASNArtikel_Bestellnummer(Articles myArt, string myReplaceVal)
+        {
+            switch (this.MatchCode)
+            {
+                case (const_ClientMatchcode_SZG + "_"):
+                case (const_ClientMatchcode_SIL + "_"):
+                case (const_ClientMatchcode_SLE + "_"):
+                    myArt.Bestellnummer = myReplaceVal;
+                    break;
+                default:
+                    if (myArt.Bestellnummer.Equals(string.Empty))
+                    {
+                        myArt.Bestellnummer = myReplaceVal;
+                    }
+                    break;
+            }
+            return myArt;
         }
         //*************************************************************************************************************  ctrASNCall
         ///<summary>clsClient / ctrASNCall_CustomizeTsbtnDeleteASN</summary>

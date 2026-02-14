@@ -441,6 +441,13 @@ namespace LVS.ViewData
             }
             //-- IsStackable
             myArticle.IsStackable = Gut.IsStackable;
+
+            //if ((myArticle.Gut is Goodstypes) && (!myArticle.Gut.BestellNr.Equals(string.Empty)))
+            //{
+                
+            //    mySystem.Client.clsLagerdaten_Customized_ASNArtikel_Bestellnummer(ref myArt, myArt.Gut.BestellNr);
+            //}
+
             return myArticle;
         }
 

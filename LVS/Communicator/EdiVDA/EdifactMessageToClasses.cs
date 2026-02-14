@@ -36,9 +36,11 @@ namespace LVS.Communicator.EdiVDA
         internal Dictionary<string, AddressReferences> DictAddressReferencesSender { get; set; }
         internal Dictionary<string, AddressReferences> DictAddressReferencesReceiver { get; set; }
         public string ErrorLog { get; set; }
+        internal clsSystem Sys { get; set; }
 
-        public EdifactMessageToClasses(Asn myAsn, int myUserId)
+        public EdifactMessageToClasses(clsSystem mySystem, Asn myAsn, int myUserId)
         {
+            Sys = mySystem;
             this.ErrorLog = string.Empty;
             BenutzerId = myUserId;
             asn = myAsn;
@@ -657,11 +659,13 @@ namespace LVS.Communicator.EdiVDA
                                     {
                                         int iGArtId = GoodstypeViewData.GetGutByADRAndVerweis(BenutzerId, eingang.Auftraggeber, article.Werksnummer, eingang.ArbeitsbereichId);
                                         GoodstypeViewData gVD = new GoodstypeViewData(iGArtId, 1, false);
-                                        if ((gVD.Gut is Goodstypes) && (iGArtId > 0) && (gVD.Gut.Id == iGArtId))
+                                        if ((gVD.Gut is Goodstypes) && (iGArtId > 0) && (gVD.Gut.Id == iGArtId) && (!gVD.Gut.IgnoreEdi))
                                         {
                                             article = gVD.SetGoodtypeValueToArticle(article).Copy();
+                                            article = Sys.Client.clsLagerdaten_Customized_ASNArtikel_Bestellnummer(article, gVD.Gut.BestellNr);
+
                                             //LVS.clsSystem Sys = new LVS.clsSystem();
-                                            //Sys.Client.clsLagerdaten_Customized_ASNArtikel_Bestellnummer(ref myArt, myArt.GArt.BestellNr);
+                                            //article = mys Sys.Client.clsLagerdaten_Customized_ASNArtikel_Bestellnummer(article, gVD.Gut.BestellNr);
                                         }
                                     }
                                     break;
@@ -1217,7 +1221,7 @@ namespace LVS.Communicator.EdiVDA
                                         {
                                             int iGArtId = GoodstypeViewData.GetGutByADRAndVerweis(1, eingang.Auftraggeber, article.Werksnummer, eingang.ArbeitsbereichId);
                                             GoodstypeViewData gVD = new GoodstypeViewData(iGArtId, 1, false);
-                                            if ((gVD.Gut is Goodstypes) && (iGArtId > 0) && (gVD.Gut.Id == iGArtId))
+                                            if ((gVD.Gut is Goodstypes) && (iGArtId > 0) && (gVD.Gut.Id == iGArtId) && (!gVD.Gut.IgnoreEdi))
                                             {
                                                 article = gVD.SetGoodtypeValueToArticle(article).Copy();
                                                 //this.Sys.Client.clsLagerdaten_Customized_ASNArtikel_Bestellnummer(ref myArt, myArt.GArt.BestellNr);
