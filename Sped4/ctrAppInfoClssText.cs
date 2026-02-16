@@ -9,11 +9,12 @@ namespace Sped4
         {
             get
             {
+                _InfoText += "16.02.2026 / Build: 26.02.16.1      : " + Environment.NewLine +
+                            Environment.NewLine;
 
                 _InfoText += "04.02.2026 / Build: 26.02.04.1      : " + Environment.NewLine +
                             " - BugFix: Absturz bei der Anzeige vorliegender ASN Meldungen" +
                             Environment.NewLine;
-
                 _InfoText += "02.02.2026 / Build: 26.02.02.1      : " + Environment.NewLine +
                             " - Fakturierung: Logdaten erweitert" +
                             Environment.NewLine;
