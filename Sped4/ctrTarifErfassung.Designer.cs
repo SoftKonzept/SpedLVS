@@ -201,6 +201,7 @@
             this.tsbtnClose = new System.Windows.Forms.ToolStripButton();
             this.tsbtnBackToKunden = new System.Windows.Forms.ToolStripButton();
             this.afColorLabel1 = new Sped4.Controls.AFColorLabel();
+            this.cbRequireCompletedWarehouseEntry = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -295,7 +296,7 @@
             this.dgvTarif.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.dgvTarif.ForeColor = System.Drawing.SystemColors.ControlText;
             this.dgvTarif.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgvTarif.Location = new System.Drawing.Point(0, 524);
+            this.dgvTarif.Location = new System.Drawing.Point(0, 551);
             // 
             // 
             // 
@@ -307,8 +308,7 @@
             this.dgvTarif.ReadOnly = true;
             this.dgvTarif.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvTarif.ShowGroupPanel = false;
-            this.dgvTarif.ShowHeaderCellButtons = true;
-            this.dgvTarif.Size = new System.Drawing.Size(500, 234);
+            this.dgvTarif.Size = new System.Drawing.Size(500, 207);
             this.dgvTarif.TabIndex = 25;
             this.dgvTarif.ThemeName = "ControlDefault";
             this.dgvTarif.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvTarif_CellClick);
@@ -326,7 +326,7 @@
             this.afMinMaxTarif.myImage = ((System.Drawing.Image)(resources.GetObject("afMinMaxTarif.myImage")));
             this.afMinMaxTarif.myText = "Neuen Tarif anlegen";
             this.afMinMaxTarif.Name = "afMinMaxTarif";
-            this.afMinMaxTarif.Size = new System.Drawing.Size(500, 413);
+            this.afMinMaxTarif.Size = new System.Drawing.Size(500, 440);
             this.afMinMaxTarif.TabIndex = 2;
             this.afMinMaxTarif.Text = "afMinMaxPanel1";
             // 
@@ -340,12 +340,13 @@
             this.tabTarif.Location = new System.Drawing.Point(3, 28);
             this.tabTarif.Name = "tabTarif";
             this.tabTarif.SelectedIndex = 0;
-            this.tabTarif.Size = new System.Drawing.Size(496, 382);
+            this.tabTarif.Size = new System.Drawing.Size(496, 410);
             this.tabTarif.TabIndex = 146;
             this.tabTarif.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabTarife_Selected);
             // 
             // tabPageTarifEdit
             // 
+            this.tabPageTarifEdit.Controls.Add(this.cbRequireCompletedWarehouseEntry);
             this.tabPageTarifEdit.Controls.Add(this.tbTarifID);
             this.tabPageTarifEdit.Controls.Add(this.label48);
             this.tabPageTarifEdit.Controls.Add(this.label42);
@@ -373,7 +374,7 @@
             this.tabPageTarifEdit.Location = new System.Drawing.Point(4, 22);
             this.tabPageTarifEdit.Name = "tabPageTarifEdit";
             this.tabPageTarifEdit.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTarifEdit.Size = new System.Drawing.Size(488, 356);
+            this.tabPageTarifEdit.Size = new System.Drawing.Size(488, 384);
             this.tabPageTarifEdit.TabIndex = 0;
             this.tabPageTarifEdit.Text = "Tariferfassung";
             this.tabPageTarifEdit.UseVisualStyleBackColor = true;
@@ -401,7 +402,7 @@
             // 
             this.label42.AutoSize = true;
             this.label42.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label42.Location = new System.Drawing.Point(176, 289);
+            this.label42.Location = new System.Drawing.Point(180, 289);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(27, 13);
             this.label42.TabIndex = 156;
@@ -475,7 +476,7 @@
             this.cbVersicherung.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.cbVersicherung.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbVersicherung.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbVersicherung.Location = new System.Drawing.Point(6, 285);
+            this.cbVersicherung.Location = new System.Drawing.Point(24, 288);
             this.cbVersicherung.Name = "cbVersicherung";
             this.cbVersicherung.Size = new System.Drawing.Size(158, 17);
             this.cbVersicherung.TabIndex = 147;
@@ -700,7 +701,7 @@
             this.tabPageGArten.Location = new System.Drawing.Point(4, 22);
             this.tabPageGArten.Name = "tabPageGArten";
             this.tabPageGArten.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageGArten.Size = new System.Drawing.Size(488, 356);
+            this.tabPageGArten.Size = new System.Drawing.Size(488, 434);
             this.tabPageGArten.TabIndex = 1;
             this.tabPageGArten.Text = "Güterarten";
             this.tabPageGArten.UseVisualStyleBackColor = true;
@@ -725,8 +726,7 @@
             this.dgvGArten.ReadOnly = true;
             this.dgvGArten.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvGArten.ShowGroupPanel = false;
-            this.dgvGArten.ShowHeaderCellButtons = true;
-            this.dgvGArten.Size = new System.Drawing.Size(482, 325);
+            this.dgvGArten.Size = new System.Drawing.Size(482, 403);
             this.dgvGArten.TabIndex = 147;
             this.dgvGArten.ThemeName = "ControlDefault";
             this.dgvGArten.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvGArten_CellClick);
@@ -784,7 +784,7 @@
             this.tabPageAbBereich.Location = new System.Drawing.Point(4, 22);
             this.tabPageAbBereich.Name = "tabPageAbBereich";
             this.tabPageAbBereich.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAbBereich.Size = new System.Drawing.Size(488, 356);
+            this.tabPageAbBereich.Size = new System.Drawing.Size(488, 434);
             this.tabPageAbBereich.TabIndex = 2;
             this.tabPageAbBereich.Text = "Arbeitsbereiche";
             this.tabPageAbBereich.UseVisualStyleBackColor = true;
@@ -796,7 +796,7 @@
             this.lvAbBereiche.ItemSize = new System.Drawing.Size(200, 28);
             this.lvAbBereiche.Location = new System.Drawing.Point(3, 28);
             this.lvAbBereiche.Name = "lvAbBereiche";
-            this.lvAbBereiche.Size = new System.Drawing.Size(482, 325);
+            this.lvAbBereiche.Size = new System.Drawing.Size(482, 403);
             this.lvAbBereiche.TabIndex = 148;
             this.lvAbBereiche.ThemeName = "ControlDefault";
             this.lvAbBereiche.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.lvAbBereiche_ItemCheckedChanged);
@@ -818,7 +818,7 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(177, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(178, 22);
             this.toolStripLabel1.Text = "Zuweisung Tarif / Arbeitsbereich";
             // 
             // tabRGZZ
@@ -834,7 +834,7 @@
             this.tabRGZZ.Location = new System.Drawing.Point(4, 22);
             this.tabRGZZ.Name = "tabRGZZ";
             this.tabRGZZ.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRGZZ.Size = new System.Drawing.Size(488, 356);
+            this.tabRGZZ.Size = new System.Drawing.Size(488, 434);
             this.tabRGZZ.TabIndex = 3;
             this.tabRGZZ.Text = "Zahlungsziel";
             this.tabRGZZ.UseVisualStyleBackColor = true;
@@ -944,7 +944,7 @@
             this.tabRGText.Controls.Add(this.miRGTextMain);
             this.tabRGText.Location = new System.Drawing.Point(4, 22);
             this.tabRGText.Name = "tabRGText";
-            this.tabRGText.Size = new System.Drawing.Size(488, 356);
+            this.tabRGText.Size = new System.Drawing.Size(488, 434);
             this.tabRGText.TabIndex = 4;
             this.tabRGText.Text = "RG-Text";
             this.tabRGText.UseVisualStyleBackColor = true;
@@ -1066,7 +1066,6 @@
             this.dgvTarifPos.ReadOnly = true;
             this.dgvTarifPos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvTarifPos.ShowGroupPanel = false;
-            this.dgvTarifPos.ShowHeaderCellButtons = true;
             this.dgvTarifPos.Size = new System.Drawing.Size(691, 336);
             this.dgvTarifPos.TabIndex = 26;
             this.dgvTarifPos.ThemeName = "ControlDefault";
@@ -2367,6 +2366,21 @@
             this.afColorLabel1.TabIndex = 10;
             this.afColorLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // cbRequireCompletedWarehouseEntry
+            // 
+            this.cbRequireCompletedWarehouseEntry.AutoSize = true;
+            this.cbRequireCompletedWarehouseEntry.Checked = true;
+            this.cbRequireCompletedWarehouseEntry.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRequireCompletedWarehouseEntry.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.cbRequireCompletedWarehouseEntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbRequireCompletedWarehouseEntry.ForeColor = System.Drawing.Color.DarkBlue;
+            this.cbRequireCompletedWarehouseEntry.Location = new System.Drawing.Point(22, 356);
+            this.cbRequireCompletedWarehouseEntry.Name = "cbRequireCompletedWarehouseEntry";
+            this.cbRequireCompletedWarehouseEntry.Size = new System.Drawing.Size(217, 17);
+            this.cbRequireCompletedWarehouseEntry.TabIndex = 159;
+            this.cbRequireCompletedWarehouseEntry.Text = "Vorgabe: abgeschlossener Lagereingang";
+            this.cbRequireCompletedWarehouseEntry.UseVisualStyleBackColor = true;
+            // 
             // ctrTarifErfassung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2628,5 +2642,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox tbTarifID;
         private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.CheckBox cbRequireCompletedWarehouseEntry;
     }
 }

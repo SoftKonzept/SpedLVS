@@ -119,8 +119,7 @@
             // 
             // 
             this.rDgv.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 54, 240, 150);
-            this.rDgv.ShowHeaderCellButtons = true;
-            this.rDgv.Size = new System.Drawing.Size(990, 383);
+            this.rDgv.Size = new System.Drawing.Size(990, 369);
             this.rDgv.TabIndex = 22;
             this.rDgv.ThemeName = "ControlDefault";
             this.rDgv.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.rDgv_CellFormatting);
@@ -133,14 +132,13 @@
             this.scAttachmentProzessContainer.Controls.Add(this.splitPanel1);
             this.scAttachmentProzessContainer.Controls.Add(this.splitPanel2);
             this.scAttachmentProzessContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scAttachmentProzessContainer.Location = new System.Drawing.Point(0, 167);
+            this.scAttachmentProzessContainer.Location = new System.Drawing.Point(0, 181);
             this.scAttachmentProzessContainer.Name = "scAttachmentProzessContainer";
             // 
             // 
             // 
-            this.scAttachmentProzessContainer.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 167, 200, 200);
-            this.scAttachmentProzessContainer.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.scAttachmentProzessContainer.Size = new System.Drawing.Size(990, 437);
+            this.scAttachmentProzessContainer.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 181, 200, 200);
+            this.scAttachmentProzessContainer.Size = new System.Drawing.Size(990, 423);
             this.scAttachmentProzessContainer.SplitterWidth = 10;
             this.scAttachmentProzessContainer.TabIndex = 34;
             this.scAttachmentProzessContainer.TabStop = false;
@@ -155,7 +153,6 @@
             // 
             // 
             this.splitPanel1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 200, 200);
-            this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.splitPanel1.Size = new System.Drawing.Size(467, 542);
             this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1450304F, 0F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-143, 0);
@@ -176,8 +173,7 @@
             // 
             // 
             this.splitPanel2.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 200, 200);
-            this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.splitPanel2.Size = new System.Drawing.Size(990, 437);
+            this.splitPanel2.Size = new System.Drawing.Size(990, 423);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1450304F, 0F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(143, 0);
             this.splitPanel2.TabIndex = 1;
@@ -429,7 +425,7 @@
             this.afMinMaxPanel1.myImage = global::Sped4.Properties.Resources.gears_preferences;
             this.afMinMaxPanel1.myText = "Optionen";
             this.afMinMaxPanel1.Name = "afMinMaxPanel1";
-            this.afMinMaxPanel1.Size = new System.Drawing.Size(990, 139);
+            this.afMinMaxPanel1.Size = new System.Drawing.Size(990, 153);
             this.afMinMaxPanel1.TabIndex = 8;
             this.afMinMaxPanel1.Text = "afMinMaxPanel1";
             // 
@@ -445,7 +441,7 @@
             this.gbFilter.ForeColor = System.Drawing.Color.DarkBlue;
             this.gbFilter.Location = new System.Drawing.Point(606, 22);
             this.gbFilter.Name = "gbFilter";
-            this.gbFilter.Size = new System.Drawing.Size(364, 105);
+            this.gbFilter.Size = new System.Drawing.Size(364, 119);
             this.gbFilter.TabIndex = 158;
             this.gbFilter.TabStop = false;
             this.gbFilter.Text = "Filter-Einstellungen";
@@ -512,7 +508,7 @@
             this.gbAuswahl.ForeColor = System.Drawing.Color.DarkBlue;
             this.gbAuswahl.Location = new System.Drawing.Point(33, 22);
             this.gbAuswahl.Name = "gbAuswahl";
-            this.gbAuswahl.Size = new System.Drawing.Size(567, 105);
+            this.gbAuswahl.Size = new System.Drawing.Size(567, 119);
             this.gbAuswahl.TabIndex = 157;
             this.gbAuswahl.TabStop = false;
             this.gbAuswahl.Text = "Auswahl Journaldaten";

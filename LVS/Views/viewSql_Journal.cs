@@ -1,4 +1,6 @@
-﻿namespace LVS.Views
+﻿using System;
+
+namespace LVS.Views
 {
     public class viewSql_Journal
     {
@@ -142,7 +144,6 @@
                             }
                         }
                     }
-
                     break;
 
                 // nur Eingänge
@@ -176,9 +177,11 @@
                                 "INNER JOIN LEingang b ON b.ID = a.LEingangTableID " +
                                 "INNER JOIN Gueterart e ON e.ID=a.GArtID " +
                                 "LEFT JOIN LAusgang c ON c.ID = a.LAusgangTableID " +
-                              "WHERE " +
-                              "b.[Check]=1 AND b.DirectDelivery=0 AND b.AbBereich=" + myLager.AbBereichID + " " +
-                             "AND (CAST(b.Date as Date) between '" + myLager.BestandVon.Date.ToShortDateString() + "' AND '" + myLager.BestandBis.Date.ToShortDateString() + "') ";
+                              "WHERE ";
+                                //"b.[Check]=1 AND b.DirectDelivery=0 AND b.AbBereich=" + myLager.AbBereichID + " " +
+
+                     strSQL2 += "b.DirectDelivery=0 AND b.AbBereich=" + myLager.AbBereichID + " " +
+                                "AND (CAST(b.Date as Date) between '" + myLager.BestandVon.Date.ToShortDateString() + "' AND '" + myLager.BestandBis.Date.ToShortDateString() + "') ";
                     //ermitteln, ob der FIlter im Journal gesetzt wurde und dann entsprechend die 
                     //Filterangaben zur SQL-Anweisung hinzufügen
                     if (myLager.bFilterJournal)
@@ -194,6 +197,11 @@
                                     {
                                         strSQL2 += " AND e.ID IN(" + myLager.ADR.Kunde.Tarif.TarifGArtZuweisung.SQLGArtIDString + ")";
                                     }
+                                }
+
+                                if (myLager.ADR.Kunde.Tarif.RequiresCompletedWarehouseEntry)
+                                {
+                                    strSQL2 += " AND b.[Check]=1 ";
                                 }
                             }
                         }

@@ -107,6 +107,8 @@
             this.pageInfo = new System.Windows.Forms.TabPage();
             this.panEInvoiceInfo = new Telerik.WinControls.UI.RadPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbInvoiceReceiver = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.tbReceiverMailAdress = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -156,8 +158,6 @@
             this.grdRG = new Telerik.WinControls.UI.RadGridView();
             this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
             this.afColorLabel1 = new Sped4.Controls.AFColorLabel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.tbInvoiceReceiver = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExistRGAuftraggeber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExistRGAuftraggeber.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOPAuftraggeber)).BeginInit();
@@ -582,7 +582,6 @@
             this.scInvoiceMain.TabIndex = 31;
             this.scInvoiceMain.TabStop = false;
             this.scInvoiceMain.ThemeName = "ControlDefault";
-            this.scInvoiceMain.UseSplitterButtons = true;
             // 
             // spInvoiceHead
             // 
@@ -591,9 +590,12 @@
             this.spInvoiceHead.Controls.Add(this.mInvoice);
             this.spInvoiceHead.Location = new System.Drawing.Point(0, 0);
             this.spInvoiceHead.Name = "spInvoiceHead";
-            this.spInvoiceHead.Size = new System.Drawing.Size(606, 511);
-            this.spInvoiceHead.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.2861539F);
-            this.spInvoiceHead.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 174);
+            this.spInvoiceHead.Size = new System.Drawing.Size(606, 527);
+            this.spInvoiceHead.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 527);
+            this.spInvoiceHead.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.2969231F);
+            this.spInvoiceHead.SizeInfo.MinimumSize = new System.Drawing.Size(0, 465);
+            this.spInvoiceHead.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Absolute;
+            this.spInvoiceHead.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 527);
             this.spInvoiceHead.TabIndex = 0;
             this.spInvoiceHead.TabStop = false;
             this.spInvoiceHead.ThemeName = "ControlDefault";
@@ -606,7 +608,7 @@
             this.tabInvoice.Location = new System.Drawing.Point(0, 27);
             this.tabInvoice.Name = "tabInvoice";
             this.tabInvoice.SelectedIndex = 0;
-            this.tabInvoice.Size = new System.Drawing.Size(606, 484);
+            this.tabInvoice.Size = new System.Drawing.Size(606, 500);
             this.tabInvoice.TabIndex = 10;
             this.tabInvoice.SelectedIndexChanged += new System.EventHandler(this.tabInvoice_SelectedIndexChanged);
             // 
@@ -616,7 +618,7 @@
             this.pageInvoiceHead.Location = new System.Drawing.Point(4, 22);
             this.pageInvoiceHead.Name = "pageInvoiceHead";
             this.pageInvoiceHead.Padding = new System.Windows.Forms.Padding(3);
-            this.pageInvoiceHead.Size = new System.Drawing.Size(598, 411);
+            this.pageInvoiceHead.Size = new System.Drawing.Size(598, 474);
             this.pageInvoiceHead.TabIndex = 0;
             this.pageInvoiceHead.Text = "Rechnungskopf";
             this.pageInvoiceHead.UseVisualStyleBackColor = true;
@@ -658,7 +660,7 @@
             this.panRGKopf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panRGKopf.Location = new System.Drawing.Point(3, 3);
             this.panRGKopf.Name = "panRGKopf";
-            this.panRGKopf.Size = new System.Drawing.Size(592, 405);
+            this.panRGKopf.Size = new System.Drawing.Size(592, 468);
             this.panRGKopf.TabIndex = 3;
             // 
             // panInvoiceSelection
@@ -1097,7 +1099,7 @@
             this.pageInfo.Location = new System.Drawing.Point(4, 22);
             this.pageInfo.Name = "pageInfo";
             this.pageInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.pageInfo.Size = new System.Drawing.Size(598, 458);
+            this.pageInfo.Size = new System.Drawing.Size(598, 474);
             this.pageInfo.TabIndex = 1;
             this.pageInfo.Text = "e-Rechnung Infos";
             this.pageInfo.UseVisualStyleBackColor = true;
@@ -1110,7 +1112,7 @@
             this.panEInvoiceInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panEInvoiceInfo.Location = new System.Drawing.Point(3, 3);
             this.panEInvoiceInfo.Name = "panEInvoiceInfo";
-            this.panEInvoiceInfo.Size = new System.Drawing.Size(592, 452);
+            this.panEInvoiceInfo.Size = new System.Drawing.Size(592, 468);
             this.panEInvoiceInfo.TabIndex = 0;
             this.panEInvoiceInfo.ThemeName = "ControlDefault";
             // 
@@ -1129,6 +1131,25 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "RG - Empfänger";
+            // 
+            // tbInvoiceReceiver
+            // 
+            this.tbInvoiceReceiver.Location = new System.Drawing.Point(142, 32);
+            this.tbInvoiceReceiver.Name = "tbInvoiceReceiver";
+            this.tbInvoiceReceiver.ReadOnly = true;
+            this.tbInvoiceReceiver.Size = new System.Drawing.Size(258, 20);
+            this.tbInvoiceReceiver.TabIndex = 65;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label16.Location = new System.Drawing.Point(38, 35);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(85, 13);
+            this.label16.TabIndex = 64;
+            this.label16.Text = "RG-Empfänger:";
             // 
             // tbReceiverMailAdress
             // 
@@ -1593,11 +1614,11 @@
             // 
             this.spInvoiceGrid.AutoScroll = true;
             this.spInvoiceGrid.Controls.Add(this.grdRG);
-            this.spInvoiceGrid.Location = new System.Drawing.Point(0, 516);
+            this.spInvoiceGrid.Location = new System.Drawing.Point(0, 532);
             this.spInvoiceGrid.Name = "spInvoiceGrid";
-            this.spInvoiceGrid.Size = new System.Drawing.Size(606, 139);
-            this.spInvoiceGrid.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.2861539F);
-            this.spInvoiceGrid.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -174);
+            this.spInvoiceGrid.Size = new System.Drawing.Size(606, 123);
+            this.spInvoiceGrid.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.28125F);
+            this.spInvoiceGrid.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -256);
             this.spInvoiceGrid.TabIndex = 1;
             this.spInvoiceGrid.TabStop = false;
             this.spInvoiceGrid.Text = "splitPanel2";
@@ -1635,7 +1656,7 @@
             // 
             this.grdRG.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
             this.grdRG.ShowGroupPanel = false;
-            this.grdRG.Size = new System.Drawing.Size(606, 139);
+            this.grdRG.Size = new System.Drawing.Size(606, 123);
             this.grdRG.TabIndex = 30;
             this.grdRG.ThemeName = "ControlDefault";
             this.grdRG.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.grdRG_RowFormatting);
@@ -1659,25 +1680,6 @@
             this.afColorLabel1.Size = new System.Drawing.Size(992, 35);
             this.afColorLabel1.TabIndex = 3;
             this.afColorLabel1.Text = "afColorLabel1";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label16.Location = new System.Drawing.Point(38, 35);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(85, 13);
-            this.label16.TabIndex = 64;
-            this.label16.Text = "RG-Empfänger:";
-            // 
-            // tbInvoiceReceiver
-            // 
-            this.tbInvoiceReceiver.Location = new System.Drawing.Point(142, 32);
-            this.tbInvoiceReceiver.Name = "tbInvoiceReceiver";
-            this.tbInvoiceReceiver.ReadOnly = true;
-            this.tbInvoiceReceiver.Size = new System.Drawing.Size(258, 20);
-            this.tbInvoiceReceiver.TabIndex = 65;
             // 
             // ctrFaktLager
             // 

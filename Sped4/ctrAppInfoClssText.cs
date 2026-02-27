@@ -9,9 +9,12 @@ namespace Sped4
         {
             get
             {
+                _InfoText += "02.03.2026 / Build: 26.03.02.1      : " + Environment.NewLine +
+                             " - Tariferweiterung für Berechnung nicht abgeschlossene Eingänge"+
+                             Environment.NewLine;
+
                 _InfoText += "16.02.2026 / Build: 26.02.16.1      : " + Environment.NewLine +
                             Environment.NewLine;
-
                 _InfoText += "04.02.2026 / Build: 26.02.04.1      : " + Environment.NewLine +
                             " - BugFix: Absturz bei der Anzeige vorliegender ASN Meldungen" +
                             Environment.NewLine;

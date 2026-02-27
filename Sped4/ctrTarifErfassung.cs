@@ -784,6 +784,8 @@ namespace Sped4
                 //tabRGText
                 Tarif.RGText = tbRGText.Text.Trim();
 
+                //Vorgabe: Benötigt abgeschlossener Lagereingang
+                Tarif.RequiresCompletedWarehouseEntry = cbRequireCompletedWarehouseEntry.Checked;
 
                 _TarifArt = Tarif.Art;
 
@@ -1190,6 +1192,8 @@ namespace Sped4
             cbVersicherung.Checked = (Tarif.VersPreis > 0);
             cbSLVSPauschal.Checked = Tarif.ISVersPauschal;
             nudVersMaterialWert.Value = Tarif.VersMaterialWert;
+
+            cbRequireCompletedWarehouseEntry.Checked = Tarif.RequiresCompletedWarehouseEntry;
 
             //tabMoreVal
             Int32 iTmp = 0;

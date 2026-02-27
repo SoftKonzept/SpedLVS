@@ -1,4 +1,9 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
+using Org.BouncyCastle.Utilities.Zlib;
+using Svg;
+using System;
+using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
 
 namespace LVS.sqlStatementCreater
 {
@@ -672,137 +677,261 @@ namespace LVS.sqlStatementCreater
         /// <summary>
         /// 
         /// </summary>
+        //public string sql_Main
+        //{
+        //    get
+        //    {
+        //        string sqlReturn = string.Empty;
+        //        sqlReturn = "Select " +
+        //                    "CAST(a.ID as INT) as ArtikelID " +
+        //                    ", CAST(a.LVS_ID as INT) as LVSNr " +
+        //                    ", a.Werksnummer" +
+        //                    ", a.Produktionsnummer" +
+        //                    ", a.Charge" +
+        //                    ", a.GArtId" +
+        //                    ", e.Bezeichnung as Gut" +
+        //                    ", (Select ADR.ViewID FROM ADR WHERE ADR.ID=b.Auftraggeber) as Auftraggeber" +
+        //                    ", CASE " +
+        //                        "WHEN a.LAusgangTableID>0 THEN (Select ADR.ViewID FROM ADR WHERE ADR.ID=c.Empfaenger) " +
+        //                        "ELSE (Select ADR.ViewID FROM ADR WHERE ADR.ID=b.Empfaenger) " +
+        //                        "END as Empfaenger" +
+        //                    ", a.FreigabeAbruf as Freigabe" +
+        //                    ", a.Anzahl" +
+        //                    ", a.Einheit" +
+        //                    ", a.Dicke" +
+        //                    ", a.Breite" +
+        //                    ", a.Laenge" +
+        //                    ", a.Hoehe" +
+        //                    ", a.Netto" +
+        //                    ", a.Brutto" +
+        //                    ", a.exBezeichnung" +
+        //                    ", a.Bestellnummer" +
+        //                    ", a.exMaterialnummer" +
+        //                    ", CAST(b.LEingangID as INT) as Eingang" +
+        //                    ", b.Date as 'Eingangsdatum'" +
+        //                    ", CAST(MONTH(b.Date) as varchar)+'/'+CAST(YEAR(b.Date) as varchar)  as Eingangsmonat" +
+        //                    ", b.LfsNr as Lieferschein" +
+        //                    ", CAST(c.LAusgangID as INT) as Ausgang" +
+        //                    ", c.Datum as 'Ausgangsdatum'" +
+        //                    ", CAST(MONTH(c.Datum) as varchar)+'/'+CAST(YEAR(c.Datum) as varchar)  as Ausgangsmonat" +
+        //                    ", CASE " +
+        //                        "WHEN (c.Datum IS NULL) " +
+        //                        //"THEN CAST( DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) as INT)+1 " +
+        //                        "THEN CAST( DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) as INT)+1 " +
+        //                        "ELSE CAST( DATEDIFF(day, CAST(b.Date as Date),CAST(c.Datum as Date)) as INT)+1 " +
+        //                        "END as Lagerdauer " +
+        //                    ", CASE " +
+        //                        "WHEN(a.LAusgangTableID > 0) " +
+        //                        "THEN " +
+        //                            "CASE " +
+        //                                //"WHEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.Stichtag.Date.ToString() + "' as Date))> 0 " +
+        //                                //"THEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.Stichtag.Date.ToString() + "' as Date))+1 " +
+        //                                "WHEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date))> 0 " +
+        //                                "THEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date))+1 " +
+        //                                "ELSE DATEDIFF(day, CAST(b.Date as Date),CAST(c.Datum as date))+1 " +
+        //                            "end " +
+        //                        "ELSE " +
+        //                            //"DATEDIFF(day, CAST(b.Date as Date), CAST('" + this.Stichtag.Date.ToString() + "' as Date)) + 1 " +
+        //                            "DATEDIFF(day, CAST(b.Date as Date), CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) + 1 " +
+        //                        "END as LagerdauerST " +
+        //                 ", Case " +
+        //                    "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe<>'') AND (Ebene<>'') AND (Platz<>'') THEN Werk+' | ' +Halle+' | '+Reihe+' | '+Ebene+' | '+Platz " +
+        //                    "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe<>'') AND (Ebene<>'') AND (Platz='')THEN Werk+' | ' +Halle+' | '+Reihe+' | '+Ebene " +
+        //                    "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe<>'') AND (Ebene='') AND (Platz='') THEN Werk+' | ' +Halle+' | '+Reihe " +
+        //                    "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe='') AND (Ebene='') AND (Platz='') THEN Werk+' | ' +Halle " +
+        //                    "WHEN (Werk<>'') AND (Halle='') AND (Reihe='') AND (Ebene='') AND (Platz='')THEN Werk " +
+        //                    "END as Lagerort " +
+        //                ",CASE " +
+        //                     "WHEN EAAusgangAltLVS='0' " +
+        //                     "THEN a.Info " +
+        //                     "ELSE SUBSTRING(a.Info,1, PATINDEX('%- LVS-Ausgang:%', a.Info)) " +
+        //                     "END as LargerortAltLvs " +
+        //                ", a.BKZ " +
+        //                ", b.DirectDelivery as DA" +
+        //                ", b.Retoure as RL" +
+        //                ", b.Vorfracht as VF" +
+        //                ", CASE " +
+        //                    "WHEN b.LagerTransport IS NULL " +
+        //                    "THEN CAST(0 as BIT) " +
+        //                    "ELSE b.LagerTransport " +
+        //                    "END as LT_Eingang" +
+        //                ", CASE " +
+        //                    "WHEN c.LagerTransport IS NULL " +
+        //                    "THEN CAST(0 as BIT) " +
+        //                    "ELSE c.LagerTransport " +
+        //                    "END as LT_Ausgang";
+        //        sqlReturn +=                // 
+        //                    ", a.Werk" +
+        //                    ", a.Halle" +
+        //                    ", a.Reihe" +
+        //                    ", a.Ebene" +
+        //                    ", a.Platz" +
+        //                    ", a.exInfo as Bemerkung" +
+        //                    ", a.intInfo " +
+        //                    ", b.WaggonNo" +
+        //                    ", CAST(DATEPART(YYYY, a.LZZ) as varchar)+CAST(DATEPART(ISOWK, a.LZZ)as varchar) as LZZ" +
+        //                    ", a.ArtIDRef" +
+        //                    ",CASE WHEN (SELECT COUNT (*) " +
+        //                        " FROM Artikel a1 " +
+        //                        " INNER JOIN LEingang c1 ON c1.ID=a1.LEingangTableID " +
+        //                        " INNER JOIN SchadenZuweisung d1 ON d1.ArtikelID=a1.ID " +
+        //                        " INNER JOIN Schaeden e1 ON e1.ID=d1.SchadenID " +
+        //                        " WHERE a1.ID=a.ID) > 0 " +
+        //                      " THEN (SELECT e2.Bezeichnung + char(10) " +
+        //                          " FROM Artikel a2 " +
+        //                          " INNER JOIN LEingang c2 ON c2.ID=a2.LEingangTableID " +
+        //                          " LEFT OUTER JOIN SchadenZuweisung d2 ON d2.ArtikelID=a2.ID " +
+        //                          " LEFT OUTER JOIN Schaeden e2 ON e2.ID=d2.SchadenID " +
+        //                          " WHERE a2.ID=a.ID " +
+        //                          " FOR XML PATH ('')) " +
+        //                      " ELSE '' " +
+        //                      " END as Schaden " +
+        //                    //",(Select CAST(s.Datum as datetime) FROM Sperrlager s WHERE s.BKZ='IN' AND s.ArtikelID=a.ID) as SPL_IN " +
+        //                    //",(Select CAST(s.Datum as datetime) FROM Sperrlager s WHERE s.BKZ='OUT' AND s.ArtikelID=a.ID) as SPL_OUT " +
+        //                    " , CASE " +
+        //                    " 	WHEN (a.Laenge>0) " +
+        //                            " THEN CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))+'x'+CAST(a.Laenge as varchar(20)) " +
+        //                        " 	ELSE CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20)) " +
+        //                        " END as Abmessung " +
+        //                        " ,(CASE WHEN IsVerpackt = 1 THEN 'verpackt' + char(10) ELSE '' END) + " +
+        //                        " (CASE WHEN ((exInfo IS NOT NULL) AND (exInfo <> '')) THEN exInfo + char(10) ELSE '' END ) as Bemerkungen " +
+        //                    ", " + clsArtikel.GetStatusColumnSQL("c", "b") + " " +
+        //                    ", ' ' as iO " +
+        //                    ", ' ' as neueReihe " +
+        //                    ", a.EAEingangAltLVS " +
+        //                    ", a.EAAusgangAltLVS " +
+        //                    //", a.GlowDate as Glühdatum " +
+        //                    ", CASE " +
+        //                          "when(a.GlowDate is null) then CAST('01.01.1900' as Date) " +
+        //                          "when(a.GlowDate = CAST('01.01.0001' as datetime2)) then CAST('01.01.1900' as Date) " +
+        //                          "else a.GlowDate end as Glühdatum " +
+        //                    ", b.ID as LEingangTableID " +
+        //                    ", c.ID as LAusgnangTableID ";
+
+        //        return sqlReturn;
+        //    }
+        //}
+
         public string sql_Main
         {
             get
             {
                 string sqlReturn = string.Empty;
-                sqlReturn = "Select " +
-                            "CAST(a.ID as INT) as ArtikelID " +
-                            ", CAST(a.LVS_ID as INT) as LVSNr " +
-                            ", a.Werksnummer" +
-                            ", a.Produktionsnummer" +
-                            ", a.Charge" +
-                            ", a.GArtId" +
-                            ", e.Bezeichnung as Gut" +
-                            ", (Select ADR.ViewID FROM ADR WHERE ADR.ID=b.Auftraggeber) as Auftraggeber" +
-                            ", CASE " +
-                                "WHEN a.LAusgangTableID>0 THEN (Select ADR.ViewID FROM ADR WHERE ADR.ID=c.Empfaenger) " +
-                                "ELSE (Select ADR.ViewID FROM ADR WHERE ADR.ID=b.Empfaenger) " +
-                                "END as Empfaenger" +
-                            ", a.FreigabeAbruf as Freigabe" +
-                            ", a.Anzahl" +
-                            ", a.Einheit" +
-                            ", a.Dicke" +
-                            ", a.Breite" +
-                            ", a.Laenge" +
-                            ", a.Hoehe" +
-                            ", a.Netto" +
-                            ", a.Brutto" +
-                            ", a.exBezeichnung" +
-                            ", a.Bestellnummer" +
-                            ", a.exMaterialnummer" +
-                            ", CAST(b.LEingangID as INT) as Eingang" +
-                            ", b.Date as 'Eingangsdatum'" +
-                            ", CAST(MONTH(b.Date) as varchar)+'/'+CAST(YEAR(b.Date) as varchar)  as Eingangsmonat" +
-                            ", b.LfsNr as Lieferschein" +
-                            ", CAST(c.LAusgangID as INT) as Ausgang" +
-                            ", c.Datum as 'Ausgangsdatum'" +
-                            ", CAST(MONTH(c.Datum) as varchar)+'/'+CAST(YEAR(c.Datum) as varchar)  as Ausgangsmonat" +
-                            ", CASE " +
+                /* Parameter: Stichtag (ISO-Format, sprachunabhängig) */
+                //DECLARE @Stichtag date = '2026-02-20';
+
+                sqlReturn = "SELECT "+
+                        "CAST(a.ID AS int)         AS ArtikelID, "+
+                        "CAST(a.LVS_ID AS int)     AS LVSNr, "+
+                        "a.Werksnummer, "+
+                        "a.Produktionsnummer, "+
+                        "a.Charge,"+
+                        "a.GArtID,"+
+                        "e.Bezeichnung             AS Gut, "+
+                        "(Select ADR.ViewID FROM ADR WHERE ADR.ID=b.Auftraggeber) AS Auftraggeber, " +
+                        "CASE " +
+                            "WHEN a.LAusgangTableID>0 THEN (Select ADR.ViewID FROM ADR WHERE ADR.ID=c.Empfaenger) " +
+                            "ELSE (Select ADR.ViewID FROM ADR WHERE ADR.ID=b.Empfaenger) " +
+                            "END AS Empfaenger, " +
+                        "a.FreigabeAbruf AS Freigabe, " +
+                        "a.Anzahl, " +
+                        "a.Einheit, " +
+                        "a.Dicke, " +
+                        "a.Breite, " +
+                        "a.Laenge, " +
+                        "a.Hoehe, " +
+                        "a.Netto, " +
+                        "a.Brutto, " +
+                        "a.exBezeichnung, " +
+                        "a.Bestellnummer, " +
+                        "a.exMaterialnummer, " +
+                        "CAST(b.LEingangID as INT) AS Eingang, " +
+                        "b.Date AS Eingangsdatum, " +
+                        "CAST(MONTH(b.Date) as varchar)+'/'+CAST(YEAR(b.Date) as varchar)  AS Eingangsmonat, " +
+                        "b.LfsNr AS Lieferschein, " +
+                        "CAST(c.LAusgangID as INT) AS Ausgang, " +
+                        "c.Datum AS Ausgangsdatum, " +
+                        "CAST(MONTH(c.Datum) as varchar)+'/'+CAST(YEAR(c.Datum) as varchar)  AS Ausgangsmonat, " +
+                        "CASE " +
                                 "WHEN (c.Datum IS NULL) " +
                                 //"THEN CAST( DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) as INT)+1 " +
                                 "THEN CAST( DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) as INT)+1 " +
                                 "ELSE CAST( DATEDIFF(day, CAST(b.Date as Date),CAST(c.Datum as Date)) as INT)+1 " +
-                                "END as Lagerdauer " +
-                            ", CASE " +
-                                "WHEN(a.LAusgangTableID > 0) " +
-                                "THEN " +
-                                    "CASE " +
-                                        //"WHEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.Stichtag.Date.ToString() + "' as Date))> 0 " +
-                                        //"THEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.Stichtag.Date.ToString() + "' as Date))+1 " +
-                                        "WHEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date))> 0 " +
-                                        "THEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date))+1 " +
-                                        "ELSE DATEDIFF(day, CAST(b.Date as Date),CAST(c.Datum as date))+1 " +
-                                    "end " +
-                                "ELSE " +
-                                    //"DATEDIFF(day, CAST(b.Date as Date), CAST('" + this.Stichtag.Date.ToString() + "' as Date)) + 1 " +
-                                    "DATEDIFF(day, CAST(b.Date as Date), CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) + 1 " +
-                                "END as LagerdauerST " +
-                         ", Case " +
+                                "END AS Lagerdauer, " +
+                        "CASE " +
+                            "WHEN(a.LAusgangTableID > 0) " +
+                            "THEN " +
+                                "CASE " +
+                                    //"WHEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.Stichtag.Date.ToString() + "' as Date))> 0 " +
+                                    //"THEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.Stichtag.Date.ToString() + "' as Date))+1 " +
+                                    "WHEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date))> 0 " +
+                                    "THEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date))+1 " +
+                                    "ELSE DATEDIFF(day, CAST(b.Date as Date),CAST(c.Datum as date))+1 " +
+                                "end " +
+                            "ELSE " +
+                                //"DATEDIFF(day, CAST(b.Date as Date), CAST('" + this.Stichtag.Date.ToString() + "' as Date)) + 1 " +
+                                "DATEDIFF(day, CAST(b.Date as Date), CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) + 1 " +
+                            "END AS LagerdauerST, " +
+                        "Case " +
                             "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe<>'') AND (Ebene<>'') AND (Platz<>'') THEN Werk+' | ' +Halle+' | '+Reihe+' | '+Ebene+' | '+Platz " +
                             "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe<>'') AND (Ebene<>'') AND (Platz='')THEN Werk+' | ' +Halle+' | '+Reihe+' | '+Ebene " +
                             "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe<>'') AND (Ebene='') AND (Platz='') THEN Werk+' | ' +Halle+' | '+Reihe " +
                             "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe='') AND (Ebene='') AND (Platz='') THEN Werk+' | ' +Halle " +
                             "WHEN (Werk<>'') AND (Halle='') AND (Reihe='') AND (Ebene='') AND (Platz='')THEN Werk " +
-                            "END as Lagerort " +
-                        ",CASE " +
-                             "WHEN EAAusgangAltLVS='0' " +
-                             "THEN a.Info " +
-                             "ELSE SUBSTRING(a.Info,1, PATINDEX('%- LVS-Ausgang:%', a.Info)) " +
-                             "END as LargerortAltLvs " +
-                        ", a.BKZ " +
-                        ", b.DirectDelivery as DA" +
-                        ", b.Retoure as RL" +
-                        ", b.Vorfracht as VF" +
-                        ", CASE " +
+                            "END AS Lagerort, " +
+                        "CASE " +
+                            "WHEN EAAusgangAltLVS='0' " +
+                            "THEN a.Info " +
+                            "ELSE SUBSTRING(a.Info,1, PATINDEX('%- LVS-Ausgang:%', a.Info)) " +
+                            "END AS LargerortAltLvs, " +
+                        "a.BKZ, " +
+                        "b.DirectDelivery AS DA, " +
+                        "b.Retoure AS RL, " +
+                        "b.Vorfracht AS VF, " +
+                        "CASE " +
                             "WHEN b.LagerTransport IS NULL " +
                             "THEN CAST(0 as BIT) " +
                             "ELSE b.LagerTransport " +
-                            "END as LT_Eingang" +
-                        ", CASE " +
+                            "END AS LT_Eingang, " +
+                        "CASE " +
                             "WHEN c.LagerTransport IS NULL " +
                             "THEN CAST(0 as BIT) " +
                             "ELSE c.LagerTransport " +
-                            "END as LT_Ausgang";
-                sqlReturn +=                // 
-                            ", a.Werk" +
-                            ", a.Halle" +
-                            ", a.Reihe" +
-                            ", a.Ebene" +
-                            ", a.Platz" +
-                            ", a.exInfo as Bemerkung" +
-                            ", a.intInfo " +
-                            ", b.WaggonNo" +
-                            ", CAST(DATEPART(YYYY, a.LZZ) as varchar)+CAST(DATEPART(ISOWK, a.LZZ)as varchar) as LZZ" +
-                            ", a.ArtIDRef" +
-                            //",CASE WHEN (SELECT COUNT (*) " +
-                            //    " FROM Artikel a1 " +
-                            //    " INNER JOIN LEingang c1 ON c1.ID=a1.LEingangTableID " +
-                            //    " INNER JOIN SchadenZuweisung d1 ON d1.ArtikelID=a1.ID " +
-                            //    " INNER JOIN Schaeden e1 ON e1.ID=d1.SchadenID " +
-                            //    " WHERE a1.ID=a.ID) > 0 " +
-                            //  " THEN (SELECT e2.Bezeichnung + char(10) " +
-                            //      " FROM Artikel a2 " +
-                            //      " INNER JOIN LEingang c2 ON c2.ID=a2.LEingangTableID " +
-                            //      " LEFT OUTER JOIN SchadenZuweisung d2 ON d2.ArtikelID=a2.ID " +
-                            //      " LEFT OUTER JOIN Schaeden e2 ON e2.ID=d2.SchadenID " +
-                            //      " WHERE a2.ID=a.ID " +
-                            //      " FOR XML PATH ('')) " +
-                            //  " ELSE '' " +
-                            //  " END as Schaden " +
-                            //",(Select CAST(s.Datum as datetime) FROM Sperrlager s WHERE s.BKZ='IN' AND s.ArtikelID=a.ID) as SPL_IN " +
-                            //",(Select CAST(s.Datum as datetime) FROM Sperrlager s WHERE s.BKZ='OUT' AND s.ArtikelID=a.ID) as SPL_OUT " +
-                            " , CASE " +
-                            " 	WHEN (a.Laenge>0) " +
-                                    " THEN CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))+'x'+CAST(a.Laenge as varchar(20)) " +
-                                " 	ELSE CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20)) " +
-                                " END as Abmessung " +
-                                " ,(CASE WHEN IsVerpackt = 1 THEN 'verpackt' + char(10) ELSE '' END) + " +
-                                " (CASE WHEN ((exInfo IS NOT NULL) AND (exInfo <> '')) THEN exInfo + char(10) ELSE '' END ) as Bemerkungen " +
-                            ", " + clsArtikel.GetStatusColumnSQL("c", "b") + " " +
-                            ", ' ' as iO " +
-                            ", ' ' as neueReihe " +
-                            ", a.EAEingangAltLVS " +
-                            ", a.EAAusgangAltLVS " +
-                            //", a.GlowDate as Glühdatum " +
-                            ", CASE " +
-                                  "when(a.GlowDate is null) then CAST('01.01.1900' as Date) " +
-                                  "when(a.GlowDate = CAST('01.01.0001' as datetime2)) then CAST('01.01.1900' as Date) " +
-                                  "else a.GlowDate end as Glühdatum " +
-                            ", b.ID as LEingangTableID " +
-                            ", c.ID as LAusgnangTableID ";
+                            "END AS LT_Ausgang, "+
+                        "COALESCE(sch.Schaden, '') AS Schaden, " +
+                        "b.ID                      AS LEingangTableID,"+
+                        "c.ID                      AS LAusgangTableID, "+
 
+                        "a.Werk, " +
+                        "a.Halle, " +
+                        "a.Reihe, " +
+                        "a.Ebene, " +
+                        "a.Platz, " +
+                        "a.exInfo AS Bemerkung, " +
+                        "a.intInfo, " +
+                        "b.WaggonNo, " +
+                        "CAST(DATEPART(YYYY, a.LZZ) as varchar)+CAST(DATEPART(ISOWK, a.LZZ)as varchar) AS LZZ, " +
+                        "a.ArtIDRef, " +
+
+                        "CASE " +
+                            "WHEN (a.Laenge>0) " +
+                            "THEN CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))+'x'+CAST(a.Laenge as varchar(20)) " +
+                            "ELSE CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20)) " +
+                            "END as Abmessung, " +
+                        "(CASE WHEN IsVerpackt = 1 THEN 'verpackt' + char(10) ELSE '' END) + " +
+                                " (CASE WHEN ((exInfo IS NOT NULL) AND (exInfo <> '')) THEN exInfo + char(10) ELSE '' END ) as Bemerkungen, " +
+                        clsArtikel.GetStatusColumnSQL("c", "b") + " ," +
+                        " ' ' as iO, " +
+                        " ' ' as neueReihe, " +
+                        "a.EAEingangAltLVS, " +
+                        "a.EAAusgangAltLVS, " +
+                        "CASE " +
+                            "WHEN (a.GlowDate is null) then CAST('01.01.1900' as Date) " +
+                            "WHEN (a.GlowDate = CAST('01.01.0001' as datetime2)) then CAST('01.01.1900' as Date) " +
+                            "ELSE a.GlowDate "+
+                            "END as Glühdatum, " +
+                        "b.ID as LEingangTableID, " +
+                        "c.ID as LAusgnangTableID ";
                 return sqlReturn;
             }
         }

@@ -197,11 +197,15 @@ namespace Sped4.Classes
                         {
                             // 2023_03_30
                             // Update hier einfügen ab 1312
+                            case up1340.const_up1340:
+                                boUpdateOK = DoUpdate(up1340.SqlString());
+                                boUpdateOK = DoUpdate(up1340.SqlStringUpdate_UpdateExistingColumns());
+                                break;
+
                             case up1339.const_up1339:
                                 boUpdateOK = DoUpdate(up1339.SqlString());
                                 boUpdateOK = DoUpdate(up1339.SqlStringUpdate_UpdateExistingColumns());
                                 break;
-
                             case up1338.const_up1338:
                                 boUpdateOK = DoUpdate(up1338.SqlString());
                                 boUpdateOK = DoUpdate(up1338.SqlStringUpdate_UpdateExistingColumns());

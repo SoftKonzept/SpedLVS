@@ -51,8 +51,26 @@ namespace LVS.sqlStatementCreater
             strSql2 = " From Artikel a " +
                       "INNER JOIN LEingang b ON b.ID = a.LEingangTableID " +
                       "LEFT JOIN Gueterart e ON e.ID=a.GArtID " +
-                      "LEFT JOIN LAusgang c ON c.ID = a.LAusgangTableID " +
-                      "WHERE ";
+                      "LEFT JOIN LAusgang c ON c.ID = a.LAusgangTableID ";
+
+            strSql2 += "LEFT JOIN ( ";
+            /* --- performante Schaden-Ermittlung: voraggregieren und einmal joinen --- */
+            strSql2 += "SELECT sz.ArtikelID, ";
+            /* Variante 1: ohne Sortierung (immer verfügbar ab SQL 2017) */
+            strSql2 += "STRING_AGG(CONVERT(nvarchar(4000), s.Bezeichnung), CHAR(10)) AS Schaden ";
+            /* Variante 2 (optional): mit definierter Sortierung
+                    -> aktivieren, falls deine SQL-Version WITHIN GROUP unterstützt
+                STRING_AGG(CONVERT(nvarchar(4000), s.Bezeichnung), CHAR(10))
+                    WITHIN GROUP (ORDER BY s.Bezeichnung) AS Schaden
+                */
+            strSql2 += "FROM SchadenZuweisung AS sz ";
+            strSql2 += "JOIN Schaeden AS s ON s.ID = sz.SchadenID ";
+            strSql2 += "GROUP BY sz.ArtikelID ";
+            strSql2 += " ) AS sch ON sch.ArtikelID = a.ID ";
+
+
+
+            strSql2 += "WHERE ";
 
             strSql2 += " b.AbBereich=" + myWorkspaceId + " AND ";
             strSql2 += "((b.Auftraggeber=" + myStockAdrId + " ";

@@ -4170,12 +4170,16 @@ namespace LVS
                 {
                     //case "Einlagerungskosten":
                     case clsFaktLager.const_Abrechnungsart_Einlagerung:
-                        strSQLTmp = string.Empty;
-                        strSQLTmp = "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
-                                    "LEFT JOIN LAusgang c ON c.ID=a.LAusgangTableID " +
-                                                "WHERE " +
-                                                        "b.[Check]=1 AND " +
-                                                        "b.DirectDelivery=0 AND " +
+                        strSQLTmp += string.Empty;
+                        strSQLTmp += "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
+                                     "LEFT JOIN LAusgang c ON c.ID=a.LAusgangTableID " +
+                                                "WHERE ";
+                        if (myTarif.RequiresCompletedWarehouseEntry)
+                        {
+                            strSQLTmp += "b.[Check]=" + Convert.ToInt32(myTarif.RequiresCompletedWarehouseEntry) + " AND ";
+                        }                       
+
+                                          strSQLTmp +=  "b.DirectDelivery=0 AND " +
                                                         "b.Mandant=" + MandantenID + " AND " +
                                                         "b.AbBereich=" + this.Sys.AbBereich.ID + " AND " +
                                                         "b.Auftraggeber=" + Auftraggeber + " AND " +
@@ -4336,17 +4340,21 @@ namespace LVS
                         if (myTarif.TarifPosition.TransDirection == "IN")
                         {
                             strSQLTmp = string.Empty;
-                            strSQLTmp = "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
+                            strSQLTmp += "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
                                         "LEFT JOIN LAusgang c ON c.ID=a.LAusgangTableID " +
-                                            "WHERE " +
-                                                    "b.[Check]=1 AND " +
-                                                    "b.LagerTransport=1 AND " +
-                                                    "b.Mandant=" + MandantenID + " AND " +
-                                                    "b.AbBereich=" + this.Sys.AbBereich.ID + " AND " +
-                                                    "b.Auftraggeber=" + Auftraggeber + " AND " +
-                                                    //"(b.Date>='" + VonZeitraum.Date + "' AND " +
-                                                    //"b.Date<'" + BisZeitraum.Date.AddDays(1).ToShortDateString() + "') AND " +
-                                                    "DATEDIFF(day, b.Date, '" + BisZeitraum.Date.ToShortDateString() + "')>=" + myTarif.TarifPosition.Lagerdauer + " ";
+                                            "WHERE ";
+                            if (myTarif.RequiresCompletedWarehouseEntry)
+                            {
+                                strSQLTmp += "b.[Check]=" + Convert.ToInt32(myTarif.RequiresCompletedWarehouseEntry) + " AND ";
+                            }
+                                            //strSQLTmp += "b.[Check]=1 AND " +
+                               strSQLTmp += "b.LagerTransport=1 AND " +
+                                            "b.Mandant=" + MandantenID + " AND " +
+                                            "b.AbBereich=" + this.Sys.AbBereich.ID + " AND " +
+                                            "b.Auftraggeber=" + Auftraggeber + " AND " +
+                                            //"(b.Date>='" + VonZeitraum.Date + "' AND " +
+                                            //"b.Date<'" + BisZeitraum.Date.AddDays(1).ToShortDateString() + "') AND " +
+                                            "DATEDIFF(day, b.Date, '" + BisZeitraum.Date.ToShortDateString() + "')>=" + myTarif.TarifPosition.Lagerdauer + " ";
 
                             //Zeitraumbezogen
                             if (myTarif.TarifPosition.zeitraumbezogen)
@@ -4457,11 +4465,15 @@ namespace LVS
                     //case "Direktanlieferung":
                     case clsFaktLager.const_Abrechnungsart_Direktanlieferung:
                         strSQLTmp = string.Empty;
-                        strSQLTmp = "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
+                        strSQLTmp += "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
                                     "LEFT JOIN LAusgang c ON c.ID=a.LAusgangTableID " +
-                                        "WHERE " +
-                                                "b.[Check]=1 AND " +
-                                                "b.DirectDelivery=1 AND " +
+                                        "WHERE ";
+                        if (myTarif.RequiresCompletedWarehouseEntry)
+                        {
+                            strSQLTmp += "b.[Check]=" + Convert.ToInt32(myTarif.RequiresCompletedWarehouseEntry) + " AND ";
+                        }
+                                                //"b.[Check]=1 AND " +
+                                   strSQLTmp += "b.DirectDelivery=1 AND " +
                                                 "b.Mandant=" + MandantenID + " AND " +
                                                 "b.AbBereich=" + this.Sys.AbBereich.ID + " AND " +
                                                 "b.Auftraggeber=" + Auftraggeber + " AND " +
@@ -4506,17 +4518,21 @@ namespace LVS
 
                     case "Retoure":
                         strSQLTmp = string.Empty;
-                        strSQLTmp = "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
+                        strSQLTmp += "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
                                     "LEFT JOIN LAusgang c ON c.ID=a.LAusgangTableID " +
-                                        "WHERE " +
-                                                "b.[Check]=1 AND " +
-                                                "b.Retoure=1 AND " +
-                                                "b.Mandant=" + MandantenID + " AND " +
-                                                "b.AbBereich=" + this.Sys.AbBereich.ID + " AND " +
-                                                "b.Auftraggeber=" + Auftraggeber + " AND " +
-                                                "(b.Date>='" + VonZeitraum.Date + "' AND " +
-                                                "b.Date<'" + BisZeitraum.Date.AddDays(1).ToShortDateString() + "') AND " +
-                                                "DATEDIFF(day, b.Date, '" + BisZeitraum.Date.ToShortDateString() + "')>=" + myTarif.TarifPosition.Lagerdauer + " ";
+                                        "WHERE ";
+                        if (myTarif.RequiresCompletedWarehouseEntry)
+                        {
+                            strSQLTmp += "b.[Check]=" + Convert.ToInt32(myTarif.RequiresCompletedWarehouseEntry) + " AND ";
+                        }
+                        //"b.[Check]=1 AND " +
+                        strSQLTmp += "b.Retoure=1 AND " +
+                                    "b.Mandant=" + MandantenID + " AND " +
+                                    "b.AbBereich=" + this.Sys.AbBereich.ID + " AND " +
+                                    "b.Auftraggeber=" + Auftraggeber + " AND " +
+                                    "(b.Date>='" + VonZeitraum.Date + "' AND " +
+                                    "b.Date<'" + BisZeitraum.Date.AddDays(1).ToShortDateString() + "') AND " +
+                                    "DATEDIFF(day, b.Date, '" + BisZeitraum.Date.ToShortDateString() + "')>=" + myTarif.TarifPosition.Lagerdauer + " ";
                         //Zeitraumbezogen
                         if (myTarif.TarifPosition.zeitraumbezogen)
                         {
@@ -4555,18 +4571,22 @@ namespace LVS
                     //case "Rücklieferung":
                     case clsFaktLager.const_Abrechnungsart_Ruecklieferung:
                         strSQLTmp = string.Empty;
-                        strSQLTmp = "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
+                        strSQLTmp += "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
                                     "LEFT JOIN LAusgang c ON c.ID=a.LAusgangTableID " +
-                                        "WHERE " +
-                                                "c.[Checked]=1 AND " +
-                                                "c.IsRL=1 AND " +
-                                                "b.Mandant=" + MandantenID + " AND " +
-                                                "b.AbBereich=" + this.Sys.AbBereich.ID + " AND " +
-                                                "b.Auftraggeber=" + Auftraggeber + " AND " +
-                                                "AND (c.Datum between '" + VonZeitraum.Date.ToShortDateString() + "' AND '" + BisZeitraum.Date.AddDays(1).ToShortDateString() + "') " +
-                                                //"(b.Date>='" + VonZeitraum.Date + "' AND " +
-                                                //"b.Date<'" + BisZeitraum.Date.AddDays(1).ToShortDateString() + "') AND " +
-                                                "DATEDIFF(day, b.Date, '" + BisZeitraum.Date.ToShortDateString() + "')>=" + myTarif.TarifPosition.Lagerdauer + " ";
+                                        "WHERE ";
+                        if (myTarif.RequiresCompletedWarehouseEntry)
+                        {
+                            strSQLTmp += "b.[Check]=" + Convert.ToInt32(myTarif.RequiresCompletedWarehouseEntry) + " AND ";
+                        }
+                                    //"c.[Checked]=1 AND " +
+                        strSQLTmp += "c.IsRL=1 AND " +
+                                    "b.Mandant=" + MandantenID + " AND " +
+                                    "b.AbBereich=" + this.Sys.AbBereich.ID + " AND " +
+                                    "b.Auftraggeber=" + Auftraggeber + " AND " +
+                                    "AND (c.Datum between '" + VonZeitraum.Date.ToShortDateString() + "' AND '" + BisZeitraum.Date.AddDays(1).ToShortDateString() + "') " +
+                                    //"(b.Date>='" + VonZeitraum.Date + "' AND " +
+                                    //"b.Date<'" + BisZeitraum.Date.AddDays(1).ToShortDateString() + "') AND " +
+                                    "DATEDIFF(day, b.Date, '" + BisZeitraum.Date.ToShortDateString() + "')>=" + myTarif.TarifPosition.Lagerdauer + " ";
                         //Zeitraumbezogen
                         if (myTarif.TarifPosition.zeitraumbezogen)
                         {
@@ -4604,18 +4624,22 @@ namespace LVS
                     //case "Vorfracht":
                     case clsFaktLager.const_Abrechnungsart_Vorfracht:
                         strSQLTmp = string.Empty;
-                        strSQLTmp = "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
+                        strSQLTmp += "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
                                     "LEFT JOIN LAusgang c ON c.ID=a.LAusgangTableID " +
-                                        "WHERE " +
-                                                "b.[Check]=1 AND " +
-                                                "b.DirectDelivery=0 AND " +
-                                                "b.Vorfracht=1 AND " +
-                                                "b.Mandant=" + MandantenID + " AND " +
-                                                "b.AbBereich=" + this.Sys.AbBereich.ID + " AND " +
-                                                "b.Auftraggeber=" + Auftraggeber + " AND " +
-                                                "(b.Date>='" + VonZeitraum.Date + "' AND " +
-                                                "b.Date<'" + BisZeitraum.Date.AddDays(1) + "') AND " +
-                                                "DATEDIFF(day, b.Date, '" + BisZeitraum.Date.ToShortDateString() + "')>=" + myTarif.TarifPosition.Lagerdauer + " ";
+                                        "WHERE ";
+                        if (myTarif.RequiresCompletedWarehouseEntry)
+                        {
+                            strSQLTmp += "b.[Check]=" + Convert.ToInt32(myTarif.RequiresCompletedWarehouseEntry) + " AND ";
+                        }
+                        //"b.[Check]=1 AND " +
+                        strSQLTmp += "b.DirectDelivery=0 AND " +
+                                    "b.Vorfracht=1 AND " +
+                                    "b.Mandant=" + MandantenID + " AND " +
+                                    "b.AbBereich=" + this.Sys.AbBereich.ID + " AND " +
+                                    "b.Auftraggeber=" + Auftraggeber + " AND " +
+                                    "(b.Date>='" + VonZeitraum.Date + "' AND " +
+                                    "b.Date<'" + BisZeitraum.Date.AddDays(1) + "') AND " +
+                                    "DATEDIFF(day, b.Date, '" + BisZeitraum.Date.ToShortDateString() + "')>=" + myTarif.TarifPosition.Lagerdauer + " ";
                         //Zeitraumbezogen
                         if (myTarif.TarifPosition.zeitraumbezogen)
                         {
@@ -4652,16 +4676,20 @@ namespace LVS
 
                     case clsFaktLager.const_Abrechnungsart_Gleisstellgebuehr:
                         strSQLTmp = string.Empty;
-                        strSQLTmp = "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
-                                    "LEFT JOIN LAusgang c ON c.ID=a.LAusgangTableID " +
+                        strSQLTmp += "INNER JOIN LEingang b ON b.ID=a.LEingangTableID " +
+                                     "LEFT JOIN LAusgang c ON c.ID=a.LAusgangTableID " +
                                                 "WHERE " +
-                                                        "b.IsWaggon=1 AND " +
-                                                        "b.[Check]=1 AND " +
-                                                        "b.DirectDelivery=0 AND " +
-                                                        "b.Mandant=" + MandantenID + " AND " +
-                                                        "b.AbBereich=" + this.Sys.AbBereich.ID + " AND " +
-                                                        "b.Auftraggeber=" + Auftraggeber + " AND " +
-                                                        "(b.Date between '" + VonZeitraum.ToShortDateString() + "' AND '" + BisZeitraum.Date.AddDays(1).ToShortDateString() + "') ";// AND " +
+                                                        "b.IsWaggon=1 AND ";
+                        if (myTarif.RequiresCompletedWarehouseEntry)
+                        {
+                            strSQLTmp += "b.[Check]=" + Convert.ToInt32(myTarif.RequiresCompletedWarehouseEntry) + " AND ";
+                        }
+                        //"b.[Check]=1 AND " +
+                        strSQLTmp += "b.DirectDelivery=0 AND " +
+                                    "b.Mandant=" + MandantenID + " AND " +
+                                    "b.AbBereich=" + this.Sys.AbBereich.ID + " AND " +
+                                    "b.Auftraggeber=" + Auftraggeber + " AND " +
+                                    "(b.Date between '" + VonZeitraum.ToShortDateString() + "' AND '" + BisZeitraum.Date.AddDays(1).ToShortDateString() + "') ";// AND " +
 
                         //Zeitraumbezogen
                         if (myTarif.TarifPosition.zeitraumbezogen)

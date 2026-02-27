@@ -108,6 +108,32 @@ namespace Sped4
             //RGANhang druck ausblenden
             vorschauAnhangToolStripMenuItem.Visible = this._ctrMenu._frmMain.system.Client.Modul.Print_Documents_UseRGAnhang;
             druckAnhangToolStripMenuItem.Visible = this._ctrMenu._frmMain.system.Client.Modul.Print_Documents_UseRGAnhang;
+
+            // SplitPanel an den Inhalt anpassen
+            AdjustSplitPanelToContent();
+        }
+        private void AdjustSplitPanelToContent()
+        {
+            //// Ermittelt die benötigte Höhe des Inhalts im oberen SplitPanel
+            //int requiredHeight = 460;
+            ////foreach (Control ctrl in spInvoiceHead.Controls)
+            ////{
+            ////    int ctrlBottom = ctrl.Top + ctrl.Height + ctrl.Margin.Bottom;
+            ////    if (ctrlBottom > requiredHeight)
+            ////    {
+            ////        requiredHeight = ctrlBottom;
+            ////    }
+            ////}
+
+            //// SizeInfo des oberen Panels anpassen, damit der Splitter korrekt positioniert wird
+            //if (requiredHeight > 0)
+            //{
+            //    // Berechne die Differenz zur aktuellen Größe und setze SplitterCorrection
+            //    int currentHeight = spInvoiceHead.Height;
+            //    int correction = requiredHeight - currentHeight;
+            //    spInvoiceHead.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, spInvoiceHead.SizeInfo.SplitterCorrection.Height + correction);
+            //    spInvoiceHead.SizeInfo.AbsoluteSize = new System.Drawing.Size(spInvoiceHead.Width, requiredHeight);
+            //}
         }
         ///<summary>ctrFaktLager/ SetComTECSettings</summary>
         ///<remarks></remarks>

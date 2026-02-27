@@ -265,9 +265,9 @@
     <Reference Include="System.Xml">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Licensing.Runtime, Version=1.6.31.0, Culture=neutral, PublicKeyToken=98bb5b04e55c09ef, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Licensing.Runtime, Version=1.6.5.0, Culture=neutral, PublicKeyToken=98bb5b04e55c09ef, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.Licensing.Runtime.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2025 Q4\Bin48\Telerik.Licensing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Reporting, Version=16.2.22.914, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -513,6 +513,7 @@
     <Compile Include="Classes\clsSQLStatement.cs" />
     <Compile Include="Classes\clsPrint.cs" />
     <Compile Include="Classes\Helper\helper_TelerikGridViewRowInfo.cs" />
+    <Compile Include="Classes\Update\up1340.cs" />
     <Compile Include="Classes\Update\up1339.cs" />
     <Compile Include="Classes\Update\up1338.cs" />
     <Compile Include="Classes\Update\up1337.cs" />

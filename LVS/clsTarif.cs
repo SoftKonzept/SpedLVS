@@ -97,6 +97,8 @@ namespace LVS
         public string ZZText { get; set; }
         public string ZZTextEdit { get; set; }
         public string RGText { get; set; }
+        public bool RequiresCompletedWarehouseEntry { get; set; } = true; // Standard -  Gibt an, ob für diesen Tarif eine abgeschlossene Lagerbuchung erforderlich ist
+
         /************************************************************************
         *                        Methoden Table Tarif
         * *********************************************************************/
@@ -139,7 +141,7 @@ namespace LVS
                                          "CalcLagerkosten, CalcSPLKosten, CalcTransportkosten, CalcDirectDeliveryKosten, " +
                                          "CalcRLKosten, LagerBestandIncSPL, CalcVorfracht, Von, Bis, parentID, ArtEinzelAbrechnung, " +
                                          "CalcNebenkosten, Modus, VersPreis, CalcGleis, IsVersPauschal,VersMaterialWert, " +
-                                         "Zahlungsziel, ZZText, ZZTextEdit, RGText, CalcToll" +
+                                         "Zahlungsziel, ZZText, ZZTextEdit, RGText, CalcToll, RequiresCompletedWarehouseEntry" +
                                           ") " +
                                            "VALUES ('" + Tarifname.ToString().Trim() + "'" +
                                                     ",'" + Beschreibung.ToString().Trim() + "'" +
@@ -169,6 +171,7 @@ namespace LVS
                                                     ", '" + this.ZZTextEdit + "'" +
                                                     ", '" + this.RGText + "'" +
                                                     "," + Convert.ToInt32(this.CalcToll) +
+                                                    "," + Convert.ToInt32(this.RequiresCompletedWarehouseEntry) +                                                    
                                                     "); ";
 
             //ID aus dem vorhergegangenen Eintrag in Table Tarife muss ermittelt werden
@@ -373,6 +376,7 @@ namespace LVS
                                                 ", ZZTextEdit = '" + this.ZZTextEdit + "'" +
                                                 ", RGText ='" + this.RGText + "'" +
                                                 ", CalcToll=" + Convert.ToInt32(this.CalcToll) +
+                                                ", RequiresCompletedWarehouseEntry=" + Convert.ToInt32(this.RequiresCompletedWarehouseEntry) +
 
                                                 " WHERE ID=" + ID + ";";
 
@@ -824,6 +828,7 @@ namespace LVS
                         this.ZZTextEdit = dt.Rows[i]["ZZTextEdit"].ToString();
                         this.RGText = dt.Rows[i]["RGText"].ToString();
                         this.CalcToll = (bool)dt.Rows[i]["CalcToll"];
+                        this.RequiresCompletedWarehouseEntry = (bool)dt.Rows[i]["RequiresCompletedWarehouseEntry"];
                     }
                 }
                 dtTarifpositionen = clsTarifPosition.GetTarifePositionen(this._GL_User, this.ID);
