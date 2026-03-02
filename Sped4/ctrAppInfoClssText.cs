@@ -11,6 +11,7 @@ namespace Sped4
             {
                 _InfoText += "02.03.2026 / Build: 26.03.02.1      : " + Environment.NewLine +
                              " - Tariferweiterung für Berechnung nicht abgeschlossene Eingänge"+
+                             " - Bestandslisten: Erweiterung Spalte 'Schäden' vorbereitet" + Environment.NewLine +
                              Environment.NewLine;
 
                 _InfoText += "16.02.2026 / Build: 26.02.16.1      : " + Environment.NewLine +

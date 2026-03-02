@@ -821,13 +821,13 @@ namespace LVS.sqlStatementCreater
                 //DECLARE @Stichtag date = '2026-02-20';
 
                 sqlReturn = "SELECT "+
-                        "CAST(a.ID AS int)         AS ArtikelID, "+
-                        "CAST(a.LVS_ID AS int)     AS LVSNr, "+
+                        "CAST(a.ID AS int) AS ArtikelID, "+
+                        "CAST(a.LVS_ID AS int) AS LVSNr, "+
                         "a.Werksnummer, "+
                         "a.Produktionsnummer, "+
                         "a.Charge,"+
                         "a.GArtID,"+
-                        "e.Bezeichnung             AS Gut, "+
+                        "e.Bezeichnung AS Gut, "+
                         "(Select ADR.ViewID FROM ADR WHERE ADR.ID=b.Auftraggeber) AS Auftraggeber, " +
                         "CASE " +
                             "WHEN a.LAusgangTableID>0 THEN (Select ADR.ViewID FROM ADR WHERE ADR.ID=c.Empfaenger) " +

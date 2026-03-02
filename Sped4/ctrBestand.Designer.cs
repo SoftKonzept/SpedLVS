@@ -34,18 +34,12 @@
             this.dgv = new Telerik.WinControls.UI.RadGridView();
             this.panBestandlist = new System.Windows.Forms.Panel();
             this.tsmSearch = new Sped4.Controls.AFToolStrip();
-            this.tsmSelection = new Sped4.Controls.AFToolStrip();
-            this.tsmButton = new Sped4.Controls.AFToolStrip();
-            this.scBestandList = new Telerik.WinControls.UI.RadSplitContainer();
-            this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
-            this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
-            this.afMinMaxPanel1 = new Sped4.Controls.AFMinMaxPanel();
-            this.afColorLabel1 = new Sped4.Controls.AFColorLabel();
             this.lSuchFeld = new System.Windows.Forms.ToolStripLabel();
             this.tscbSearch = new System.Windows.Forms.ToolStripComboBox();
             this.tslSearchText = new System.Windows.Forms.ToolStripLabel();
             this.tstbSearchArtikel = new System.Windows.Forms.ToolStripTextBox();
             this.tsbtnStartSearch = new System.Windows.Forms.ToolStripButton();
+            this.tsmSelection = new Sped4.Controls.AFToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.tsbcViews = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -54,6 +48,7 @@
             this.tscbSort = new System.Windows.Forms.ToolStripComboBox();
             this.tsbtnPrintByGrid = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmButton = new Sped4.Controls.AFToolStrip();
             this.tsbtnSearchShow = new System.Windows.Forms.ToolStripButton();
             this.tsbtnSearch = new System.Windows.Forms.ToolStripButton();
             this.tsbtnClear = new System.Windows.Forms.ToolStripButton();
@@ -74,6 +69,10 @@
             this.tsbtnGroupExpand = new System.Windows.Forms.ToolStripButton();
             this.tsbtnGroupCollapse = new System.Windows.Forms.ToolStripButton();
             this.tsbtnInventoryCreate = new System.Windows.Forms.ToolStripButton();
+            this.scBestandList = new Telerik.WinControls.UI.RadSplitContainer();
+            this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
+            this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.afMinMaxPanel1 = new Sped4.Controls.AFMinMaxPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.nudDays = new System.Windows.Forms.NumericUpDown();
@@ -97,13 +96,18 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tbAuftraggeber = new System.Windows.Forms.TextBox();
             this.tbSearchA = new System.Windows.Forms.TextBox();
+            this.afColorLabel1 = new Sped4.Controls.AFColorLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv.MasterTemplate)).BeginInit();
             this.panBestandlist.SuspendLayout();
+            this.tsmSearch.SuspendLayout();
+            this.tsmSelection.SuspendLayout();
+            this.tsmButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scBestandList)).BeginInit();
             this.scBestandList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
+            this.afMinMaxPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDays)).BeginInit();
             this.SuspendLayout();
@@ -131,7 +135,7 @@
             // 
             // 
             // 
-            this.dgv.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 79, 941, 209);
+            this.dgv.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 79, 240, 150);
             this.dgv.Size = new System.Drawing.Size(941, 209);
             this.dgv.TabIndex = 24;
             this.dgv.ThemeName = "ControlDefault";
@@ -154,6 +158,12 @@
             // tsmSearch
             // 
             this.tsmSearch.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsmSearch.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lSuchFeld,
+            this.tscbSearch,
+            this.tslSearchText,
+            this.tstbSearchArtikel,
+            this.tsbtnStartSearch});
             this.tsmSearch.Location = new System.Drawing.Point(0, 54);
             this.tsmSearch.myColorFrom = System.Drawing.Color.Azure;
             this.tsmSearch.myColorTo = System.Drawing.Color.Blue;
@@ -163,118 +173,6 @@
             this.tsmSearch.Size = new System.Drawing.Size(941, 25);
             this.tsmSearch.TabIndex = 26;
             this.tsmSearch.Text = "afToolStrip2";
-            // 
-            // tsmSelection
-            // 
-            this.tsmSelection.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsmSelection.Location = new System.Drawing.Point(0, 27);
-            this.tsmSelection.myColorFrom = System.Drawing.Color.Azure;
-            this.tsmSelection.myColorTo = System.Drawing.Color.Blue;
-            this.tsmSelection.myUnderlineColor = System.Drawing.Color.White;
-            this.tsmSelection.myUnderlined = true;
-            this.tsmSelection.Name = "tsmSelection";
-            this.tsmSelection.Size = new System.Drawing.Size(941, 27);
-            this.tsmSelection.TabIndex = 25;
-            this.tsmSelection.Text = "afToolStrip2";
-            this.tsmSelection.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsmSelection_ItemClicked);
-            // 
-            // tsmButton
-            // 
-            this.tsmButton.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsmButton.Location = new System.Drawing.Point(0, 0);
-            this.tsmButton.myColorFrom = System.Drawing.Color.Azure;
-            this.tsmButton.myColorTo = System.Drawing.Color.Blue;
-            this.tsmButton.myUnderlineColor = System.Drawing.Color.White;
-            this.tsmButton.myUnderlined = true;
-            this.tsmButton.Name = "tsmButton";
-            this.tsmButton.Size = new System.Drawing.Size(941, 27);
-            this.tsmButton.TabIndex = 23;
-            this.tsmButton.Text = "afToolStrip2";
-            // 
-            // scBestandList
-            // 
-            this.scBestandList.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.scBestandList.Controls.Add(this.splitPanel1);
-            this.scBestandList.Controls.Add(this.splitPanel2);
-            this.scBestandList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scBestandList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scBestandList.Location = new System.Drawing.Point(0, 260);
-            this.scBestandList.Name = "scBestandList";
-            // 
-            // 
-            // 
-            this.scBestandList.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 260, 941, 288);
-            this.scBestandList.Size = new System.Drawing.Size(941, 288);
-            this.scBestandList.SplitterWidth = 149;
-            this.scBestandList.TabIndex = 34;
-            this.scBestandList.TabStop = false;
-            // 
-            // splitPanel1
-            // 
-            this.splitPanel1.AutoScroll = true;
-            this.splitPanel1.BackColor = System.Drawing.Color.CadetBlue;
-            this.splitPanel1.Collapsed = true;
-            this.splitPanel1.Location = new System.Drawing.Point(0, 0);
-            this.splitPanel1.Name = "splitPanel1";
-            // 
-            // 
-            // 
-            this.splitPanel1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 492, 364);
-            this.splitPanel1.Size = new System.Drawing.Size(492, 364);
-            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.07828572F, 0F);
-            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-22, 0);
-            this.splitPanel1.TabIndex = 0;
-            this.splitPanel1.TabStop = false;
-            this.splitPanel1.Text = "splitPanel1";
-            this.splitPanel1.Visible = false;
-            // 
-            // splitPanel2
-            // 
-            this.splitPanel2.BackColor = System.Drawing.Color.Chocolate;
-            this.splitPanel2.Location = new System.Drawing.Point(0, 0);
-            this.splitPanel2.Name = "splitPanel2";
-            // 
-            // 
-            // 
-            this.splitPanel2.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 941, 288);
-            this.splitPanel2.Size = new System.Drawing.Size(941, 288);
-            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.07828569F, 0F);
-            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(22, 0);
-            this.splitPanel2.TabIndex = 1;
-            this.splitPanel2.TabStop = false;
-            this.splitPanel2.Text = "splitPanel2";
-            // 
-            // afMinMaxPanel1
-            // 
-            this.afMinMaxPanel1.BackColor = System.Drawing.Color.White;
-            this.afMinMaxPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.afMinMaxPanel1.ExpandedCallapsed = Sped4.Controls.AFMinMaxPanel.EStatus.Expanded;
-            this.afMinMaxPanel1.Location = new System.Drawing.Point(0, 28);
-            this.afMinMaxPanel1.myFontColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
-            this.afMinMaxPanel1.myFontStyle = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.afMinMaxPanel1.myImage = ((System.Drawing.Image)(resources.GetObject("afMinMaxPanel1.myImage")));
-            this.afMinMaxPanel1.myText = "Optionen";
-            this.afMinMaxPanel1.Name = "afMinMaxPanel1";
-            this.afMinMaxPanel1.Size = new System.Drawing.Size(941, 232);
-            this.afMinMaxPanel1.TabIndex = 10;
-            this.afMinMaxPanel1.Text = "afMinMaxPanel1";
-            // 
-            // afColorLabel1
-            // 
-            this.afColorLabel1.DataBindings.Add(new System.Windows.Forms.Binding("myColorTo", global::Sped4.Properties.Settings.Default, "BaseColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.afColorLabel1.DataBindings.Add(new System.Windows.Forms.Binding("myColorFrom", global::Sped4.Properties.Settings.Default, "EffectColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.afColorLabel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.afColorLabel1.Location = new System.Drawing.Point(0, 0);
-            this.afColorLabel1.myColorFrom = global::Sped4.Properties.Settings.Default.EffectColor;
-            this.afColorLabel1.myColorTo = global::Sped4.Properties.Settings.Default.BaseColor;
-            this.afColorLabel1.myFontStyle = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.afColorLabel1.myText = "Bestandsliste";
-            this.afColorLabel1.myUnderlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.afColorLabel1.myUnderlined = true;
-            this.afColorLabel1.Name = "afColorLabel1";
-            this.afColorLabel1.Size = new System.Drawing.Size(941, 28);
-            this.afColorLabel1.TabIndex = 9;
-            this.afColorLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lSuchFeld
             // 
@@ -286,7 +184,7 @@
             // 
             this.tscbSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tscbSearch.Name = "tscbSearch";
-            this.tscbSearch.Size = new System.Drawing.Size(120, 23);
+            this.tscbSearch.Size = new System.Drawing.Size(120, 27);
             this.tscbSearch.Visible = false;
             this.tscbSearch.SelectedIndexChanged += new System.EventHandler(this.tscbSearch_SelectedIndexChanged);
             // 
@@ -299,6 +197,7 @@
             // 
             // tstbSearchArtikel
             // 
+            this.tstbSearchArtikel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tstbSearchArtikel.Name = "tstbSearchArtikel";
             this.tstbSearchArtikel.Size = new System.Drawing.Size(85, 27);
             this.tstbSearchArtikel.Visible = false;
@@ -315,6 +214,29 @@
             this.tsbtnStartSearch.Visible = false;
             this.tsbtnStartSearch.Click += new System.EventHandler(this.tsbtnStartSearch_Click);
             // 
+            // tsmSelection
+            // 
+            this.tsmSelection.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsmSelection.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel2,
+            this.tsbcViews,
+            this.toolStripSeparator7,
+            this.toolStripSeparator8,
+            this.lSort,
+            this.tscbSort,
+            this.tsbtnPrintByGrid,
+            this.toolStripSeparator3});
+            this.tsmSelection.Location = new System.Drawing.Point(0, 27);
+            this.tsmSelection.myColorFrom = System.Drawing.Color.Azure;
+            this.tsmSelection.myColorTo = System.Drawing.Color.Blue;
+            this.tsmSelection.myUnderlineColor = System.Drawing.Color.White;
+            this.tsmSelection.myUnderlined = true;
+            this.tsmSelection.Name = "tsmSelection";
+            this.tsmSelection.Size = new System.Drawing.Size(941, 27);
+            this.tsmSelection.TabIndex = 25;
+            this.tsmSelection.Text = "afToolStrip2";
+            this.tsmSelection.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsmSelection_ItemClicked);
+            // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
@@ -325,7 +247,7 @@
             // 
             this.tsbcViews.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tsbcViews.Name = "tsbcViews";
-            this.tsbcViews.Size = new System.Drawing.Size(150, 23);
+            this.tsbcViews.Size = new System.Drawing.Size(150, 27);
             this.tsbcViews.SelectedIndexChanged += new System.EventHandler(this.tsbcViews_SelectedIndexChanged);
             // 
             // toolStripSeparator7
@@ -350,7 +272,7 @@
             "-Sortierung wählen-",
             "Abmessung [Dicke|Breite|Länge]"});
             this.tscbSort.Name = "tscbSort";
-            this.tscbSort.Size = new System.Drawing.Size(140, 23);
+            this.tscbSort.Size = new System.Drawing.Size(140, 27);
             this.tscbSort.SelectedIndexChanged += new System.EventHandler(this.tscbSort_SelectedIndexChanged);
             // 
             // tsbtnPrintByGrid
@@ -367,6 +289,38 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsmButton
+            // 
+            this.tsmButton.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsmButton.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnSearchShow,
+            this.tsbtnSearch,
+            this.tsbtnClear,
+            this.tsbtnExcel,
+            this.tsbtnMail,
+            this.tsbtnClose,
+            this.toolStripSeparator1,
+            this.toolStripLabel3,
+            this.tscbPrintOrder,
+            this.tsbtnPrint,
+            this.tsbtnPrintTelerik,
+            this.tsbtnReportPrint,
+            this.toolStripSeparator2,
+            this.toolStripLabel1,
+            this.tsComboGroup,
+            this.tsbtnGroupExpand,
+            this.tsbtnGroupCollapse,
+            this.tsbtnInventoryCreate});
+            this.tsmButton.Location = new System.Drawing.Point(0, 0);
+            this.tsmButton.myColorFrom = System.Drawing.Color.Azure;
+            this.tsmButton.myColorTo = System.Drawing.Color.Blue;
+            this.tsmButton.myUnderlineColor = System.Drawing.Color.White;
+            this.tsmButton.myUnderlined = true;
+            this.tsmButton.Name = "tsmButton";
+            this.tsmButton.Size = new System.Drawing.Size(941, 27);
+            this.tsmButton.TabIndex = 23;
+            this.tsmButton.Text = "afToolStrip2";
             // 
             // tsbtnSearchShow
             // 
@@ -449,7 +403,7 @@
             "exMaterialnummer",
             "Werksnummer"});
             this.tscbPrintOrder.Name = "tscbPrintOrder";
-            this.tscbPrintOrder.Size = new System.Drawing.Size(120, 23);
+            this.tscbPrintOrder.Size = new System.Drawing.Size(120, 27);
             // 
             // tsbtnPrint
             // 
@@ -514,7 +468,7 @@
             "-Gruppierung wählen-",
             "Abmessung [Dicke|Breite]"});
             this.tsComboGroup.Name = "tsComboGroup";
-            this.tsComboGroup.Size = new System.Drawing.Size(140, 23);
+            this.tsComboGroup.Size = new System.Drawing.Size(140, 27);
             this.tsComboGroup.SelectedIndexChanged += new System.EventHandler(this.tsComboGroup_SelectedIndexChanged);
             // 
             // tsbtnGroupExpand
@@ -546,6 +500,75 @@
             this.tsbtnInventoryCreate.Size = new System.Drawing.Size(24, 24);
             this.tsbtnInventoryCreate.Text = "Daten in Inventurliste übernehmen";
             this.tsbtnInventoryCreate.Click += new System.EventHandler(this.tsbtnInventoryCreate_Click);
+            // 
+            // scBestandList
+            // 
+            this.scBestandList.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scBestandList.Controls.Add(this.splitPanel1);
+            this.scBestandList.Controls.Add(this.splitPanel2);
+            this.scBestandList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scBestandList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scBestandList.Location = new System.Drawing.Point(0, 260);
+            this.scBestandList.Name = "scBestandList";
+            // 
+            // 
+            // 
+            this.scBestandList.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 260, 200, 200);
+            this.scBestandList.Size = new System.Drawing.Size(941, 288);
+            this.scBestandList.SplitterWidth = 149;
+            this.scBestandList.TabIndex = 34;
+            this.scBestandList.TabStop = false;
+            // 
+            // splitPanel1
+            // 
+            this.splitPanel1.AutoScroll = true;
+            this.splitPanel1.BackColor = System.Drawing.Color.CadetBlue;
+            this.splitPanel1.Collapsed = true;
+            this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+            this.splitPanel1.Name = "splitPanel1";
+            // 
+            // 
+            // 
+            this.splitPanel1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 200, 200);
+            this.splitPanel1.Size = new System.Drawing.Size(492, 364);
+            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.07828572F, 0F);
+            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-22, 0);
+            this.splitPanel1.TabIndex = 0;
+            this.splitPanel1.TabStop = false;
+            this.splitPanel1.Text = "splitPanel1";
+            this.splitPanel1.Visible = false;
+            // 
+            // splitPanel2
+            // 
+            this.splitPanel2.BackColor = System.Drawing.Color.Chocolate;
+            this.splitPanel2.Location = new System.Drawing.Point(0, 0);
+            this.splitPanel2.Name = "splitPanel2";
+            // 
+            // 
+            // 
+            this.splitPanel2.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 200, 200);
+            this.splitPanel2.Size = new System.Drawing.Size(941, 288);
+            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.07828569F, 0F);
+            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(22, 0);
+            this.splitPanel2.TabIndex = 1;
+            this.splitPanel2.TabStop = false;
+            this.splitPanel2.Text = "splitPanel2";
+            // 
+            // afMinMaxPanel1
+            // 
+            this.afMinMaxPanel1.BackColor = System.Drawing.Color.White;
+            this.afMinMaxPanel1.Controls.Add(this.groupBox1);
+            this.afMinMaxPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.afMinMaxPanel1.ExpandedCallapsed = Sped4.Controls.AFMinMaxPanel.EStatus.Expanded;
+            this.afMinMaxPanel1.Location = new System.Drawing.Point(0, 28);
+            this.afMinMaxPanel1.myFontColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.afMinMaxPanel1.myFontStyle = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.afMinMaxPanel1.myImage = ((System.Drawing.Image)(resources.GetObject("afMinMaxPanel1.myImage")));
+            this.afMinMaxPanel1.myText = "Optionen";
+            this.afMinMaxPanel1.Name = "afMinMaxPanel1";
+            this.afMinMaxPanel1.Size = new System.Drawing.Size(941, 232);
+            this.afMinMaxPanel1.TabIndex = 10;
+            this.afMinMaxPanel1.Text = "afMinMaxPanel1";
             // 
             // groupBox1
             // 
@@ -808,6 +831,23 @@
             this.tbSearchA.TabIndex = 158;
             this.tbSearchA.TextChanged += new System.EventHandler(this.tbSearchA_TextChanged);
             // 
+            // afColorLabel1
+            // 
+            this.afColorLabel1.DataBindings.Add(new System.Windows.Forms.Binding("myColorTo", global::Sped4.Properties.Settings.Default, "BaseColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.afColorLabel1.DataBindings.Add(new System.Windows.Forms.Binding("myColorFrom", global::Sped4.Properties.Settings.Default, "EffectColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.afColorLabel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.afColorLabel1.Location = new System.Drawing.Point(0, 0);
+            this.afColorLabel1.myColorFrom = global::Sped4.Properties.Settings.Default.EffectColor;
+            this.afColorLabel1.myColorTo = global::Sped4.Properties.Settings.Default.BaseColor;
+            this.afColorLabel1.myFontStyle = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.afColorLabel1.myText = "Bestandsliste";
+            this.afColorLabel1.myUnderlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.afColorLabel1.myUnderlined = true;
+            this.afColorLabel1.Name = "afColorLabel1";
+            this.afColorLabel1.Size = new System.Drawing.Size(941, 28);
+            this.afColorLabel1.TabIndex = 9;
+            this.afColorLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // ctrBestand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -823,10 +863,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.panBestandlist.ResumeLayout(false);
             this.panBestandlist.PerformLayout();
+            this.tsmSearch.ResumeLayout(false);
+            this.tsmSearch.PerformLayout();
+            this.tsmSelection.ResumeLayout(false);
+            this.tsmSelection.PerformLayout();
+            this.tsmButton.ResumeLayout(false);
+            this.tsmButton.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scBestandList)).EndInit();
             this.scBestandList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
+            this.afMinMaxPanel1.ResumeLayout(false);
+            this.afMinMaxPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDays)).EndInit();

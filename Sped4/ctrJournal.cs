@@ -47,9 +47,9 @@ namespace Sped4
         {
             InitializeComponent();
 
-            //comboBox Auftraggeber laden
-            dtCustomWithRate = new DataTable("KundenTarif");
-            dtCustomWithRate = clsKundenTarife.GetGetKundenWithTarif(this.GL_User);
+            ////comboBox Auftraggeber laden
+            //dtCustomWithRate = new DataTable("KundenTarif");
+            //dtCustomWithRate = clsKundenTarife.GetGetKundenWithTarif(this.GL_User);
             this.afColorLabel1.myText = const_Headline;
             this.tscbSort.SelectedIndex = 0;
             this.tscbGroup.SelectedIndex = 0;
@@ -62,6 +62,10 @@ namespace Sped4
         private void ctrJournal_Load(object sender, EventArgs e)
         {
             RadGridLocalizationProvider.CurrentProvider = new clsGermanRadGridLocalizationProvider();
+            //comboBox Auftraggeber laden
+            dtCustomWithRate = new DataTable("KundenTarif");
+            dtCustomWithRate = clsKundenTarife.GetGetKundenWithTarif(this.GL_User);
+
             SetAuswahlJournalDaten();
             InitFilterSearchCtr();
             Functions.InitComboViews(_ctrMenu._frmMain.GL_System, ref tsbcViews, const_Headline);
@@ -129,8 +133,9 @@ namespace Sped4
         private void SetAuswahlJournalDaten()
         {
             //Datum
-            string strTmp = "01." + DateTime.Now.Month.ToString() + "." + DateTime.Now.Year.ToString();
-            dtpVon.Value = Convert.ToDateTime(strTmp);
+            //string strTmp = "01." + DateTime.Now.Month.ToString() + "." + DateTime.Now.Year.ToString();
+            //dtpVon.Value = Convert.ToDateTime(strTmp);
+            dtpVon.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             dtpBis.Value = DateTime.Now.Date.AddDays(1);
             //Bestandsarten Combo
             cbJournalart.DataSource = ctrJournalSettings.InitTableJournalarten();
@@ -159,16 +164,19 @@ namespace Sped4
                 Lager.bFilterJournal = cbFilter.Checked;
                 Lager.InitSubClasses();
                 decimal decTmp = 0;
-                Decimal.TryParse(comboAuftraggeber.SelectedValue.ToString(), out decTmp);
-                Lager.ADR.InitClass(this.GL_User, this._ctrMenu._frmMain.GL_System, decTmp, false);
-
-                //Tarif
-                if (comboTarif.SelectedValue != null)
+                if (comboAuftraggeber.SelectedValue != null)
                 {
-                    decTmp = 0;
-                    Decimal.TryParse(comboTarif.SelectedValue.ToString(), out decTmp);
-                    Lager.ADR.Kunde.Tarif.ID = decTmp;
-                    Lager.ADR.Kunde.Tarif.Fill();
+                    Decimal.TryParse(comboAuftraggeber.SelectedValue.ToString(), out decTmp);
+                    Lager.ADR.InitClass(this.GL_User, this._ctrMenu._frmMain.GL_System, decTmp, false);
+
+                    //Tarif
+                    if (comboTarif.SelectedValue != null)
+                    {
+                        decTmp = 0;
+                        Decimal.TryParse(comboTarif.SelectedValue.ToString(), out decTmp);
+                        Lager.ADR.Kunde.Tarif.ID = decTmp;
+                        Lager.ADR.Kunde.Tarif.Fill();
+                    }
                 }
             }
 

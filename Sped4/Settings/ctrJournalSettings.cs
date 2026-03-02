@@ -144,11 +144,11 @@ namespace Sped4.Settings
             row["Journalart"] = "ohne Schaden";
             dt.Rows.Add(row);
 
-            i++; //5
-            row = dt.NewRow();
-            row["ID"] = i;
-            row["Journalart"] = "Sperrlager";
-            dt.Rows.Add(row);
+            //i++; //5
+            //row = dt.NewRow();
+            //row["ID"] = i;
+            //row["Journalart"] = "Sperrlager";
+            //dt.Rows.Add(row);
 
             i++; //6
             row = dt.NewRow();

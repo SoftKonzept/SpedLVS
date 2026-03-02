@@ -142,6 +142,10 @@ namespace LVS.Views
                                     }
                                 }
                             }
+                            //if (myLager.ADR.Kunde.Tarif.RequiresCompletedWarehouseEntry)
+                            //{
+                            //    strSQL2 += " AND b.[Check]=1 ";
+                            //}
                         }
                     }
                     break;
@@ -206,6 +210,11 @@ namespace LVS.Views
                             }
                         }
                     }
+                    else
+                    {
+                        //-- generell sollen nur gecheckte angezeigt werden unterscheidung nur wenn Tarif ausgewählt
+                        strSQL2 += " AND b.[Check]=1 ";
+                    }
                     //--- RL incl
                     if (myLager.RLJournalExcl)
                     {
@@ -249,7 +258,8 @@ namespace LVS.Views
                               "INNER JOIN Gueterart e ON e.ID=a.GArtID " +
                               "INNER JOIN LAusgang c ON c.ID = a.LAusgangTableID " +
                               "WHERE " +
-                              "c.Checked=1 AND c.DirectDelivery=0 AND c.IsRL=0" +
+                             
+                               "c.Checked=1 AND c.DirectDelivery=0 AND c.IsRL=0" +
                               " AND c.AbBereich=" + myLager.AbBereichID + " " +
                               // "AND (c.Datum between '" + BestandVon.Date.ToShortDateString() + "' AND '" + BestandBis.Date.AddDays(1).ToShortDateString() + "') ";
                               "AND (CAST(c.Datum as Date) between '" + myLager.BestandVon.Date.ToShortDateString() + "' AND '" + myLager.BestandBis.Date.ToShortDateString() + "') ";
@@ -307,8 +317,9 @@ namespace LVS.Views
                               "LEFT JOIN LAusgang c ON c.ID = a.LAusgangTableID " +
                               "INNER JOIN SchadenZuweisung d ON d.ArtikelID=a.ID " +
                               "WHERE " +
+
                               "(CAST(b.Date as Date) between '" + myLager.BestandVon.Date.ToShortDateString() + "' AND '" + myLager.BestandBis.Date.ToShortDateString() + "') " +
-                    " AND b.AbBereich=" + myLager.AbBereichID + " ";
+                              " AND b.AbBereich=" + myLager.AbBereichID + " ";
                     //ermitteln, ob der FIlter im Journal gesetzt wurde und dann entsprechend die 
                     //Filterangaben zur SQL-Anweisung hinzufügen
                     if (myLager.bFilterJournal)
@@ -326,9 +337,17 @@ namespace LVS.Views
                                     }
                                 }
                             }
+                            if (myLager.ADR.Kunde.Tarif.RequiresCompletedWarehouseEntry)
+                            {
+                                strSQL2 += " AND b.[Check]=1 ";
+                            }
                         }
                     }
-                    strSQL2 += " And b.[Check]=1 ";
+                    else
+                    {
+                        //-- generell sollen nur gecheckte angezeigt werden unterscheidung nur wenn Tarif ausgewählt
+                        strSQL2 += " AND b.[Check]=1 ";
+                    }
                     break;
                 //ohne Schaden
                 case 4:
@@ -382,9 +401,17 @@ namespace LVS.Views
                                     }
                                 }
                             }
+                            if (myLager.ADR.Kunde.Tarif.RequiresCompletedWarehouseEntry)
+                            {
+                                strSQL2 += " AND b.[Check]=1 ";
+                            }
                         }
                     }
-                    strSQL2 += " And b.[Check]=1 ";
+                    else
+                    {
+                        //-- generell sollen nur gecheckte angezeigt werden unterscheidung nur wenn Tarif ausgewählt
+                        strSQL2 += " AND b.[Check]=1 ";
+                    }
                     break;
                 //Sperrlager
                 case 5:
@@ -475,6 +502,10 @@ namespace LVS.Views
                                     strSQL2 = strSQL2 + " AND e.ID IN(" + myLager.ADR.Kunde.Tarif.TarifGArtZuweisung.SQLGArtIDString + ")";
                                 }
                             }
+                            if (myLager.ADR.Kunde.Tarif.RequiresCompletedWarehouseEntry)
+                            {
+                                strSQL2 += " AND b.[Check]=1 ";
+                            }
                         }
                     }
                     break;
@@ -514,8 +545,8 @@ namespace LVS.Views
                                         " WHERE " +
                                         "(CAST(b.Date as Date) between '" + myLager.BestandVon.Date.ToShortDateString() + "' AND '" + myLager.BestandBis.Date.ToShortDateString() + "') " +
                                         "AND b.LagerTransport=1 " +
-                                        "AND b.AbBereich=" + myLager.AbBereichID + " " +
-                                        "AND b.[Check]=1 ";
+                                        "AND b.AbBereich=" + myLager.AbBereichID + " ";
+                                        //"AND b.[Check]=1 ";
                     //ermitteln, ob der FIlter im Journal gesetzt wurde und dann entsprechend die 
                     //Filterangaben zur SQL-Anweisung hinzufügen
                     if (myLager.bFilterJournal)
@@ -532,6 +563,10 @@ namespace LVS.Views
                                         strSQL2 = strSQL2 + " AND e.ID IN(" + myLager.ADR.Kunde.Tarif.TarifGArtZuweisung.SQLGArtIDString + ")";
                                     }
                                 }
+                            }
+                            if (myLager.ADR.Kunde.Tarif.RequiresCompletedWarehouseEntry)
+                            {
+                                strSQL2 += " AND b.[Check]=1 ";
                             }
                         }
                     }
@@ -618,7 +653,7 @@ namespace LVS.Views
                                "(Datediff(dd,'" + myLager.BestandVon.Date.ToShortDateString() + "',spl.Datum)<0) AND spl.BKZ='IN' " +
                                "AND " +
                                "(" +
-                                    "(Datediff(dd,(Select CAST(s.Datum as DATE) FROM Sperrlager s WHERE s.BKZ='OUT' AND s.SPLIDIn=spl.ID),'" + myLager.BestandBis.Date.ToShortDateString() + "')<0) " +
+                                    "(Datediff(dd,(Select Top(1) CAST(s.Datum as DATE) FROM Sperrlager s WHERE s.BKZ='OUT' AND s.SPLIDIn=spl.ID),'" + myLager.BestandBis.Date.ToShortDateString() + "')<0) " +
                                 ")" +
                             ")" +
                           " OR " +
@@ -626,7 +661,7 @@ namespace LVS.Views
                                // --    Bsp: 2 -> IN und OUT im Zeitraum
                                "(Datediff(dd,'" + myLager.BestandVon.Date.ToShortDateString() + "',spl.Datum)>=0) AND spl.BKZ='IN' " +
                                " AND " +
-                               "(Datediff(dd,(Select CAST(s.Datum as DATE) FROM Sperrlager s WHERE s.BKZ='OUT' AND s.SPLIDIn=spl.ID),'" + myLager.BestandBis.Date.ToShortDateString() + "')>=0) " +
+                               "(Datediff(dd,(Select Top(1) CAST(s.Datum as DATE) FROM Sperrlager s WHERE s.BKZ='OUT' AND s.SPLIDIn=spl.ID),'" + myLager.BestandBis.Date.ToShortDateString() + "')>=0) " +
                             ")" +
                             " OR " +
                            "(" +
@@ -634,9 +669,9 @@ namespace LVS.Views
                                "(Datediff(dd,'" + myLager.BestandVon.Date.ToShortDateString() + "',spl.Datum)>=0) AND spl.BKZ='IN' " +
                                " AND " +
                                "(" +
-                                   "(Datediff(dd,(Select CAST(s.Datum as DATE) FROM Sperrlager s WHERE s.BKZ='OUT' AND s.SPLIDIn=spl.ID),'" + myLager.BestandBis.Date.ToShortDateString() + "')>0) " +
+                                   "(Datediff(dd,(Select Top(1) CAST(s.Datum as DATE) FROM Sperrlager s WHERE s.BKZ='OUT' AND s.SPLIDIn=spl.ID),'" + myLager.BestandBis.Date.ToShortDateString() + "')>0) " +
                                    " OR " +
-                                   " ISNULL((Select s.ID FROM Sperrlager s WHERE s.BKZ='OUT' AND s.SPLIDIn=spl.ID),0)=0 " +
+                                   " ISNULL((Select Top(1) s.ID FROM Sperrlager s WHERE s.BKZ='OUT' AND s.SPLIDIn=spl.ID),0)=0 " +
                                 ")" +
                            ")" +
                            " OR " +
@@ -645,9 +680,9 @@ namespace LVS.Views
                                "(Datediff(dd,'" + myLager.BestandVon.Date.ToShortDateString() + "',spl.Datum)<0) AND spl.BKZ='IN' " +
                                " AND " +
                                "(" +
-                                   " (Datediff(dd,'" + myLager.BestandBis.Date.ToShortDateString() + "',(Select CAST(s.Datum as DATE) FROM Sperrlager s WHERE s.BKZ='OUT' AND s.SPLIDIn=spl.ID))>0) " +
+                                   " (Datediff(dd,'" + myLager.BestandBis.Date.ToShortDateString() + "',(Select Top(1) CAST(s.Datum as DATE) FROM Sperrlager s WHERE s.BKZ='OUT' AND s.SPLIDIn=spl.ID))>0) " +
                                    " OR " +
-                                   "ISNULL((Select s.ID FROM Sperrlager s WHERE s.BKZ='OUT' AND s.SPLIDIn=spl.ID),0)=0 " +
+                                   "ISNULL((Select Top(1) s.ID FROM Sperrlager s WHERE s.BKZ='OUT' AND s.SPLIDIn=spl.ID),0)=0 " +
                                ")" +
                            ")";
             return strSql;
