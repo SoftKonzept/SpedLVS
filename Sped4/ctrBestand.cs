@@ -408,6 +408,10 @@ namespace Sped4
                     dtpVon.Enabled = true;
                     dtpVon.Value = DateTime.Now.Date;
                     lZeitraumVon.Text = "Stichtag:";
+                    if (dtBestand.Rows.Count > 0)
+                    { 
+                        dtBestand.Rows.Clear();
+                    }
                     //-- View setzen =  clsClient.cont_ViewName_Bestand_Customized_AllWorkspaces
                     Functions.SetToolStripComboToSelecetedItem(ref tsbcViews, clsClient.cont_ViewName_Bestand_Customized_AllWorkspaces);
                     break;

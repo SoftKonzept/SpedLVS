@@ -85,9 +85,9 @@ namespace LVS.sqlStatementCreater
         {
             string strSql2 = string.Empty;
 
-            strSql2 = " FROM Artikel       AS a ";
+            strSql2 = " FROM Artikel AS a ";
             strSql2 += "JOIN LEingang AS b ON b.ID = a.LEingangTableID ";
-            strSql2 += "JOIN Gueterart AS g ON g.ID = a.GArtID ";
+            strSql2 += "JOIN Gueterart AS e ON e.ID = a.GArtID ";
             strSql2 += "LEFT JOIN LAusgang AS c ON c.ID = a.LAusgangTableID ";
 
             strSql2 += "LEFT JOIN ( ";

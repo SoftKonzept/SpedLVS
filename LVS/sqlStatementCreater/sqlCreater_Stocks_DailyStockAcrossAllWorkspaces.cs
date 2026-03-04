@@ -57,7 +57,7 @@ namespace LVS.sqlStatementCreater
                                 "END as SPL ";
             strSql2 += " From Artikel a " +
                        "INNER JOIN LEingang b ON b.ID = a.LEingangTableID " +
-                       "LEFT JOIN Gueterart e ON e.ID=a.GArtID " +
+                       "LEFT JOIN Gueterart e ON e.ID = a.GArtID " +
                        "LEFT JOIN LAusgang c ON c.ID = a.LAusgangTableID ";
 
 
@@ -79,15 +79,17 @@ namespace LVS.sqlStatementCreater
             strSql2 += "WHERE ";
 
             ////strSql2 += " b.AbBereich=" + myWorkspaceId + " AND ";
-            strSql2 += "((b.Auftraggeber=" + myStockAdrId + " ";
+            strSql2 += "(("; //b.Auftraggeber=" + myStockAdrId + " ";
 
             if (bUseBKZ)
             {
-                strSql2 += " AND a.BKZ=1 AND a.CheckArt=1 AND b.[Check]=1 ";
+                //strSql2 += " AND a.BKZ=1 AND a.CheckArt=1 AND b.[Check]=1 ";
+                strSql2 += "a.BKZ=1 AND a.CheckArt=1 AND b.[Check]=1 ";
             }
             else
             {
-                strSql2 += " AND a.CheckArt=1 AND b.[Check]=1 and (c.Checked is Null or c.Checked=0) ";
+                //strSql2 += " AND a.CheckArt=1 AND b.[Check]=1 and (c.Checked is Null or c.Checked=0) ";
+                strSql2 += "a.CheckArt=1 AND b.[Check]=1 and (c.Checked is Null or c.Checked=0) ";
             }
             //"AND b.Mandant=" + MandantenID + " " +
             strSql2 += " AND b.DirectDelivery=0 "; //  AND b.AbBereich=" + myWorkspaceId + " " +

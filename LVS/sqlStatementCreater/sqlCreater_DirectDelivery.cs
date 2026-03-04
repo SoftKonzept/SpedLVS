@@ -8,6 +8,34 @@ namespace LVS.sqlStatementCreater
 
         /// <summary>
         /// 
+        /// 
+        ///                     ////case "Direktanlieferungen":
+        //strSql2 = " From Artikel a " +
+        //         "INNER JOIN LEingang b ON b.ID = a.LEingangTableID " +
+        //         "INNER JOIN Gueterart e ON e.ID=a.GArtID " +
+        //         "LEFT JOIN LAusgang c ON c.ID = a.LAusgangTableID " +
+        //         "WHERE " +
+        //         // b.Date >= '" + BestandVon + "' AND b.Date <'" + BestandBis + "' " +
+        //         " (b.Date between '" + myDateFrom.Date.ToShortDateString() + "' AND '" + myDateTo.Date.AddDays(1).ToShortDateString() + "') " +
+        //         " AND b.Auftraggeber=" + myStockAdrId +
+        //         "  AND b.DirectDelivery=1 " +//"AND b.Mandant=" + MandantenID + " " +
+        //                " AND b.AbBereich=" + myWorkspaceId + " ";
+        //if (bFilterJournal)
+        //{
+        //    if (adr.Kunde.Tarif.TarifGArtZuweisung.SQLGArtIDString != string.Empty)
+        //    {
+        //        strSql2 = strSql2 + // " AND b.Auftraggeber=" + BestandAdrID + " " +
+        //                           " AND a.GArtID IN (" + adr.Kunde.Tarif.TarifGArtZuweisung.SQLGArtIDString + ") ";
+        //    }
+        //}
+        //else
+        //{
+        //    if (myGArtID > 0)
+        //    {
+        //        strSql2 += " AND a.GArtID IN (" + (Int32)myGArtID + ") ";
+        //    }
+        //}
+
         /// </summary>
         private string _sql_Statement = string.Empty;
         public string sql_Statement
@@ -36,7 +64,7 @@ namespace LVS.sqlStatementCreater
 
             strSql2 = " From Artikel a " +
                      "INNER JOIN LEingang b ON b.ID = a.LEingangTableID " +
-                     "INNER JOIN Gueterart e ON e.ID=a.GArtID " +
+                     "INNER JOIN Gueterart e ON e.ID = a.GArtID " +
                      "LEFT JOIN LAusgang c ON c.ID = a.LAusgangTableID ";
 
             strSql2 += "LEFT JOIN ( ";

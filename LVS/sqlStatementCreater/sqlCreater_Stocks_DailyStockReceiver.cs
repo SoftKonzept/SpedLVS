@@ -36,7 +36,7 @@ namespace LVS.sqlStatementCreater
 
             strSql2 = " From Artikel a " +
                       "INNER JOIN LEingang b ON b.ID = a.LEingangTableID " +
-                      "LEFT JOIN Gueterart e ON e.ID=a.GArtID " +
+                      "LEFT JOIN Gueterart e ON e.ID = a.GArtID " +
                       "LEFT JOIN LAusgang c ON c.ID = a.LAusgangTableID ";
 
             strSql2 += "LEFT JOIN ( ";

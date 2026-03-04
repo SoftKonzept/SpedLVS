@@ -8,6 +8,26 @@ namespace LVS.sqlStatementCreater
 
         /// <summary>
         /// 
+        /// 
+        ///                     ////case "Ungeprüfte Artikel im Eingang":
+        //strSql2 = " From Artikel a " +
+        //         "INNER JOIN LEingang b ON b.ID = a.LEingangTableID " +
+        //         "INNER JOIN Gueterart e ON e.ID=a.GArtID " +
+        //         "LEFT JOIN LAusgang c ON c.ID = a.LAusgangTableID " +
+        //         "WHERE " +
+        //            "a.CheckArt=0 AND a.LEingangTableID>0 " +
+        //                //"AND b.Mandant=" + MandantenID + " " +
+        //                " AND b.AbBereich=" + myStockAdrId + " ";
+        //if (myStockAdrId > 0)
+        //{
+        //    strSql2 += " AND b.Auftraggeber=" + myStockAdrId;
+        //}
+        //if (myGArtID > 0)
+        //{
+        //    strSql2 += " AND a.GArtID IN (" + (Int32)myGArtID + ") ";
+        //}
+
+
         /// </summary>
         private string _sql_Statement = string.Empty;
         public string sql_Statement

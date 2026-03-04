@@ -1577,31 +1577,6 @@ namespace LVS
             string strSql2 = string.Empty;
 
             DataTable dt = new DataTable();
-
-            ////--- mr erst mal nur 25.02.2025
-            //if (strMyBestandArt.Equals(clsLager.const_Bestandsart_TagesbestandAccrossAllWorkspaces))
-            //{
-            //    //sqlCreater_Stocks sqlStock = new sqlCreater_Stocks(strMyBestandArt,
-            //    //                                                    (int)this.BestandAdrID,
-            //    //                                                    myGArtID,
-            //    //                                                    (int)AbBereichID,
-            //    //                                                    Stichtag,
-            //    //                                                    BestandVon,
-            //    //                                                    BestandBis,
-            //    //                                                    bFilterJournal,
-            //    //                                                    bUseBKZ);
-
-
-            //    //strSql2 = sqlStock.sql_Statement;
-            //}
-            //else
-            //{
-            //strSql = GetSQLMainBestandsdaten();
-            //strSql2 = string.Empty;
-            //strSql2 = GetSQLBestandsdaten2(strMyBestandArt, myGArtID, strSql, bUseBKZ);
-            //}
-
-
             sqlCreater_Stocks sqlStock = new sqlCreater_Stocks(strMyBestandArt,
                                                                 (int)AbBereichID,
                                                                 (int)BestandAdrID,
