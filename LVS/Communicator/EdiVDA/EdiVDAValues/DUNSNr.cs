@@ -1,4 +1,6 @@
-﻿namespace LVS.Communicator.EdiVDA.EdiVDAValues
+﻿using Common.Models;
+
+namespace LVS.Communicator.EdiVDA.EdiVDAValues
 {
     public class DUNSNr
     {
@@ -25,12 +27,18 @@
 
                 // Warenempfänger / Empfänger
                 case DUNSNr.const_DUNSNrST:
-                    strTmp = myLager.Ausgang.AdrEmpfaenger.DUNSNr.ToString();
+                    if ((myLager.Ausgang is clsLAusgang) && (myLager.Ausgang.AdrAuftraggeber is clsADR))
+                    {
+                        strTmp = myLager.Ausgang.AdrEmpfaenger.DUNSNr.ToString();
+                    }                    
                     break;
 
                 // Verkäufer
                 case DUNSNr.const_DUNSNrSE:
-                    strTmp = myLager.Ausgang.AdrAuftraggeber.DUNSNr.ToString();
+                    if ((myLager.Ausgang is clsLAusgang) && (myLager.Ausgang.AdrAuftraggeber is clsADR))
+                    {
+                        strTmp = myLager.Ausgang.AdrAuftraggeber.DUNSNr.ToString();
+                    }
                     break;
             }
             return strTmp;
