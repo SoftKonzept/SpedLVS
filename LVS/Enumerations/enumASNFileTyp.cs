@@ -8,6 +8,7 @@
         EdiVDA4984,
         EdiVDA4987,
         EDIFACT_ASN_D07A,
+        EDIFACT_DESADV_D07A,
         EDIFACT_ASN_D96A,
         EDIFACT_ASN_D97A,
         EDIFACT_DELFOR_D97A,

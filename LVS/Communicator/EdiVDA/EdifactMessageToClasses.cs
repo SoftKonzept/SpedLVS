@@ -108,9 +108,6 @@ namespace LVS.Communicator.EdiVDA
                             }
 
                             //---- Copy to Field
-
-
-
                             eingangViewData.ListArticleInEingang.Add(article);
                         }
                     }
@@ -326,7 +323,7 @@ namespace LVS.Communicator.EdiVDA
                         eingang.Auftraggeber = adrRefSender.SenderAdrId;
                         eingang.AuftraggeberString = adrRefSender.SenderAddress.ViewIdString;
                         eingang.Versender = adrRefSender.SenderAdrId;
-                        eingang.VersenderString = adrRefSender.SenderAddress.ViewIdString; ;
+                        eingang.VersenderString = adrRefSender.SenderAddress.ViewIdString; 
 
                         //--- direkte Zuweisung Empfänger
                         DictAddressReferencesReceiver = AddressReferenceViewData.FillDictAdrVerweisReceiver(asn.MandantenId, asn.WorkspaceId, BenutzerId, asn.ASNFileTyp);
@@ -952,6 +949,19 @@ namespace LVS.Communicator.EdiVDA
                             //-- Verkäufer
                             case NAD.const_PartyQualifier_3035_SE_Seller:
                                 //-- + Lieferantennummer ermitteln
+                                if ((n.C082.f_3039_PartyId != null) && (n.C082.f_3039_PartyId.Length > 0))
+                                {
+                                    switch (asn.ASNFileTyp)
+                                    {
+                                        case constValue_AsnArt.const_Art_EDIFACT_ASN_D96A:
+                                        case constValue_AsnArt.const_Art_EDIFACT_DESADV_D07A:
+                                            stringReturn = n.C082.f_3039_PartyId;
+                                            break;
+                                        default:
+
+                                            break;
+                                    }
+                                }
                                 break;
                         }
                         break;

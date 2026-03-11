@@ -8,7 +8,7 @@ namespace LVS.Communicator.EdiVDA
 {
     public class ediHelper_EdiEDIFACT_ASN_D07A_CheckProcessableASN
     {
-        //public const string const_UNH_S009 = "DESADV:D:07A:UN:";  // UNH+00059870+DESADV:D:07A:UN:GAVF11
+        public const string const_UNH_S009 = "DESADV:D:07A:UN:";  // UNH+00059870+DESADV:D:07A:UN:GAVF11
         public static bool IsASNFileProcessable(clsJobs myJob, string myFilePathName)
         {
             bool myReturn = false;
@@ -66,7 +66,7 @@ namespace LVS.Communicator.EdiVDA
                         //}
 
                         //strVerweisTeil1 = tmpList.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_CZ));
-                        //NAD nadTeil1 = new NAD(strVerweisTeil1, myJob.ASNFileTyp);                        
+                        //NAD nadTeil1 = new NAD(strVerweisTeil1, myJob.ASNFileTyp);
                         //strVerweisTeil2 = tmpList.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_CN));
                         //NAD nadTeil2 = new NAD(strVerweisTeil2, myJob.ASNFileTyp);
                         //strVerweisTeil3 = tmpList.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_FW));
@@ -74,9 +74,9 @@ namespace LVS.Communicator.EdiVDA
 
                         //strVerweisGlobalSender = nadTeil1.C082.f_3039_PartyId + "#0#0";
                         //strVerweisCheck = nadTeil1.C082.f_3039_PartyId + "#" + nadTeil2.C082.f_3039_PartyId + "#" + nadTeil3.C082.f_3039_PartyId;
-                        ////strVerweisCheck = nadTeil1.C082.f_3039_PartyId + "#" + nadTeil2.C082.f_3039_PartyId.TrimStart('0') + "#" + nadTeil3.C082.f_3039_PartyId.TrimStart('0');
+                        //strVerweisCheck = nadTeil1.C082.f_3039_PartyId + "#" + nadTeil2.C082.f_3039_PartyId.TrimStart('0') + "#" + nadTeil3.C082.f_3039_PartyId.TrimStart('0');
 
-                        ////Dictionary<string, clsADRVerweis> dicSenderVerweis = clsADRVerweis.FillDictAdrVerweis(myJob.MandantenID, myJob.ArbeitsbereichID, 1, myJob.ASNFileTyp);
+                        //Dictionary<string, clsADRVerweis> dicSenderVerweis = clsADRVerweis.FillDictAdrVerweis(myJob.MandantenID, myJob.ArbeitsbereichID, 1, myJob.ASNFileTyp);
 
                         //Dictionary<string, clsADRVerweis> dicSenderVerweis = clsADRVerweis.FillDictAdrVerweis(0, 0, 1, myJob.ASNFileTyp);
                         //--- zuerst Check zur Verbindung Sender / Emfpänger
@@ -87,10 +87,10 @@ namespace LVS.Communicator.EdiVDA
                         //    bVersenderOK = dicSenderVerweis.ContainsKey(strVerweisGlobalSender);
                         //}
 
-                        //myReturn = (bIsDESADVD96A) && (bVersenderOK);
+                        //myReturn = (bIsDESADV_D07A) && (bVersenderOK);
 
 
-                        myReturn = myReturn;
+                        //myReturn = myReturn;
                         //-- Errormail keine Adr konnte zugewiesen werden
                         if (!myReturn)
                         {

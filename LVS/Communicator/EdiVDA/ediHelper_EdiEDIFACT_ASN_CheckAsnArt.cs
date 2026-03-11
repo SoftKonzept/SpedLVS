@@ -9,15 +9,22 @@ namespace LVS.Communicator.EdiVDA
         {
             bool isAsnArtKorrekt = false;
 
-            if (string.IsNullOrEmpty(mySegmentToCheck) || string.IsNullOrEmpty(myASNFileTyp))
+            //if (string.IsNullOrEmpty(mySegmentToCheck) || string.IsNullOrEmpty(myASNFileTyp))
+            //    return false;
+
+            if (string.IsNullOrWhiteSpace(mySegmentToCheck) || string.IsNullOrWhiteSpace(myASNFileTyp))
                 return false;
 
-            if (!Enum.TryParse<enumASNFileTyp>(myASNFileTyp, out var asnFileTyp))
+            //if (!Enum.TryParse<enumASNFileTyp>(myASNFileTyp, out var asnFileTyp))
+            //    return false;
+
+            if (!Enum.TryParse<enumASNFileTyp>(myASNFileTyp.Trim(), out var asnFileTyp))
                 return false;
 
             switch (asnFileTyp)
             {
                 case enumASNFileTyp.EDIFACT_ASN_D07A:
+                case enumASNFileTyp.EDIFACT_DESADV_D07A:
                     isAsnArtKorrekt = mySegmentToCheck.Contains(Default_DESADV_D07A.const_UNH_S009);
                     //isAsnArtKorrekt = mySegmentToCheck.Contains(ediHelper_EdiEDIFACT_ASN_D07A_CheckProcessableASN.const_UNH_S009);
                     break;

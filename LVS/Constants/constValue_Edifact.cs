@@ -24,6 +24,8 @@ namespace LVS.Constants
         ///  ------ EDIFACT_DESADV_D07A
         /// 
 
+        public const string const_Edifact_UNB_UNOC_3 = "UNB+UNOC:3";           // 
+
         public const string const_Edifact_CPS = "CPS";           // 
 
         public const string const_Edifact_DTM_11 = "DTM+11";     // Eingangsdatum

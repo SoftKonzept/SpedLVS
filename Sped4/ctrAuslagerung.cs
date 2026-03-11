@@ -2155,7 +2155,8 @@ namespace Sped4
             if (cbTrailer.SelectedValue != null)
             {
                 Int32 iValue = -1;
-                Int32.TryParse(cbFahrzeug.SelectedValue.ToString(), out iValue);
+                //Int32.TryParse(cbFahrzeug.SelectedValue.ToString(), out iValue);
+                Int32.TryParse(cbTrailer.SelectedValue.ToString(), out iValue); //- BugFix cbTrailer statt cbFahrzeug
                 switch (iValue)
                 {
                     //Fremdfahrzeuge

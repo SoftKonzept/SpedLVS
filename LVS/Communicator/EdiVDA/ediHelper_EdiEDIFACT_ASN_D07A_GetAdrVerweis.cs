@@ -45,12 +45,11 @@ namespace LVS.Communicator.EdiVDA
                         strVerweisTeil1 = tmpList.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_SF));
                         NAD nadTeil1 = new NAD(strVerweisTeil1, myJob.ASNFileTyp);
 
-                        strVerweisTeil2 = tmpList.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_LOC_11));
-                        LOC locTeil2 = new LOC(strVerweisTeil2, myJob.ASNFileTyp);
+                        strVerweisTeil2 = tmpList.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_SE));
+                        NAD nadTeil2 = new NAD(strVerweisTeil2, myJob.ASNFileTyp);
 
-                        strVerweisTeil3 = tmpList.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_ST));
-                        NAD nadTeil3 = new NAD(strVerweisTeil3, myJob.ASNFileTyp);
-
+                        strVerweisTeil3 = tmpList.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_LOC_11));
+                        LOC locTeil3 = new LOC(strVerweisTeil3, myJob.ASNFileTyp);
 
                         //strVerweisTeil3 = tmpList.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_LOC_11));
                         //NAD nadTeil3 = new NAD(strVerweisTeil3, myJob.ASNFileTyp);
@@ -61,14 +60,13 @@ namespace LVS.Communicator.EdiVDA
                             strVerweisGlobalSender = nadTeil1.C082.f_3039_PartyId + "#0#0";
                             strVerweisCheck += nadTeil1.C082.f_3039_PartyId;
                         }
-                        if ((locTeil2.C517.f_3225_LocationIdentifier != null))
+                        if ((nadTeil2.C082.f_3039_PartyId != null))
                         {
-                            strVerweisCheck += "#" + locTeil2.C517.f_3225_LocationIdentifier;
+                            strVerweisCheck += "#" + nadTeil2.C082.f_3039_PartyId;
                         }
-
-                        if ((nadTeil3.C082.f_3039_PartyId != null))
+                        if ((locTeil3.C517.f_3225_LocationIdentifier != null))
                         {
-                            strVerweisCheck += "#" + nadTeil3.C082.f_3039_PartyId;
+                            strVerweisCheck += "#" + locTeil3.C517.f_3225_LocationIdentifier;
                         }
 
                         AddressReferenceViewData adrVerweis = new AddressReferenceViewData();
