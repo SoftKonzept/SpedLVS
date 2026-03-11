@@ -9,9 +9,12 @@ namespace Communicator.Classes
         {
             get
             {
-                _InfoText += "06.03.2026 / Build: 260306_1      : " + Environment.NewLine +
+                _InfoText += "11.03.2026 / Build: 260311_1      : " + Environment.NewLine +
+                            " - BugFix/Optimierungen - EDFIFACT DESADV D 07A" + Environment.NewLine +
                             Environment.NewLine;
 
+                _InfoText += "06.03.2026 / Build: 260306_1      : " + Environment.NewLine +
+                            Environment.NewLine;
                 _InfoText += "21.01.2026 / Build: 260121_1      : " + Environment.NewLine +
                             " - BugFix/Optimierungen - Globaler Verweis" + Environment.NewLine +
                             Environment.NewLine;
