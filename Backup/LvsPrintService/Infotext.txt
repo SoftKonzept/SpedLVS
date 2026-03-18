@@ -1,0 +1,32 @@
+1. 
+Ausführen als ADMIN
+CMD
+cd C:\Windows\Microsoft.NET\Framework\v4.0.30319 
+
+2. DEBUG
+InstallUtil.exe D:\Develop\SpedLVS\LvsPrintService\bin\Debug\LvsPrintService.exe
+InstallUtil.exe -u D:\Develop\SpedLVS\LvsPrintService\bin\Debug\LvsPrintService.exe
+
+2. RELEASE
+InstallUtil.exe D:\Develop\SpedLVS\LvsPrintService\bin\Release\LvsPrintService.exe
+InstallUtil.exe -u D:\Develop\SpedLVS\LvsPrintService\bin\Release\LvsPrintService.exe
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+SZG AS-Server
+
+1. 
+Ausführen als ADMIN
+CMD
+cd C:\Windows\Microsoft.NET\Framework\v4.0.30319 
+
+2. RELEASE
+
+installieren
+InstallUtil.exe D:\COMTEC\LvsPrintService\LvsPrintService.exe
+
+deinstallieren
+InstallUtil.exe -u D:\COMTEC\LvsPrintService\LvsPrintService.exe
+
+

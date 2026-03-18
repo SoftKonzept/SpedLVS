@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report DataSourceName="sqlLableSource" Width="19cm" Name="ArtikelLabel" Zoom="0.6666667" SnapGridSize="0.1cm" xmlns="http://schemas.telerik.com/reporting/2012/3.5">
+  <DataSources>
+    <SqlDataSource ConnectionString="Data Source=WS-NE-W7-64\SQL2008R2;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey" ProviderName="System.Data.SqlClient" SelectCommand="SELECT        &#xD;&#xA;a.ID&#xD;&#xA;, a.LVS_ID&#xD;&#xA;, a.Brutto&#xD;&#xA;, d.KD_ID&#xD;&#xA;, a.Produktionsnummer&#xD;&#xA;, a.Werk&#xD;&#xA;, a.Halle&#xD;&#xA;, a.Reihe&#xD;&#xA;, a.Ebene&#xD;&#xA;, a.Platz&#xD;&#xA;, CASE&#xD;&#xA;&#x9;WHEN (a.Dicke&gt;0) AND (a.Breite&gt;0) AND (a.Laenge&gt;0) AND (a.Hoehe&gt;0) &#xD;&#xA;&#x9;&#x9;THEN CAST(a.Dicke as varchar (20))+' x '+ CAST(a.Breite as varchar(20))+' x '+CAST(a.Laenge as varchar(20))+' x '+CAST(a.Hoehe as varchar(20))&#xD;&#xA;&#x9;WHEN (a.Dicke&gt;0) AND (a.Breite&gt;0) AND (a.Laenge&gt;0) AND (a.Hoehe=0) &#xD;&#xA;&#x9;&#x9;THEN CAST(a.Dicke as nvarchar) +' x '+ CAST(a.Breite as nvarchar)+' x '+CAST(a.Laenge as nvarchar)&#xD;&#xA;&#x9;WHEN (a.Dicke&gt;0) AND  (a.Breite&gt;0) AND (a.Laenge=0) AND (a.Hoehe=0) &#xD;&#xA;&#x9;&#x9;THEN CAST(a.Dicke as varchar)+' x '+ CAST(a.Breite as varchar)&#xD;&#xA;&#x9;WHEN (a.Dicke&gt;0) AND (a.Breite=0) AND (a.Laenge=0) AND (a.Hoehe=0) &#xD;&#xA;&#x9;&#x9;THEN CAST(a.Dicke as varchar)&#xD;&#xA;&#x9;ELSE ''&#xD;&#xA;&#x9;END as Abmessung&#xD;&#xA;&#xD;&#xA;FROM Artikel a&#xD;&#xA;INNER JOIN LEingang c ON c.ID = a.LEingangTableID&#xD;&#xA;INNER JOIN ADR d ON d.ID=c.Auftraggeber&#xD;&#xA;&#xD;&#xA;WHERE a.LEingangTableID=@LEingangTableID" Name="sqlLableSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="Decimal" Name="@LEingangTableID">
+          <Value>
+            <String>=Parameters.LEingangTableID.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+      <DefaultValues>
+        <SqlDataSourceParameter DbType="Decimal" Name="@LEingangTableID">
+          <Value>
+            <String>5</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </DefaultValues>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <DetailSection Height="13.6cm" Name="detail">
+      <Items>
+        <Panel Width="19cm" Height="13.6cm" Left="0cm" Top="0cm" Docking="Fill" Name="panLabel">
+          <Items>
+            <Panel Width="7cm" Height="13.6cm" Left="0cm" Top="0cm" Docking="Left" Name="panColName">
+              <Items>
+                <TextBox Width="7cm" Height="2cm" Left="0cm" Top="0cm" Value="" Docking="Top" Name="textBox14">
+                  <Style VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" Right="None" />
+                    <Font Size="15pt" />
+                    <Padding Left="5mm" Right="0mm" Top="0mm" Bottom="0mm" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7cm" Height="1.9cm" Left="0cm" Top="2cm" Value="Kunde:" Docking="Top" Name="textBox6">
+                  <Style VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" />
+                    <Font Size="18pt" />
+                    <Padding Left="5mm" Right="0mm" Top="0mm" Bottom="0mm" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7cm" Height="1.9cm" Left="0cm" Top="3.9cm" Value="LVS - Nr:" Docking="Top" Name="textBox3">
+                  <Style VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" />
+                    <Font Size="18pt" />
+                    <Padding Left="5mm" Right="0mm" Top="0mm" Bottom="0mm" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7cm" Height="1.9cm" Left="0cm" Top="5.8cm" Value="Abmessungen[mm]:" Docking="Top" Name="textBox5">
+                  <Style VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" />
+                    <Font Size="18pt" />
+                    <Padding Left="5mm" Right="0mm" Top="0mm" Bottom="0mm" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7cm" Height="1.9cm" Left="0cm" Top="7.7cm" Value="Gewicht[kg]:" Docking="Top" Name="textBox8">
+                  <Style VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" />
+                    <Font Size="18pt" />
+                    <Padding Left="5mm" Right="0mm" Top="0mm" Bottom="0mm" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7cm" Height="1.9cm" Left="0cm" Top="9.6cm" Value="Produktionsnummer:" Docking="Top" Name="textBox7">
+                  <Style VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" />
+                    <Font Size="18pt" />
+                    <Padding Left="5mm" Right="0mm" Top="0mm" Bottom="0mm" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="7cm" Height="1.9cm" Left="0cm" Top="11.5cm" Value="Halle / Feld" Docking="Top" Name="textBox9">
+                  <Style VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" />
+                    <Font Size="18pt" />
+                    <Padding Left="5mm" Right="0mm" Top="0mm" Bottom="0mm" />
+                  </Style>
+                </TextBox>
+              </Items>
+            </Panel>
+            <Panel Width="12.0000009536743cm" Height="13.6cm" Left="6.99999969720841cm" Top="0cm" Docking="Left" Name="panData">
+              <Items>
+                <TextBox Width="12cm" Height="2cm" Left="0cm" Top="0cm" Value="" CanGrow="False" CanShrink="False" Docking="Top" Name="textBox15">
+                  <Style TextAlign="Center" VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" Left="None" />
+                    <Font Size="15pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="12cm" Height="1.9cm" Left="0cm" Top="2cm" Value="= Fields.KD_ID" CanGrow="False" CanShrink="False" Docking="Top" Name="iDDataTextBox">
+                  <Style TextAlign="Center" VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" />
+                    <Font Size="18pt" Bold="True" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="12cm" Height="1.9cm" Left="0cm" Top="3.9cm" Value="= Fields.LVS_ID" CanGrow="False" CanShrink="False" Docking="Top" Name="textBox11">
+                  <Style TextAlign="Center" VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" />
+                    <Font Size="18pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="12cm" Height="1.9cm" Left="0cm" Top="5.8cm" Value="= Fields.Abmessung" Format="{0:N0}" CanGrow="False" CanShrink="False" Docking="Top" Name="textBox10">
+                  <Style TextAlign="Center" VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" />
+                    <Font Size="18pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="12cm" Height="1.9cm" Left="0cm" Top="7.7cm" Value="= Fields.Brutto" Format="{0:N0}" CanGrow="False" CanShrink="False" Docking="Top" Name="produktionsnummerDataTextBox">
+                  <Style TextAlign="Center" VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" />
+                    <Font Size="18pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="12cm" Height="1.9cm" Left="0cm" Top="9.6cm" Value="= Fields.Produktionsnummer" CanGrow="False" CanShrink="False" Docking="Top" Name="exMaterialnummerDataTextBox">
+                  <Style TextAlign="Center" VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" />
+                    <Font Size="18pt" />
+                  </Style>
+                </TextBox>
+                <TextBox Width="12cm" Height="1.9cm" Left="0cm" Top="11.5cm" Value="= Fields.Halle +' / ' + Fields.Reihe" CanGrow="False" CanShrink="False" Docking="Top" Name="textBox12">
+                  <Style TextAlign="Center" VerticalAlign="Middle">
+                    <BorderStyle Default="Solid" />
+                    <Font Size="18pt" />
+                  </Style>
+                </TextBox>
+                <Barcode Width="6.80000019073486cm" Height="2.00000023841858cm" Left="2.49999976158142cm" Top="0cm" Value="= Fields.ID" Stretch="False" Symbology="EAN13" Name="barCode">
+                  <Style TextAlign="Center" VerticalAlign="Bottom" />
+                </Barcode>
+              </Items>
+            </Panel>
+          </Items>
+        </Panel>
+      </Items>
+    </DetailSection>
+  </Items>
+  <StyleSheet>
+    <StyleRule>
+      <Style>
+        <Padding Left="2pt" Right="2pt" />
+      </Style>
+      <Selectors>
+        <TypeSelector Type="TextItemBase" />
+        <TypeSelector Type="HtmlTextBox" />
+      </Selectors>
+    </StyleRule>
+  </StyleSheet>
+  <PageSettings>
+    <PageSettings PaperKind="Custom" PaperSize="210mm, 148mm" Landscape="False">
+      <Margins>
+        <MarginsU Left="10mm" Right="5mm" Top="5mm" Bottom="5mm" />
+      </Margins>
+    </PageSettings>
+  </PageSettings>
+  <ReportParameters>
+    <ReportParameter Name="LEingangTableID" Type="Float">
+      <Value>
+        <String>5</String>
+      </Value>
+    </ReportParameter>
+  </ReportParameters>
+</Report>

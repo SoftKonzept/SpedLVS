@@ -1,0 +1,514 @@
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
+using Org.BouncyCastle.Utilities.Zlib;
+using Svg;
+using System;
+using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
+
+namespace LVS.sqlStatementCreater
+{
+    public class sqlCreater_Stocks
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        //public string sql_Statement
+        //{
+        //    get
+        //    {
+        //        string strSql = string.Empty;
+        //        strSql += sql_Main;
+        //        strSql += sql_MainSelection;
+        //        return strSql;
+        //    }
+        //}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private string _sql_Statement = string.Empty;
+        public string sql_Statement
+        {
+            get
+            {
+                return _sql_Statement;
+            }
+            set
+            {
+                _sql_Statement = value;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private string _sql_MainSelection = string.Empty;
+        public string sql_MainSelection
+        {
+            get
+            {
+                return _sql_MainSelection;
+            }
+            set
+            {
+                _sql_MainSelection = value;
+            }
+        }
+
+        public string BestandsArt { get; set; } = string.Empty;
+
+        public DateTime dtDeadLine { get; set; } = new DateTime(1900, 1, 1);
+        public sqlCreater_Stocks(string strMyBestandArt,
+                                int myWorkspaceId,
+                                int myStockAdrId,
+                                decimal myGArtID,
+                                DateTime myDateDeadline,
+                                DateTime myDateFrom,
+                                DateTime myDateTo,
+                                string mySqlGoodsTypeIdString,
+                                int myFreeStorageDays,
+                                bool bFilterJournal = true,
+                                bool bUseBKZ = true,
+                                bool mySysModulStockDailyStockExclSPL = true
+                                )
+        {
+            BestandsArt = strMyBestandArt;
+            dtDeadLine = myDateDeadline;
+            string strSqlMain = sql_Main;
+            sql_MainSelection = string.Empty;
+            switch (strMyBestandArt)
+            {
+                //Default
+                case clsLager.const_Bestandsart_Select:
+                    sqlCreater_Stocks_Select sqlCreater_Select = new sqlCreater_Stocks_Select(myWorkspaceId, myStockAdrId, (int)myGArtID, mySqlGoodsTypeIdString, bFilterJournal, bUseBKZ);
+                    sql_MainSelection = sqlCreater_Select.sql_Statement;
+                    break;
+
+                //Inventur ist gleich Tagesbestand incl. SPL
+                case clsLager.const_Bestandsart_Inventur:
+                    //case "Inventur":
+                    sqlCreater_Stocks_Inventory sqlCreater_Inventory = new sqlCreater_Stocks_Inventory(myWorkspaceId, myStockAdrId, (int)myGArtID, bFilterJournal, bUseBKZ);
+                    sql_MainSelection = sqlCreater_Inventory.sql_Statement;
+                    break;
+
+                //Tagesbestand
+                /**********************************************************************************************************
+                 * Die Abfrage ist in zwei Filter aufgebaut:
+                 * 1. Alle Eingänge vor dem Starpunkt des Beobachtungszeitraums. Diese können folgende Merkmale aufweisen:
+                 *  - Artikel befindet sich auch zum Zeitpunkt der Abfrage noch im Lager
+                 *  - Auslagerung des Artikels hat im Zeitraum zwischen Stichtag und Zeitpunkt Abfrage stattgefunden
+                 *  *******************************************************************************************************/
+                case clsLager.const_Bestandsart_Tagesbestand:
+                    sqlCreater_Stocks_DailyStock sqlCreater_DailyStock = new sqlCreater_Stocks_DailyStock(myWorkspaceId, myStockAdrId, (int)myGArtID, mySqlGoodsTypeIdString, myDateDeadline, myDateFrom, myDateTo, bFilterJournal, bUseBKZ, mySysModulStockDailyStockExclSPL);
+                    sql_MainSelection = sqlCreater_DailyStock.sql_Statement;
+                    break;
+
+                //---nach Empfänger
+                case clsLager.const_Bestandsart_TagesbestandEmp:
+                    sqlCreater_Stocks_DailyStockReceiver sqlCreater_DailyStockReceiver = new sqlCreater_Stocks_DailyStockReceiver(myWorkspaceId, myStockAdrId, (int)myGArtID, myDateFrom, myDateTo, mySqlGoodsTypeIdString, bFilterJournal, bUseBKZ, mySysModulStockDailyStockExclSPL);
+                    sql_MainSelection = sqlCreater_DailyStockReceiver.sql_Statement;
+                    break;
+
+                case clsLager.const_Bestandsart_TagesbestandexSPL:
+                    sqlCreater_Stocks_DailyStockExSPL sqlCreater_DailyStockExSpl = new sqlCreater_Stocks_DailyStockExSPL(myWorkspaceId, myStockAdrId, (int)myGArtID, myDateFrom, myDateTo, mySqlGoodsTypeIdString, bFilterJournal, bUseBKZ);
+                    sql_MainSelection = sqlCreater_DailyStockExSpl.sql_Statement;
+                    break;
+
+                //Tagesbestand LAger komplett
+                /**********************************************************************************************************
+                 * Die Abfrage ist in zwei Filter aufgebaut:
+                 * 1. Alle Eingänge vor dem Starpunkt des Beobachtungszeitraums. Diese können folgende Merkmale aufweisen:
+                 *  - Artikel befindet sich auch zum Zeitpunkt der Abfrage noch im Lager
+                 *  - Auslagerung des Artikels hat im Zeitraum zwischen Stichtag und Zeitpunkt Abfrage stattgefunden
+                 *  *******************************************************************************************************/
+                case clsLager.const_Bestandsart_TagesbestandAll:
+                    sqlCreater_Stocks_DailyStockAll sqlCreater_DailyStockAll = new sqlCreater_Stocks_DailyStockAll(myWorkspaceId, myStockAdrId, (int)myGArtID, myDateFrom, myDateTo, bUseBKZ, mySysModulStockDailyStockExclSPL);
+                    sql_MainSelection = sqlCreater_DailyStockAll.sql_Statement;
+                    //strSql2 = SqlTagesbestandKomplett(myGArtID, bUseBKZ);
+                    break;
+                case clsLager.const_Bestandsart_TagesbestandAllExclDam:
+                    sqlCreater_Stocks_DailyStockAll sqlCreater_DailyStockAllExclDam = new sqlCreater_Stocks_DailyStockAll(myWorkspaceId, myStockAdrId, (int)myGArtID, myDateFrom, myDateTo, bUseBKZ, mySysModulStockDailyStockExclSPL);
+                    sql_MainSelection = sqlCreater_DailyStockAllExclDam.sql_Statement;
+                    sql_MainSelection += " AND a.ID NOT IN (SELECT DISTINCT ArtikelID FROM SchadenZuweisung) ";
+
+                    //strSql2 = SqlTagesbestandKomplett(myGArtID, bUseBKZ);
+                    //strSql2 += " AND a.ID NOT IN (SELECT DISTINCT ArtikelID FROM SchadenZuweisung) ";
+                    break;
+
+                case clsLager.const_Bestandsart_TagesbestandAllExclSPL:
+                    sqlCreater_Stocks_DailyStockAll sqlCreater_DailyStockAllExclSPL = new sqlCreater_Stocks_DailyStockAll(myWorkspaceId, myStockAdrId, (int)myGArtID, myDateFrom, myDateTo, bUseBKZ, mySysModulStockDailyStockExclSPL);
+                    sql_MainSelection = sqlCreater_DailyStockAllExclSPL.sql_Statement;
+                    sql_MainSelection += " AND a.ID NOT IN (" +
+                                                    "SELECT a.ArtikelID FROM Sperrlager a WHERE a.BKZ = 'IN' AND a.ID NOT IN " +
+                                                            "(SELECT DISTINCT c.SPLIDIn FROM Sperrlager c WHERE c.SPLIDIn>0)" +
+                                                    ") ";
+
+                    //strSql2 = SqlTagesbestandKomplett(myGArtID, bUseBKZ);
+                    //strSql2 += " AND a.ID NOT IN (" +
+                    //                                "SELECT a.ArtikelID FROM Sperrlager a WHERE a.BKZ = 'IN' AND a.ID NOT IN " +
+                    //                                        "(SELECT DISTINCT c.SPLIDIn FROM Sperrlager c WHERE c.SPLIDIn>0)" +
+                    //                                ") ";
+                    break;
+
+                case clsLager.const_Bestandsart_TagesbestandAllExclDamSPL:
+                    sqlCreater_Stocks_DailyStockAll sqlCreater_DailyStockAllExclDamSPL = new sqlCreater_Stocks_DailyStockAll(myWorkspaceId, myStockAdrId, (int)myGArtID, myDateFrom, myDateTo, bUseBKZ, mySysModulStockDailyStockExclSPL);
+                    sql_MainSelection = sqlCreater_DailyStockAllExclDamSPL.sql_Statement;
+                    sql_MainSelection += " AND a.ID NOT IN (SELECT DISTINCT ArtikelID FROM SchadenZuweisung) ";
+                    sql_MainSelection += " AND a.ID NOT IN (" +
+                                                    "SELECT a.ArtikelID FROM Sperrlager a WHERE a.BKZ = 'IN' AND a.ID NOT IN " +
+                                                            "(SELECT DISTINCT c.SPLIDIn FROM Sperrlager c WHERE c.SPLIDIn>0)" +
+                                                    ") ";
+
+                    //strSql2 = SqlTagesbestandKomplett(myGArtID, bUseBKZ);
+                    //strSql2 += " AND a.ID NOT IN (SELECT DISTINCT ArtikelID FROM SchadenZuweisung) ";
+                    //strSql2 += " AND a.ID NOT IN (" +
+                    //                                "SELECT a.ArtikelID FROM Sperrlager a WHERE a.BKZ = 'IN' AND a.ID NOT IN " +
+                    //                                        "(SELECT DISTINCT c.SPLIDIn FROM Sperrlager c WHERE c.SPLIDIn>0)" +
+                    //                                ") ";
+                    break;
+
+                case clsLager.const_Bestandsart_TagesbestandAccrossAllWorkspaces:
+                    sqlCreater_Stocks_DailyStockAcrossAllWorkspaces sqlCreater_DailyStockAllWs = new sqlCreater_Stocks_DailyStockAcrossAllWorkspaces(myStockAdrId, (int)myGArtID, mySqlGoodsTypeIdString, myDateFrom, myDateTo, bFilterJournal, bUseBKZ);
+                    sql_MainSelection = sqlCreater_DailyStockAllWs.sql_Statement;
+                    break;
+
+                //Sperrlager - case "Sperrlager[SPL]":
+                case clsLager.const_Bestandsart_SPL:
+                    sqlCreater_Stocks_DailyStockSPL sqlCreater_SPL = new sqlCreater_Stocks_DailyStockSPL(myWorkspaceId, myStockAdrId, myDateFrom, myDateTo, bFilterJournal, bUseBKZ);
+                    sql_MainSelection = sqlCreater_SPL.sql_Statement;
+
+                    //strSql = string.Empty;
+                    //strSql2 = GetSperrlagerSQL();
+                    break;
+
+                //Rücklieferungen - "Rücklieferungen[RL]":
+                case clsLager.const_Bestandsart_RL:
+                    sqlCreater_Stocks_RL sqlCreater_RL = new sqlCreater_Stocks_RL(myWorkspaceId, (int)myGArtID, myDateFrom, myDateTo);
+                    sql_MainSelection = sqlCreater_RL.sql_Statement;
+                    break;
+
+                //Direktanlieferungen
+                case clsLager.const_Bestandsart_DirectDelivery:
+                    sqlCreater_DirectDelivery sqlCreater_DirectDelivery = new sqlCreater_DirectDelivery(myWorkspaceId, myStockAdrId, (int)myGArtID, myDateFrom, myDateTo, mySqlGoodsTypeIdString, bFilterJournal, bUseBKZ);
+                    sql_MainSelection = sqlCreater_DirectDelivery.sql_Statement;
+                    break;
+
+                //Ungeprüfte Artikel im Eingang
+                case clsLager.const_Bestandsart_ArtikelUnchecked_StoreIN:
+                    sqlCreater_Stocks_ArticleUnchecked_StoreIN sqlCreater_ArtUn_StoreIN = new sqlCreater_Stocks_ArticleUnchecked_StoreIN(myWorkspaceId, myStockAdrId, (int)myGArtID);
+                    sql_MainSelection = sqlCreater_ArtUn_StoreIN.sql_Statement;
+                    break;
+
+                //Ungeprüfte Artikel in Ausgang
+                case clsLager.const_Bestandsart_ArtikelUnchecked_StoreOUT:
+                    sqlCreater_Stocks_ArticleUnchecked_StoreOUT sqlCreater_ArtUn_StoreOut = new sqlCreater_Stocks_ArticleUnchecked_StoreOUT(myWorkspaceId, myStockAdrId, (int)myGArtID);
+                    sql_MainSelection = sqlCreater_ArtUn_StoreOut.sql_Statement;
+                    break;
+
+                //Artikel in offenen Eingngen
+                //case "Artikel in offenen Eingängen":
+                case clsLager.const_Bestandsart_Artikel_UncheckedStoreIN:
+                    sqlCreater_Article_UncheckedStoreIN sqlCreater_Art_UncheckedStoreIN = new sqlCreater_Article_UncheckedStoreIN(myWorkspaceId, myStockAdrId, (int)myGArtID);
+                    sql_MainSelection = sqlCreater_Art_UncheckedStoreIN.sql_Statement;
+                    break;
+
+                //Ungeprüfte Artikel in Ausgang
+                case clsLager.const_Bestandsart_Artikel_UncheckedStoreOUT:
+                    sqlCreater_Article_UncheckedStoreOUT sqlCreater_Art_UnStoreOut = new sqlCreater_Article_UncheckedStoreOUT(myWorkspaceId, myStockAdrId, (int)myGArtID);
+                    sql_MainSelection = sqlCreater_Art_UnStoreOut.sql_Statement;
+                    break;
+
+                //Nicht abgeschlossene Ein-/Ausgänge
+                case clsLager.const_Bestandsart_StoreIN_Unchecked:
+                    sqlCreater_Stocks_StoreIN_Unchecked sqlCreater_StoreIN_Un = new sqlCreater_Stocks_StoreIN_Unchecked(myWorkspaceId, myStockAdrId);
+                    sql_MainSelection = sqlCreater_StoreIN_Un.sql_Statement;
+                    strSqlMain = string.Empty;
+                    ////case "Nicht abgeschlossene Eingänge":
+                    //strSql = string.Empty;
+                    //strSql2 = GetOffeneEingänge();
+                    break;
+
+                //Nicht abgeschlossene Ein-/Ausgänge
+                //case "Nicht abgeschlossene Ausgänge":
+                case clsLager.const_Bestandsart_StoreOUT_Unchecked:
+                    sqlCreater_Stocks_StoreOUT_Unchecked sqlCreater_StoreOUT_Un = new sqlCreater_Stocks_StoreOUT_Unchecked(myWorkspaceId, myStockAdrId);
+                    sql_MainSelection = sqlCreater_StoreOUT_Un.sql_Statement;
+                    strSqlMain = string.Empty;
+                    //strSql = string.Empty;
+                    //strSql2 = GetOffeneAusgänge();
+                    break;
+                //Nicht platzierte Artikel
+                case "Nicht platzierte Artikel":
+                    sqlCreater_Stocks_ArticleNotPlaced sqlCreater_ArtNotPlaced = new sqlCreater_Stocks_ArticleNotPlaced(myWorkspaceId);
+                    sql_MainSelection = sqlCreater_ArtNotPlaced.sql_Statement;
+                    break;
+
+                case clsLager.const_Bestandsart_LagergeldTag:
+                    sqlCreater_Stocks_StockChargePerDay sqlCreater_StockChargDay = new sqlCreater_Stocks_StockChargePerDay(myWorkspaceId, myStockAdrId, (int)myGArtID, myDateFrom, myDateTo, myFreeStorageDays);
+                    sql_MainSelection = sqlCreater_StockChargDay.sql_Statement;
+                    break;
+            }
+
+
+            sql_Statement = strSqlMain;
+            sql_Statement += sql_MainSelection;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+         public string sql_Main
+        {
+            get
+            {
+                string sqlReturn = string.Empty;
+                /* Parameter: Stichtag (ISO-Format, sprachunabhängig) */
+                //DECLARE @Stichtag date = '2026-02-20';
+
+                sqlReturn = "SELECT "+
+                        "CAST(a.ID AS int) AS ArtikelID, "+
+                        "CAST(a.LVS_ID AS int) AS LVSNr, "+
+                        "a.Werksnummer, "+
+                        "a.Produktionsnummer, "+
+                        "a.Charge,"+
+                        "a.GArtID,"+
+                        "e.Bezeichnung AS Gut, "+
+                        "(Select ADR.ViewID FROM ADR WHERE ADR.ID=b.Auftraggeber) AS Auftraggeber, " +
+                        "CASE " +
+                            "WHEN a.LAusgangTableID>0 THEN (Select ADR.ViewID FROM ADR WHERE ADR.ID=c.Empfaenger) " +
+                            "ELSE (Select ADR.ViewID FROM ADR WHERE ADR.ID=b.Empfaenger) " +
+                            "END AS Empfaenger, " +
+                        "a.FreigabeAbruf AS Freigabe, " +
+                        "a.Anzahl, " +
+                        "a.Einheit, " +
+                        "a.Dicke, " +
+                        "a.Breite, " +
+                        "a.Laenge, " +
+                        "a.Hoehe, " +
+                        "a.Netto, " +
+                        "a.Brutto, " +
+                        "a.exBezeichnung, " +
+                        "a.Bestellnummer, " +
+                        "a.exMaterialnummer, " +
+                        "CAST(b.LEingangID as INT) AS Eingang, " +
+                        "b.Date AS Eingangsdatum, " +
+                        "CAST(MONTH(b.Date) as varchar)+'/'+CAST(YEAR(b.Date) as varchar)  AS Eingangsmonat, " +
+                        "b.LfsNr AS Lieferschein, " +
+                        "CAST(c.LAusgangID as INT) AS Ausgang, " +
+                        "c.Datum AS Ausgangsdatum, " +
+                        "CAST(MONTH(c.Datum) as varchar)+'/'+CAST(YEAR(c.Datum) as varchar)  AS Ausgangsmonat, " +
+                        "CASE " +
+                                "WHEN (c.Datum IS NULL) " +
+                                //"THEN CAST( DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) as INT)+1 " +
+                                "THEN CAST( DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) as INT)+1 " +
+                                "ELSE CAST( DATEDIFF(day, CAST(b.Date as Date),CAST(c.Datum as Date)) as INT)+1 " +
+                                "END AS Lagerdauer, " +
+                        "CASE " +
+                            "WHEN(a.LAusgangTableID > 0) " +
+                            "THEN " +
+                                "CASE " +
+                                    //"WHEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.Stichtag.Date.ToString() + "' as Date))> 0 " +
+                                    //"THEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.Stichtag.Date.ToString() + "' as Date))+1 " +
+                                    "WHEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date))> 0 " +
+                                    "THEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date))+1 " +
+                                    "ELSE DATEDIFF(day, CAST(b.Date as Date),CAST(c.Datum as date))+1 " +
+                                "end " +
+                            "ELSE " +
+                                //"DATEDIFF(day, CAST(b.Date as Date), CAST('" + this.Stichtag.Date.ToString() + "' as Date)) + 1 " +
+                                "DATEDIFF(day, CAST(b.Date as Date), CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) + 1 " +
+                            "END AS LagerdauerST, " +
+                        "Case " +
+                            "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe<>'') AND (Ebene<>'') AND (Platz<>'') THEN Werk+' | ' +Halle+' | '+Reihe+' | '+Ebene+' | '+Platz " +
+                            "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe<>'') AND (Ebene<>'') AND (Platz='')THEN Werk+' | ' +Halle+' | '+Reihe+' | '+Ebene " +
+                            "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe<>'') AND (Ebene='') AND (Platz='') THEN Werk+' | ' +Halle+' | '+Reihe " +
+                            "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe='') AND (Ebene='') AND (Platz='') THEN Werk+' | ' +Halle " +
+                            "WHEN (Werk<>'') AND (Halle='') AND (Reihe='') AND (Ebene='') AND (Platz='')THEN Werk " +
+                            "END AS Lagerort, " +
+                        "CASE " +
+                            "WHEN EAAusgangAltLVS='0' " +
+                            "THEN a.Info " +
+                            "ELSE SUBSTRING(a.Info,1, PATINDEX('%- LVS-Ausgang:%', a.Info)) " +
+                            "END AS LargerortAltLvs, " +
+                        "a.BKZ, " +
+                        "b.DirectDelivery AS DA, " +
+                        "b.Retoure AS RL, " +
+                        "b.Vorfracht AS VF, " +
+                        "CASE " +
+                            "WHEN b.LagerTransport IS NULL " +
+                            "THEN CAST(0 as BIT) " +
+                            "ELSE b.LagerTransport " +
+                            "END AS LT_Eingang, " +
+                        "CASE " +
+                            "WHEN c.LagerTransport IS NULL " +
+                            "THEN CAST(0 as BIT) " +
+                            "ELSE c.LagerTransport " +
+                            "END AS LT_Ausgang, "+
+                        "COALESCE(sch.Schaden, '') AS Schaden, " +
+                        "b.ID                      AS LEingangTableID,"+
+                        "c.ID                      AS LAusgangTableID, "+
+
+                        "a.Werk, " +
+                        "a.Halle, " +
+                        "a.Reihe, " +
+                        "a.Ebene, " +
+                        "a.Platz, " +
+                        "a.exInfo AS Bemerkung, " +
+                        "a.intInfo, " +
+                        "b.WaggonNo, " +
+                        "CAST(DATEPART(YYYY, a.LZZ) as varchar)+CAST(DATEPART(ISOWK, a.LZZ)as varchar) AS LZZ, " +
+                        "a.ArtIDRef, " +
+
+                        "CASE " +
+                            "WHEN (a.Laenge>0) " +
+                            "THEN CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))+'x'+CAST(a.Laenge as varchar(20)) " +
+                            "ELSE CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20)) " +
+                            "END as Abmessung, " +
+                        "(CASE WHEN IsVerpackt = 1 THEN 'verpackt' + char(10) ELSE '' END) + " +
+                                " (CASE WHEN ((exInfo IS NOT NULL) AND (exInfo <> '')) THEN exInfo + char(10) ELSE '' END ) as Bemerkungen, " +
+                        clsArtikel.GetStatusColumnSQL("c", "b") + " ," +
+                        " ' ' as iO, " +
+                        " ' ' as neueReihe, " +
+                        "a.EAEingangAltLVS, " +
+                        "a.EAAusgangAltLVS, " +
+                        "CASE " +
+                            "WHEN (a.GlowDate is null) then CAST('01.01.1900' as Date) " +
+                            "WHEN (a.GlowDate = CAST('01.01.0001' as datetime2)) then CAST('01.01.1900' as Date) " +
+                            "ELSE a.GlowDate "+
+                            "END as Glühdatum, " +
+                        "b.ID as LEingangTableID, " +
+                        "c.ID as LAusgnangTableID ";
+                return sqlReturn;
+            }
+        }
+
+        public static string Sql_Main_Communicator()
+        {
+            string sqlReturn = string.Empty;
+            sqlReturn = "Select " +
+                        "CAST(a.ID as INT) as ArtikelID " +
+                        ", CAST(a.LVS_ID as INT) as LVSNr " +
+                        ", a.Werksnummer" +
+                        ", a.Produktionsnummer" +
+                        ", a.Charge" +
+                        //", a.GArtId" +
+                        //", e.Bezeichnung as Gut" +
+                        ", (Select ADR.ViewID FROM ADR WHERE ADR.ID=b.Auftraggeber) as Auftraggeber" +
+                        ", CASE " +
+                            "WHEN a.LAusgangTableID>0 THEN (Select ADR.ViewID FROM ADR WHERE ADR.ID=c.Empfaenger) " +
+                            "ELSE (Select ADR.ViewID FROM ADR WHERE ADR.ID=b.Empfaenger) " +
+                            "END as Empfaenger" +
+                        //", a.FreigabeAbruf as Freigabe" +
+                        ", a.Anzahl" +
+                        ", a.Einheit" +
+                        ", a.Dicke" +
+                        ", a.Breite" +
+                        ", a.Laenge" +
+                        ", a.Hoehe" +
+                        ", a.Netto" +
+                        ", a.Brutto" +
+                        ", a.exBezeichnung" +
+                        ", a.Bestellnummer" +
+                        ", a.exMaterialnummer" +
+                        ", CAST(b.LEingangID as INT) as Eingang" +
+                        ", b.Date as 'Eingangsdatum'" +
+                        ", CAST(MONTH(b.Date) as varchar)+'/'+CAST(YEAR(b.Date) as varchar)  as Eingangsmonat" +
+                        ", b.LfsNr as Lieferschein";
+            //            ", CAST(c.LAusgangID as INT) as Ausgang" +
+            //            ", c.Datum as 'Ausgangsdatum'" +
+            //            ", CAST(MONTH(c.Datum) as varchar)+'/'+CAST(YEAR(c.Datum) as varchar)  as Ausgangsmonat" +
+            //            ", CASE " +
+            //                "WHEN (c.Datum IS NULL) " +
+            //                //"THEN CAST( DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) as INT)+1 " +
+            //                "THEN CAST( DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) as INT)+1 " +
+            //                "ELSE CAST( DATEDIFF(day, CAST(b.Date as Date),CAST(c.Datum as Date)) as INT)+1 " +
+            //                "END as Lagerdauer " +
+            //            ", CASE " +
+            //                "WHEN(a.LAusgangTableID > 0) " +
+            //                "THEN " +
+            //                    "CASE " +
+            //                        //"WHEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.Stichtag.Date.ToString() + "' as Date))> 0 " +
+            //                        //"THEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.Stichtag.Date.ToString() + "' as Date))+1 " +
+            //                        "WHEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date))> 0 " +
+            //                        "THEN DATEDIFF(day, CAST(b.Date as Date),CAST('" + this.dtDeadLine.Date.ToString() + "' as Date))+1 " +
+            //                        "ELSE DATEDIFF(day, CAST(b.Date as Date),CAST(c.Datum as date))+1 " +
+            //                    "end " +
+            //                "ELSE " +
+            //                    //"DATEDIFF(day, CAST(b.Date as Date), CAST('" + this.Stichtag.Date.ToString() + "' as Date)) + 1 " +
+            //                    "DATEDIFF(day, CAST(b.Date as Date), CAST('" + this.dtDeadLine.Date.ToString() + "' as Date)) + 1 " +
+            //                "END as LagerdauerST " +
+            //         ", Case " +
+            //            "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe<>'') AND (Ebene<>'') AND (Platz<>'') THEN Werk+' | ' +Halle+' | '+Reihe+' | '+Ebene+' | '+Platz " +
+            //            "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe<>'') AND (Ebene<>'') AND (Platz='')THEN Werk+' | ' +Halle+' | '+Reihe+' | '+Ebene " +
+            //            "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe<>'') AND (Ebene='') AND (Platz='') THEN Werk+' | ' +Halle+' | '+Reihe " +
+            //            "WHEN (Werk<>'') AND (Halle<>'') AND (Reihe='') AND (Ebene='') AND (Platz='') THEN Werk+' | ' +Halle " +
+            //            "WHEN (Werk<>'') AND (Halle='') AND (Reihe='') AND (Ebene='') AND (Platz='')THEN Werk " +
+            //            "END as Lagerort " +
+            //        ",CASE " +
+            //             "WHEN EAAusgangAltLVS='0' " +
+            //             "THEN a.Info " +
+            //             "ELSE SUBSTRING(a.Info,1, PATINDEX('%- LVS-Ausgang:%', a.Info)) " +
+            //             "END as LargerortAltLvs " +
+            //        ", a.BKZ " +
+            //        ", b.DirectDelivery as DA" +
+            //        ", b.Retoure as RL" +
+            //        ", b.Vorfracht as VF" +
+            //        ", CASE " +
+            //            "WHEN b.LagerTransport IS NULL " +
+            //            "THEN CAST(0 as BIT) " +
+            //            "ELSE b.LagerTransport " +
+            //            "END as LT_Eingang" +
+            //        ", CASE " +
+            //            "WHEN c.LagerTransport IS NULL " +
+            //            "THEN CAST(0 as BIT) " +
+            //            "ELSE c.LagerTransport " +
+            //            "END as LT_Ausgang";
+            //sqlReturn +=                // 
+            //            ", a.Werk" +
+            //            ", a.Halle" +
+            //            ", a.Reihe" +
+            //            ", a.Ebene" +
+            //            ", a.Platz" +
+            //            ", a.exInfo as Bemerkung" +
+            //            ", a.intInfo " +
+            //            ", b.WaggonNo" +
+            //            ", CAST(DATEPART(YYYY, a.LZZ) as varchar)+CAST(DATEPART(ISOWK, a.LZZ)as varchar) as LZZ" +
+            //            ", a.ArtIDRef" +
+            //            //",CASE WHEN (SELECT COUNT (*) " +
+            //            //    " FROM Artikel a1 " +
+            //            //    " INNER JOIN LEingang c1 ON c1.ID=a1.LEingangTableID " +
+            //            //    " INNER JOIN SchadenZuweisung d1 ON d1.ArtikelID=a1.ID " +
+            //            //    " INNER JOIN Schaeden e1 ON e1.ID=d1.SchadenID " +
+            //            //    " WHERE a1.ID=a.ID) > 0 " +
+            //            //  " THEN (SELECT e2.Bezeichnung + char(10) " +
+            //            //      " FROM Artikel a2 " +
+            //            //      " INNER JOIN LEingang c2 ON c2.ID=a2.LEingangTableID " +
+            //            //      " LEFT OUTER JOIN SchadenZuweisung d2 ON d2.ArtikelID=a2.ID " +
+            //            //      " LEFT OUTER JOIN Schaeden e2 ON e2.ID=d2.SchadenID " +
+            //            //      " WHERE a2.ID=a.ID " +
+            //            //      " FOR XML PATH ('')) " +
+            //            //  " ELSE '' " +
+            //            //  " END as Schaden " +
+            //            //",(Select CAST(s.Datum as datetime) FROM Sperrlager s WHERE s.BKZ='IN' AND s.ArtikelID=a.ID) as SPL_IN " +
+            //            //",(Select CAST(s.Datum as datetime) FROM Sperrlager s WHERE s.BKZ='OUT' AND s.ArtikelID=a.ID) as SPL_OUT " +
+            //            " , CASE " +
+            //            " 	WHEN (a.Laenge>0) " +
+            //                    " THEN CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))+'x'+CAST(a.Laenge as varchar(20)) " +
+            //                " 	ELSE CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20)) " +
+            //                " END as Abmessung " +
+            //                " ,(CASE WHEN IsVerpackt = 1 THEN 'verpackt' + char(10) ELSE '' END) + " +
+            //                " (CASE WHEN ((exInfo IS NOT NULL) AND (exInfo <> '')) THEN exInfo + char(10) ELSE '' END ) as Bemerkungen " +
+            //            ", " + clsArtikel.GetStatusColumnSQL("c", "b") + " " +
+            //            ", ' ' as iO " +
+            //            ", ' ' as neueReihe " +
+            //            ", a.EAEingangAltLVS " +
+            //            ", a.EAAusgangAltLVS " +
+            //            ", a.GlowDate as Glühdatum " +
+            //            ", b.ID as LEingangTableID " +
+            //            ", c.ID as LAusgnangTableID ";
+
+            return sqlReturn;
+        }
+
+
+
+    }
+}

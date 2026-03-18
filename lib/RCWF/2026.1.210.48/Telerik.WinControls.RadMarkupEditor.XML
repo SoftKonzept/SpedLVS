@@ -1,0 +1,1608 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.WinControls.RadMarkupEditor</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.WinControls.UI.AddHyperlinkDialog">
+            <summary>
+            Represents a dialog for adding hyperlinks in the RadMarkupEditor.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.AddHyperlinkDialog.OnShown(System.EventArgs)">
+            <summary>
+            Called when the dialog is shown.
+            </summary>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.AddHyperlinkDialog.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.AddHyperlinkDialog"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.AddHyperlinkDialog.URI">
+            <summary>
+            Gets the URI entered by the user.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.AddHyperlinkDialog.LocalizeForm">
+            <summary>
+            Localizes the form's text elements using the current localization provider.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.AddHyperlinkDialog.AddHyperlinkDialog_Load(System.Object,System.EventArgs)">
+            <summary>
+            Handles the Load event of the AddHyperlinkDialog.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.AddHyperlinkDialog.radComboBox1_SelectedValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles the SelectedValueChanged event of the protocol combo box.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="F:Telerik.WinControls.UI.AddHyperlinkDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.AddHyperlinkDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.AddHyperlinkDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.CleanAttributesFilter">
+            <summary>
+            A filter that converts deprecated HTML attributes to CSS properties for XHTML compliance.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.CleanAttributesFilter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.CleanAttributesFilter"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.CleanAttributesFilter.GetHtmlContent(System.Object)">
+            <summary>
+            Processes HTML content by converting deprecated attributes to CSS properties.
+            </summary>
+            <param name="contentElement">The HTML content element to process.</param>
+            <returns>The processed content with attributes converted to CSS.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.CleanAttributesFilter.GetDesignContent(System.Object)">
+            <summary>
+            Processes design content by converting CSS properties back to HTML attributes.
+            </summary>
+            <param name="contentElement">The design content element to process.</param>
+            <returns>The processed content with CSS converted to attributes.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.CleanAttributesFilter.ConvertAttribute(mshtml.IHTMLElement,System.String,System.Object)">
+            <summary>
+            Converts an HTML attribute to its equivalent CSS property.
+            </summary>
+            <param name="obj">The HTML element to modify.</param>
+            <param name="objAttribute">The attribute name to convert.</param>
+            <param name="cssProperty">The CSS property name to set.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.CleanAttributesFilter.ConvertCSSProperty(mshtml.IHTMLElement,System.String,System.String)">
+            <summary>
+            Converts a CSS property back to its equivalent HTML attribute.
+            </summary>
+            <param name="obj">The HTML element to modify.</param>
+            <param name="objAttribute">The attribute name to set.</param>
+            <param name="cssProperty">The CSS property name to convert.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.CleanAttributesFilter.ConvertTypeAttribute(mshtml.IHTMLElement)">
+            <summary>
+            Converts type attribute to list-style-type CSS property for list elements.
+            </summary>
+            <param name="obj">The list element to modify.</param>
+        </member>
+        <member name="T:Telerik.WinControls.UI.Commands">
+            <summary>
+            Contains constant values for HTML editor commands used in the RadMarkupEditor.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.FontName">
+            <summary>
+            Command for setting font name.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.FontSize">
+            <summary>
+            Command for setting font size.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.ForeColor">
+            <summary>
+            Command for setting text foreground color.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.BackColor">
+            <summary>
+            Command for setting text background color.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.OrderedList">
+            <summary>
+            Command for creating ordered lists.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.UnorderedList">
+            <summary>
+            Command for creating unordered lists.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Bold">
+            <summary>
+            Command for applying bold formatting.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Italic">
+            <summary>
+            Command for applying italic formatting.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Underline">
+            <summary>
+            Command for applying underline formatting.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Left">
+            <summary>
+            Command for left text alignment.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Center">
+            <summary>
+            Command for center text alignment.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Right">
+            <summary>
+            Command for right text alignment.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.None">
+            <summary>
+            Command for removing text alignment.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Cut">
+            <summary>
+            Command for cutting text to clipboard.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Copy">
+            <summary>
+            Command for copying text to clipboard.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Paste">
+            <summary>
+            Command for pasting text from clipboard.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Delete">
+            <summary>
+            Command for deleting selected text.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Undo">
+            <summary>
+            Command for undoing the last action.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Redo">
+            <summary>
+            Command for redoing the last undone action.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Indent">
+            <summary>
+            Command for increasing text indentation.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Outdent">
+            <summary>
+            Command for decreasing text indentation.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Mode">
+            <summary>
+            Command for switching editor mode.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.Hyperlink">
+            <summary>
+            Command for creating hyperlinks.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.Commands.InsertImage">
+            <summary>
+            Command for inserting images.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.ConvertFontToSpanFilter">
+            <summary>
+            A filter that converts deprecated font tags to CSS-compliant span tags and vice versa.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ConvertFontToSpanFilter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.ConvertFontToSpanFilter"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ConvertFontToSpanFilter.GetHtmlContent(System.Object)">
+            <summary>
+            Converts FONT tags to SPAN tags with appropriate CSS styles for HTML output.
+            </summary>
+            <param name="content">The HTML content containing font tags to convert.</param>
+            <returns>The processed content with FONT tags converted to SPAN tags.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ConvertFontToSpanFilter.GetDesignContent(System.Object)">
+            <summary>
+            Converts SPAN tags back to FONT tags for design view compatibility.
+            </summary>
+            <param name="content">The design content containing span tags to convert.</param>
+            <returns>The processed content with SPAN tags converted to FONT tags.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ConvertFontToSpanFilter.RemoveElementStyleAttribute(mshtml.IHTMLElement,System.String)">
+            <summary>
+            Removes a specific style attribute from an HTML element.
+            </summary>
+            <param name="element">The HTML element to modify.</param>
+            <param name="styleAttributeName">The name of the style attribute to remove.</param>
+        </member>
+        <member name="T:Telerik.WinControls.UI.EditorMode">
+            <summary>
+            Specifies the display mode for the markup editor.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.EditorMode.Design">
+            <summary>
+            Visual design mode where users can edit content using a WYSIWYG interface.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.EditorMode.Html">
+            <summary>
+            HTML source mode where users can edit the raw HTML markup.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.EditorToolbar">
+            <summary>
+            The toolbar of the control
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.Filter">
+            <summary>
+            Represents a base filter for HTML markup processing in the RadMarkUpEditor.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.Filter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.Filter"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Filter.Enabled">
+            <summary>
+            Gets or sets a value indicating whether the filter is enabled.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Filter.IsDom">
+            <summary>
+            Gets or sets a value indicating whether this filter operates on DOM elements.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Filter.Description">
+            <summary>
+            Gets or sets the description of the filter.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Filter.Name">
+            <summary>
+            Gets or sets the name of the filter.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.Filter.GetHtmlContent(System.Object)">
+            <summary>
+            Processes HTML content and returns the filtered result.
+            </summary>
+            <param name="content">The HTML content to process.</param>
+            <returns>The processed HTML content.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.Filter.GetDesignContent(System.Object)">
+            <summary>
+            Processes design content and returns the filtered result.
+            </summary>
+            <param name="content">The design content to process.</param>
+            <returns>The processed design content.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.Filter.GetElements(mshtml.IHTMLElement2,System.String)">
+            <summary>
+            Gets elements by tag name from the specified content element.
+            </summary>
+            <param name="contentElement">The content element to search in.</param>
+            <param name="tagName">The tag name to search for.</param>
+            <returns>A collection of HTML elements matching the tag name.</returns>
+        </member>
+        <member name="T:Telerik.WinControls.UI.FiltersManager">
+            <summary>
+            Manages a collection of markup filters for HTML content processing in RadMarkUpEditor.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FiltersManager.#ctor(mshtml.IHTMLDocument2)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.FiltersManager"/> class.
+            </summary>
+            <param name="document">The HTML document to associate with the filters.</param>
+        </member>
+        <member name="P:Telerik.WinControls.UI.FiltersManager.EnableXhtmlFilter">
+            <summary>
+            Gets or sets a value indicating whether XHTML filtering is enabled.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FiltersManager.Clear">
+            <summary>
+            Clears all filters from the collection.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FiltersManager.Add(Telerik.WinControls.UI.Filter)">
+            <summary>
+            Adds a filter to the collection.
+            </summary>
+            <param name="filter">The filter to add.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FiltersManager.AddAt(Telerik.WinControls.UI.Filter,System.Int32)">
+            <summary>
+            Inserts a filter at the specified index.
+            </summary>
+            <param name="filter">The filter to insert.</param>
+            <param name="index">The zero-based index at which to insert the filter.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FiltersManager.Remove(Telerik.WinControls.UI.Filter)">
+            <summary>
+            Removes a filter from the collection.
+            </summary>
+            <param name="filter">The filter to remove.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FiltersManager.RemoveAt(System.Int32)">
+            <summary>
+            Removes the filter at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the filter to remove.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FiltersManager.GetFilterAt(System.Int32)">
+            <summary>
+            Gets the filter at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the filter to get.</param>
+            <returns>The filter at the specified index.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FiltersManager.GetFilterByName(System.String)">
+            <summary>
+            Gets a filter by its name.
+            </summary>
+            <param name="name">The name of the filter to find.</param>
+            <returns>The filter with the specified name, or null if not found.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FiltersManager.GetDesignContent(System.String)">
+            <summary>
+            Gets the design content as a string by applying the relevant filters.
+            </summary>
+            <param name="contentAreaHtml">The HTML content to process.</param>
+            <returns>The processed design content.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FiltersManager.GetDesignContentDom(mshtml.IHTMLElement)">
+            <summary>
+            Gets the design content as an HTML element by applying the relevant DOM filters.
+            </summary>
+            <param name="contentArea">The HTML element to process.</param>
+            <returns>The processed HTML element.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FiltersManager.GetHtmlContent(mshtml.IHTMLElement)">
+            <summary>
+            Gets the HTML content as a string by applying the relevant filters to the DOM element.
+            </summary>
+            <param name="contentAreaElement">The HTML element to process.</param>
+            <returns>The processed HTML content as a string.</returns>
+        </member>
+        <member name="T:Telerik.WinControls.UI.FilterUtils">
+            <summary>
+            Provides utility methods for HTML element manipulation and filtering operations in RadMarkUpEditor.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FilterUtils.isNaN(System.Object)">
+            <summary>
+            Determines whether the specified value is not a number.
+            </summary>
+            <param name="value">The value to check.</param>
+            <returns>True if the value is not a number; otherwise, false.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FilterUtils.Children(mshtml.IHTMLElement)">
+            <summary>
+            Gets the children collection of the specified HTML element.
+            </summary>
+            <param name="element">The HTML element whose children to retrieve.</param>
+            <returns>A collection of child elements, or null if the element is null.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FilterUtils.ChildrenLength(mshtml.IHTMLElement)">
+            <summary>
+            Gets the length of the children collection for the specified HTML element.
+            </summary>
+            <param name="element">The HTML element whose children count to retrieve.</param>
+            <returns>The number of child elements, or 0 if the element is null or has no children.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FilterUtils.FirstChild(mshtml.IHTMLElement)">
+            <summary>
+            Gets the first child element of the specified HTML element.
+            </summary>
+            <param name="element">The HTML element whose first child to retrieve.</param>
+            <returns>The first child element, or null if the element is null or has no children.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FilterUtils.SetElementInnerHtml(mshtml.IHTMLElement,System.String)">
+            <summary>
+            Sets the inner HTML of an element, handling browser-specific issues.
+            </summary>
+            <param name="element">The HTML element to set the inner HTML for.</param>
+            <param name="strContent">The HTML content to set.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FilterUtils.RemoveNode(mshtml.IHTMLDOMNode)">
+            <summary>
+            Removes a node from the DOM while moving all its children to the parent node.
+            </summary>
+            <param name="node">The DOM node to remove.</param>
+            <returns>The parent node, or null if the operation failed.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FilterUtils.GetOuterHtml(mshtml.IHTMLElement)">
+            <summary>
+            Gets the outer HTML of the specified HTML element.
+            </summary>
+            <param name="element">The HTML element whose outer HTML to retrieve.</param>
+            <returns>The outer HTML of the element.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FilterUtils.SelectElement(mshtml.IHTMLDocument2,mshtml.IHTMLElement)">
+            <summary>
+            Selects the specified HTML element in the document.
+            </summary>
+            <param name="oDocument">The HTML document containing the element.</param>
+            <param name="oElement">The HTML element to select.</param>
+            <returns>True if the element was successfully selected; otherwise, false.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FilterUtils.GetCurrentStyle(mshtml.IHTMLElement,System.String,System.Object)">
+            <summary>
+            Gets the current style value for the specified attribute of an HTML element.
+            </summary>
+            <param name="element">The HTML element to get the style from.</param>
+            <param name="attribute">The style attribute name to retrieve.</param>
+            <param name="defaultValue">The default value to return if the attribute is not found.</param>
+            <returns>The style value, or the default value if not found.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FilterUtils.GetSelectedElement(mshtml.IHTMLDocument2)">
+            <summary>
+            Gets the currently selected HTML element in the document.
+            </summary>
+            <param name="document">The HTML document to get the selection from.</param>
+            <returns>The selected HTML element, or null if no element is selected or an error occurs.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FilterUtils.MergeElementAttributes(mshtml.IHTMLElement,mshtml.IHTMLElement2)">
+            <summary>
+            Merges attributes from one HTML element to another.
+            </summary>
+            <param name="oSource">The source HTML element to copy attributes from.</param>
+            <param name="oTarget">The target HTML element to copy attributes to.</param>
+        </member>
+        <member name="T:Telerik.WinControls.UI.FixEnclosingP">
+            <summary>
+            A filter that removes unnecessary enclosing paragraph tags from HTML content.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FixEnclosingP.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.FixEnclosingP"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FixEnclosingP.GetHtmlContent(System.Object)">
+            <summary>
+            Processes HTML content to remove unnecessary enclosing paragraph tags.
+            </summary>
+            <param name="contentElement">The HTML content element to process.</param>
+            <returns>The processed content with unnecessary paragraph tags removed.</returns>
+        </member>
+        <member name="T:Telerik.WinControls.UI.FixNestedLists">
+            <summary>
+            A filter that fixes nested list structures to produce valid XHTML markup.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FixNestedLists.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.FixNestedLists"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FixNestedLists.FixLists(mshtml.IHTMLElement,System.String)">
+            <summary>
+            Fixes nested list structures by moving nested lists into proper list item containers.
+            </summary>
+            <param name="contentElement">The content element containing the lists.</param>
+            <param name="listTag">The tag name of the list type to fix (OL or UL).</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FixNestedLists.GetHtmlContent(System.Object)">
+            <summary>
+            Processes HTML content to fix nested list structures.
+            </summary>
+            <param name="content">The HTML content to process.</param>
+            <returns>The processed HTML content with fixed nested lists.</returns>
+        </member>
+        <member name="T:Telerik.WinControls.UI.FixUlBoldItalic">
+            <summary>
+            A filter that fixes underline, bold, and italic formatting by converting tags to spans with CSS.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FixUlBoldItalic.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.FixUlBoldItalic"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FixUlBoldItalic.GetHtmlContent(System.Object)">
+            <summary>
+            Processes HTML content and returns the filtered result.
+            </summary>
+            <param name="contentElement">The HTML content element to process.</param>
+            <returns>The processed HTML content element.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.FixUlBoldItalic.GetDesignContent(System.Object)">
+            <summary>
+            Processes design content and returns the filtered result.
+            </summary>
+            <param name="contentElement">The design content element to process.</param>
+            <returns>The processed design content element.</returns>
+        </member>
+        <member name="T:Telerik.WinControls.UI.HtmlCommand">
+            <summary>
+            Represents a base command for HTML editing operations in the markup editor.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.HtmlCommand.Appropriate">
+            <summary>
+            Gets a value indicating whether the command is appropriate for the current context.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.HtmlCommand.Enabled">
+            <summary>
+            Gets or sets a value indicating whether the command is enabled.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.HtmlCommand.Document">
+            <summary>
+            Gets the HTML document associated with this command.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.HtmlCommand.Command">
+            <summary>
+            Gets the command string.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.HtmlCommand.Editor">
+            <summary>
+            Gets the markup editor instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.HtmlCommand.#ctor(System.String,Telerik.WinControls.UI.IRadMarkupEditor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.HtmlCommand"/> class.
+            </summary>
+            <param name="command">The HTML command string.</param>
+            <param name="editor">The markup editor instance.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.HtmlCommand.Execute">
+            <summary>
+            Executes the command without parameters.
+            </summary>
+            <returns>True if the command was executed successfully; otherwise, false.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.HtmlCommand.Execute(System.Object)">
+            <summary>
+            Executes the command with the specified value.
+            </summary>
+            <param name="value">The command parameter value.</param>
+            <returns>True if the command was executed successfully; otherwise, false.</returns>
+        </member>
+        <member name="T:Telerik.WinControls.UI.IndentCommand">
+            <summary>
+            Represents a command for indenting/outdenting text in lists.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.ClipboardCommand">
+            <summary>
+            Represents a command for clipboard operations (cut, copy, paste).
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ClipboardCommand.#ctor(System.String,Telerik.WinControls.UI.IRadMarkupEditor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.ClipboardCommand"/> class.
+            </summary>
+            <param name="command">The clipboard command string.</param>
+            <param name="editor">The markup editor instance.</param>
+        </member>
+        <member name="P:Telerik.WinControls.UI.ClipboardCommand.Appropriate">
+            <summary>
+            Gets a value indicating whether the command is appropriate for the current context.
+            Clipboard commands are always appropriate.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.HtmlCommandWithValue">
+            <summary>
+            Represents an HTML command that can work with values.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.HtmlCommandWithValue.#ctor(System.String,Telerik.WinControls.UI.IRadMarkupEditor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.HtmlCommandWithValue"/> class.
+            </summary>
+            <param name="command">The HTML command string.</param>
+            <param name="editor">The markup editor instance.</param>
+        </member>
+        <member name="P:Telerik.WinControls.UI.HtmlCommandWithValue.HasValue">
+            <summary>
+            Gets a value indicating whether the command has a determinate value.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.HtmlCommandWithValue.Value">
+            <summary>
+            Gets the current value of the command.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.RealFontSizeCommand">
+            <summary>
+            Represents a command for setting real font sizes with various units.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.RealFontSizeCommand.MarkedSelection">
+            <summary>
+            Represents the result of marking a selection for font formatting operations.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RealFontSizeCommand.MarkedSelection.MarkedElements">
+            <summary>
+            Gets or sets the collection of marked HTML elements.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RealFontSizeCommand.MarkedSelection.NewElements">
+            <summary>
+            Gets or sets the collection of newly created HTML elements.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.ColorCommand">
+            <summary>
+            Represents a command for setting and getting color values.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ColorCommand.#ctor(System.String,Telerik.WinControls.UI.IRadMarkupEditor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.ColorCommand"/> class.
+            </summary>
+            <param name="command">The color command string.</param>
+            <param name="editor">The markup editor instance.</param>
+        </member>
+        <member name="P:Telerik.WinControls.UI.ColorCommand.Value">
+            <summary>
+            Gets the current color value of the command.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ColorCommand.ConvertToColor(System.String)">
+            <summary>
+            Convert the custom integer (B G R) format to a color object.
+            </summary>
+            <param name="clrs">the custom color as a string</param>
+            <returns>the color</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ColorCommand.Execute(System.Object)">
+            <summary>
+            Executes the color command with the specified color value.
+            </summary>
+            <param name="value">The color value to apply.</param>
+            <returns>True if the command was executed successfully; otherwise, false.</returns>
+        </member>
+        <member name="T:Telerik.WinControls.UI.EditStackCommand">
+            <summary>
+            Represents a command for undo/redo operations with edit stack functionality.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.EditStackCommand.#ctor(System.String,Telerik.WinControls.UI.IRadMarkupEditor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.EditStackCommand"/> class.
+            </summary>
+            <param name="command">The edit stack command string.</param>
+            <param name="editor">The markup editor instance.</param>
+        </member>
+        <member name="P:Telerik.WinControls.UI.EditStackCommand.Text">
+            <summary>
+            Gets the descriptive text for the command.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.NewLineCommand">
+            <summary>
+            Represents a command for inserting line breaks.
+            </summary>   
+        </member>
+        <member name="T:Telerik.WinControls.UI.HyperlinkCommand">
+            <summary>
+            Represents a command for creating and managing hyperlinks.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.HyperlinkCommand.#ctor(System.String,Telerik.WinControls.UI.IRadMarkupEditor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.HyperlinkCommand"/> class.
+            </summary>
+            <param name="command">The hyperlink command string.</param>
+            <param name="editor">The markup editor instance.</param>
+        </member>
+        <member name="P:Telerik.WinControls.UI.HyperlinkCommand.Appropriate">
+            <summary>
+            Gets a value indicating whether the command is appropriate for the current context.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.HyperlinkCommand.Value">
+            <summary>
+            Gets the current hyperlink value.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.HyperlinkCommand.Execute(System.Object)">
+            <summary>
+            Executes the hyperlink command with the specified URL.
+            </summary>
+            <param name="value">The URL value for the hyperlink.</param>
+            <returns>True if the command was executed successfully; otherwise, false.</returns>
+        </member>
+        <member name="T:Telerik.WinControls.UI.ImageCommand">
+            <summary>
+            Represents a command for inserting images.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ImageCommand.#ctor(System.String,Telerik.WinControls.UI.IRadMarkupEditor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.ImageCommand"/> class.
+            </summary>
+            <param name="command">The image command string.</param>
+            <param name="editor">The markup editor instance.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ImageCommand.Execute(System.Object)">
+            <summary>
+            Executes the image command with the specified image source.
+            </summary>
+            <param name="value">The image source URL.</param>
+            <returns>True if the command was executed successfully; otherwise, false.</returns>
+        </member>
+        <member name="T:Telerik.WinControls.UI.ModeCommand">
+            <summary>
+            Represents a command for switching between editor modes.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.IHtmlBox.Value">
+            <summary>
+            Get/Set the contents of the document Body, in html.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.IRadMarkupEditor">
+            <summary>
+            Defines the contract for RadMarkupEditor implementations.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.IRadMarkupEditor.InvokeUpdateUI">
+            <summary>
+            Invokes the UI update operation to refresh the editor's state.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.IRadMarkupEditor.Value">
+            <summary>
+            Gets or sets the HTML markup value of the editor.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.IRadMarkupEditor.ChangeModeInternal(Telerik.WinControls.UI.EditorMode)">
+            <summary>
+            Changes the editor mode internally between Design and HTML view.
+            </summary>
+            <param name="value">The editor mode to switch to.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.IRadMarkupEditor.InsertHtml(System.String)">
+            <summary>
+            Inserts HTML content at the current cursor position.
+            </summary>
+            <param name="html">The HTML content to insert.</param>
+        </member>
+        <member name="P:Telerik.WinControls.UI.IRadMarkupEditor.DesignViewDomDocument">
+            <summary>
+            Gets the DOM document associated with the design view.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.RadMarkupEditor">
+            <summary>
+            A rich text markup editor control that provides a ribbon-based user interface for text formatting and HTML editing.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupEditor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.RadMarkupEditor"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupEditor.LocalizeForm">
+            <summary>
+            Applies the current localization settings to all UI elements in the editor.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupEditor.InvokeUpdateUI">
+            <summary>
+            Refreshes the user interface elements based on the current state of the editor.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.Value">
+            <summary>
+            Gets or sets the HTML content being edited in the markup editor.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.RawValue">
+            <summary>
+            Gets the complete HTML content including root HTML tags, with all symbols properly escaped.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupEditor.ChangeModeInternal(Telerik.WinControls.UI.EditorMode)">
+            <summary>
+            Changes the internal editing mode of the editor.
+            </summary>
+            <param name="value">The editing mode to set.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupEditor.InsertHtml(System.String)">
+            <summary>
+            Inserts HTML content at the current cursor position.
+            </summary>
+            <param name="html">The HTML content to insert.</param>
+            <exception cref="T:System.NotImplementedException">This method is not currently implemented.</exception>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.DesignViewDomDocument">
+            <summary>
+            Gets the underlying HTML document object model of the design view.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.DefaultFont">
+            <summary>
+            Gets or sets the default font used for text in the markup editor.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.RibbonBar">
+            <summary>
+            Gets the ribbon bar control used in the editor's interface.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.IsValueSaved">
+            <summary>
+            Gets a value indicating whether the current content has been saved.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.CopyButton">
+            <summary>
+            Gets the copy button element in the design view.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.CopyButton2">
+            <summary>
+            Gets the copy button element in the markup view.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.PasteButton">
+            <summary>
+            Gets the paste button element in the design view.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.PasteButton2">
+            <summary>
+            Gets the paste button element in the markup view.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.CutButton">
+            <summary>
+            Gets the cut button element in the design view.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.CutButton2">
+            <summary>
+            Gets the cut button element in the markup view.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.BoldButton">
+            <summary>
+            Gets the button element for applying bold formatting.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.ItalicButton">
+            <summary>
+            Gets the button element for applying italic formatting.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.UnderlineButton">
+            <summary>
+            Gets the button element for applying underline formatting.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.ForeColorButton">
+            <summary>
+            Gets the button element for changing text color.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.BackColorButton">
+            <summary>
+            Gets the button element for changing text background color.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.UnorderedListButton">
+            <summary>
+            Gets the button element for creating or formatting an unordered (bulleted) list.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.OrderedListButton">
+            <summary>
+            Gets the button element for creating or formatting an ordered (numbered) list.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.HyperlinkButton">
+            <summary>
+            Gets the button element for inserting or editing a hyperlink.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.ApplyButton">
+            <summary>
+            Gets the main apply button element that commits changes and closes the editor.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.SmallApplyButton">
+            <summary>
+            Gets the small apply button element in the quick access toolbar.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.UndoButton">
+            <summary>
+            Gets the button element for undoing the last operation.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.RedoButton">
+            <summary>
+            Gets the button element for redoing the last undone operation.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.FontFamilyDropDownList">
+            <summary>
+            Gets the dropdown list element for selecting font families.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupEditor.FontSizeDropDownList">
+            <summary>
+            Gets the dropdown list element for selecting font sizes.
+            </summary>
+        </member>
+        <member name="E:Telerik.WinControls.UI.RadMarkupEditor.EditorClosed">
+            <summary>
+            Occurs when the editor is closed after applying changes.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupEditor.OnBodyInteraction(System.Object,System.Windows.Forms.HtmlElementEventArgs)">
+            <summary>
+            Handles HTML element events from the document body and updates the UI accordingly.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The HTML element event arguments.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupEditor.OnBodyInteraction">
+            <summary>
+            Updates the UI controls to reflect the current state of the selection in the editor.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditor.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupEditor.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupEditor.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.RadMarkupEditorLocalizationProvider">
+            <summary>
+            Provides localized strings for RadMarkupEditor control.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupEditorLocalizationProvider.GetLocalizedString(System.String)">
+            <summary>
+            Gets the localized string for the specified identifier.
+            </summary>
+            <param name="id">The string identifier to localize.</param>
+            <returns>The localized string, or an empty string if the identifier is not found.</returns>
+        </member>
+        <member name="T:Telerik.WinControls.UI.RadMarkupEditorStringId">
+            <summary>
+            Contains string identifiers for localizable strings in RadMarkupEditor.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorTitle">
+            <summary>
+            String identifier for the markup editor title.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorUndoString">
+            <summary>
+            String identifier for the undo command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorRedoString">
+            <summary>
+            String identifier for the redo command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorCopyString">
+            <summary>
+            String identifier for the copy command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorCutString">
+            <summary>
+            String identifier for the cut command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorPasteString">
+            <summary>
+            String identifier for the paste command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorBoldString">
+            <summary>
+            String identifier for the bold formatting command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorItalicString">
+            <summary>
+            String identifier for the italic formatting command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorUnderlineString">
+            <summary>
+            String identifier for the underline formatting command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorClipboardString">
+            <summary>
+            String identifier for the clipboard group.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorFontString">
+            <summary>
+            String identifier for the font group.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorFontColorString">
+            <summary>
+            String identifier for the font color command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorFontComboString">
+            <summary>
+            String identifier for the font name combo box.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorFontSizeComboString">
+            <summary>
+            String identifier for the font size combo box.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorHighlightString">
+            <summary>
+            String identifier for the highlight command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorBulletsString">
+            <summary>
+            String identifier for the bullets command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorUnorderedListString">
+            <summary>
+            String identifier for the unordered list command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorListsString">
+            <summary>
+            String identifier for the lists group.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorNumberingString">
+            <summary>
+            String identifier for the numbering command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorOrderedListString">
+            <summary>
+            String identifier for the ordered list command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorLinksString">
+            <summary>
+            String identifier for the links group.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorLinkString">
+            <summary>
+            String identifier for the link command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorHyperlinkString">
+            <summary>
+            String identifier for the hyperlink command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorApplyString">
+            <summary>
+            String identifier for the apply command.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorDesignString">
+            <summary>
+            String identifier for the design tab.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.MarkupEditorMarkupString">
+            <summary>
+            String identifier for the markup tab.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.RibbonBarQuickAccessAboveItemText">
+            <summary>
+            String identifier for the ribbon quick access above item text.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.RibbonBarQuickAccessBelowItemText">
+            <summary>
+            String identifier for the ribbon quick access below item text.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.RibbonBarMinimizeItemText">
+            <summary>
+            String identifier for the ribbon minimize item text.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.RibbonBarMaximizeItemText">
+            <summary>
+            String identifier for the ribbon maximize item text.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.AddHyperLinkDialogTitle">
+            <summary>
+            String identifier for the add hyperlink dialog title.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.AddHyperlinkDialogCancel">
+            <summary>
+            String identifier for the add hyperlink dialog cancel button.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.AddHyperlinkDialogOK">
+            <summary>
+            String identifier for the add hyperlink dialog OK button.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.AddHyperlinkURI">
+            <summary>
+            String identifier for the hyperlink URI field.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkupEditorStringId.AddHyperlinkType">
+            <summary>
+            String identifier for the hyperlink type field.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkUpEditorWithToolbarInterface.Value">
+            <summary>
+            Get/Set the contents of the document Body, in html.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.RadMarkUpEditorWithToolbarInterface.EventKeys">
+            <summary>
+            Contains event keys used for managing editor events.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkUpEditorWithToolbarInterface.EventKeys.UpdateUI">
+            <summary>
+            Event key for UI update events.
+            </summary>
+        </member>
+        <member name="F:Telerik.WinControls.UI.RadMarkUpEditorWithToolbarInterface.EventKeys.HtmlModeValueChange">
+            <summary>
+            Event key for HTML mode value change events.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.IEditorView">
+            <summary>
+            Defines the contract for editor view implementations.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.IEditorView.Value">
+            <summary>
+            Gets or sets the HTML value of the editor.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.IEditorView.Text">
+            <summary>
+            Gets the plain text content of the editor.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.IEditorView.SelectedText">
+            <summary>
+            Gets the currently selected text.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.IEditorView.SelectionStart">
+            <summary>
+            Gets or sets the start position of the text selection.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.IEditorView.SelectionLength">
+            <summary>
+            Gets or sets the length of the text selection.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.IEditorView.SelectAll">
+            <summary>
+            Selects all text in the editor.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.IEditorView.InsertText(System.String,System.Int32)">
+            <summary>
+            Inserts text at the current position with the specified selection offset.
+            </summary>
+            <param name="text">The text to insert.</param>
+            <param name="selectionOffset">The offset for the selection position after insertion.</param>
+        </member>
+        <member name="T:Telerik.WinControls.UI.HtmlView">
+            <summary>
+            Represents the HTML source view of the markup editor.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.DesignView">
+            <summary>
+            Represents the visual design view of the markup editor using a WebBrowser control.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.DesignView.RawValue">
+            <summary>
+            HtmlValue without to apply the Filters (XHTML, etc.)
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.DesignView.SelectAll">
+            <summary>
+            Selects the whole text.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.RemoveExtraBrakes">
+            <summary>
+            A filter that removes extra line breaks from HTML content within certain tags.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RemoveExtraBrakes.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.RemoveExtraBrakes"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RemoveExtraBrakes.GetHtmlContent(System.Object)">
+            <summary>
+            Processes HTML content to remove extra line break tags within certain elements.
+            </summary>
+            <param name="content">The HTML content string to process.</param>
+            <returns>The processed content with extra line breaks removed.</returns>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RemoveExtraBrakes.PerformStripping(System.String)">
+            <summary>
+            Performs the actual stripping of extra line break tags from the HTML content.
+            </summary>
+            <param name="initContent">The initial HTML content to process.</param>
+            <returns>The processed HTML content with extra line breaks removed.</returns>
+        </member>
+        <member name="T:Telerik.WinControls.UI.ToggleToolStripButton">
+            <summary>
+            Represents a toggle-style ToolStripButton that can display different text and tooltips based on its checked state.
+            Tooltip text can be one string or two strings separated by '|' for different states.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ToggleToolStripButton.SplitText(System.String)">
+            <summary>
+            Splits the input string by the separator character into an array.
+            </summary>
+            <param name="strings">The string to split.</param>
+            <returns>An array of strings.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the string doesn't contain exactly two parts separated by the separator.</exception>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ToggleToolStripButton.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.ToggleToolStripButton"/> class.
+            </summary>
+            <param name="text">The text for the button in format "unchecked|checked".</param>
+            <param name="toolTip">The tooltip text in format "unchecked|checked".</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.ToggleToolStripButton.OnCheckedChanged(System.EventArgs)">
+            <summary>
+            Called when the checked state of the button changes.
+            </summary>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="T:Telerik.WinControls.UI.XhtmlFilter">
+            <summary>
+            A filter that converts HTML content to XHTML-compliant format.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.XhtmlFilter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.XhtmlFilter"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.Properties.MarkupDialogResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.bold">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.CapitalA">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.center">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.copy">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.cut">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.decreaseIndent">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.disk">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.font_color">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.format">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.highlight">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.increaseIndent">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.italic">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.LargeLink">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.left">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.link">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.okLarge">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.okSmall">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.ol2">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.ol3">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.orderedList">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.orderedListLarge">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.paste">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.redo2">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.right">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.save_small">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.smallA">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.ToolbarStrip">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.ul2">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.ul3">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.underline">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.undo">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.undo2">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.unorderedList">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.Properties.MarkupDialogResources.unorderedListLarge">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="T:Telerik.WinControls.UI.RadMarkupDialog">
+            <summary>
+            A dialog that allows users to edit and apply markup formatting to text.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupDialog.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.WinControls.UI.RadMarkupDialog"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupDialog.Dispose(System.Boolean)">
+            <summary>
+            Releases the resources used by the <see cref="T:Telerik.WinControls.UI.RadMarkupDialog"/>.
+            </summary>
+            <param name="disposing">A value indicating whether the method was invoked by a <see cref="M:System.IDisposable.Dispose"/> call.</param>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupDialog.Value">
+            <summary>
+            Gets or sets the markup text being edited. Set this property before showing the dialog to provide initial content, and retrieve it after the dialog closes to get the user's changes.
+            Use the DialogResult to determine if the user applied changes or canceled.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupDialog.Editor">
+            <summary>
+            Gets the <see cref="T:Telerik.WinControls.UI.RadMarkupEditor"/> instance used within the dialog.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupDialog.Form">
+            <summary>
+            Gets the <see cref="T:Telerik.WinControls.UI.ShapedForm"/> instance used to host the markup editor.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupDialog.ThemeName">
+            <summary>
+            Gets or sets the name of the theme applied to the dialog.
+            </summary>
+        </member>
+        <member name="P:Telerik.WinControls.UI.RadMarkupDialog.DefaultFont">
+            <summary>
+            Gets or sets the default font used when the editor is started. No formatting tags are added for this font as it is considered the default.
+            Users can still explicitly set font name and size using the editor controls.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupDialog.Reset">
+            <summary>
+            Resets the dialog by clearing the markup text value.
+            </summary>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupDialog.Editor_EditorClosed(System.Object,System.EventArgs)">
+            <summary>
+            Handles the editor closed event by setting the dialog result and closing the form.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.WinControls.UI.RadMarkupDialog.RunDialog(System.IntPtr)">
+            <summary>
+            Displays the modal dialog box.
+            </summary>
+            <param name="hwndOwner">The window handle of the owner window for the dialog.</param>
+            <returns><c>true</c> if the user clicked OK or Apply in the dialog; otherwise, <c>false</c>.</returns>
+        </member>
+    </members>
+</doc>

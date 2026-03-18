@@ -1,0 +1,68 @@
+﻿Data Source=SE-MAIN\SPED;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey
+
+
+sqlRGSource
+======================
+Select 
+Rechnungen.*
+, ADR.KD_ID  as KdNr
+, Kunde.USt_ID as UstID
+, DATENAME(MONTH,Rechnungen.AbrZeitraumBis) as Monatsname
+,(Select NettoPreis FROM RGPositionen WHERE Abrechnungsart='Einlagerungskosten' AND RGTableID=Rechnungen.ID) as NettoEinlagerung
+,(Select NettoPreis FROM RGPositionen WHERE Abrechnungsart='Auslagerungskosten' AND RGTableID=Rechnungen.ID) as NettoAuslagerung
+,(Select NettoPreis FROM RGPositionen WHERE Abrechnungsart='Lagerkosten' AND RGTableID=Rechnungen.ID) as NettoLagergeld
+,(Select NettoPreis FROM RGPositionen WHERE Abrechnungsart='Gleisstellgebühr' AND RGTableID=Rechnungen.ID) as Gleiskosten
+,(Select NettoPreis FROM RGPositionen WHERE Abrechnungsart='Nebenkosten' AND RGTableID=Rechnungen.ID) as Nebenkosten
+
+,(Select Anfangsbestand FROM RGPositionen WHERE Abrechnungsart='Lagerkosten' AND RGTableID=Rechnungen.ID) as Anfangsbestand
+,(Select Abgang FROM RGPositionen WHERE Abrechnungsart='Lagerkosten' AND RGTableID=Rechnungen.ID) as Abgang
+,(Select Zugang FROM RGPositionen WHERE Abrechnungsart='Lagerkosten' AND RGTableID=Rechnungen.ID) as Zugang
+,(Select Endbestand FROM RGPositionen WHERE Abrechnungsart='Lagerkosten' AND RGTableID=Rechnungen.ID) as Endbestand
+,CASE
+			WHEN ((((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) IS NULL)
+				OR ((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) = ''))
+				AND (((Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) IS NULL)
+				OR ((Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) = '')))
+			THEN ((Select Name1 FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)
+				+ (Select Str FROM ADR WHERE ID=Rechnungen.Empfaenger) + ' '
+				+ (Select HausNr FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)
+				+ (Select PLZ FROM ADR WHERE ID=Rechnungen.Empfaenger)+' '
+				+(Select Ort FROM ADR WHERE ID=Rechnungen.Empfaenger))
+			WHEN ((((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) IS NULL)
+				OR ((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) = ''))
+				AND (((Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) IS NOT NULL)
+				AND ((Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) <> '')))
+			THEN ((Select Name1 FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)
+				+ (Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)
+				+ (Select Str FROM ADR WHERE ID=Rechnungen.Empfaenger) + ' '
+				+ (Select HausNr FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)
+				+ (Select PLZ FROM ADR WHERE ID=Rechnungen.Empfaenger)+' '
+				+(Select Ort FROM ADR WHERE ID=Rechnungen.Empfaenger))
+			WHEN ((((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) IS NOT NULL)
+				AND ((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) <> ''))
+				AND (((Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) IS NULL)
+				OR ((Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) = '')))
+			THEN ((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)
+				+ (Select Name1 FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)
+				+ (Select Str FROM ADR WHERE ID=Rechnungen.Empfaenger) + ' '
+				+ (Select HausNr FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)
+				+ (Select PLZ FROM ADR WHERE ID=Rechnungen.Empfaenger)+' '
+				+ (Select Ort FROM ADR WHERE ID=Rechnungen.Empfaenger))
+			ELSE ((Select Fbez FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)
+				+ (Select Name1 FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)
+				+ (Select Name2 FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)
+				+ (Select Str FROM ADR WHERE ID=Rechnungen.Empfaenger) + ' '
+				+ (Select HausNr FROM ADR WHERE ID=Rechnungen.Empfaenger) + char(13)
+				+ (Select PLZ FROM ADR WHERE ID=Rechnungen.Empfaenger)+' '
+				+(Select Ort FROM ADR WHERE ID=Rechnungen.Empfaenger))
+		 END as EAdressblock
+FROM Rechnungen 
+INNER JOIN ADR ON ADR.ID=Rechnungen.Empfaenger
+INNER JOIN Kunde ON Kunde.ADR_ID=ADR.ID
+WHERE Rechnungen.ID=@RGTableID
+
+
+
+sqlArtikelSource
+======================
+Select * from RGPositionen where RGTableID=@RGTableID;

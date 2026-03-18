@@ -1,0 +1,62 @@
+﻿namespace Sped4.Controls.Kalender
+{
+    partial class ctrCalRow
+    {
+        /// <summary> 
+        /// Erforderliche Designervariable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Verwendete Ressourcen bereinigen.
+        /// </summary>
+        /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Vom Komponenten-Designer generierter Code
+
+        /// <summary> 
+        /// Erforderliche Methode für die Designerunterstützung. 
+        /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.panRow = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // panRow
+            // 
+            this.panRow.AllowDrop = true;
+            this.panRow.BackColor = System.Drawing.Color.White;
+            this.panRow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panRow.Location = new System.Drawing.Point(0, 0);
+            this.panRow.Name = "panRow";
+            this.panRow.Size = new System.Drawing.Size(500, 71);
+            this.panRow.TabIndex = 0;
+            this.panRow.DragDrop += new System.Windows.Forms.DragEventHandler(this.panRow_DragDrop);
+            this.panRow.DragEnter += new System.Windows.Forms.DragEventHandler(this.panRow_DragEnter);
+            // 
+            // ctrCalRow
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panRow);
+            this.Name = "ctrCalRow";
+            this.Size = new System.Drawing.Size(500, 71);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ctrCalRow_Paint);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel panRow;
+    }
+}

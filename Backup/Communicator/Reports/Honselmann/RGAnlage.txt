@@ -1,0 +1,73 @@
+Data Source=SQLSERVER2014\sql2008R2EX;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=LvsUser;Password=Lvs@comTEC.24
+Data Source=SE-MAIN\SPED;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey
+
+
+sqlRGSource
+=======================
+Select 
+Rechnungen.ID
+, Rechnungen.RGNr
+, Rechnungen.Datum
+, ADR.KD_ID  as KdNr
+, Kunde.USt_ID as UstID
+, DATENAME(MONTH,Rechnungen.AbrZeitraumBis) as Monatsname
+, ADR.Name1
+
+FROM Rechnungen 
+INNER JOIN ADR ON ADR.ID=Rechnungen.Empfaenger
+INNER JOIN Kunde ON Kunde.ADR_ID=ADR.ID
+WHERE Rechnungen.ID=@RGTableID
+
+
+sqlArtikelSource
+=======================
+Select 
+ Artikel.ID as ArtikelID
+,Artikel.LVS_ID as LVSNr
+, LEingang.LEingangID as EingangNr
+, CAST(Artikel.Dicke as varchar) +' x '+ CAST(Artikel.Breite as varchar) as Abmessung
+, Artikel.Produktionsnummer 
+, Artikel.Werksnummer
+, Artikel.Charge
+, Artikel.Brutto as Gewicht
+, LEingang.Date as Eingangsdatum
+, LAusgang.Datum as Ausgangsdatum
+, Rechnungen.AbrZeitraumBis
+, CASE	
+	WHEN Artikel.LAusgangTableID>0 THEN DATEDIFF(dd,LEingang.Date, LAusgang.Datum)
+	ELSE DATEDIFF(dd,LEingang.Date, Rechnungen.AbrZeitraumBis)
+  END as Lagerdauer
+,(Select SUM(RGPosArtikel.Kosten) From RGPositionen Left join RGPosArtikel on RGPositionen.ID = RGPosArtikel.RGPosID where RGPosArtikel.ArtikelID = Artikel.ID  AND RGPositionen.Abrechnungsart='Einlagerungskosten') as Einlagerung
+,(Select SUM(RGPosArtikel.Kosten) From RGPositionen Left join RGPosArtikel on RGPositionen.ID = RGPosArtikel.RGPosID where RGPosArtikel.ArtikelID = Artikel.ID  AND RGPositionen.Abrechnungsart='Auslagerungskosten') as Auslagerung
+,(Select SUM(RGPosArtikel.Kosten) From RGPositionen Left join RGPosArtikel on RGPositionen.ID = RGPosArtikel.RGPosID where RGPosArtikel.ArtikelID = Artikel.ID  AND RGPositionen.Abrechnungsart='Nebenkosten') as Nebenkosten
+,(Select SUM(RGPosArtikel.Kosten) From RGPositionen Left join RGPosArtikel on RGPositionen.ID = RGPosArtikel.RGPosID where RGPosArtikel.ArtikelID = Artikel.ID  AND RGPositionen.Abrechnungsart='Lagerkosten') as Lagergeld
+, (Select CASE
+	WHEN RGPosArtikel.IsUBCalc=1 THEN 'UB'
+	ELSE ''
+	END as Info
+	From RGPositionen Left join RGPosArtikel on RGPositionen.ID = RGPosArtikel.RGPosID group by RGPosArtikel.IsUBCalc , RGPosArtikel.ArtikelID having RGPosArtikel.ArtikelID = Artikel.ID) as Info 
+
+FROM RGPosArtikel
+INNER JOIN RGPositionen ON RGPositionen.ID=RGPosArtikel.RGPosID
+INNER JOIN Artikel ON Artikel.ID=RGPosArtikel.ArtikelID
+INNER JOIN LEingang ON LEingang.ID=Artikel.LEingangTableID
+INNER JOIN Rechnungen ON Rechnungen.ID = RGPositionen.RGTableID
+LEFT JOIN LAusgang ON LAusgang.ID =Artikel.LAusgangTableID
+GROUP by 
+Artikel.ID
+,RGPositionen.RGTableID
+, Artikel.LVS_ID 
+, LEingang.LEingangID
+, Artikel.Produktionsnummer 
+, Artikel.Werksnummer
+, Artikel.Charge
+, Artikel.Brutto
+, LEingang.Date
+, LAusgang.Datum
+, Rechnungen.AbrZeitraumBis
+, Artikel.Dicke
+, Artikel.Breite
+,Artikel.LAusgangTableID
+having 
+RGPositionen.RGTableID=@RGTableID
+ORDER BY Artikel.ID

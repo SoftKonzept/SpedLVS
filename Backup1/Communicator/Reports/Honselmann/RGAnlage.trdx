@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report DataSourceName="sqlRGSource" Width="11.3779535293579in" Name="RGAnlage" SnapGridSize="0.1cm" xmlns="http://schemas.telerik.com/reporting/2012/3.5">
+  <DataSources>
+    <SqlDataSource ConnectionString="Data Source=WS-NE-W7-64\SQL2008R2;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey" ProviderName="System.Data.SqlClient" SelectCommand="Select &#xD;&#xA;   @nebenkosten = COALESCE(@nebenkosten + ', ', '') + (Cast( ID as nvarchar) + ': ' + Bezeichnung)  &#xD;&#xA;FROM &#xD;&#xA;    ExtraCharge&#xD;&#xA;WHERE &#xD;&#xA;&#x9;ID&gt;0;&#xD;&#xA;&#xD;&#xA;Select &#xD;&#xA;Rechnungen.ID&#xD;&#xA;, Rechnungen.RGNr&#xD;&#xA;, Rechnungen.Datum&#xD;&#xA;, ADR.KD_ID as KdNr&#xD;&#xA;, Kunde.USt_ID as UstID&#xD;&#xA;, DATENAME(MONTH,Rechnungen.AbrZeitraumBis) as Monatsname&#xD;&#xA;, ADR.Name1&#xD;&#xA;, @nebenkosten as Nebenkosten&#xD;&#xA;FROM Rechnungen &#xD;&#xA;left join ADR on ADR.ID=(Select Case &#xD;&#xA;WHEN (Select a.AdrID_RG From ADR a where a.ID=(select Empfaenger from Rechnungen where ID=@RGTableID)) &gt;0 &#xD;&#xA;THEN (Select a.AdrID_RG From ADR a where a.ID=(select Empfaenger from Rechnungen where ID=@RGTableID)) &#xD;&#xA;ELSE Rechnungen.Empfaenger&#xD;&#xA;END)&#xD;&#xA;inner JOIN Kunde ON Kunde.ADR_ID=ADR.ID&#xD;&#xA;WHERE Rechnungen.ID=@RGTableID" Name="sqlRGSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="String" Name="@nebenkosten" />
+        <SqlDataSourceParameter DbType="Decimal" Name="@RGTableID">
+          <Value>
+            <String>=Parameters.RGTableID.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+      <DefaultValues>
+        <SqlDataSourceParameter DbType="String" Name="@nebenkosten" />
+        <SqlDataSourceParameter DbType="Decimal" Name="@RGTableID">
+          <Value>
+            <String>21</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </DefaultValues>
+    </SqlDataSource>
+    <SqlDataSource ConnectionString="Data Source=WS-NE-W7-64\SQL2008R2;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey" ProviderName="System.Data.SqlClient" SelectCommand="Select &#xD;&#xA;distinct&#xD;&#xA;Artikel.ID&#xD;&#xA;, Artikel.LVS_ID as LVSNr&#xD;&#xA;, LEingang.LEingangID as EingangNr&#xD;&#xA;,CASE&#xD;&#xA;&#x9;WHEN (Artikel.Laenge&gt;0)&#xD;&#xA;&#x9;&#x9;THEN CAST(Artikel.Dicke as varchar (20))+' x '+ CAST(CAST(Artikel.Breite as int) as varchar(20))+' x '+CAST(CAST(Artikel.Laenge as int) as varchar(20))&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;ELSE CAST(Artikel.Dicke as varchar (20))+' x '+ CAST(Cast(Artikel.Breite as int) as varchar(20))&#xD;&#xA;&#x9;END as Abmessung&#xD;&#xA;, Artikel.Produktionsnummer &#xD;&#xA;, Artikel.Werksnummer&#xD;&#xA;, Artikel.Charge&#xD;&#xA;, Artikel.Brutto as Gewicht&#xD;&#xA;, LEingang.Date as Eingangsdatum&#xD;&#xA;, Case&#xD;&#xA;&#x9;When LAusgang.Checked=1&#xD;&#xA;&#x9;Then LAusgang.Datum  &#xD;&#xA;&#x9;Else NULL End&#xD;&#xA;&#x9;as Ausgangsdatum&#xD;&#xA;, Rechnungen.AbrZeitraumBis&#xD;&#xA;, CASE&#x9;&#xD;&#xA;&#x9;WHEN Artikel.LAusgangTableID&gt;0 THEN DATEDIFF(dd,LEingang.Date, LAusgang.Datum)+1&#xD;&#xA;&#x9;ELSE DATEDIFF(dd,LEingang.Date, Rechnungen.AbrZeitraumBis)+1&#xD;&#xA;  END as Lagerdauer&#xD;&#xA;,(Select Sum(RGPosArtikel.Kosten) from RGPosArtikel left join RGPositionen on RGPosArtikel.RGPosID=RGPositionen.ID where RGPositionen.Abrechnungsart='Einlagerungskosten' AND RGPositionen.RGTableID=@RGTableID And ArtikelID=Artikel.ID) as Einlagerung &#xD;&#xA;,(Select Sum(RGPosArtikel.Kosten) from RGPosArtikel left join RGPositionen on RGPosArtikel.RGPosID=RGPositionen.ID where RGPositionen.Abrechnungsart='Auslagerungskosten' AND RGPositionen.RGTableID=@RGTableID And ArtikelID=Artikel.ID) as Auslagerung&#xD;&#xA;,(Select Sum(RGPosArtikel.Kosten) from RGPosArtikel left join RGPositionen on RGPosArtikel.RGPosID=RGPositionen.ID where RGPositionen.Abrechnungsart='Lagerkosten' AND RGPositionen.RGTableID=@RGTableID And ArtikelID=Artikel.ID) as Lagergeld&#xD;&#xA;,(Select Sum(RGPosArtikel.Kosten) from RGPosArtikel left join RGPositionen on RGPosArtikel.RGPosID=RGPositionen.ID where RGPositionen.Abrechnungsart='Nebenkosten' AND RGPositionen.RGTableID=@RGTableID And ArtikelID=Artikel.ID) as Nebenkosten&#xD;&#xA;/*, CASE&#xD;&#xA;&#x9;WHEN RGPosArtikel.IsUBCalc=1 THEN 'UB'&#xD;&#xA;&#x9;ELSE ''&#xD;&#xA;&#x9;END as Info &#xD;&#xA;&#x9;*/&#xD;&#xA;,STUFF(&#x9;&#xD;&#xA;&#x9;(SELECT ', ' + CAST(e1.ExtraChargeID as nvarchar)&#xD;&#xA;&#x9; &#x9;FROM Artikel a1&#xD;&#xA;&#x9;&#x9;Inner join ExtraChargeAssignment e1 on a1.ID=e1.ArtikelID&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;WHERE a1.ID=Artikel.ID&#xD;&#xA;&#x9;&#x9;Order By e1.ID&#xD;&#xA;&#x9;&#x9;FOR XML PATH ('')&#xD;&#xA;&#x9;&#x9;)&#xD;&#xA;&#x9;,1,2,'') as Anmerkung&#xD;&#xA;FROM RGPosArtikel&#xD;&#xA;INNER JOIN RGPositionen ON RGPositionen.ID=RGPosArtikel.RGPosID&#xD;&#xA;INNER JOIN Artikel ON Artikel.ID=RGPosArtikel.ArtikelID&#xD;&#xA;INNER JOIN LEingang ON LEingang.ID=Artikel.LEingangTableID&#xD;&#xA;INNER JOIN Rechnungen ON Rechnungen.ID = RGPositionen.RGTableID&#xD;&#xA;LEFT JOIN LAusgang ON LAusgang.ID =Artikel.LAusgangTableID&#xD;&#xA;WHERE&#xD;&#xA;RGPositionen.RGTableID=@RGTableID&#xD;&#xA;ORDER BY LVSnr" CommandTimeout="6000" Name="sqlArtikelSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="Decimal" Name="@RGTableID">
+          <Value>
+            <String>=Parameters.RGTableID.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+      <DefaultValues>
+        <SqlDataSourceParameter DbType="Decimal" Name="@RGTableID">
+          <Value>
+            <String>7</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </DefaultValues>
+    </SqlDataSource>
+    <SqlDataSource ConnectionString="Data Source=WS-NE-W7-64\SQL2008R2;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey" ProviderName="System.Data.SqlClient" SelectCommand="Select * from ExtraCharge where id &gt;0" Name="sqlDataSource1" />
+  </DataSources>
+  <Items>
+    <PageHeaderSection Height="0.708661476771037in" Name="pageHeaderSection1">
+      <Items>
+        <TextBox Width="3.70000015139579cm" Height="0.500000151395794cm" Left="0.299999848604206cm" Top="0.499800107087291cm" Value="Anlage zur Rechnung" Name="textBox1" />
+        <TextBox Width="9.59999919255577cm" Height="0.400000201861058cm" Left="0.299999848604206cm" Top="1.00000010093053cm" Value="= Fields.KdNr + ' - ' + Fields.Name1" Name="textBox2" />
+        <TextBox Width="1.27999854660038cm" Height="0.400000214576721cm" Left="21.2999993439516cm" Top="0.599999899069471cm" Value="Seite:" Name="textBox3" />
+        <TextBox Width="2.67999863624573cm" Height="0.400000214576721cm" Left="22.5999974767368cm" Top="0.599999899069471cm" Value="= PageNumber" Name="textBox4" />
+        <TextBox Width="6.79979864081307cm" Height="0.500000178813934cm" Left="4.00020024616956cm" Top="0.499800107087291cm" Value="= Fields.RGNr  +' vom ' + Fields.Datum" Name="textBox41" />
+      </Items>
+    </PageHeaderSection>
+    <DetailSection PageBreak="None" Height="1.22047249476115in" Name="detailSection1">
+      <Style Visible="True" />
+      <Items>
+        <Table DataSourceName="sqlArtikelSource" Width="28.2206229412514cm" Height="1.62958353036926cm" Left="0.299999848604206cm" Top="0.0999999495347355cm" ColumnHeadersPrintOnEveryPage="True" Name="table1" StyleName="Normal.TableNormal">
+          <Body>
+            <Cells>
+              <TableCell RowIndex="0" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="1.94876815087362cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="=Fields.LVSNr" Format="{0}" Name="textBox17" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="3.30646683349529cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="=Fields.Abmessung" Format="{0}" Name="textBox19" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="2" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="5.1200187576852cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="=Fields.Produktionsnummer" Format="{0}" Name="textBox20" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="3" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.49184867817941cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="=Fields.Gewicht" Format="{0:N0}" Name="textBox21" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="4" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.37115985267153cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="=Fields.Eingangsdatum" Format="{0:d}" Name="textBox23" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="5" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.28064871567767cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="=IsNull( Fields.Ausgangsdatum.Date,'')" Format="{0:d}" Name="textBox24" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="6" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="1.46602940067896cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="=Fields.Lagerdauer" Format="{0:N0}" Name="textBox25" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="7" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.33429090483937cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="=Fields.Einlagerung" Format="{0:N2}" Name="textBox26" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="8" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.19482787043738cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="=Fields.Lagergeld" Format="{0:N2}" Name="textBox27" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="9" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.34747875999616cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="=Fields.Auslagerung" Format="{0:N2}" Name="textBox28" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="1" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="1.94876815087362cm" Height="0.629583438713364cm" Left="0cm" Top="0cm" Name="textBox29" StyleName="Normal.TableBody">
+                    <Style>
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="1" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="3.30646683349529cm" Height="0.629583438713364cm" Left="0cm" Top="0cm" Name="textBox31" StyleName="Normal.TableBody">
+                    <Style>
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="1" ColumnIndex="2" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="5.1200187576852cm" Height="0.629583438713364cm" Left="0cm" Top="0cm" Name="textBox32" StyleName="Normal.TableBody">
+                    <Style>
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="1" ColumnIndex="3" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.49184867817941cm" Height="0.629583438713364cm" Left="0cm" Top="0cm" Name="textBox33" StyleName="Normal.TableBody">
+                    <Style>
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="1" ColumnIndex="5" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.28064871567767cm" Height="0.629583438713364cm" Left="0cm" Top="0cm" Name="textBox36" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="1" ColumnIndex="6" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="1.46602940067896cm" Height="0.629583438713364cm" Left="0cm" Top="0cm" Name="textBox37" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="1" ColumnIndex="7" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.33429090483937cm" Height="0.629583438713364cm" Left="0cm" Top="0cm" Value="=SUM(Fields.Einlagerung)" Format="{0:N2}" Name="textBox38" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="Solid" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" Bold="True" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="1" ColumnIndex="8" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.19482787043738cm" Height="0.629583438713364cm" Left="0cm" Top="0cm" Value="=SUM(Fields.Lagergeld)" Format="{0:N2}" Name="textBox39" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="Solid" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" Bold="True" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="1" ColumnIndex="9" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.34747875999616cm" Height="0.629583438713364cm" Left="0cm" Top="0cm" Value="=SUM(Fields.Auslagerung)" Format="{0:N2}" Name="textBox40" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="Solid" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" Bold="True" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="10" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.35908921479133cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="=Fields.Anmerkung" Format="{0:N2}" Name="textBox46" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="None" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="1" ColumnIndex="10" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.35908921479133cm" Height="0.629583438713364cm" Left="0cm" Top="0cm" Format="{0:N2}" Name="textBox47" StyleName="Normal.TableBody">
+                    <Style TextAlign="Left" VerticalAlign="Middle">
+                      <BorderStyle Default="None" Top="Solid" Bottom="None" Left="None" Right="None" />
+                      <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                      <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                      <Font Name="Arial" Bold="True" />
+                    </Style>
+                  </TextBox>
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="1" ColumnIndex="4" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="2.37115998137697cm" Height="0.629583438713364cm" Left="12.6000009083748cm" Top="0.300000050465265cm" Name="textBox6" />
+                </ReportItem>
+              </TableCell>
+            </Cells>
+            <Columns>
+              <Column Width="1.94876614111871cm" />
+              <Column Width="3.30646657008423cm" />
+              <Column Width="5.12001891117542cm" />
+              <Column Width="2.49184904608511cm" />
+              <Column Width="2.37115979761673cm" />
+              <Column Width="2.28064769724579cm" />
+              <Column Width="1.46602849116655cm" />
+              <Column Width="2.3342900732497cm" />
+              <Column Width="2.19482733884404cm" />
+              <Column Width="2.34747884293511cm" />
+              <Column Width="2.35908877016975cm" />
+            </Columns>
+            <Rows>
+              <Row Height="0.500000045827946cm" />
+              <Row Height="0.629583438713364cm" />
+            </Rows>
+          </Body>
+          <Corner />
+          <Style>
+            <BorderStyle Top="None" Bottom="None" Left="None" Right="None" />
+            <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+            <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+          </Style>
+          <RowGroups>
+            <TableGroup Name="Detail">
+              <Groupings>
+                <Grouping />
+              </Groupings>
+            </TableGroup>
+            <TableGroup Name="group" />
+          </RowGroups>
+          <ColumnGroups>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="1.94876815087362cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="LVSNr" Name="textBox5" StyleName="Normal.TableHeader">
+                  <Style TextAlign="Left">
+                    <BorderStyle Top="None" Bottom="None" Left="None" Right="None" />
+                    <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                    <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                    <Font Name="Arial" Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="3.30646683349529cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="Abmessung" Name="textBox7" StyleName="Normal.TableHeader">
+                  <Style TextAlign="Left">
+                    <BorderStyle Top="None" Bottom="None" Left="None" Right="None" />
+                    <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                    <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                    <Font Name="Arial" Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="5.1200187576852cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="Stück-Nr." Name="textBox8" StyleName="Normal.TableHeader">
+                  <Style TextAlign="Left">
+                    <BorderStyle Top="None" Bottom="None" Left="None" Right="None" />
+                    <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                    <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                    <Font Name="Arial" Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="2.49184867817941cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="Gewicht" Name="textBox9" StyleName="Normal.TableHeader">
+                  <Style TextAlign="Left">
+                    <BorderStyle Top="None" Bottom="None" Left="None" Right="None" />
+                    <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                    <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                    <Font Name="Arial" Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="2.37115985267153cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="E-Datum" Name="textBox11" StyleName="Normal.TableHeader">
+                  <Style TextAlign="Left">
+                    <BorderStyle Top="None" Bottom="None" Left="None" Right="None" />
+                    <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                    <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                    <Font Name="Arial" Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="2.28064871567767cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="A-Datum" Name="textBox12" StyleName="Normal.TableHeader">
+                  <Style TextAlign="Left">
+                    <BorderStyle Top="None" Bottom="None" Left="None" Right="None" />
+                    <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                    <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                    <Font Name="Arial" Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="1.46602940067896cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="Dauer" Name="textBox13" StyleName="Normal.TableHeader">
+                  <Style TextAlign="Left">
+                    <BorderStyle Top="None" Bottom="None" Left="None" Right="None" />
+                    <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                    <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                    <Font Name="Arial" Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="2.33429090483937cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="Einlagerung" Name="textBox14" StyleName="Normal.TableHeader">
+                  <Style TextAlign="Left">
+                    <BorderStyle Top="None" Bottom="None" Left="None" Right="None" />
+                    <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                    <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                    <Font Name="Arial" Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="2.19482787043738cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="Lagergeld" Name="textBox15" StyleName="Normal.TableHeader">
+                  <Style TextAlign="Left">
+                    <BorderStyle Top="None" Bottom="None" Left="None" Right="None" />
+                    <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                    <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                    <Font Name="Arial" Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="2.34747875999616cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="Auslagerung" Name="textBox16" StyleName="Normal.TableHeader">
+                  <Style TextAlign="Left">
+                    <BorderStyle Top="None" Bottom="None" Left="None" Right="None" />
+                    <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                    <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                    <Font Name="Arial" Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+            <TableGroup Name="group2">
+              <ReportItem>
+                <TextBox Width="2.35908921479133cm" Height="0.500000045827946cm" Left="0cm" Top="0cm" Value="Nebenkosten" Name="textBox45" StyleName="Normal.TableHeader">
+                  <Style TextAlign="Left">
+                    <BorderStyle Top="None" Bottom="None" Left="None" Right="None" />
+                    <BorderColor Top="Black" Bottom="Black" Left="Black" Right="Black" />
+                    <BorderWidth Top="1pt" Bottom="1pt" Left="1pt" Right="1pt" />
+                    <Font Name="Arial" Bold="True" />
+                  </Style>
+                </TextBox>
+              </ReportItem>
+            </TableGroup>
+          </ColumnGroups>
+        </Table>
+      </Items>
+    </DetailSection>
+    <PageFooterSection Height="0.826771418253581in" Name="pageFooterSection1">
+      <Items>
+        <TextBox Width="28.2999998939038cm" Height="1.40000015576681cm" Left="0.299999848604206cm" Top="0.399999798138942cm" Value="=&quot;Nebenkosten: &quot; + Fields.Nebenkosten" Name="textBox30" />
+      </Items>
+    </PageFooterSection>
+  </Items>
+  <StyleSheet>
+    <StyleRule>
+      <Style>
+        <Padding Left="2pt" Right="2pt" />
+      </Style>
+      <Selectors>
+        <TypeSelector Type="TextItemBase" />
+        <TypeSelector Type="HtmlTextBox" />
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style Color="Black">
+        <BorderStyle Default="Solid" />
+        <BorderColor Default="Black" />
+        <BorderWidth Default="1px" />
+        <Font Name="Tahoma" Size="9pt" />
+      </Style>
+      <Selectors>
+        <StyleSelector Type="Table" StyleName="Normal.TableNormal" />
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style VerticalAlign="Middle">
+        <BorderStyle Default="Solid" />
+        <BorderColor Default="Black" />
+        <BorderWidth Default="1px" />
+        <Font Name="Tahoma" Size="10pt" />
+      </Style>
+      <Selectors>
+        <DescendantSelector>
+          <Selectors>
+            <TypeSelector Type="Table" />
+            <StyleSelector Type="ReportItem" StyleName="Normal.TableHeader" />
+          </Selectors>
+        </DescendantSelector>
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style>
+        <BorderStyle Default="Solid" />
+        <BorderColor Default="Black" />
+        <BorderWidth Default="1px" />
+        <Font Name="Tahoma" Size="9pt" />
+      </Style>
+      <Selectors>
+        <DescendantSelector>
+          <Selectors>
+            <TypeSelector Type="Table" />
+            <StyleSelector Type="ReportItem" StyleName="Normal.TableBody" />
+          </Selectors>
+        </DescendantSelector>
+      </Selectors>
+    </StyleRule>
+  </StyleSheet>
+  <PageSettings>
+    <PageSettings PaperKind="A4" Landscape="True">
+      <Margins>
+        <MarginsU Left="5mm" Right="3mm" Top="0mm" Bottom="0mm" />
+      </Margins>
+    </PageSettings>
+  </PageSettings>
+  <ReportParameters>
+    <ReportParameter Name="RGTableID" Type="Float">
+      <Value>
+        <String>62</String>
+      </Value>
+    </ReportParameter>
+  </ReportParameters>
+</Report>

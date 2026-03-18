@@ -9,10 +9,12 @@ namespace Sped4
         {
             get
             {
+                _InfoText += "18.03.2026 / Build: 26.03.18.1      : " + Environment.NewLine +
+                             Environment.NewLine;
+
                 _InfoText += "11.03.2026 / Build: 26.03.11.1      : " + Environment.NewLine +
                              " - BugFix: Ausgang KFZ Auswahl" + Environment.NewLine +
                              Environment.NewLine;
-
                 _InfoText += "04.03.2026 / Build: 26.03.04.1      : " + Environment.NewLine +
                              " - BugFix: SQL Fehler in Abfrage korrigiert" + Environment.NewLine +
                              Environment.NewLine;

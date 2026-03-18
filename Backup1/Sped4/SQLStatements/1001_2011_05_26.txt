@@ -1,0 +1,11 @@
+EXEC sp_rename
+@objname ='Artikel.ArtikelNetto',
+@newname ='Netto',
+@objtype = 'COLUMN'
+
+
+/***
+ALTER TABLE Artikel ADD [Brutto] [decimal](18, 2) NULL
+
+ALTER TABLE Artikel ADD  CONSTRAINT [DF_Artikel_Brutto]  DEFAULT ((0)) FOR [Brutto]
+ALTER TABLE Artikel ADD  CONSTRAINT [DF_Artikel_Netto]  DEFAULT ((0)) FOR [Netto]

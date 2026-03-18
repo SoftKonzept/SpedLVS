@@ -1,0 +1,115 @@
+Data Source=SQLSERVER2014\SQL2008R2EX;Initial Catalog=LvsHonselmann;User ID=LvsUser;Password=Lvs@comTEC.24
+
+sqlLEingangSource
+========================
+Select
+a.ID 
+, a.LEingangID
+, CASE WHEN ((a.KFZ IS NOT NULL)
+			AND (a.KFZ <> '')
+			AND (a.KFZ <> '--Fremdfahrzeug--'))
+	   THEN a.KFZ
+	   WHEN ((a.WaggonNo IS NOT NULL)
+			AND (a.WaggonNo <> ''))
+	   THEN a.WaggonNo
+	   ELSE ''
+	   END as LKWWAGON
+, CASE WHEN ((a.KFZ IS NOT NULL) AND (a.KFZ <> ''))
+	   THEN 'LKW'
+	   ELSE 'Waggon'
+	   END as LKWWAGONSTR
+, CONVERT(varchar(10),a.Date,104) as LagerEingangsDatum
+, (Select KD_ID FROM ADR WHERE ID=a.Auftraggeber) as ANr
+, (Select KD_ID FROM ADR WHERE ID=a.Versender) as VNr
+, (Select KD_ID FROM ADR WHERE ID=a.Empfaenger) as ENr
+, (Select KD_ID FROM ADR WHERE ID=a.EntladeID) as EntNr
+, (Select KD_ID FROM ADR WHERE ID=a.SpedID) as SNr
+
+,  CASE WHEN (((Select Name1 FROM ADR WHERE ID=a.Auftraggeber)IS null)
+		OR ((Select Name1 FROM ADR WHERE ID=a.Auftraggeber) = ''))
+		THEN (Select ADRMan.Name1 FROM ADRMan 
+								  INNER JOIN LEingang ON LEingang.ID=ADRMan.TableID AND ADRMan.TableName='LEingang'
+								  WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0)
+		else
+		(Select Name1 FROM ADR WHERE ID=a.Auftraggeber)
+		end as AName1
+		
+,  CASE WHEN (((Select Name1 FROM ADR WHERE ID=a.Empfaenger)IS null)
+		OR ((Select Name1 FROM ADR WHERE ID=a.Empfaenger) = ''))
+		THEN (Select ADRMan.Name1 FROM ADRMan 
+								  INNER JOIN LEingang ON LEingang.ID=ADRMan.TableID AND ADRMan.TableName='LEingang'
+								  WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=3)
+		else
+		(Select Name1 FROM ADR WHERE ID=a.Empfaenger)
+		end as EName1
+,  CASE WHEN (((Select Name1 FROM ADR WHERE ID=a.Versender)IS null)
+		OR ((Select Name1 FROM ADR WHERE ID=a.Versender) = ''))
+		THEN (Select ADRMan.Name1 FROM ADRMan 
+								  INNER JOIN LEingang ON LEingang.ID=ADRMan.TableID AND ADRMan.TableName='LEingang'
+								  WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=1)
+		else
+		(Select Name1 FROM ADR WHERE ID=a.Versender)
+		end as VName1
+,  CASE WHEN (((Select Name1 FROM ADR WHERE ID=a.SpedID)IS null)
+		OR ((Select Name1 FROM ADR WHERE ID=a.SpedID) = ''))
+		THEN (Select ADRMan.Name1 FROM ADRMan 
+								  INNER JOIN LEingang ON LEingang.ID=ADRMan.TableID AND ADRMan.TableName='LEingang'
+								  WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=5)
+		else
+		(Select Name1 FROM ADR WHERE ID=a.SpedID)
+		end as SName1
+,  CASE WHEN (((Select Name1 FROM ADR WHERE ID=a.EntladeID)IS null)
+		OR ((Select Name1 FROM ADR WHERE ID=a.EntladeID) = ''))
+		THEN (Select ADRMan.Name1 FROM ADRMan 
+								  INNER JOIN LEingang ON LEingang.ID=ADRMan.TableID AND ADRMan.TableName='LEingang'
+								  WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=4)
+		else
+		(Select Name1 FROM ADR WHERE ID=a.EntladeID)
+		end as EntName1
+, (Select SUM(Brutto) FROM Artikel WHERE LEingangTableID=@LEingangTableID) as SumBrutto
+, (Select Vorname +' '+ Name FROM [User] WHERE ID=@BenuzterID) as Sachbearbeiter
+, (Select Tel FROM [User] WHERE ID=@BenuzterID) as Telefon
+FROM LEingang a
+WHERE a.ID=@LEingangTableID
+
+
+sqlArtikelSource
+=============================
+
+Select a.*
+, b.Bezeichnung as GArt
+, b.Zusatz
+, CONVERT(varchar(10), c.Date, 104) as Eingangsdatum
+,CASE WHEN IsVerpackt = 1
+      THEN 'verpackt'+ CHAR(10)
+      ELSE ''
+      END as Verpackt
+,CASE WHEN ((exInfo IS NOT NULL) AND (exInfo <> ''))
+	THEN exInfo  + CHAR(10)
+	ELSE ''
+	END as InfoEx
+,CASE WHEN (SELECT COUNT (*)
+	    FROM Artikel a1
+	    INNER JOIN LEingang c1 ON c1.ID=a1.LEingangTableID
+	    INNER JOIN SchadenZuweisung d1 ON d1.ArtikelID=a1.ID
+	    INNER JOIN Schaeden e1 ON e1.ID=d1.SchadenID
+	    WHERE a1.ID=a.ID) > 0
+      THEN (SELECT e2.Bezeichnung +CHAR(10)
+		  FROM Artikel a2
+		  INNER JOIN LEingang c2 ON c2.ID=a2.LEingangTableID
+		  LEFT OUTER JOIN SchadenZuweisung d2 ON d2.ArtikelID=a2.ID
+		  LEFT OUTER JOIN Schaeden e2 ON e2.ID=d2.SchadenID
+		  WHERE a2.ID=a.ID
+		  FOR XML PATH (''))
+      ELSE ''
+      END as Schaden
+, CASE
+	WHEN (a.Laenge>0)
+		THEN CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))+'x'+CAST(a.Laenge as varchar(20))
+	
+	ELSE CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))
+	END as Abmessung
+FROM Artikel a
+INNER JOIN LEingang c ON c.ID=a.LEingangTableID
+INNER JOIN Gueterart b ON b.ID=a.GArtID
+WHERE a.LEingangTableID=@LEingangTableID
