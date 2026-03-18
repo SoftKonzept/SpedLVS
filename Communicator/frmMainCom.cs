@@ -756,13 +756,14 @@ namespace Communicator
             threadASNwrite = new Thread(Task_ASNwrite);
             threadASNwrite.Name = "ASNwrite";
             threadASNwrite.Start();
-            bThreadASNread = true;
+            bThreadASNwrite = true;
+            //bThreadASNread = true;  // ← FALSCH! Sollte bThreadASNwrite sein
 
             strLogTaskExecuted = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss:f") + " - Task -> InitThreadASNWrite |-> Executed" + Environment.NewLine;
             LogTaskExceuted.Add(strLogTaskExecuted);
             clsLogbuchCon.WriteLogToFile(ref LogTaskExceuted, this.system, Application.StartupPath, clsLogbuchCon.const_LogTaskExcecution);
 
-            return bThreadASNread;
+            return bThreadASNwrite;
         }
 
         ///<summary>frmMainCom / InitThreadCronjobs</summary>

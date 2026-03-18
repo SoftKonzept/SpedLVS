@@ -33,7 +33,11 @@
             this.scAdrVerweise = new Telerik.WinControls.UI.RadSplitContainer();
             this.panAdrVerweiseList = new Telerik.WinControls.UI.SplitPanel();
             this.dgvAdrVerweis = new Telerik.WinControls.UI.RadGridView();
+            this.menuASNMain = new Sped4.Controls.AFToolStrip();
+            this.tsbtnRefreshAdrVerweis = new System.Windows.Forms.ToolStripButton();
             this.panAdrVerweiseEdit = new Telerik.WinControls.UI.SplitPanel();
+            this.tbId = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.tbRefPart3 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tbRefPart2 = new System.Windows.Forms.TextBox();
@@ -73,10 +77,6 @@
             this.cbArbeitsbereich = new System.Windows.Forms.ComboBox();
             this.tbVerweisADR = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tbId = new System.Windows.Forms.TextBox();
-            this.menuASNMain = new Sped4.Controls.AFToolStrip();
-            this.tsbtnRefreshAdrVerweis = new System.Windows.Forms.ToolStripButton();
             this.menuVerweisEdit = new Sped4.Controls.AFToolStrip();
             this.tsbtnASNVerweisNew = new System.Windows.Forms.ToolStripButton();
             this.tsbtnASNSave = new System.Windows.Forms.ToolStripButton();
@@ -89,10 +89,10 @@
             this.panAdrVerweiseList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdrVerweis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdrVerweis.MasterTemplate)).BeginInit();
+            this.menuASNMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panAdrVerweiseEdit)).BeginInit();
             this.panAdrVerweiseEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdrIdDirect)).BeginInit();
-            this.menuASNMain.SuspendLayout();
             this.menuVerweisEdit.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,12 +144,36 @@
             // 
             // 
             // 
-            this.dgvAdrVerweis.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 425, 675);
+            this.dgvAdrVerweis.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 240, 150);
             this.dgvAdrVerweis.Size = new System.Drawing.Size(425, 675);
             this.dgvAdrVerweis.TabIndex = 27;
             this.dgvAdrVerweis.ThemeName = "ControlDefault";
             this.dgvAdrVerweis.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvAdrVerweis_MouseClick);
             this.dgvAdrVerweis.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvAdrVerweis_MouseDoubleClick);
+            // 
+            // menuASNMain
+            // 
+            this.menuASNMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnRefreshAdrVerweis});
+            this.menuASNMain.Location = new System.Drawing.Point(0, 0);
+            this.menuASNMain.myColorFrom = System.Drawing.Color.Azure;
+            this.menuASNMain.myColorTo = System.Drawing.Color.Blue;
+            this.menuASNMain.myUnderlineColor = System.Drawing.Color.White;
+            this.menuASNMain.myUnderlined = true;
+            this.menuASNMain.Name = "menuASNMain";
+            this.menuASNMain.Size = new System.Drawing.Size(425, 25);
+            this.menuASNMain.TabIndex = 9;
+            this.menuASNMain.Text = "afToolStrip1";
+            // 
+            // tsbtnRefreshAdrVerweis
+            // 
+            this.tsbtnRefreshAdrVerweis.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnRefreshAdrVerweis.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnRefreshAdrVerweis.Image")));
+            this.tsbtnRefreshAdrVerweis.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnRefreshAdrVerweis.Name = "tsbtnRefreshAdrVerweis";
+            this.tsbtnRefreshAdrVerweis.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnRefreshAdrVerweis.Text = "aktualisieren";
+            this.tsbtnRefreshAdrVerweis.Click += new System.EventHandler(this.tsbtnRefreshAdrVerweis_Click);
             // 
             // panAdrVerweiseEdit
             // 
@@ -206,13 +230,34 @@
             this.panAdrVerweiseEdit.TabStop = false;
             this.panAdrVerweiseEdit.Text = "splitPanel2";
             // 
+            // tbId
+            // 
+            this.tbId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbId.Enabled = false;
+            this.tbId.Location = new System.Drawing.Point(117, 32);
+            this.tbId.Name = "tbId";
+            this.tbId.ReadOnly = true;
+            this.tbId.Size = new System.Drawing.Size(109, 20);
+            this.tbId.TabIndex = 235;
+            this.tbId.Text = "0";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label13.Location = new System.Drawing.Point(17, 34);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(20, 13);
+            this.label13.TabIndex = 234;
+            this.label13.Text = "Id:";
+            // 
             // tbRefPart3
             // 
             this.tbRefPart3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbRefPart3.Enabled = false;
             this.tbRefPart3.Location = new System.Drawing.Point(117, 536);
             this.tbRefPart3.Name = "tbRefPart3";
-            this.tbRefPart3.Size = new System.Drawing.Size(148, 22);
+            this.tbRefPart3.Size = new System.Drawing.Size(245, 20);
             this.tbRefPart3.TabIndex = 233;
             // 
             // label10
@@ -231,7 +276,7 @@
             this.tbRefPart2.Enabled = false;
             this.tbRefPart2.Location = new System.Drawing.Point(117, 514);
             this.tbRefPart2.Name = "tbRefPart2";
-            this.tbRefPart2.Size = new System.Drawing.Size(148, 22);
+            this.tbRefPart2.Size = new System.Drawing.Size(245, 20);
             this.tbRefPart2.TabIndex = 231;
             // 
             // label11
@@ -250,7 +295,7 @@
             this.tbRefPart1.Enabled = false;
             this.tbRefPart1.Location = new System.Drawing.Point(117, 492);
             this.tbRefPart1.Name = "tbRefPart1";
-            this.tbRefPart1.Size = new System.Drawing.Size(148, 22);
+            this.tbRefPart1.Size = new System.Drawing.Size(245, 20);
             this.tbRefPart1.TabIndex = 229;
             // 
             // label12
@@ -334,7 +379,7 @@
             0,
             0});
             this.nudAdrIdDirect.Name = "nudAdrIdDirect";
-            this.nudAdrIdDirect.Size = new System.Drawing.Size(88, 22);
+            this.nudAdrIdDirect.Size = new System.Drawing.Size(88, 20);
             this.nudAdrIdDirect.TabIndex = 221;
             this.nudAdrIdDirect.Leave += new System.EventHandler(this.nudAdrIdDirect_Leave);
             // 
@@ -344,7 +389,7 @@
             this.tbSupplierNo.Enabled = false;
             this.tbSupplierNo.Location = new System.Drawing.Point(117, 296);
             this.tbSupplierNo.Name = "tbSupplierNo";
-            this.tbSupplierNo.Size = new System.Drawing.Size(148, 22);
+            this.tbSupplierNo.Size = new System.Drawing.Size(244, 20);
             this.tbSupplierNo.TabIndex = 220;
             // 
             // label4
@@ -363,7 +408,7 @@
             this.tbASNSenderVerweis.Enabled = false;
             this.tbASNSenderVerweis.Location = new System.Drawing.Point(117, 273);
             this.tbASNSenderVerweis.Name = "tbASNSenderVerweis";
-            this.tbASNSenderVerweis.Size = new System.Drawing.Size(148, 22);
+            this.tbASNSenderVerweis.Size = new System.Drawing.Size(244, 20);
             this.tbASNSenderVerweis.TabIndex = 218;
             // 
             // label3
@@ -440,7 +485,7 @@
             this.tbVerweisADRLong.Location = new System.Drawing.Point(117, 87);
             this.tbVerweisADRLong.Name = "tbVerweisADRLong";
             this.tbVerweisADRLong.ReadOnly = true;
-            this.tbVerweisADRLong.Size = new System.Drawing.Size(264, 22);
+            this.tbVerweisADRLong.Size = new System.Drawing.Size(264, 20);
             this.tbVerweisADRLong.TabIndex = 211;
             // 
             // label36
@@ -540,7 +585,7 @@
             this.tbASNLieferantenNummer.Enabled = false;
             this.tbASNLieferantenNummer.Location = new System.Drawing.Point(117, 250);
             this.tbASNLieferantenNummer.Name = "tbASNLieferantenNummer";
-            this.tbASNLieferantenNummer.Size = new System.Drawing.Size(148, 22);
+            this.tbASNLieferantenNummer.Size = new System.Drawing.Size(244, 20);
             this.tbASNLieferantenNummer.TabIndex = 200;
             // 
             // label39
@@ -569,7 +614,7 @@
             this.tbASNVerweis.Enabled = false;
             this.tbASNVerweis.Location = new System.Drawing.Point(117, 228);
             this.tbASNVerweis.Name = "tbASNVerweis";
-            this.tbASNVerweis.Size = new System.Drawing.Size(148, 22);
+            this.tbASNVerweis.Size = new System.Drawing.Size(244, 20);
             this.tbASNVerweis.TabIndex = 198;
             // 
             // cbArbeitsbereich
@@ -588,7 +633,7 @@
             this.tbVerweisADR.Enabled = false;
             this.tbVerweisADR.Location = new System.Drawing.Point(117, 59);
             this.tbVerweisADR.Name = "tbVerweisADR";
-            this.tbVerweisADR.Size = new System.Drawing.Size(109, 22);
+            this.tbVerweisADR.Size = new System.Drawing.Size(109, 20);
             this.tbVerweisADR.TabIndex = 193;
             this.tbVerweisADR.TextChanged += new System.EventHandler(this.tbVerweisADR_TextChanged);
             // 
@@ -601,51 +646,6 @@
             this.label37.Size = new System.Drawing.Size(49, 13);
             this.label37.TabIndex = 197;
             this.label37.Text = "Verweis:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label13.Location = new System.Drawing.Point(17, 34);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(20, 13);
-            this.label13.TabIndex = 234;
-            this.label13.Text = "Id:";
-            // 
-            // tbId
-            // 
-            this.tbId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbId.Enabled = false;
-            this.tbId.Location = new System.Drawing.Point(117, 32);
-            this.tbId.Name = "tbId";
-            this.tbId.ReadOnly = true;
-            this.tbId.Size = new System.Drawing.Size(109, 22);
-            this.tbId.TabIndex = 235;
-            this.tbId.Text = "0";
-            // 
-            // menuASNMain
-            // 
-            this.menuASNMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnRefreshAdrVerweis});
-            this.menuASNMain.Location = new System.Drawing.Point(0, 0);
-            this.menuASNMain.myColorFrom = System.Drawing.Color.Azure;
-            this.menuASNMain.myColorTo = System.Drawing.Color.Blue;
-            this.menuASNMain.myUnderlineColor = System.Drawing.Color.White;
-            this.menuASNMain.myUnderlined = true;
-            this.menuASNMain.Name = "menuASNMain";
-            this.menuASNMain.Size = new System.Drawing.Size(425, 25);
-            this.menuASNMain.TabIndex = 9;
-            this.menuASNMain.Text = "afToolStrip1";
-            // 
-            // tsbtnRefreshAdrVerweis
-            // 
-            this.tsbtnRefreshAdrVerweis.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnRefreshAdrVerweis.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnRefreshAdrVerweis.Image")));
-            this.tsbtnRefreshAdrVerweis.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnRefreshAdrVerweis.Name = "tsbtnRefreshAdrVerweis";
-            this.tsbtnRefreshAdrVerweis.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnRefreshAdrVerweis.Text = "aktualisieren";
-            this.tsbtnRefreshAdrVerweis.Click += new System.EventHandler(this.tsbtnRefreshAdrVerweis_Click);
             // 
             // menuVerweisEdit
             // 
@@ -731,12 +731,12 @@
             this.panAdrVerweiseList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdrVerweis.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdrVerweis)).EndInit();
+            this.menuASNMain.ResumeLayout(false);
+            this.menuASNMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panAdrVerweiseEdit)).EndInit();
             this.panAdrVerweiseEdit.ResumeLayout(false);
             this.panAdrVerweiseEdit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdrIdDirect)).EndInit();
-            this.menuASNMain.ResumeLayout(false);
-            this.menuASNMain.PerformLayout();
             this.menuVerweisEdit.ResumeLayout(false);
             this.menuVerweisEdit.PerformLayout();
             this.ResumeLayout(false);

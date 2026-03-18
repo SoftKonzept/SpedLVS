@@ -21,6 +21,7 @@ namespace LVS
         public const string const_cFunction_SZG_TMN = SZG_TMN.const_SZG_TMN;                // "#SZG_TMN#";
         public const string const_cFunction_SLE_VGS = "#SLE_VGS#";
         public const string const_cFunction_Arcelor_EABmwFormat = Arcelor_EA_BMWFormat.const_Arcelor_EA_BMWFormat;
+        public const string const_cFunction_Arcelor_EA_713F20 = Arcelor_EA_713F20.const_Arcelor_EA_713F20;
         public const string const_cFunction_BMW_VGS = BMW_VGS.const_BMW_VGS;
         public const string const_cFunction_BMW_SLB = BMW_SLB.const_BMW_SLB;
         public const string const_cFunction_BMW_EANo = BMW_EANo.const_BMW_EANo;
@@ -162,7 +163,7 @@ namespace LVS
                 {
                     const_cFunction_VDACustomizedValue
                     ,const_cFunction_Arcelor_EABmwFormat
-
+                    ,const_cFunction_Arcelor_EA_713F20
                     ,const_cFunction_BMW_713F17_KGorSTK
                     ,const_cFunction_BMW_714F06Brutto
                     ,const_cFunction_BMW_714F08Netto
@@ -355,8 +356,8 @@ namespace LVS
         public const string const_EAFunc_EANrWithPrefix = EA_NoWithPrefix.const_EA_NoWithPrefix;
         public const string const_EA_Datum = EA_Datum.const_EA_Datum; // "EA.Datum";
         public const string const_EA_LfsNr = EA_LfsNr.const_EA_LfsNr; // "EA.LfsNr";
-        public const string const_EA_ExTransportRef = "EA.ExTransportRef";
-        public const string const_EA_ExAuftragRef = "EA.ExAuftragRef";
+        public const string const_EA_ExTransportRef = EA_exTransportRef.const_EA_exTransportRef; // "EA.ExTransportRef";
+        public const string const_EA_ExAuftragRef = EA_exAuftragRef.const_EA_exAuftragRef; //"EA.ExAuftragRef";
         public const string const_EA_Brutto = EA_Brutto.const_EA_Brutto; // "EA.Brutto";
         //public const string const_EA_BruttoTO = EA_Brutto.const_EA_Brutto; // "EA.Brutto";
         public const string const_EA_Netto = EA_Netto.const_EA_Netto; // "EA.Netto";
@@ -378,6 +379,8 @@ namespace LVS
         public const string const_EA_EmpfaengerPLZ = "EA.EmpfaengerPLZ";
         public const string const_EA_EmpfaengerOrt = "EA.EmpfaengerOrt";
         public const string const_EA_KFZ = EA_KFZ.const_EA_KFZ;
+
+
         public static List<string> ListValue_EA
         {
             get

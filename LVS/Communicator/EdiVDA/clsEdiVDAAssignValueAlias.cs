@@ -464,46 +464,12 @@ namespace LVS
                     break;
                 case clsEdiVDAValueAlias.const_EA_ExTransportRef:
                     strTmp = string.Empty;
-                    switch (asnTyp.Typ)
-                    {
-                        case "EML":
-                        case "EME":
-                        case "BML":
-                        case "BME":
-                            strTmp = this.Lager.Eingang.ExTransportRef;
-                            break;
-
-                        case "AML":
-                        case "AME":
-                        case "AVL":
-                        case "AVE":
-                        case "RLL":
-                        case "RLE":
-                            strTmp = this.Lager.Ausgang.exTransportRef;
-                            break;
-                    }
+                    strTmp = EA_exTransportRef.Execute(asnTyp, this.Lager);
                     strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
                     break;
                 case clsEdiVDAValueAlias.const_EA_ExAuftragRef:
                     strTmp = string.Empty;
-                    switch (asnTyp.Typ)
-                    {
-                        case "EML":
-                        case "EME":
-                        case "BML":
-                        case "BME":
-                            strTmp = this.Lager.Eingang.ExAuftragRef;
-                            break;
-
-                        case "AML":
-                        case "AME":
-                        case "AVL":
-                        case "AVE":
-                        case "RLL":
-                        case "RLE":
-                            strTmp = string.Empty;
-                            break;
-                    }
+                    strTmp = EA_exAuftragRef.Execute(asnTyp, this.Lager);
                     strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
                     break;
                 case clsEdiVDAValueAlias.const_EA_Brutto:
@@ -774,6 +740,12 @@ namespace LVS
                     strTmp = Arcelor_EA_BMWFormat.Execute(asnTyp, this.Lager);
                     strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
                     break;
+
+                case clsEdiVDAValueAlias.const_cFunction_Arcelor_EA_713F20:
+                    strTmp = string.Empty;
+                    strTmp = Arcelor_EA_713F20.Execute(asnTyp, this.Lager);
+                    strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
+                    break;                    
 
                 case clsEdiVDAValueAlias.const_cFunction_BMW_SLB:
                     strTmp = string.Empty;

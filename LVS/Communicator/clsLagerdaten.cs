@@ -1837,6 +1837,7 @@ namespace LVS
             dtEingang.Columns.Add("Transportmittel", typeof(string));
             dtEingang.Columns.Add("Lieferantennummer", typeof(string));
             dtEingang.Columns.Add("Log", typeof(string));
+            dtEingang.Columns.Add("ExAuftragRef", typeof(string));
             //dtEingang.Columns.Add("ParentID", typeof(string));
 
             dtEingang.Columns["Select"].SetOrdinal(0);
@@ -1975,6 +1976,10 @@ namespace LVS
                                         row["IsShip"] = true;
                                         break;
                                 }
+                                break;
+                            //ExAuftragRef
+                            case clsASN.const_VDA4913SatzField_SATZ712F20:
+                                row["ExAuftragRef"] = Value.ToString();
                                 break;
 
                             //Lieferscheinnummer

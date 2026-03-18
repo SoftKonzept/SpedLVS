@@ -457,6 +457,12 @@ namespace LVS.Communicator.EdiVDA
                             case clsEdiVDAValueAlias.const_EA_ExTransportRef:
                                 eingang.ExTransportRef = value;
                                 break;
+
+                            case clsEdiVDAValueAlias.const_EA_ExAuftragRef:
+                                eingang.ExAuftragRef = value;
+                                break;
+
+
                             default:
                                 break;
                         }

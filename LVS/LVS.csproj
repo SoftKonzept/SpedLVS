@@ -732,6 +732,9 @@
     <Compile Include="Communicator\EdiVDA\ediHelper_EdiEDIFACT_ASN_Check.cs" />
     <Compile Include="Communicator\EdiVDA\ediHelper_EdiEDIFACT_ASN_CheckAsnArt.cs" />
     <Compile Include="Communicator\EdiVDA\ediHelper_EdiEDIFACT_ASN_CheckProcessableASN.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\Arcelor_EA_713F20.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_exAuftragRef.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_exTransportRef.cs" />
     <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_UNB_S004_0017_DateOfCreation.cs" />
     <Compile Include="Communicator\EdiVDA\VdaMessageToClasses.cs" />
     <Compile Include="Communicator\EdiVDA\EdifactMessageToClasses.cs" />

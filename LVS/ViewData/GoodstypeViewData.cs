@@ -555,7 +555,8 @@ namespace LVS.ViewData
             string strSQL = "Select Top(1) g.ID FROM Gueterart g ";
             strSQL += "INNER JOIN GueterartADR gADR on gADR.GArtID=g.ID ";
             strSQL += "WHERE ";
-            strSQL += "REPLACE(g.Verweis, ' ', '') = REPLACE('" + myVerweis + "', ' ', '') ";
+            //strSQL += "REPLACE(g.Verweis, ' ', '') = REPLACE('" + myVerweis + "', ' ', '') ";
+            strSQL += "REPLACE(REPLACE(REPLACE(REPLACE(g.Verweis, ' ', ''), CHAR(9), ''), CHAR(160), ''), CHAR(13), '') = REPLACE(REPLACE(REPLACE(REPLACE('" + myVerweis + "', ' ', ''), CHAR(9), ''), CHAR(160), ''), CHAR(13), '') ";
             strSQL += " AND gADR.AbBereichID= " + WorkspaceId;
             strSQL += " AND gADR.AdrID=" + myAdrId;
             strSQL += " Order by g.ID ;";

@@ -187,10 +187,15 @@ namespace Sped4.Controls.ASNCenter
                 {
                     asnWizz.InitAdressVerweisById(decimal.Parse(dgvAdrVerweis.SelectedRows[0].Cells["ID"].Value.ToString()));
                     tbId.Text = asnWizz.AdrReferenceVD.adrReference.Id.ToString();
-                    tbVerweisADR.Text = asnWizz.AdrReferenceVD.adrReference.SenderAddress.ViewId;
+
+                    //tbVerweisADR.Text = asnWizz.AdrReferenceVD.adrReference.SenderAddress.ViewId;
+                    tbVerweisADR.Text = asnWizz.AdrReferenceVD.adrReference.ReceiverAddress.ViewId;
+                    nudAdrIdDirect.Value = asnWizz.AdrReferenceVD.adrReference.ReceiverAddress.Id;
+
                     Functions.SetComboToSelecetedValue(ref cbArbeitsbereich, asnWizz.AdrReferenceVD.adrReference.WorkspaceId.ToString());
                     Functions.SetComboToSelecetedItem(ref comboVerweisArt, asnWizz.AdrReferenceVD.adrReference.ReferenceArt);
                     Functions.SetComboToSelecetedValue(ref comboMandant, asnWizz.AdrReferenceVD.adrReference.MandantenId.ToString());
+                    
                     tbASNVerweis.Text = asnWizz.AdrReferenceVD.adrReference.Reference;
                     tbASNLieferantenNummer.Text = asnWizz.AdrReferenceVD.adrReference.SupplierReference;
                     tbASNSenderVerweis.Text = asnWizz.AdrReferenceVD.adrReference.SenderReference;

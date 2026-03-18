@@ -450,8 +450,19 @@ namespace Common.Models
             string strProperty = propDestination.Remove(0, propDestination.IndexOf('.') + 1);
             try
             {
-                this.GetType().GetProperty(strProperty).SetValue(this, strReplaceValue, null);
+                //this.GetType().GetProperty(strProperty).SetValue(this, strReplaceValue, null);
                 //this.GetType().GetProperty(strProperty).SetValue(this, SourceArt.GetType().GetProperty(strProperty).GetValue(SourceArt, null), null);
+
+                var propInfo = this.GetType().GetProperty(strProperty);
+                if (propInfo == null)
+                    return; // Property existiert nicht auf Articles
+
+                var destPropInfo = this.GetType().GetProperty(strProperty);
+                if (destPropInfo == null)
+                    return; // Property existiert nicht auf Ziel-Objekt
+
+                object sourceValue = propInfo.GetValue(this, null);
+                destPropInfo.SetValue(this, sourceValue, null);
             }
             catch (Exception ex)
             { }
@@ -488,9 +499,21 @@ namespace Common.Models
             string strProperty = propDestination.Remove(0, propDestination.IndexOf('.') + 1);
             try
             {
-                string strValue = SourceArt.GetType().GetProperty(strProperty).GetValue(SourceArt, null).ToString();
 
-                this.GetType().GetProperty(strProperty).SetValue(this, SourceArt.GetType().GetProperty(strProperty).GetValue(SourceArt, null), null);
+                //string strValue = SourceArt.GetType().GetProperty(strProperty).GetValue(SourceArt, null).ToString();
+
+                //this.GetType().GetProperty(strProperty).SetValue(this, SourceArt.GetType().GetProperty(strProperty).GetValue(SourceArt, null), null);
+
+                var propInfo = SourceArt.GetType().GetProperty(strProperty);
+                if (propInfo == null)
+                    return; // Property existiert nicht auf Articles
+
+                var destPropInfo = this.GetType().GetProperty(strProperty);
+                if (destPropInfo == null)
+                    return; // Property existiert nicht auf Ziel-Objekt
+
+                object sourceValue = propInfo.GetValue(SourceArt, null);
+                destPropInfo.SetValue(this, sourceValue, null);
             }
             catch (Exception ex)
             { }

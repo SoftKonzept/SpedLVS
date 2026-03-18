@@ -82,7 +82,7 @@ namespace LVS.Communicator.EdiVDA
                 dtEingang.Columns.Add("Transportmittel", typeof(string));
                 dtEingang.Columns.Add("Lieferantennummer", typeof(string));
                 dtEingang.Columns.Add("Log", typeof(string));
-
+                dtEingang.Columns.Add("ExAuftragRef", typeof(string));
 
                 EingangViewData eVD = new EingangViewData();
                 eVD.Eingang.ArbeitsbereichId = myAsn.WorkspaceId;
@@ -92,10 +92,8 @@ namespace LVS.Communicator.EdiVDA
                 //dtASN.DefaultView.Sort = "ID ASC";
                 DataTable dtASNID = dtASN.DefaultView.ToTable(true, "ASNID");
 
-
                 for (Int32 i = 0; i <= dtASNID.Rows.Count - 1; i++)
                 {
-
                     DataRow row = dtEingang.NewRow();
 
                     string asnIDTmp = dtASNID.Rows[i]["ASNID"].ToString();
@@ -103,7 +101,6 @@ namespace LVS.Communicator.EdiVDA
                     Decimal.TryParse(asnIDTmp, out decASNID);
                     //row["Select"] = false;
                     //row["ASN"] = decASNID;
-
 
                     dtASN.DefaultView.RowFilter = string.Empty;
                     dtASN.DefaultView.RowFilter = "ASNID=" + asnIDTmp;
@@ -337,8 +334,16 @@ namespace LVS.Communicator.EdiVDA
                                     eVD.Eingang.Empfaenger = adrVD.Address.Id;
                                     eVD.Eingang.EmpfaengerString = adrVD.Address.ViewIdString;
                                     bIsRead46 = true;
-                                    finishLoop = true;
+                                    //finishLoop = true;
                                 }
+                                break;
+
+                            //ExAuftragRef
+                            case clsASN.const_VDA4913SatzField_SATZ713F20:
+                                row["ExAuftragRef"] = Value.ToString();
+                                eVD.Eingang.ExAuftragRef = Value.ToString();
+                                //string str = Value.ToString();
+                                finishLoop = true;
                                 break;
                         }
 
@@ -367,7 +372,6 @@ namespace LVS.Communicator.EdiVDA
                     AsnVdaView.VS_Datum = dtTmp;
                     AsnVdaView.RefAuftraggeber = row["Ref.Auftraggeber"].ToString();
                     AsnVdaView.RefEmpfaenger = row["Ref.Empfaenger"].ToString();
-
                 }
             }
         }
@@ -608,7 +612,6 @@ namespace LVS.Communicator.EdiVDA
                                     {
                                         try
                                         {
-
                                             //SetASNGArtValue(ref AddArtikel);
                                             ctrASNRead_Helper_SetGArtValueToArticle setAsnArtValue = new ctrASNRead_Helper_SetGArtValueToArticle(AddArtikel, this.system);
                                             AddArtikel = setAsnArtValue.Article;

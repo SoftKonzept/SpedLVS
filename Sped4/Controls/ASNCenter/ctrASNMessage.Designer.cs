@@ -92,10 +92,6 @@
             this.sc_ASNMessageTestMain.Location = new System.Drawing.Point(0, 0);
             this.sc_ASNMessageTestMain.Name = "sc_ASNMessageTestMain";
             this.sc_ASNMessageTestMain.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // 
-            // 
-            this.sc_ASNMessageTestMain.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.sc_ASNMessageTestMain.Size = new System.Drawing.Size(703, 495);
             this.sc_ASNMessageTestMain.SplitterWidth = 8;
             this.sc_ASNMessageTestMain.TabIndex = 0;
@@ -107,10 +103,6 @@
             this.panASNMessagesTest.Controls.Add(this.rmASNActionEdit);
             this.panASNMessagesTest.Location = new System.Drawing.Point(0, 0);
             this.panASNMessagesTest.Name = "panASNMessagesTest";
-            // 
-            // 
-            // 
-            this.panASNMessagesTest.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.panASNMessagesTest.Size = new System.Drawing.Size(703, 249);
             this.panASNMessagesTest.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.01120163F);
             this.panASNMessagesTest.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 15);
@@ -125,10 +117,6 @@
             this.sc_ASNMessageTest.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sc_ASNMessageTest.Location = new System.Drawing.Point(0, 34);
             this.sc_ASNMessageTest.Name = "sc_ASNMessageTest";
-            // 
-            // 
-            // 
-            this.sc_ASNMessageTest.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.sc_ASNMessageTest.Size = new System.Drawing.Size(703, 215);
             this.sc_ASNMessageTest.SplitterWidth = 8;
             this.sc_ASNMessageTest.TabIndex = 0;
@@ -150,11 +138,9 @@
             this.panTestEdit.Controls.Add(this.label35);
             this.panTestEdit.Location = new System.Drawing.Point(0, 0);
             this.panTestEdit.Name = "panTestEdit";
-            // 
-            // 
-            // 
-            this.panTestEdit.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.panTestEdit.Size = new System.Drawing.Size(348, 215);
+            this.panTestEdit.Size = new System.Drawing.Size(382, 215);
+            this.panTestEdit.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.0496403F, 0F);
+            this.panTestEdit.SizeInfo.SplitterCorrection = new System.Drawing.Size(34, 0);
             this.panTestEdit.TabIndex = 0;
             this.panTestEdit.TabStop = false;
             this.panTestEdit.Text = "splitPanel1";
@@ -205,7 +191,7 @@
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(24, 136);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 13);
+            this.label2.Size = new System.Drawing.Size(81, 13);
             this.label2.TabIndex = 244;
             this.label2.Text = "Beschreibung:";
             // 
@@ -228,7 +214,7 @@
             0,
             0});
             this.nudArtikelId.Name = "nudArtikelId";
-            this.nudArtikelId.Size = new System.Drawing.Size(154, 20);
+            this.nudArtikelId.Size = new System.Drawing.Size(184, 20);
             this.nudArtikelId.TabIndex = 3;
             // 
             // cbArbeitsbereich
@@ -238,7 +224,7 @@
             this.cbArbeitsbereich.ItemHeight = 13;
             this.cbArbeitsbereich.Location = new System.Drawing.Point(145, 48);
             this.cbArbeitsbereich.Name = "cbArbeitsbereich";
-            this.cbArbeitsbereich.Size = new System.Drawing.Size(155, 21);
+            this.cbArbeitsbereich.Size = new System.Drawing.Size(184, 21);
             this.cbArbeitsbereich.TabIndex = 1;
             this.cbArbeitsbereich.SelectedIndexChanged += new System.EventHandler(this.cbArbeitsbereich_SelectedIndexChanged);
             // 
@@ -259,7 +245,7 @@
             this.cbASNAction.ItemHeight = 13;
             this.cbASNAction.Location = new System.Drawing.Point(145, 81);
             this.cbASNAction.Name = "cbASNAction";
-            this.cbASNAction.Size = new System.Drawing.Size(155, 21);
+            this.cbASNAction.Size = new System.Drawing.Size(184, 21);
             this.cbASNAction.TabIndex = 2;
             // 
             // label35
@@ -276,13 +262,11 @@
             // 
             this.panTestView.BackColor = System.Drawing.Color.White;
             this.panTestView.Controls.Add(this.dgvActionView);
-            this.panTestView.Location = new System.Drawing.Point(356, 0);
+            this.panTestView.Location = new System.Drawing.Point(390, 0);
             this.panTestView.Name = "panTestView";
-            // 
-            // 
-            // 
-            this.panTestView.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.panTestView.Size = new System.Drawing.Size(347, 215);
+            this.panTestView.Size = new System.Drawing.Size(313, 215);
+            this.panTestView.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.0496403F, 0F);
+            this.panTestView.SizeInfo.SplitterCorrection = new System.Drawing.Size(-34, 0);
             this.panTestView.TabIndex = 1;
             this.panTestView.TabStop = false;
             this.panTestView.Text = "splitPanel2";
@@ -311,8 +295,7 @@
             // 
             // 
             this.dgvActionView.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
-            this.dgvActionView.ShowHeaderCellButtons = true;
-            this.dgvActionView.Size = new System.Drawing.Size(347, 215);
+            this.dgvActionView.Size = new System.Drawing.Size(313, 215);
             this.dgvActionView.TabIndex = 31;
             this.dgvActionView.ThemeName = "ControlDefault";
             // 
@@ -373,10 +356,6 @@
             this.panQueueView.Controls.Add(this.menuQueue);
             this.panQueueView.Location = new System.Drawing.Point(0, 257);
             this.panQueueView.Name = "panQueueView";
-            // 
-            // 
-            // 
-            this.panQueueView.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.panQueueView.Size = new System.Drawing.Size(703, 238);
             this.panQueueView.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.01120163F);
             this.panQueueView.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -15);
@@ -408,7 +387,6 @@
             // 
             // 
             this.dgvQueue.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 36, 240, 150);
-            this.dgvQueue.ShowHeaderCellButtons = true;
             this.dgvQueue.Size = new System.Drawing.Size(703, 202);
             this.dgvQueue.TabIndex = 30;
             this.dgvQueue.ThemeName = "ControlDefault";

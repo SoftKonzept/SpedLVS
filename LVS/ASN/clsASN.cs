@@ -1351,10 +1351,7 @@ namespace LVS
                             EMail.SendError();
                         }
                     }
-
-
                 }
-
             }
             if (this.ASNFileTyp == constValue_AsnArt.const_Art_EdifactVDA4987)
             {
