@@ -343,8 +343,19 @@ namespace LVS.ZUGFeRD
                 ///-------------------------------------------------------------------------------------------------------------------- BG-4 SELLER 
                 Party Seller = ZUGFeRD.ZUGFeRD_Party.GetPartyItem(InvoiceVD.mandantenVD.Mandant.Address, InvoiceVD.mandantenVD.Mandant.Mail);
                 desc.Seller = Seller;
+
+                //-- Handeslregister
+                //LegalOrganization legalOrg = new LegalOrganization(null, "HRA964", "Amtsgericht Frankfurt Order");
+
                 //desc.SetSeller(Seller.Name, Seller.Postcode, Seller.City, Seller.Street, (CountryCodes)Seller.Country);
                 desc.SetSeller(Seller.Name, Seller.Postcode, Seller.City, Seller.Street, (CountryCodes)Seller.Country, null, Seller.GlobalID, null, null, Seller.CountrySubdivisionName, Seller.AddressLine3);
+                //desc.SetSeller(Seller.Name, Seller.Postcode, Seller.City, Seller.Street, (CountryCodes)Seller.Country, null, Seller.GlobalID, legalOrg, null, Seller.CountrySubdivisionName, Seller.AddressLine3);
+
+                //--- neu Geschäftsführer als Note
+                //desc.AddNote(
+                //                "Geschäftsführer: Manfred Steffens, Sabine Steffens-Roos", //content: 
+                //                subjectCode: SubjectCodes.REG
+                //            );
 
                 LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Seller.Name", Seller.Name));
 
@@ -356,6 +367,7 @@ namespace LVS.ZUGFeRD
 
                 //--------------------------------------------------------------------------------------------------------------------- BT-41 Seller contact point -> BG-4 SELLER 
                 string sContactName = InvoiceVD.mandantenVD.Mandant.Contact;
+                sContactName = string.Empty;
                 LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "sContactName", InvoiceVD.mandantenVD.Mandant.Contact));
 
                 //----------------------------------------- BT-42 Seller contact telephone number  -> BG-4 SELLER 
@@ -382,6 +394,8 @@ namespace LVS.ZUGFeRD
                 //----------------------------------------- BT-32 Seller tax registration identifier -> Steuernummer
                 desc.AddSellerTaxRegistration(InvoiceVD.mandantenVD.Mandant.TaxNumber, TaxRegistrationSchemeID.FC);
                 //----------------------------------------- BT-33 Seller additional legal information 
+                
+
                 desc.ActualDeliveryDate = InvoiceVD.Invoice.Datum; 
                 LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "desc.ActualDeliveryDate", desc.ActualDeliveryDate));
 

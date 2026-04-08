@@ -5307,7 +5307,7 @@ namespace LVS
                             tmpRepSettings = mySys.ReportDocSetting.GetClassByDocKey(enumIniDocKey.ManuellerechnungMail.ToString());
                             FilePathTemp = TelerikPrint.SaveReportFileToHDForUse(tmpRepSettings);
 
-                            if ((tmpRepSettings.RSAId > 0) && (tmpRepSettings.ReportDataFileExist))
+                            if ((tmpRepSettings is clsReportDocSetting) && (tmpRepSettings.RSAId > 0) && (tmpRepSettings.ReportDataFileExist))
                             {
                                 //--check of reportbook, hier kann die Reportdatei nicht aus der DB kommen, das funktioniert nicht
                                 FileExtension = Path.GetExtension(tmpRepSettings.ReportFileName);
@@ -5401,7 +5401,12 @@ namespace LVS
                             }
                             else
                             {
-                                string strTExt = "Es konnte keine passende Reportdatein gefunden werden. Der Vorgang wird abgebrochen!";
+                                string strTExt = "Es konnte keine passende Reportdatein gefunden werden. Der Vorgang wird abgebrochen!" + Environment.NewLine + Environment.NewLine;
+
+                                strTExt += "Arbeitsbereich:   ["+ this.Sys.AbBereich.ID.ToString()+"] - " +  this.Sys.AbBereich.ABName + Environment.NewLine;
+                                strTExt += "Rechnung:   [" + this.Rechnung.ID.ToString()+"] - " + this.Rechnung.RGNr.ToString() +" vom "+this.Rechnung.Datum.ToString("dd.MM.yyyy") + Environment.NewLine;
+                                strTExt += "Rechnungsart:   " + this.Rechnung.RGArt + Environment.NewLine;                          
+
                                 clsMessages.Allgemein_ERRORTextShow(strTExt);
                             }
                             break;

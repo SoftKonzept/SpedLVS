@@ -590,12 +590,11 @@ namespace LVS.ViewData
                             {
                                 tmpCall.ID = iAbrufID;
                                 tmpCall.Fill();
+                                clsClient.ctrAuslagerung_CustomizeDefaulAusgangsdaten_Call(this.System, ref tmpCall);   
 
                                 clsArbeitsbereiche workspace = new clsArbeitsbereiche((int)tmpCall.AbBereichID, BenutzerID);
                                 tmpCall.sys.AbBereich = workspace;
                                 tmpCall.sys.Mandant = workspace.Mandant;
-
-                                //string tmpAction = row["Aktion"].ToString();
 
                                 switch (myAction)
                                 {

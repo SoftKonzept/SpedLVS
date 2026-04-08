@@ -1066,6 +1066,13 @@ namespace Sped4
                                 this._iSearchButton = 2;
                                 SetADRByID(Lager.Ausgang.Versender);
                             }
+                            //Spedition     
+                            if (Lager.Ausgang.SpedID > 0)
+                            {
+                                //default Empfänger wurde gesetzt
+                                this._iSearchButton = 5;
+                                SetADRByID(Lager.Ausgang.SpedID);
+                            }
                         }
 
                         if (this.Lager.Ausgang.LAusgangTableID < 1)
@@ -2138,7 +2145,30 @@ namespace Sped4
                         SetLabelKennzeichen(true);
                         //Auswahl eigene Fahrzeuge
                         SetFelderFremdfahrzeugeEnabled(false);
-                        _ADRSpedition = 0;
+                        //_ADRSpedition = 0;
+                        //mtbKFZ.Mask = "";
+                        //mtbKFZ.Text = cbFahrzeug.Text;
+
+                        if (this._ctrMenu._frmMain.system.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.Count > 0)
+                        {
+                            decimal decTmp = 0;
+                            this._ctrMenu._frmMain.system.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.TryGetValue(this._ctrMenu._frmMain.system.AbBereich.ID, out decTmp);
+                            _ADRSpedition = decTmp;
+                            if (!_ADRSpedition.Equals(decTmp))
+                            {
+                                //mtbKFZ.Mask = "";
+                                //mtbKFZ.Text = cbFahrzeug.Text;
+                                //SetADRByID(_ADRSpedition);
+                            }
+                            else
+                            {
+                                _ADRSpedition = 0;
+                            }
+                        }
+                        else
+                        {
+                            _ADRSpedition = 0;
+                        }
                         mtbKFZ.Mask = "";
                         mtbKFZ.Text = cbFahrzeug.Text;
                         break;
@@ -2173,7 +2203,40 @@ namespace Sped4
                         SetLabelKennzeichen(true);
                         //Auswahl eigene Fahrzeuge
                         SetFelderFremdfahrzeugeEnabled(false);
-                        _ADRSpedition = 0;
+                        //decimal decTmp = 0;
+                        //if (this._ctrMenu._frmMain.system.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.Count > 0)
+                        //{
+                        //    decTmp = 0;
+                        //    this._ctrMenu._frmMain.system.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.TryGetValue(this._ctrMenu._frmMain.system.AbBereich.ID, out decTmp);
+                        //    _ADRSpedition = decTmp;
+                        //}
+                        //else
+                        //{
+                        //    _ADRSpedition = 0;
+                        //}
+                        //mtbKFZTrailer.Mask = "";
+                        //mtbKFZTrailer.Text = cbTrailer.Text;
+
+                        if (this._ctrMenu._frmMain.system.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.Count > 0)
+                        {
+                            decimal decTmp = 0;
+                            this._ctrMenu._frmMain.system.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.TryGetValue(this._ctrMenu._frmMain.system.AbBereich.ID, out decTmp);
+                            _ADRSpedition = decTmp;
+                            if (!_ADRSpedition.Equals(decTmp))
+                            {
+                                //mtbKFZ.Mask = "";
+                                //mtbKFZ.Text = cbFahrzeug.Text;
+                                //SetADRByID(_ADRSpedition);
+                            }
+                            else
+                            {
+                                _ADRSpedition = 0;
+                            }
+                        }
+                        else
+                        {
+                            _ADRSpedition = 0;
+                        }
                         mtbKFZTrailer.Mask = "";
                         mtbKFZTrailer.Text = cbTrailer.Text;
                         break;
@@ -2198,11 +2261,11 @@ namespace Sped4
                 mtbKFZ.Enabled = !bEndabled;
                 mtbKFZTrailer.Enabled = !bEndabled;
             }
-            if (!bEndabled)
-            {
-                tbMCSpedition.Text = string.Empty;
-                tbADRSpedition.Text = string.Empty;
-            }
+            //if (!bEndabled)
+            //{
+            //    tbMCSpedition.Text = string.Empty;
+            //    tbADRSpedition.Text = string.Empty;
+            //}
         }
         ///<summary>ctrAuslagerung / GetTerminDateTime</summary>
         ///<remarks>Setzt den Termin anhand von dem Datum und den gewählten Stunden / Min zusammen.</remarks>

@@ -48,6 +48,8 @@ namespace LVS
             ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID = new Dictionary<decimal, decimal>();
             ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(1, 1);
 
+            ClientToSet.DictArbeitsbereich_Ausgang_DefaultSpedAdrID = new Dictionary<decimal, decimal>();
+
             //Umbuchung
             ClientToSet.DictArbeitsbereich_Umbuchung_DefaultEmpfaengerAdrID = new Dictionary<decimal, decimal>();
             ClientToSet.DictArbeitsbereich_Umbuchung_DefaultAuftraggeberNeuAdrID = new Dictionary<decimal, decimal>();

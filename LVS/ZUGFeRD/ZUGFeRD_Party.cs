@@ -1,5 +1,4 @@
 ﻿using Common.Models;
-using LVS.ViewData;
 using s2industries.ZUGFeRD;
 
 namespace LVS.ZUGFeRD
@@ -22,6 +21,7 @@ namespace LVS.ZUGFeRD
                 name += " " + myAdr.Name2;
             }              
             GlobalID globalId = new GlobalID(GlobalIDSchemeIdentifiers.CertifiedEmailAddress, myGLobalId);
+            //GlobalID globalIdLegalOrganisation = new GlobalID(GlobalIDSchemeIdentifiers., myGLobalId);
             //GlobalID id = new GlobalID(GlobalIDSchemeIdentifiers.CompanyNumber, myAdr.Id.ToString());
             string street = myAdr.Street; // + " " + myAdrVD.Address.HouseNo;
             if((myAdr.HouseNo != null) && (myAdr.HouseNo != string.Empty))
@@ -61,7 +61,20 @@ namespace LVS.ZUGFeRD
                 //----------------------------------------- BT-40 Seller country code -> BG-5 SELLER 
                 Country = cc,
 
-               
+
+                //// HIER werden BT-33 und BT-34 gesetzt:  
+                //SpecifiedLegalOrganization = new LegalOrganization()
+                //{
+                //    //ID = "HRA964",         // BT-33 (Registrierungsnummer)  
+                //    ID = new GlobalID()
+                //    {
+                //        ID = "HRA964",              // Handelsregisternummer  
+                //        //SchemeID = "0002"           // 0002 = Mutually defined (Handelsregister DE)  
+                //        SchemeID = null
+                //    },
+                //    TradingBusinessName = "Amtsgericht Frankfurt Oder" // BT-34 (Registergericht / Name)  
+                //}
+
             };
             return partyItem;
         }

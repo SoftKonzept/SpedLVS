@@ -33,7 +33,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>26.03.18.%2a</ApplicationVersion>
+    <ApplicationVersion>26.04.08.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -533,6 +533,7 @@
     <Compile Include="Classes\clsSQLStatement.cs" />
     <Compile Include="Classes\clsPrint.cs" />
     <Compile Include="Classes\Helper\helper_TelerikGridViewRowInfo.cs" />
+    <Compile Include="Classes\Update\up1341.cs" />
     <Compile Include="Classes\Update\up1340.cs" />
     <Compile Include="Classes\Update\up1339.cs" />
     <Compile Include="Classes\Update\up1338.cs" />

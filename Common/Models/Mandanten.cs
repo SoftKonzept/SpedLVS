@@ -100,6 +100,18 @@ namespace Common.Models
         [JsonProperty("Organisation")]
         public string Organisation { get; set; } = string.Empty;
 
+        [DataMember]
+        [JsonProperty("Register")]
+        public string Register { get; set; } = string.Empty;
+
+        [DataMember]
+        [JsonProperty("Magistrate Court")]
+        public string MagistrateCourt { get; set; } = string.Empty;
+
+        [DataMember]
+        [JsonProperty("Managing Director")]
+        public string ManagingDirector { get; set; } = string.Empty;
+
         public Mandanten Copy()
         {
             return (Mandanten)this.MemberwiseClone();

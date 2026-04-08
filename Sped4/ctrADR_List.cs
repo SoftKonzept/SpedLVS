@@ -5235,5 +5235,251 @@ namespace Sped4
                 this.cbADRText_UseForAll.Checked = false;
             }
         }
+        /// <summary>
+        ///                 schwierige Zeichen für das Speichern von Adressen wird herausgefilter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tbSuchname_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            string currentText = tb.Text;
+            if (!string.IsNullOrEmpty(currentText))
+            {
+                string strReturn = Helper_Adr_InputstringValidator.Validation(currentText);
+                if (!strReturn.Equals(currentText))
+                {
+                    // Event-Handler temporär abmelden, um Endlosrekursion zu vermeiden
+                    tb.TextChanged -= tbSuchname_TextChanged;
+                    int cursorPos = tb.SelectionStart;
+                    tb.Text = strReturn;
+                    tb.SelectionStart = Math.Min(cursorPos, strReturn.Length);
+                    tb.TextChanged += tbSuchname_TextChanged;
+                }
+            }
+        }
+
+        private void tbName1_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            string currentText = tb.Text;
+            if (!string.IsNullOrEmpty(currentText))
+            {
+                string strReturn = Helper_Adr_InputstringValidator.Validation(currentText);
+                if (!strReturn.Equals(currentText))
+                {
+                    // Event-Handler temporär abmelden, um Endlosrekursion zu vermeiden
+                    tb.TextChanged -= tbSuchname_TextChanged;
+                    int cursorPos = tb.SelectionStart;
+                    tb.Text = strReturn;
+                    tb.SelectionStart = Math.Min(cursorPos, strReturn.Length);
+                    tb.TextChanged += tbSuchname_TextChanged;
+                }
+            }
+        }
+
+        private void tbName2_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            string currentText = tb.Text;
+            if (!string.IsNullOrEmpty(currentText))
+            {
+                string strReturn = Helper_Adr_InputstringValidator.Validation(currentText);
+                if (!strReturn.Equals(currentText))
+                {
+                    // Event-Handler temporär abmelden, um Endlosrekursion zu vermeiden
+                    tb.TextChanged -= tbSuchname_TextChanged;
+                    int cursorPos = tb.SelectionStart;
+                    tb.Text = strReturn;
+                    tb.SelectionStart = Math.Min(cursorPos, strReturn.Length);
+                    tb.TextChanged += tbSuchname_TextChanged;
+                }
+            }
+        }
+
+        private void tbName3_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            string currentText = tb.Text;
+            if (!string.IsNullOrEmpty(currentText))
+            {
+                string strReturn = Helper_Adr_InputstringValidator.Validation(currentText);
+                if (!strReturn.Equals(currentText))
+                {
+                    // Event-Handler temporär abmelden, um Endlosrekursion zu vermeiden
+                    tb.TextChanged -= tbSuchname_TextChanged;
+                    int cursorPos = tb.SelectionStart;
+                    tb.Text = strReturn;
+                    tb.SelectionStart = Math.Min(cursorPos, strReturn.Length);
+                    tb.TextChanged += tbSuchname_TextChanged;
+                }
+            }
+        }
+
+        private void tbStr_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            string currentText = tb.Text;
+            if (!string.IsNullOrEmpty(currentText))
+            {
+                string strReturn = Helper_Adr_InputstringValidator.Validation(currentText);
+                if (!strReturn.Equals(currentText))
+                {
+                    // Event-Handler temporär abmelden, um Endlosrekursion zu vermeiden
+                    tb.TextChanged -= tbSuchname_TextChanged;
+                    int cursorPos = tb.SelectionStart;
+                    tb.Text = strReturn;
+                    tb.SelectionStart = Math.Min(cursorPos, strReturn.Length);
+                    tb.TextChanged += tbSuchname_TextChanged;
+                }
+            }
+        }
+
+        private void tbHausNr_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            string currentText = tb.Text;
+            if (!string.IsNullOrEmpty(currentText))
+            {
+                string strReturn = Helper_Adr_InputstringValidator.Validation(currentText);
+                if (!strReturn.Equals(currentText))
+                {
+                    // Event-Handler temporär abmelden, um Endlosrekursion zu vermeiden
+                    tb.TextChanged -= tbSuchname_TextChanged;
+                    int cursorPos = tb.SelectionStart;
+                    tb.Text = strReturn;
+                    tb.SelectionStart = Math.Min(cursorPos, strReturn.Length);
+                    tb.TextChanged += tbSuchname_TextChanged;
+                }
+            }
+        }
+
+        private void tbPLZ_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            string currentText = tb.Text;
+            if (!string.IsNullOrEmpty(currentText))
+            {
+                string strReturn = Helper_Adr_InputstringValidator.Validation(currentText);
+                if (!strReturn.Equals(currentText))
+                {
+                    // Event-Handler temporär abmelden, um Endlosrekursion zu vermeiden
+                    tb.TextChanged -= tbSuchname_TextChanged;
+                    int cursorPos = tb.SelectionStart;
+                    tb.Text = strReturn;
+                    tb.SelectionStart = Math.Min(cursorPos, strReturn.Length);
+                    tb.TextChanged += tbSuchname_TextChanged;
+                }
+            }
+        }
+
+        private void tbOrt_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            string currentText = tb.Text;
+            if (!string.IsNullOrEmpty(currentText))
+            {
+                string strReturn = Helper_Adr_InputstringValidator.Validation(currentText);
+                if (!strReturn.Equals(currentText))
+                {
+                    // Event-Handler temporär abmelden, um Endlosrekursion zu vermeiden
+                    tb.TextChanged -= tbSuchname_TextChanged;
+                    int cursorPos = tb.SelectionStart;
+                    tb.Text = strReturn;
+                    tb.SelectionStart = Math.Min(cursorPos, strReturn.Length);
+                    tb.TextChanged += tbSuchname_TextChanged;
+                }
+            }
+        }
+
+        private void tbPF_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            string currentText = tb.Text;
+            if (!string.IsNullOrEmpty(currentText))
+            {
+                string strReturn = Helper_Adr_InputstringValidator.Validation(currentText);
+                if (!strReturn.Equals(currentText))
+                {
+                    // Event-Handler temporär abmelden, um Endlosrekursion zu vermeiden
+                    tb.TextChanged -= tbSuchname_TextChanged;
+                    int cursorPos = tb.SelectionStart;
+                    tb.Text = strReturn;
+                    tb.SelectionStart = Math.Min(cursorPos, strReturn.Length);
+                    tb.TextChanged += tbSuchname_TextChanged;
+                }
+            }
+        }
+
+        private void tbPLZPF_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            string currentText = tb.Text;
+            if (!string.IsNullOrEmpty(currentText))
+            {
+                string strReturn = Helper_Adr_InputstringValidator.Validation(currentText);
+                if (!strReturn.Equals(currentText))
+                {
+                    // Event-Handler temporär abmelden, um Endlosrekursion zu vermeiden
+                    tb.TextChanged -= tbSuchname_TextChanged;
+                    int cursorPos = tb.SelectionStart;
+                    tb.Text = strReturn;
+                    tb.SelectionStart = Math.Min(cursorPos, strReturn.Length);
+                    tb.TextChanged += tbSuchname_TextChanged;
+                }
+            }
+        }
+
+        private void tbOrtPF_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null)
+                return;
+
+            string currentText = tb.Text;
+            if (!string.IsNullOrEmpty(currentText))
+            {
+                string strReturn = Helper_Adr_InputstringValidator.Validation(currentText);
+                if (!strReturn.Equals(currentText))
+                {
+                    // Event-Handler temporär abmelden, um Endlosrekursion zu vermeiden
+                    tb.TextChanged -= tbSuchname_TextChanged;
+                    int cursorPos = tb.SelectionStart;
+                    tb.Text = strReturn;
+                    tb.SelectionStart = Math.Min(cursorPos, strReturn.Length);
+                    tb.TextChanged += tbSuchname_TextChanged;
+                }
+            }
+        }
     }
 }

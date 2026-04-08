@@ -1165,6 +1165,7 @@
     <Compile Include="Helper\helper_FilePrefixAfterComProzess.cs" />
     <Compile Include="Helper\helper_DateTimeFunctions.cs" />
     <Compile Include="Helper\helper_sqlServers.cs" />
+    <Compile Include="Helper\Helper_Adr_InputstringValidator.cs" />
     <Compile Include="Helper\Helper_VAT_Validation.cs" />
     <Compile Include="Helper\helper_VDALogText.cs" />
     <Compile Include="Helper\helper_WIndowsFromsdll.cs" />
