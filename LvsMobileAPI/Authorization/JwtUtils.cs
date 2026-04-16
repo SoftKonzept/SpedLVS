@@ -51,6 +51,11 @@ namespace LvsMobileAPI.Authorization
 
         public string GenerateToken(Users logUser)
         {
+            string s = string.Empty;
+
+            if (logUser == null)
+                throw new ArgumentNullException(nameof(logUser));
+
             // claims
             var claim = new[]
              {

@@ -38,6 +38,7 @@ namespace LVS
             ClientToSet.DictArbeitsbereich_Ausgang_DefaultEntladeAdrID = new Dictionary<decimal, decimal>();
             ClientToSet.DictArbeitsbereich_Ausgang_DefaultVersenderAdrID = new Dictionary<decimal, decimal>();
             ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID = new Dictionary<decimal, decimal>();
+            ClientToSet.DictArbeitsbereich_Ausgang_DefaultSpedAdrID = new Dictionary<decimal, decimal>();
 
             //Umbuchung
             ClientToSet.DictArbeitsbereich_Umbuchung_DefaultEmpfaengerAdrID = new Dictionary<decimal, decimal>();
@@ -130,7 +131,7 @@ namespace LVS
             myModul.Lager_Bestandsliste_PrintButtonReport_Bestand = true;  //Print Bestand über Report
             myModul.Lager_Bestandsliste_PrintButtonReport_Inventur = false;  // Print Inventur über Report
             myModul.Lager_Bestandsliste_PrintButtonGrid = true;
-            myModul.Lager_Bestandsliste_BestandOverAllWorkspaces = false;
+            myModul.Lager_Bestandsliste_BestandOverAllWorkspaces = true;
 
             //...|LvsScan
             myModul.LvsScan = false;
@@ -224,11 +225,20 @@ namespace LVS
             myModul.Mail_UsingMainMailForMailing = false;
             myModul.Mail_UsingNoReplyDefault = false;
 
-            myModul.Mail_SMTPServer = "smtp.ionos.de";
+            //--- old
+            //myModul.Mail_SMTPServer = "smtp.ionos.de";
+            //myModul.Mail_SMTPUser = "noreply@sle-gmbh.de";
+            //myModul.Mail_SMTPPasswort = "B/z@WU[Ze2E4SvkBI";
+            //myModul.Mail_MailAdress = "noreply@sle-gmbh.de";
+            //myModul.Mail_SMTPPort = 587;
+            //myModul.Mail_SMTPSSL = true;
+
+            //--- Anpassung lt. Mail Hr. Koschenz
+            myModul.Mail_SMTPServer = "slegmbh-de0i.mail.protection.outlook.com";
             myModul.Mail_SMTPUser = "noreply@sle-gmbh.de";
-            myModul.Mail_SMTPPasswort = "B/z@WU[Ze2E4SvkBI";
+            myModul.Mail_SMTPPasswort = string.Empty;
             myModul.Mail_MailAdress = "noreply@sle-gmbh.de";
-            myModul.Mail_SMTPPort = 587;
+            myModul.Mail_SMTPPort = 25;
             myModul.Mail_SMTPSSL = true;
 
             myModul.Mail_Noreply_SMTPServer = myModul.Mail_SMTPServer;

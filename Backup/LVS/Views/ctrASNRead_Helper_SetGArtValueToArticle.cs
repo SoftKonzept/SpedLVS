@@ -21,7 +21,10 @@ namespace LVS.Views
                     GoodstypeViewData gtVD = new GoodstypeViewData(Article.GArtID, 1, true);
                     Article.Gut = gtVD.Gut;
                 }
-
+                if ((Article.Gut is Goodstypes) && (!Article.Gut.Zusatz.Equals(string.Empty)))
+                {
+                    Article.GutZusatz = Article.Gut.Zusatz;
+                }
                 if ((Article.Gut is Goodstypes) && (!Article.Gut.Werksnummer.Equals(string.Empty)))
                 {
                     Article.Werksnummer = Article.Gut.Werksnummer;
@@ -78,10 +81,9 @@ namespace LVS.Views
                 {
                     Article.IsStackable = Article.Gut.IsStackable;
                 }
-
-
             }
 
         }
+
     }
 }

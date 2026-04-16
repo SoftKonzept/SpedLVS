@@ -1,5 +1,6 @@
 ﻿using Common.Enumerations;
 using Common.Models;
+using LVS.Views;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +16,7 @@ namespace LVS.ViewData
         public decimal BenutzerID { get; set; } = 0;
         public Goodstypes Gut { get; set; }
         public List<Goodstypes> ListGueterarten { get; set; } = new List<Goodstypes>();
+        internal clsSystem Sys { get; set; }
         public GoodstypeViewData()
         {
             InitCls();
@@ -28,9 +30,29 @@ namespace LVS.ViewData
             Gut = myGoodtypes;
             BenutzerID = myUserId;
         }
+        public GoodstypeViewData(Goodstypes myGoodtypes, int myUserId, clsSystem mySystem) : this()
+        {
+            Gut = myGoodtypes;
+            BenutzerID = myUserId;
+            Sys = mySystem;
+        }
         public GoodstypeViewData(int myGoodTypeId, int myUserId, bool myLoadAll = false) : this()
         {
             BenutzerID = myUserId;
+            if (myGoodTypeId > 0)
+            {
+                Gut.Id = myGoodTypeId;
+                Fill();
+                if (myLoadAll)
+                {
+
+                }
+            }
+        }
+        public GoodstypeViewData(int myGoodTypeId, int myUserId, clsSystem mySystem, bool myLoadAll = false) : this()
+        {
+            BenutzerID = myUserId;
+            Sys = mySystem;
             if (myGoodTypeId > 0)
             {
                 Gut.Id = myGoodTypeId;
@@ -401,52 +423,55 @@ namespace LVS.ViewData
 
         public Articles SetGoodtypeValueToArticle(Articles myArticle)
         {
-            myArticle.GArtID = Gut.Id;
-            if (!Gut.Werksnummer.Equals(string.Empty))
-            {
-                myArticle.Werksnummer = Gut.Werksnummer;
-            }
-            myArticle.Einheit = Gut.Einheit;
-            if (myArticle.Dicke == 0M)
-            {
-                myArticle.Dicke = Gut.Dicke;
-            }
-            if (myArticle.Breite == 0M)
-            {
-                myArticle.Breite = Gut.Breite;
-            }
-            if (myArticle.Laenge == 0M)
-            {
-                myArticle.Laenge = Gut.Laenge;
-            }
-            if (myArticle.Hoehe == 0M)
-            {
-                myArticle.Hoehe = Gut.Hoehe;
-            }
-            if ((myArticle.Netto == 0) && (Gut.Netto > 0))
-            {
-                myArticle.Netto = Gut.Netto;
-            }
-            if ((myArticle.Brutto == 0) && (Gut.Brutto > 0))
-            {
-                myArticle.Brutto = Gut.Brutto;
-            }
-            //-- IsMulde
-            if (
-                    (Gut.ArtikelArt.IndexOf("COIL") > -1) ||
-                    (Gut.ArtikelArt.IndexOf("Coil") > -1)
-                )
-            {
-                myArticle.IsMulde = true;
-            }
-            //-- IsStackable
-            myArticle.IsStackable = Gut.IsStackable;
-
-            //if ((myArticle.Gut is Goodstypes) && (!myArticle.Gut.BestellNr.Equals(string.Empty)))
+            ctrASNRead_Helper_SetGArtValueToArticle gaSet = new ctrASNRead_Helper_SetGArtValueToArticle(myArticle, this.Sys);
+            myArticle = gaSet.Article;
+            //myArticle.GArtID = Gut.Id;
+            //if (!Gut.Werksnummer.Equals(string.Empty))
             //{
-                
-            //    mySystem.Client.clsLagerdaten_Customized_ASNArtikel_Bestellnummer(ref myArt, myArt.Gut.BestellNr);
+            //    myArticle.Werksnummer = Gut.Werksnummer;
             //}
+            //myArticle.Einheit = Gut.Einheit;
+            //myArticle.GutZusatz = Gut.Zusatz;
+            //if (myArticle.Dicke == 0M)
+            //{
+            //    myArticle.Dicke = Gut.Dicke;
+            //}
+            //if (myArticle.Breite == 0M)
+            //{
+            //    myArticle.Breite = Gut.Breite;
+            //}
+            //if (myArticle.Laenge == 0M)
+            //{
+            //    myArticle.Laenge = Gut.Laenge;
+            //}
+            //if (myArticle.Hoehe == 0M)
+            //{
+            //    myArticle.Hoehe = Gut.Hoehe;
+            //}
+            //if ((myArticle.Netto == 0) && (Gut.Netto > 0))
+            //{
+            //    myArticle.Netto = Gut.Netto;
+            //}
+            //if ((myArticle.Brutto == 0) && (Gut.Brutto > 0))
+            //{
+            //    myArticle.Brutto = Gut.Brutto;
+            //}
+            ////-- IsMulde
+            //if (
+            //        (Gut.ArtikelArt.IndexOf("COIL") > -1) ||
+            //        (Gut.ArtikelArt.IndexOf("Coil") > -1)
+            //    )
+            //{
+            //    myArticle.IsMulde = true;
+            //}
+            ////-- IsStackable
+            //myArticle.IsStackable = Gut.IsStackable;
+
+            ////if ((myArticle.Gut is Goodstypes) && (!myArticle.Gut.BestellNr.Equals(string.Empty)))
+            ////{
+
+            ////    mySystem.Client.clsLagerdaten_Customized_ASNArtikel_Bestellnummer(ref myArt, myArt.Gut.BestellNr);
+            ////}
 
             return myArticle;
         }

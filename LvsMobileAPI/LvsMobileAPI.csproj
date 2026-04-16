@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<IsTransformWebConfigDisabled>false</IsTransformWebConfigDisabled>
 	<LangVersion>preview</LangVersion>
-	<Version>$(VersionPrefix)25.09.16.1</Version>
+	<Version>$(VersionPrefix)26.04.15.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -37,21 +37,6 @@
   <ItemGroup>
     <Reference Include="clsINI">
       <HintPath>..\..\lib\clsINI.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting">
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.Reporting.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.ReportViewer.Html5.WebForms">
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.ReportViewer.Html5.WebForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.ReportViewer.WinForms">
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.ReportViewer.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.ReportViewer.Wpf">
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.ReportViewer.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinUI.Controls">
-      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.1.0\Binaries\Win32\Telerik.WinUI.Controls.dll</HintPath>
     </Reference>
   </ItemGroup>
 

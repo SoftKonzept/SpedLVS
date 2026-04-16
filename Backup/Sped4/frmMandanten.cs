@@ -140,6 +140,9 @@ namespace Sped4
             tbSteuernummer.Text = string.Empty;
             tbUstId.Text = string.Empty;
             tbOrganisation.Text = string.Empty;
+            tbRegister.Text = string.Empty;
+            tbMagistrateCourt.Text = string.Empty;
+            tbCio.Text = string.Empty;
 
             CleanTBPrimeKeys();
         }
@@ -248,6 +251,9 @@ namespace Sped4
                     mandantenViewData.Mandant.TaxNumber = tbSteuernummer.Text.Trim();
                     mandantenViewData.Mandant.VatId = tbUstId.Text.Trim();
                     mandantenViewData.Mandant.Organisation = tbOrganisation.Text.Trim();
+                    mandantenViewData.Mandant.Register = tbRegister.Text.Trim();
+                    mandantenViewData.Mandant.MagistrateCourt = tbMagistrateCourt.Text.Trim();
+                    mandantenViewData.Mandant.ManagingDirector = tbCio.Text.Trim();
 
                     //clsMandant.ADR_ID = decADRID;
                     //clsMandant.MatchCode = tbMC.Text.Trim();
@@ -455,6 +461,9 @@ namespace Sped4
                     tbUstId.Text = mandantenViewData.Mandant.VatId;
                     tbSteuernummer.Text = mandantenViewData.Mandant.TaxNumber;
                     tbOrganisation.Text = mandantenViewData.Mandant.Organisation;
+                    tbRegister.Text = mandantenViewData.Mandant.Register;
+                    tbMagistrateCourt.Text = mandantenViewData.Mandant.MagistrateCourt;
+                    tbCio.Text = mandantenViewData.Mandant.ManagingDirector;
                 }
                 ////2.Check, ob die ID auch in der DB existiert
                 //if (clsMandant.GetMandantByID())

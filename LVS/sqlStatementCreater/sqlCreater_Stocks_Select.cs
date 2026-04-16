@@ -1,10 +1,4 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
-using LVS.ASN.EDIFACT;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
-using Org.BouncyCastle.Utilities.Zlib;
-using Svg;
-using System;
-using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
+﻿using System;
 
 namespace LVS.sqlStatementCreater
 {

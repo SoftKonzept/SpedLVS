@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMandanten));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.afToolStrip2 = new Sped4.Controls.AFToolStrip();
             this.tsbtnNew = new System.Windows.Forms.ToolStripButton();
             this.tsbSpeichern = new System.Windows.Forms.ToolStripButton();
@@ -87,6 +87,17 @@
             this.tbAuftragsNr = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.pageEInvoice = new System.Windows.Forms.TabPage();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
             this.tbOrganisation = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.tbUstId = new System.Windows.Forms.TextBox();
@@ -112,17 +123,13 @@
             this.tbBank = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.grd = new Sped4.Controls.AFGrid();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
+            this.tbRegister = new System.Windows.Forms.TextBox();
+            this.tbMagistrateCourt = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.tbCio = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
             this.afToolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
             this.scMain.Panel1.SuspendLayout();
@@ -580,6 +587,13 @@
             // pageEInvoice
             // 
             this.pageEInvoice.BackColor = System.Drawing.Color.White;
+            this.pageEInvoice.Controls.Add(this.label45);
+            this.pageEInvoice.Controls.Add(this.tbCio);
+            this.pageEInvoice.Controls.Add(this.label44);
+            this.pageEInvoice.Controls.Add(this.label43);
+            this.pageEInvoice.Controls.Add(this.label42);
+            this.pageEInvoice.Controls.Add(this.tbMagistrateCourt);
+            this.pageEInvoice.Controls.Add(this.tbRegister);
             this.pageEInvoice.Controls.Add(this.label41);
             this.pageEInvoice.Controls.Add(this.label40);
             this.pageEInvoice.Controls.Add(this.label39);
@@ -617,6 +631,72 @@
             this.pageEInvoice.Controls.Add(this.label19);
             resources.ApplyResources(this.pageEInvoice, "pageEInvoice");
             this.pageEInvoice.Name = "pageEInvoice";
+            // 
+            // label41
+            // 
+            resources.ApplyResources(this.label41, "label41");
+            this.label41.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label41.Name = "label41";
+            // 
+            // label40
+            // 
+            resources.ApplyResources(this.label40, "label40");
+            this.label40.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label40.Name = "label40";
+            // 
+            // label39
+            // 
+            resources.ApplyResources(this.label39, "label39");
+            this.label39.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label39.Name = "label39";
+            // 
+            // label38
+            // 
+            resources.ApplyResources(this.label38, "label38");
+            this.label38.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label38.Name = "label38";
+            // 
+            // label37
+            // 
+            resources.ApplyResources(this.label37, "label37");
+            this.label37.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label37.Name = "label37";
+            // 
+            // label36
+            // 
+            resources.ApplyResources(this.label36, "label36");
+            this.label36.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label36.Name = "label36";
+            // 
+            // label35
+            // 
+            resources.ApplyResources(this.label35, "label35");
+            this.label35.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label35.Name = "label35";
+            // 
+            // label34
+            // 
+            resources.ApplyResources(this.label34, "label34");
+            this.label34.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label34.Name = "label34";
+            // 
+            // label33
+            // 
+            resources.ApplyResources(this.label33, "label33");
+            this.label33.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label33.Name = "label33";
+            // 
+            // label32
+            // 
+            resources.ApplyResources(this.label32, "label32");
+            this.label32.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label32.Name = "label32";
+            // 
+            // label31
+            // 
+            resources.ApplyResources(this.label31, "label31");
+            this.label31.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label31.Name = "label31";
             // 
             // tbOrganisation
             // 
@@ -761,14 +841,14 @@
             this.grd.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.grd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grd.DataBindings.Add(new System.Windows.Forms.Binding("BackgroundColor", global::Sped4.Properties.Settings.Default, "BackColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grd.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grd.DefaultCellStyle = dataGridViewCellStyle2;
             resources.ApplyResources(this.grd, "grd");
             this.grd.MultiSelect = false;
             this.grd.Name = "grd";
@@ -781,71 +861,44 @@
             this.grd.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grd_CellDoubleClick);
             this.grd.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grd_CellFormatting);
             // 
-            // label31
+            // tbRegister
             // 
-            resources.ApplyResources(this.label31, "label31");
-            this.label31.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label31.Name = "label31";
+            resources.ApplyResources(this.tbRegister, "tbRegister");
+            this.tbRegister.Name = "tbRegister";
             // 
-            // label32
+            // tbMagistrateCourt
             // 
-            resources.ApplyResources(this.label32, "label32");
-            this.label32.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label32.Name = "label32";
+            resources.ApplyResources(this.tbMagistrateCourt, "tbMagistrateCourt");
+            this.tbMagistrateCourt.Name = "tbMagistrateCourt";
             // 
-            // label33
+            // label42
             // 
-            resources.ApplyResources(this.label33, "label33");
-            this.label33.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label33.Name = "label33";
+            resources.ApplyResources(this.label42, "label42");
+            this.label42.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label42.Name = "label42";
             // 
-            // label34
+            // label43
             // 
-            resources.ApplyResources(this.label34, "label34");
-            this.label34.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label34.Name = "label34";
+            resources.ApplyResources(this.label43, "label43");
+            this.label43.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label43.Name = "label43";
             // 
-            // label35
+            // label44
             // 
-            resources.ApplyResources(this.label35, "label35");
-            this.label35.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label35.Name = "label35";
+            resources.ApplyResources(this.label44, "label44");
+            this.label44.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label44.Name = "label44";
             // 
-            // label36
+            // tbCio
             // 
-            resources.ApplyResources(this.label36, "label36");
-            this.label36.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label36.Name = "label36";
+            resources.ApplyResources(this.tbCio, "tbCio");
+            this.tbCio.Name = "tbCio";
             // 
-            // label37
+            // label45
             // 
-            resources.ApplyResources(this.label37, "label37");
-            this.label37.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label37.Name = "label37";
-            // 
-            // label38
-            // 
-            resources.ApplyResources(this.label38, "label38");
-            this.label38.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label38.Name = "label38";
-            // 
-            // label39
-            // 
-            resources.ApplyResources(this.label39, "label39");
-            this.label39.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label39.Name = "label39";
-            // 
-            // label40
-            // 
-            resources.ApplyResources(this.label40, "label40");
-            this.label40.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label40.Name = "label40";
-            // 
-            // label41
-            // 
-            resources.ApplyResources(this.label41, "label41");
-            this.label41.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label41.Name = "label41";
+            resources.ApplyResources(this.label45, "label45");
+            this.label45.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label45.Name = "label45";
             // 
             // frmMandanten
             // 
@@ -975,5 +1028,12 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
+        public System.Windows.Forms.TextBox tbMagistrateCourt;
+        public System.Windows.Forms.TextBox tbRegister;
+        private System.Windows.Forms.Label label45;
+        public System.Windows.Forms.TextBox tbCio;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label42;
     }
 }

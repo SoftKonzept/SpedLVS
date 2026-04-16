@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition100 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctrADR_List));
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition9 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition10 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition11 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition101 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition102 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition103 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition104 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition105 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition106 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition107 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition108 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition109 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition110 = new Telerik.WinControls.UI.TableViewDefinition();
             this.panADRListe = new System.Windows.Forms.Panel();
             this.grdADRList = new Telerik.WinControls.UI.RadGridView();
             this.minMaxADRSearch = new Sped4.Controls.AFMinMaxPanel();
@@ -597,7 +597,7 @@
             this.grdADRList.MasterTemplate.EnableFiltering = true;
             this.grdADRList.MasterTemplate.ShowFilteringRow = false;
             this.grdADRList.MasterTemplate.ShowHeaderCellButtons = true;
-            this.grdADRList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.grdADRList.MasterTemplate.ViewDefinition = tableViewDefinition100;
             this.grdADRList.Name = "grdADRList";
             this.grdADRList.ReadOnly = true;
             this.grdADRList.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -1120,7 +1120,7 @@
             this.tlpPost.ColumnCount = 3;
             this.tlpPost.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.4878F));
             this.tlpPost.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.5122F));
-            this.tlpPost.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 315F));
+            this.tlpPost.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 318F));
             this.tlpPost.Controls.Add(this.cbPostVerteilerLfs, 2, 1);
             this.tlpPost.Controls.Add(this.cbPostVerteilerRG, 2, 2);
             this.tlpPost.Controls.Add(this.label40, 0, 5);
@@ -1157,9 +1157,9 @@
             this.cbPostVerteilerLfs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPostVerteilerLfs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPostVerteilerLfs.FormattingEnabled = true;
-            this.cbPostVerteilerLfs.Location = new System.Drawing.Point(101, 46);
+            this.cbPostVerteilerLfs.Location = new System.Drawing.Point(98, 46);
             this.cbPostVerteilerLfs.Name = "cbPostVerteilerLfs";
-            this.cbPostVerteilerLfs.Size = new System.Drawing.Size(310, 21);
+            this.cbPostVerteilerLfs.Size = new System.Drawing.Size(313, 21);
             this.cbPostVerteilerLfs.TabIndex = 35;
             // 
             // cbPostVerteilerRG
@@ -1169,9 +1169,9 @@
             this.cbPostVerteilerRG.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPostVerteilerRG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPostVerteilerRG.FormattingEnabled = true;
-            this.cbPostVerteilerRG.Location = new System.Drawing.Point(101, 71);
+            this.cbPostVerteilerRG.Location = new System.Drawing.Point(98, 71);
             this.cbPostVerteilerRG.Name = "cbPostVerteilerRG";
-            this.cbPostVerteilerRG.Size = new System.Drawing.Size(310, 21);
+            this.cbPostVerteilerRG.Size = new System.Drawing.Size(313, 21);
             this.cbPostVerteilerRG.TabIndex = 36;
             // 
             // label40
@@ -1193,7 +1193,7 @@
             this.cbPostPrintLfs.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbPostPrintLfs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPostPrintLfs.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbPostPrintLfs.Location = new System.Drawing.Point(70, 50);
+            this.cbPostPrintLfs.Location = new System.Drawing.Point(68, 50);
             this.cbPostPrintLfs.Name = "cbPostPrintLfs";
             this.cbPostPrintLfs.Size = new System.Drawing.Size(12, 11);
             this.cbPostPrintLfs.TabIndex = 6;
@@ -1207,9 +1207,9 @@
             this.cbPostVerteilerAnlage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPostVerteilerAnlage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPostVerteilerAnlage.FormattingEnabled = true;
-            this.cbPostVerteilerAnlage.Location = new System.Drawing.Point(101, 96);
+            this.cbPostVerteilerAnlage.Location = new System.Drawing.Point(98, 96);
             this.cbPostVerteilerAnlage.Name = "cbPostVerteilerAnlage";
-            this.cbPostVerteilerAnlage.Size = new System.Drawing.Size(310, 21);
+            this.cbPostVerteilerAnlage.Size = new System.Drawing.Size(313, 21);
             this.cbPostVerteilerAnlage.TabIndex = 34;
             // 
             // cbPostVerteilerListen
@@ -1219,9 +1219,9 @@
             this.cbPostVerteilerListen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPostVerteilerListen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPostVerteilerListen.FormattingEnabled = true;
-            this.cbPostVerteilerListen.Location = new System.Drawing.Point(101, 121);
+            this.cbPostVerteilerListen.Location = new System.Drawing.Point(98, 121);
             this.cbPostVerteilerListen.Name = "cbPostVerteilerListen";
-            this.cbPostVerteilerListen.Size = new System.Drawing.Size(310, 21);
+            this.cbPostVerteilerListen.Size = new System.Drawing.Size(313, 21);
             this.cbPostVerteilerListen.TabIndex = 33;
             // 
             // cbPostVerteilerAnzeigen
@@ -1231,9 +1231,9 @@
             this.cbPostVerteilerAnzeigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPostVerteilerAnzeigen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPostVerteilerAnzeigen.FormattingEnabled = true;
-            this.cbPostVerteilerAnzeigen.Location = new System.Drawing.Point(101, 146);
+            this.cbPostVerteilerAnzeigen.Location = new System.Drawing.Point(98, 146);
             this.cbPostVerteilerAnzeigen.Name = "cbPostVerteilerAnzeigen";
-            this.cbPostVerteilerAnzeigen.Size = new System.Drawing.Size(310, 21);
+            this.cbPostVerteilerAnzeigen.Size = new System.Drawing.Size(313, 21);
             this.cbPostVerteilerAnzeigen.TabIndex = 32;
             // 
             // label30
@@ -1285,7 +1285,7 @@
             this.label32.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label32.AutoSize = true;
             this.label32.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label32.Location = new System.Drawing.Point(58, 8);
+            this.label32.Location = new System.Drawing.Point(56, 8);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(36, 26);
             this.label32.TabIndex = 160;
@@ -1296,7 +1296,7 @@
             this.label33.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label33.AutoSize = true;
             this.label33.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label33.Location = new System.Drawing.Point(214, 15);
+            this.label33.Location = new System.Drawing.Point(213, 15);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(83, 13);
             this.label33.TabIndex = 161;
@@ -1310,7 +1310,7 @@
             this.cbPostPrintRG.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbPostPrintRG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPostPrintRG.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbPostPrintRG.Location = new System.Drawing.Point(70, 75);
+            this.cbPostPrintRG.Location = new System.Drawing.Point(68, 75);
             this.cbPostPrintRG.Name = "cbPostPrintRG";
             this.cbPostPrintRG.Size = new System.Drawing.Size(12, 11);
             this.cbPostPrintRG.TabIndex = 175;
@@ -1325,7 +1325,7 @@
             this.cbPostPrintAnlage.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbPostPrintAnlage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPostPrintAnlage.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbPostPrintAnlage.Location = new System.Drawing.Point(70, 100);
+            this.cbPostPrintAnlage.Location = new System.Drawing.Point(68, 100);
             this.cbPostPrintAnlage.Name = "cbPostPrintAnlage";
             this.cbPostPrintAnlage.Size = new System.Drawing.Size(12, 11);
             this.cbPostPrintAnlage.TabIndex = 176;
@@ -1340,7 +1340,7 @@
             this.cbPostPrintListen.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbPostPrintListen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPostPrintListen.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbPostPrintListen.Location = new System.Drawing.Point(70, 125);
+            this.cbPostPrintListen.Location = new System.Drawing.Point(68, 125);
             this.cbPostPrintListen.Name = "cbPostPrintListen";
             this.cbPostPrintListen.Size = new System.Drawing.Size(12, 11);
             this.cbPostPrintListen.TabIndex = 177;
@@ -1355,7 +1355,7 @@
             this.cbPostPrintAnzeigen.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbPostPrintAnzeigen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPostPrintAnzeigen.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbPostPrintAnzeigen.Location = new System.Drawing.Point(70, 152);
+            this.cbPostPrintAnzeigen.Location = new System.Drawing.Point(68, 152);
             this.cbPostPrintAnzeigen.Name = "cbPostPrintAnzeigen";
             this.cbPostPrintAnzeigen.Size = new System.Drawing.Size(12, 11);
             this.cbPostPrintAnzeigen.TabIndex = 179;
@@ -1594,7 +1594,7 @@
             this.tbADRAssEntlade.Location = new System.Drawing.Point(132, 137);
             this.tbADRAssEntlade.Margin = new System.Windows.Forms.Padding(4);
             this.tbADRAssEntlade.Name = "tbADRAssEntlade";
-            this.tbADRAssEntlade.Size = new System.Drawing.Size(337, 20);
+            this.tbADRAssEntlade.Size = new System.Drawing.Size(337, 24);
             this.tbADRAssEntlade.TabIndex = 193;
             // 
             // tbADRAssBelade
@@ -1602,7 +1602,7 @@
             this.tbADRAssBelade.Location = new System.Drawing.Point(132, 105);
             this.tbADRAssBelade.Margin = new System.Windows.Forms.Padding(4);
             this.tbADRAssBelade.Name = "tbADRAssBelade";
-            this.tbADRAssBelade.Size = new System.Drawing.Size(337, 20);
+            this.tbADRAssBelade.Size = new System.Drawing.Size(337, 24);
             this.tbADRAssBelade.TabIndex = 194;
             // 
             // tbADRAssRG
@@ -1610,7 +1610,7 @@
             this.tbADRAssRG.Location = new System.Drawing.Point(131, 72);
             this.tbADRAssRG.Margin = new System.Windows.Forms.Padding(4);
             this.tbADRAssRG.Name = "tbADRAssRG";
-            this.tbADRAssRG.Size = new System.Drawing.Size(338, 20);
+            this.tbADRAssRG.Size = new System.Drawing.Size(338, 24);
             this.tbADRAssRG.TabIndex = 193;
             // 
             // tbADRAssPost
@@ -1618,7 +1618,7 @@
             this.tbADRAssPost.Location = new System.Drawing.Point(132, 38);
             this.tbADRAssPost.Margin = new System.Windows.Forms.Padding(4);
             this.tbADRAssPost.Name = "tbADRAssPost";
-            this.tbADRAssPost.Size = new System.Drawing.Size(337, 20);
+            this.tbADRAssPost.Size = new System.Drawing.Size(337, 24);
             this.tbADRAssPost.TabIndex = 192;
             // 
             // btnADREntladeadresse
@@ -1965,6 +1965,7 @@
             this.tbPLZPF.Name = "tbPLZPF";
             this.tbPLZPF.Size = new System.Drawing.Size(100, 20);
             this.tbPLZPF.TabIndex = 11;
+            this.tbPLZPF.TextChanged += new System.EventHandler(this.tbPLZPF_TextChanged);
             // 
             // label2
             // 
@@ -2002,6 +2003,7 @@
             this.tbOrt.Name = "tbOrt";
             this.tbOrt.Size = new System.Drawing.Size(169, 20);
             this.tbOrt.TabIndex = 9;
+            this.tbOrt.TextChanged += new System.EventHandler(this.tbOrt_TextChanged);
             // 
             // lWA
             // 
@@ -2030,6 +2032,7 @@
             this.tbOrtPF.Name = "tbOrtPF";
             this.tbOrtPF.Size = new System.Drawing.Size(169, 20);
             this.tbOrtPF.TabIndex = 12;
+            this.tbOrtPF.TextChanged += new System.EventHandler(this.tbOrtPF_TextChanged);
             // 
             // pbINr
             // 
@@ -2048,6 +2051,7 @@
             this.tbPLZ.Name = "tbPLZ";
             this.tbPLZ.Size = new System.Drawing.Size(100, 20);
             this.tbPLZ.TabIndex = 8;
+            this.tbPLZ.TextChanged += new System.EventHandler(this.tbPLZ_TextChanged);
             // 
             // tbHausNr
             // 
@@ -2056,6 +2060,7 @@
             this.tbHausNr.Name = "tbHausNr";
             this.tbHausNr.Size = new System.Drawing.Size(62, 20);
             this.tbHausNr.TabIndex = 7;
+            this.tbHausNr.TextChanged += new System.EventHandler(this.tbHausNr_TextChanged);
             // 
             // lOrtPF
             // 
@@ -2084,6 +2089,7 @@
             this.tbStr.Name = "tbStr";
             this.tbStr.Size = new System.Drawing.Size(179, 20);
             this.tbStr.TabIndex = 6;
+            this.tbStr.TextChanged += new System.EventHandler(this.tbStr_TextChanged);
             // 
             // cbDummyADR
             // 
@@ -2165,6 +2171,7 @@
             this.tbSuchname.Name = "tbSuchname";
             this.tbSuchname.Size = new System.Drawing.Size(151, 20);
             this.tbSuchname.TabIndex = 1;
+            this.tbSuchname.TextChanged += new System.EventHandler(this.tbSuchname_TextChanged);
             // 
             // tbName3
             // 
@@ -2173,6 +2180,7 @@
             this.tbName3.Name = "tbName3";
             this.tbName3.Size = new System.Drawing.Size(343, 20);
             this.tbName3.TabIndex = 5;
+            this.tbName3.TextChanged += new System.EventHandler(this.tbName3_TextChanged);
             // 
             // lPF
             // 
@@ -2191,6 +2199,7 @@
             this.tbName1.Name = "tbName1";
             this.tbName1.Size = new System.Drawing.Size(343, 20);
             this.tbName1.TabIndex = 3;
+            this.tbName1.TextChanged += new System.EventHandler(this.tbName1_TextChanged);
             // 
             // tbPF
             // 
@@ -2199,6 +2208,7 @@
             this.tbPF.Name = "tbPF";
             this.tbPF.Size = new System.Drawing.Size(100, 20);
             this.tbPF.TabIndex = 10;
+            this.tbPF.TextChanged += new System.EventHandler(this.tbPF_TextChanged);
             // 
             // lName3
             // 
@@ -2218,6 +2228,7 @@
             this.tbName2.Name = "tbName2";
             this.tbName2.Size = new System.Drawing.Size(343, 20);
             this.tbName2.TabIndex = 4;
+            this.tbName2.TextChanged += new System.EventHandler(this.tbName2_TextChanged);
             // 
             // lFBez
             // 
@@ -2351,7 +2362,7 @@
             this.dgvKommunikation.MasterTemplate.EnableFiltering = true;
             this.dgvKommunikation.MasterTemplate.ShowFilteringRow = false;
             this.dgvKommunikation.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvKommunikation.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.dgvKommunikation.MasterTemplate.ViewDefinition = tableViewDefinition101;
             this.dgvKommunikation.Name = "dgvKommunikation";
             this.dgvKommunikation.ReadOnly = true;
             this.dgvKommunikation.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -2784,7 +2795,7 @@
             this.dgvMailingListMember.MasterTemplate.EnableFiltering = true;
             this.dgvMailingListMember.MasterTemplate.ShowFilteringRow = false;
             this.dgvMailingListMember.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvMailingListMember.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.dgvMailingListMember.MasterTemplate.ViewDefinition = tableViewDefinition102;
             this.dgvMailingListMember.Name = "dgvMailingListMember";
             this.dgvMailingListMember.ReadOnly = true;
             this.dgvMailingListMember.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -2906,7 +2917,7 @@
             this.dgvKontaktMails.MasterTemplate.EnableFiltering = true;
             this.dgvKontaktMails.MasterTemplate.ShowFilteringRow = false;
             this.dgvKontaktMails.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvKontaktMails.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.dgvKontaktMails.MasterTemplate.ViewDefinition = tableViewDefinition103;
             this.dgvKontaktMails.Name = "dgvKontaktMails";
             this.dgvKontaktMails.ReadOnly = true;
             this.dgvKontaktMails.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -3002,7 +3013,7 @@
             this.dgvMailingListAdministrationMailingList.MasterTemplate.EnableFiltering = true;
             this.dgvMailingListAdministrationMailingList.MasterTemplate.ShowFilteringRow = false;
             this.dgvMailingListAdministrationMailingList.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvMailingListAdministrationMailingList.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.dgvMailingListAdministrationMailingList.MasterTemplate.ViewDefinition = tableViewDefinition104;
             this.dgvMailingListAdministrationMailingList.Name = "dgvMailingListAdministrationMailingList";
             this.dgvMailingListAdministrationMailingList.ReadOnly = true;
             this.dgvMailingListAdministrationMailingList.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -3115,7 +3126,7 @@
             this.dgvMailingList.MasterTemplate.EnableFiltering = true;
             this.dgvMailingList.MasterTemplate.ShowFilteringRow = false;
             this.dgvMailingList.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvMailingList.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.dgvMailingList.MasterTemplate.ViewDefinition = tableViewDefinition105;
             this.dgvMailingList.Name = "dgvMailingList";
             this.dgvMailingList.ReadOnly = true;
             this.dgvMailingList.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -3324,7 +3335,7 @@
             this.grdKontakte.MasterTemplate.EnableFiltering = true;
             this.grdKontakte.MasterTemplate.ShowFilteringRow = false;
             this.grdKontakte.MasterTemplate.ShowHeaderCellButtons = true;
-            this.grdKontakte.MasterTemplate.ViewDefinition = tableViewDefinition7;
+            this.grdKontakte.MasterTemplate.ViewDefinition = tableViewDefinition106;
             this.grdKontakte.Name = "grdKontakte";
             this.grdKontakte.ReadOnly = true;
             this.grdKontakte.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -4662,7 +4673,7 @@
             this.dgvText.MasterTemplate.EnableFiltering = true;
             this.dgvText.MasterTemplate.ShowFilteringRow = false;
             this.dgvText.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvText.MasterTemplate.ViewDefinition = tableViewDefinition8;
+            this.dgvText.MasterTemplate.ViewDefinition = tableViewDefinition107;
             this.dgvText.Name = "dgvText";
             this.dgvText.ReadOnly = true;
             this.dgvText.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -4744,7 +4755,7 @@
             this.dgvExtraCharge.MasterTemplate.EnableFiltering = true;
             this.dgvExtraCharge.MasterTemplate.ShowFilteringRow = false;
             this.dgvExtraCharge.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvExtraCharge.MasterTemplate.ViewDefinition = tableViewDefinition9;
+            this.dgvExtraCharge.MasterTemplate.ViewDefinition = tableViewDefinition108;
             this.dgvExtraCharge.Name = "dgvExtraCharge";
             this.dgvExtraCharge.ReadOnly = true;
             this.dgvExtraCharge.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -5012,7 +5023,7 @@
             this.dgvDefaultGueterarten.MasterTemplate.EnableFiltering = true;
             this.dgvDefaultGueterarten.MasterTemplate.ShowFilteringRow = false;
             this.dgvDefaultGueterarten.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvDefaultGueterarten.MasterTemplate.ViewDefinition = tableViewDefinition10;
+            this.dgvDefaultGueterarten.MasterTemplate.ViewDefinition = tableViewDefinition109;
             this.dgvDefaultGueterarten.Name = "dgvDefaultGueterarten";
             this.dgvDefaultGueterarten.ReadOnly = true;
             this.dgvDefaultGueterarten.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -5238,7 +5249,7 @@
             this.dgvLiefGroup.MasterTemplate.EnableFiltering = true;
             this.dgvLiefGroup.MasterTemplate.ShowFilteringRow = false;
             this.dgvLiefGroup.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvLiefGroup.MasterTemplate.ViewDefinition = tableViewDefinition11;
+            this.dgvLiefGroup.MasterTemplate.ViewDefinition = tableViewDefinition110;
             this.dgvLiefGroup.Name = "dgvLiefGroup";
             this.dgvLiefGroup.ReadOnly = true;
             this.dgvLiefGroup.RightToLeft = System.Windows.Forms.RightToLeft.No;

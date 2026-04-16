@@ -459,7 +459,7 @@ namespace LVS.ViewData
         /// </summary>
         /// <param name="myAsnVdaVList"></param>
         /// <returns></returns>
-        public List<ctrASNRead_AsnArticleVdaView> AsnArticleVdaViewInit(List<ctrASNRead_AsnVdaView> myAsnVdaVList)
+        public List<ctrASNRead_AsnArticleVdaView>   AsnArticleVdaViewInit(List<ctrASNRead_AsnVdaView> myAsnVdaVList)
         {
             List<ctrASNRead_AsnArticleVdaView> listReturn = new List<ctrASNRead_AsnArticleVdaView>();
             foreach (var item in myAsnVdaVList)

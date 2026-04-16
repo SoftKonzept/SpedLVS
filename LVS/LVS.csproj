@@ -379,94 +379,113 @@
     <Reference Include="System.Xml.XPath.XmlDocument, Version=4.7.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Xml.XPath.XmlDocument.4.7.0\lib\net462\System.Xml.XPath.XmlDocument.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents, Version=2025.4.1111.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Documents.AI.AgentTools.Conversion, Version=2026.1.210.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.AI.AgentTools.Conversion.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.AIConnector, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Documents.AI.AgentTools.Fixed, Version=2026.1.210.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.AIConnector.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.AI.AgentTools.Fixed.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.CMapUtils, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Documents.AI.AgentTools.Spreadsheet, Version=2026.1.210.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.CMapUtils.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.AI.AgentTools.Spreadsheet.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Core, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Documents.AI.Core, Version=2026.1.210.20, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Core.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.AI.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.DrawingML, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Documents.AI.Tools.Core, Version=2026.1.210.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.DrawingML.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.AI.Tools.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Documents.AI.Tools.Fixed.Core, Version=2026.1.210.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Fixed.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.AI.Tools.Fixed.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Fixed.FormatProviders.Ocr, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Documents.AI.Tools.Flow.Core, Version=2026.1.210.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Fixed.FormatProviders.Ocr.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.AI.Tools.Flow.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Flow, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Documents.AI.Tools.Spreadsheet.Core, Version=2026.1.210.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Flow.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.AI.Tools.Spreadsheet.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Doc, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Flow.FormatProviders.Doc.dll</HintPath>
+    <Reference Include="Telerik.Documents.AIConnector">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.AIConnector.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+    <Reference Include="Telerik.Documents.CMapUtils">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.CMapUtils.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+    <Reference Include="Telerik.Documents.Core">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Json, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Json.dll</HintPath>
+    <Reference Include="Telerik.Documents.DrawingML">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.DrawingML.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+    <Reference Include="Telerik.Documents.Fixed">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.Fixed.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+    <Reference Include="Telerik.Documents.Fixed.FormatProviders.Image.Skia">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.Fixed.FormatProviders.Image.Skia.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.dll</HintPath>
+    <Reference Include="Telerik.Documents.Fixed.FormatProviders.Ocr">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.Fixed.FormatProviders.Ocr.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.TesseractOcr, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Documents.TesseractOcr.dll</HintPath>
+    <Reference Include="Telerik.Documents.Flow">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.Flow.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Zip, Version=2025.4.1104.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Documents.Flow.FormatProviders.Doc">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.Flow.FormatProviders.Doc.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Flow.FormatProviders.Pdf">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Spreadsheet">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Spreadsheet.FormatProviders.Json">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.Spreadsheet.FormatProviders.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Spreadsheet.FormatProviders.OpenXml">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Spreadsheet.FormatProviders.Pdf">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Spreadsheet.FormatProviders.Xls">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.Spreadsheet.FormatProviders.Xls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.TesseractOcr">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Documents.TesseractOcr.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WPF 2025 Q4\Binaries\WPF462\Telerik.Windows.Zip.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Html5.WebForms, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.Html5.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Mvc, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.WinUI.Controls">
-      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.1.0\Binaries\Win32\Telerik.WinUI.Controls.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\Win32\Telerik.WinUI.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Zip">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.2.0\Binaries\DPL\Telerik.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Tesseract, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Tesseract.5.2.0\lib\net48\Tesseract.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase">
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Telerik.Reporting, Version=20.0.26.304, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik Reporting 2026 Q1\bin\Telerik.Reporting.dll</HintPath>
-      <SpecificVersion>True</SpecificVersion>
-    </Reference>
-    <Reference Include="Telerik.ReportViewer.Html5.WebForms, Version=20.0.26.304, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik Reporting 2026 Q1\bin\Telerik.ReportViewer.Html5.WebForms.dll</HintPath>
-      <SpecificVersion>True</SpecificVersion>
-    </Reference>
-    <Reference Include="Telerik.ReportViewer.WinForms, Version=20.0.26.304, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik Reporting 2026 Q1\bin\Telerik.ReportViewer.WinForms.dll</HintPath>
-      <SpecificVersion>True</SpecificVersion>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -603,9 +603,7 @@ namespace LVS.ViewData
 
             DataTable dt = new DataTable();
             string strSql = Asn.sql_GetASNByAsnValue(mySearchValue);
-
             dt = clsSQLCOM.ExecuteSQL_GetDataTable(strSql, BenutzerID, "ASN");
-
 
             //------------------ Report info ------------------------------
             string strMessage = string.Empty;

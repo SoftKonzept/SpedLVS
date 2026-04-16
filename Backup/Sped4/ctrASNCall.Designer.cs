@@ -196,7 +196,7 @@
             // 
             // 
             this.tabPage_Call.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 400, 300);
-            this.tabPage_Call.SelectedPage = this.pageView_CallError;
+            this.tabPage_Call.SelectedPage = this.pageView_Call;
             this.tabPage_Call.Size = new System.Drawing.Size(1029, 598);
             this.tabPage_Call.TabIndex = 27;
             this.tabPage_Call.ThemeName = "ControlDefault";
@@ -628,7 +628,7 @@
             // 
             // 
             // 
-            this.splitPanel5.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 230, 200, 200);
+            this.splitPanel5.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 229, 200, 200);
             this.splitPanel5.Size = new System.Drawing.Size(1008, 323);
             this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.09445844F);
             this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 37);

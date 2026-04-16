@@ -55,91 +55,97 @@
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\PresentationCore.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.CMapUtils">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.CMapUtils.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.CMapUtils.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Core">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Core.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.Core.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.DrawingML">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.DrawingML.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.DrawingML.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Fixed">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Fixed.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.Fixed.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Fixed.FormatProviders.Image.Skia">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Fixed.FormatProviders.Image.Skia.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.Fixed.FormatProviders.Image.Skia.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.Fixed.FormatProviders.Ocr">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.Fixed.FormatProviders.Ocr.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Flow">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Flow.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Flow.FormatProviders.Doc">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Flow.FormatProviders.Doc.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.Flow.FormatProviders.Doc.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Flow.FormatProviders.Pdf">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.ImageUtils">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.ImageUtils.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.ImageUtils.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Spreadsheet">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Spreadsheet.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.Spreadsheet.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Spreadsheet.FormatProviders.OpenXml">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Spreadsheet.FormatProviders.Pdf">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.Spreadsheet.FormatProviders.Xls">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.Spreadsheet.FormatProviders.Xls.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.Spreadsheet.FormatProviders.Xls.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Documents.SpreadsheetStreaming">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Documents.TesseractOcr">
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Documents.TesseractOcr.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Barcode">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.Barcode.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.Barcode.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Chart">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.Chart.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.Chart.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Common">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.Common.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.Common.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.ConversationalUI">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.ConversationalUI.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.ConversationalUI.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.DataControls">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.DataControls.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.DataControls.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.DataGrid">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.DataGrid.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.DataGrid.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.DataVisualization">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.DataVisualization.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.ImageEditor">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.ImageEditor.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.ImageEditor.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Input">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.Input.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.Input.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Map">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.Map.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.Map.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.PdfViewer">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.PdfViewer.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.PdfViewer.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.Primitives">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.Primitives.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.RichTextEditor">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.RichTextEditor.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.RichTextEditor.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.XamarinForms.SkiaSharp">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.XamarinForms.SkiaSharp.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Zip">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for Xamarin R3 2023\Binaries\Portable\Telerik.Zip.dll</HintPath>
+      <HintPath>..\..\..\lib\Progress\Telerik UI for Xamarin 2025 Q1\Binaries\Portable\Telerik.Zip.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

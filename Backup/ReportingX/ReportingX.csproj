@@ -41,13 +41,29 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.Licensing.Runtime, Version=1.6.31.0, Culture=neutral, PublicKeyToken=98bb5b04e55c09ef, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Licensing.Runtime, Version=1.6.40.0, Culture=neutral, PublicKeyToken=98bb5b04e55c09ef, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.Licensing.Runtime.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Licensing.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Reporting, Version=16.2.22.914, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik Reporting 2026 Q1\bin\Telerik.Reporting.dll</HintPath>
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Mvc, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2025 Q4\Bin\Telerik.Reporting.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Wpf, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Wpf.Themes, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.Wpf.Themes.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
