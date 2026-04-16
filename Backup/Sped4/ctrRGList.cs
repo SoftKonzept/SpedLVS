@@ -1412,6 +1412,7 @@ namespace Sped4
                         }
                         catch (Exception ex)
                         {
+
                             clsMail ErrorMail = new clsMail();
                             ErrorMail.InitClass(new Globals._GL_USER(), null);
                             ErrorMail.Subject = "tsbtnMailRGRGAnhang_Click | this.FaktLager.CreateRGAndRGAnhangToPDF(this._ctrMenu._frmMain.system) - Error Mail E-Rechnung";
@@ -1469,19 +1470,39 @@ namespace Sped4
                                 strMes += string.Format("{0,-" + iCol0Width + "}: {1,-" + iCol1Width + "}", "AttachmentList".PadRight(iCol0Width), "Null or empty");
                             }
 
-                            strMes += ">>>" + Environment.NewLine;
-                            strMes += ">>> ex.Message:" + Environment.NewLine;
-                            strMes += ex.Message;
-                            strMes += ">>> ex.InnerException:" + Environment.NewLine;
-                            strMes += ex.InnerException.ToString();
+                            if (ex is Exception)
+                            {
+                                strMes += ">>>" + Environment.NewLine;
 
+                                if (ex.Message != null)
+                                {
+                                    strMes += ">>> ex.Message:" + Environment.NewLine;
+                                    strMes += ex.Message;
+                                }
+                                else
+                                {
+                                    strMes += ">>> ex.Message: IsNull" + Environment.NewLine;
+                                }
+
+                                if (ex.InnerException != null)
+                                {
+                                    strMes += ">>> ex.InnerException:" + Environment.NewLine;
+                                    strMes += ex.InnerException.ToString();
+                                }
+                                else
+                                {
+                                    strMes += ">>> ex.InnerException: IsNull" + Environment.NewLine;
+                                }
+                            }
+                            else
+                            {
+                                strMes += ">>>" + Environment.NewLine;
+                                strMes += ">>> ex.Message: is NULL" + Environment.NewLine;
+                            }
                             ErrorMail.Message = strMes;
                             ErrorMail.SendError();
-                        }
-
-
-
-
+                        }                 
+                        
                     }
                     else
                     {

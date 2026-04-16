@@ -37,6 +37,7 @@ namespace LVS
             ClientToSet.DictArbeitsbereich_Ausgang_DefaultEntladeAdrID = new Dictionary<decimal, decimal>();
             ClientToSet.DictArbeitsbereich_Ausgang_DefaultVersenderAdrID = new Dictionary<decimal, decimal>();
             ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID = new Dictionary<decimal, decimal>();
+            ClientToSet.DictArbeitsbereich_Ausgang_DefaultSpedAdrID = new Dictionary<decimal, decimal>();
 
             //Umbuchung
             ClientToSet.DictArbeitsbereich_Umbuchung_DefaultEmpfaengerAdrID = new Dictionary<decimal, decimal>();

@@ -11,6 +11,7 @@ using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf;
 using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.Export;
 using Telerik.Windows.Documents.Fixed.Model;
 using Telerik.Windows.Documents.Fixed.Model.Editing;
+using Telerik.Windows.Documents.Fixed.Model.Fonts;
 
 namespace LVS.ZUGFeRD
 {
@@ -38,27 +39,75 @@ namespace LVS.ZUGFeRD
                 Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
                 LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "CultureInfo", Thread.CurrentThread.CurrentCulture.ToString()));
 
+                //--- neu ab Jan 2026 V 2025.4.1319
                 TimeSpan tsTimeOut = new TimeSpan(0, 0, 30);
 
-                //--- funktioniert
-                LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: Import PDF started", string.Empty));
                 RadFixedDocument pdfDoc = new RadFixedDocument();
                 PdfFormatProvider pdfProvider = new PdfFormatProvider();
                 using (Stream fsPdf = File.OpenRead(sourceFilePathPdf))
                 {
                     pdfDoc = pdfProvider.Import(fsPdf, tsTimeOut);
                 }
-                LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: Import PDF finish", string.Empty));
-                LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: Read XML started", string.Empty));
+
+                //--- Font für PDF/A-3B erforderlich, sonst Fehler bei Export:
+                //---- "The document does not conform to the PDF/A-3B standard. The following problems were found:
+                //---- The document does not contain a font that can be used for rendering the text content."
+                FontBase fontBase;
+                bool fontFound = FontsRepository.TryCreateFont(
+                    new System.Windows.Media.FontFamily("Calibri"),
+                    System.Windows.FontStyles.Normal,
+                    System.Windows.FontWeights.Normal,
+                    out fontBase);
+
+                using (RadFixedDocumentEditor editor = new RadFixedDocumentEditor(pdfDoc))
+                {
+                    // Ersetze diese Zeile:
+                    // editor.CharacterProperties.TrySetFont(new FontFamily("Calibri"));
+                    if (fontFound)
+                    {
+                        editor.CharacterProperties.Font = fontBase;
+                    }
+                    editor.CharacterProperties.FontSize = 12; 
+                    editor.InsertRun("PDF/A-3B Compliant Invoice");
+                }
                 byte[] bytes = File.ReadAllBytes(xmlFilePath);
-                LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: XML size = "+  bytes.Length.ToString() +" bytes", string.Empty));
+
+                //------  Medientyp application/octet-stream, aber erforderlich ist text/xml
+                EmbeddedFile embeddedFile = pdfDoc.EmbeddedFiles.AddZugferdInvoice(bytes, Telerik.Windows.Documents.Fixed.Model.EmbeddedFiles.ZugferdConformanceLevel.Extended);
+                embeddedFile.MimeType = "text/xml";
+
+                PdfFormatProvider provider = new PdfFormatProvider();
+                PdfExportSettings settings = new PdfExportSettings();
+                settings.ComplianceLevel = PdfComplianceLevel.PdfA3B;
+                provider.ExportSettings = settings;
+                using (Stream output = File.OpenWrite(embeddedFilePath))
+                {
+                    provider.Export(pdfDoc, output, TimeSpan.FromSeconds(10));
+                }
+
+                //--- funktioniert
+                //LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: Import PDF started", string.Empty));
+
+                //RadFixedDocument pdfDoc = new RadFixedDocument();
+                //PdfFormatProvider pdfProvider = new PdfFormatProvider();
+                //using (Stream fsPdf = File.OpenRead(sourceFilePathPdf))
+                //{
+                //    pdfDoc = pdfProvider.Import(fsPdf, tsTimeOut);
+                //}
+                //LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: Import PDF finish", string.Empty));
+                //LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: Read XML started", string.Empty));
+
+                //byte[] bytes = File.ReadAllBytes(xmlFilePath);
+                //LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: XML size = "+  bytes.Length.ToString() +" bytes", string.Empty));
 
                 //pdfDoc.EmbeddedFiles.AddZugferdInvoice(bytes);
                 //pdfDoc.EmbeddedFiles.AddZugferdInvoice(bytes, Telerik.Windows.Documents.Fixed.Model.EmbeddedFiles.ZugferdConformanceLevel.Comfort); //  => Fehler beim Testen
                 // NEU (richtig für XRechnung 3.0 / EN16931):
-                LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: embed ZUGFeRD started", string.Empty));
-                pdfDoc.EmbeddedFiles.AddZugferdInvoice(bytes, Telerik.Windows.Documents.Fixed.Model.EmbeddedFiles.ZugferdConformanceLevel.Extended);
-                LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: embed ZUGFeRD finish", string.Empty));
+                //LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: embed ZUGFeRD started", string.Empty));
+
+                //pdfDoc.EmbeddedFiles.AddZugferdInvoice(bytes, Telerik.Windows.Documents.Fixed.Model.EmbeddedFiles.ZugferdConformanceLevel.Extended);
+
+                //LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: embed ZUGFeRD finish", string.Empty));
                 ////--- TEst neu
                 //RadFixedDocument pdfDoc = new RadFixedDocument();
                 //using (RadFixedDocumentEditor editor = new RadFixedDocumentEditor(pdfDoc))
@@ -71,20 +120,20 @@ namespace LVS.ZUGFeRD
                 ////---- Ende Test neu
 
                 // Export mit PDF/A-3B
-                LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: Export PDF/A-3B started", string.Empty));
-                PdfFormatProvider provider = new PdfFormatProvider();
-                Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.Export.PdfExportSettings settings = new Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.Export.PdfExportSettings();
-                settings.ComplianceLevel = PdfComplianceLevel.PdfA3B;  // PDF/A-3B lt Telerik
+                //LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: Export PDF/A-3B started", string.Empty));
+                //PdfFormatProvider provider = new PdfFormatProvider();
+                //Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.Export.PdfExportSettings settings = new Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.Export.PdfExportSettings();
+                //settings.ComplianceLevel = PdfComplianceLevel.PdfA3B;  // PDF/A-3B lt Telerik
             
-                LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "  ComplianceLevel", settings.ComplianceLevel));
+                //LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "  ComplianceLevel", settings.ComplianceLevel));
 
-                provider.ExportSettings = settings;
-                using (Stream output = File.OpenWrite(embeddedFilePath))
-                {
-                    //provider.Export(epdfDoc, output, tsTimeOut);
-                    provider.Export(pdfDoc, output, tsTimeOut);
-                }
-                LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: Export PDF/A-3B finish", string.Empty)); 
+                //provider.ExportSettings = settings;
+                //using (Stream output = File.OpenWrite(embeddedFilePath))
+                //{
+                //    //provider.Export(epdfDoc, output, tsTimeOut);
+                //    provider.Export(pdfDoc, output, tsTimeOut);
+                //}
+                //LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "Step: Export PDF/A-3B finish", string.Empty)); 
 
                 IsEmbeddedFileCreated = File.Exists(embeddedFilePath);
                 LogMessages.Add(string.Format("{0,5} {1,-" + iCol0Width + "} :{2,-" + iCol1Width + "}", ">", "IsEmbeddedFileCreated", IsEmbeddedFileCreated.ToString()));

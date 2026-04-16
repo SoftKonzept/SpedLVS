@@ -2,6 +2,7 @@
 using LVS.Clients;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace LVS
 {
@@ -105,6 +106,9 @@ namespace LVS
         public decimal Ausgang_DefaultVersenderAdrID { get; set; }
         public Dictionary<decimal, decimal> DictArbeitsbereich_Ausgang_DefaultBeladeAdrID { get; set; }
         public decimal Ausgang_DefaultBeladeAdrID { get; set; }
+
+        public Dictionary<decimal, decimal> DictArbeitsbereich_Ausgang_DefaultSpedAdrID { get; set; }
+        public decimal Ausgang_DefaultSpedAdrID { get; set; }
 
         //Umbbuchung
         public Dictionary<decimal, decimal> DictArbeitsbereich_Umbuchung_DefaultEmpfaengerAdrID { get; set; }
@@ -1558,6 +1562,7 @@ namespace LVS
 
             //Beladeadresse
             decTmp = 0;
+            decTmp = mySystem.AbBereich.Mandant.ADR_ID;
             if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Count > 0)
             {
                 decTmp = 0;
@@ -1573,6 +1578,123 @@ namespace LVS
                 mySystem.Client.DictArbeitsbereich_Ausgang_DefaultVersenderAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
             }
             myLager.Ausgang.Versender = decTmp;
+
+            //Spedition
+            decTmp = 0;
+            if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.Count > 0)
+            {
+                decTmp = 0; 
+                mySystem.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
+            }
+            myLager.Ausgang.SpedID = decTmp;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mySystem"></param>
+        /// <param name="myAusgangVD"></param>
+
+        public static void ctrAuslagerung_CustomizeDefaulAusgangsdaten(ref clsSystem mySystem, ref ViewData.AusgangViewData myAusgangVD)
+        {
+            decimal decTmp = 0;
+            //Empfänger
+            myAusgangVD.Ausgang.Empfaenger = (int)decTmp; //AdrId VW
+            if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultEmpfaengerAdrID.Count > 0)
+            {
+                decTmp = 0;
+                mySystem.Client.DictArbeitsbereich_Ausgang_DefaultEmpfaengerAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
+            }
+            myAusgangVD.Ausgang.Empfaenger = (int)decTmp; 
+            decTmp = 0;
+
+            //Entladestelle
+            decTmp = 0;
+            if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultEntladeAdrID.Count > 0)
+            {
+                decTmp = 0;
+                mySystem.Client.DictArbeitsbereich_Ausgang_DefaultEntladeAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
+            }
+            myAusgangVD.Ausgang.Entladestelle = (int)decTmp; 
+
+            //Beladeadresse
+            decTmp = 0;
+            decTmp = mySystem.AbBereich.Mandant.ADR_ID;
+            if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Count > 0)
+            {
+                decTmp = 0;
+                mySystem.Client.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
+            }
+            myAusgangVD.Ausgang.BeladeId = (int)decTmp; 
+
+            //Versender
+            decTmp = 0;
+            if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultVersenderAdrID.Count > 0)
+            {
+                decTmp = 0;
+                mySystem.Client.DictArbeitsbereich_Ausgang_DefaultVersenderAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
+            }
+            myAusgangVD.Ausgang.Versender = (int)decTmp; 
+
+            //Spedition
+            decTmp = 0;
+            if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.Count > 0)
+            {
+                decTmp = 0;
+                mySystem.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
+            }
+            myAusgangVD.Ausgang.SpedId = (int)decTmp; 
+        }
+
+        public static void ctrAuslagerung_CustomizeDefaulAusgangsdaten_Call(clsSystem mySystem, ref clsASNCall myCall)
+        {
+            decimal decTmp = 0;
+            ////Empfänger
+            //myAusgangVD.Ausgang.Empfaenger = (int)decTmp; //AdrId VW
+            //if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultEmpfaengerAdrID.Count > 0)
+            //{
+            //    decTmp = 0;
+            //    mySystem.Client.DictArbeitsbereich_Ausgang_DefaultEmpfaengerAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
+            //}
+            //myAusgangVD.Ausgang.Empfaenger = (int)decTmp;
+            //decTmp = 0;
+
+            ////Entladestelle
+            //decTmp = 0;
+            //if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultEntladeAdrID.Count > 0)
+            //{
+            //    decTmp = 0;
+            //    mySystem.Client.DictArbeitsbereich_Ausgang_DefaultEntladeAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
+            //}
+            //myAusgangVD.Ausgang.Entladestelle = (int)decTmp;
+
+            //Beladeadresse
+            decTmp = 0;
+            decTmp = mySystem.AbBereich.Mandant.ADR_ID;
+            if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Count > 0)
+            {
+                decTmp = 0;
+                mySystem.Client.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
+            }           
+            myCall.AusgangToCreate.BeladeID = (int)decTmp;
+
+            //Versender
+            decTmp = 0;
+            if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultVersenderAdrID.Count > 0)
+            {
+                decTmp = 0;
+                mySystem.Client.DictArbeitsbereich_Ausgang_DefaultVersenderAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
+            }
+            myCall.AusgangToCreate.Versender = (int)decTmp;
+
+            //Spedition
+            decTmp = 0;
+            if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.Count > 0)
+            {
+                decTmp = 0;
+                mySystem.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
+            }
+            myCall.SpedAdrID = (int)decTmp;
+            myCall.AusgangToCreate.SpedID = (int)decTmp;
         }
         /// <summary>
         /// 

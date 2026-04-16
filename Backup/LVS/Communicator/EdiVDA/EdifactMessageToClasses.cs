@@ -661,11 +661,12 @@ namespace LVS.Communicator.EdiVDA
                                     if (eingang is Eingaenge)
                                     {
                                         int iGArtId = GoodstypeViewData.GetGutByADRAndVerweis(BenutzerId, eingang.Auftraggeber, article.Werksnummer, eingang.ArbeitsbereichId);
-                                        GoodstypeViewData gVD = new GoodstypeViewData(iGArtId, 1, false);
+                                        //GoodstypeViewData gVD = new GoodstypeViewData(iGArtId, 1, false);
+                                        GoodstypeViewData gVD = new GoodstypeViewData(iGArtId, 1, this.Sys, false);
                                         if ((gVD.Gut is Goodstypes) && (iGArtId > 0) && (gVD.Gut.Id == iGArtId) && (!gVD.Gut.IgnoreEdi))
                                         {
                                             article = gVD.SetGoodtypeValueToArticle(article).Copy();
-                                            article = Sys.Client.clsLagerdaten_Customized_ASNArtikel_Bestellnummer(article, gVD.Gut.BestellNr);
+                                            //article = Sys.Client.clsLagerdaten_Customized_ASNArtikel_Bestellnummer(article, gVD.Gut.BestellNr);
 
                                             //LVS.clsSystem Sys = new LVS.clsSystem();
                                             //article = mys Sys.Client.clsLagerdaten_Customized_ASNArtikel_Bestellnummer(article, gVD.Gut.BestellNr);
@@ -1236,7 +1237,8 @@ namespace LVS.Communicator.EdiVDA
                                         if (eingang is Eingaenge)
                                         {
                                             int iGArtId = GoodstypeViewData.GetGutByADRAndVerweis(1, eingang.Auftraggeber, article.Werksnummer, eingang.ArbeitsbereichId);
-                                            GoodstypeViewData gVD = new GoodstypeViewData(iGArtId, 1, false);
+                                            //GoodstypeViewData gVD = new GoodstypeViewData(iGArtId, 1, false);
+                                            GoodstypeViewData gVD = new GoodstypeViewData(iGArtId, 1, this.Sys, false);
                                             if ((gVD.Gut is Goodstypes) && (iGArtId > 0) && (gVD.Gut.Id == iGArtId) && (!gVD.Gut.IgnoreEdi))
                                             {
                                                 article = gVD.SetGoodtypeValueToArticle(article).Copy();

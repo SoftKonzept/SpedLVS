@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Linq;
-using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
+//using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
 
 
 namespace LVS.Fakturierung

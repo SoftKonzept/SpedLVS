@@ -25,6 +25,7 @@
 
             //--- WLAN IP  // über USB 
             //-- Scanner Anschluss über USB / WLAN hotSpot
+            //-- Windows‑Hotspot vom PC → 192.168.137.1
             ServerUrl = "https://192.168.137.1/LvsMobileAPI";
 
             //---local ohne Internet Verbindung

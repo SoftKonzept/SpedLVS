@@ -9,7 +9,7 @@ namespace Sped4
         {
             get
             {
-                _InfoText += "08.04.2026 / Build: 26.04.08.1      : " + Environment.NewLine +
+                _InfoText += "09.04.2026 / Build: 26.04.09.1      : " + Environment.NewLine +
                             Environment.NewLine;
 
                 _InfoText += "24.03.2026 / Build: 26.03.24.1      : " + Environment.NewLine +

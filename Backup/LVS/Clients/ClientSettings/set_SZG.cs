@@ -62,11 +62,23 @@ namespace LVS
 
             // AusgangDefBeladeId
             ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID = new Dictionary<decimal, decimal>();
+            //ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(1, 1);
+            //ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(2, 59); //Arcelor - SLE Glauchau
+            //ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(3, 59); //STahlo - SLE Glauchau
+            //ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(4, 59); //Diverse - SLE Glauchau
+            //ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(5, 59); //BMW - SLE Glauchau
+
             ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(1, 1);
-            ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(2, 59); //Arcelor - SLE Glauchau
-            ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(3, 59); //STahlo - SLE Glauchau
-            ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(4, 59); //Diverse - SLE Glauchau
-            ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(5, 59); //BMW - SLE Glauchau
+            ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(2, 1); //Arcelor - SZG Glauchau seit 01.01.2026
+            ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(3, 55); //STahlo - SLE Glauchau
+            ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(4, 55); //Diverse - SLE Glauchau
+            ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(5, 55); //BMW - SLE Glauchau
+            ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(6, 1); //Bildstien Mendritzki - SZG Glauchau
+            ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(7, 1); //SZG Diverse - SZG Glauchau
+            ClientToSet.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Add(8, 1); //Novelis - SZG Glauchau
+
+            ClientToSet.DictArbeitsbereich_Ausgang_DefaultSpedAdrID = new Dictionary<decimal, decimal>();
+            ClientToSet.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.Add(1, 1);
 
             //Umbuchung UBDefEmpfaengerId
             ClientToSet.DictArbeitsbereich_Umbuchung_DefaultEmpfaengerAdrID = new Dictionary<decimal, decimal>();

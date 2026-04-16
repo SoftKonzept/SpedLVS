@@ -1,6 +1,8 @@
 ﻿using Common.Helper;
 using Common.Models;
+using LVS.ASN.ASNFormatFunctions;
 using LVS.ASN.GlobalValues;
+using LVS.Communicator.EdiVDA.EdiVDAValues;
 using LVS.Constants;
 using LVS.Models;
 using LVS.ViewData;
@@ -8,6 +10,7 @@ using LVS.Views;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace LVS.Communicator.EdiVDA
 {
@@ -20,6 +23,11 @@ namespace LVS.Communicator.EdiVDA
         public ctrASNRead_AsnVdaView AsnVdaView { get; set; } = new ctrASNRead_AsnVdaView();
         internal Dictionary<string, string> Dict713F10OrderID; //= new Dictionary<string, string>();
         internal Dictionary<string, ediHelper_712_TM> Dict712_Transportmittel; //= new Dictionary<string, string>();
+
+        ASNArtFieldAssignmentViewData asnArtFieldAssingmentVD = new ASNArtFieldAssignmentViewData(0, 0, 1, 0, false);
+        internal Dictionary<string, ASNArtFieldAssignment> DictASNArtFieldAssignment = new Dictionary<string, ASNArtFieldAssignment>();
+        internal Dictionary<string, ASNArtFieldAssignment> DictASNArtFieldAssCopyFieldValue = new Dictionary<string, ASNArtFieldAssignment>();
+
         //public event Action<int> ProgressMaxValue;
         //internal BackgroundWorker WorkerBar;
 
@@ -48,6 +56,9 @@ namespace LVS.Communicator.EdiVDA
         {
             this.system = mySystem;
             this.ErrorLog = string.Empty;
+
+            DictASNArtFieldAssignment = new Dictionary<string, ASNArtFieldAssignment>();
+            DictASNArtFieldAssCopyFieldValue = new Dictionary<string, ASNArtFieldAssignment>();
         }
         //public VdaMessageToClasses(LVS.clsSystem mySystem, BackgroundWorker myBgWorker)
         //{
@@ -312,7 +323,6 @@ namespace LVS.Communicator.EdiVDA
                                     //row["Lieferantennummer"] = adrverweisE.adrReference.SupplierReference;
                                     //row["AuftraggeberView"] = adrVD.Address.ViewId;
 
-
                                     //clsADRVerweis adrverweisE = new clsADRVerweis();
                                     //adrverweisE.FillClassByVerweis(row["Ref.Empfaenger"].ToString(), constValue_AsnArt.const_Art_VDA4913);
                                     //if ((adrverweisE.ID == 0) || (adrverweisE.UseS713F13))
@@ -355,6 +365,73 @@ namespace LVS.Communicator.EdiVDA
                         //}
                     }//end For
 
+                    //--- CHeck 
+                    asnArtFieldAssingmentVD = new ASNArtFieldAssignmentViewData(eVD.Eingang.Auftraggeber, eVD.Eingang.Empfaenger, BenutzerID, eVD.Eingang.ArbeitsbereichId, false);
+                    DictASNArtFieldAssignment = new Dictionary<string, ASNArtFieldAssignment>(asnArtFieldAssingmentVD.DictASNArtFieldAssignment);
+                    DictASNArtFieldAssCopyFieldValue = new Dictionary<string, ASNArtFieldAssignment>(asnArtFieldAssingmentVD.DictASNArtFieldAssCopyFieldValue);
+                    
+                    Dictionary<string, ASNArtFieldAssignment> DictASNArtFieldAssignment_EA = new Dictionary<string, ASNArtFieldAssignment>();
+                    //--- Dict AsnArtFieldAssignment, die spezielle den Eingang betreffen filtern
+                    foreach (var kvp in asnArtFieldAssingmentVD.DictASNArtFieldAssignment)
+                    {
+                        if (kvp.Key.StartsWith("SATZ711") || kvp.Key.StartsWith("SATZ712") || kvp.Key.StartsWith("SATZ713"))
+                        {
+                            DictASNArtFieldAssignment_EA.Add(kvp.Key, kvp.Value);
+                        }
+                    }
+
+                    //--- Durchlaufen der ASNFieldAsnignment, die den Eingang betreffen
+                    if (DictASNArtFieldAssignment_EA.Count > 0)
+                    {
+                        try
+                        {
+                            foreach (var eaItem in DictASNArtFieldAssignment_EA)
+                            {
+                                dtASNValue.DefaultView.RowFilter = string.Empty;
+                                dtASNValue.DefaultView.RowFilter = "Kennung='" + eaItem.Key+"'";
+                                DataTable dtAsnEA = dtASNValue.DefaultView.ToTable();
+                                if (dtAsnEA.Rows.Count > 0)
+                                {
+                                    foreach (DataRow r in dtAsnEA.Rows)
+                                    {
+                                        string strKennung = r["Kennung"].ToString();
+                                        string strValue = r["Value"].ToString();
+                                        if (eaItem.Value.Id > 0)
+                                        {
+                                            switch (eaItem.Value.ArtField.ToString())
+                                            {
+                                                case EA_Datum.const_EA_Datum:
+                                                    string Date = Format_DateTimeFromEDI.Execute_ddMMyyyy(strValue);
+                                                    eVD.Eingang.Eingangsdatum = Convert.ToDateTime(Date);
+                                                    break;
+                                                case EA_exAuftragRef.const_EA_exAuftragRef:
+                                                    eVD.Eingang.ExAuftragRef = strValue;
+                                                    break;
+                                                case EA_exTransportRef.const_EA_exTransportRef:
+                                                    eVD.Eingang.ExTransportRef = strValue;
+                                                    break;
+                                                case EA_KFZ.const_EA_KFZ:
+                                                    eVD.Eingang.KFZ = strValue;
+                                                    break;
+                                                case EA_LfsNr.const_EA_LfsNr:
+                                                    eVD.Eingang.LfsNr = strValue;
+                                                    break;
+                                                    //--nur Ausgang 
+                                                    //case EA_SLB.const_EA_SLB:
+                                                    //    eVD.Eingang. = strValue;
+                                                    //    break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            string str = ex.ToString();
+                        }
+                        dtASNValue.DefaultView.RowFilter = string.Empty;
+                    }
                     //--- bevor die Datatable dtAsn hinzugefügt werden kann muss die Table für die weitere Verarbeitung bearbeitet werden
                     ctrASNRead_Helper_EditVdaValueTableToUser helper_EditVdaValueTableToUser = new ctrASNRead_Helper_EditVdaValueTableToUser(dtASN);
 
@@ -484,9 +561,13 @@ namespace LVS.Communicator.EdiVDA
                     //Dictionary<string, clsASNArtFieldAssignment> DictASNArtFieldAssignment = ASNArtFieldAssign.GetArtikelFieldAssignment(decASNSender, decASNReceiver, (int)this.Sys.AbBereich.ID);
                     //Dictionary<string, clsASNArtFieldAssignment> DictASNArtFieldAssCopyFieldValue = ASNArtFieldAssign.GetArtikelFieldAssignmentCopyFields(decASNSender, decASNReceiver, (int)this.Sys.AbBereich.ID);
 
-                    ASNArtFieldAssignmentViewData asnfaVD = new ASNArtFieldAssignmentViewData((int)decASNSender, (int)decASNReceiver, BenutzerID, myEingang.ArbeitsbereichId, false);
-                    Dictionary<string, ASNArtFieldAssignment> DictASNArtFieldAssignment = new Dictionary<string, ASNArtFieldAssignment>(asnfaVD.DictASNArtFieldAssignment);
-                    Dictionary<string, ASNArtFieldAssignment> DictASNArtFieldAssCopyFieldValue = new Dictionary<string, ASNArtFieldAssignment>(asnfaVD.DictASNArtFieldAssCopyFieldValue);
+                    //ASNArtFieldAssignmentViewData asnfaVD = new ASNArtFieldAssignmentViewData((int)decASNSender, (int)decASNReceiver, BenutzerID, myEingang.ArbeitsbereichId, false);
+                    //Dictionary<string, ASNArtFieldAssignment> DictASNArtFieldAssignment = new Dictionary<string, ASNArtFieldAssignment>(asnfaVD.DictASNArtFieldAssignment);
+                    //Dictionary<string, ASNArtFieldAssignment> DictASNArtFieldAssCopyFieldValue = new Dictionary<string, ASNArtFieldAssignment>(asnfaVD.DictASNArtFieldAssCopyFieldValue);
+
+                    asnArtFieldAssingmentVD = new ASNArtFieldAssignmentViewData(myEingang.Auftraggeber, myEingang.Empfaenger, BenutzerID, myEingang.ArbeitsbereichId, false);
+                    DictASNArtFieldAssignment = new Dictionary<string, ASNArtFieldAssignment>(asnArtFieldAssingmentVD.DictASNArtFieldAssignment);
+                    DictASNArtFieldAssCopyFieldValue = new Dictionary<string, ASNArtFieldAssignment>(asnArtFieldAssingmentVD.DictASNArtFieldAssCopyFieldValue);
 
                     // clsASNTableCombiValue ASNTableCombiVal = new clsASNTableCombiValue();
                     //ASNTableCombiVal.InitClass(this.GLUser, this.GLSystem);
@@ -500,13 +581,11 @@ namespace LVS.Communicator.EdiVDA
                     //Zur Zwischenspeicherung der Lfs / VehicleNlo , um diese im Artikel zu hinterlegen
                     Dict712_Transportmittel = new Dictionary<string, ediHelper_712_TM>();
 
-
                     //    //clsArtikel tmpArtZS = new clsArtikel();
                     //    //clsArtikel AddArtikel = new clsArtikel();
                     //    //AddArtikel.InitClass(this.GLUser, this.GLSystem);
                     //    //AddArtikel.sys = this.Sys;
                     //    //AddArtikel.GlowDate = new DateTime(1900, 1, 1);
-
                     
                     Articles tmpArtZS = new Articles();
                     Articles AddArtikel = new Articles();
@@ -621,7 +700,6 @@ namespace LVS.Communicator.EdiVDA
                                             string str = ex.ToString();
                                         }
                                     }
-
                                 }
                             }
                         }
@@ -652,7 +730,6 @@ namespace LVS.Communicator.EdiVDA
                                             adrRefVD.FillClassByVerweis(strVerweisA, constValue_AsnArt.const_Art_VDA4913);
                                         }
                                         tmpAdrA = new AddressViewData(adrRefVD.adrReference.VerweisAdrId, 1);
-
 
                                         //clsADRVerweis adrverweis = new clsADRVerweis();
                                         //adrverweis.FillClassByVerweis(strVerweisA, constValue_AsnArt.const_Art_VDA4913);

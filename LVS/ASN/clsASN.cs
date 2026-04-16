@@ -1845,7 +1845,7 @@ namespace LVS
             strSql += ", 0 as Length";
             strSql += ", ASN.ASNFileTyp as AsnFileTyp ";
             strSql += " FROM EdifactValue ";
-            strSql += "INNER JOIN ASNValue ON ASNValue.ID = EdifactValue.AsnId ";
+            //strSql += "INNER JOIN ASNValue ON ASNValue.ID = EdifactValue.AsnId ";
             strSql += "INNER JOIN ASN ON ASN.ID = EdifactValue.ASNID ";
             strSql += "INNER JOIN ASNTyp ON ASNTyp.ID = ASN.ASNTypID ";
             strSql += "WHERE ";

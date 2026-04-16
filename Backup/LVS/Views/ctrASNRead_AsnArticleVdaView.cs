@@ -328,6 +328,11 @@ namespace LVS.Views
             {
                 if (eingang is Eingaenge)
                 {
+                    if (!eingang.LfsNr.Equals(article.Lfs))
+                    {
+                        article.Lfs = eingang.LfsNr;
+                    }
+
                     return article.Lfs;
                 }
                 else

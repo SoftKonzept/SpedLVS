@@ -120,7 +120,7 @@
   <data name="textBox6.Value" xml:space="preserve">
     <value>Wir arbeiten ausschließlich auf Grundlage der Allgemeinen Deutschen Spediteurbedingungen - ADSp - jeweils neuste Fassung. Diese beschränken in Ziffer 23 ADSp die gesetzliche Haftung für Güterschäden nach § 431 HGB für Schäden in speditionellem Gewahrsam auf 5 €/kg. Die Verkehrshaftungsversicherung besteht bei der HDI-Firmen und Privat Versicherung AG, Riethorst 2, 30659 Hannover. Gerichtsstand und Erfüllungsort für beide Teile ist Lennestadt-Grevenbrück. Geschäftsführer: Bernhard Heisiep</value>
   </data>
-  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=19.3.25.1111, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
   <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
     <value>0.1cm</value>
   </data>

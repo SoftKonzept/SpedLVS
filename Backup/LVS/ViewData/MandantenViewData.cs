@@ -80,6 +80,9 @@ namespace LVS.ViewData
             Mandant.VatId = row["VatId"].ToString().Trim();
             Mandant.TaxNumber = row["TaxNumber"].ToString().Trim();
             Mandant.Organisation = row["Organisation"].ToString().Trim();
+            Mandant.Register = row["Register"].ToString().Trim();
+            Mandant.MagistrateCourt = row["MagistrateCourt"].ToString().Trim();
+            Mandant.ManagingDirector = row["ManagingDirector"].ToString().Trim();
 
             if (Mandant.AddressId > 0)
             {
@@ -125,7 +128,8 @@ namespace LVS.ViewData
                 }
                 //Insert
                 strSql = strSql + "INSERT INTO Mandanten (ADR_ID, Matchcode, Beschreibung, aktiv, Default_Sped, Default_Lager, VDA4905Verweis,ReportPath, " +
-                                                         "Bank, BLZ, BIC, Konto, IBAN, Contact, Mail, Homepage, Phone, VatId, TaxNumber, Organisation) " +
+                                                         "Bank, BLZ, BIC, Konto, IBAN, Contact, Mail, Homepage, Phone, VatId, TaxNumber, Organisation, "+
+                                                         "Register,MagistrateCourt, ManagingDirector ) " +
                                                "VALUES (" + Mandant.AddressId + ",'"
                                                            + Mandant.Matchcode + "','"
                                                            + Mandant.Description + "', "
@@ -145,6 +149,9 @@ namespace LVS.ViewData
                                                            ", '" + Mandant.VatId + "'" +
                                                            ", '" + Mandant.TaxNumber + "'" +
                                                            ", '" + Mandant.Organisation + "'" +
+                                                           ", '" + Mandant.Register + "'" +
+                                                           ", '" + Mandant.MagistrateCourt + "'" +
+                                                           ", '" + Mandant.ManagingDirector + "'" +
 
                                                            "); ";
                 strSql += " Select @@IDENTITY as 'ID';";
@@ -212,6 +219,9 @@ namespace LVS.ViewData
                                                     ", VatId = '" + Mandant.VatId + "'" +
                                                     ", TaxNumber = '" + Mandant.TaxNumber + "'" +
                                                     ", Organisation = '" + Mandant.Organisation + "'" +
+                                                    ", Register = '"+ Mandant.Register + "'"+
+                                                    ", MagistrateCourt = '" + Mandant.MagistrateCourt + "'" +
+                                                    ", ManagingDirector = '" + Mandant.ManagingDirector + "'" +
 
                                                     " WHERE ID='" + Mandant.Id + "'";
 
