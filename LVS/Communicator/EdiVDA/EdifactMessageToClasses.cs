@@ -38,6 +38,9 @@ namespace LVS.Communicator.EdiVDA
         public string ErrorLog { get; set; }
         internal clsSystem Sys { get; set; }
 
+        private string _lastLfs = string.Empty;
+        private int _lfsPositionCounter = 1;
+
         public EdifactMessageToClasses(clsSystem mySystem, Asn myAsn, int myUserId)
         {
             Sys = mySystem;
@@ -86,6 +89,10 @@ namespace LVS.Communicator.EdiVDA
 
                     if (dictArticle.Count > 0)
                     {
+                        // Reset der Zähler, einmal pro ASN-Verarbeitung
+                        _lastLfs = string.Empty;
+                        _lfsPositionCounter = 1;
+
                         foreach (var item in dictArticle)
                         {
                             var list = item.Value as List<string>;
@@ -93,7 +100,6 @@ namespace LVS.Communicator.EdiVDA
                             article = new Articles();
                             article = art.Copy();
                             SetAssignmentToArticle(list);
-
                             //--- CombiValue setzen
                             clsASNTableCombiValue ASNTableCombiVal = new clsASNTableCombiValue();
                             Dictionary<string, clsASNTableCombiValue> DictASNTableCombiValue = ASNTableCombiVal.GetArtikelFieldAssignment(eingangViewData.Eingang.Auftraggeber, eingangViewData.Eingang.Empfaenger);
@@ -123,14 +129,18 @@ namespace LVS.Communicator.EdiVDA
                 //}
             }
         }
-
+        /// <summary>     
+        ///             	|> listEdiSegments_Head (enthält die EdiSegmente für den Eingang / Head)
+	    ///                     |> DictSegmentCPS<Position, enthält die Liste der EdiSegmente des Artikels>
+		///                     |> dictArticle<Article, Liste der EdiSegmente des Artikels>
+        /// </summary>
         private void GetHeadAndArtikelEdiMessageValueLists()
         {
             //bool IsHeadItem = true;
             //int iCountArt = 0;          
             bool bSwitchToTmpList = false;
 
-            //----------------------------------------------- Unterteilung in die CPS Segmente
+            //----------------------------------------------- Unterteilung in die CPS Segmente / Artikel
             bool IsHeadItem = true;
             int iCountArt = 0;
             Dictionary<int, List<string>> DictSegmentCPS = new Dictionary<int, List<string>>();
@@ -143,7 +153,7 @@ namespace LVS.Communicator.EdiVDA
                 }
                 if (!IsHeadItem)
                 {
-                    if (str.Substring(0, 3) == CPS.Name)
+                    if (str.Substring(0, 3) == CPS.Name) // Artikel Positionen
                     {
                         IsHeadItem = false;
                         if (iCountArt > 0)
@@ -155,7 +165,7 @@ namespace LVS.Communicator.EdiVDA
                         tmpEdiSegmentArt.Clear();
                         tmpEdiSegmentArt.Add(str);
                     }
-                    else if (str.Substring(0, 3) == UNT.Name)
+                    else if (str.Substring(0, 3) == UNT.Name)  // ende Edifact
                     {
                         DictSegmentCPS.Add(iCountArt, new List<string>(tmpEdiSegmentArt.ToList()));
                     }
@@ -496,6 +506,8 @@ namespace LVS.Communicator.EdiVDA
         {
             bool bReturn = false;
             decimal decTmp = 0;
+            string LastLfs = string.Empty;
+            int iCountPosition = 1;
 
             if (
                     (article is Articles) &&
@@ -553,6 +565,21 @@ namespace LVS.Communicator.EdiVDA
                         {
                             switch (pair.Value.ArtField)
                             {
+                                case clsEdiVDAValueAlias.const_Artikel_Lfs:
+                                    article.Lfs = value;
+                                    // Vergleich normalisiert (Trim) und deterministisch (Ordinal)
+                                    if (!string.Equals(_lastLfs?.Trim(), value.Trim(), StringComparison.Ordinal))
+                                    {
+                                        _lastLfs = value.Trim();
+                                        _lfsPositionCounter = 1;
+                                    }
+                                    else
+                                    {
+                                        _lfsPositionCounter++;
+                                    }
+                                    article.Position = _lfsPositionCounter.ToString();
+                                    break;
+
                                 case clsEdiVDAValueAlias.const_Artikel_Anzahl:
                                     int iTmp = 1;
                                     int.TryParse(value, out iTmp);
@@ -651,11 +678,9 @@ namespace LVS.Communicator.EdiVDA
                                     decimal.TryParse(value, out decTmp);
                                     article.Netto = decTmp;
                                     break;
-
                                 case clsEdiVDAValueAlias.const_Artikel_Produktionsnummer:
                                     article.Produktionsnummer = value; // value.TrimStart('0'); ;
                                     break;
-
                                 case clsEdiVDAValueAlias.const_Artikel_Werksnummer:
                                     article.Werksnummer = value; // value.TrimStart('0');
                                     if (eingang is Eingaenge)
@@ -665,6 +690,7 @@ namespace LVS.Communicator.EdiVDA
                                         GoodstypeViewData gVD = new GoodstypeViewData(iGArtId, 1, this.Sys, false);
                                         if ((gVD.Gut is Goodstypes) && (iGArtId > 0) && (gVD.Gut.Id == iGArtId) && (!gVD.Gut.IgnoreEdi))
                                         {
+                                            article.GArtID = gVD.Gut.Id;
                                             article = gVD.SetGoodtypeValueToArticle(article).Copy();
                                             //article = Sys.Client.clsLagerdaten_Customized_ASNArtikel_Bestellnummer(article, gVD.Gut.BestellNr);
 
@@ -688,6 +714,10 @@ namespace LVS.Communicator.EdiVDA
                                 default:
                                     break;
                             }
+                        }
+                        else
+                        {
+                            string s = string.Empty;
                         }
 
                         if ((!pair.Value.CopyToField.Equals(string.Empty)) && (pair.Value.CopyToField.Length > 0))
@@ -1040,16 +1070,29 @@ namespace LVS.Communicator.EdiVDA
                                             break;
                                     }
                                     break;
+                                case RFF.const_ReferenzQualifier_C506_1153_AAU_KommissionsNumber:
+                                    stringReturn = r.C506.f_1154_RefNumber;
+                                    //switch (asn.ASNFileTyp)
+                                    //{
+                                    //    case constValue_AsnArt.const_Art_EDIFACT_ASN_D96A:
+                                    //    case constValue_AsnArt.const_ArtBeschreibung_EDIFACT_DESADV_D07A:
+                                    //        stringReturn = r.C506.f_1154_RefNumber;
+                                    //        break;
+                                    //    default:
+                                    //        break;
+                                    //}
+                                    break;
                                 case RFF.const_ReferenzQualifier_C506_1153_AAT_MasterLableNumber:
-                                    switch (asn.ASNFileTyp)
-                                    {
-                                        case constValue_AsnArt.const_Art_EDIFACT_ASN_D96A:
-                                        case constValue_AsnArt.const_ArtBeschreibung_EDIFACT_DESADV_D07A:
-                                            stringReturn = r.C506.f_1154_RefNumber;
-                                            break;
-                                        default:
-                                            break;
-                                    }
+                                    stringReturn = r.C506.f_1154_RefNumber;
+                                    //switch (asn.ASNFileTyp)
+                                    //{
+                                    //    case constValue_AsnArt.const_Art_EDIFACT_ASN_D96A:
+                                    //    case constValue_AsnArt.const_ArtBeschreibung_EDIFACT_DESADV_D07A:
+                                    //        stringReturn = r.C506.f_1154_RefNumber;
+                                    //        break;
+                                    //    default:
+                                    //        break;
+                                    //}
                                     break;
                                 case RFF.const_ReferenzQualifier_C506_1153_ADE_AcountNumber:
                                     break;

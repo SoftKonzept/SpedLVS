@@ -9,6 +9,11 @@ namespace Sped4
         {
             get
             {
+                _InfoText += "22.04.2026 / Build: 26.04.22.1      : " + Environment.NewLine +
+                             " - BugFix: Verarbeitung EDIFACT iDoc" + Environment.NewLine +
+                             " - Reports Erweiterung embedded Files" + Environment.NewLine +
+                                Environment.NewLine;
+
                 _InfoText += "09.04.2026 / Build: 26.04.09.1      : " + Environment.NewLine +
                             Environment.NewLine;
 

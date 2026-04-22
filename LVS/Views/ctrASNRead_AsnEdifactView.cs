@@ -120,14 +120,34 @@ namespace LVS.Views
         {
             get
             {
+                //if (ListArticleInEingang != null && ListArticleInEingang.Count > 0)
+                //{
+                //    var distinctLfs = ListArticleInEingang
+                //        .Where(a => a != null && !string.IsNullOrEmpty(a.Lfs))
+                //        .Select(a => a.Lfs)
+                //        .Distinct()
+                //        .ToList();
+
+                //    if (distinctLfs.Count > 0)
+                //    {
+                //        return string.Join(", ", distinctLfs);
+                //    }
+                //}
+
                 if (eingang is Eingaenge)
                 {
+                    if (eingang.LfsNr.Length < 1)
+                    {
+                        string firstLfs = ListArticleInEingang
+                            .Where(a => a != null && !string.IsNullOrEmpty(a.Lfs))
+                            .Select(a => a.Lfs)
+                            .FirstOrDefault() ?? string.Empty;
+                        eingang.LfsNr = firstLfs;
+                    }
                     return eingang.LfsNr;
                 }
-                else
-                {
-                    return string.Empty;
-                }
+
+                return string.Empty;
             }
         }
 

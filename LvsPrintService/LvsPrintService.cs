@@ -20,24 +20,81 @@ namespace LvsPrintService
         internal LVS.clsSystem system = new clsSystem();
         private int eventId { get; set; } = 1;
 
+        // neu: Flag, ob EventLog sicher verwendet werden kann
+        private bool eventLogEnabled = false;
+
         public LvsPrintService()
         {
             InitializeComponent();
             eventLogLvsPrintService = new System.Diagnostics.EventLog();
+
+
+            //--- neu test
+
+            const string source = "LvsPrintServiceSource";
+            const string logName = "LvsPrintServiceLog";
+
             try
             {
-                if (!System.Diagnostics.EventLog.SourceExists("LvsPrintServiceSource"))
+                bool isAdmin = false;
+                try
                 {
-                    System.Diagnostics.EventLog.CreateEventSource(
-                        "LvsPrintServiceSource", "LvsPrintServiceLog");
+                    var identity = System.Security.Principal.WindowsIdentity.GetCurrent();
+                    var principal = new System.Security.Principal.WindowsPrincipal(identity);
+                    isAdmin = principal.IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator);
                 }
-                eventLogLvsPrintService.Source = "LvsPrintServiceSource";
-                eventLogLvsPrintService.Log = "LvsPrintServiceLog";
+                catch
+                {
+                    // Falls die Rechteprüfung fehlschlägt, gehen wir vorsichtig vor.
+                    isAdmin = false;
+                }
+
+                if (isAdmin)
+                {
+                    // Nur als Administrator versuchen, Source zu prüfen/erstellen
+                    if (!System.Diagnostics.EventLog.SourceExists(source))
+                    {
+                        System.Diagnostics.EventLog.CreateEventSource(source, logName);
+                    }
+                    eventLogLvsPrintService.Source = source;
+                    eventLogLvsPrintService.Log = logName;
+                    eventLogEnabled = true;
+                }
+                else
+                {
+                    // Kein Admin: sicheren Fallback aktivieren (kein EventLog-Zugriff)
+                    eventLogEnabled = false;
+                    // Optional: statt EventLog fallback Logging (Datei/Trace) implementieren
+                }
+            }
+            catch (System.Security.SecurityException secEx)
+            {
+                // Kein Zugriff auf EventLogs (z. B. Security-Log) -> fallback
+                eventLogEnabled = false;
+                System.Diagnostics.Trace.TraceWarning($"EventLog nicht verfügbar: {secEx.Message}");
             }
             catch (Exception ex)
             {
-                string s = ex.Message;
+                // Sonstige Fehler ebenfalls nicht zum Absturz bringen
+                eventLogEnabled = false;
+                System.Diagnostics.Trace.TraceError($"Fehler beim Initialisieren des EventLog: {ex.Message}");
             }
+
+            //--- alt
+            //try
+            //{
+            //    if (!System.Diagnostics.EventLog.SourceExists("LvsPrintServiceSource"))
+            //    {
+            //        System.Diagnostics.EventLog.CreateEventSource(
+            //            "LvsPrintServiceSource", "LvsPrintServiceLog");
+            //    }
+            //    eventLogLvsPrintService.Source = "LvsPrintServiceSource";
+            //    eventLogLvsPrintService.Log = "LvsPrintServiceLog";
+            //}
+            //catch (Exception ex)
+            //{
+            //    string s = ex.Message;
+            //}
         }
 
         public void onDebug()
@@ -88,13 +145,35 @@ namespace LvsPrintService
 
         protected override void OnStop()
         {
-            eventLogLvsPrintService.WriteEntry("In OnStop.");
+            //eventLogLvsPrintService.WriteEntry("In OnStop.");
+            
+            //-- neu
+            if (eventLogEnabled)
+            {
+                eventLogLvsPrintService.WriteEntry("In OnStop.");
+            }
+            else
+            {
+                System.Diagnostics.Trace.TraceInformation("In OnStop. (EventLog disabled)");
+            }
         }
 
         private void OnElapsedTime(object source, ElapsedEventArgs e)
         {
             // TODO: Insert monitoring activities here.
-            eventLogLvsPrintService.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
+            //eventLogLvsPrintService.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
+            
+            //--- neu
+            if (eventLogEnabled)
+            {
+                eventLogLvsPrintService.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
+            }
+            else
+            {
+                System.Diagnostics.Trace.TraceInformation("Monitoring the System (EventLog disabled)");
+            }
+
+
             GetAndProcessPrintQueue();
         }
 

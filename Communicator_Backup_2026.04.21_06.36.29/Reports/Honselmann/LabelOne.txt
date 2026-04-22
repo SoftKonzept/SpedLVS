@@ -1,0 +1,30 @@
+Data Source=SQLSERVER2014\sql2008R2EX;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=LvsUser;Password=Lvs@comTEC.24
+
+sqlLableSource
+======================
+SELECT        
+a.ID
+, a.LVS_ID
+, a.Brutto
+, d.KD_ID
+, a.Werk
+, a.Halle
+, a.Reihe
+, a.Ebene
+, a.Platz
+, CASE
+	WHEN (a.Dicke>0) AND (a.Breite>0) AND (a.Laenge>0) AND (a.Hoehe>0) 
+		THEN CAST(a.Dicke as varchar (20))+' x '+ CAST(a.Breite as varchar(20))+' x '+CAST(a.Laenge as varchar(20))+' x '+CAST(a.Hoehe as varchar(20))
+	WHEN (a.Dicke>0) AND (a.Breite>0) AND (a.Laenge>0) AND (a.Hoehe=0) 
+		THEN CAST(a.Dicke as nvarchar) +' x '+ CAST(a.Breite as nvarchar)+' x '+CAST(a.Laenge as nvarchar)
+	WHEN (a.Dicke>0) AND  (a.Breite>0) AND (a.Laenge=0) AND (a.Hoehe=0) 
+		THEN CAST(a.Dicke as varchar)+' x '+ CAST(a.Breite as varchar)
+	WHEN (a.Dicke>0) AND (a.Breite=0) AND (a.Laenge=0) AND (a.Hoehe=0) 
+		THEN CAST(a.Dicke as varchar)
+	ELSE ''
+	END as Abmessung
+
+FROM Artikel a
+INNER JOIN LEingang c ON c.ID = a.LEingangTableID
+INNER JOIN ADR d ON d.ID=c.Auftraggeber
+WHERE a.ID=1=@ArtikelID 

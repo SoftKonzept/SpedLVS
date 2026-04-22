@@ -43,6 +43,7 @@ namespace LVS
         public const string ArtikelField_TARef = "Artikel.TARef";
         public const string ArtikelField_GlowDate = "Artikel.GlowDate";
         public const string ArtikelField_TransportRef = "Artikel.TransportRef";
+        public const string ArtikelField_Lfs = "Artikel.Lfs";
 
 
         public const string ArtikelField_Werk = "Artikel.Werk";

@@ -258,14 +258,15 @@ namespace LVS.Views
         {
             get
             {
-                if (eingang is Eingaenge)
-                {
-                    return eingang.LfsNr;
-                }
-                else
-                {
-                    return string.Empty;
-                }
+                //if (eingang is Eingaenge)
+                //{
+                //    return eingang.LfsNr;
+                //}
+                //else
+                //{
+                //    return string.Empty;
+                //}
+                return article.Lfs;
             }
         }
 

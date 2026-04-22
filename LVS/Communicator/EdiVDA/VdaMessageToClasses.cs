@@ -10,7 +10,6 @@ using LVS.Views;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
 namespace LVS.Communicator.EdiVDA
 {
@@ -365,7 +364,7 @@ namespace LVS.Communicator.EdiVDA
                         //}
                     }//end For
 
-                    //--- CHeck 
+                    //--- Check 
                     asnArtFieldAssingmentVD = new ASNArtFieldAssignmentViewData(eVD.Eingang.Auftraggeber, eVD.Eingang.Empfaenger, BenutzerID, eVD.Eingang.ArbeitsbereichId, false);
                     DictASNArtFieldAssignment = new Dictionary<string, ASNArtFieldAssignment>(asnArtFieldAssingmentVD.DictASNArtFieldAssignment);
                     DictASNArtFieldAssCopyFieldValue = new Dictionary<string, ASNArtFieldAssignment>(asnArtFieldAssingmentVD.DictASNArtFieldAssCopyFieldValue);

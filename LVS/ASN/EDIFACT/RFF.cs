@@ -44,6 +44,7 @@ namespace LVS
 
         internal RFF_C506 C506;
 
+        public const string const_ReferenzQualifier_C506_1153_AAU_KommissionsNumber = "AAU";
         public const string const_ReferenzQualifier_C506_1153_AAS_TransportDocumentNumber = "AAS";
         public const string const_ReferenzQualifier_C506_1153_AAT_MasterLableNumber = "AAT";
         public const string const_ReferenzQualifier_C506_1153_ADE_AcountNumber = "ADE";

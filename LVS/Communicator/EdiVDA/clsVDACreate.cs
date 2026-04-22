@@ -2235,14 +2235,14 @@ namespace LVS
                 case clsEdiVDAValueAlias.const_Artikel_Güte:
                     strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, this.Lager.Artikel.Guete, myClFeld.Length, bFillLeft);
                     break;
+                case clsEdiVDAValueAlias.const_Artikel_Lfs:
+                    strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, this.Lager.Artikel.Guete, myClFeld.Length, bFillLeft);
+                    break;
                 case clsEdiVDAValueAlias.const_Artikel_Glühdatum:
                     strTmp = string.Empty;
                     strTmp = this.Lager.Artikel.GlowDate.ToString("ddMMyyyy");
                     strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
                     break;
-
-
-
 
                 //****************************************************************************************** Functions Artikeldaten
                 case clsEdiVDAValueAlias.const_ArtFunc_WerksnummerOhneBlank:

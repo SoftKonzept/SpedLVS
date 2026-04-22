@@ -479,46 +479,46 @@ namespace LVS.ViewData
         ///             die jeweils die Daten für Eingang und Artikel enthalten
         /// </summary>
         /// <param name="myAsnList"></param>
-        public void FillAsnVdaViewAndArticleEdifactView(List<Asn> myAsnList)
-        {
-            foreach (var item in myAsnList)
-            {
-                EdifactMessageToClasses edi = new EdifactMessageToClasses(this.system, item, BenutzerID);
-                if (edi != null)
-                {
-                    if (
-                            (edi.eingangViewData is EingangViewData) &&
-                            (edi.eingangViewData.ListArticleInEingang.Count > 0)
-                       )
-                    {
-                        ctrASNRead_AsnEdifactView v = new ctrASNRead_AsnEdifactView(item, edi.eingangViewData);
-                        List_ctrAsnRead_AsnEdifactView.Add(v);
+        //public void FillAsnVdaViewAndArticleEdifactView(List<Asn> myAsnList)
+        //{
+        //    foreach (var item in myAsnList)
+        //    {
+        //        EdifactMessageToClasses edi = new EdifactMessageToClasses(this.system, item, BenutzerID);
+        //        if (edi != null)
+        //        {
+        //            if (
+        //                    (edi.eingangViewData is EingangViewData) &&
+        //                    (edi.eingangViewData.ListArticleInEingang.Count > 0)
+        //               )
+        //            {
+        //                ctrASNRead_AsnEdifactView v = new ctrASNRead_AsnEdifactView(item, edi.eingangViewData);
+        //                List_ctrAsnRead_AsnEdifactView.Add(v);
 
-                        //foreach (Articles art in edi.eingangViewData.ListArticleInEingang)
-                        foreach (Articles art in v.ListArticleInEingang)
-                        {
-                            ctrASNRead_AsnArticleEdifactView a = new ctrASNRead_AsnArticleEdifactView(edi.eingang, art);
-                            List_ctrAsnRead_AsnArticelEdifactView.Add(a);
-                        }
-                    }
-                    else
-                    {
-                        try
-                        {
-                            clsMail EMail = new clsMail();
-                            EMail.InitClass(new Globals._GL_USER(), new clsSystem());
-                            EMail.Subject = this.system.Client.MatchCode + DateTime.Now.ToShortDateString() + " - Error: AsnViewData|FillAsnEdifactViewAndArticleEdifactView Fehler bei der ASN Verarbeitung!";
-                            EMail.Message = edi.ErrorLog;
-                            EMail.SendError();
-                        }
-                        catch (Exception ex)
-                        {
-                            //clsLog.WriteErrorLog(ex, "AsnViewData.FillAsnEdifactViewAndArticleEdifactView");
-                        }
-                    }
-                }
-            }
-        }
+        //                //foreach (Articles art in edi.eingangViewData.ListArticleInEingang)
+        //                foreach (Articles art in v.ListArticleInEingang)
+        //                {
+        //                    ctrASNRead_AsnArticleEdifactView a = new ctrASNRead_AsnArticleEdifactView(edi.eingang, art);
+        //                    List_ctrAsnRead_AsnArticelEdifactView.Add(a);
+        //                }
+        //            }
+        //            else
+        //            {
+        //                try
+        //                {
+        //                    clsMail EMail = new clsMail();
+        //                    EMail.InitClass(new Globals._GL_USER(), new clsSystem());
+        //                    EMail.Subject = this.system.Client.MatchCode + DateTime.Now.ToShortDateString() + " - Error: AsnViewData|FillAsnEdifactViewAndArticleEdifactView Fehler bei der ASN Verarbeitung!";
+        //                    EMail.Message = edi.ErrorLog;
+        //                    EMail.SendError();
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    //clsLog.WriteErrorLog(ex, "AsnViewData.FillAsnEdifactViewAndArticleEdifactView");
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
 
 

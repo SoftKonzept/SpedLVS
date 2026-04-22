@@ -1,0 +1,98 @@
+Data Source=SQLSERVER2014\sql2008R2EX;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=LvsUser;Password=Lvs@comTEC.24
+Data Source=SE-MAIN\SPED;Initial Catalog=LvsHonselmann;Persist Security Info=True;User ID=sa;Password=masterkey
+
+
+sqlLAusgangSoruce
+===========================
+Select a.ID 
+, a.LAusgangID
+, CASE WHEN ((a.KFZ IS NOT NULL)
+			AND (a.KFZ <> '')
+			AND (a.KFZ <> '--Fremdfahrzeug--'))
+	   THEN a.KFZ
+	   WHEN ((a.WaggonNo IS NOT NULL)
+			AND (a.WaggonNo <> ''))
+	   THEN a.WaggonNo
+	   ELSE ''
+	   END as LKWWAGON
+, CASE WHEN (a.KFZ IS NOT NULL) 
+	   THEN 'LKW'
+	   ELSE 'Waggon'
+           END as LKWWAGONSTR 
+, CONVERT(varchar(10),a.Datum,104) as LagerAusgangsDatum
+, a.Versender
+, a.LfsNr
+, a.Termin
+, a.WaggonNo
+, a.Info 
+, (Select KD_ID FROM ADR WHERE ID=a.Auftraggeber) as ANr
+, (Select Fbez FROM ADR WHERE ID=a.Auftraggeber) as AAnrede
+,  case  When (((Select Name1 FROM ADR WHERE ID=a.Auftraggeber)IS null)
+		OR ((Select Name1 FROM ADR WHERE ID=a.Auftraggeber) = ''))
+		THEN (Select ADRMan.Name1 FROM ADRMan 
+			INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+			WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=0)
+		else
+		(Select Name1 FROM ADR WHERE ID=a.Auftraggeber)
+		end as AName1
+, (Select Name2 FROM ADR WHERE ID=a.Auftraggeber) as AName2
+, (Select Str FROM ADR WHERE ID=a.Auftraggeber) as AStr
+, (Select PLZ FROM ADR WHERE ID=a.Auftraggeber)+' '
+	+(Select Ort FROM ADR WHERE ID=a.Auftraggeber) as APLZuOrt
+
+, (Select KD_ID FROM ADR WHERE ID=a.Empfaenger) as ENr
+, (Select Fbez FROM ADR WHERE ID=a.Empfaenger) as EAnrede
+,  case  When (((Select Name1 FROM ADR WHERE ID=a.Empfaenger)IS null)
+		OR ((Select Name1 FROM ADR WHERE ID=a.Empfaenger) = ''))
+		THEN (Select ADRMan.Name1 FROM ADRMan 
+			INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+			WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=3)
+		else
+		(Select Name1 FROM ADR WHERE ID=a.Empfaenger)
+		end as EName1
+, (Select Name2 FROM ADR WHERE ID=a.Empfaenger) as EName2
+, (Select Str FROM ADR WHERE ID=a.Empfaenger) as EStr
+, (Select HausNr FROM ADR WHERE ID=a.Empfaenger) as EHausNr
+, (Select PLZ FROM ADR WHERE ID=a.Empfaenger)+' '
+	+(Select Ort FROM ADR WHERE ID=a.Empfaenger) as EPLZuOrt
+
+, (Select Fbez FROM ADR WHERE ID=a.SpedID) as SAnrede
+, (Select Name1 FROM ADR WHERE ID=a.SpedID)as SName1
+, (Select Name2 FROM ADR WHERE ID=a.SpedID) as SName2
+, (Select Str FROM ADR WHERE ID=a.SpedID) as SStr
+, (Select PLZ FROM ADR WHERE ID=a.SpedID)+' '
+	+(Select Ort FROM ADR WHERE ID=a.SpedID) as SPLZuOrt
+, (Select SUM(Brutto) FROM Artikel WHERE LAusgangTableID=@LAusgangTableID) as SumBrutto
+			
+, CASE	WHEN (((Select Name1 FROM ADR WHERE a.Spedid=ID) IS NULL)
+			OR ((Select Name1 FROM ADR WHERE a.Spedid=ID) = ''))	
+			THEN (Select ADRMan.Name1 FROM ADRMan 
+				INNER JOIN LAusgang ON LAusgang.ID=ADRMan.TableID AND ADRMan.TableName='LAusgang'
+				WHERE ADRMan.TableID=a.ID and ADRMan.AdrArtID=5)
+			else
+			(Select Name1 FROM ADR WHERE a.Spedid=ID)
+			END as spedname
+, (Select Vorname +' '+ Name FROM [User] WHERE ID=@BenuzterID) as Sachbearbeiter
+, (Select Tel FROM [User] WHERE ID=@BenuzterID) as Telefon
+			
+FROM LAusgang a
+WHERE a.ID=@LAusgangTableID
+
+
+
+
+sqlArtikelSource
+============================
+
+Select 
+a.*
+, CASE
+	WHEN (a.Laenge>0)
+		THEN CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))+'x'+CAST(a.Laenge as varchar(20))
+	
+	ELSE CAST(a.Dicke as varchar (20))+'x'+ CAST(a.Breite as varchar(20))
+	END as Abmessung
+FROM Artikel a
+INNER JOIN LAusgang c ON c.ID=a.LAusgangTableID
+WHERE 
+a.LAusgangTableID=@LAusgangTableID

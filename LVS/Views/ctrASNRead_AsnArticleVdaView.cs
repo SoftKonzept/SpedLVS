@@ -330,15 +330,43 @@ namespace LVS.Views
                 {
                     if (!eingang.LfsNr.Equals(article.Lfs))
                     {
-                        article.Lfs = eingang.LfsNr;
+                        eingang.LfsNr = article.Lfs;
                     }
-
                     return article.Lfs;
                 }
                 else
                 {
                     return string.Empty;
                 }
+
+                //string s = string.Empty;
+                //if (
+                //    (article.Lfs.Equals(string.Empty)) && (article.Lfs.Length < 1)
+                //  )
+                //{
+                //    if (eingang is Eingaenge)
+                //    {
+                //        article.Lfs = eingang.LfsNr;
+                //    }
+                //}
+                //else
+                //{
+                //    article.Lfs = string.Empty;
+                //}
+                //return article.Lfs;
+                //if (eingang is Eingaenge)
+                //{
+                //    if (!eingang.LfsNr.Equals(article.Lfs))
+                //    {
+                //        article.Lfs = eingang.LfsNr;
+                //    }
+
+                //    return article.Lfs;
+                //}
+                //else
+                //{
+                //    return string.Empty;
+                //}
             }
         }
 

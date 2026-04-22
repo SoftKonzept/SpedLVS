@@ -320,6 +320,26 @@
   <event action="Analyze" type="Success" name="Resources.resx" path="D:\Develop\LVS\SpedLVS\WatchDog\Properties\Resources.resx" />
   <event action="Analyze" type="Success" name="WatchDog" path="D:\Develop\LVS\SpedLVS\WatchDog\WatchDog.csproj" />
   <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\LVS\SpedLVS\Import\Import.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\LVS\SpedLVS\Import\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\LVS\SpedLVS\Import\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\LVS\SpedLVS\Import\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\LVS\SpedLVS\Import\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\LVS\SpedLVS\Import\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\LVS\SpedLVS\Import\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="D:\Develop\LVS\SpedLVS\Import\App.config" />
+  <event action="Analyze" type="Success" name="frmADRSelection.resx" path="D:\Develop\LVS\SpedLVS\Import\frmADRSelection.resx" />
+  <event action="Analyze" type="Success" name="frmMainImport.resx" path="D:\Develop\LVS\SpedLVS\Import\frmMainImport.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\LVS\SpedLVS\Import\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\LVS\SpedLVS\Import\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\Develop\LVS\SpedLVS\Import\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\Develop\LVS\SpedLVS\Import\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\Develop\LVS\SpedLVS\Import\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\Develop\LVS\SpedLVS\Import\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\Develop\LVS\SpedLVS\Import\packages.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\Develop\LVS\SpedLVS\Import\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="Import" path="D:\Develop\LVS\SpedLVS\Import\Import.csproj" />
+  <event>Get project references.</event>
   <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\LVS\SpedLVS\LvsPrintService\LvsPrintService.csproj" />
   <event action="Analyze" type="Success" name="Assembly References" path="D:\Develop\LVS\SpedLVS\LvsPrintService\App.config" />
   <event action="Analyze" type="Success" name="Http Handlers" path="D:\Develop\LVS\SpedLVS\LvsPrintService\App.config" />
@@ -424,11 +444,6 @@
   <event action="Analyze" type="Success" name="Resources.resx" path="D:\Develop\LVS\SpedLVS\CustomizedUpdates\Properties\Resources.resx" />
   <event action="Analyze" type="Success" name="CustomizedUpdates" path="D:\Develop\LVS\SpedLVS\CustomizedUpdates\CustomizedUpdates.csproj" />
   <event action="Analyze" type="Success" name="SpedLvs" path="D:\Develop\LVS\SpedLVS\SpedLvs.sln" />
-  <event action="Backup" type="Success" name="ReportingX" path="D:\Develop\LVS\SpedLVS\Reporting\ReportingX.csproj" />
-  <event action="Backup" type="Success" name="LVS" path="D:\Develop\LVS\SpedLVS\LVS\LVS.csproj" />
-  <event action="Backup" type="Success" name="Sped4" path="D:\Develop\LVS\SpedLVS\Sped4\Sped4.csproj" />
-  <event action="Backup" type="Success" name="Communicator" path="D:\Develop\LVS\SpedLVS\Communicator\Communicator.csproj" />
-  <event action="Backup" type="Success" name="LvsPrintService" path="D:\Develop\LVS\SpedLVS\LvsPrintService\LvsPrintService.csproj" />
   <event action="Upgrade" type="Success" name="Assembly References" path="D:\Develop\LVS\SpedLVS\Reporting\ReportingX.csproj" />
   <event action="Upgrade" type="Success" name="Config Sections" path="D:\Develop\LVS\SpedLVS\Reporting\Telerik.ReportDesigner.exe.config" />
   <event action="Upgrade" type="Success" name="Telerik.ReportDesigner.exe.config" path="D:\Develop\LVS\SpedLVS\Reporting\Telerik.ReportDesigner.exe.config" />

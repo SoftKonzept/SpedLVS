@@ -455,7 +455,7 @@ namespace LVS
         public const string const_Artikel_ArtIDRef = clsArtikel.ArtikelField_ArtikelIDRef; // "Artikel.ArtIDRef";
         public const string const_Artikel_Glühdatum = clsArtikel.ArtikelField_GlowDate; // "Artikel.ArtIDRef";
         public const string const_Artikel_Güte = clsArtikel.ArtikelField_Güte;
-
+        public const string const_Artikel_Lfs = clsArtikel.ArtikelField_Lfs;
 
         public const string const_Artikel_LVSNrBeforeUB = clsArtikel.ArtikelField_LVSNrBeforeUB; // "LVSNrVorUB";
 
@@ -468,6 +468,7 @@ namespace LVS
                 {
                     const_Artikel_ID
                     ,const_Artikel_LVSNr
+                    ,const_Artikel_Lfs
                     ,const_Artikel_LVSNrBeforeUB
                     ,const_Artikel_Netto
                     ,const_Artikel_Brutto
