@@ -116,7 +116,6 @@ namespace LvsMobileAPI.Services
                     myResponse.Error += "Der Vorgang konnte nicht durchgeführt werden!" + Environment.NewLine;
                     myResponse.Error += viewData.Errortext;
                 }
-
                 //myResponse.InfoList = new List<string>();
                 //myResponse.InfoList.Add("Test Zeile 1");
                 //myResponse.InfoList.Add("  ->Test Zeile 2");

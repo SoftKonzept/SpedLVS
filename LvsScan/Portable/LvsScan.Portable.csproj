@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
     <EnableNETAnalyzers>False</EnableNETAnalyzers>
-    <Version>25.09.04.1</Version>
+    <Version>26.04.22.1</Version>
     <UserSecretsId>f309a03a-1001-47a7-90cc-021188779f37</UserSecretsId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

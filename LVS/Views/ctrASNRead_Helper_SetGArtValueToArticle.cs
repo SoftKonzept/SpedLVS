@@ -64,7 +64,7 @@ namespace LVS.Views
                 }
 
                 if ((Article.Gut is Goodstypes) && (!Article.Gut.BestellNr.Equals(string.Empty)))
-                {
+                {                    
                     mySystem.Client.clsLagerdaten_Customized_ASNArtikel_Bestellnummer(ref myArt, myArt.Gut.BestellNr);
                 }
 

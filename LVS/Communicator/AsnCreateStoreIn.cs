@@ -36,12 +36,15 @@ namespace LVS.Communicator
         {
             InitCls();
         }
-        public AsnCreateStoreIn(Asn myAsn) : this()
+        public AsnCreateStoreIn(Asn myAsn, clsSystem mySystem) : this()
         {
+            Sys = mySystem;
             asnVD = new AsnViewData(myAsn);
+            asnVD.system = this.Sys;
             GLSystem = Asn.GLSystem;
             GLUser = Asn._GL_User;
-            Sys = Asn.Sys;
+            //GLSystem = Sys.
+            //Sys = Asn.Sys;
         }
         /// <summary>
         /// 
@@ -55,16 +58,42 @@ namespace LVS.Communicator
             };
             asnVD.FillAsnEdifactViewAndArticleEdifactView(asnList);
 
+            LogText = string.Empty;
             foreach (var item in asnVD.List_ctrAsnRead_AsnEdifactView)
             {
-                //lvLogEDIFACT.Items.Add(DateTime.Now.ToString("dd.MM.yyyy HH:mm"));
-                AsnReadViewData readVD = new AsnReadViewData();
-                //bReturn = readVD.CreateStoreInByAsnEdifactView(item, (int)this.GLUser.User_ID);
-                bReturn = readVD.CreateStoreInByAsnEdifactView(item.AsnMessage, item.eingang, item.ListArticleInEingang, (int)this.GLUser.User_ID);
-                LogText = string.Empty;
-                LogText = readVD.LogText;
-                Eingang = new Eingaenge();
-                Eingang = readVD.EingangCreated.Copy();
+                ////-- Ermittlung der einzelnen Lieferscheine
+                var listLfs = item.ListArticleInEingang.Where(x => !string.IsNullOrEmpty(x.Lfs))
+                                                        .Select(x => x.Lfs)
+                                                        .Distinct()
+                                                        .ToList();
+                LogText += "ASN : " + item.ASN.ToString() + Environment.NewLine;  //  eingangVD.Eingang.ASN + Environment.NewLine;
+
+                foreach (var lfs in listLfs)
+                {
+                    var listArticleForEingangCreation = item.ListArticleInEingang.Where(x => x.Lfs == lfs).ToList();
+                    if (item.eingang.LfsNr != lfs)
+                    {
+                        item.eingang.LfsNr = lfs;
+                    }
+
+                    AsnReadViewData readVD = new AsnReadViewData();
+                    bReturn = readVD.CreateStoreInByAsnEdifactView(item.AsnMessage, item.eingang, listArticleForEingangCreation, (int)this.GLUser.User_ID);
+                    //LogText = string.Empty;
+                    //LogText += "ASN : " + item.ASN.ToString() + Environment.NewLine;  //  eingangVD.Eingang.ASN + Environment.NewLine;
+                    LogText += readVD.LogText; 
+                    Eingang = new Eingaenge();
+                    Eingang = readVD.EingangCreated.Copy();
+                }
+                //LogText += Environment.NewLine;
+
+                ////lvLogEDIFACT.Items.Add(DateTime.Now.ToString("dd.MM.yyyy HH:mm"));
+                //AsnReadViewData readVD = new AsnReadViewData();
+                ////bReturn = readVD.CreateStoreInByAsnEdifactView(item, (int)this.GLUser.User_ID);
+                //bReturn = readVD.CreateStoreInByAsnEdifactView(item.AsnMessage, item.eingang, item.ListArticleInEingang, (int)this.GLUser.User_ID);
+                //LogText = string.Empty;
+                //LogText = readVD.LogText;
+                //Eingang = new Eingaenge();
+                //Eingang = readVD.EingangCreated.Copy();
 
                 //if (!bReturn)
                 //{

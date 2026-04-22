@@ -117,17 +117,6 @@ namespace LvsScan.Portable.Services
             responseASN.Info = string.Empty;
             try
             {
-                //var json = JsonConvert.SerializeObject(responseASN);
-                //HttpContent httpContent = new StringContent(json);
-                //httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                //var response = await client.PostAsync(Uri_POST_ASN_CreateStoreIn, httpContent);
-                //if (response.IsSuccessStatusCode)
-                //{
-                //    //var jwt = await response.Content.ReadAsStringAsync();
-                //    //var reply = JsonConvert.DeserializeObject<ResponseASN>(jwt);
-                //    //responseASN = reply.Copy();
-                //}
-
                 var json = JsonConvert.SerializeObject(responseASN);
                 HttpContent httpContent = new StringContent(json);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");

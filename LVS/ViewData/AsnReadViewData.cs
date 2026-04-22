@@ -20,6 +20,7 @@ namespace LVS.ViewData
         internal AsnViewData asnVD { get; set; } = new AsnViewData();
         public List<ctrASNRead_AsnEdifactView> List_ctrAsnRead_AsnEdifactView { get; set; } = new List<ctrASNRead_AsnEdifactView>();
         public List<ctrASNRead_AsnArticleEdifactView> List_ctrAsnRead_AsnArticelEdifactView { get; set; } = new List<ctrASNRead_AsnArticleEdifactView>();
+
         public AsnReadViewData()
         {
             Lager = new clsLager();
@@ -31,7 +32,7 @@ namespace LVS.ViewData
             System = new clsSystem();
             System.Client = new clsClient();
             System.Client.InitClass(clsClient.const_ClientMatchcode_SZG + "_");
-
+            //asnVD = new AsnViewData(System);
         }
         public AsnReadViewData(string myProductionnumberValue, int myUserId) : this()
         {
@@ -53,7 +54,7 @@ namespace LVS.ViewData
         public string Productionnumber { get; set; } = string.Empty;
         internal Globals._GL_SYSTEM _GLSystem;
         internal Globals._GL_USER _GL_User;
-        internal clsSystem System { get; set; }
+        public clsSystem System { get; set; }
         //************  User  ***************
         private decimal _BenutzerID;
         public decimal BenutzerID
@@ -149,7 +150,9 @@ namespace LVS.ViewData
         public bool CreateStoreInByAsnId(int myAsnId)
         {
             bool bReturn = false;
-            AsnViewData asnVD = new AsnViewData(myAsnId, this._GL_User);
+            asnVD = new AsnViewData(myAsnId, this._GL_User);
+            asnVD.system = this.System;
+
             //--- Unterscheidung VDA und EDIFACT
             if (asnVD.asnHead.IsRead)
             {
@@ -171,7 +174,8 @@ namespace LVS.ViewData
                         break;
 
                     case constValue_AsnArt.const_Art_EDIFACT_DESADV_D07A:
-                        AsnCreateStoreIn asnCreateStoreIn = new AsnCreateStoreIn(asnVD.asnHead);
+                        AsnCreateStoreIn asnCreateStoreIn = new AsnCreateStoreIn(asnVD.asnHead, asnVD.system);
+                        
                         bReturn = asnCreateStoreIn.InitEdifactCreationStoreIn();
                         this.EingangCreated = asnCreateStoreIn.Eingang;
                         this.LogText = asnCreateStoreIn.LogText;
@@ -227,11 +231,13 @@ namespace LVS.ViewData
 
                             if (ArticleInEingang.Count > 0)
                             {
-                                tmp += "-> Eingang " + create.dtInserted.Rows[i]["LeingangID"] + " erstellt" + Environment.NewLine;
-                                tmp += "   Artikel:" + Environment.NewLine;
+                                //tmp += "-> Eingang " + create.dtInserted.Rows[i]["LeingangID"] + " erstellt" + Environment.NewLine;
+                                tmp += "-> Eingang " + EingangCreated.LEingangID + " erstellt" + Environment.NewLine;
+                                //tmp += "   Artikel:" + Environment.NewLine;
 
                                 foreach (Articles art in ArticleInEingang)
                                 {
+                                    art.Eingang = EingangCreated.Copy();
                                     tmp += "    LVS-Nr: [" + art.Id + "] -> " + art.LVS_ID + Environment.NewLine;
                                     CustomProcessesViewData cpVD = new CustomProcessesViewData(art.Eingang.Auftraggeber, art.AbBereichID, this._GL_User);
                                     if (cpVD.ExistCustomProcess)
@@ -249,7 +255,7 @@ namespace LVS.ViewData
                                         }
                                     }
                                 }
-                                tmp += Environment.NewLine;
+                                //tmp += Environment.NewLine;
                             }
                         }
                     }
@@ -284,6 +290,7 @@ namespace LVS.ViewData
                 EingangViewData eingangVD = new EingangViewData();
                 //asnVD = new AsnViewData(myAsnEdifactView.Id, this._GL_User);
                 asnVD = new AsnViewData(myAsn);
+                asnVD.system = this.System;
 
                 if (asnVD.asnHead.IsRead)
                 {
@@ -366,9 +373,9 @@ namespace LVS.ViewData
                     string tmp = string.Empty;
                     if (eingangVD.Eingang.Id > 0)
                     {
-                        tmp += "ASN : " + eingangVD.Eingang.ASN + Environment.NewLine;
+                        //tmp += "ASN : " + eingangVD.Eingang.ASN + Environment.NewLine;
                         tmp += "-> Eingang [" + eingangVD.Eingang.Id + "] - " + eingangVD.Eingang.LEingangID + " erstellt" + Environment.NewLine;
-                        tmp += "   Artikel: " + Environment.NewLine;
+                        //tmp += "   Artikel: " + Environment.NewLine;
                         foreach (Articles art in eingangVD.ListArticleInEingang)
                         {
                             tmp += "    LVS-Nr: [" + art.Id + "]  - " + art.LVS_ID + Environment.NewLine;
@@ -419,6 +426,7 @@ namespace LVS.ViewData
                 EingangViewData eingangVD = new EingangViewData();
                 //asnVD = new AsnViewData(myAsnEdifactView.Id, this._GL_User);
                 asnVD = new AsnViewData(myAsn);
+                asnVD.system = this.System;
 
                 if (asnVD.asnHead.IsRead)
                 {
@@ -882,7 +890,8 @@ namespace LVS.ViewData
             worspaceVD = new WorkspaceViewData();
             worspaceVD.GetWorkspaceList();
 
-            AsnViewData asnVD = new AsnViewData();
+            asnVD = new AsnViewData();
+            asnVD.system = this.System;
 
             foreach (Workspaces ws in worspaceVD.ListWorkspace)
             {
@@ -908,8 +917,9 @@ namespace LVS.ViewData
                             }
                         }
 
-
                         asnVD = new AsnViewData(0, this._GL_User);
+                        asnVD.system = this.System;
+
                         asnVD.GetListbyAsnId(tmpAsnId);
                         if (asnVD.ListAsn.Count > 0)
                         {
@@ -994,7 +1004,7 @@ namespace LVS.ViewData
             List_ctrAsnRead_AsnArticelEdifactView = new List<ctrASNRead_AsnArticleEdifactView>();
 
             //AsnViewData asnVD = new AsnViewData((int)this.System.AbBereich.ID);
-            AsnViewData asnVD = new AsnViewData(this.System);
+            asnVD = new AsnViewData(this.System);
             var list = asnVD.GetListEDIFACT();
             asnVD.FillAsnEdifactViewAndArticleEdifactView(list);
             List_ctrAsnRead_AsnEdifactView = asnVD.List_ctrAsnRead_AsnEdifactView;
