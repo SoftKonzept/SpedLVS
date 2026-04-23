@@ -64,7 +64,7 @@ namespace LvsScan.Portable.ViewModels.Login
             api_Login = new api_Login();
             var login = await api_Login.Login(LoginInquiry);
 
-            if (login is ResponseLogin)
+            if ((login != null) && (login is ResponseLogin))
             {
                 Log = login;
                 if (login.AccessGranted)
@@ -73,7 +73,11 @@ namespace LvsScan.Portable.ViewModels.Login
                     LvsScan.Portable.Settings.InternalSettings.Password = Password;
                     LvsScan.Portable.Settings.InternalSettings.AccessToken = login.AccessToken;
                     LvsScan.Portable.Settings.InternalSettings.AccessGranted = login.AccessGranted;
-                    ((App)Application.Current).LoggedUser = login.LoggedUser.Copy();
+                    //((App)Application.Current).LoggedUser = login.LoggedUser.Copy();
+                    if (login.LoggedUser != null)
+                    {
+                        ((App)Application.Current).LoggedUser = login.LoggedUser.Copy();
+                    }
                 }
                 else
                 {
@@ -98,7 +102,7 @@ namespace LvsScan.Portable.ViewModels.Login
             //login.LoggedUser.Name = Username;
             //login.LoggedUser.pass = Password;
 
-            ((App)Application.Current).LoggedUser = login.LoggedUser.Copy();
+            //((App)Application.Current).LoggedUser = login.LoggedUser.Copy();
 
             IsBusy = false;
         }

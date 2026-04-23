@@ -31,12 +31,15 @@
             this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctrEinlagerung));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splittConLager = new System.Windows.Forms.SplitContainer();
             this.panelDGV = new System.Windows.Forms.Panel();
             this.dgv = new Telerik.WinControls.UI.RadGridView();
+            this.tsArtikelGrid = new Sped4.Controls.AFToolStrip();
+            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
+            this.tscbView = new System.Windows.Forms.ToolStripComboBox();
             this.panelArtikeldaten = new System.Windows.Forms.Panel();
             this.splitConArtikelDaten = new System.Windows.Forms.SplitContainer();
             this.tbTransportId = new System.Windows.Forms.TextBox();
@@ -147,18 +150,34 @@
             this.tbExAuftragPos = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
             this.tabPageVita = new System.Windows.Forms.TabPage();
+            this.dgvVita = new Sped4.Controls.AFGrid();
+            this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.tsmArtikelVita = new Sped4.Controls.AFToolStrip();
+            this.tsbtnRefreshVita = new System.Windows.Forms.ToolStripButton();
             this.tabPageSchaden = new System.Windows.Forms.TabPage();
             this.dgvSchaden = new Telerik.WinControls.UI.RadGridView();
+            this.tsmArtikelSchaeden = new Sped4.Controls.AFToolStrip();
+            this.tsbtnDeleteSchaden = new System.Windows.Forms.ToolStripButton();
             this.tabInfo = new System.Windows.Forms.TabPage();
             this.scTabPageInfo = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.tbSysInfo = new System.Windows.Forms.TextBox();
+            this.tsmSysInfo = new Sped4.Controls.AFToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.tbInfoIntern = new System.Windows.Forms.TextBox();
+            this.afToolStrip2 = new Sped4.Controls.AFToolStrip();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.splitPanel3 = new Telerik.WinControls.UI.SplitPanel();
             this.tbInfoExtern = new System.Windows.Forms.TextBox();
+            this.afToolStrip3 = new Sped4.Controls.AFToolStrip();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.tabPageExtraCharge = new System.Windows.Forms.TabPage();
             this.dgvExtraChargeAssignment = new Telerik.WinControls.UI.RadGridView();
+            this.tsmExtraCharge = new Sped4.Controls.AFToolStrip();
+            this.tsbtnArtECAdd = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnArtECDelete = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnArtECRefresh = new System.Windows.Forms.ToolStripButton();
             this.tabPageArtikelPreis = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label51 = new System.Windows.Forms.Label();
@@ -170,12 +189,25 @@
             this.tbAuslagerungCalc = new System.Windows.Forms.TextBox();
             this.label50 = new System.Windows.Forms.Label();
             this.tbLagergeldCalc = new System.Windows.Forms.TextBox();
+            this.afToolStrip4 = new Sped4.Controls.AFToolStrip();
+            this.tsbtnPreisSave = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnPreisRefresh = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnPreisDelete = new System.Windows.Forms.ToolStripButton();
             this.tabPageImages = new System.Windows.Forms.TabPage();
             this.scArtImages = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel4 = new Telerik.WinControls.UI.SplitPanel();
             this.pbImageThumb = new System.Windows.Forms.PictureBox();
             this.splitPanel5 = new Telerik.WinControls.UI.SplitPanel();
             this.lvArtImages = new Telerik.WinControls.UI.RadListView();
+            this.tsmTabImages = new Sped4.Controls.AFToolStrip();
+            this.tsbtnImageAdd = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnImageDelete = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnImageRefresh = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnSchadenDoc = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnSchadensDocMail = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.tslMaxImageSPLMessage = new System.Windows.Forms.ToolStripLabel();
+            this.tstbMaxSPLMes = new System.Windows.Forms.ToolStripTextBox();
             this.tabPageManCall = new System.Windows.Forms.TabPage();
             this.panTerminManCall = new System.Windows.Forms.Panel();
             this.label53 = new System.Windows.Forms.Label();
@@ -198,42 +230,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
-            this.cmsSchaeden = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.miDelSchaden = new System.Windows.Forms.ToolStripMenuItem();
-            this.ttEinlagerung = new System.Windows.Forms.ToolTip(this.components);
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.tsArtikelGrid = new Sped4.Controls.AFToolStrip();
-            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
-            this.tscbView = new System.Windows.Forms.ToolStripComboBox();
-            this.dgvVita = new Sped4.Controls.AFGrid();
-            this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tsmArtikelVita = new Sped4.Controls.AFToolStrip();
-            this.tsbtnRefreshVita = new System.Windows.Forms.ToolStripButton();
-            this.tsmArtikelSchaeden = new Sped4.Controls.AFToolStrip();
-            this.tsbtnDeleteSchaden = new System.Windows.Forms.ToolStripButton();
-            this.tsmSysInfo = new Sped4.Controls.AFToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.afToolStrip2 = new Sped4.Controls.AFToolStrip();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.afToolStrip3 = new Sped4.Controls.AFToolStrip();
-            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.tsmExtraCharge = new Sped4.Controls.AFToolStrip();
-            this.tsbtnArtECAdd = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnArtECDelete = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnArtECRefresh = new System.Windows.Forms.ToolStripButton();
-            this.afToolStrip4 = new Sped4.Controls.AFToolStrip();
-            this.tsbtnPreisSave = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnPreisRefresh = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnPreisDelete = new System.Windows.Forms.ToolStripButton();
-            this.tsmTabImages = new Sped4.Controls.AFToolStrip();
-            this.tsbtnImageAdd = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnImageDelete = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnImageRefresh = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnSchadenDoc = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnSchadensDocMail = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.tslMaxImageSPLMessage = new System.Windows.Forms.ToolStripLabel();
-            this.tstbMaxSPLMes = new System.Windows.Forms.ToolStripTextBox();
             this.tsmManCall = new Sped4.Controls.AFToolStrip();
             this.tsbtnCallSave = new System.Windows.Forms.ToolStripButton();
             this.tsbtnCallActivate = new System.Windows.Forms.ToolStripButton();
@@ -258,6 +254,19 @@
             this.tsbtnCheckAll = new System.Windows.Forms.ToolStripButton();
             this.tsbtnArtikelRL = new System.Windows.Forms.ToolStripButton();
             this.tsbtnManCall = new System.Windows.Forms.ToolStripButton();
+            this.cmsSchaeden = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.miDelSchaden = new System.Windows.Forms.ToolStripMenuItem();
+            this.ttEinlagerung = new System.Windows.Forms.ToolTip(this.components);
+            this.btnManEntladestelle = new System.Windows.Forms.Button();
+            this.btnSearchES = new System.Windows.Forms.Button();
+            this.btnManSped = new System.Windows.Forms.Button();
+            this.btnManEmpfaenger = new System.Windows.Forms.Button();
+            this.btnManVersender = new System.Windows.Forms.Button();
+            this.btnSpedition = new System.Windows.Forms.Button();
+            this.btnVersender = new System.Windows.Forms.Button();
+            this.btnSearchE = new System.Windows.Forms.Button();
+            this.btnSearchA = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.afMMPEingangDaten = new Sped4.Controls.AFMinMaxPanel();
             this.gbZusatzInfo = new System.Windows.Forms.GroupBox();
             this.cbUmbuchung = new System.Windows.Forms.CheckBox();
@@ -309,16 +318,10 @@
             this.label46 = new System.Windows.Forms.Label();
             this.tbLEingangTableID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnManEntladestelle = new System.Windows.Forms.Button();
             this.tbEntladestelle = new System.Windows.Forms.TextBox();
-            this.btnSearchES = new System.Windows.Forms.Button();
             this.tbSearchES = new System.Windows.Forms.TextBox();
-            this.btnManSped = new System.Windows.Forms.Button();
-            this.btnManEmpfaenger = new System.Windows.Forms.Button();
-            this.btnManVersender = new System.Windows.Forms.Button();
             this.tbADRSpedition = new System.Windows.Forms.TextBox();
             this.lKennzeichen = new System.Windows.Forms.Label();
-            this.btnSpedition = new System.Windows.Forms.Button();
             this.dtpEinlagerungDate = new System.Windows.Forms.DateTimePicker();
             this.tbMCSpedition = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -332,13 +335,10 @@
             this.cbFahrzeug = new System.Windows.Forms.ComboBox();
             this.tbVersender = new System.Windows.Forms.TextBox();
             this.tbSearchV = new System.Windows.Forms.TextBox();
-            this.btnVersender = new System.Windows.Forms.Button();
             this.tbEmpfaenger = new System.Windows.Forms.TextBox();
             this.tbLfsNr = new System.Windows.Forms.TextBox();
-            this.btnSearchE = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
             this.tbSearchE = new System.Windows.Forms.TextBox();
-            this.btnSearchA = new System.Windows.Forms.Button();
             this.tbAuftraggeber = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.tbSearchA = new System.Windows.Forms.TextBox();
@@ -358,6 +358,7 @@
             this.panelDGV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv.MasterTemplate)).BeginInit();
+            this.tsArtikelGrid.SuspendLayout();
             this.panelArtikeldaten.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitConArtikelDaten)).BeginInit();
             this.splitConArtikelDaten.Panel1.SuspendLayout();
@@ -386,23 +387,31 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudLzzJahr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLzzKW)).BeginInit();
             this.tabPageVita.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVita)).BeginInit();
+            this.tsmArtikelVita.SuspendLayout();
             this.tabPageSchaden.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchaden)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchaden.MasterTemplate)).BeginInit();
+            this.tsmArtikelSchaeden.SuspendLayout();
             this.tabInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scTabPageInfo)).BeginInit();
             this.scTabPageInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
+            this.tsmSysInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
+            this.afToolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel3)).BeginInit();
             this.splitPanel3.SuspendLayout();
+            this.afToolStrip3.SuspendLayout();
             this.tabPageExtraCharge.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtraChargeAssignment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtraChargeAssignment.MasterTemplate)).BeginInit();
+            this.tsmExtraCharge.SuspendLayout();
             this.tabPageArtikelPreis.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.afToolStrip4.SuspendLayout();
             this.tabPageImages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scArtImages)).BeginInit();
             this.scArtImages.SuspendLayout();
@@ -412,22 +421,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).BeginInit();
             this.splitPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lvArtImages)).BeginInit();
+            this.tsmTabImages.SuspendLayout();
             this.tabPageManCall.SuspendLayout();
             this.panTerminManCall.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tpCallEintreffZeit)).BeginInit();
-            this.cmsSchaeden.SuspendLayout();
-            this.tsArtikelGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVita)).BeginInit();
-            this.tsmArtikelVita.SuspendLayout();
-            this.tsmArtikelSchaeden.SuspendLayout();
-            this.tsmSysInfo.SuspendLayout();
-            this.afToolStrip2.SuspendLayout();
-            this.afToolStrip3.SuspendLayout();
-            this.tsmExtraCharge.SuspendLayout();
-            this.afToolStrip4.SuspendLayout();
-            this.tsmTabImages.SuspendLayout();
             this.tsmManCall.SuspendLayout();
             this.tsArtikeldatenMenu.SuspendLayout();
+            this.cmsSchaeden.SuspendLayout();
             this.afMMPEingangDaten.SuspendLayout();
             this.gbZusatzInfo.SuspendLayout();
             this.menuEingangMain.SuspendLayout();
@@ -481,13 +481,42 @@
             // 
             // 
             // 
-            this.dgv.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 264, 601);
+            this.dgv.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 240, 150);
             this.dgv.Size = new System.Drawing.Size(264, 601);
             this.dgv.TabIndex = 140;
             this.dgv.ThemeName = "ControlDefault";
             this.dgv.SelectionChanged += new System.EventHandler(this.dgv_SelectionChanged);
             this.dgv.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgv_CellClick);
             this.dgv.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.dgv_ToolTipTextNeeded);
+            // 
+            // tsArtikelGrid
+            // 
+            this.tsArtikelGrid.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsArtikelGrid.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel5,
+            this.tscbView});
+            this.tsArtikelGrid.Location = new System.Drawing.Point(0, 0);
+            this.tsArtikelGrid.myColorFrom = System.Drawing.Color.Azure;
+            this.tsArtikelGrid.myColorTo = System.Drawing.Color.Blue;
+            this.tsArtikelGrid.myUnderlineColor = System.Drawing.Color.White;
+            this.tsArtikelGrid.myUnderlined = true;
+            this.tsArtikelGrid.Name = "tsArtikelGrid";
+            this.tsArtikelGrid.Size = new System.Drawing.Size(264, 25);
+            this.tsArtikelGrid.TabIndex = 136;
+            this.tsArtikelGrid.Text = "afToolStrip3";
+            // 
+            // toolStripLabel5
+            // 
+            this.toolStripLabel5.Name = "toolStripLabel5";
+            this.toolStripLabel5.Size = new System.Drawing.Size(47, 22);
+            this.toolStripLabel5.Text = "Ansicht";
+            // 
+            // tscbView
+            // 
+            this.tscbView.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tscbView.Name = "tscbView";
+            this.tscbView.Size = new System.Drawing.Size(121, 25);
+            this.tscbView.SelectedIndexChanged += new System.EventHandler(this.tscbView_SelectedIndexChanged);
             // 
             // panelArtikeldaten
             // 
@@ -1571,7 +1600,7 @@
             // 
             // 
             // 
-            this.btnFreeForCallReset.RootElement.ControlBounds = new System.Drawing.Rectangle(30840, 27712, 15200, 2690);
+            this.btnFreeForCallReset.RootElement.ControlBounds = new System.Drawing.Rectangle(30840, 27712, 110, 24);
             this.btnFreeForCallReset.Size = new System.Drawing.Size(15200, 2690);
             this.btnFreeForCallReset.TabIndex = 202;
             this.btnFreeForCallReset.Text = "Reset Freigabe";
@@ -1599,7 +1628,7 @@
             // 
             // 
             // 
-            this.btnKWNow.RootElement.ControlBounds = new System.Drawing.Rectangle(32755, 24376, 7305, 2690);
+            this.btnKWNow.RootElement.ControlBounds = new System.Drawing.Rectangle(32755, 24376, 110, 24);
             this.btnKWNow.Size = new System.Drawing.Size(7305, 2690);
             this.btnKWNow.TabIndex = 200;
             this.btnKWNow.Text = "Now()";
@@ -1811,6 +1840,78 @@
             this.tabPageVita.Text = "Vita";
             this.tabPageVita.UseVisualStyleBackColor = true;
             // 
+            // dgvVita
+            // 
+            this.dgvVita.AllowUserToAddRows = false;
+            this.dgvVita.AllowUserToDeleteRows = false;
+            this.dgvVita.AllowUserToResizeRows = false;
+            this.dgvVita.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvVita.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgvVita.BackgroundColor = global::Sped4.Properties.Settings.Default.BackColor;
+            this.dgvVita.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvVita.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvVita.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVita.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1});
+            this.dgvVita.DataBindings.Add(new System.Windows.Forms.Binding("BackgroundColor", global::Sped4.Properties.Settings.Default, "BackColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 8.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvVita.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvVita.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvVita.Location = new System.Drawing.Point(3, 30);
+            this.dgvVita.MultiSelect = false;
+            this.dgvVita.Name = "dgvVita";
+            this.dgvVita.ReadOnly = true;
+            this.dgvVita.RowHeadersVisible = false;
+            this.dgvVita.RowHeadersWidth = 51;
+            this.dgvVita.RowTemplate.Height = 55;
+            this.dgvVita.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvVita.ShowEditingIcon = false;
+            this.dgvVita.ShowRowErrors = false;
+            this.dgvVita.Size = new System.Drawing.Size(334, 540);
+            this.dgvVita.TabIndex = 139;
+            this.dgvVita.CellErrorTextNeeded += new System.Windows.Forms.DataGridViewCellErrorTextNeededEventHandler(this.dgvVita_CellErrorTextNeeded);
+            this.dgvVita.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvVita_CellFormatting);
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.HeaderText = "";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 6;
+            // 
+            // tsmArtikelVita
+            // 
+            this.tsmArtikelVita.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsmArtikelVita.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnRefreshVita});
+            this.tsmArtikelVita.Location = new System.Drawing.Point(3, 3);
+            this.tsmArtikelVita.myColorFrom = System.Drawing.Color.Azure;
+            this.tsmArtikelVita.myColorTo = System.Drawing.Color.Blue;
+            this.tsmArtikelVita.myUnderlineColor = System.Drawing.Color.White;
+            this.tsmArtikelVita.myUnderlined = true;
+            this.tsmArtikelVita.Name = "tsmArtikelVita";
+            this.tsmArtikelVita.Size = new System.Drawing.Size(334, 27);
+            this.tsmArtikelVita.TabIndex = 140;
+            this.tsmArtikelVita.Text = "a";
+            // 
+            // tsbtnRefreshVita
+            // 
+            this.tsbtnRefreshVita.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnRefreshVita.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnRefreshVita.Image")));
+            this.tsbtnRefreshVita.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnRefreshVita.Name = "tsbtnRefreshVita";
+            this.tsbtnRefreshVita.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnRefreshVita.Text = "aktualisieren...";
+            this.tsbtnRefreshVita.Click += new System.EventHandler(this.tsbtnRefreshVita_Click);
+            // 
             // tabPageSchaden
             // 
             this.tabPageSchaden.AutoScroll = true;
@@ -1841,10 +1942,35 @@
             // 
             // 
             // 
-            this.dgvSchaden.RootElement.ControlBounds = new System.Drawing.Rectangle(3, 30, 334, 540);
+            this.dgvSchaden.RootElement.ControlBounds = new System.Drawing.Rectangle(3, 30, 240, 150);
             this.dgvSchaden.Size = new System.Drawing.Size(334, 540);
             this.dgvSchaden.TabIndex = 140;
             this.dgvSchaden.ThemeName = "ControlDefault";
+            // 
+            // tsmArtikelSchaeden
+            // 
+            this.tsmArtikelSchaeden.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsmArtikelSchaeden.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnDeleteSchaden});
+            this.tsmArtikelSchaeden.Location = new System.Drawing.Point(3, 3);
+            this.tsmArtikelSchaeden.myColorFrom = System.Drawing.Color.Azure;
+            this.tsmArtikelSchaeden.myColorTo = System.Drawing.Color.Blue;
+            this.tsmArtikelSchaeden.myUnderlineColor = System.Drawing.Color.White;
+            this.tsmArtikelSchaeden.myUnderlined = true;
+            this.tsmArtikelSchaeden.Name = "tsmArtikelSchaeden";
+            this.tsmArtikelSchaeden.Size = new System.Drawing.Size(334, 27);
+            this.tsmArtikelSchaeden.TabIndex = 139;
+            this.tsmArtikelSchaeden.Text = "afToolStrip3";
+            // 
+            // tsbtnDeleteSchaden
+            // 
+            this.tsbtnDeleteSchaden.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnDeleteSchaden.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnDeleteSchaden.Image")));
+            this.tsbtnDeleteSchaden.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnDeleteSchaden.Name = "tsbtnDeleteSchaden";
+            this.tsbtnDeleteSchaden.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnDeleteSchaden.Text = "Schaden löschen";
+            this.tsbtnDeleteSchaden.Click += new System.EventHandler(this.tsbtnDeleteSchaden_Click);
             // 
             // tabInfo
             // 
@@ -1873,7 +1999,7 @@
             // 
             // 
             // 
-            this.scTabPageInfo.RootElement.ControlBounds = new System.Drawing.Rectangle(3, 3, 334, 567);
+            this.scTabPageInfo.RootElement.ControlBounds = new System.Drawing.Rectangle(3, 3, 200, 200);
             this.scTabPageInfo.Size = new System.Drawing.Size(334, 567);
             this.scTabPageInfo.SplitterWidth = 7;
             this.scTabPageInfo.TabIndex = 146;
@@ -1889,7 +2015,7 @@
             // 
             // 
             // 
-            this.splitPanel1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 334, 176);
+            this.splitPanel1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 200, 200);
             this.splitPanel1.Size = new System.Drawing.Size(334, 176);
             this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.01506934F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -41);
@@ -1909,6 +2035,27 @@
             this.tbSysInfo.Size = new System.Drawing.Size(334, 151);
             this.tbSysInfo.TabIndex = 3;
             // 
+            // tsmSysInfo
+            // 
+            this.tsmSysInfo.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsmSysInfo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1});
+            this.tsmSysInfo.Location = new System.Drawing.Point(0, 0);
+            this.tsmSysInfo.myColorFrom = System.Drawing.Color.Azure;
+            this.tsmSysInfo.myColorTo = System.Drawing.Color.Blue;
+            this.tsmSysInfo.myUnderlineColor = System.Drawing.Color.White;
+            this.tsmSysInfo.myUnderlined = true;
+            this.tsmSysInfo.Name = "tsmSysInfo";
+            this.tsmSysInfo.Size = new System.Drawing.Size(334, 25);
+            this.tsmSysInfo.TabIndex = 141;
+            this.tsmSysInfo.Text = "afToolStrip3";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(66, 22);
+            this.toolStripLabel1.Text = "Systeminfo";
+            // 
             // splitPanel2
             // 
             this.splitPanel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -1919,7 +2066,7 @@
             // 
             // 
             // 
-            this.splitPanel2.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 183, 334, 199);
+            this.splitPanel2.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 183, 200, 200);
             this.splitPanel2.Size = new System.Drawing.Size(334, 199);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.02652198F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 37);
@@ -1940,6 +2087,27 @@
             this.tbInfoIntern.TabIndex = 143;
             this.tbInfoIntern.EnabledChanged += new System.EventHandler(this.tbInfoIntern_EnabledChanged);
             // 
+            // afToolStrip2
+            // 
+            this.afToolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.afToolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel3});
+            this.afToolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.afToolStrip2.myColorFrom = System.Drawing.Color.Azure;
+            this.afToolStrip2.myColorTo = System.Drawing.Color.Blue;
+            this.afToolStrip2.myUnderlineColor = System.Drawing.Color.White;
+            this.afToolStrip2.myUnderlined = true;
+            this.afToolStrip2.Name = "afToolStrip2";
+            this.afToolStrip2.Size = new System.Drawing.Size(334, 25);
+            this.afToolStrip2.TabIndex = 142;
+            this.afToolStrip2.Text = "afToolStrip3";
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(68, 22);
+            this.toolStripLabel3.Text = "interne Info";
+            // 
             // splitPanel3
             // 
             this.splitPanel3.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -1950,7 +2118,7 @@
             // 
             // 
             // 
-            this.splitPanel3.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 389, 334, 178);
+            this.splitPanel3.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 389, 200, 200);
             this.splitPanel3.Size = new System.Drawing.Size(334, 178);
             this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.0114527F);
             this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 4);
@@ -1969,6 +2137,27 @@
             this.tbInfoExtern.Name = "tbInfoExtern";
             this.tbInfoExtern.Size = new System.Drawing.Size(334, 153);
             this.tbInfoExtern.TabIndex = 145;
+            // 
+            // afToolStrip3
+            // 
+            this.afToolStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.afToolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel4});
+            this.afToolStrip3.Location = new System.Drawing.Point(0, 0);
+            this.afToolStrip3.myColorFrom = System.Drawing.Color.Azure;
+            this.afToolStrip3.myColorTo = System.Drawing.Color.Blue;
+            this.afToolStrip3.myUnderlineColor = System.Drawing.Color.White;
+            this.afToolStrip3.myUnderlined = true;
+            this.afToolStrip3.Name = "afToolStrip3";
+            this.afToolStrip3.Size = new System.Drawing.Size(334, 25);
+            this.afToolStrip3.TabIndex = 144;
+            this.afToolStrip3.Text = "afToolStrip3";
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(69, 22);
+            this.toolStripLabel4.Text = "externe Info";
             // 
             // tabPageExtraCharge
             // 
@@ -2002,11 +2191,57 @@
             // 
             // 
             // 
-            this.dgvExtraChargeAssignment.RootElement.ControlBounds = new System.Drawing.Rectangle(3, 30, 334, 540);
+            this.dgvExtraChargeAssignment.RootElement.ControlBounds = new System.Drawing.Rectangle(3, 30, 240, 150);
             this.dgvExtraChargeAssignment.Size = new System.Drawing.Size(334, 540);
             this.dgvExtraChargeAssignment.TabIndex = 0;
             this.dgvExtraChargeAssignment.ThemeName = "ControlDefault";
             this.dgvExtraChargeAssignment.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvExtraCharge_MouseClick);
+            // 
+            // tsmExtraCharge
+            // 
+            this.tsmExtraCharge.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsmExtraCharge.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnArtECAdd,
+            this.tsbtnArtECDelete,
+            this.tsbtnArtECRefresh});
+            this.tsmExtraCharge.Location = new System.Drawing.Point(3, 3);
+            this.tsmExtraCharge.myColorFrom = System.Drawing.Color.Azure;
+            this.tsmExtraCharge.myColorTo = System.Drawing.Color.Blue;
+            this.tsmExtraCharge.myUnderlineColor = System.Drawing.Color.White;
+            this.tsmExtraCharge.myUnderlined = true;
+            this.tsmExtraCharge.Name = "tsmExtraCharge";
+            this.tsmExtraCharge.Size = new System.Drawing.Size(334, 27);
+            this.tsmExtraCharge.TabIndex = 137;
+            // 
+            // tsbtnArtECAdd
+            // 
+            this.tsbtnArtECAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnArtECAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnArtECAdd.Image")));
+            this.tsbtnArtECAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnArtECAdd.Name = "tsbtnArtECAdd";
+            this.tsbtnArtECAdd.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnArtECAdd.Text = "Nebenkosten den Artikel hinzufügen";
+            this.tsbtnArtECAdd.Click += new System.EventHandler(this.tsbtnArtECAdd_Click);
+            // 
+            // tsbtnArtECDelete
+            // 
+            this.tsbtnArtECDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnArtECDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnArtECDelete.Image")));
+            this.tsbtnArtECDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnArtECDelete.Name = "tsbtnArtECDelete";
+            this.tsbtnArtECDelete.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnArtECDelete.Text = "ausgewählte Nebenkosten löschen";
+            this.tsbtnArtECDelete.Click += new System.EventHandler(this.tsbtnArtECDelete_Click);
+            // 
+            // tsbtnArtECRefresh
+            // 
+            this.tsbtnArtECRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnArtECRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnArtECRefresh.Image")));
+            this.tsbtnArtECRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnArtECRefresh.Name = "tsbtnArtECRefresh";
+            this.tsbtnArtECRefresh.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnArtECRefresh.Text = "aktualisieren...";
+            this.tsbtnArtECRefresh.Click += new System.EventHandler(this.tsbtnArtECRefresh_Click);
             // 
             // tabPageArtikelPreis
             // 
@@ -2137,6 +2372,51 @@
             this.tbLagergeldCalc.TabIndex = 220;
             this.tbLagergeldCalc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // afToolStrip4
+            // 
+            this.afToolStrip4.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.afToolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnPreisSave,
+            this.tsbtnPreisRefresh,
+            this.tsbtnPreisDelete});
+            this.afToolStrip4.Location = new System.Drawing.Point(3, 3);
+            this.afToolStrip4.myColorFrom = System.Drawing.Color.Azure;
+            this.afToolStrip4.myColorTo = System.Drawing.Color.Blue;
+            this.afToolStrip4.myUnderlineColor = System.Drawing.Color.White;
+            this.afToolStrip4.myUnderlined = true;
+            this.afToolStrip4.Name = "afToolStrip4";
+            this.afToolStrip4.Size = new System.Drawing.Size(334, 27);
+            this.afToolStrip4.TabIndex = 226;
+            this.afToolStrip4.Text = "afToolStrip3";
+            // 
+            // tsbtnPreisSave
+            // 
+            this.tsbtnPreisSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnPreisSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnPreisSave.Image")));
+            this.tsbtnPreisSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnPreisSave.Name = "tsbtnPreisSave";
+            this.tsbtnPreisSave.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnPreisSave.Text = "toolStripButton2";
+            // 
+            // tsbtnPreisRefresh
+            // 
+            this.tsbtnPreisRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnPreisRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnPreisRefresh.Image")));
+            this.tsbtnPreisRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnPreisRefresh.Name = "tsbtnPreisRefresh";
+            this.tsbtnPreisRefresh.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnPreisRefresh.Text = "toolStripButton3";
+            this.tsbtnPreisRefresh.Click += new System.EventHandler(this.tsbtnPreisRefresh_Click);
+            // 
+            // tsbtnPreisDelete
+            // 
+            this.tsbtnPreisDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnPreisDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnPreisDelete.Image")));
+            this.tsbtnPreisDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnPreisDelete.Name = "tsbtnPreisDelete";
+            this.tsbtnPreisDelete.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnPreisDelete.Text = "Schaden löschen";
+            // 
             // tabPageImages
             // 
             this.tabPageImages.Controls.Add(this.scArtImages);
@@ -2161,7 +2441,7 @@
             // 
             // 
             // 
-            this.scArtImages.RootElement.ControlBounds = new System.Drawing.Rectangle(3, 3, 334, 567);
+            this.scArtImages.RootElement.ControlBounds = new System.Drawing.Rectangle(3, 3, 200, 200);
             this.scArtImages.Size = new System.Drawing.Size(334, 567);
             this.scArtImages.SplitterWidth = 7;
             this.scArtImages.TabIndex = 139;
@@ -2176,7 +2456,7 @@
             // 
             // 
             // 
-            this.splitPanel4.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 334, 123);
+            this.splitPanel4.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 200, 200);
             this.splitPanel4.Size = new System.Drawing.Size(334, 123);
             this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.279661F);
             this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -149);
@@ -2206,7 +2486,7 @@
             // 
             // 
             // 
-            this.splitPanel5.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 130, 334, 437);
+            this.splitPanel5.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 130, 200, 200);
             this.splitPanel5.Size = new System.Drawing.Size(334, 437);
             this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.279661F);
             this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 149);
@@ -2232,7 +2512,7 @@
             // 
             // 
             // 
-            this.lvArtImages.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 27, 334, 410);
+            this.lvArtImages.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 27, 120, 95);
             this.lvArtImages.ShowCheckBoxes = true;
             this.lvArtImages.ShowGridLines = true;
             this.lvArtImages.Size = new System.Drawing.Size(334, 410);
@@ -2241,6 +2521,98 @@
             this.lvArtImages.SelectedItemChanged += new System.EventHandler(this.lvArtImages_SelectedItemChanged);
             this.lvArtImages.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.lvArtImages_ItemCheckedChanged);
             this.lvArtImages.ItemDataBound += new Telerik.WinControls.UI.ListViewItemEventHandler(this.lvArtImages_ItemDataBound);
+            // 
+            // tsmTabImages
+            // 
+            this.tsmTabImages.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsmTabImages.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnImageAdd,
+            this.tsbtnImageDelete,
+            this.tsbtnImageRefresh,
+            this.tsbtnSchadenDoc,
+            this.tsbtnSchadensDocMail,
+            this.toolStripSeparator8,
+            this.tslMaxImageSPLMessage,
+            this.tstbMaxSPLMes});
+            this.tsmTabImages.Location = new System.Drawing.Point(0, 0);
+            this.tsmTabImages.myColorFrom = System.Drawing.Color.Azure;
+            this.tsmTabImages.myColorTo = System.Drawing.Color.Blue;
+            this.tsmTabImages.myUnderlineColor = System.Drawing.Color.White;
+            this.tsmTabImages.myUnderlined = true;
+            this.tsmTabImages.Name = "tsmTabImages";
+            this.tsmTabImages.Size = new System.Drawing.Size(334, 27);
+            this.tsmTabImages.TabIndex = 137;
+            this.tsmTabImages.Text = "Sperrlagermeldung per Mail versenden";
+            // 
+            // tsbtnImageAdd
+            // 
+            this.tsbtnImageAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnImageAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnImageAdd.Image")));
+            this.tsbtnImageAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnImageAdd.Name = "tsbtnImageAdd";
+            this.tsbtnImageAdd.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnImageAdd.Text = "Bild, Foto hinzufügen";
+            this.tsbtnImageAdd.Click += new System.EventHandler(this.tsbtnImageAdd_Click);
+            // 
+            // tsbtnImageDelete
+            // 
+            this.tsbtnImageDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnImageDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnImageDelete.Image")));
+            this.tsbtnImageDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnImageDelete.Name = "tsbtnImageDelete";
+            this.tsbtnImageDelete.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnImageDelete.Text = "gewähltes Bild / Foto  löschen";
+            this.tsbtnImageDelete.Click += new System.EventHandler(this.tsbtnImageDelete_Click);
+            // 
+            // tsbtnImageRefresh
+            // 
+            this.tsbtnImageRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnImageRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnImageRefresh.Image")));
+            this.tsbtnImageRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnImageRefresh.Name = "tsbtnImageRefresh";
+            this.tsbtnImageRefresh.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnImageRefresh.Text = "Liste aktualisieren";
+            this.tsbtnImageRefresh.Click += new System.EventHandler(this.tsbtnImageRefresh_Click);
+            // 
+            // tsbtnSchadenDoc
+            // 
+            this.tsbtnSchadenDoc.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnSchadenDoc.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnSchadenDoc.Image")));
+            this.tsbtnSchadenDoc.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnSchadenDoc.Name = "tsbtnSchadenDoc";
+            this.tsbtnSchadenDoc.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnSchadenDoc.Text = "Schadensdokument  drucken";
+            this.tsbtnSchadenDoc.Click += new System.EventHandler(this.tsbtnSchadenDoc_Click);
+            // 
+            // tsbtnSchadensDocMail
+            // 
+            this.tsbtnSchadensDocMail.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnSchadensDocMail.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnSchadensDocMail.Image")));
+            this.tsbtnSchadensDocMail.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnSchadensDocMail.Name = "tsbtnSchadensDocMail";
+            this.tsbtnSchadensDocMail.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnSchadensDocMail.Text = "Schadensmeldung per Mail versenden";
+            this.tsbtnSchadensDocMail.Click += new System.EventHandler(this.tsbtnSchadensDocMail_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tslMaxImageSPLMessage
+            // 
+            this.tslMaxImageSPLMessage.Name = "tslMaxImageSPLMessage";
+            this.tslMaxImageSPLMessage.Size = new System.Drawing.Size(141, 24);
+            this.tslMaxImageSPLMessage.Text = "Bilder Schadensmeldung:";
+            // 
+            // tstbMaxSPLMes
+            // 
+            this.tstbMaxSPLMes.BackColor = System.Drawing.SystemColors.Info;
+            this.tstbMaxSPLMes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tstbMaxSPLMes.Enabled = false;
+            this.tstbMaxSPLMes.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tstbMaxSPLMes.Name = "tstbMaxSPLMes";
+            this.tstbMaxSPLMes.Size = new System.Drawing.Size(234, 23);
             // 
             // tabPageManCall
             // 
@@ -2315,7 +2687,7 @@
             // 
             // 
             this.tpCallEintreffZeit.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.FitToAvailableSize;
-            this.tpCallEintreffZeit.RootElement.ControlBounds = new System.Drawing.Rectangle(128, 30, 168, 26);
+            this.tpCallEintreffZeit.RootElement.ControlBounds = new System.Drawing.Rectangle(128, 30, 100, 20);
             this.tpCallEintreffZeit.RootElement.StretchVertically = true;
             this.tpCallEintreffZeit.Size = new System.Drawing.Size(168, 26);
             this.tpCallEintreffZeit.Step = 30;
@@ -2508,397 +2880,6 @@
             this.label55.Size = new System.Drawing.Size(40, 13);
             this.label55.TabIndex = 178;
             this.label55.Text = "Status:";
-            // 
-            // cmsSchaeden
-            // 
-            this.cmsSchaeden.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsSchaeden.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miDelSchaden});
-            this.cmsSchaeden.Name = "contextMenuStrip1";
-            this.cmsSchaeden.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.cmsSchaeden.Size = new System.Drawing.Size(164, 26);
-            // 
-            // miDelSchaden
-            // 
-            this.miDelSchaden.Name = "miDelSchaden";
-            this.miDelSchaden.Size = new System.Drawing.Size(163, 22);
-            this.miDelSchaden.Text = "Schaden löschen";
-            this.miDelSchaden.Click += new System.EventHandler(this.miDelSchaden_Click);
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog";
-            // 
-            // tsArtikelGrid
-            // 
-            this.tsArtikelGrid.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsArtikelGrid.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel5,
-            this.tscbView});
-            this.tsArtikelGrid.Location = new System.Drawing.Point(0, 0);
-            this.tsArtikelGrid.myColorFrom = System.Drawing.Color.Azure;
-            this.tsArtikelGrid.myColorTo = System.Drawing.Color.Blue;
-            this.tsArtikelGrid.myUnderlineColor = System.Drawing.Color.White;
-            this.tsArtikelGrid.myUnderlined = true;
-            this.tsArtikelGrid.Name = "tsArtikelGrid";
-            this.tsArtikelGrid.Size = new System.Drawing.Size(264, 25);
-            this.tsArtikelGrid.TabIndex = 136;
-            this.tsArtikelGrid.Text = "afToolStrip3";
-            // 
-            // toolStripLabel5
-            // 
-            this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(47, 22);
-            this.toolStripLabel5.Text = "Ansicht";
-            // 
-            // tscbView
-            // 
-            this.tscbView.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tscbView.Name = "tscbView";
-            this.tscbView.Size = new System.Drawing.Size(121, 25);
-            this.tscbView.SelectedIndexChanged += new System.EventHandler(this.tscbView_SelectedIndexChanged);
-            // 
-            // dgvVita
-            // 
-            this.dgvVita.AllowUserToAddRows = false;
-            this.dgvVita.AllowUserToDeleteRows = false;
-            this.dgvVita.AllowUserToResizeRows = false;
-            this.dgvVita.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvVita.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dgvVita.BackgroundColor = global::Sped4.Properties.Settings.Default.BackColor;
-            this.dgvVita.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvVita.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvVita.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVita.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1});
-            this.dgvVita.DataBindings.Add(new System.Windows.Forms.Binding("BackgroundColor", global::Sped4.Properties.Settings.Default, "BackColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 8.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvVita.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvVita.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvVita.Location = new System.Drawing.Point(3, 30);
-            this.dgvVita.MultiSelect = false;
-            this.dgvVita.Name = "dgvVita";
-            this.dgvVita.ReadOnly = true;
-            this.dgvVita.RowHeadersVisible = false;
-            this.dgvVita.RowHeadersWidth = 51;
-            this.dgvVita.RowTemplate.Height = 55;
-            this.dgvVita.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVita.ShowEditingIcon = false;
-            this.dgvVita.ShowRowErrors = false;
-            this.dgvVita.Size = new System.Drawing.Size(334, 540);
-            this.dgvVita.TabIndex = 139;
-            this.dgvVita.CellErrorTextNeeded += new System.Windows.Forms.DataGridViewCellErrorTextNeededEventHandler(this.dgvVita_CellErrorTextNeeded);
-            this.dgvVita.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvVita_CellFormatting);
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 6;
-            // 
-            // tsmArtikelVita
-            // 
-            this.tsmArtikelVita.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsmArtikelVita.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnRefreshVita});
-            this.tsmArtikelVita.Location = new System.Drawing.Point(3, 3);
-            this.tsmArtikelVita.myColorFrom = System.Drawing.Color.Azure;
-            this.tsmArtikelVita.myColorTo = System.Drawing.Color.Blue;
-            this.tsmArtikelVita.myUnderlineColor = System.Drawing.Color.White;
-            this.tsmArtikelVita.myUnderlined = true;
-            this.tsmArtikelVita.Name = "tsmArtikelVita";
-            this.tsmArtikelVita.Size = new System.Drawing.Size(334, 27);
-            this.tsmArtikelVita.TabIndex = 140;
-            this.tsmArtikelVita.Text = "a";
-            // 
-            // tsbtnRefreshVita
-            // 
-            this.tsbtnRefreshVita.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnRefreshVita.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnRefreshVita.Image")));
-            this.tsbtnRefreshVita.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnRefreshVita.Name = "tsbtnRefreshVita";
-            this.tsbtnRefreshVita.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnRefreshVita.Text = "aktualisieren...";
-            this.tsbtnRefreshVita.Click += new System.EventHandler(this.tsbtnRefreshVita_Click);
-            // 
-            // tsmArtikelSchaeden
-            // 
-            this.tsmArtikelSchaeden.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsmArtikelSchaeden.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnDeleteSchaden});
-            this.tsmArtikelSchaeden.Location = new System.Drawing.Point(3, 3);
-            this.tsmArtikelSchaeden.myColorFrom = System.Drawing.Color.Azure;
-            this.tsmArtikelSchaeden.myColorTo = System.Drawing.Color.Blue;
-            this.tsmArtikelSchaeden.myUnderlineColor = System.Drawing.Color.White;
-            this.tsmArtikelSchaeden.myUnderlined = true;
-            this.tsmArtikelSchaeden.Name = "tsmArtikelSchaeden";
-            this.tsmArtikelSchaeden.Size = new System.Drawing.Size(334, 27);
-            this.tsmArtikelSchaeden.TabIndex = 139;
-            this.tsmArtikelSchaeden.Text = "afToolStrip3";
-            // 
-            // tsbtnDeleteSchaden
-            // 
-            this.tsbtnDeleteSchaden.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnDeleteSchaden.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnDeleteSchaden.Image")));
-            this.tsbtnDeleteSchaden.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnDeleteSchaden.Name = "tsbtnDeleteSchaden";
-            this.tsbtnDeleteSchaden.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnDeleteSchaden.Text = "Schaden löschen";
-            this.tsbtnDeleteSchaden.Click += new System.EventHandler(this.tsbtnDeleteSchaden_Click);
-            // 
-            // tsmSysInfo
-            // 
-            this.tsmSysInfo.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsmSysInfo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1});
-            this.tsmSysInfo.Location = new System.Drawing.Point(0, 0);
-            this.tsmSysInfo.myColorFrom = System.Drawing.Color.Azure;
-            this.tsmSysInfo.myColorTo = System.Drawing.Color.Blue;
-            this.tsmSysInfo.myUnderlineColor = System.Drawing.Color.White;
-            this.tsmSysInfo.myUnderlined = true;
-            this.tsmSysInfo.Name = "tsmSysInfo";
-            this.tsmSysInfo.Size = new System.Drawing.Size(334, 25);
-            this.tsmSysInfo.TabIndex = 141;
-            this.tsmSysInfo.Text = "afToolStrip3";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(66, 22);
-            this.toolStripLabel1.Text = "Systeminfo";
-            // 
-            // afToolStrip2
-            // 
-            this.afToolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.afToolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel3});
-            this.afToolStrip2.Location = new System.Drawing.Point(0, 0);
-            this.afToolStrip2.myColorFrom = System.Drawing.Color.Azure;
-            this.afToolStrip2.myColorTo = System.Drawing.Color.Blue;
-            this.afToolStrip2.myUnderlineColor = System.Drawing.Color.White;
-            this.afToolStrip2.myUnderlined = true;
-            this.afToolStrip2.Name = "afToolStrip2";
-            this.afToolStrip2.Size = new System.Drawing.Size(334, 25);
-            this.afToolStrip2.TabIndex = 142;
-            this.afToolStrip2.Text = "afToolStrip3";
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(68, 22);
-            this.toolStripLabel3.Text = "interne Info";
-            // 
-            // afToolStrip3
-            // 
-            this.afToolStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.afToolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel4});
-            this.afToolStrip3.Location = new System.Drawing.Point(0, 0);
-            this.afToolStrip3.myColorFrom = System.Drawing.Color.Azure;
-            this.afToolStrip3.myColorTo = System.Drawing.Color.Blue;
-            this.afToolStrip3.myUnderlineColor = System.Drawing.Color.White;
-            this.afToolStrip3.myUnderlined = true;
-            this.afToolStrip3.Name = "afToolStrip3";
-            this.afToolStrip3.Size = new System.Drawing.Size(334, 25);
-            this.afToolStrip3.TabIndex = 144;
-            this.afToolStrip3.Text = "afToolStrip3";
-            // 
-            // toolStripLabel4
-            // 
-            this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(69, 22);
-            this.toolStripLabel4.Text = "externe Info";
-            // 
-            // tsmExtraCharge
-            // 
-            this.tsmExtraCharge.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsmExtraCharge.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnArtECAdd,
-            this.tsbtnArtECDelete,
-            this.tsbtnArtECRefresh});
-            this.tsmExtraCharge.Location = new System.Drawing.Point(3, 3);
-            this.tsmExtraCharge.myColorFrom = System.Drawing.Color.Azure;
-            this.tsmExtraCharge.myColorTo = System.Drawing.Color.Blue;
-            this.tsmExtraCharge.myUnderlineColor = System.Drawing.Color.White;
-            this.tsmExtraCharge.myUnderlined = true;
-            this.tsmExtraCharge.Name = "tsmExtraCharge";
-            this.tsmExtraCharge.Size = new System.Drawing.Size(334, 27);
-            this.tsmExtraCharge.TabIndex = 137;
-            // 
-            // tsbtnArtECAdd
-            // 
-            this.tsbtnArtECAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnArtECAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnArtECAdd.Image")));
-            this.tsbtnArtECAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnArtECAdd.Name = "tsbtnArtECAdd";
-            this.tsbtnArtECAdd.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnArtECAdd.Text = "Nebenkosten den Artikel hinzufügen";
-            this.tsbtnArtECAdd.Click += new System.EventHandler(this.tsbtnArtECAdd_Click);
-            // 
-            // tsbtnArtECDelete
-            // 
-            this.tsbtnArtECDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnArtECDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnArtECDelete.Image")));
-            this.tsbtnArtECDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnArtECDelete.Name = "tsbtnArtECDelete";
-            this.tsbtnArtECDelete.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnArtECDelete.Text = "ausgewählte Nebenkosten löschen";
-            this.tsbtnArtECDelete.Click += new System.EventHandler(this.tsbtnArtECDelete_Click);
-            // 
-            // tsbtnArtECRefresh
-            // 
-            this.tsbtnArtECRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnArtECRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnArtECRefresh.Image")));
-            this.tsbtnArtECRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnArtECRefresh.Name = "tsbtnArtECRefresh";
-            this.tsbtnArtECRefresh.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnArtECRefresh.Text = "aktualisieren...";
-            this.tsbtnArtECRefresh.Click += new System.EventHandler(this.tsbtnArtECRefresh_Click);
-            // 
-            // afToolStrip4
-            // 
-            this.afToolStrip4.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.afToolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnPreisSave,
-            this.tsbtnPreisRefresh,
-            this.tsbtnPreisDelete});
-            this.afToolStrip4.Location = new System.Drawing.Point(3, 3);
-            this.afToolStrip4.myColorFrom = System.Drawing.Color.Azure;
-            this.afToolStrip4.myColorTo = System.Drawing.Color.Blue;
-            this.afToolStrip4.myUnderlineColor = System.Drawing.Color.White;
-            this.afToolStrip4.myUnderlined = true;
-            this.afToolStrip4.Name = "afToolStrip4";
-            this.afToolStrip4.Size = new System.Drawing.Size(334, 27);
-            this.afToolStrip4.TabIndex = 226;
-            this.afToolStrip4.Text = "afToolStrip3";
-            // 
-            // tsbtnPreisSave
-            // 
-            this.tsbtnPreisSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnPreisSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnPreisSave.Image")));
-            this.tsbtnPreisSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnPreisSave.Name = "tsbtnPreisSave";
-            this.tsbtnPreisSave.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnPreisSave.Text = "toolStripButton2";
-            // 
-            // tsbtnPreisRefresh
-            // 
-            this.tsbtnPreisRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnPreisRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnPreisRefresh.Image")));
-            this.tsbtnPreisRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnPreisRefresh.Name = "tsbtnPreisRefresh";
-            this.tsbtnPreisRefresh.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnPreisRefresh.Text = "toolStripButton3";
-            this.tsbtnPreisRefresh.Click += new System.EventHandler(this.tsbtnPreisRefresh_Click);
-            // 
-            // tsbtnPreisDelete
-            // 
-            this.tsbtnPreisDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnPreisDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnPreisDelete.Image")));
-            this.tsbtnPreisDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnPreisDelete.Name = "tsbtnPreisDelete";
-            this.tsbtnPreisDelete.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnPreisDelete.Text = "Schaden löschen";
-            // 
-            // tsmTabImages
-            // 
-            this.tsmTabImages.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsmTabImages.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnImageAdd,
-            this.tsbtnImageDelete,
-            this.tsbtnImageRefresh,
-            this.tsbtnSchadenDoc,
-            this.tsbtnSchadensDocMail,
-            this.toolStripSeparator8,
-            this.tslMaxImageSPLMessage,
-            this.tstbMaxSPLMes});
-            this.tsmTabImages.Location = new System.Drawing.Point(0, 0);
-            this.tsmTabImages.myColorFrom = System.Drawing.Color.Azure;
-            this.tsmTabImages.myColorTo = System.Drawing.Color.Blue;
-            this.tsmTabImages.myUnderlineColor = System.Drawing.Color.White;
-            this.tsmTabImages.myUnderlined = true;
-            this.tsmTabImages.Name = "tsmTabImages";
-            this.tsmTabImages.Size = new System.Drawing.Size(334, 27);
-            this.tsmTabImages.TabIndex = 137;
-            this.tsmTabImages.Text = "Sperrlagermeldung per Mail versenden";
-            // 
-            // tsbtnImageAdd
-            // 
-            this.tsbtnImageAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnImageAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnImageAdd.Image")));
-            this.tsbtnImageAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnImageAdd.Name = "tsbtnImageAdd";
-            this.tsbtnImageAdd.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnImageAdd.Text = "Bild, Foto hinzufügen";
-            this.tsbtnImageAdd.Click += new System.EventHandler(this.tsbtnImageAdd_Click);
-            // 
-            // tsbtnImageDelete
-            // 
-            this.tsbtnImageDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnImageDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnImageDelete.Image")));
-            this.tsbtnImageDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnImageDelete.Name = "tsbtnImageDelete";
-            this.tsbtnImageDelete.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnImageDelete.Text = "gewähltes Bild / Foto  löschen";
-            this.tsbtnImageDelete.Click += new System.EventHandler(this.tsbtnImageDelete_Click);
-            // 
-            // tsbtnImageRefresh
-            // 
-            this.tsbtnImageRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnImageRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnImageRefresh.Image")));
-            this.tsbtnImageRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnImageRefresh.Name = "tsbtnImageRefresh";
-            this.tsbtnImageRefresh.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnImageRefresh.Text = "Liste aktualisieren";
-            this.tsbtnImageRefresh.Click += new System.EventHandler(this.tsbtnImageRefresh_Click);
-            // 
-            // tsbtnSchadenDoc
-            // 
-            this.tsbtnSchadenDoc.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnSchadenDoc.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnSchadenDoc.Image")));
-            this.tsbtnSchadenDoc.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnSchadenDoc.Name = "tsbtnSchadenDoc";
-            this.tsbtnSchadenDoc.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnSchadenDoc.Text = "Schadensdokument  drucken";
-            this.tsbtnSchadenDoc.Click += new System.EventHandler(this.tsbtnSchadenDoc_Click);
-            // 
-            // tsbtnSchadensDocMail
-            // 
-            this.tsbtnSchadensDocMail.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnSchadensDocMail.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnSchadensDocMail.Image")));
-            this.tsbtnSchadensDocMail.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnSchadensDocMail.Name = "tsbtnSchadensDocMail";
-            this.tsbtnSchadensDocMail.Size = new System.Drawing.Size(24, 24);
-            this.tsbtnSchadensDocMail.Text = "Schadensmeldung per Mail versenden";
-            this.tsbtnSchadensDocMail.Click += new System.EventHandler(this.tsbtnSchadensDocMail_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 27);
-            // 
-            // tslMaxImageSPLMessage
-            // 
-            this.tslMaxImageSPLMessage.Name = "tslMaxImageSPLMessage";
-            this.tslMaxImageSPLMessage.Size = new System.Drawing.Size(141, 24);
-            this.tslMaxImageSPLMessage.Text = "Bilder Schadensmeldung:";
-            // 
-            // tstbMaxSPLMes
-            // 
-            this.tstbMaxSPLMes.BackColor = System.Drawing.SystemColors.Info;
-            this.tstbMaxSPLMes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tstbMaxSPLMes.Enabled = false;
-            this.tstbMaxSPLMes.Name = "tstbMaxSPLMes";
-            this.tstbMaxSPLMes.Size = new System.Drawing.Size(234, 23);
             // 
             // tsmManCall
             // 
@@ -3160,6 +3141,158 @@
             this.tsbtnManCall.Text = "manuellen Abruf erstellen";
             this.tsbtnManCall.Click += new System.EventHandler(this.tsbtnManCall_Click);
             // 
+            // cmsSchaeden
+            // 
+            this.cmsSchaeden.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsSchaeden.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miDelSchaden});
+            this.cmsSchaeden.Name = "contextMenuStrip1";
+            this.cmsSchaeden.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.cmsSchaeden.Size = new System.Drawing.Size(164, 26);
+            // 
+            // miDelSchaden
+            // 
+            this.miDelSchaden.Name = "miDelSchaden";
+            this.miDelSchaden.Size = new System.Drawing.Size(163, 22);
+            this.miDelSchaden.Text = "Schaden löschen";
+            this.miDelSchaden.Click += new System.EventHandler(this.miDelSchaden_Click);
+            // 
+            // btnManEntladestelle
+            // 
+            this.btnManEntladestelle.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnManEntladestelle.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnManEntladestelle.Location = new System.Drawing.Point(50, 93);
+            this.btnManEntladestelle.Name = "btnManEntladestelle";
+            this.btnManEntladestelle.Size = new System.Drawing.Size(66, 22);
+            this.btnManEntladestelle.TabIndex = 10;
+            this.btnManEntladestelle.TabStop = false;
+            this.btnManEntladestelle.Tag = "4";
+            this.btnManEntladestelle.Text = "[manuell]";
+            this.ttEinlagerung.SetToolTip(this.btnManEntladestelle, "manuelle Entladestelle  eingeben");
+            this.btnManEntladestelle.UseVisualStyleBackColor = true;
+            this.btnManEntladestelle.Click += new System.EventHandler(this.btnManEntladestelle_Click);
+            // 
+            // btnSearchES
+            // 
+            this.btnSearchES.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSearchES.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnSearchES.Location = new System.Drawing.Point(6, 94);
+            this.btnSearchES.Name = "btnSearchES";
+            this.btnSearchES.Size = new System.Drawing.Size(37, 22);
+            this.btnSearchES.TabIndex = 9;
+            this.btnSearchES.TabStop = false;
+            this.btnSearchES.Text = "[ES]";
+            this.ttEinlagerung.SetToolTip(this.btnSearchES, "Entladestelle / Verbraucher aus Adressbestand auswählen");
+            this.btnSearchES.UseVisualStyleBackColor = true;
+            this.btnSearchES.Click += new System.EventHandler(this.btnSearchES_Click);
+            // 
+            // btnManSped
+            // 
+            this.btnManSped.Enabled = false;
+            this.btnManSped.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnManSped.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnManSped.Location = new System.Drawing.Point(49, 149);
+            this.btnManSped.Name = "btnManSped";
+            this.btnManSped.Size = new System.Drawing.Size(67, 22);
+            this.btnManSped.TabIndex = 15;
+            this.btnManSped.TabStop = false;
+            this.btnManSped.Tag = "";
+            this.btnManSped.Text = "[manuell]";
+            this.ttEinlagerung.SetToolTip(this.btnManSped, "manulle Spedition / Transportunternehmen eingeben");
+            this.btnManSped.UseVisualStyleBackColor = true;
+            this.btnManSped.Click += new System.EventHandler(this.btnManSped_Click);
+            // 
+            // btnManEmpfaenger
+            // 
+            this.btnManEmpfaenger.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnManEmpfaenger.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnManEmpfaenger.Location = new System.Drawing.Point(50, 66);
+            this.btnManEmpfaenger.Name = "btnManEmpfaenger";
+            this.btnManEmpfaenger.Size = new System.Drawing.Size(66, 22);
+            this.btnManEmpfaenger.TabIndex = 7;
+            this.btnManEmpfaenger.TabStop = false;
+            this.btnManEmpfaenger.Tag = "2";
+            this.btnManEmpfaenger.Text = "[manuell]";
+            this.ttEinlagerung.SetToolTip(this.btnManEmpfaenger, "manuellen Empfanger eingeben");
+            this.btnManEmpfaenger.UseVisualStyleBackColor = true;
+            this.btnManEmpfaenger.Click += new System.EventHandler(this.btnManEmpfaenger_Click);
+            // 
+            // btnManVersender
+            // 
+            this.btnManVersender.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnManVersender.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnManVersender.Location = new System.Drawing.Point(50, 43);
+            this.btnManVersender.Name = "btnManVersender";
+            this.btnManVersender.Size = new System.Drawing.Size(66, 22);
+            this.btnManVersender.TabIndex = 4;
+            this.btnManVersender.TabStop = false;
+            this.btnManVersender.Tag = "1";
+            this.btnManVersender.Text = "[manuell]";
+            this.ttEinlagerung.SetToolTip(this.btnManVersender, "manuellen Versender eingeben");
+            this.btnManVersender.UseVisualStyleBackColor = true;
+            this.btnManVersender.Click += new System.EventHandler(this.btnManVersender_Click);
+            // 
+            // btnSpedition
+            // 
+            this.btnSpedition.Enabled = false;
+            this.btnSpedition.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSpedition.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnSpedition.Location = new System.Drawing.Point(6, 149);
+            this.btnSpedition.Name = "btnSpedition";
+            this.btnSpedition.Size = new System.Drawing.Size(35, 22);
+            this.btnSpedition.TabIndex = 14;
+            this.btnSpedition.TabStop = false;
+            this.btnSpedition.Text = "[S]";
+            this.ttEinlagerung.SetToolTip(this.btnSpedition, "Spedition/Transportunternehmen aus Adressbestand auswählen");
+            this.btnSpedition.UseVisualStyleBackColor = true;
+            this.btnSpedition.Click += new System.EventHandler(this.btnSpedition_Click);
+            // 
+            // btnVersender
+            // 
+            this.btnVersender.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnVersender.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnVersender.Location = new System.Drawing.Point(6, 43);
+            this.btnVersender.Name = "btnVersender";
+            this.btnVersender.Size = new System.Drawing.Size(37, 22);
+            this.btnVersender.TabIndex = 3;
+            this.btnVersender.TabStop = false;
+            this.btnVersender.Text = "[V]";
+            this.ttEinlagerung.SetToolTip(this.btnVersender, "Versender aus Adressbestand auswählen\r\n");
+            this.btnVersender.UseVisualStyleBackColor = true;
+            this.btnVersender.Click += new System.EventHandler(this.btnSearchV_Click);
+            // 
+            // btnSearchE
+            // 
+            this.btnSearchE.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSearchE.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnSearchE.Location = new System.Drawing.Point(6, 67);
+            this.btnSearchE.Name = "btnSearchE";
+            this.btnSearchE.Size = new System.Drawing.Size(37, 22);
+            this.btnSearchE.TabIndex = 6;
+            this.btnSearchE.TabStop = false;
+            this.btnSearchE.Text = "[E]";
+            this.ttEinlagerung.SetToolTip(this.btnSearchE, "Empfänger aus Adressbestand auswählen");
+            this.btnSearchE.UseVisualStyleBackColor = true;
+            this.btnSearchE.Click += new System.EventHandler(this.btnSearchE_Click);
+            // 
+            // btnSearchA
+            // 
+            this.btnSearchA.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSearchA.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnSearchA.Location = new System.Drawing.Point(6, 19);
+            this.btnSearchA.Name = "btnSearchA";
+            this.btnSearchA.Size = new System.Drawing.Size(110, 22);
+            this.btnSearchA.TabIndex = 1;
+            this.btnSearchA.TabStop = false;
+            this.btnSearchA.Text = "[Auftraggeber]";
+            this.ttEinlagerung.SetToolTip(this.btnSearchA, "Auftraggeber aus Adressbestand auswählen");
+            this.btnSearchA.UseVisualStyleBackColor = true;
+            this.btnSearchA.Click += new System.EventHandler(this.btnSearchA_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog";
+            // 
             // afMMPEingangDaten
             // 
             this.afMMPEingangDaten.BackColor = System.Drawing.Color.White;
@@ -3331,7 +3464,7 @@
             this.menuEingangMain.myUnderlineColor = System.Drawing.Color.White;
             this.menuEingangMain.myUnderlined = true;
             this.menuEingangMain.Name = "menuEingangMain";
-            this.menuEingangMain.Size = new System.Drawing.Size(948, 27);
+            this.menuEingangMain.Size = new System.Drawing.Size(893, 27);
             this.menuEingangMain.TabIndex = 8;
             this.menuEingangMain.Text = "afToolStrip1";
             // 
@@ -3578,6 +3711,7 @@
             // 
             // tstbJumpEingangID
             // 
+            this.tstbJumpEingangID.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tstbJumpEingangID.Name = "tstbJumpEingangID";
             this.tstbJumpEingangID.Size = new System.Drawing.Size(100, 27);
             this.tstbJumpEingangID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstbJumpEingangID_KeyPress);
@@ -3599,6 +3733,7 @@
             // 
             // tstbJumpArtID
             // 
+            this.tstbJumpArtID.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tstbJumpArtID.Name = "tstbJumpArtID";
             this.tstbJumpArtID.Size = new System.Drawing.Size(100, 27);
             this.tstbJumpArtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstbJumpArtID_KeyPress);
@@ -3617,7 +3752,7 @@
             // tbLockedBy
             // 
             this.tbLockedBy.Name = "tbLockedBy";
-            this.tbLockedBy.Size = new System.Drawing.Size(22, 15);
+            this.tbLockedBy.Size = new System.Drawing.Size(22, 24);
             this.tbLockedBy.Text = "     ";
             // 
             // gboxLEDaten
@@ -3748,21 +3883,6 @@
             this.label1.TabIndex = 226;
             this.label1.Text = "ID:";
             // 
-            // btnManEntladestelle
-            // 
-            this.btnManEntladestelle.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnManEntladestelle.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnManEntladestelle.Location = new System.Drawing.Point(50, 93);
-            this.btnManEntladestelle.Name = "btnManEntladestelle";
-            this.btnManEntladestelle.Size = new System.Drawing.Size(66, 22);
-            this.btnManEntladestelle.TabIndex = 10;
-            this.btnManEntladestelle.TabStop = false;
-            this.btnManEntladestelle.Tag = "4";
-            this.btnManEntladestelle.Text = "[manuell]";
-            this.ttEinlagerung.SetToolTip(this.btnManEntladestelle, "manuelle Entladestelle  eingeben");
-            this.btnManEntladestelle.UseVisualStyleBackColor = true;
-            this.btnManEntladestelle.Click += new System.EventHandler(this.btnManEntladestelle_Click);
-            // 
             // tbEntladestelle
             // 
             this.tbEntladestelle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -3774,20 +3894,6 @@
             this.tbEntladestelle.Size = new System.Drawing.Size(353, 20);
             this.tbEntladestelle.TabIndex = 224;
             // 
-            // btnSearchES
-            // 
-            this.btnSearchES.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSearchES.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnSearchES.Location = new System.Drawing.Point(6, 94);
-            this.btnSearchES.Name = "btnSearchES";
-            this.btnSearchES.Size = new System.Drawing.Size(37, 22);
-            this.btnSearchES.TabIndex = 9;
-            this.btnSearchES.TabStop = false;
-            this.btnSearchES.Text = "[ES]";
-            this.ttEinlagerung.SetToolTip(this.btnSearchES, "Entladestelle / Verbraucher aus Adressbestand auswählen");
-            this.btnSearchES.UseVisualStyleBackColor = true;
-            this.btnSearchES.Click += new System.EventHandler(this.btnSearchES_Click);
-            // 
             // tbSearchES
             // 
             this.tbSearchES.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -3796,52 +3902,6 @@
             this.tbSearchES.Size = new System.Drawing.Size(106, 20);
             this.tbSearchES.TabIndex = 11;
             this.tbSearchES.TextChanged += new System.EventHandler(this.tbSearchES_TextChanged);
-            // 
-            // btnManSped
-            // 
-            this.btnManSped.Enabled = false;
-            this.btnManSped.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnManSped.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnManSped.Location = new System.Drawing.Point(49, 149);
-            this.btnManSped.Name = "btnManSped";
-            this.btnManSped.Size = new System.Drawing.Size(67, 22);
-            this.btnManSped.TabIndex = 15;
-            this.btnManSped.TabStop = false;
-            this.btnManSped.Tag = "";
-            this.btnManSped.Text = "[manuell]";
-            this.ttEinlagerung.SetToolTip(this.btnManSped, "manulle Spedition / Transportunternehmen eingeben");
-            this.btnManSped.UseVisualStyleBackColor = true;
-            this.btnManSped.Click += new System.EventHandler(this.btnManSped_Click);
-            // 
-            // btnManEmpfaenger
-            // 
-            this.btnManEmpfaenger.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnManEmpfaenger.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnManEmpfaenger.Location = new System.Drawing.Point(50, 66);
-            this.btnManEmpfaenger.Name = "btnManEmpfaenger";
-            this.btnManEmpfaenger.Size = new System.Drawing.Size(66, 22);
-            this.btnManEmpfaenger.TabIndex = 7;
-            this.btnManEmpfaenger.TabStop = false;
-            this.btnManEmpfaenger.Tag = "2";
-            this.btnManEmpfaenger.Text = "[manuell]";
-            this.ttEinlagerung.SetToolTip(this.btnManEmpfaenger, "manuellen Empfanger eingeben");
-            this.btnManEmpfaenger.UseVisualStyleBackColor = true;
-            this.btnManEmpfaenger.Click += new System.EventHandler(this.btnManEmpfaenger_Click);
-            // 
-            // btnManVersender
-            // 
-            this.btnManVersender.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnManVersender.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnManVersender.Location = new System.Drawing.Point(50, 43);
-            this.btnManVersender.Name = "btnManVersender";
-            this.btnManVersender.Size = new System.Drawing.Size(66, 22);
-            this.btnManVersender.TabIndex = 4;
-            this.btnManVersender.TabStop = false;
-            this.btnManVersender.Tag = "1";
-            this.btnManVersender.Text = "[manuell]";
-            this.ttEinlagerung.SetToolTip(this.btnManVersender, "manuellen Versender eingeben");
-            this.btnManVersender.UseVisualStyleBackColor = true;
-            this.btnManVersender.Click += new System.EventHandler(this.btnManVersender_Click);
             // 
             // tbADRSpedition
             // 
@@ -3863,21 +3923,6 @@
             this.lKennzeichen.Size = new System.Drawing.Size(101, 13);
             this.lKennzeichen.TabIndex = 215;
             this.lKennzeichen.Text = "KFZ - Kennzeichen:";
-            // 
-            // btnSpedition
-            // 
-            this.btnSpedition.Enabled = false;
-            this.btnSpedition.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSpedition.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnSpedition.Location = new System.Drawing.Point(6, 149);
-            this.btnSpedition.Name = "btnSpedition";
-            this.btnSpedition.Size = new System.Drawing.Size(35, 22);
-            this.btnSpedition.TabIndex = 14;
-            this.btnSpedition.TabStop = false;
-            this.btnSpedition.Text = "[S]";
-            this.ttEinlagerung.SetToolTip(this.btnSpedition, "Spedition/Transportunternehmen aus Adressbestand auswählen");
-            this.btnSpedition.UseVisualStyleBackColor = true;
-            this.btnSpedition.Click += new System.EventHandler(this.btnSpedition_Click);
             // 
             // dtpEinlagerungDate
             // 
@@ -4017,20 +4062,6 @@
             this.tbSearchV.TabIndex = 5;
             this.tbSearchV.TextChanged += new System.EventHandler(this.tbSearchV_TextChanged);
             // 
-            // btnVersender
-            // 
-            this.btnVersender.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnVersender.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnVersender.Location = new System.Drawing.Point(6, 43);
-            this.btnVersender.Name = "btnVersender";
-            this.btnVersender.Size = new System.Drawing.Size(37, 22);
-            this.btnVersender.TabIndex = 3;
-            this.btnVersender.TabStop = false;
-            this.btnVersender.Text = "[V]";
-            this.ttEinlagerung.SetToolTip(this.btnVersender, "Versender aus Adressbestand auswählen\r\n");
-            this.btnVersender.UseVisualStyleBackColor = true;
-            this.btnVersender.Click += new System.EventHandler(this.btnSearchV_Click);
-            // 
             // tbEmpfaenger
             // 
             this.tbEmpfaenger.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -4053,20 +4084,6 @@
             this.tbLfsNr.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbLfsNr.Validated += new System.EventHandler(this.tbLfsNr_Validated);
             // 
-            // btnSearchE
-            // 
-            this.btnSearchE.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSearchE.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnSearchE.Location = new System.Drawing.Point(6, 67);
-            this.btnSearchE.Name = "btnSearchE";
-            this.btnSearchE.Size = new System.Drawing.Size(37, 22);
-            this.btnSearchE.TabIndex = 6;
-            this.btnSearchE.TabStop = false;
-            this.btnSearchE.Text = "[E]";
-            this.ttEinlagerung.SetToolTip(this.btnSearchE, "Empfänger aus Adressbestand auswählen");
-            this.btnSearchE.UseVisualStyleBackColor = true;
-            this.btnSearchE.Click += new System.EventHandler(this.btnSearchE_Click);
-            // 
             // label31
             // 
             this.label31.AutoSize = true;
@@ -4085,20 +4102,6 @@
             this.tbSearchE.Size = new System.Drawing.Size(106, 20);
             this.tbSearchE.TabIndex = 8;
             this.tbSearchE.TextChanged += new System.EventHandler(this.tbSearchE_TextChanged);
-            // 
-            // btnSearchA
-            // 
-            this.btnSearchA.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSearchA.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnSearchA.Location = new System.Drawing.Point(6, 19);
-            this.btnSearchA.Name = "btnSearchA";
-            this.btnSearchA.Size = new System.Drawing.Size(110, 22);
-            this.btnSearchA.TabIndex = 1;
-            this.btnSearchA.TabStop = false;
-            this.btnSearchA.Text = "[Auftraggeber]";
-            this.ttEinlagerung.SetToolTip(this.btnSearchA, "Auftraggeber aus Adressbestand auswählen");
-            this.btnSearchA.UseVisualStyleBackColor = true;
-            this.btnSearchA.Click += new System.EventHandler(this.btnSearchA_Click);
             // 
             // tbAuftraggeber
             // 
@@ -4261,6 +4264,8 @@
             this.panelDGV.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.tsArtikelGrid.ResumeLayout(false);
+            this.tsArtikelGrid.PerformLayout();
             this.panelArtikeldaten.ResumeLayout(false);
             this.panelArtikeldaten.PerformLayout();
             this.splitConArtikelDaten.Panel1.ResumeLayout(false);
@@ -4297,30 +4302,45 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudLzzKW)).EndInit();
             this.tabPageVita.ResumeLayout(false);
             this.tabPageVita.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVita)).EndInit();
+            this.tsmArtikelVita.ResumeLayout(false);
+            this.tsmArtikelVita.PerformLayout();
             this.tabPageSchaden.ResumeLayout(false);
             this.tabPageSchaden.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchaden.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchaden)).EndInit();
+            this.tsmArtikelSchaeden.ResumeLayout(false);
+            this.tsmArtikelSchaeden.PerformLayout();
             this.tabInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.scTabPageInfo)).EndInit();
             this.scTabPageInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             this.splitPanel1.ResumeLayout(false);
             this.splitPanel1.PerformLayout();
+            this.tsmSysInfo.ResumeLayout(false);
+            this.tsmSysInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
             this.splitPanel2.PerformLayout();
+            this.afToolStrip2.ResumeLayout(false);
+            this.afToolStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel3)).EndInit();
             this.splitPanel3.ResumeLayout(false);
             this.splitPanel3.PerformLayout();
+            this.afToolStrip3.ResumeLayout(false);
+            this.afToolStrip3.PerformLayout();
             this.tabPageExtraCharge.ResumeLayout(false);
             this.tabPageExtraCharge.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtraChargeAssignment.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtraChargeAssignment)).EndInit();
+            this.tsmExtraCharge.ResumeLayout(false);
+            this.tsmExtraCharge.PerformLayout();
             this.tabPageArtikelPreis.ResumeLayout(false);
             this.tabPageArtikelPreis.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.afToolStrip4.ResumeLayout(false);
+            this.afToolStrip4.PerformLayout();
             this.tabPageImages.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.scArtImages)).EndInit();
             this.scArtImages.ResumeLayout(false);
@@ -4331,35 +4351,18 @@
             this.splitPanel5.ResumeLayout(false);
             this.splitPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lvArtImages)).EndInit();
+            this.tsmTabImages.ResumeLayout(false);
+            this.tsmTabImages.PerformLayout();
             this.tabPageManCall.ResumeLayout(false);
             this.tabPageManCall.PerformLayout();
             this.panTerminManCall.ResumeLayout(false);
             this.panTerminManCall.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tpCallEintreffZeit)).EndInit();
-            this.cmsSchaeden.ResumeLayout(false);
-            this.tsArtikelGrid.ResumeLayout(false);
-            this.tsArtikelGrid.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVita)).EndInit();
-            this.tsmArtikelVita.ResumeLayout(false);
-            this.tsmArtikelVita.PerformLayout();
-            this.tsmArtikelSchaeden.ResumeLayout(false);
-            this.tsmArtikelSchaeden.PerformLayout();
-            this.tsmSysInfo.ResumeLayout(false);
-            this.tsmSysInfo.PerformLayout();
-            this.afToolStrip2.ResumeLayout(false);
-            this.afToolStrip2.PerformLayout();
-            this.afToolStrip3.ResumeLayout(false);
-            this.afToolStrip3.PerformLayout();
-            this.tsmExtraCharge.ResumeLayout(false);
-            this.tsmExtraCharge.PerformLayout();
-            this.afToolStrip4.ResumeLayout(false);
-            this.afToolStrip4.PerformLayout();
-            this.tsmTabImages.ResumeLayout(false);
-            this.tsmTabImages.PerformLayout();
             this.tsmManCall.ResumeLayout(false);
             this.tsmManCall.PerformLayout();
             this.tsArtikeldatenMenu.ResumeLayout(false);
             this.tsArtikeldatenMenu.PerformLayout();
+            this.cmsSchaeden.ResumeLayout(false);
             this.afMMPEingangDaten.ResumeLayout(false);
             this.afMMPEingangDaten.PerformLayout();
             this.gbZusatzInfo.ResumeLayout(false);

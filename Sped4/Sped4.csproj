@@ -3140,8 +3140,7 @@
     <PropertyGroup>
       <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Telerik.Licensing.1.6.31\build\Telerik.Licensing.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Telerik.Licensing.1.6.31\build\Telerik.Licensing.targets'))" />
-    <Error Condition="!Exists('..\packages\Telerik.Licensing.1.8.2\build\Telerik.Licensing.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Telerik.Licensing.1.8.2\build\Telerik.Licensing.targets'))" />
+     <Error Condition="!Exists('..\packages\Telerik.Licensing.1.8.2\build\Telerik.Licensing.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Telerik.Licensing.1.8.2\build\Telerik.Licensing.targets'))" />
   </Target>
   <Import Project="..\packages\Telerik.Licensing.1.8.2\build\Telerik.Licensing.targets" Condition="Exists('..\packages\Telerik.Licensing.1.8.2\build\Telerik.Licensing.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

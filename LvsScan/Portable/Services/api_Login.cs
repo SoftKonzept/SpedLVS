@@ -53,7 +53,8 @@ namespace LvsScan.Portable.Services
             }
             catch (Exception ex)
             {
-                string mes = ex.InnerException.Message;
+                //string mes = ex.InnerException.Message;
+                var inner = ex.InnerException?.Message ?? ex.Message;
                 resLog.Error = "Zu den Eingabedaten konnte kein User ermittelt werden." + Environment.NewLine;
                 resLog.Error += "Exception: " + ex.InnerException.Message.ToString();
             }

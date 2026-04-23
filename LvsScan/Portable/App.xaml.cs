@@ -4,6 +4,7 @@ using LvsScan.Portable.Models;
 using LvsScan.Portable.Views.Login;
 using System;
 using Xamarin.Forms;
+using System.Diagnostics;
 
 namespace LvsScan.Portable
 {
@@ -32,6 +33,10 @@ namespace LvsScan.Portable
             catch (Exception ex)
             {
                 string message = ex.Message;
+                // Nicht still verschlucken - Fehler in Release wird so sichtbar
+                // Schreibe in Trace (erscheint in Logcat) und werfe neu, damit Logcat vollständigen Stacktrace liefert
+                Trace.TraceError($"App ctor exception: {ex}");
+                throw;
             }
         }
 

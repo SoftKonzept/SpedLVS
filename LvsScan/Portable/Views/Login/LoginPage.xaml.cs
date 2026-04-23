@@ -43,17 +43,29 @@ namespace LvsScan.Portable.Views.Login
             if (ViewModel.IsLoginButtonEnabled)
             {
                 ViewModel.IsBusy = true;
-                //await Task.Run(() => ViewModel.DoLogin()).Wait()
-                Task.Run(() => ViewModel.DoLogin()).Wait();
+                await ViewModel.DoLogin();
                 if (InternalSettings.AccessGranted)
                 {
                     Application.Current.MainPage = new FlyoutMenuPage();
                 }
                 else
                 {
-                    await DisplayAlert("ACHTUNG", ViewModel.Log.Error, "ok");
+                    await DisplayAlert("ACHTUNG", ViewModel.Log?.Error ?? "Unbekannter Fehler", "ok");
                     ViewModel.IsBusy = false;
                 }
+
+                //ViewModel.IsBusy = true;
+                ////await Task.Run(() => ViewModel.DoLogin()).Wait()
+                //Task.Run(() => ViewModel.DoLogin()).Wait();
+                //if (InternalSettings.AccessGranted)
+                //{
+                //    Application.Current.MainPage = new FlyoutMenuPage();
+                //}
+                //else
+                //{
+                //    await DisplayAlert("ACHTUNG", ViewModel.Log.Error, "ok");
+                //    ViewModel.IsBusy = false;
+                //}
             }
             else
             {
