@@ -64,31 +64,81 @@ namespace LvsScan.Portable.Views.StoreIn
             return Task.CompletedTask;
         }
 
-        public Task<bool> OnNext(BaseViewModel viewModel)
+        public async Task<bool> OnNext(BaseViewModel viewModel)
         {
             bool bReturn = false;
-            if (!ViewModel.SelectedEingang.Equals(ViewModel.EingangOriginal))
+
+            // Verwende Id‑Vergleich statt unsicheren Equals, falls verfügbar
+            bool changed = (ViewModel.SelectedEingang?.Id ?? 0) != (ViewModel.EingangOriginal?.Id ?? 0)
+                           || !Equals(ViewModel.SelectedEingang, ViewModel.EingangOriginal); // Fallback
+
+            if (changed)
             {
                 ViewModel.IsBusy = true;
-                Task.Run(() => Task.Delay(1000)).Wait();
-                var result = Task.Run(() => ViewModel.UpdateEingang()).Result;
-                bReturn = result.Success;
-                ViewModel.IsBusy = false;
-                if (!result.Success)
+                try
                 {
-                    string mesInfo = "FEHLER";
-                    string message = result.Error;
-                    App.Current.MainPage.DisplayAlert(mesInfo, message, "OK");
+                    // Optional: kurze nicht‑blockierende Pause für UX (oder ganz weglassen)
+                    // await Task.Delay(200);
+
+                    // CHANGED: entferne ConfigureAwait(false) damit die Fortsetzung auf dem UI‑Thread läuft
+                    var result = await ViewModel.UpdateEingang();
+
+                    // CHANGED: IsBusy auf UI‑Thread zurücksetzen (ist hier auf UI‑Thread, weil kein ConfigureAwait(false) verwendet wurde)
+                    ViewModel.IsBusy = false;
+
+                    if (result == null || !result.Success)
+                    {
+                        //string message = result?.Error ?? "Das Update konnte nicht durchgeführt werden.";
+                        string message = "Das Update konnte nicht durchgeführt werden.";
+                        // DisplayAlert jetzt sicher auf dem UI‑Thread
+                        await App.Current.MainPage.DisplayAlert("FEHLER", message, "OK");
+                        bReturn = false;
+                    }
+                    else
+                    {
+                        // Optional: Schritt als abgeschlossen markieren
+                        //ViewModel.IsStepFinished = true;
+                        bReturn = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ViewModel.IsBusy = false;
+                    await App.Current.MainPage.DisplayAlert("FEHLER", ex.Message, "OK");
+                    bReturn = false;
                 }
             }
             else
             {
                 bReturn = true;
             }
+
+
+            //if (!ViewModel.SelectedEingang.Equals(ViewModel.EingangOriginal))
+            //{
+            //    ViewModel.IsBusy = true;
+            //    Task.Run(() => Task.Delay(1000)).Wait();
+            //    var result = Task.Run(() => ViewModel.UpdateEingang()).Result;
+            //    bReturn = result.Success;
+            //    ViewModel.IsBusy = false;
+            //    if (!result.Success)
+            //    {
+            //        string mesInfo = "FEHLER";
+            //        string message = result.Error;
+            //        App.Current.MainPage.DisplayAlert(mesInfo, message, "OK");
+            //    }
+            //}
+            //else
+            //{
+            //    bReturn = true;
+            //}
+
             ViewModel.WizardData.Wiz_StoreIn.SelectedEingang = ViewModel.SelectedEingang.Copy();
             ViewModel.WizardData.Wiz_StoreIn = ViewModel.WizardData.Wiz_StoreIn.Copy();
             ((App)Application.Current).WizardData = ViewModel.WizardData.Copy();
-            return Task.FromResult(bReturn);
+
+            //return Task.FromResult(bReturn);
+            return bReturn;
         }
 
         public Task<bool> OnPrevious(BaseViewModel viewModel)

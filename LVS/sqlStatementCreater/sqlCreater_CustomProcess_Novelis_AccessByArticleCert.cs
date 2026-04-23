@@ -26,10 +26,10 @@ namespace LVS.sqlStatementCreater
                 sql += "where ";
                 sql += "ArticleId in (" + string.Join(",", eingangVD.ListArticleInEingang.Select(x => x.Id).ToList()) + ") ";
                 sql += "and Produktionsnummer in (";
-                sql += "SELECT Produktionsnummer FROM " + ClientMatchcode + "LVS.dbo.Artikel where ID in (" + string.Join(",", eingangVD.ListArticleInEingang.Select(x => x.Id).ToList()) + ")) ";
+                sql += "SELECT Produktionsnummer FROM " + ClientMatchcode + "_LVS.dbo.Artikel where ID in (" + string.Join(",", eingangVD.ListArticleInEingang.Select(x => x.Id).ToList()) + ")) ";
                 sql += "and LfsNr in (";
                 sql += "SELECT LfsNr FROM SZG_LVS.dbo.LEingang where ID in (";
-                sql += "SELECT LEingangTableID FROM " + ClientMatchcode + "LVS.dbo.Artikel where ID in (" + string.Join(",", eingangVD.ListArticleInEingang.Select(x => x.Id).ToList()) + "))) ";
+                sql += "SELECT LEingangTableID FROM " + ClientMatchcode + "_LVS.dbo.Artikel where ID in (" + string.Join(",", eingangVD.ListArticleInEingang.Select(x => x.Id).ToList()) + "))) ";
 
                 return sql;
             }

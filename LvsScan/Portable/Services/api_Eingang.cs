@@ -113,19 +113,69 @@ namespace LvsScan.Portable.Services
                 var json = JsonConvert.SerializeObject(resStoreIn);
                 HttpContent httpContent = new StringContent(json);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
                 var response = await client.PostAsync(Uri_POST_Eingang_Update_WizStoreIn, httpContent);
+
+                // immer den Body lesen, auch bei Fehlern
+                var body = await response.Content.ReadAsStringAsync();
+
                 if (response.IsSuccessStatusCode)
                 {
-                    var jwt = await response.Content.ReadAsStringAsync();
-                    var reply = JsonConvert.DeserializeObject<ResponseEingang>(jwt);
-                    resStoreIn = reply.Copy();
+                    try
+                    {
+                        var reply = JsonConvert.DeserializeObject<ResponseEingang>(body);
+                        if (reply != null)
+                            resStoreIn = reply.Copy();
+                        else
+                            resStoreIn.Error = "Leere oder ungültige Antwort vom Server.";
+                    }
+                    catch (Exception exDes)
+                    {
+                        resStoreIn.Error = "Deserialisierungsfehler: " + exDes.Message;
+                        //System.Diagnostics.Debug.WriteLine("Deserialisierungsfehler POST_Eingang_Update_WizStoreIn: " + exDes.ToString());
+                    }
+                }
+                else
+                {
+                    // setze aussagekräftige Fehlermeldung mit Status und Body
+                    resStoreIn.Error = $"HTTP {(int)response.StatusCode} {response.ReasonPhrase}: {body}";
+                    //System.Diagnostics.Debug.WriteLine("API-Fehler POST_Eingang_Update_WizStoreIn: " + resStoreIn.Error);
                 }
             }
             catch (Exception ex)
             {
-                string mes = ex.InnerException.Message;
-                resStoreIn.Error = mes;
+                string mes = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                resStoreIn.Error = "Request-Fehler: " + mes;
+                //System.Diagnostics.Debug.WriteLine("Exception POST_Eingang_Update_WizStoreIn: " + ex.ToString());
             }
+
+
+
+            //--- alt
+
+            //resStoreIn.Success = false;
+            //resStoreIn.Error = string.Empty;
+            //resStoreIn.Info = string.Empty;
+            //try
+            //{
+            //    var json = JsonConvert.SerializeObject(resStoreIn);
+            //    HttpContent httpContent = new StringContent(json);
+            //    httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            //    var response = await client.PostAsync(Uri_POST_Eingang_Update_WizStoreIn, httpContent);
+            //    string stringResponse = response.ToString();
+            //    if (response.IsSuccessStatusCode)
+            //    {                    
+            //        var jwt = await response.Content.ReadAsStringAsync();
+            //        var reply = JsonConvert.DeserializeObject<ResponseEingang>(jwt);
+            //        resStoreIn = reply.Copy();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    string mes = ex.InnerException.Message;
+            //    resStoreIn.Error = mes;
+            //}
             return resStoreIn;
         }
 

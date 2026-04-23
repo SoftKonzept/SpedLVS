@@ -78,20 +78,28 @@ namespace LvsMobileAPI.Services
         public ResponseEingang POST_Eingang_UpdateWizStoreIn(ResponseEingang resStoreIn)
         {
             srv = new SvrSettings();
-            resStoreIn.Success = false;
-            //EingangViewData viewData = new EingangViewData(resStoreIn.Eingang, resStoreIn.UserId);
-            EingangViewData viewData = new EingangViewData(resStoreIn);
-
+            if (resStoreIn == null)
+            {
+                return new ResponseEingang
+                {
+                    Success = false,
+                    Error = "Request body is null"
+                };
+            }
             try
             {
+                resStoreIn.Success = false;
+                EingangViewData viewData = new EingangViewData(resStoreIn);
+
                 var result = viewData.Update_WizStoreIN(resStoreIn);
                 resStoreIn.Success = result;
+
                 if (result)
                 {
                     viewData.Fill();
-                    resStoreIn.Eingang = viewData.Eingang.Copy();
+                    resStoreIn.Eingang = viewData.Eingang?.Copy();
 
-                    if (!viewData.Eingang.Check)
+                    if (viewData.Eingang != null && !viewData.Eingang.Check)
                     {
                         resStoreIn.Info = viewData.Info;
                     }
@@ -102,14 +110,53 @@ namespace LvsMobileAPI.Services
                 }
                 else
                 {
-                    resStoreIn.Error = "Das Update konnte nicht durchgeführt werden!";
+                    if (string.IsNullOrEmpty(resStoreIn.Error))
+                    {
+                        resStoreIn.Error = "Das Update konnte nicht durchgeführt werden!";
+                    }
                 }
             }
             catch (Exception ex)
             {
                 resStoreIn.Success = false;
                 resStoreIn.Error = ex.Message;
+                // Optional: zusätzliches Logging hier (Stacktrace), z.B. Functions.AddLogbuch(...) oder ILogger
             }
+
+
+
+            //resStoreIn.Success = false;
+            ////EingangViewData viewData = new EingangViewData(resStoreIn.Eingang, resStoreIn.UserId);
+            //EingangViewData viewData = new EingangViewData(resStoreIn);
+
+            //try
+            //{
+            //    var result = viewData.Update_WizStoreIN(resStoreIn);
+            //    resStoreIn.Success = result;
+            //    if (result)
+            //    {
+            //        viewData.Fill();
+            //        resStoreIn.Eingang = viewData.Eingang.Copy();
+
+            //        if (!viewData.Eingang.Check)
+            //        {
+            //            resStoreIn.Info = viewData.Info;
+            //        }
+            //        else
+            //        {
+            //            resStoreIn.Info = "Das Update wurde erfolgreich durchgeführt!";
+            //        }
+            //    }
+            //    else
+            //    {
+            //        resStoreIn.Error = "Das Update konnte nicht durchgeführt werden!";
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    resStoreIn.Success = false;
+            //    resStoreIn.Error = ex.Message;
+            //}
             return resStoreIn;
         }
 

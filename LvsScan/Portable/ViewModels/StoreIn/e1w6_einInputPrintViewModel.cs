@@ -52,7 +52,11 @@ namespace LvsScan.Portable.ViewModels.StoreIn
                 OnPropertyChanged();
                 if (loadValues)
                 {
-                    Task.Run(() => GetArticleInEingang()).Wait();
+                    //Task.Run(() => GetArticleInEingang()).Wait();
+                    
+                    // CHANGED: avoid synchronous Task.Wait() which can wrap exceptions and cause TargetInvocationException / deadlocks
+                    // Start the async operation without blocking the caller; exceptions are handled inside GetArticleInEingang().
+                    _ = GetArticleInEingang();
                 }
             }
         }
@@ -225,30 +229,88 @@ namespace LvsScan.Portable.ViewModels.StoreIn
         public async Task<ResponseEingang> UpdateEingang()
         {
             ResponseEingang resEA = new ResponseEingang();
-            resEA.Eingang = SelectedEingang.Copy();
-            resEA.UserId = (int)WizardData.LoggedUser.Id;
-            resEA.StoreInArt = WizardData.Wiz_StoreIn.StoreInArt;
-            resEA.StoreInArt_Steps = CurrentStep;
-
-            api_Eingang _api = new api_Eingang(WizardData.LoggedUser);
             try
             {
-                var result = await _api.POST_Eingang_Update_WizStoreIn(resEA);
-                resEA.Success = result.Success;
-                if (result.Success)
+                if (SelectedEingang == null || SelectedEingang.Id == 0)
                 {
-                    SelectedEingang = result.Eingang.Copy();
-                    if (!SelectedEingang.Equals(EingangOriginal))
-                    {
-                        EingangOriginal = result.Eingang.Copy();
-                    }
+                    resEA.Error = "SelectedEingang ist nicht gesetzt.";
+                    return resEA;
                 }
+                if (WizardData == null)
+                {
+                    resEA.Error = "WizardData ist null.";
+                    return resEA;
+                }
+                if (WizardData.LoggedUser == null)
+                {
+                    resEA.Error = "LoggedUser ist nicht angemeldet.";
+                    return resEA;
+                }
+
+                resEA.Eingang = SelectedEingang.Copy();
+                resEA.UserId = (int)WizardData.LoggedUser.Id;
+                resEA.StoreInArt = WizardData.Wiz_StoreIn?.StoreInArt ?? Common.Enumerations.enumStoreInArt.NotSet;
+                resEA.StoreInArt_Steps = CurrentStep;
+
+                api_Eingang _api = new api_Eingang(WizardData.LoggedUser);
+                var result = await _api.POST_Eingang_Update_WizStoreIn(resEA).ConfigureAwait(false);
+
+                if (result == null)
+                {
+                    resEA.Error = "Leere Antwort vom API.";
+                    return resEA;
+                }
+
+                resEA = result.Copy();
+                if (resEA.Success && resEA.Eingang != null)
+                {
+                    // marshalle Änderungen auf UI-Thread
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        SelectedEingang = resEA.Eingang.Copy();
+                        if (!SelectedEingang.Equals(EingangOriginal))
+                        {
+                            EingangOriginal = resEA.Eingang.Copy();
+                        }
+                    });
+                }
+
+                return resEA;
             }
             catch (Exception ex)
             {
-                string str = ex.Message;
+                // Fehler klar in Response und sichtbar machen; zusätzlich kurze UI-Meldung
+                resEA.Error = ex.ToString();
+                Device.BeginInvokeOnMainThread(async () => await MessageService.ShowAsync("Fehler", ex.Message));
+                return resEA;
             }
-            return resEA;
+
+            //ResponseEingang resEA = new ResponseEingang();
+            //resEA.Eingang = SelectedEingang.Copy();
+            //resEA.UserId = (int)WizardData.LoggedUser.Id;
+            //resEA.StoreInArt = WizardData.Wiz_StoreIn.StoreInArt;
+            //resEA.StoreInArt_Steps = CurrentStep;
+
+            //api_Eingang _api = new api_Eingang(WizardData.LoggedUser);
+            //try
+            //{
+            //    var result = await _api.POST_Eingang_Update_WizStoreIn(resEA);
+            //    resEA.Success = result.Success;
+            //    resEA = result.Copy();
+            //    if (result.Success)
+            //    {
+            //        SelectedEingang = result.Eingang.Copy();
+            //        if (!SelectedEingang.Equals(EingangOriginal))
+            //        {
+            //            EingangOriginal = result.Eingang.Copy();
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    string str = ex.Message;
+            //}
+            //return resEA;
         }
 
         //--------------------------------------------- Client --------------------------------------
@@ -406,7 +468,7 @@ namespace LvsScan.Portable.ViewModels.StoreIn
             }
         }
 
-        private ImageSource _BackgroundImage; // = Android.Resource.Drawable.lock_open
+        private ImageSource _BackgroundImage; 
         public ImageSource BackgroundImage
         {
             get { return _BackgroundImage; }

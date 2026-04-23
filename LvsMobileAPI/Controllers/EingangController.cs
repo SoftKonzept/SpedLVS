@@ -77,14 +77,23 @@ namespace LvsMobileAPI.Controllers
         public IActionResult POST_Eingang_Update_WizStoreIn([FromBody] ResponseEingang resEingang)
         {
             var response = _eingangService.POST_Eingang_UpdateWizStoreIn(resEingang);
-            resEingang = response.Copy();
-            if (resEingang.Success)
+            //resEingang = response.Copy();
+            //if (resEingang.Success)
+            //{
+            //    return Ok(resEingang);
+            //}
+            //else
+            //{
+            //    return NotFound(resEingang);
+            //}
+                        
+            if (response.Success)
             {
-                return Ok(resEingang);
+                return Ok(response);
             }
             else
             {
-                return NotFound(resEingang);
+                return NotFound(response);
             }
         }
 

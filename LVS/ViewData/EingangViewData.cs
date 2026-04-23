@@ -388,6 +388,17 @@ namespace LVS.ViewData
         /// <returns></returns>
         public bool Update_WizStoreIn(string mySql, bool myIsLastStep, ResponseEingang resEA)
         {
+            if (resEA == null)
+            {
+                this.Info += "Fehler: resEA ist null." + Environment.NewLine;
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(mySql))
+            {
+                this.Info += "Fehler: leeres SQL-Statement." + Environment.NewLine;
+                return false;
+            }
+
             bool retVal = false;
             //EingangViewData eVD = new EingangViewData(Eingang.Id, 1, false);
             EingangViewData eVD = new EingangViewData(Eingang.Id, 1, true);
@@ -406,6 +417,7 @@ namespace LVS.ViewData
 
             if (retVal)
             {
+                this.Info += "Das Update wurde erfolgreich durchgeführt!" + Environment.NewLine;
                 switch (resEA.StoreInArt)
                 {
                     case enumStoreInArt.edi:
@@ -433,7 +445,6 @@ namespace LVS.ViewData
                     }
                 }
 
-
                 //--- neu 12.06.2024 mr
                 LVS.Globals._GL_USER GLUser = new _GL_USER();
                 GLUser.User_ID = BenutzerID;
@@ -453,7 +464,7 @@ namespace LVS.ViewData
                             this.Update_Datafield_Check(Eingang.Check);
                             if (!Eingang.Check)
                             {
-                                this.Info = cVD.Process_Novelis_AccessByArticleCert.ProcessViewName + ":" + Environment.NewLine;
+                                this.Info += cVD.Process_Novelis_AccessByArticleCert.ProcessViewName + ":" + Environment.NewLine;
                                 this.Info += "Eingang kann noch nicht abgeschlossen werden, da das Zertifikat noch nicht vorliegt!";
                             }
                         }
