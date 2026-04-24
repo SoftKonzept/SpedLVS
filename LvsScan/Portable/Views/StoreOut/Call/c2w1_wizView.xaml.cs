@@ -17,6 +17,12 @@ namespace LvsScan.Portable.Views.StoreOut.Call
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class c2w1_wizView : ContentView, IWizardView
     {
+        /// <summary>
+        /// 
+        ///             enthält die List der Artikel, die per Abruf abgerufen wurden 
+        ///             und vorher über die Suche per LVSNR identifiziert wurden
+        /// 
+        /// </summary>
         public c2w1_wizViewModel ViewModel;
         public c2w1_wizView(BaseViewModel currentViewModel, BaseViewModel PreviousViewModel)
         {

@@ -14,6 +14,11 @@ using Xamarin.KeyboardHelper;
 
 namespace LvsScan.Portable.Views.StoreOut.Open
 {
+    /// <summary>
+    /// 
+    ///           Artikel-Scan für Bestätigung des Artikels im Ausgang - Schritt 1 von 4
+    /// 
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class oa3w1_wizArticelScan : ContentView, IWizardView
     {
@@ -55,9 +60,9 @@ namespace LvsScan.Portable.Views.StoreOut.Open
             {
                 if (dtIdentification != new DateTime(1900, 1, 1))
                 {
-                    ViewModel.SearchLvsNo = ViewModel.SelectedArticle.LVS_ID.ToString();
-                    ViewModel.SearchProduktionsnummer = ViewModel.SelectedArticle.Produktionsnummer.ToString();
-
+                    //-- mr 24.04.2026 lt. Hr. Rudolph herausgenommen
+                    //ViewModel.SearchLvsNo = ViewModel.SelectedArticle.LVS_ID.ToString();
+                    //ViewModel.SearchProduktionsnummer = ViewModel.SelectedArticle.Produktionsnummer.ToString();
                 }
             }
         }

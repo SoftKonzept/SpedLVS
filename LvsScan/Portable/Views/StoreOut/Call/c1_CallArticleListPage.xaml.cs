@@ -16,6 +16,12 @@ namespace LvsScan.Portable.Views.StoreOut.Call
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class c1_CallArticleListPage : ContentPage
     {
+        /// <summary>
+        /// 
+        ///                 Darstellung der aktuellen Abrufe in einer Liste
+        /// 
+        /// </summary>
+
         public c1_CallArticleListViewModel ViewModel;
         public c1_CallArticleListPage()
         {

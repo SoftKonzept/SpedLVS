@@ -237,6 +237,19 @@ namespace Sped4
             else
             {
                 this.dgv.DataSource = dtBestand;
+                foreach (var col in dgv.Columns)
+                {
+                    if (col.DataType == typeof(DateTime) || col.DataType == typeof(DateTime?))
+                    {
+                        col.FormatString = "{0:d}";
+                        col.TextAlignment = ContentAlignment.MiddleCenter;
+                    }
+                    if (col.Name == "Eingang" || col.Name == "Ausgang")
+                    {
+                        //col.FormatString = "{0:d}";
+                        col.TextAlignment = ContentAlignment.MiddleCenter;
+                    }
+                }
             }
 
             if (

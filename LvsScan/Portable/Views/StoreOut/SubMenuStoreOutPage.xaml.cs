@@ -6,7 +6,7 @@ using LvsScan.Portable.Views.StoreOut.Call;
 using LvsScan.Portable.Views.StoreOut.Open;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.KeyboardHelper;
@@ -85,7 +85,9 @@ namespace LvsScan.Portable.Views.StoreOut
                 }
                 catch (Exception ex)
                 {
-                    string str = ex.Message.ToString();
+                    //string str = ex.Message.ToString();
+                    Debug.WriteLine($"SubMenu navigation error: {ex}");
+                    await App.Current.MainPage.DisplayAlert("Fehler", "Seite konnte nicht geöffnet werden: " + ex.Message, "OK");
                 }
             }
             else
@@ -103,53 +105,96 @@ namespace LvsScan.Portable.Views.StoreOut
         /// <param name="e"></param>
         private async void tabView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if ((e != null) && (e.PropertyName.Equals("SelectedItem")))
-            {
-                if (ViewModel != null)
-                {
-                    string str = string.Empty;
+            if (e?.PropertyName != "SelectedItem" || ViewModel == null) return;
 
+            // CHANGED: Do UI calls on main thread, avoid Task.Run for UI elements
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                try
+                {
                     if (ViewModel.IsManual)
                     {
-                        //await Task.Delay(1000);
-                        await Task.Run(() =>
-                        {
-                            if (ViewModel.ExistLVSNr)
-                            {
-                                searchLvsNoManual.Unfocus();
-                                searchLvsNo.Unfocus();
-                            }
-                            else
-                            {
-                                searchLvsNoManual.Focus();
-                                searchLvsNo.Unfocus();
-                            }
-                        });
-                    }
-                    else
-                    {
-                        //await Task.Delay(1000);
-                        Device.BeginInvokeOnMainThread(() =>
+                        if (ViewModel.ExistLVSNr)
                         {
                             searchLvsNoManual.Unfocus();
                             searchLvsNo.Unfocus();
-                        });
-                        await Task.Run(() =>
+                        }
+                        else
                         {
-                            if (ViewModel.ExistLVSNr)
-                            {
-                                searchLvsNoManual.Unfocus();
-                                searchLvsNo.Unfocus();
-                            }
-                            else
-                            {
-                                searchLvsNo.Focus();
-                                searchLvsNoManual.Unfocus();
-                            }
-                        });
+                            searchLvsNoManual.Focus();
+                            searchLvsNo.Unfocus();
+                        }
+                    }
+                    else
+                    {
+                        searchLvsNoManual.Unfocus();
+                        searchLvsNo.Unfocus();
+                        if (ViewModel.ExistLVSNr)
+                        {
+                            searchLvsNoManual.Unfocus();
+                            searchLvsNo.Unfocus();
+                        }
+                        else
+                        {
+                            searchLvsNo.Focus();
+                            searchLvsNoManual.Unfocus();
+                        }
                     }
                 }
-            }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"tabView_PropertyChanged UI error: {ex}");
+                }
+            });
+
+            //--- alt
+            //if ((e != null) && (e.PropertyName.Equals("SelectedItem")))
+            //{
+            //    if (ViewModel != null)
+            //    {
+            //        string str = string.Empty;
+
+            //        if (ViewModel.IsManual)
+            //        {
+            //            //await Task.Delay(1000);
+            //            await Task.Run(() =>
+            //            {
+            //                if (ViewModel.ExistLVSNr)
+            //                {
+            //                    searchLvsNoManual.Unfocus();
+            //                    searchLvsNo.Unfocus();
+            //                }
+            //                else
+            //                {
+            //                    searchLvsNoManual.Focus();
+            //                    searchLvsNo.Unfocus();
+            //                }
+            //            });
+            //        }
+            //        else
+            //        {
+            //            //await Task.Delay(1000);
+            //            Device.BeginInvokeOnMainThread(() =>
+            //            {
+            //                searchLvsNoManual.Unfocus();
+            //                searchLvsNo.Unfocus();
+            //            });
+            //            await Task.Run(() =>
+            //            {
+            //                if (ViewModel.ExistLVSNr)
+            //                {
+            //                    searchLvsNoManual.Unfocus();
+            //                    searchLvsNo.Unfocus();
+            //                }
+            //                else
+            //                {
+            //                    searchLvsNo.Focus();
+            //                    searchLvsNoManual.Unfocus();
+            //                }
+            //            });
+            //        }
+            //    }
+            //}
         }
         /// <summary>
         /// 
