@@ -127,9 +127,6 @@ namespace LvsMobileAPI.Services
                 {
                     resCall = callViewData.CreateLAusgang(clsASNCall.const_AbrufAktion_Abruf, resCall);
 
-                    //bReturn = Task.Run(() => callViewData.CreateLAusgang(clsASNCall.const_AbrufAktion_Abruf, resCall.ListCallForStoreOut)).Result;
-                    //string str = string.Empty;
-
                     if (callViewData.ListLogText != null)
                     {
                         foreach (string s in callViewData.ListLogText)

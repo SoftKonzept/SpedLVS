@@ -334,7 +334,7 @@ namespace Sped4.Classes
                 this.tspbCall.Maximum = iAnzahl;
 
                 CallViewData callViewData = new CallViewData(_ctrMenu._frmMain.GL_System, _ctrMenu._frmMain.GL_User, _ctrMenu._frmMain.system);
-                callViewData.InitAndSaveEingang(this.Abruf.dtAbrufUBList.DefaultView.ToTable(), AktionModus, true);
+                callViewData.InitAndSaveAusgang(this.Abruf.dtAbrufUBList.DefaultView.ToTable(), AktionModus, true);
                 foreach (string s in callViewData.ListLogText)
                 {
                     this.tbLog.Text = this.tbLog.Text + s;

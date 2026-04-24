@@ -39,7 +39,10 @@ namespace LvsScan.Portable.Views.StoreOut.Call
 
             //-- test mr 20250709
             // Asynchrones Laden der Liste
-            Task.Run(async () => await LoadDataAsync());
+            //Task.Run(async () => await LoadDataAsync());
+            // Asynchrones Laden der Liste
+            // CHANGED: Startet LoadDataAsync auf UI-Thread (kein Task.Run), UI-Zugriffe bleiben sicher
+            _ = LoadDataAsync();
 
             InitToolMenu();
         }
@@ -49,15 +52,28 @@ namespace LvsScan.Portable.Views.StoreOut.Call
         /// <returns></returns>
         private async Task LoadDataAsync()
         {
-            ViewModel.IsBusy = true;
+            // CHANGED: UI-Änderungen (IsBusy) explizit auf MainThread setzen,
+            // GetCallList mit ConfigureAwait(false) aufrufen, damit die Arbeit im Hintergrund läuft.
+            Device.BeginInvokeOnMainThread(() => ViewModel.IsBusy = true);
             try
             {
-                await ViewModel.GetCallList();
+                await ViewModel.GetCallList().ConfigureAwait(false);
             }
             finally
             {
-                ViewModel.IsBusy = false;
+                Device.BeginInvokeOnMainThread(() => ViewModel.IsBusy = false);
             }
+
+            //-- alt
+            //ViewModel.IsBusy = true;
+            //try
+            //{
+            //    await ViewModel.GetCallList();
+            //}
+            //finally
+            //{
+            //    ViewModel.IsBusy = false;
+            //}
         }
         /// <summary>
         /// 
@@ -199,6 +215,7 @@ namespace LvsScan.Portable.Views.StoreOut.Call
             if (!result.Success)
             {
                 message = "Es ist ein Fehler beim Update der Abrufdaten aufgetreten!" + Environment.NewLine;
+                // DisplayAlert wird hier im UI-Kontext aufgerufen (Aufrufer ist UI-Thread)
                 await App.Current.MainPage.DisplayAlert(mesInfo, message, "OK");
             }
             else
@@ -242,84 +259,6 @@ namespace LvsScan.Portable.Views.StoreOut.Call
                 UpdateSelectedCallsToAusgang();
                 InitToolMenu();
             }
-
-            //if ((sender as StackLayout).AutomationId != null)
-            //{
-            //    int iTmp = 0;
-            //    string strTmp = (sender as StackLayout).AutomationId.ToString();
-            //    if (int.TryParse(strTmp, out iTmp))
-            //    {
-            //        //Check Call exist Selected list
-            //        Calls selectedCall = ViewModel.ListCallSelectionSource.FirstOrDefault(x => x.Id == iTmp);
-
-            //        if ((ViewModel.SelectedCall.Id == 0) && (selectedCall != null))
-            //        {
-            //            ViewModel.SelectedCall = selectedCall.Copy();
-            //            viewItemOffen.SelectedItems.Clear();
-            //            viewItemOffen.SelectedItems.Add(selectedCall);
-            //        }
-            //        else
-            //        {
-            //            if (viewItemOffen.SelectedItems.Contains(selectedCall))
-            //            {
-            //                viewItemOffen.SelectedItems.Remove(selectedCall);
-            //                if (viewItemOffen.SelectedItems.Count == 0)
-            //                {
-            //                    ViewModel.SelectedCall = new Calls();
-            //                }
-            //                else
-            //                {
-            //                    ViewModel.GetSubLists();
-            //                }
-            //            }
-            //            else
-            //            {
-            //                if (ViewModel.SelectedCall.Workspace.MaxCountArticleInStoreOut == 0)
-            //                {
-            //                    //keine Begrenzung der Anzahl
-            //                    viewItemOffen.SelectedItems.Add(selectedCall);
-            //                }
-            //                else
-            //                {
-            //                    if (viewItemOffen.SelectedItems.Count < ViewModel.SelectedCall.Workspace.MaxCountArticleInStoreOut)
-            //                    {
-            //                        viewItemOffen.SelectedItems.Add(selectedCall);
-            //                    }
-            //                    else
-            //                    {
-            //                        string mesInfo = "ACHTUNG";
-            //                        string message = "Die max. Artikelanzahl pro Ausgang ist erreicht! Erstellen Sie den Ausgang.";
-            //                        App.Current.MainPage.DisplayAlert(mesInfo, message, "OK");
-            //                    }
-            //                }
-            //            }
-            //        }
-
-            //        if (viewItemOffen.SelectedItems.Count == 0)
-            //        {
-            //            ViewModel.SelectedCallsToAusgang.Clear();
-            //        }
-            //        else
-            //        {
-            //            ViewModel.SelectedCallsToAusgang.Clear(); // Problem: Clear hinzugefügt, um Duplikate zu vermeiden
-            //            //foreach (Calls c in viewItemOffen.SelectedItems)
-            //            //{
-            //            //    ViewModel.SelectedCallsToAusgang.Add(c);
-            //            //}
-            //            //ViewModel.SelectedCallsToAusgang = new List<Calls>(viewItemOffen.SelectedItems.Cast<Calls>());
-            //            ViewModel.SelectedCallsToAusgang = viewItemOffen.SelectedItems
-            //                                                                        .Cast<Calls>()
-            //                                                                        .Distinct()
-            //                                                                        .ToList();
-
-            //        }
-            //        InitToolMenu();
-            //    }
-            //}
-            //else
-            //{
-
-            //}
         }
         private void HandleSelectionChange(Calls selectedCall)
         {
@@ -344,6 +283,7 @@ namespace LvsScan.Portable.Views.StoreOut.Call
             {
                 string mesInfo = "ACHTUNG";
                 string message = "Die max. Artikelanzahl pro Ausgang ist erreicht! Erstellen Sie den Ausgang.";
+                // CHANGED: DisplayAlert wird normalerweise von UI-Thread aufgerufen; Aufrufer hier ist UI-Thr
                 App.Current.MainPage.DisplayAlert(mesInfo, message, "OK");
             }
         }

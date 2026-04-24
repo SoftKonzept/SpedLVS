@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<IsTransformWebConfigDisabled>false</IsTransformWebConfigDisabled>
 	<LangVersion>preview</LangVersion>
-	<Version>$(VersionPrefix)26.04.23.1</Version>
+	<Version>$(VersionPrefix)26.04.24.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

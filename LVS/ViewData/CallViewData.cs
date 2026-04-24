@@ -499,34 +499,6 @@ namespace LVS.ViewData
             }
         }
 
-
-        /// <summary>
-        ///                 old
-        /// </summary>
-        /// <param name="myAction"></param>
-        /// <param name="myIdList"></param>
-        /// <returns></returns>
-
-        //public bool CreateLAusgang(string myAction, int myArbeitsbereichId, int myCallId, bool myChecked)
-        //public bool CreateLAusgang(string myAction, List<int> myIdList)
-        //{
-        //    sqlCreater_Call sqlCreater = new sqlCreater_Call();
-        //    string strSql = sqlCreater.sqlString_Call_GetOpenCallById(myIdList);
-
-        //    bool bReturn = false;
-
-        //    DataTable dtCall = clsSQLcon.ExecuteSQLWithTRANSACTIONGetDataTable(strSql, "ActionCall", "CallToLEingang", this.BenutzerID);
-        //    if(dtCall.Rows.Count > 0 )
-        //    {
-        //        this.System = new clsSystem();
-        //        this.GL_USER = new Globals._GL_USER();
-
-        //        InitAndSaveEingang(dtCall, myAction);
-        //        bReturn = true;
-        //    }
-        //    return bReturn;
-        //}
-
         public ResponseCall CreateLAusgang(string myAction, ResponseCall myResCall)
         {
             sqlCreater_Call sqlCreater = new sqlCreater_Call();
@@ -540,7 +512,7 @@ namespace LVS.ViewData
                 this.System = new clsSystem();
                 this.GL_USER = new Globals._GL_USER();
 
-                InitAndSaveEingang(dtCall, myAction, false);
+                InitAndSaveAusgang(dtCall, myAction, false);
                 myResCall.CreatedAusgang = CreatedAusgang.Copy();
                 myResCall.Success = (myResCall.CreatedAusgang.Id > 0);
                 if ((myResCall.Success) && (IsScanProcess))
@@ -560,7 +532,7 @@ namespace LVS.ViewData
             return myResCall;
         }
 
-        public void InitAndSaveEingang(DataTable myTable, string myAction, bool myIsSpedAction = true)
+        public void InitAndSaveAusgang(DataTable myTable, string myAction, bool myIsSpedAction = true)
         {
             try
             {
@@ -590,6 +562,22 @@ namespace LVS.ViewData
                             {
                                 tmpCall.ID = iAbrufID;
                                 tmpCall.Fill();
+
+                                //---  mr 2026_04_24
+                                if (this.System.AbBereich == null)
+                                {
+                                    this.System.AbBereich = new clsArbeitsbereiche(tmpCall.AbBereichID, this.BenutzerID);
+                                    if (this.System.AbBereich.Mandant == null)
+                                    {
+                                        this.System.AbBereich.Mandant = new clsMandanten(this.BenutzerID, (int)this.System.AbBereich.MandantenID);
+                                    }
+                                    if (this.System.Client == null)
+                                    {
+                                        this.System.Client = new clsClient();
+                                        this.System.Client.InitClass(InitValue.InitValue_Client.Value());
+                                        this.System.AbBereich.Mandant = new clsMandanten(this.BenutzerID, (int)this.System.AbBereich.MandantenID);
+                                    }
+                                }
                                 clsClient.ctrAuslagerung_CustomizeDefaulAusgangsdaten_Call(this.System, ref tmpCall);   
 
                                 clsArbeitsbereiche workspace = new clsArbeitsbereiche((int)tmpCall.AbBereichID, BenutzerID);

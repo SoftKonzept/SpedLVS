@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" android:versionCode="1" android:versionName="26.04.23.1" package="com.SoftKonzeptGmbH.LvsScan">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" android:versionCode="1" android:versionName="26.04.24.1" package="com.SoftKonzeptGmbH.LvsScan">
 	<queries>
 		<intent>
 			<action android:name="android.media.action.IMAGE_CAPTURE" />

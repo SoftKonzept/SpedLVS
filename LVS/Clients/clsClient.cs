@@ -1670,7 +1670,7 @@ namespace LVS
             //Beladeadresse
             decTmp = 0;
             decTmp = mySystem.AbBereich.Mandant.ADR_ID;
-            if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Count > 0)
+            if ((mySystem.Client.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID!=null) && (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.Count > 0))
             {
                 decTmp = 0;
                 mySystem.Client.DictArbeitsbereich_Ausgang_DefaultBeladeAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
@@ -1679,7 +1679,7 @@ namespace LVS
 
             //Versender
             decTmp = 0;
-            if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultVersenderAdrID.Count > 0)
+            if ((mySystem.Client.DictArbeitsbereich_Ausgang_DefaultVersenderAdrID != null) && (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultVersenderAdrID.Count > 0))
             {
                 decTmp = 0;
                 mySystem.Client.DictArbeitsbereich_Ausgang_DefaultVersenderAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
@@ -1688,7 +1688,7 @@ namespace LVS
 
             //Spedition
             decTmp = 0;
-            if (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.Count > 0)
+            if ((mySystem.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID != null) && (mySystem.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.Count > 0))
             {
                 decTmp = 0;
                 mySystem.Client.DictArbeitsbereich_Ausgang_DefaultSpedAdrID.TryGetValue(mySystem.AbBereich.ID, out decTmp);
