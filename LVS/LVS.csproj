@@ -16,6 +16,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <HotReloadEnabled>false</HotReloadEnabled>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,7 +29,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -1375,6 +1375,7 @@
     <Compile Include="ZUGFeRD\InvoiceToZUGFeRD_Head.cs" />
     <Compile Include="ZUGFeRD\MergeEInvoicewithPDF.cs" />
     <Compile Include="ZUGFeRD\TelerikReporting_CreateEmbeddedPdfFile.cs" />
+    <Compile Include="ZUGFeRD\TelerikReporting_FontRegistration.cs" />
     <Compile Include="ZUGFeRD\ZUGFeRDInvoice.cs" />
     <Compile Include="ZUGFeRD\ZUGFeRD_ErrorMail.cs" />
     <Compile Include="ZUGFeRD\ZUGFeRD_IsAvailable.cs" />

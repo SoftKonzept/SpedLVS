@@ -26,6 +26,8 @@ namespace LVS.ZUGFeRD
         {
             try
             {
+                TelerikReporting_FontRegistration.RegisterLiberationSansFonts();
+
                 LogMessages = new List<string>();
                 LogMessages.Add("-" + Environment.NewLine);
                 LogMessages.Add("---> Start TelerikReporting_CreateEmbeddedPdfFile     XXXXX");
@@ -53,14 +55,26 @@ namespace LVS.ZUGFeRD
                 //--- Font für PDF/A-3B erforderlich, sonst Fehler bei Export:
                 //---- "The document does not conform to the PDF/A-3B standard. The following problems were found:
                 //---- The document does not contain a font that can be used for rendering the text content."
-                FontBase fontBase;
-                //bool fontFound = FontsRepository.TryCreateFont(
-                //    new System.Windows.Media.FontFamily("Calibri"),
-                //    System.Windows.FontStyles.Normal,
-                //    System.Windows.FontWeights.Normal,
-                //    out fontBase);
+                
+                //FontBase fontBase;
+                //bool fontFound = FontsRepository.TryCreateFont(new Telerik.Documents.Core.Fonts.FontFamily("Calibri"), FontStyles.Normal, FontWeights.Normal, out fontBase);
 
-                bool fontFound = FontsRepository.TryCreateFont(new Telerik.Documents.Core.Fonts.FontFamily("Calibri"), FontStyles.Normal, FontWeights.Normal, out fontBase);
+                //FontBase fontBase;
+                //bool fontFound = FontsRepository.TryCreateFont(new Telerik.Documents.Core.Fonts.FontFamily("Calibri"), FontStyles.Normal, FontWeights.Normal, out fontBase);
+               
+                FontBase fontBase;
+                bool fontFound = FontsRepository.TryCreateFont(
+                                                                new Telerik.Documents.Core.Fonts.FontFamily("Liberation Sans"),
+                                                                FontStyles.Normal,
+                                                                FontWeights.Normal,
+                                                                out fontBase);
+                if (!fontFound)
+                {
+                    LogMessages.Add("------------" + Environment.NewLine);
+                    LogMessages.Add("---> Start TelerikReporting_CreateEmbeddedPdfFile     XXXXX");
+                    LogMessages.Add("     |- Z 75 - Liberation Sans konnte nicht im FontsRepository gefunden werden.");
+                    throw new InvalidOperationException("Liberation Sans konnte nicht im FontsRepository gefunden werden.");
+                }
 
                 using (RadFixedDocumentEditor editor = new RadFixedDocumentEditor(pdfDoc))
                 {
