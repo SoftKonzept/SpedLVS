@@ -56,12 +56,6 @@ namespace LVS.ZUGFeRD
                 //---- "The document does not conform to the PDF/A-3B standard. The following problems were found:
                 //---- The document does not contain a font that can be used for rendering the text content."
                 
-                //FontBase fontBase;
-                //bool fontFound = FontsRepository.TryCreateFont(new Telerik.Documents.Core.Fonts.FontFamily("Calibri"), FontStyles.Normal, FontWeights.Normal, out fontBase);
-
-                //FontBase fontBase;
-                //bool fontFound = FontsRepository.TryCreateFont(new Telerik.Documents.Core.Fonts.FontFamily("Calibri"), FontStyles.Normal, FontWeights.Normal, out fontBase);
-               
                 FontBase fontBase;
                 bool fontFound = FontsRepository.TryCreateFont(
                                                                 new Telerik.Documents.Core.Fonts.FontFamily("Liberation Sans"),
@@ -85,7 +79,7 @@ namespace LVS.ZUGFeRD
                         editor.CharacterProperties.Font = fontBase;
                     }
                     editor.CharacterProperties.FontSize = 12; 
-                    editor.InsertRun("PDF/A-3B Compliant Invoice");
+                    //editor.InsertRun("PDF/A-3B Compliant Invoice");
                 }
                 byte[] bytes = File.ReadAllBytes(xmlFilePath);
 

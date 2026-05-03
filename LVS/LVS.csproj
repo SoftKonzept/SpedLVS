@@ -1435,6 +1435,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Fonts\liberation_sans\AUTHORS" />
+    <None Include="Fonts\liberation_sans\ChangeLog" />
+    <None Include="Fonts\liberation_sans\COPYING" />
+    <EmbeddedResource Include="Fonts\liberation_sans\LiberationSans-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fonts\liberation_sans\LiberationSans-BoldItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fonts\liberation_sans\LiberationSans-Italic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fonts\liberation_sans\LiberationSans-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="Fonts\liberation_sans\README" />
+    <None Include="LiberationSans-Bold.ttf" />
+    <None Include="LiberationSans-BoldItalic.ttf" />
+    <None Include="LiberationSans-Italic.ttf" />
+    <None Include="LiberationSans-Regular.ttf" />
     <None Include="packages.config" />
     <None Include="Resources\comtec.png" />
   </ItemGroup>
@@ -1456,12 +1476,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ASN\ASNArtFieldAssignmentFunctions\" />
+    <Folder Include="Fonts\liberation_sans\NewFolder1\" />
     <Folder Include="InitValueLvsMobileAPI\" />
+    <Folder Include="NewFolder1\" />
+    <Folder Include="NewFolder2\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Fonts\liberation_sans\License.txt" />
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -1496,6 +1520,18 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <!-- alle TTFs im Fonts-Ordner ins Ausgabe-Verzeichnis kopieren -->
+    <Content Include="Fonts\liberation_sans\LiberationSans-BoldItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\liberation_sans\LiberationSans-Italic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\liberation_sans\LiberationSans-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -1504,6 +1540,14 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
     <Error Condition="!Exists('..\packages\SixLabors.ImageSharp.3.1.12\build\SixLabors.ImageSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SixLabors.ImageSharp.3.1.12\build\SixLabors.ImageSharp.props'))" />
+  </Target>
+  <!-- optional: stelle sicher, dass sie im Unterordner "Fonts" liegen -->
+  <Target Name="CopyFontsToOutput" AfterTargets="Build">
+    <ItemGroup>
+      <_FontFiles Include="$(ProjectDir)Fonts\**\*.ttf" />
+    </ItemGroup>
+    <MakeDir Directories="$(OutputPath)Fonts" Condition="!Exists('$(OutputPath)Fonts')" />
+    <Copy SourceFiles="@(_FontFiles)" DestinationFolder="$(OutputPath)Fonts\" SkipUnchangedFiles="true" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
