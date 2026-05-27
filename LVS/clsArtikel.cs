@@ -484,6 +484,8 @@ namespace LVS
             }
         }
 
+        public string Lfs { get; set; } = string.Empty;
+
         public DateTime ScanIn { get; set; }
         public int ScanInUser { get; set; } = 0;
         public DateTime ScanOut { get; set; }

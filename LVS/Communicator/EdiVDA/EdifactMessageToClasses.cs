@@ -81,6 +81,12 @@ namespace LVS.Communicator.EdiVDA
                     {
                         string LfsEdiValueStr = asn.ListEdiMessageValue.FirstOrDefault(value => value.StartsWith(globalLfs[0].ASNField));
                         eingang.LfsNr = GetEdiValue(LfsEdiValueStr, string.Empty);
+                        foreach (var item in dictArticle)
+                        {
+                            var art = item.Key as Articles;
+                            art.Lfs = eingang.LfsNr;
+                            item.Value.Add(LfsEdiValueStr);
+                        }
                     }
 
                     eingangViewData = new EingangViewData(eingang, BenutzerId);
@@ -97,6 +103,8 @@ namespace LVS.Communicator.EdiVDA
                         {
                             var list = item.Value as List<string>;
                             var art = item.Key as Articles;
+
+
                             article = new Articles();
                             article = art.Copy();
                             SetAssignmentToArticle(list);
@@ -477,6 +485,15 @@ namespace LVS.Communicator.EdiVDA
                                 break;
                         }
                     }
+
+                    //if ((!pair.Value.CopyToField.Equals(string.Empty)) && (pair.Value.CopyToField.Length > 0))
+                    //{
+
+                    //    //--- AsnArtFieldAssignment Copy to Field
+                    //    ArticleViewData articleViewData = new ArticleViewData(article, BenutzerId);
+                    //    articleViewData.CopyPropertyValueToProperty(pair.Value.ArtField, pair.Value.CopyToField);
+                    //    article = articleViewData.Artikel.Copy();
+                    //}
                 }
 
             }

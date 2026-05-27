@@ -113,6 +113,7 @@ namespace LVS
 
                 articles.Werk = myArt.Werk;
                 articles.Werksnummer = myArt.Werksnummer;
+                articles.Lfs = myArt.Lfs;
             }
             catch (Exception ex)
             {
@@ -231,6 +232,7 @@ namespace LVS
 
                 articles.Werk = myArt.Werk;
                 articles.Werksnummer = myArt.Werksnummer;
+                articles.Lfs = myArt.Lfs;
             }
             catch (Exception ex)
             {

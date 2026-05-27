@@ -133,13 +133,6 @@ namespace LVS.ViewData
                     (CustomProcess.Id > 0)
                )
             {
-
-                ////-- Ermittlen der Ausnahmen CustomerProcessException
-                //CustomProcessExceptions cpException = cpVD.CustomProcess.ListCustomProcessExceptions.FirstOrDefault(x => x.GoodsTypeId == art.GArtID);
-                //bool bExistProcessException = ((cpException is CustomProcessExceptions) && (cpException.Id > 0));
-
-
-
                 switch (CustomProcess.ProcessName)
                 {
                     case constValue_CustomProcesses.const_Process_Novelis_ArticleAccessByCertifacte:

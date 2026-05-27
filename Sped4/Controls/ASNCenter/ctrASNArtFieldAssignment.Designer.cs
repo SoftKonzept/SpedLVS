@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition9 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition10 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
             this.scMain = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.dgvASNArtFieldAssignment = new Telerik.WinControls.UI.RadGridView();
@@ -41,6 +41,8 @@
             this.btnList_Refresh = new Telerik.WinControls.UI.RadMenuItem();
             this.btnList_Add = new Telerik.WinControls.UI.RadMenuItem();
             this.btnAddShape = new Telerik.WinControls.UI.RadMenuButtonItem();
+            this.btnExportSettings = new Telerik.WinControls.UI.RadMenuItem();
+            this.btnImportAssignment = new Telerik.WinControls.UI.RadMenuItem();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.scEditAssignment = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel3 = new Telerik.WinControls.UI.SplitPanel();
@@ -98,8 +100,6 @@
             this.radMenuItem2 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnExportSettings = new Telerik.WinControls.UI.RadMenuItem();
-            this.btnImportAssignment = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
             this.scMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -185,7 +185,7 @@
             this.dgvASNArtFieldAssignment.MasterTemplate.EnableFiltering = true;
             this.dgvASNArtFieldAssignment.MasterTemplate.ShowFilteringRow = false;
             this.dgvASNArtFieldAssignment.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvASNArtFieldAssignment.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.dgvASNArtFieldAssignment.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.dgvASNArtFieldAssignment.Name = "dgvASNArtFieldAssignment";
             this.dgvASNArtFieldAssignment.ReadOnly = true;
             this.dgvASNArtFieldAssignment.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -250,6 +250,20 @@
             this.btnAddShape.UseCompatibleTextRendering = false;
             this.btnAddShape.Click += new System.EventHandler(this.btnAddShape_Click);
             ((Telerik.WinControls.UI.RadButtonElement)(this.btnAddShape.GetChildAt(2))).ToolTipText = "Meldungsschema von Adr-Referenz hinterlegen";
+            // 
+            // btnExportSettings
+            // 
+            this.btnExportSettings.Image = global::Sped4.Properties.Resources.box_out_24x24;
+            this.btnExportSettings.Name = "btnExportSettings";
+            this.btnExportSettings.Text = "";
+            this.btnExportSettings.Click += new System.EventHandler(this.btnExportSettings_Click);
+            // 
+            // btnImportAssignment
+            // 
+            this.btnImportAssignment.Image = global::Sped4.Properties.Resources.box_into_24x24;
+            this.btnImportAssignment.Name = "btnImportAssignment";
+            this.btnImportAssignment.Text = "";
+            this.btnImportAssignment.Click += new System.EventHandler(this.btnImportAssignment_Click);
             // 
             // splitPanel2
             // 
@@ -561,6 +575,7 @@
             this.comboGlobalFieldVars.Name = "comboGlobalFieldVars";
             this.comboGlobalFieldVars.Size = new System.Drawing.Size(209, 21);
             this.comboGlobalFieldVars.TabIndex = 244;
+            this.comboGlobalFieldVars.SelectedIndexChanged += new System.EventHandler(this.comboGlobalFieldVars_SelectedIndexChanged);
             // 
             // lListGlFieldVar
             // 
@@ -735,7 +750,7 @@
             this.dgvVDAFields.MasterTemplate.EnableFiltering = true;
             this.dgvVDAFields.MasterTemplate.ShowFilteringRow = false;
             this.dgvVDAFields.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvVDAFields.MasterTemplate.ViewDefinition = tableViewDefinition8;
+            this.dgvVDAFields.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.dgvVDAFields.Name = "dgvVDAFields";
             this.dgvVDAFields.ReadOnly = true;
             this.dgvVDAFields.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -776,7 +791,7 @@
             this.dgvEDIFACTFields.MasterTemplate.EnableFiltering = true;
             this.dgvEDIFACTFields.MasterTemplate.ShowFilteringRow = false;
             this.dgvEDIFACTFields.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvEDIFACTFields.MasterTemplate.ViewDefinition = tableViewDefinition9;
+            this.dgvEDIFACTFields.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.dgvEDIFACTFields.Name = "dgvEDIFACTFields";
             this.dgvEDIFACTFields.ReadOnly = true;
             this.dgvEDIFACTFields.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -808,7 +823,7 @@
             // 
             // 
             // 
-            this.dgvSubAsnField.MasterTemplate.ViewDefinition = tableViewDefinition10;
+            this.dgvSubAsnField.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.dgvSubAsnField.Name = "dgvSubAsnField";
             this.dgvSubAsnField.ReadOnly = true;
             this.dgvSubAsnField.Size = new System.Drawing.Size(273, 288);
@@ -867,7 +882,7 @@
             this.dgvArtikelFunction.MasterTemplate.EnableFiltering = true;
             this.dgvArtikelFunction.MasterTemplate.ShowFilteringRow = false;
             this.dgvArtikelFunction.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvArtikelFunction.MasterTemplate.ViewDefinition = tableViewDefinition7;
+            this.dgvArtikelFunction.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.dgvArtikelFunction.Name = "dgvArtikelFunction";
             this.dgvArtikelFunction.ReadOnly = true;
             this.dgvArtikelFunction.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -917,20 +932,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // btnExportSettings
-            // 
-            this.btnExportSettings.Image = global::Sped4.Properties.Resources.box_out_24x24;
-            this.btnExportSettings.Name = "btnExportSettings";
-            this.btnExportSettings.Text = "";
-            this.btnExportSettings.Click += new System.EventHandler(this.btnExportSettings_Click);
-            // 
-            // btnImportAssignment
-            // 
-            this.btnImportAssignment.Image = global::Sped4.Properties.Resources.box_into_24x24;
-            this.btnImportAssignment.Name = "btnImportAssignment";
-            this.btnImportAssignment.Text = "";
-            this.btnImportAssignment.Click += new System.EventHandler(this.btnImportAssignment_Click);
             // 
             // ctrASNArtFieldAssignment
             // 

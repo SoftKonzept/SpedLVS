@@ -7,6 +7,7 @@ namespace LVS.ASN.GlobalValues
         public static List<string> ListVar()
         {
             List<string> list = new List<string>();
+            list.Add("---NotSet---");
             list.Add(GlobalFieldVal_ArticleCountInEdi.const_GlobalVar_ArticleCountInEdi);
             list.Add(GlobalFieldVal_DeliveryNote.const_GlobalVar_DeliveryNote);
             return list;

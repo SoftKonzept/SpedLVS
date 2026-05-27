@@ -266,6 +266,11 @@ namespace LVS.Views
                 //{
                 //    return string.Empty;
                 //}
+                //if((article.Lfs.Equals(string.Empty)) && (article.Lfs.Length<1))
+                //{
+                //    article.Lfs = eingang.LfsNr;
+                //}
+
                 return article.Lfs;
             }
         }

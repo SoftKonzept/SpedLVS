@@ -704,11 +704,15 @@ namespace Sped4
             strBestandZeitraum = string.Empty;
             bool openExportFile = false;
             FileDateForMail = DateTime.Now;
+
+            string exportPath = string.Empty; // <--- Neuer, konsistenter Pfad-Container
+
             if (this._ctrMenu._frmMain.system.Client.Modul.Excel_UseOldExport)
             {
                 FileName = FileDateForMail.ToString("yyyy_MM_dd_HHmmss") + const_FileName + ".xls";
                 saveFileDialog.InitialDirectory = AttachmentPath;
-                saveFileDialog.FileName = AttachmentPath + "\\" + FileName;
+                //saveFileDialog.FileName = AttachmentPath + "\\" + FileName;
+                saveFileDialog.FileName = FileName; // nur Dateiname, InitialDirectory sorgt für Pfadvorschlag
                 saveFileDialog.ShowDialog();
                 FileName = saveFileDialog.FileName;
 
@@ -741,25 +745,25 @@ namespace Sped4
                 {
                     txt = "Stichtag: " + dtpVon.Value.ToShortDateString();
                 }
-                //exPort.ListHeaderText.Add(txt);
-                //exPort.ListHeaderText.Add(this.cbBestandsart.Text);
                 strBestandZeitraum = txt;
                 exPort.Telerik_RunExportToExcelML(ref this.dgv, strFileName, ref openExportFile, true, "Bestand");
                 //exPort.Telerik_RunExportToExcelML(this.dgv, strFileName, ref openExportFile, true, "Bestand");
                 if (openExportFile)
                 {
-                    try
-                    {
-                        System.Diagnostics.Process.Start(strFileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        clsError error = new clsError();
-                        error._GL_User = this.GL_User;
-                        error.Code = clsError.code1_501;
-                        error.Aktion = "Bestand - Excelexport öffnen";
-                        error.exceptText = ex.ToString();
-                    }
+                    exportPath = strFileName;
+
+                    //try
+                    //{
+                    //    System.Diagnostics.Process.Start(strFileName);
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    clsError error = new clsError();
+                    //    error._GL_User = this.GL_User;
+                    //    error.Code = clsError.code1_501;
+                    //    error.Aktion = "Bestand - Excelexport öffnen";
+                    //    error.exceptText = ex.ToString();
+                    //}
                 }
             }
             else
@@ -805,11 +809,11 @@ namespace Sped4
                 }
                 //"AND b.Mandant=" + MandantenID + " " +
                 strSql += " AND b.DirectDelivery=0 AND b.AbBereich=" + this._ctrMenu._frmMain.GL_System.sys_ArbeitsbereichID + " " +
-      //"AND (c.Datum between '" + BestandVon.Date.ToShortDateString() + "' AND '" + DateTime.Now.Date.AddDays(1).ToShortDateString() + "') " +
-      //"AND (c.Datum between '" + BestandVon.Date.AddDays(1).ToShortDateString() + "' AND '" + DateTime.Now.Date.AddDays(1).ToShortDateString() + "') " +         29.10.2014
-      " AND c.Datum>='" + dtpVon.Value.Date.AddDays(1).ToShortDateString() + "' " +
-      //"AND b.Date <'" + BestandVon.Date.ToShortDateString() + "' " ;
-      "AND b.Date <'" + dtpVon.Value.Date.AddDays(1).ToShortDateString() + "' ";
+              //"AND (c.Datum between '" + BestandVon.Date.ToShortDateString() + "' AND '" + DateTime.Now.Date.AddDays(1).ToShortDateString() + "') " +
+              //"AND (c.Datum between '" + BestandVon.Date.AddDays(1).ToShortDateString() + "' AND '" + DateTime.Now.Date.AddDays(1).ToShortDateString() + "') " +         29.10.2014
+              " AND c.Datum>='" + dtpVon.Value.Date.AddDays(1).ToShortDateString() + "' " +
+              //"AND b.Date <'" + BestandVon.Date.ToShortDateString() + "' " ;
+              "AND b.Date <'" + dtpVon.Value.Date.AddDays(1).ToShortDateString() + "' ";
 
                 strSql = strSql + ")";
                 DataTable dtGewBestand = new DataTable("Bestand");
@@ -817,6 +821,9 @@ namespace Sped4
                 LVS.clsExcel Excel = new clsExcel();
                 string FileName = "BestandKW" + (Functions.GetCalendarWeek(DateTime.Now)) + "_" + ADR.ViewID;
                 string FilePath = Excel.ExportDataTableToWorksheet(dtGewBestand, AttachmentPath + "\\" + FileName);
+                // <<ÄNDERUNG_START: exportPath setzen auch in diesem Zweig
+                exportPath = FilePath; // <<ÄNDERUNG
+
                 openExportFile = true;
             }
 
@@ -824,7 +831,22 @@ namespace Sped4
             {
                 try
                 {
-                    System.Diagnostics.Process.Start(FileName);
+                    //if (!string.IsNullOrEmpty(exportPath))
+                    //{
+                    //    System.Diagnostics.Process.Start(exportPath); // <<ÄNDERUNG
+                    //}
+                    if (!string.IsNullOrEmpty(exportPath) && System.IO.File.Exists(exportPath))
+                    {
+                        System.Diagnostics.Process.Start(exportPath);
+                    }
+                    else
+                    {
+                        // Log + Info
+                        string message = $"Die Exportdatei konnte nicht gefunden werden: {exportPath}";
+                        clsMessages.Allgemein_ERRORTextShow(message);
+                    }
+
+                    //System.Diagnostics.Process.Start(FileName);
                 }
                 catch (Exception ex)
                 {

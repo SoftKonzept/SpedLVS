@@ -19,6 +19,7 @@ namespace Sped4.Controls.ASNCenter
     public partial class ctrASNArtFieldAssignment : UserControl
     {
         public int SearchButton = 0;
+        private bool _suspendControlEvents = false;
         public clsASNWizzard asnWizz;
         public ctrMenu _ctrMenu;
         //string LastSelectedTextBox = string.Empty;
@@ -304,8 +305,35 @@ namespace Sped4.Controls.ASNCenter
         /// <summary>
         /// 
         /// </summary>
+        //private void SetASNArtFieldAssignmentClsToCtr()
+        //{
+        //    tbSenderADRShort.Text = this.asnWizz.ASNArtFieldAssign.AdrSender.ADRStringShort;
+        //    tbSenderMatchCode.Text = this.asnWizz.ASNArtFieldAssign.AdrSender.ViewID;
+        //    tbReceiverAdrShort.Text = this.asnWizz.ASNArtFieldAssign.AdrReceiver.ADRStringShort;
+        //    tbReceiverMatchCode.Text = this.asnWizz.ASNArtFieldAssign.AdrReceiver.ViewID;
+        //    tbASNField.Text = this.asnWizz.ASNArtFieldAssign.ASNField;
+        //    tbArtikelField.Text = this.asnWizz.ASNArtFieldAssign.ArtField;
+        //    tbCopyToField.Text = this.asnWizz.ASNArtFieldAssign.CopyToField;
+        //    tbFormatFunction.Text = this.asnWizz.ASNArtFieldAssign.FormatFunction;
+        //    tbDefaultValue.Text = this.asnWizz.ASNArtFieldAssign.DefValue;
+        //    cbIsDefaultValue.Checked = this.asnWizz.ASNArtFieldAssign.IsDefValue;
+        //    Functions.SetComboToSelecetedValue(ref comboArbeitsbereich, this.asnWizz.ASNArtFieldAssign.AbBereichID.ToString());
+        //    lASNArtFieldId.Text = "ID: " + this.asnWizz.ASNArtFieldAssign.ID.ToString("#0");
+        //    tbGlobalFieldVar.Text = string.Empty;
+        //    if (this.asnWizz.ASNArtFieldAssign.GlobalFieldVar != null)
+        //    {
+        //        tbGlobalFieldVar.Text = this.asnWizz.ASNArtFieldAssign.GlobalFieldVar.ToString();
+        //    }
+        //    Functions.SetComboToSelecetedValue(ref comboGlobalFieldVars, this.asnWizz.ASNArtFieldAssign.GlobalFieldVar.ToString());
+        //    cbIsGlobalFieldVar.Checked = this.asnWizz.ASNArtFieldAssign.IsGlobalFieldVar;
+        //    tbSubAsnField.Text = this.asnWizz.ASNArtFieldAssign.SubASNField;
+        //}
+
+        // Ersetzter Set-Method: unterdrückt Events und stellt danach den korrekten UI-Zustand her
         private void SetASNArtFieldAssignmentClsToCtr()
         {
+            _suspendControlEvents = true;
+
             tbSenderADRShort.Text = this.asnWizz.ASNArtFieldAssign.AdrSender.ADRStringShort;
             tbSenderMatchCode.Text = this.asnWizz.ASNArtFieldAssign.AdrSender.ViewID;
             tbReceiverAdrShort.Text = this.asnWizz.ASNArtFieldAssign.AdrReceiver.ADRStringShort;
@@ -318,14 +346,42 @@ namespace Sped4.Controls.ASNCenter
             cbIsDefaultValue.Checked = this.asnWizz.ASNArtFieldAssign.IsDefValue;
             Functions.SetComboToSelecetedValue(ref comboArbeitsbereich, this.asnWizz.ASNArtFieldAssign.AbBereichID.ToString());
             lASNArtFieldId.Text = "ID: " + this.asnWizz.ASNArtFieldAssign.ID.ToString("#0");
+
+            // GlobalFieldVar vorbereiten
             tbGlobalFieldVar.Text = string.Empty;
             if (this.asnWizz.ASNArtFieldAssign.GlobalFieldVar != null)
             {
                 tbGlobalFieldVar.Text = this.asnWizz.ASNArtFieldAssign.GlobalFieldVar.ToString();
             }
-            Functions.SetComboToSelecetedValue(ref comboGlobalFieldVars, this.asnWizz.ASNArtFieldAssign.AbBereichID.ToString());
+            // Setze Combo basierend auf gespeicherter GlobalFieldVar (wenn vorhanden)
+            Functions.SetComboToSelecetedValue(ref comboGlobalFieldVars, tbGlobalFieldVar.Text);
+
+            // Checkbox setzen (Event wird durch _suspendControlEvents unterdrückt)
             cbIsGlobalFieldVar.Checked = this.asnWizz.ASNArtFieldAssign.IsGlobalFieldVar;
+
             tbSubAsnField.Text = this.asnWizz.ASNArtFieldAssign.SubASNField;
+
+            _suspendControlEvents = false;
+
+            // Nach dem Aufheben der Sperre die gewünschte UI-Darstellung anwenden (ohne das Toggle-Event auszulösen)
+            //if (cbIsGlobalFieldVar.Checked)
+            //{
+            //    // Verhalten entspricht dem Benutzer-Checked-Fall, aber wir verwenden die bereits gesetzte Comboselektion
+            //    tbASNField.Text = string.Empty;
+            //    tbArtikelField.Text = string.Empty;
+            //    tbCopyToField.Text = string.Empty;
+            //    tbFormatFunction.Text = string.Empty;
+            //    cbIsDefaultValue.Checked = false;
+            //    tbDefaultValue.Text = string.Empty;
+
+            //    if (comboGlobalFieldVars.SelectedIndex >= 0)
+            //        tbGlobalFieldVar.Text = comboGlobalFieldVars.Text.Trim();
+            //}
+            //else
+            //{
+            //    // falls nicht global, sicherstellen, dass die Anzeige der Global-Felder leer ist
+            //    // (combo wurde bereits auf gespeicherten Wert oder -1 gesetzt)
+            //}
         }
         /// <summary>
         /// 
@@ -622,23 +678,48 @@ namespace Sped4.Controls.ASNCenter
             this.IsReceiverSearch = false;
         }
 
+        //private void cbIsGlobalFieldVar_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
+        //{
+        //    if (((RadCheckBox)sender).Checked)
+        //    {
+        //        tbASNField.Text = string.Empty;
+        //        tbArtikelField.Text = string.Empty;
+        //        tbCopyToField.Text = string.Empty;
+        //        tbFormatFunction.Text = string.Empty;
+        //        cbIsDefaultValue.Checked = false;
+        //        tbDefaultValue.Text = string.Empty;
+
+        //        // Nur setzen, wenn noch keine Auswahl vorhanden ist (vermeidet Überschreiben eines gesetzten Wertes)
+        //        if (comboGlobalFieldVars.SelectedIndex == -1 && comboGlobalFieldVars.Items.Count > 0)
+        //            comboGlobalFieldVars.SelectedIndex = 0;
+
+        //        if (comboGlobalFieldVars.SelectedIndex >= 0)
+        //            tbGlobalFieldVar.Text = comboGlobalFieldVars.Text.Trim();
+        //    }
+        //    else
+        //    {
+        //        comboGlobalFieldVars.SelectedIndex = -1;
+        //        tbGlobalFieldVar.Text = string.Empty;
+        //    }
+        //}
+
+        // Ersetzter Toggle-Handler: berücksichtigt _suspendControlEvents und überschreibt die Combobox nicht unnötig
         private void cbIsGlobalFieldVar_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
         {
-            if (((RadCheckBox)sender).Checked)
-            {
-                tbASNField.Text = string.Empty;
-                tbArtikelField.Text = string.Empty;
-                tbCopyToField.Text = string.Empty;
-                tbFormatFunction.Text = string.Empty;
-                cbIsDefaultValue.Checked = false;
-                tbDefaultValue.Text = string.Empty;
+            if (_suspendControlEvents) return;
 
-                comboGlobalFieldVars.SelectedIndex = 0;
-                tbGlobalFieldVar.Text = comboGlobalFieldVars.Text.Trim();
+            var chk = (Telerik.WinControls.UI.RadCheckBox)sender;
+            if (chk.Checked)
+            {
+                // Wenn eine Auswahl in der Combo vorhanden ist, übernehme sie
+                if (comboGlobalFieldVars.SelectedIndex >= 0)
+                    tbGlobalFieldVar.Text = comboGlobalFieldVars.Text.Trim();
+                else
+                    tbGlobalFieldVar.Text = string.Empty;
             }
             else
             {
-                comboGlobalFieldVars.SelectedIndex = -1;
+                // Checkbox deaktiviert -> Textfeld leeren
                 tbGlobalFieldVar.Text = string.Empty;
             }
         }
@@ -756,6 +837,23 @@ namespace Sped4.Controls.ASNCenter
                 clsMessages.Allgemein_InfoTextShow(Message);
             }
             InitDgvASNArtFieldAssignment();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboGlobalFieldVars_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_suspendControlEvents) return;
+
+            if (cbIsGlobalFieldVar.Checked)
+            {
+                if (comboGlobalFieldVars.SelectedIndex >= 0)
+                    tbGlobalFieldVar.Text = comboGlobalFieldVars.Text.Trim();
+                else
+                    tbGlobalFieldVar.Text = string.Empty;
+            }
         }
     }
 }

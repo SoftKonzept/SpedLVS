@@ -21,15 +21,15 @@ namespace LVS.sqlStatementCreater
             get
             {
                 string sql = string.Empty;
-
+            
                 sql += "SELECT Count(ID) as Anzahl FROM EdiZQMQalityXml ";
                 sql += "where ";
                 sql += "ArticleId in (" + string.Join(",", eingangVD.ListArticleInEingang.Select(x => x.Id).ToList()) + ") ";
                 sql += "and Produktionsnummer in (";
-                sql += "SELECT Produktionsnummer FROM " + ClientMatchcode + "_LVS.dbo.Artikel where ID in (" + string.Join(",", eingangVD.ListArticleInEingang.Select(x => x.Id).ToList()) + ")) ";
+                sql += "SELECT Produktionsnummer FROM " + ClientMatchcode.Replace("_","") + "_LVS.dbo.Artikel where ID in (" + string.Join(",", eingangVD.ListArticleInEingang.Select(x => x.Id).ToList()) + ")) ";
                 sql += "and LfsNr in (";
                 sql += "SELECT LfsNr FROM SZG_LVS.dbo.LEingang where ID in (";
-                sql += "SELECT LEingangTableID FROM " + ClientMatchcode + "_LVS.dbo.Artikel where ID in (" + string.Join(",", eingangVD.ListArticleInEingang.Select(x => x.Id).ToList()) + "))) ";
+                sql += "SELECT LEingangTableID FROM " + ClientMatchcode.Replace("_", "") + "_LVS.dbo.Artikel where ID in (" + string.Join(",", eingangVD.ListArticleInEingang.Select(x => x.Id).ToList()) + "))) ";
 
                 return sql;
             }
