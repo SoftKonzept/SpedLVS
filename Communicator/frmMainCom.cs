@@ -1850,6 +1850,7 @@ namespace Communicator
                             string strSearchDatei = Jobs.SearchFileName;
                             //Fremddateien verschieben
                             string[] aFiles = Directory.GetFiles(Jobs.PathDirectory, strSearchDatei + "*");
+                            
                             foreach (string strSourceFilePathAndName in aFiles)
                             {
                                 Thread.Sleep(1000);

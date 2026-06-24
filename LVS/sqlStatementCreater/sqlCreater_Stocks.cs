@@ -374,7 +374,10 @@ namespace LVS.sqlStatementCreater
                 return sqlReturn;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static string Sql_Main_Communicator()
         {
             string sqlReturn = string.Empty;

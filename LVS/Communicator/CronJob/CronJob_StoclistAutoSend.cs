@@ -35,10 +35,11 @@ namespace LVS.Communicator.CronJob
                     decimal AdrID = (decimal)ListAdrIDExcel[i];
 
                     LVS.ViewData.AddressViewData adrVD = new LVS.ViewData.AddressViewData(myCronJob.AdrId, 1);
+
                     clsMailingList Mailinglist = new clsMailingList();
-                    //Mailinglist.InitClass(this.GL_User, this.GLSystem, AdrID);
                     Mailinglist.InitClass(GLUser, GLSystem, myCronJob.AdrId);
                     Mailinglist.FillListMailAdressenForAutoBestand(AdrID, CronJobViewData.const_autoBestandExcel);
+
                     if (Mailinglist.ListMailadressen.Count > 0)
                     {
                         //--- mr muss überarbeitet werden
@@ -75,6 +76,7 @@ namespace LVS.Communicator.CronJob
                                 break;
                         }
                         FileName += "_KD_" + adrVD.Address.ViewId + "_" + adrVD.Address.Name1;
+
                         helper_IOFile.CheckPath(AttachmentPath);
                         string FilePath = Path.Combine(AttachmentPath, FileName + ".xlsx");
                         LVS.NugetPac.Epplus_Excel export = new NugetPac.Epplus_Excel(dtGewBestand, FilePath);

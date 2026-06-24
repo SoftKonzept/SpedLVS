@@ -2399,6 +2399,12 @@ namespace LVS
                     strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
                     break;
 
+                case clsEdiVDAValueAlias.const_cFunction_TKS_713F03LfsNr:
+                    strTmp = string.Empty;
+                    strTmp = TKS_F13F03_LfsNo.Execute(asnTyp, this.Lager.Artikel);
+                    strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
+                    break;
+
                 case clsEdiVDAValueAlias.const_cFunction_VOEST_EA_SLB:
                     strTmp = string.Empty;
                     strTmp = VOEST_EA_SLB.Execute(asnTyp, this.Lager);

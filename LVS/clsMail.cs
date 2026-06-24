@@ -325,36 +325,52 @@ namespace LVS
             try
             {
                 this.MailFrom = this.system.Client.Modul.Mail_Noreply_MailAdress;
-                //Check Mailangaben
-                if (
-                    //(this.SMTPUser != string.Empty) &
-                    //(this.SMTPServer != string.Empty) &
-                    //(this.SMTPPasswort != string.Empty) &
-                    //(this.MailFrom != string.Empty)
-                    (this.system.Client.Modul.Mail_Noreply_SMTPUser != string.Empty) &
-                    (this.system.Client.Modul.Mail_Noreply_SMTPServer != string.Empty) &
-                    (this.system.Client.Modul.Mail_Noreply_SMTPPasswort != string.Empty) &
-                    (this.system.Client.Modul.Mail_Noreply_SMTPPort > 0) &
-                    (this.MailFrom != string.Empty)
-                  )
-                {
-                    this.MailFrom = this.system.Client.Modul.Mail_Noreply_MailAdress;
-                    this.SMTPUser = this.system.Client.Modul.Mail_Noreply_SMTPUser;
-                    this.SMTPServer = this.system.Client.Modul.Mail_Noreply_SMTPServer;
-                    this.SMTPPasswort = this.system.Client.Modul.Mail_Noreply_SMTPPasswort;
-                    this.SMTPPort = this.system.Client.Modul.Mail_Noreply_SMTPPort;
-                    this.SMTPSsl = this.system.Client.Modul.Mail_Noreply_SMTPSSL;
 
-                    MailToSend = new MailMessage();
-                    //Absender
-                    if (this.system.DebugModeCOM)
+                bool bSenderDataOK = false;
+                MailToSend = new MailMessage();
+                if (this.system.DebugModeCOM)
+                {
+                    SetLVSConstMailConfig();
+                    MailToSend.From = new MailAddress(clsSystem.const_MailAdress);
+
+                    bSenderDataOK = true;
+                }
+                else
+                {
+                    if (
+                            (this.system.Client.Modul.Mail_Noreply_SMTPUser != string.Empty) &
+                            (this.system.Client.Modul.Mail_Noreply_SMTPServer != string.Empty) &
+                            (this.system.Client.Modul.Mail_Noreply_SMTPPasswort != string.Empty) &
+                            (this.system.Client.Modul.Mail_Noreply_SMTPPort > 0) &
+                            (this.MailFrom != string.Empty)
+                       )
                     {
-                        MailToSend.From = new MailAddress(clsSystem.const_MailAdress);
-                    }
-                    else
-                    {
+                        this.MailFrom = this.system.Client.Modul.Mail_Noreply_MailAdress;
+                        this.SMTPUser = this.system.Client.Modul.Mail_Noreply_SMTPUser;
+                        this.SMTPServer = this.system.Client.Modul.Mail_Noreply_SMTPServer;
+                        this.SMTPPasswort = this.system.Client.Modul.Mail_Noreply_SMTPPasswort;
+                        this.SMTPPort = this.system.Client.Modul.Mail_Noreply_SMTPPort;
+                        this.SMTPSsl = this.system.Client.Modul.Mail_Noreply_SMTPSSL;
+                       
+                        //Absender
+                        if (this.system.DebugModeCOM)
+                        {
+                            MailToSend.From = new MailAddress(clsSystem.const_MailAdress);
+                        }
+                        else
+                        {
+                            MailToSend.From = new MailAddress(this.MailFrom);
+                        }
                         MailToSend.From = new MailAddress(this.MailFrom);
+
+                        bSenderDataOK = true;
                     }
+                }
+
+                if(bSenderDataOK)
+                { 
+                    //Check Mailangaben
+
                     //Empfänger
                     InitMailReceiver();
                     //Betreff

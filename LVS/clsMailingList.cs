@@ -35,11 +35,19 @@ namespace LVS
         public Dictionary<decimal, string> DictMailingList { get; set; }
         public DataTable dtMailingList { get; set; }
         public List<String> ListMailadressen { get; set; }
-
+        internal clsSystem System { get; set; }
 
         /****************************************************************************************************
          *                      Procedure Mailing List
          * *************************************************************************************************/
+        public clsMailingList()
+        {
+        }
+        public clsMailingList(clsSystem mySystem)
+        {
+            this.System = mySystem;
+        }
+
         ///<summary>clsMailingList / InitClass</summary>
         ///<remarks></remarks>>
         public void InitClass(Globals._GL_USER myGLUser, Globals._GL_SYSTEM myGLSystem, decimal myAdrId)

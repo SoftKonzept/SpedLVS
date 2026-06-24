@@ -770,6 +770,7 @@
     <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_exAuftragRef.cs" />
     <Compile Include="Communicator\EdiVDA\EdiVDAValues\EA_exTransportRef.cs" />
     <Compile Include="Communicator\EdiVDA\EdiVDAValues\EdiClientWorkspaceValue_UNB_S004_0017_DateOfCreation.cs" />
+    <Compile Include="Communicator\EdiVDA\EdiVDAValues\TKS_F13F03_LfsNo.cs" />
     <Compile Include="Communicator\EdiVDA\VdaMessageToClasses.cs" />
     <Compile Include="Communicator\EdiVDA\EdifactMessageToClasses.cs" />
     <Compile Include="Communicator\EdiVDA\ediHelper_CheckArtChangedProperties.cs" />

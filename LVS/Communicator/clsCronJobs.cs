@@ -240,7 +240,8 @@ namespace LVS
             List<decimal> ListAdrIDExcel = clsMailingList.GetAutoMailingList(myCronJob.AdrId, const_autoBestandExcel);
             if (ListAdrIDExcel.Count > 0)
             {
-                Mailinglist = new clsMailingList();
+                //Mailinglist = new clsMailingList();
+                Mailinglist = new clsMailingList(this.SYSTEM);
                 for (Int32 i = 0; i <= ListAdrIDExcel.Count - 1; i++)
                 {
                     decimal AdrID = (decimal)ListAdrIDExcel[i];
@@ -252,6 +253,7 @@ namespace LVS
 
                     Mailinglist.InitClass(this.GL_User, this.GLSystem, AdrID);
                     Mailinglist.FillListMailAdressenForAutoBestand(AdrID, const_autoBestandExcel);
+
                     if (Mailinglist.ListMailadressen.Count > 0)
                     {
                         //--- mr muss überarbeitet werden

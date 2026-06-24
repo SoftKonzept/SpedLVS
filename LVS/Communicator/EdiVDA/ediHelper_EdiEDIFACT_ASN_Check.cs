@@ -104,6 +104,9 @@ namespace LVS.Communicator.EdiVDA
             }
             set { _AdrVerweisGlobal = value; }
         }
+
+        public clsADRVerweis AdrVerweisASN { get; set; } = new clsADRVerweis(); 
+
         /// <summary>
         /// 
         /// </summary>
@@ -120,37 +123,46 @@ namespace LVS.Communicator.EdiVDA
             //    ExistsAdrVerweis = DicSenderVerweis.ContainsKey(AdrVerweisGlobal);
             //}
 
-            //--- Check AdrVerweis nach AdrId in ClsJob
-            AddressReferenceViewData adrVD = new AddressReferenceViewData((int)myJob.AdrVerweisID, 1, true);
-            if(adrVD.ListAddressReferences.Count>0)
-            {
-                var listReferenceParts = new List<string>();
-                //-- Check Reference Part 1-3                
-                if ((!string.IsNullOrWhiteSpace(adrVD.adrReference.ReferencePart1)) || (!string.IsNullOrWhiteSpace(adrVD.adrReference.ReferencePart1)))
-                {
-                    listReferenceParts.Add(adrVD.adrReference.ReferencePart1);
-                }
-                if ((!string.IsNullOrWhiteSpace(adrVD.adrReference.ReferencePart2)) || (!string.IsNullOrWhiteSpace(adrVD.adrReference.ReferencePart2)))
-                {
-                    listReferenceParts.Add(adrVD.adrReference.ReferencePart2);
-                }
-                if ((!string.IsNullOrWhiteSpace(adrVD.adrReference.ReferencePart3)) || (!string.IsNullOrWhiteSpace(adrVD.adrReference.ReferencePart3)))
-                {
-                    listReferenceParts.Add(adrVD.adrReference.ReferencePart3);
-                }
-                //-- dann Check in ASN Segmenten
-                foreach (var part in listReferenceParts)
-                {
-                    if (!string.IsNullOrWhiteSpace(part))
-                    {
-                        listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().Contains(part)));
-                    }
-                }   
+            //--- Check welche AdrVerweis Variante wird verwendet
+            //--- Standardmäßig NAD+CZ+#+NAD+CN+#+NAD+FW für den Sender
+             
+            string strAdrVerweis = string.Empty;
 
+            if (Enum.TryParse<enumASNFileTyp>(myJob.ASNFileTyp, out var asnFileTyp))
+            {
+                switch (asnFileTyp)
+                {
+                    case enumASNFileTyp.EDIFACT_ASN_D96A:
+                    case enumASNFileTyp.EDIFACT_ASN_D97A:
+                        listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_CZ)));
+                        listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_CN)));
+                        listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_FW)));
+                        break;
+
+                    case enumASNFileTyp.EDIFACT_ASN_D07A:
+                    case enumASNFileTyp.EDIFACT_DESADV_D07A:
+                        listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_UNB_UNOC_3)));
+                        listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_SF)));
+                        listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_LOC_11)));
+                        break;
+
+                    //case enumASNFileTyp.EDIFACT_ASN_D96A:
+                    //    break;
+                    case enumASNFileTyp.EDIFACT_DELFOR_D97A:
+                        break;
+                    case enumASNFileTyp.EDIFACT_INVRPT_D96A:
+                        break;
+                    case enumASNFileTyp.EDIFACT_Qality_D96A:
+                        break;
+                    // Weitere Fälle können hier ergänzt werden
+                    default:
+                        break;
+                }
 
                 if (listAdrSegmente.Count >= 3)
                 {
                     DictNad = new Dictionary<string, NAD>();
+
                     //-- Dictionary mit den NAD Segmenten füllen    
                     foreach (var nadSegment in listAdrSegmente)
                     {
@@ -163,71 +175,154 @@ namespace LVS.Communicator.EdiVDA
                             }
                         }
                     }
+
                 }
+                //DicSenderVerweis = clsADRVerweis.FillDictAdrVerweis(0, 0, 1, myJob.ASNFileTyp);
                 ExistsAdrVerweis = DicSenderVerweis.ContainsKey(AdrVerweis);
+                //if (!ExistsAdrVerweis)
+                //{
+                //    //-- dann CHeck Sender global
+                //    ExistsAdrVerweis = DicSenderVerweis.ContainsKey(AdrVerweisGlobal);
+                //}
+            }
+
+            //--- Ein einzelner Verweis liegt vor = eine Adresse
+            if (ExistsAdrVerweis)
+            {
+                if (!string.IsNullOrEmpty(AdrVerweis) && DicSenderVerweis != null)
+                {
+                    // Sichere Extraktion mit TryGetValue
+                    if (DicSenderVerweis.TryGetValue(AdrVerweis, out var adrVerweis))
+                    {
+                        AdrVerweisASN = adrVerweis;
+                    }
+                }
+            }
+            else
+            {
+                //-- dann CHeck Sender global
+                ExistsAdrVerweis = DicSenderVerweis.ContainsKey(AdrVerweisGlobal);
+                if (ExistsAdrVerweis)
+                {
+                    if (!string.IsNullOrEmpty(AdrVerweisGlobal) && DicSenderVerweis != null)
+                    {
+                        // Sichere Extraktion mit TryGetValue
+                        if (DicSenderVerweis.TryGetValue(AdrVerweisGlobal, out var adrVerweis))
+                        {
+                            AdrVerweisASN = adrVerweis;
+                        }
+                    }
+                }
+            }
+
+            //--- Check AdrVerweis nach AdrId in ClsJob
+            AddressReferenceViewData adrVD = new AddressReferenceViewData((int)myJob.AdrVerweisID, 1, true);
+            if(adrVD.ListAddressReferences.Count>0)
+            {
+                //var listReferenceParts = new List<string>();
+                ////-- Check Reference Part 1-3                
+                //if ((!string.IsNullOrWhiteSpace(adrVD.adrReference.ReferencePart1)) || (!string.IsNullOrWhiteSpace(adrVD.adrReference.ReferencePart1)))
+                //{
+                //    listReferenceParts.Add(adrVD.adrReference.ReferencePart1);
+                //}
+                //if ((!string.IsNullOrWhiteSpace(adrVD.adrReference.ReferencePart2)) || (!string.IsNullOrWhiteSpace(adrVD.adrReference.ReferencePart2)))
+                //{
+                //    listReferenceParts.Add(adrVD.adrReference.ReferencePart2);
+                //}
+                //if ((!string.IsNullOrWhiteSpace(adrVD.adrReference.ReferencePart3)) || (!string.IsNullOrWhiteSpace(adrVD.adrReference.ReferencePart3)))
+                //{
+                //    listReferenceParts.Add(adrVD.adrReference.ReferencePart3);
+                //}
+                ////-- dann Check in ASN Segmenten
+                //foreach (var part in listReferenceParts)
+                //{
+                //    if (!string.IsNullOrWhiteSpace(part))
+                //    {
+                //        listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().Contains(part)));
+                //    }
+                //}   
+
+
+                //if (listAdrSegmente.Count >= 3)
+                //{
+                //    DictNad = new Dictionary<string, NAD>();
+                //    //-- Dictionary mit den NAD Segmenten füllen    
+                //    foreach (var nadSegment in listAdrSegmente)
+                //    {
+                //        if (!string.IsNullOrEmpty(nadSegment))
+                //        {
+                //            NAD nad = new NAD(nadSegment, myJob.ASNFileTyp);
+                //            if (nad != null)
+                //            {
+                //                DictNad[nadSegment] = nad;
+                //            }
+                //        }
+                //    }
+                //}
+                //ExistsAdrVerweis = DicSenderVerweis.ContainsKey(AdrVerweis);
             }
             else
             {
                 //if (string.IsNullOrEmpty(mySegmentToCheck) || string.IsNullOrEmpty(myJob.ASNFileTyp))
                 //    return false;
-                if (Enum.TryParse<enumASNFileTyp>(myJob.ASNFileTyp, out var asnFileTyp))
-                {
-                    switch (asnFileTyp)
-                    {
-                        case enumASNFileTyp.EDIFACT_ASN_D96A:
-                        case enumASNFileTyp.EDIFACT_ASN_D97A:
-                            listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_CZ)));
-                            listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_CN)));
-                            listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_FW)));
-                            break;
+                //if (Enum.TryParse<enumASNFileTyp>(myJob.ASNFileTyp, out var asnFileTyp))
+                //{
+                //    switch (asnFileTyp)
+                //    {
+                //        case enumASNFileTyp.EDIFACT_ASN_D96A:
+                //        case enumASNFileTyp.EDIFACT_ASN_D97A:
+                //            listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_CZ)));
+                //            listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_CN)));
+                //            listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_FW)));
+                //            break;
 
-                        case enumASNFileTyp.EDIFACT_ASN_D07A:
-                        case enumASNFileTyp.EDIFACT_DESADV_D07A:
-                            listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_UNB_UNOC_3)));
-                            listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_SF)));
-                            listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_LOC_11)));
-                            break;
+                //        case enumASNFileTyp.EDIFACT_ASN_D07A:
+                //        case enumASNFileTyp.EDIFACT_DESADV_D07A:
+                //            listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_UNB_UNOC_3)));
+                //            listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_NAD_SF)));
+                //            listAdrSegmente.Add(myAsn.FirstOrDefault(x => x.ToString().StartsWith(constValue_Edifact.const_Edifact_LOC_11)));
+                //            break;
 
-                        //case enumASNFileTyp.EDIFACT_ASN_D96A:
-                        //    break;
-                        case enumASNFileTyp.EDIFACT_DELFOR_D97A:
-                            break;
-                        case enumASNFileTyp.EDIFACT_INVRPT_D96A:
-                            break;
-                        case enumASNFileTyp.EDIFACT_Qality_D96A:
-                            break;
-                        // Weitere Fälle können hier ergänzt werden
-                        default:
-                            break;
-                    }
+                //        //case enumASNFileTyp.EDIFACT_ASN_D96A:
+                //        //    break;
+                //        case enumASNFileTyp.EDIFACT_DELFOR_D97A:
+                //            break;
+                //        case enumASNFileTyp.EDIFACT_INVRPT_D96A:
+                //            break;
+                //        case enumASNFileTyp.EDIFACT_Qality_D96A:
+                //            break;
+                //        // Weitere Fälle können hier ergänzt werden
+                //        default:
+                //            break;
+                //    }
 
-                    if (listAdrSegmente.Count >= 3)
-                    {
-                        DictNad = new Dictionary<string, NAD>();
+                //    if (listAdrSegmente.Count >= 3)
+                //    {
+                //        DictNad = new Dictionary<string, NAD>();
 
-                        //-- Dictionary mit den NAD Segmenten füllen    
-                        foreach (var nadSegment in listAdrSegmente)
-                        {
-                            if (!string.IsNullOrEmpty(nadSegment))
-                            {
-                                NAD nad = new NAD(nadSegment, myJob.ASNFileTyp);
-                                if (nad != null)
-                                {
-                                    DictNad[nadSegment] = nad;
-                                }
-                            }
-                        }
+                //        //-- Dictionary mit den NAD Segmenten füllen    
+                //        foreach (var nadSegment in listAdrSegmente)
+                //        {
+                //            if (!string.IsNullOrEmpty(nadSegment))
+                //            {
+                //                NAD nad = new NAD(nadSegment, myJob.ASNFileTyp);
+                //                if (nad != null)
+                //                {
+                //                    DictNad[nadSegment] = nad;
+                //                }
+                //            }
+                //        }
 
-                    }
-                    DicSenderVerweis = clsADRVerweis.FillDictAdrVerweis(0, 0, 1, myJob.ASNFileTyp);
-                    ExistsAdrVerweis = DicSenderVerweis.ContainsKey(AdrVerweis);
-                    if (!ExistsAdrVerweis)
-                    {
-                        //-- dann CHeck Sender global
-                        ExistsAdrVerweis = DicSenderVerweis.ContainsKey(AdrVerweisGlobal);
-                    }
+                //    }
+                //    DicSenderVerweis = clsADRVerweis.FillDictAdrVerweis(0, 0, 1, myJob.ASNFileTyp);
+                //    ExistsAdrVerweis = DicSenderVerweis.ContainsKey(AdrVerweis);
+                //    if (!ExistsAdrVerweis)
+                //    {
+                //        //-- dann CHeck Sender global
+                //        ExistsAdrVerweis = DicSenderVerweis.ContainsKey(AdrVerweisGlobal);
+                //    }
 
-                }
+                //}
             }
         }
     }

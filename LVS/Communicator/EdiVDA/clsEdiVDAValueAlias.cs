@@ -76,7 +76,7 @@ namespace LVS
 
 
         public const string const_cFunction_SLBWithPrefix = SLBWithPrefix.const_SLBWithPrefix;
-
+        public const string const_cFunction_TKS_713F03LfsNr = TKS_F13F03_LfsNo.const_TKS_F13F03_LfsNo; 
         public const string const_cFunction_Tata_713F03LfsNr = Tata_713F03LfsNr.const_Tata_713F03LfsNr;
         public const string const_cFunction_VOEST_EA_SLB = VOEST_EA_SLB.const_EA_SLB;
 
@@ -217,6 +217,7 @@ namespace LVS
                     ,const_cFunction_SZG_LVSForVW
                     ,const_cFunction_SLBWithPrefix
                     ,const_cFunction_Tata_713F03LfsNr
+                    ,const_cFunction_TKS_713F03LfsNr
 
                     ,const_cFunction_VOEST_EA_SLB
 

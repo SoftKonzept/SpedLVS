@@ -1,5 +1,6 @@
 ﻿using LVS.ASN.ASNFormatFunctions;
 using LVS.Communicator.EdiVDA.EdiVDAValues;
+using Org.BouncyCastle.Crypto.Tls;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -722,6 +723,14 @@ namespace LVS
                     strTmp = Tata_713F03LfsNr.Execute(asnTyp, this.Lager.Artikel);
                     strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
                     break;
+
+                case clsEdiVDAValueAlias.const_cFunction_TKS_713F03LfsNr:
+                    strTmp = string.Empty;
+                    strTmp = TKS_F13F03_LfsNo.Execute(asnTyp, this.Lager.Artikel);
+                    strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
+                    break;
+
+                    
 
                 case clsEdiVDAValueAlias.const_cFunction_VOEST_EA_SLB:
                     strTmp = string.Empty;

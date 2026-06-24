@@ -288,7 +288,8 @@ namespace LVS
 
             myModul.Mail_SMTPServer = "w012d21e.kasserver.com";
             myModul.Mail_SMTPUser = "m076aaf0";
-            myModul.Mail_SMTPPasswort = "n3pneEkc-T6P";
+            //myModul.Mail_SMTPPasswort = "n3pneEkc-T6P";
+            myModul.Mail_SMTPPasswort = "dQ7NEg-p0mPxcnQzEkzm";
             myModul.Mail_MailAdress = "noreply@szg-glauchau.de";
             myModul.Mail_SMTPPort = 587;
             myModul.Mail_SMTPSSL = true;
