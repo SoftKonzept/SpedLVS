@@ -166,7 +166,7 @@ namespace LVS
         {
             get
             {
-                string strReturn = this.GLSystem.VE_OdettePath + ASNFileStorePath;
+                string strReturn = this.GLSystem.VE_OdettePath +"\\"+ ASNFileStorePath;
                 return strReturn;
             }
         }

@@ -13,6 +13,10 @@ namespace Sped4.Controls.Edifact
         internal EdiClientWorkspaceValueViewData eawVD = new EdiClientWorkspaceValueViewData();
         public ctrMenu _ctrMenu;
         public int SearchButton = 0;
+
+        public bool ClientAdrSearch {  get; set; } = false;
+
+
         public ctrEdiClientWorkspaceValue()
         {
             InitializeComponent();
@@ -84,6 +88,16 @@ namespace Sped4.Controls.Edifact
             tbValue.Text = eawVD.AdrWorkspaceAssingment.Value;
             Functions.SetComboToSelecetedValue(ref comboDirection, eawVD.AdrWorkspaceAssingment.Direction);
             tbCreated.Text = eawVD.AdrWorkspaceAssingment.Created.ToString("dd.MM.yyyy");
+
+            nudAdrClient.Value = 0;
+            tbClientAdrMatchCode.Text = string.Empty;
+            tbClientAdrShort.Text = string.Empty;
+            if (eawVD.AdrWorkspaceAssingment.ClientId > 0)
+            {
+                nudAdrClient.Value = eawVD.AdrWorkspaceAssingment.ClientId;
+                tbClientAdrMatchCode.Text = eawVD.AdrWorkspaceAssingment.AddressClient.ViewId.ToString();
+                tbClientAdrShort.Text = eawVD.AdrWorkspaceAssingment.AddressClient.AddressStringShort.ToString();
+            }
         }
         /// <summary>
         /// 
@@ -224,6 +238,15 @@ namespace Sped4.Controls.Edifact
                 TakeOverAdrID((int)nudAdrDirect.Value);
             }
         }
+        private void nudAdrClient_Leave(object sender, EventArgs e)
+        {
+            if (nudAdrClient.Value > 0)
+            {
+                //this.IsReceiverSearch = true;
+                TakeOverAdrID((int)nudAdrClient.Value);
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -233,19 +256,36 @@ namespace Sped4.Controls.Edifact
             if (myAdrId > 0)
             {
                 AddressViewData adrVD = new AddressViewData(myAdrId, (int)_ctrMenu._frmMain.GL_User.User_ID);
-                if (adrVD.Address.Id == myAdrId)
+                if (this.ClientAdrSearch)
                 {
-                    eawVD.AdrWorkspaceAssingment.AdrId = adrVD.Address.Id;
-                    eawVD.AdrWorkspaceAssingment.Address = adrVD.Address.Copy();
-                    tbAdrMatchCode.Text = eawVD.AdrWorkspaceAssingment.Address.ViewId.ToString();
-                    tbAdrShort.Text = eawVD.AdrWorkspaceAssingment.Address.AddressStringShort.ToString();
-                    nudAdrDirect.Value = eawVD.AdrWorkspaceAssingment.Address.Id;
+                    if (adrVD.Address.Id == myAdrId)
+                    {
+                        eawVD.AdrWorkspaceAssingment.ClientId = adrVD.Address.Id;
+                        eawVD.AdrWorkspaceAssingment.AddressClient = adrVD.Address.Copy();
+                        tbClientAdrMatchCode.Text = eawVD.AdrWorkspaceAssingment.AddressClient.ViewId.ToString();
+                        tbClientAdrShort.Text = eawVD.AdrWorkspaceAssingment.AddressClient.AddressStringShort.ToString();
+                        nudAdrClient.Value = eawVD.AdrWorkspaceAssingment.AddressClient.Id;
+                    }
+                    else
+                    {
+                        nudAdrClient.Value = eawVD.AdrWorkspaceAssingment.ClientId;
+                    }
                 }
                 else
                 {
-                    nudAdrDirect.Value = eawVD.AdrWorkspaceAssingment.AdrId;
+                    if (adrVD.Address.Id == myAdrId)
+                    {
+                        eawVD.AdrWorkspaceAssingment.AdrId = adrVD.Address.Id;
+                        eawVD.AdrWorkspaceAssingment.Address = adrVD.Address.Copy();
+                        tbAdrMatchCode.Text = eawVD.AdrWorkspaceAssingment.Address.ViewId.ToString();
+                        tbAdrShort.Text = eawVD.AdrWorkspaceAssingment.Address.AddressStringShort.ToString();
+                        nudAdrDirect.Value = eawVD.AdrWorkspaceAssingment.Address.Id;
+                    }
+                    else
+                    {
+                        nudAdrDirect.Value = eawVD.AdrWorkspaceAssingment.AdrId;
+                    }
                 }
-
             }
         }
         /// <summary>
@@ -255,6 +295,17 @@ namespace Sped4.Controls.Edifact
         /// <param name="e"></param>
         private void btnSearchAdr_Click(object sender, EventArgs e)
         {
+            this.ClientAdrSearch = false;
+            _ctrMenu.OpenADRSearch(this);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClient_Click(object sender, EventArgs e)
+        {
+            this.ClientAdrSearch = true;
             _ctrMenu.OpenADRSearch(this);
         }
         /// <summary>
@@ -274,5 +325,7 @@ namespace Sped4.Controls.Edifact
                 InitDgv();
             }  
         }
+
+
     }
 }

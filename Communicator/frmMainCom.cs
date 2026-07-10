@@ -1776,7 +1776,7 @@ namespace Communicator
             //erst einmal hier als erstes
             Task_CALLRead();
 
-            Int32 iCountToBreakWhile = 1;
+            Int32 iCountToBreakWhile = 1; 
 
             string strTmp = string.Empty;
             //Init Var/Classes
@@ -2422,11 +2422,7 @@ namespace Communicator
             //Init Var/Classes
             ListLogAddString = new List<string>();
 
-            //clsCronJobs CronJob = new clsCronJobs();
-            //CronJob.InitClass(this.GLSystem, this.GLUser, this.system);
-
             CronJobViewData cronJobViewData = new CronJobViewData();
-            //SetInfoInInfobox(clsSystem.const_Default_TaskSeparator.ToString());
             string strProzessName = "[CronJobs]";
 
             string strTmp = string.Empty;
@@ -2488,60 +2484,64 @@ namespace Communicator
 
                             //case "BestandslisteAutoSend":
                             case enumCronJobAction.BestandslisteAutoSend:
-                                //if (!system.DebugModeCOM)
-                                //{
-                                //    CronJobViewData tmpCronJobVD = new CronJobViewData(cronJob, 1);
-                                //    CronJob_StoclistAutoSend stoclistAutoSend = new CronJob_StoclistAutoSend(tmpCronJobVD.CronJob, this.GLUser, this.GLSystem, this.system);
-                                //    if (stoclistAutoSend.ProzessExcecuted)
-                                //    {
-                                //        tmpCronJobVD.UpdateNextActiondate();
-                                //    }
-                                //    if (stoclistAutoSend.ListLogInsert.Count > 0)
-                                //    {
-                                //        foreach (clsLogbuchCon item in stoclistAutoSend.ListLogInsert)
-                                //        {
-                                //            strTmp = item.LogText;
-                                //            listLogToCronJob.Add(strTmp);
-                                //            SetInfoInInfoBox2(strTmp);
-                                //        }
-                                //    }
-                                //}
-                                //else
-                                //{
-                                //    //CronJobViewData tmpCronJobVD = new CronJobViewData(cronJob, 1);
-                                //    //CronJob_StoclistAutoSend stoclistAutoSend = new CronJob_StoclistAutoSend(tmpCronJobVD.CronJob, this.GLUser, this.GLSystem, this.system);
-                                //    //if (stoclistAutoSend.ProzessExcecuted)
-                                //    //{
-                                //    //    tmpCronJobVD.UpdateNextActiondate();
-                                //    //}
-                                //    //if (stoclistAutoSend.ListLogInsert.Count > 0)
-                                //    //{
-                                //    //    foreach (clsLogbuchCon item in stoclistAutoSend.ListLogInsert)
-                                //    //    {
-                                //    //        strTmp = item.LogText;
-                                //    //        listLogToCronJob.Add(strTmp);
-                                //    //        SetInfoInInfoBox2(strTmp);
-                                //    //    }
-                                //    //}
-                                //}
                                 CronJobViewData tmpCronJobVD = new CronJobViewData(cronJob, 1);
-                                CronJob_StoclistAutoSend stoclistAutoSend = new CronJob_StoclistAutoSend(tmpCronJobVD.CronJob, this.GLUser, this.GLSystem, this.system);
-                                if (stoclistAutoSend.ProzessExcecuted)
+                                if (!system.DebugModeCOM)
                                 {
-                                    if (!system.DebugModeCOM)
+
+                                    CronJob_StoclistAutoSend stoclistAutoSend = new CronJob_StoclistAutoSend(tmpCronJobVD.CronJob, this.GLUser, this.GLSystem, this.system);
+                                    if (stoclistAutoSend.ProzessExcecuted)
                                     {
                                         tmpCronJobVD.UpdateNextActiondate();
                                     }
-                                }
-                                if (stoclistAutoSend.ListLogInsert.Count > 0)
-                                {
-                                    foreach (clsLogbuchCon item in stoclistAutoSend.ListLogInsert)
+                                    if (stoclistAutoSend.ListLogInsert.Count > 0)
                                     {
-                                        strTmp = item.LogText;
-                                        listLogToCronJob.Add(strTmp);
-                                        SetInfoInInfoBox2(strTmp);
+                                        foreach (clsLogbuchCon item in stoclistAutoSend.ListLogInsert)
+                                        {
+                                            strTmp = item.LogText;
+                                            listLogToCronJob.Add(strTmp);
+                                            SetInfoInInfoBox2(strTmp);
+                                        }
                                     }
                                 }
+                                else
+                                {
+                                    //CronJobViewData tmpCronJobVD = new CronJobViewData(cronJob, 1);
+                                    CronJob_StoclistAutoSend stoclistAutoSend = new CronJob_StoclistAutoSend(tmpCronJobVD.CronJob, this.GLUser, this.GLSystem, this.system);
+                                    //if (stoclistAutoSend.ProzessExcecuted)
+                                    //{
+                                    //    tmpCronJobVD.UpdateNextActiondate();
+                                    //}
+                                    if (stoclistAutoSend.ListLogInsert.Count > 0)
+                                    {
+                                        foreach (clsLogbuchCon item in stoclistAutoSend.ListLogInsert)
+                                        {
+                                            strTmp = item.LogText;
+                                            listLogToCronJob.Add(strTmp);
+                                            SetInfoInInfoBox2(strTmp);
+                                        }
+                                    }
+                                }
+
+
+
+                                //CronJobViewData tmpCronJobVD = new CronJobViewData(cronJob, 1);
+                                //CronJob_StoclistAutoSend stoclistAutoSend = new CronJob_StoclistAutoSend(tmpCronJobVD.CronJob, this.GLUser, this.GLSystem, this.system);
+                                //if (stoclistAutoSend.ProzessExcecuted)
+                                //{
+                                //    if (!system.DebugModeCOM)
+                                //    {
+                                //        tmpCronJobVD.UpdateNextActiondate();
+                                //    }
+                                //}
+                                //if (stoclistAutoSend.ListLogInsert.Count > 0)
+                                //{
+                                //    foreach (clsLogbuchCon item in stoclistAutoSend.ListLogInsert)
+                                //    {
+                                //        strTmp = item.LogText;
+                                //        listLogToCronJob.Add(strTmp);
+                                //        SetInfoInInfoBox2(strTmp);
+                                //    }
+                                //}
 
                                 break;
 
@@ -3617,7 +3617,7 @@ namespace Communicator
 
         private void LogToXML()
         {
-            string strPath = @"F:\";
+            //string strPath = @"F:\"; // wird nie verwendet 
             DateTime Start = new DateTime(2000, 1, 1);
             DateTime End = new DateTime(2018, 3, 31);
             clsLogbuch log = new clsLogbuch();

@@ -15,6 +15,7 @@ namespace LVS.Communicator.EdiVDA.EdiVDAValues
             int iWorkspace = 0;
             int iAsnArtId = 0;
             int iAdrId = 0;
+            int iAuftraggeberId = 0;
 
             switch (myAsnTyp.Typ)
             {
@@ -27,6 +28,7 @@ namespace LVS.Communicator.EdiVDA.EdiVDAValues
                         iWorkspace = (int)myLager.Artikel.Eingang.AbBereichID;
                         iAsnArtId = (int)myAsn.ASNArt.ID;
                         iAdrId = (int)myLager.Artikel.Eingang.Empfaenger;
+                        iAuftraggeberId = (int)myLager.Artikel.Eingang.Auftraggeber;
                     }
                     break;
 
@@ -41,6 +43,7 @@ namespace LVS.Communicator.EdiVDA.EdiVDAValues
                         iWorkspace = (int)myLager.Artikel.Ausgang.AbBereichID;
                         iAsnArtId = (int)myAsn.ASNArt.ID;
                         iAdrId = (int)myLager.Artikel.Ausgang.Empfaenger;
+                        iAuftraggeberId = (int)myLager.Artikel.Ausgang.Auftraggeber;
                     }
                     break;
             }

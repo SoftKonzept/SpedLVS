@@ -43,25 +43,43 @@ namespace LVS.ViewData
         }
         public EdiClientWorkspaceValueViewData(int myAdrId, int myAsnArtId, int myWorkspaceId, int myUserId) : this()
         {
-            AdrWorkspaceAssingment.Id = 0;
-            AdrWorkspaceAssingment.AdrId = myAdrId;
-            AdrWorkspaceAssingment.WorkspaceId = myWorkspaceId;
-            AdrWorkspaceAssingment.AsnArtId = myAsnArtId;
-            AdrWorkspaceAssingment.Property = string.Empty;
-            BenutzerID = myUserId;
+            //AdrWorkspaceAssingment.Id = 0;
+            //AdrWorkspaceAssingment.AdrId = myAdrId;
+            //AdrWorkspaceAssingment.WorkspaceId = myWorkspaceId;
+            //AdrWorkspaceAssingment.AsnArtId = myAsnArtId;
+            //AdrWorkspaceAssingment.Property = string.Empty;
+            //AdrWorkspaceAssingment.AuftraggeberId = 0;
+            //BenutzerID = myUserId;
 
+            SetClsValue(myAdrId, myAsnArtId, myWorkspaceId, 0, string.Empty, myUserId);
             GetByProperties();
         }
 
         public EdiClientWorkspaceValueViewData(int myAdrId, int myAsnArtId, int myWorkspaceId, string myProperty, int myUserId) : this()
         {
-            AdrWorkspaceAssingment.Id = 0;
-            AdrWorkspaceAssingment.AdrId = myAdrId;
-            AdrWorkspaceAssingment.WorkspaceId = myWorkspaceId;
-            AdrWorkspaceAssingment.AsnArtId = myAsnArtId;
-            AdrWorkspaceAssingment.Property = myProperty;
-            BenutzerID = myUserId;
+            //AdrWorkspaceAssingment.Id = 0;
+            //AdrWorkspaceAssingment.AdrId = myAdrId;
+            //AdrWorkspaceAssingment.WorkspaceId = myWorkspaceId;
+            //AdrWorkspaceAssingment.AsnArtId = myAsnArtId;
+            //AdrWorkspaceAssingment.Property = myProperty;
+            //AdrWorkspaceAssingment.AuftraggeberId = 0;
+            //BenutzerID = myUserId;
 
+            SetClsValue(myAdrId, myAsnArtId, myWorkspaceId, 0, myProperty, myUserId);
+            GetByProperties();
+        }
+
+        public EdiClientWorkspaceValueViewData(int myAdrId, int myAsnArtId, int myWorkspaceId, int myAuftraggeber, string myProperty, int myUserId) : this()
+        {
+            //AdrWorkspaceAssingment.Id = 0;
+            //AdrWorkspaceAssingment.AdrId = myAdrId;
+            //AdrWorkspaceAssingment.WorkspaceId = myWorkspaceId;
+            //AdrWorkspaceAssingment.AsnArtId = myAsnArtId;
+            //AdrWorkspaceAssingment.Property = myProperty;
+            //AdrWorkspaceAssingment.AuftraggeberId = myAuftraggeber;
+            //BenutzerID = myUserId;
+            
+            SetClsValue(myAdrId, myAsnArtId, myWorkspaceId, myAuftraggeber, myProperty, myUserId);
             GetByProperties();
         }
 
@@ -69,6 +87,19 @@ namespace LVS.ViewData
         {
             AdrWorkspaceAssingment = new EdiClientWorkspaceValue();
         }
+
+        private void SetClsValue(int myAdrId = 0, int myAsnArtId = 0, int myWorkspaceId = 0,
+                                 int myAuftraggeber = 0, string myProperty = "", int myUserId = 0)
+        {
+            AdrWorkspaceAssingment.Id = 0;
+            AdrWorkspaceAssingment.AdrId = myAdrId;
+            AdrWorkspaceAssingment.WorkspaceId = myWorkspaceId;
+            AdrWorkspaceAssingment.AsnArtId = myAsnArtId;
+            AdrWorkspaceAssingment.Property = myProperty;
+            AdrWorkspaceAssingment.ClientId = myAuftraggeber;
+            BenutzerID = myUserId;
+        }
+
         public void Fill()
         {
             string strSQL = sql_Get;
@@ -123,7 +154,19 @@ namespace LVS.ViewData
             DateTime dtTmp = new DateTime(1900, 1, 1);
             DateTime.TryParse(row["Created"].ToString(), out dtTmp);
             AdrWorkspaceAssingment.Created = dtTmp;
-            AdrWorkspaceAssingment.Direction = row["Direction"].ToString(); ;
+            AdrWorkspaceAssingment.Direction = row["Direction"].ToString();
+
+            iTmp = 0;
+            Int32.TryParse(row["Client"].ToString(), out iTmp);
+            AdrWorkspaceAssingment.ClientId = iTmp;
+            if (AdrWorkspaceAssingment.ClientId > 0)
+            {
+                AddressViewData adrVD = new AddressViewData(AdrWorkspaceAssingment.ClientId, 1);
+                if (adrVD.Address.Id > 0)
+                {
+                    AdrWorkspaceAssingment.AddressClient = adrVD.Address.Copy();
+                }
+            }
         }
 
         public void GetEdiAdrWorkspaceAssignmentList()
@@ -196,6 +239,7 @@ namespace LVS.ViewData
                                                                 ",[Value] " +
                                                                 ",[Created] " +
                                                                 ",[Direction] " +
+                                                                ",[Client] " +
                                                                 ") " +
                                          "VALUES (" + AdrWorkspaceAssingment.AdrId +
                                                   ", " + AdrWorkspaceAssingment.WorkspaceId +
@@ -204,6 +248,7 @@ namespace LVS.ViewData
                                                   ", '" + AdrWorkspaceAssingment.Value + "'" +
                                                   ", '" + AdrWorkspaceAssingment.Created + "'" +
                                                   ", '" + AdrWorkspaceAssingment.Direction + "'" +
+                                                  ", " + AdrWorkspaceAssingment.ClientId +
                                                   ");";
                 return strSql;
             }
@@ -288,6 +333,7 @@ namespace LVS.ViewData
                 strSql += ", Property = '" + AdrWorkspaceAssingment.Property + "' ";
                 strSql += ", Value = '" + AdrWorkspaceAssingment.Value + "' ";
                 strSql += ", Direction = '" + AdrWorkspaceAssingment.Direction + "' ";
+                strSql += ", Client = " + AdrWorkspaceAssingment.ClientId + " ";
                 strSql += "WHERE ";
                 strSql += "Id = " + AdrWorkspaceAssingment.Id + "; ";
 

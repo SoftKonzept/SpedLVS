@@ -192,59 +192,103 @@ namespace LVS
                 {
                     myStringIN = myStringIN.TrimEnd('\n');
                 }
-                while (myStringIN.Length > 0)
+
+                //--- neu 
+
+                // ✅ HAUPT-BEDINGUNG: Prüfe auf echte Daten (nicht nur Leerzeichen)
+                while (myStringIN.Length > 0 && !string.IsNullOrWhiteSpace(myStringIN))
                 {
+                    // ✅ Entferne führende Leerzeichen/Zeilenumbrüche
                     if (myStringIN.StartsWith("\n"))
                     {
                         myStringIN = myStringIN.TrimStart('\n');
+                        continue;  // ← Wichtig: Neu prüfen nach TrimStart
                     }
 
+                    // ✅ Entferne führende Leerzeichen
+                    myStringIN = myStringIN.TrimStart(' ');
+
+                    // ✅ NEUE PRÜFUNG: Falls nach TrimStart nur noch Leerzeichen übrig
+                    if (string.IsNullOrWhiteSpace(myStringIN))
+                    {
+                        break;  // ← Schleife sauber beenden
+                    }
+
+                    // ✅ VALIDIERUNG: Mindestens 3 Zeichen vorhanden?
                     if (myStringIN.Length < 3)
                     {
-                        string str = string.Empty;
+                        // Nicht genug Daten → Fehlermeldung
+                        clsLogbuchCon tmpLog = new clsLogbuchCon();
+                        tmpLog.GL_User = this.GL_User;
+                        tmpLog.Typ = enumLogArtItem.ERROR.ToString();
+                        tmpLog.LogText = "[Task_readVDA/Task_CALLRead].[VDA4905]/[VDA4913] - ";
+                        tmpLog.LogText += "Datei: " + this.Job.FileName + " kann nicht verarbeitet werden. Zu wenig Daten am Ende!";
+                        tmpLog.LogText += Environment.NewLine + "Restdaten: |" + myStringIN + "| Länge: " + myStringIN.Length;
+                        tmpLog.TableName = string.Empty;
+                        tmpLog.TableID = 0;
+                        this.ListError.Add(tmpLog);
+                        break;
                     }
-                    //Satz ermitteln
+
+                    // Satz ermitteln
                     string strSatz = myStringIN.Substring(0, 3);
 
-                    //Classe für den Satz aus der Dictionary
+                    // Test
+                    if (strSatz.Equals("719"))
+                    {
+                        string s = string.Empty;
+                    }
+
+                    // ✅ Dictionary-Lookup
                     clsASNArtSatz tmpSatz;
                     DictVDASatz.TryGetValue(strSatz, out tmpSatz);
-                    if (
-                            (tmpSatz != null) &&
-                            (!Is719Exist)
-                       )
+
+                    if ((tmpSatz != null) && (!Is719Exist))
                     {
                         try
                         {
                             iLength = tmpSatz.Length;
-                            //Satz in ZV kopieren
-                            int iLengtStringIN = myStringIN.Length;
+                            iLengthStringIN = myStringIN.Length;
+
+                            // ✅ SICHERHEIT: Prüfe ob genug Zeichen zum Extrahieren vorhanden
+                            if (iLength > myStringIN.Length)
+                            {
+                                clsLogbuchCon tmpLog = new clsLogbuchCon();
+                                tmpLog.GL_User = this.GL_User;
+                                tmpLog.Typ = enumLogArtItem.ERROR.ToString();
+                                tmpLog.LogText = "[Task_readVDA/Task_CALLRead].[VDA4905]/[VDA4913] - ";
+                                tmpLog.LogText += "Datei: " + this.Job.FileName + " kann nicht verarbeitet werden. Satz [" + strSatz + "] zu kurz!";
+                                tmpLog.LogText += Environment.NewLine + "Erwartet: " + iLength + " Zeichen, vorhanden: " + myStringIN.Length;
+                                tmpLog.LogText += Environment.NewLine + "Daten: |" + myStringIN + "|";
+                                tmpLog.TableName = string.Empty;
+                                tmpLog.TableID = 0;
+                                this.ListError.Add(tmpLog);
+                                break;
+                            }
 
                             string strTmpSatz = myStringIN.Substring(0, iLength);
-                            //zur Liste hinzufügen
                             ListSatzString.Add(strTmpSatz);
-                            //
+
                             string strZV = myStringIN.Remove(0, iLength);
                             myStringIN = strZV;
 
                             if ((!Is719Exist) && (strSatz.Equals("719")))
                             {
-                                Is719Exist = (strSatz.Equals("719"));
+                                Is719Exist = true;
                             }
                         }
                         catch (Exception ex)
                         {
                             ListSatzString.Add(myStringIN);
 
-                            string str = ex.ToString();
                             string strError = "Datei: " + this.Job.FileName + " kann nicht verarbeitet werden. Dateiaufbau fehlerhaft!";
-                            strError = strError + Environment.NewLine;
-                            strError = strError + ex.ToString();
+                            strError = strError + Environment.NewLine + ex.ToString();
+
                             clsLogbuchCon tmpLog = new clsLogbuchCon();
                             tmpLog.GL_User = this.GL_User;
                             tmpLog.Typ = enumLogArtItem.ERROR.ToString();
                             tmpLog.LogText = "[Task_readVDA/Task_CALLRead].[VDA4905]/[VDA4913] - " + strError;
-                            tmpLog.LogText += "Zeile: " + myStringIN + " - Length: " + myStringIN.Length;
+                            tmpLog.LogText += Environment.NewLine + "Zeile: " + myStringIN + " - Length: " + myStringIN.Length;
                             tmpLog.TableName = string.Empty;
 
                             int iZeile = 0;
@@ -254,12 +298,8 @@ namespace LVS
                                 vda += String.Format("{0}  : |{1}| Länge: {2}", iZeile.ToString("00"), s, s.Length) + Environment.NewLine;
                                 iZeile++;
                             }
-                            tmpLog.LogText += Environment.NewLine;
-                            tmpLog.LogText += Environment.NewLine;
-                            tmpLog.LogText += vda + Environment.NewLine;
-
-                            decimal decTmp = 0;
-                            tmpLog.TableID = decTmp;
+                            tmpLog.LogText += Environment.NewLine + Environment.NewLine + vda;
+                            tmpLog.TableID = 0;
                             this.ListError.Add(tmpLog);
                             break;
                         }
@@ -269,7 +309,8 @@ namespace LVS
                         ListSatzString.Add(myStringIN);
 
                         string strError = "Datei: " + this.Job.FileName + " kann nicht verarbeitet werden. Keine ASCII VDA-Datei!";
-                        strError = strError + Environment.NewLine;
+                        strError = strError + Environment.NewLine + "Unbekannter Satz: [" + strSatz + "]";
+
                         clsLogbuchCon tmpLog = new clsLogbuchCon();
                         tmpLog.GL_User = this.GL_User;
                         tmpLog.Typ = enumLogArtItem.ERROR.ToString();
@@ -283,15 +324,120 @@ namespace LVS
                             vda += String.Format("{0}  : |{1}| Länge: {2}", iZeile.ToString("00"), s, s.Length) + Environment.NewLine;
                             iZeile++;
                         }
-                        tmpLog.LogText += Environment.NewLine;
-                        tmpLog.LogText += Environment.NewLine;
-                        tmpLog.LogText += vda + Environment.NewLine;
-
-                        decimal decTmp = 0;
-                        tmpLog.TableID = decTmp;
+                        tmpLog.LogText += Environment.NewLine + Environment.NewLine + vda;
+                        tmpLog.TableID = 0;
                         this.ListError.Add(tmpLog);
                         break;
                     }
+
+                    //--- alt
+                    //while (myStringIN.Length > 0)
+                    //{
+                    //    if (myStringIN.StartsWith("\n"))
+                    //    {
+                    //        myStringIN = myStringIN.TrimStart('\n');
+                    //    }
+
+                    //    if (myStringIN.Length < 3)
+                    //    {
+                    //        string str = string.Empty;
+                    //    }
+                    //    //Satz ermitteln
+                    //    string strSatz = myStringIN.Substring(0, 3);
+
+                    //    //--- Test
+                    //    if (strSatz.Equals("719"))
+                    //    {
+                    //        string s = string.Empty;
+                    //    }      
+
+                    //    //Classe für den Satz aus der Dictionary
+                    //    clsASNArtSatz tmpSatz;
+                    //    DictVDASatz.TryGetValue(strSatz, out tmpSatz);
+                    //    if (
+                    //            (tmpSatz != null) &&
+                    //            (!Is719Exist)
+                    //       )
+                    //    {
+                    //        try
+                    //        {
+                    //            iLength = tmpSatz.Length;
+                    //            //Satz in ZV kopieren
+                    //            int iLengtStringIN = myStringIN.Length;
+
+                    //            string strTmpSatz = myStringIN.Substring(0, iLength);
+                    //            //zur Liste hinzufügen
+                    //            ListSatzString.Add(strTmpSatz);
+                    //            //
+                    //            string strZV = myStringIN.Remove(0, iLength);
+                    //            myStringIN = strZV;
+
+                    //            if ((!Is719Exist) && (strSatz.Equals("719")))
+                    //            {
+                    //                Is719Exist = (strSatz.Equals("719"));
+                    //            }
+                    //        }
+                    //        catch (Exception ex)
+                    //        {
+                    //            ListSatzString.Add(myStringIN);
+
+                    //            string str = ex.ToString();
+                    //            string strError = "Datei: " + this.Job.FileName + " kann nicht verarbeitet werden. Dateiaufbau fehlerhaft!";
+                    //            strError = strError + Environment.NewLine;
+                    //            strError = strError + ex.ToString();
+                    //            clsLogbuchCon tmpLog = new clsLogbuchCon();
+                    //            tmpLog.GL_User = this.GL_User;
+                    //            tmpLog.Typ = enumLogArtItem.ERROR.ToString();
+                    //            tmpLog.LogText = "[Task_readVDA/Task_CALLRead].[VDA4905]/[VDA4913] - " + strError;
+                    //            tmpLog.LogText += "Zeile: " + myStringIN + " - Length: " + myStringIN.Length;
+                    //            tmpLog.TableName = string.Empty;
+
+                    //            int iZeile = 0;
+                    //            string vda = string.Empty;
+                    //            foreach (string s in ListSatzString)
+                    //            {
+                    //                vda += String.Format("{0}  : |{1}| Länge: {2}", iZeile.ToString("00"), s, s.Length) + Environment.NewLine;
+                    //                iZeile++;
+                    //            }
+                    //            tmpLog.LogText += Environment.NewLine;
+                    //            tmpLog.LogText += Environment.NewLine;
+                    //            tmpLog.LogText += vda + Environment.NewLine;
+
+                    //            decimal decTmp = 0;
+                    //            tmpLog.TableID = decTmp;
+                    //            this.ListError.Add(tmpLog);
+                    //            break;
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        ListSatzString.Add(myStringIN);
+
+                    //        string strError = "Datei: " + this.Job.FileName + " kann nicht verarbeitet werden. Keine ASCII VDA-Datei!";
+                    //        strError = strError + Environment.NewLine;
+                    //        clsLogbuchCon tmpLog = new clsLogbuchCon();
+                    //        tmpLog.GL_User = this.GL_User;
+                    //        tmpLog.Typ = enumLogArtItem.ERROR.ToString();
+                    //        tmpLog.LogText = "[Task_readVDA/Task_CALLRead].[VDA4905]/[VDA4913] - " + strError;
+                    //        tmpLog.TableName = string.Empty;
+
+                    //        int iZeile = 0;
+                    //        string vda = string.Empty;
+                    //        foreach (string s in ListSatzString)
+                    //        {
+                    //            vda += String.Format("{0}  : |{1}| Länge: {2}", iZeile.ToString("00"), s, s.Length) + Environment.NewLine;
+                    //            iZeile++;
+                    //        }
+                    //        tmpLog.LogText += Environment.NewLine;
+                    //        tmpLog.LogText += Environment.NewLine;
+                    //        tmpLog.LogText += vda + Environment.NewLine;
+
+                    //        decimal decTmp = 0;
+                    //        tmpLog.TableID = decTmp;
+                    //        this.ListError.Add(tmpLog);
+                    //        break;
+                    //    }
+                    //}
                 }
             }
         }
@@ -321,7 +467,7 @@ namespace LVS
                     string strSatzNr = ListSatzString[j].Substring(0, 3); //die ersten drei STellen geben den Satz an
                     string strTmpSatz = ListSatzString[j];
 
-                    if (strSatzNr.Equals("712"))
+                    if (strSatzNr.Equals("719"))
                     {
                         string strTest = Kennung;
                     }

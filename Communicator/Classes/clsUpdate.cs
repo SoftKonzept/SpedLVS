@@ -57,7 +57,7 @@ namespace Communicator.Classes
             1030, 1031, 1032, 1033, 1034 ,1035, 1036, 1037, 1038, 1039,
             1040, 1041, 1042, 1043, 1044, 1045, 1046, 1047, 1048, //1049,
             1050, 1051, 1052, 1053, 1054, 1055, 1056, 1057, 1058, 1059,
-            1060, 1061, 1062
+            1060, 1061, 1062, 1063 
 
         };
 
@@ -194,6 +194,12 @@ namespace Communicator.Classes
                         switch (decTmp.ToString())
                         {
                             //---- ab hier neue Updates einfügen -------------
+                            case up1063.const_up1063:
+                                boUpdateOK = DoUpdate(up1063.SqlString());
+                                boUpdateOK = DoUpdate(up1063.SqlStringUpdate_UpdateExistingColumns());
+                                Thread.Sleep(200);
+                                break;
+
                             case up1062.const_up1062:
                                 boUpdateOK = DoUpdate(up1062.SqlString());
                                 boUpdateOK = DoUpdate(up1062.SqlStringUpdate_UpdateExistingColumns());

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctrEdiClientWorkspaceValue));
             this.afColorLabel1 = new Sped4.Controls.AFColorLabel();
             this.scMain = new Telerik.WinControls.UI.RadSplitContainer();
@@ -61,6 +61,10 @@
             this.tsbtnEdifactSave = new System.Windows.Forms.ToolStripButton();
             this.tsbtnEdifactDelete = new System.Windows.Forms.ToolStripButton();
             this.tsbtnCopy = new System.Windows.Forms.ToolStripButton();
+            this.tbClientAdrMatchCode = new System.Windows.Forms.TextBox();
+            this.nudAdrClient = new System.Windows.Forms.NumericUpDown();
+            this.btnClient = new System.Windows.Forms.Button();
+            this.tbClientAdrShort = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
             this.scMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitDgv)).BeginInit();
@@ -73,6 +77,7 @@
             this.panAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdrDirect)).BeginInit();
             this.menuAdd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdrClient)).BeginInit();
             this.SuspendLayout();
             // 
             // afColorLabel1
@@ -133,7 +138,7 @@
             this.dgv.MasterTemplate.EnableFiltering = true;
             this.dgv.MasterTemplate.ShowFilteringRow = false;
             this.dgv.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgv.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.dgv.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -187,6 +192,10 @@
             // panAdd
             // 
             this.panAdd.BackColor = System.Drawing.Color.White;
+            this.panAdd.Controls.Add(this.tbClientAdrShort);
+            this.panAdd.Controls.Add(this.tbClientAdrMatchCode);
+            this.panAdd.Controls.Add(this.nudAdrClient);
+            this.panAdd.Controls.Add(this.btnClient);
             this.panAdd.Controls.Add(this.tbCreated);
             this.panAdd.Controls.Add(this.comboDirection);
             this.panAdd.Controls.Add(this.label3);
@@ -454,6 +463,51 @@
             this.tsbtnCopy.Text = "Kopiere Datensatz";
             this.tsbtnCopy.Click += new System.EventHandler(this.tsbtnCopy_Click);
             // 
+            // tbClientAdrMatchCode
+            // 
+            this.tbClientAdrMatchCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbClientAdrMatchCode.Location = new System.Drawing.Point(13, 342);
+            this.tbClientAdrMatchCode.Name = "tbClientAdrMatchCode";
+            this.tbClientAdrMatchCode.Size = new System.Drawing.Size(251, 20);
+            this.tbClientAdrMatchCode.TabIndex = 271;
+            // 
+            // nudAdrClient
+            // 
+            this.nudAdrClient.Location = new System.Drawing.Point(125, 314);
+            this.nudAdrClient.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nudAdrClient.Name = "nudAdrClient";
+            this.nudAdrClient.Size = new System.Drawing.Size(104, 20);
+            this.nudAdrClient.TabIndex = 270;
+            this.nudAdrClient.Leave += new System.EventHandler(this.nudAdrClient_Leave);
+            // 
+            // btnClient
+            // 
+            this.btnClient.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClient.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnClient.Location = new System.Drawing.Point(13, 314);
+            this.btnClient.Name = "btnClient";
+            this.btnClient.Size = new System.Drawing.Size(83, 22);
+            this.btnClient.TabIndex = 269;
+            this.btnClient.TabStop = false;
+            this.btnClient.Text = "[Auftraggeber]";
+            this.btnClient.UseVisualStyleBackColor = true;
+            this.btnClient.Click += new System.EventHandler(this.btnClient_Click);
+            // 
+            // tbClientAdrShort
+            // 
+            this.tbClientAdrShort.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tbClientAdrShort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbClientAdrShort.Enabled = false;
+            this.tbClientAdrShort.Location = new System.Drawing.Point(13, 368);
+            this.tbClientAdrShort.Name = "tbClientAdrShort";
+            this.tbClientAdrShort.ReadOnly = true;
+            this.tbClientAdrShort.Size = new System.Drawing.Size(253, 20);
+            this.tbClientAdrShort.TabIndex = 272;
+            // 
             // ctrEdiClientWorkspaceValue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,6 +532,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAdrDirect)).EndInit();
             this.menuAdd.ResumeLayout(false);
             this.menuAdd.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdrClient)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -515,5 +570,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbCreated;
         private System.Windows.Forms.ToolStripButton tsbtnCopy;
+        private System.Windows.Forms.TextBox tbClientAdrMatchCode;
+        private System.Windows.Forms.NumericUpDown nudAdrClient;
+        private System.Windows.Forms.Button btnClient;
+        private System.Windows.Forms.TextBox tbClientAdrShort;
     }
 }

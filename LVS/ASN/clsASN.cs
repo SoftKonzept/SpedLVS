@@ -596,7 +596,7 @@ namespace LVS
                             {
                                 strSubject += "DEBUG MODE >>> ";
                             }
-                            strSubject += this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString() + "- Error TASK_CALLread !!!";
+                            strSubject += "ERROR - Error TASK_CALLread !!! - " + this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString();
 
                             EMail.Subject = strSubject;
                             EMail.Message = tmpLog.LogText;
@@ -685,7 +685,7 @@ namespace LVS
                                     {
                                         strSubject += "DEBUG MODE >>> ";
                                     }
-                                    strSubject += this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString() + "- Error TASK_VDAread: kein Arbeitsbereich !!!";
+                                    strSubject += "ERROR - TASK_VDAread: kein Arbeitsbereich !!! - " + this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString();
                                     EMail.Subject = strSubject;
                                     EMail.Message = tmpLog.LogText;
                                     EMail.SendError();
@@ -701,7 +701,7 @@ namespace LVS
                                 {
                                     strSubject += "DEBUG MODE >>> ";
                                 }
-                                strSubject += this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString() + "- Error TASK_VDAread: ASN fehlerhaft !!!";
+                                strSubject += "ERROR - TASK_VDAread: Datei enthält kein Daten !!! - " + this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString();
                                 EMail.Subject = strSubject;
                                 EMail.Message = ((clsLogbuchCon)this.ASNArt.ListError[0]).LogText;
                                 EMail.SendError();
@@ -729,7 +729,7 @@ namespace LVS
                             {
                                 strSubject += "DEBUG MODE >>> ";
                             }
-                            strSubject += this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString() + "- Error TASK_VDAread: Datei enthält kein Daten !!!";
+                            strSubject += "ERROR - TASK_VDAread: Datei enthält kein Daten !!! - " + this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString();
                             EMail.Subject = strSubject;
                             EMail.Message = tmpLog.LogText;
                             EMail.SendError();

@@ -28,7 +28,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>26.05.07.%2a</ApplicationVersion>
+    <ApplicationVersion>26.07.10.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -342,6 +342,7 @@
     <Compile Include="Classes\Update\up1030.cs" />
     <Compile Include="Classes\Update\up1035.cs" />
     <Compile Include="Classes\Update\up1034.cs" />
+    <Compile Include="Classes\Update\up1063.cs" />
     <Compile Include="Classes\Update\up1062.cs" />
     <Compile Include="Classes\Update\up1061.cs" />
     <Compile Include="Classes\Update\up1060.cs" />

@@ -93,6 +93,24 @@ namespace LVS.Models
         }
 
         [DataMember]
+        [JsonProperty("ClientId")]
+        private int _ClientId; 
+        public int ClientId
+        {
+            get { return _ClientId; }
+            set { _ClientId = value; }
+        }
+
+        [DataMember]
+        [JsonProperty("AddressClient")]
+        private Addresses _AddressClient;
+        public Addresses AddressClient
+        {
+            get { return _AddressClient; }
+            set { _AddressClient = value; }
+        }
+
+        [DataMember]
         [JsonProperty("ListEdiAdrWorkspaceAssignment")]
         public List<EdiClientWorkspaceValue> ListEdiAdrWorkspaceAssignment { get; set; } = new List<EdiClientWorkspaceValue>();
 

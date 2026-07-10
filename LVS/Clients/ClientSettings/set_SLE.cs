@@ -388,6 +388,8 @@ namespace LVS
             Artikel.Add("KFZ_IN");
             Artikel.Add("Anzahl");
             Artikel.Add("Brutto");
+            Artikel.Add("TransportId");
+            
             myClient.AddToView(clsClient.const_ViewKategorie_Journal, "Abrechnung Progroup", Artikel, false);
             myClient.AddToView(clsClient.const_ViewKategorie_Journal, "Abrechnung Progroup", Artikel, true);
 

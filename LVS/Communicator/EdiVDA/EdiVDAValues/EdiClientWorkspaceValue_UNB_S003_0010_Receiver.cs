@@ -4,7 +4,7 @@ namespace LVS.Communicator.EdiVDA.EdiVDAValues
 {
     public class EdiClientWorkspaceValue_UNB_S003_0010_Receiver
     {
-        //-- alt muss aber erhlaten bleiben
+        //-- alt muss aber erhlaten bleiben neu EdiClientWorkspaceValue_UNB_S003_0010_Client
         public const string const_EdiAdrWorkspaceAssign_UNB_S003_0010_Receiver = "#EdiAdrWorkspaceAssign_UNB_S003_0010_Receiver#";
         public const string const_EdiClientWorkspaceValue_UNB_S003_0010_Receiver = "#EdiClientWorkspaceValue_UNB_S003_0010_Receiver#";
         public const string const_EdiClientWorkspaceValue_Property = "UNB#S003#0010";
@@ -15,6 +15,7 @@ namespace LVS.Communicator.EdiVDA.EdiVDAValues
             int iWorkspace = 0;
             int iAsnArtId = 0;
             int iAdrId = 0;
+            int iAuftraggeberId = 0;
 
             switch (myAsnTyp.Typ)
             {
@@ -27,6 +28,7 @@ namespace LVS.Communicator.EdiVDA.EdiVDAValues
                         iWorkspace = (int)myLager.Artikel.Eingang.AbBereichID;
                         iAsnArtId = (int)myAsn.ASNArt.ID;
                         iAdrId = (int)myLager.Artikel.Eingang.Empfaenger;
+                        iAuftraggeberId = (int)myLager.Artikel.Eingang.Auftraggeber;
                     }
                     break;
 
@@ -41,6 +43,7 @@ namespace LVS.Communicator.EdiVDA.EdiVDAValues
                         iWorkspace = (int)myLager.Artikel.Ausgang.AbBereichID;
                         iAsnArtId = (int)myAsn.ASNArt.ID;
                         iAdrId = (int)myLager.Artikel.Ausgang.Empfaenger;
+                        iAuftraggeberId = (int)myLager.Artikel.Ausgang.Auftraggeber;
                     }
                     break;
             }
@@ -51,7 +54,7 @@ namespace LVS.Communicator.EdiVDA.EdiVDAValues
                     (iAdrId > 0)
                )
             {
-                EdiClientWorkspaceValueViewData eawaVD = new EdiClientWorkspaceValueViewData(iAdrId, iAsnArtId, iWorkspace, EdiClientWorkspaceValue_UNB_S003_0010_Receiver.const_EdiClientWorkspaceValue_Property, (int)myAsn.BenutzerID);
+                EdiClientWorkspaceValueViewData eawaVD = new EdiClientWorkspaceValueViewData(iAdrId, iAsnArtId, iWorkspace, iAuftraggeberId, EdiClientWorkspaceValue_UNB_S003_0010_Receiver.const_EdiClientWorkspaceValue_Property, (int)myAsn.BenutzerID);
                 strTmp = eawaVD.AdrWorkspaceAssingment.Value.ToString();
             }
             return strTmp;

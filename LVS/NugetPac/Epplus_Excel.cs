@@ -31,12 +31,15 @@ namespace LVS.NugetPac
                 //--- PRÜFUNG: Sind Daten vorhanden?
                 if (myDt == null || myDt.Rows.Count == 0)
                 {
+                    //-- Anpassungen 22.06.2026 für ArcelorMittal: Wenn keine Daten vorhanden sind, soll in der Excel-Datei in Zelle A2 "NOstock" stehen.
                     // KEINE DATEN: "NOstock" einfügen
-                    ws.Cells["A2"].Value = "NOstock";
-                    ws.Cells["A2"].Style.Font.Bold = true;
-                    ws.Cells["A2"].Style.Font.Size = 12;
-                    ws.Cells["A2"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                    ws.Cells["A2"].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightCoral);
+                    //-- rausgenommen da Arcelor das bereits intern verarbeiten 
+                    //-- Auftrag erteilt und durchgeführt
+                    //ws.Cells["A2"].Value = "NOstock";
+                    //ws.Cells["A2"].Style.Font.Bold = true;
+                    //ws.Cells["A2"].Style.Font.Size = 12;
+                    //ws.Cells["A2"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    //ws.Cells["A2"].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightCoral);
                 }
                 else
                 {
