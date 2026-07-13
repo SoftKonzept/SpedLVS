@@ -608,6 +608,10 @@ namespace LVS.ViewData
                 {
                     iReturn = iTmp;
                 }
+                else
+                {
+                    iReturn = 1;
+                }
             }
             return iReturn;
         }

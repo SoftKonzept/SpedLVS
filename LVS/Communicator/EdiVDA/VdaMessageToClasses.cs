@@ -684,7 +684,9 @@ namespace LVS.Communicator.EdiVDA
                                         }
                                     }
                                     if (
-                                        (AddArtikel.GArtID > 1) &&
+                                        //(AddArtikel.GArtID > 1) &&
+                                        //--- mr 2026_07_13 Korrktur
+                                        (AddArtikel.GArtID > 0) &&
                                         (this.system.Client.Modul.ASN_VDA4913_LVS_ReadASN_TakeOverGArtValues)
                                        )
                                     {
@@ -1263,7 +1265,8 @@ namespace LVS.Communicator.EdiVDA
                             }
 
                             if (
-                                (AddArtikel.GArtID > 1) &&
+                                //--- mr 2026_07_13 Korrektur
+                                (AddArtikel.GArtID > 0) &&
                                 (this.system.Client.Modul.ASN_VDA4913_LVS_ReadASN_TakeOverGArtValues)
                                )
                             {
