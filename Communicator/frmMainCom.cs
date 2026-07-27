@@ -2521,28 +2521,6 @@ namespace Communicator
                                         }
                                     }
                                 }
-
-
-
-                                //CronJobViewData tmpCronJobVD = new CronJobViewData(cronJob, 1);
-                                //CronJob_StoclistAutoSend stoclistAutoSend = new CronJob_StoclistAutoSend(tmpCronJobVD.CronJob, this.GLUser, this.GLSystem, this.system);
-                                //if (stoclistAutoSend.ProzessExcecuted)
-                                //{
-                                //    if (!system.DebugModeCOM)
-                                //    {
-                                //        tmpCronJobVD.UpdateNextActiondate();
-                                //    }
-                                //}
-                                //if (stoclistAutoSend.ListLogInsert.Count > 0)
-                                //{
-                                //    foreach (clsLogbuchCon item in stoclistAutoSend.ListLogInsert)
-                                //    {
-                                //        strTmp = item.LogText;
-                                //        listLogToCronJob.Add(strTmp);
-                                //        SetInfoInInfoBox2(strTmp);
-                                //    }
-                                //}
-
                                 break;
 
                             //case "GEWStatistikAutoSend":

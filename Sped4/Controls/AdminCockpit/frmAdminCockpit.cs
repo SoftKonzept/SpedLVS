@@ -1,10 +1,13 @@
 ﻿using LVS;
+using LVS.Mail;
 using Sped4.Controls.ASNCenter;
 using Sped4.Controls.Edifact;
 using Sped4.Controls.Processes;
 using Sped4.Controls.ToDo;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Sped4.Controls.AdminCockpit
@@ -315,7 +318,135 @@ namespace Sped4.Controls.AdminCockpit
         }
         ///<summary>rfrmAdminCockpit/ tbtnMailCheck_Click</summary>
         ///<remarks></remarks>
-        private void tbtnMailCheck_Click(object sender, EventArgs e)
+        private async void tbtnMailCheck_Click(object sender, EventArgs e)
+        {
+            string strError = string.Empty;
+            if (cbUseReply.Checked)
+            {
+                strError = string.Empty;
+                string strMessage = string.Empty;
+                string strSubject = string.Empty;
+                try
+                {
+                    tbMailCheckInfo.Text = string.Empty;
+
+                    MailCredentials mc = new MailCredentials();
+                    mc.SmtpHost = tbSMTPServer.Text.Trim();
+                    mc.SmtpUser = tbSMTPUser.Text.Trim();
+                    mc.SmtpPassword = tbSMTPPass.Text.Trim();
+                    Int32 iTmp = 0;
+                    Int32.TryParse(tbSMTPPort.Text.Trim(), out iTmp);
+                    mc.SmtpPort = iTmp;
+                    mc.KeepAlive = false;
+
+                    string strRepyTo = tbReplyTo.Text.Trim();
+                    string strReplyToName = tbAbsName.Text.Trim();
+                    mc.SmtpDisplayName = strReplyToName;
+
+
+
+                    // ✅ TEST-EMPFÄNGER
+                    List<string> MailReceivers = new List<string>();
+                    MailReceivers.Add("support@softkonzept.com");
+                    MailReceivers.Add("Marco-Rinscheid@gmx.de");
+
+                    // ✅ TEST-NACHRICHT
+                    strSubject = "SMTP-Test Reply-To " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    strMessage = "Dies ist eine Testnachricht für IONOS SMTP-Konfiguration." + Environment.NewLine +
+                                        "Server: " + mc.SmtpHost + Environment.NewLine +
+                                        "Port: " + mc.SmtpPort + Environment.NewLine +
+                                        //"Mode: " + (isRelayConnector ? "RELAY (ohne Auth)" : "AUTH (mit Authentifizierung)") + Environment.NewLine +
+                                        //"SSL/TLS: " + MailCheck.SMTPSsl ? "JA (STARTTLS)" : "NEIN (unverschlüsselt)") + Environment.NewLine +
+                                        "Login-Account: " + mc.SmtpUser + Environment.NewLine +
+                                        "Von (From): " + mc.SmtpUser + Environment.NewLine +
+                                        "Reply-To: " + strRepyTo + "|" + strReplyToName + Environment.NewLine;
+
+                    Mail mailCheck = new Mail(mc);
+                    // ✅ WICHTIG: await hinzufügen!
+                    await mailCheck.SendWithReplyToAsync(
+                        toEmail: tbMailAdress.Text.Trim(),
+                        subject: strSubject,
+                        body: strMessage,
+                        replyToEmail: strRepyTo,
+                        replyToName: strReplyToName);
+
+                    strError = "✅ SUCCESS: Testmail wurde erfolgreich versandt!" + Environment.NewLine +
+                               "Empfänger: support@softkonzept.com" + Environment.NewLine +
+                               "Zeit: " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
+                }
+                catch (Exception ex)
+                {
+                    strError = string.Empty;
+                    strError = "❌ EXCEPTION: Unerwarteter Fehler!" + Environment.NewLine;
+                    strError += Environment.NewLine;
+                    strError += "Exception Message:" + Environment.NewLine;
+                    strError += ex.Message + Environment.NewLine;
+                    strError += Environment.NewLine;
+                    strError += "Stack Trace:" + Environment.NewLine;
+                    strError += ex.StackTrace;
+                }
+                finally
+                {
+                    tbMailCheckInfo.Text = strError;
+                }
+            }
+            else
+            {
+                strError = string.Empty;
+                tbMailCheckInfo.Text = string.Empty;
+                clsMail MailCheck = new clsMail();
+                MailCheck.InitClass(this._ctrMenu._frmMain.GL_User, this._ctrMenu._frmMain.system);
+
+                // ✅ SMTP-EINSTELLUNGEN AUS UI
+                MailCheck.SMTPServer = tbSMTPServer.Text.Trim();
+                MailCheck.SMTPUser = tbSMTPUser.Text.Trim();
+                MailCheck.SMTPPasswort = tbSMTPPass.Text.Trim();
+                MailCheck.MailFrom = tbMailAdress.Text.Trim();
+                MailCheck.MailReplyTo = tbReplyTo.Text.Trim();
+                MailCheck.MailFromName = tbAbsName.Text.Trim();
+                Int32 iTmp = 0;
+                Int32.TryParse(tbSMTPPort.Text.Trim(), out iTmp);
+                MailCheck.SMTPPort = iTmp;
+                MailCheck.SMTPSsl = cbSMTPSSL.Checked;
+
+                // ✅ TEST-EMPFÄNGER
+                MailCheck.ListMailReceiver.Add("support@softkonzept.com");
+                MailCheck.ListMailReceiver.Add("Marco-Rinscheid@gmx.de");
+
+                //TestMailOld();
+                //string strError = string.Empty;
+                //tbMailCheckInfo.Text = string.Empty;
+                //clsMail MailCheck = new clsMail();
+                //MailCheck.InitClass(this._ctrMenu._frmMain.GL_User, this._ctrMenu._frmMain.system);
+                //MailCheck.SMTPServer = tbSMTPServer.Text.Trim();
+                //MailCheck.SMTPUser = tbSMTPUser.Text.Trim();
+                //MailCheck.SMTPPasswort = tbSMTPPass.Text.Trim();
+                //MailCheck.MailFrom = tbMailAdress.Text.Trim();
+
+                //MailCheck.ListMailReceiver.Add("support@softkonzept.com");
+                //MailCheck.ListMailReceiver.Add("support@softkonzept.com");
+
+                //Int32 iTmp = 0;
+                //Int32.TryParse(tbSMTPPort.Text.Trim(), out iTmp);
+                //MailCheck.SMTPPort = iTmp;
+                //MailCheck.SMTPSsl = cbSMTPSSL.Checked;
+                MailCheck.Subject = "Check Mailaccount: " + tbMailAdress.Text.Trim();
+                strError = strError + "E-Mailcheck gestartet! " + Environment.NewLine;
+                MailCheck.Message = string.Empty;
+                if (MailCheck.Send())
+                {
+                    strError = strError + "Testmail wurde erfolgreich versandt!!! " + Environment.NewLine;
+                }
+                else
+                {
+                    strError = strError + "Testmail konnte NICHT versendet werden - Fehlermeldung: " + Environment.NewLine;
+                    strError = strError + MailCheck.Message + Environment.NewLine;
+                }
+                tbMailCheckInfo.Text = strError;
+            }
+        }
+
+        private void TestMailOld()
         {
             string strError = string.Empty;
             tbMailCheckInfo.Text = string.Empty;
@@ -325,7 +456,7 @@ namespace Sped4.Controls.AdminCockpit
             MailCheck.SMTPUser = tbSMTPUser.Text.Trim();
             MailCheck.SMTPPasswort = tbSMTPPass.Text.Trim();
             MailCheck.MailFrom = tbMailAdress.Text.Trim();
-                        
+
             MailCheck.ListMailReceiver.Add("support@softkonzept.com");
             //MailCheck.ListMailReceiver.Add("support@softkonzept.com");
 
@@ -347,6 +478,209 @@ namespace Sped4.Controls.AdminCockpit
             }
             tbMailCheckInfo.Text = strError;
         }
+
+        private void TestMailNew(clsMail MailCheck)
+        {
+            string strError = string.Empty;
+            tbMailCheckInfo.Text = string.Empty;
+
+            try
+            {
+                //clsMail MailCheck = new clsMail();
+                //MailCheck.InitClass(this._ctrMenu._frmMain.GL_User, this._ctrMenu._frmMain.system);
+
+                // ✅ SMTP-EINSTELLUNGEN AUS UI
+                //MailCheck.SMTPServer = tbSMTPServer.Text.Trim();
+                //MailCheck.SMTPUser = tbSMTPUser.Text.Trim();
+                //MailCheck.SMTPPasswort = tbSMTPPass.Text.Trim();
+
+                string smtpAccountEmail = tbMailAdress.Text.Trim();  // Account A (Login)
+
+                // ✅ OPTIONAL: Alternativer From-Address (Account B)
+                // Setzen Sie hier eine alternative Absenderadresse (muss gleiche Domain sein!)
+                string customFromAddress = string.Empty;  // Leer = Account A als From
+                string customFromName = string.Empty;
+
+                // ✅ RELAY-MODUS ERKENNEN
+                bool isRelayConnector = string.IsNullOrWhiteSpace(MailCheck.SMTPUser) &&
+                                       string.IsNullOrWhiteSpace(MailCheck.SMTPPasswort);
+
+                if (isRelayConnector)
+                {
+                    strError = "ℹ️ RELAY-MODUS erkannt (ohne Authentifizierung)" + Environment.NewLine;
+
+                    if (string.IsNullOrWhiteSpace(MailCheck.SMTPServer))
+                    {
+                        strError += "❌ FEHLER: SMTP Server ist erforderlich!" + Environment.NewLine;
+                        tbMailCheckInfo.Text = strError;
+                        return;
+                    }
+                }
+                else
+                {
+                    if (!ValidateSMTPSettings(MailCheck))
+                    {
+                        strError = "❌ FEHLER: Alle SMTP-Felder müssen gefüllt sein!" + Environment.NewLine;
+                        strError += "Erforderlich:" + Environment.NewLine;
+                        strError += "- SMTP Server: " + (string.IsNullOrWhiteSpace(MailCheck.SMTPServer) ? "LEER" : "OK") + Environment.NewLine;
+                        strError += "- SMTP User: " + (string.IsNullOrWhiteSpace(MailCheck.SMTPUser) ? "LEER" : "OK") + Environment.NewLine;
+                        strError += "- SMTP Passwort: " + (string.IsNullOrWhiteSpace(MailCheck.SMTPPasswort) ? "LEER" : "OK") + Environment.NewLine;
+                        strError += "- Mail Adresse: " + (string.IsNullOrWhiteSpace(MailCheck.MailFrom) ? "LEER" : "OK") + Environment.NewLine;
+                        tbMailCheckInfo.Text = strError;
+                        return;
+                    }
+                }
+
+                // ✅ PORT UND SSL KONFIGURIEREN
+                Int32 iTmp = 0;
+                Int32.TryParse(tbSMTPPort.Text.Trim(), out iTmp);
+
+                if (isRelayConnector)
+                {
+                    MailCheck.SMTPPort = (iTmp > 0) ? iTmp : 25;
+                    MailCheck.SMTPSsl = false;
+                }
+                else
+                {
+                    MailCheck.SMTPPort = (iTmp > 0) ? iTmp : 587;
+                    MailCheck.SMTPSsl = cbSMTPSSL.Checked;
+                }
+
+                // ✅ TEST-EMPFÄNGER
+                //MailCheck.ListMailReceiver.Add("support@softkonzept.com");
+                //MailCheck.ListMailReceiver.Add("Marco-Rinscheid@gmx.de");              
+
+                // ✅ SAUBERE ABSENDER-STRATEGIE FÜR IONOS
+                // Option 1: Standard (Account A als From)
+                //MailCheck.MailFrom = smtpAccountEmail;
+
+                // Option 2: Alternative Absenderadresse (IONOS-kompatibel)
+                // Nur wenn gleiche Domain oder IONOS erlaubt es
+                //if (!string.IsNullOrWhiteSpace(customFromAddress) &&
+                //    IsSameDomain(smtpAccountEmail, customFromAddress))
+                //{
+                //    MailCheck.MailFrom = customFromAddress;
+                //    MailCheck.MailFromName = customFromName;  // Benötigt clsMail Erweiterung!
+                //}
+
+                // ✅ REPLY-TO (FIXED: string.IsNullOrEmpty statt IsNullOrEmpty)
+                //MailCheck.MailReplyTo = string.IsNullOrEmpty(customFromAddress)
+                //    ? smtpAccountEmail
+                //    : customFromAddress;
+
+                // ✅ TEST-NACHRICHT
+                MailCheck.Subject = "SMTP-Test (IONOS): " + MailCheck.MailFrom + " - " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                MailCheck.Message = "Dies ist eine Testnachricht für IONOS SMTP-Konfiguration." + Environment.NewLine +
+                                    "Server: " + MailCheck.SMTPServer + Environment.NewLine +
+                                    "Port: " + MailCheck.SMTPPort + Environment.NewLine +
+                                    "Mode: " + (isRelayConnector ? "RELAY (ohne Auth)" : "AUTH (mit Authentifizierung)") + Environment.NewLine +
+                                    "SSL/TLS: " + (MailCheck.SMTPSsl ? "JA (STARTTLS)" : "NEIN (unverschlüsselt)") + Environment.NewLine +
+                                    "Login-Account: " + smtpAccountEmail + Environment.NewLine +
+                                    "Von (From): " + MailCheck.MailFrom + Environment.NewLine +
+                                    "Reply-To: " + MailCheck.MailReplyTo;
+
+                strError = "⏳ SMTP-Test wird durchgeführt..." + Environment.NewLine;
+                strError += "Server: " + MailCheck.SMTPServer + ":" + MailCheck.SMTPPort + Environment.NewLine;
+                strError += "Mode: " + (isRelayConnector ? "RELAY (anonymer Versand)" : "Authentifizierung") + Environment.NewLine;
+                strError += "IONOS Account Login: " + smtpAccountEmail + Environment.NewLine;
+                strError += "Von (From): " + MailCheck.MailFrom + Environment.NewLine;
+                strError += "Reply-To: " + MailCheck.MailReplyTo + Environment.NewLine;
+
+                if (!isRelayConnector)
+                {
+                    strError += "Benutzer: " + MailCheck.SMTPUser + Environment.NewLine;
+                }
+
+                strError += "SSL/TLS: " + (MailCheck.SMTPSsl ? "JA (STARTTLS Port 587)" : "NEIN (Port 25)") + Environment.NewLine;
+                strError += Environment.NewLine;
+
+                tbMailCheckInfo.Text = strError;
+                Application.DoEvents();
+
+                // ✅ MAIL VERSENDEN
+                if (MailCheck.SendTest())
+                {
+                    strError += "✅ SUCCESS: Testmail wurde erfolgreich versandt!" + Environment.NewLine;
+                    strError += Environment.NewLine;
+                    strError += "IONOS SMTP-Verbindung funktioniert einwandfrei." + Environment.NewLine;
+                    strError += "Mode: " + (isRelayConnector ? "RELAY-Connector aktiv" : "Authentifizierung aktiv") + Environment.NewLine;
+                    strError += "Empfänger: support@softkonzept.com" + Environment.NewLine;
+                    strError += "Zeit: " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
+                }
+                else
+                {
+                    strError += "❌ FEHLER: Testmail konnte NICHT versendet werden!" + Environment.NewLine;
+                    strError += Environment.NewLine;
+                    strError += "Fehlermeldung:" + Environment.NewLine;
+                    strError += MailCheck.Message + Environment.NewLine;
+                    strError += Environment.NewLine;
+                    strError += "IONOS-spezifische Lösungsvorschläge:" + Environment.NewLine;
+
+                    if (isRelayConnector)
+                    {
+                        strError += "1. Prüfen Sie die Relay-IP oder den Hostname" + Environment.NewLine;
+                        strError += "2. Firewall erlaubt ausgehende Verbindungen auf Port " + MailCheck.SMTPPort + "?" + Environment.NewLine;
+                        strError += "3. IONOS-Relay in Mailkonto konfiguriert?" + Environment.NewLine;
+                        strError += "4. Absender-Adresse im IONOS-Relay autorisiert?";
+                    }
+                    else
+                    {
+                        strError += "1. IONOS Login korrekt? (z.B. user@domain.de oder nur user)" + Environment.NewLine;
+                        strError += "2. Passwort korrekt?" + Environment.NewLine;
+                        strError += "3. IONOS Port 587 mit STARTTLS/TLS verwenden" + Environment.NewLine;
+                        strError += "4. Alternative From-Adressen MÜSSEN gleiche Domain haben!" + Environment.NewLine;
+                        strError += "5. IONOS kann fremde From-Adressen ablehnen";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                strError = "❌ EXCEPTION: Unerwarteter Fehler!" + Environment.NewLine;
+                strError += Environment.NewLine;
+                strError += "Exception Message:" + Environment.NewLine;
+                strError += ex.Message + Environment.NewLine;
+                strError += Environment.NewLine;
+                strError += "Stack Trace:" + Environment.NewLine;
+                strError += ex.StackTrace;
+            }
+            finally
+            {
+                tbMailCheckInfo.Text = strError;
+            }
+        }
+
+        /// <summary>
+        /// Validiert die SMTP-Einstellungen
+        /// </summary>
+        private bool ValidateSMTPSettings(clsMail myMailCheck)
+        {
+            return !string.IsNullOrWhiteSpace(myMailCheck.SMTPServer) &&
+                   !string.IsNullOrWhiteSpace(myMailCheck.SMTPUser) &&
+                   !string.IsNullOrWhiteSpace(myMailCheck.SMTPPasswort) &&
+                   !string.IsNullOrWhiteSpace(myMailCheck.MailFrom);
+        }
+
+        /// <summary>
+        /// Hilfsmethode: Prüft ob zwei E-Mail-Adressen die gleiche Domain haben
+        /// </summary>
+        private bool IsSameDomain(string email1, string email2)
+        {
+            if (string.IsNullOrWhiteSpace(email1) || string.IsNullOrWhiteSpace(email2))
+                return false;
+
+            try
+            {
+                string domain1 = email1.Substring(email1.LastIndexOf("@") + 1).ToLower();
+                string domain2 = email2.Substring(email2.LastIndexOf("@") + 1).ToLower();
+                return domain1 == domain2;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
         ///<summary>frmAdminCockpit/ OpenCtrPrinter</summary>
         ///<remarks></remarks>
         private void OpenCtrAC_ASNAktion()

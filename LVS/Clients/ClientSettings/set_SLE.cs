@@ -226,20 +226,20 @@ namespace LVS
             myModul.Mail_UsingNoReplyDefault = false;
 
             //--- old
-            //myModul.Mail_SMTPServer = "smtp.ionos.de";
-            //myModul.Mail_SMTPUser = "noreply@sle-gmbh.de";
-            //myModul.Mail_SMTPPasswort = "B/z@WU[Ze2E4SvkBI";
-            //myModul.Mail_MailAdress = "noreply@sle-gmbh.de";
-            //myModul.Mail_SMTPPort = 587;
-            //myModul.Mail_SMTPSSL = true;
+            myModul.Mail_SMTPServer = "smtp.ionos.de";
+            myModul.Mail_SMTPUser = "noreply@sle-gmbh.de";
+            myModul.Mail_SMTPPasswort = "B/z@WU[Ze2E4SvkBI";
+            myModul.Mail_MailAdress = "noreply@sle-gmbh.de";
+            myModul.Mail_SMTPPort = 587;
+            myModul.Mail_SMTPSSL = true;
 
             //--- Anpassung lt. Mail Hr. Koschenz
-            myModul.Mail_SMTPServer = "slegmbh-de0i.mail.protection.outlook.com";
-            myModul.Mail_SMTPUser = "noreply@sle-gmbh.de";
-            myModul.Mail_SMTPPasswort = string.Empty;
-            myModul.Mail_MailAdress = "noreply@sle-gmbh.de";
-            myModul.Mail_SMTPPort = 25;
-            myModul.Mail_SMTPSSL = true;
+            //myModul.Mail_SMTPServer = "slegmbh-de0i.mail.protection.outlook.com";
+            //myModul.Mail_SMTPUser = "noreply@sle-gmbh.de";
+            //myModul.Mail_SMTPPasswort = string.Empty;
+            //myModul.Mail_MailAdress = "noreply@sle-gmbh.de";
+            //myModul.Mail_SMTPPort = 25;
+            //myModul.Mail_SMTPSSL = true;
 
             myModul.Mail_Noreply_SMTPServer = myModul.Mail_SMTPServer;
             myModul.Mail_Noreply_SMTPUser = myModul.Mail_SMTPUser;

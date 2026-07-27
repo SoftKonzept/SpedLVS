@@ -43,6 +43,9 @@ namespace LVS
         public List<string> ListMailReceiverAdmin { get; set; }
 
         private string _MailReceivers;
+        public string MailFromName;
+        public string MailReplyTo;
+
         public string MailReceivers
         {
             get
@@ -332,7 +335,6 @@ namespace LVS
                 {
                     SetLVSConstMailConfig();
                     MailToSend.From = new MailAddress(clsSystem.const_MailAdress);
-
                     bSenderDataOK = true;
                 }
                 else
@@ -454,6 +456,88 @@ namespace LVS
                     MailToSend = new MailMessage();
                     //Absender
                     MailToSend.From = new MailAddress(this.MailFrom);
+                    if ((this.MailBCC != null) && (this.MailBCC != string.Empty))
+                    {
+                        MailToSend.Bcc.Add(this.MailBCC);                        //MailToSend.Bcc.Add(this._GL_User.Mail);
+                    }
+                    //Empfänger
+                    InitMailReceiver();
+                    //Betreff
+                    MailToSend.Subject = Subject;
+                    //Mailnachrichtstext
+                    MailToSend.Body = Message;
+                    //Ausgangsserver initialisieren
+                    InitSMTPClient();
+                    if (this.MailSMTPClient is SmtpClient)
+                    {
+                        //Attachment
+                        InitAttachment();
+                        //Mail senden
+                        MailSMTPClient.Send(MailToSend);
+                        Log();
+                        bReturn = true;
+                    }
+                    else
+                    {
+                        bReturn = false;
+                        Error = new clsError();
+                        Error.Mail = this;
+                        Error._GL_User = this._GL_User;
+                        Error.Aktion = clsError.code1_401;
+                        Error.exceptText = "MailSMTPClient is NULL !!!";
+                        Error.WriteError();
+
+                        this.Subject = "Error bei Mailversand - [Originalbetreff: " + this.Subject + "]";
+                        this.Message = "Errortext: " + Environment.NewLine +
+                                        "Host: " + this.SMTPServer + Environment.NewLine +
+                                        "Port: " + this.SMTPPort + Environment.NewLine +
+                                        "User: " + this.SMTPUser + Environment.NewLine +
+                                        "SSL:" + Convert.ToInt32(this.SMTPSsl) + Environment.NewLine +
+
+                                        this.Message;
+                        SendError();
+                        clsMessages.Allgemein_ERRORTextShow(this.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                bReturn = false;
+                clsMessages.Allgemein_ERRORTextShow(ex.ToString());
+                Error = new clsError();
+                Error.Mail = this;
+                Error._GL_User = this._GL_User;
+                Error.Aktion = clsError.code1_401;
+                Error.exceptText = ex.ToString();
+                Error.WriteError();
+
+                this.Subject = "Error bei Mailversand - [Originalbetreff: " + this.Subject + "]";
+                this.Message = "Errortext: " + Environment.NewLine +
+                                ex.ToString() + Environment.NewLine +
+                                "[Originaltext]: " + Environment.NewLine +
+                                this.Message;
+                SendError();
+            }
+            finally
+            {
+
+            }
+            return bReturn;
+        }
+
+
+        public bool SendTest()
+        {
+            bool bReturn = false;
+            try
+            {
+                CheckForErrorInfo();
+                if (strErrorInfo == string.Empty)
+                {
+                    MailToSend = new MailMessage();
+                    //Absender - Account B
+                    MailToSend.From = new MailAddress(this.MailReplyTo,this.MailFromName);
+
                     if ((this.MailBCC != null) && (this.MailBCC != string.Empty))
                     {
                         MailToSend.Bcc.Add(this.MailBCC);                        //MailToSend.Bcc.Add(this._GL_User.Mail);
@@ -813,208 +897,5 @@ namespace LVS
             }
             return result;
         }
-
-
-
-        //public async Task SendAndLogAsync(MimeMessage message, long emailId)
-        public async Task SendAndLogAsync()
-        {
-            //var result = new SmtpMultiSendResult();
-            //var client = new SmtpClient();
-
- 
-            ////await client.ConnectAsync("smtp.unserefirma.de", 587, SecureSocketOptions.StartTls);
-            ////await client.AuthenticateAsync("username", "password");
-
-            //if (strErrorInfo == string.Empty)
-            //{
-            //    MailToSend = new MailMessage();
-            //    //Absender
-            //    MailToSend.From = new MailAddress(this.MailFrom);
-            //    if (this.ListMailReceiver.Count > 0)
-            //    {
-            //        for (Int32 i = 0; i <= ListMailReceiver.Count - 1; i++)
-            //        {
-            //            string strTmpReceiver = this.ListMailReceiver[i].ToString();
-            //            if (!strTmpReceiver.Equals(string.Empty))
-            //            {
-            //                try
-            //                {
-            //                    MailToSend.To.Add(strTmpReceiver);
-            //                }
-            //                finally
-            //                { }
-            //            }
-            //        }
-            //    }
-
-            //    //Betreff
-            //    MailToSend.Subject = Subject;
-            //    //Mailnachrichtstext
-            //    MailToSend.Body = Message;
-            //    //Ausgangsserver initialisieren
-            //    InitSMTPClient();
-            //    if (this.MailSMTPClient is SmtpClient)
-            //    {
-
-
-            //        try
-            //        {
-            //            //Mail senden
-            //            //MailSMTPClient.Send(MailToSend);
-            //            await MailSMTPClient.SendAsync(MailToSend);
-
-            //            // Wenn kein Fehler → alle OK
-            //            foreach (var r in MailToSend.To)
-            //            {
-            //                result.Results.Add(new SmtpRecipientStatusResult
-            //                {
-            //                    Recipient = r.Address,
-            //                    Success = true,
-            //                    StatusCode = SmtpStatusCode.Ok,
-            //                    RawResponse = "250 OK – accepted by remote server"
-            //                });
-            //            }
-            //        }
-
-            //        catch (SmtpFailedRecipientsException exRecipients)
-            //        {
-            //            // Jeder fehlerhafte Empfänger ist einzeln verfügbar
-            //            foreach (var inner in exRecipients.InnerExceptions)
-            //            {
-            //                result.Results.Add(new SmtpRecipientStatusResult
-            //                {
-            //                    Recipient = inner.FailedRecipient,
-            //                    Success = false,
-            //                    StatusCode = inner.StatusCode,
-            //                    RawResponse = inner.ToString()
-            //                });
-            //            }
-
-            //            // Erfolgreiche Empfänger ergänzen
-            //            var allRecipients = MailToSend.To.Select(t => t.Address).ToList();
-            //            var failed = exRecipients.InnerExceptions.Select(x => x.FailedRecipient).ToList();
-            //            var succeeded = allRecipients.Except(failed);
-
-            //            foreach (var ok in succeeded)
-            //            {
-            //                result.Results.Add(new SmtpRecipientStatusResult
-            //                {
-            //                    Recipient = ok,
-            //                    Success = true,
-            //                    StatusCode = SmtpStatusCode.Ok,
-            //                    RawResponse = "250 OK – accepted by remote server"
-            //                });
-            //            }
-            //        }
-            //        catch (SmtpException ex)
-            //        {
-            //            // Gesamter Versand fehlgeschlagen → alle Empfänger gleichen Fehler
-            //            foreach (var r in MailToSend.To)
-            //            {
-            //                result.Results.Add(new SmtpRecipientStatusResult
-            //                {
-            //                    Recipient = r.Address,
-            //                    Success = false,
-            //                    StatusCode = ex.StatusCode,
-            //                    RawResponse = ex.ToString()
-            //                });
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //    }
-            //}
-
-
-
-
-            ////
-            //// . SENDEN UND ALLE RCPT-TO ANTWORTEN AUSWERTEN
-            ////
-            //var sendResponse = await client.SendAsync(message);
-
-
-            //foreach (var r in recipients)
-            //{
-            //    _db.EmailEvents.Add(new EmailEvent
-            //    {
-            //        RecipientId = r.RecipientId,
-            //        EventType = EmailEventType.SendAttempt,
-            //        OccurredUtc = DateTime.UtcNow,
-            //        RawResponse = "SendAttempt (MailKit)"
-            //    });
-
-            //    r.AttemptCount++;
-            //    r.FirstAttemptUtc ??= DateTime.UtcNow;
-            //}
-
-            //await _db.SaveChangesAsync();
-
-
-
-            ////
-            //// 3. PRO EMPFÄNGER DIE SMTP SERVER‑ANTWORT ABHOLEN
-            ////
-            //foreach (var mailbox in message.To.Mailboxes)
-            //{
-            //    var status = client.GetRecipientStatus(mailbox);
-
-            //    var dbRecipient = recipients.First(r =>
-            //        r.ToAddressHash.SequenceEqual(Hash(mailbox.Address)));
-
-            //    // LOG EVENT
-            //    var evt = new EmailEvent
-            //    {
-            //        RecipientId = dbRecipient.RecipientId,
-            //        OccurredUtc = DateTime.UtcNow,
-            //        RawResponse = status.Response,
-            //        SmtpStatusCode = (int)status.StatusCode
-            //    };
-
-            //    //
-            //    // 4. STATUS‑LOGIK MAPPEN
-            //    //
-            //    switch (status.StatusCode)
-            //    {
-            //        case SmtpStatusCode.Ok:              // 250 OK
-            //            evt.EventType = EmailEventType.Accepted;
-            //            dbRecipient.LastKnownStatus = RecipientStatus.Accepted;
-            //            dbRecipient.FinalizedUtc = DateTime.UtcNow;
-            //            break;
-
-            //        case SmtpStatusCode.MailboxBusy:
-            //        case SmtpStatusCode.MailboxUnavailable:
-            //        case SmtpStatusCode.ServiceNotAvailable:
-            //        case SmtpStatusCode.LocalErrorInProcessing:
-            //            evt.EventType = EmailEventType.TempFail;
-            //            dbRecipient.LastKnownStatus = RecipientStatus.TempFail;
-            //            break;
-
-            //        case SmtpStatusCode.UserNotLocalWillForward:
-            //            evt.EventType = EmailEventType.Deferred;
-            //            dbRecipient.LastKnownStatus = RecipientStatus.Deferred;
-            //            break;
-
-            //        default:                              // Alles was 5xx ist
-            //            evt.EventType = EmailEventType.PermFail;
-            //            dbRecipient.LastKnownStatus = RecipientStatus.PermFail;
-            //            dbRecipient.FinalizedUtc = DateTime.UtcNow;
-            //            break;
-            //    }
-
-            //    _db.EmailEvents.Add(evt);
-            //}
-
-            ////
-            //// 5. SPEICHERN
-            ////
-            //await _db.SaveChangesAsync();
-
-            //await client.DisconnectAsync(true);
-        }
-
-
     }
 }

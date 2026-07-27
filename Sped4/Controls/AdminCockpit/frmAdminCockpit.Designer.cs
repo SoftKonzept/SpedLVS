@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.pageViewAdminCockpit = new Telerik.WinControls.UI.RadPageView();
             this.pvpReport = new Telerik.WinControls.UI.RadPageViewPage();
             this.tabReport = new System.Windows.Forms.TabControl();
@@ -55,6 +55,7 @@
             this.tabPage_CustomProcessException = new System.Windows.Forms.TabPage();
             this.pvpMail = new Telerik.WinControls.UI.RadPageViewPage();
             this.panMailEdit = new Telerik.WinControls.UI.RadPanel();
+            this.btnSmtpResponse = new Telerik.WinControls.UI.RadButton();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.tbMailCheckInfo = new Telerik.WinControls.UI.RadTextBox();
             this.tbtnMailCheck = new Telerik.WinControls.UI.RadButton();
@@ -82,7 +83,11 @@
             this.tabPage_AnonymousDatatable = new System.Windows.Forms.TabPage();
             this.tabPage_PdfCombination = new System.Windows.Forms.TabPage();
             this.tabPage_CleanAsn = new System.Windows.Forms.TabPage();
-            this.btnSmtpResponse = new Telerik.WinControls.UI.RadButton();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.tbReplyTo = new Telerik.WinControls.UI.RadTextBox();
+            this.tbAbsName = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
+            this.cbUseReply = new Telerik.WinControls.UI.RadCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pageViewAdminCockpit)).BeginInit();
             this.pageViewAdminCockpit.SuspendLayout();
             this.pvpReport.SuspendLayout();
@@ -102,6 +107,7 @@
             this.pvpMail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panMailEdit)).BeginInit();
             this.panMailEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSmtpResponse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbMailCheckInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbtnMailCheck)).BeginInit();
@@ -122,7 +128,11 @@
             this.tabEdiBaseData.SuspendLayout();
             this.pvpToDo.SuspendLayout();
             this.tab_ToDo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSmtpResponse)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbReplyTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbAbsName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbUseReply)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,7 +153,7 @@
             this.pageViewAdminCockpit.Name = "pageViewAdminCockpit";
             this.pageViewAdminCockpit.PageBackColor = System.Drawing.Color.White;
             this.pageViewAdminCockpit.SelectedPage = this.pvpMail;
-            this.pageViewAdminCockpit.Size = new System.Drawing.Size(947, 496);
+            this.pageViewAdminCockpit.Size = new System.Drawing.Size(947, 441);
             this.pageViewAdminCockpit.TabIndex = 0;
             this.pageViewAdminCockpit.ThemeName = "ControlDefault";
             this.pageViewAdminCockpit.ViewMode = Telerik.WinControls.UI.PageViewMode.Backstage;
@@ -216,7 +226,7 @@
             this.comboRefArbeitsbereich.EditorControl.MasterTemplate.AllowColumnChooser = false;
             this.comboRefArbeitsbereich.EditorControl.MasterTemplate.EnableGrouping = false;
             this.comboRefArbeitsbereich.EditorControl.MasterTemplate.ShowFilteringRow = false;
-            this.comboRefArbeitsbereich.EditorControl.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.comboRefArbeitsbereich.EditorControl.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.comboRefArbeitsbereich.EditorControl.Name = "NestedRadGridView";
             this.comboRefArbeitsbereich.EditorControl.ReadOnly = true;
             this.comboRefArbeitsbereich.EditorControl.ShowGroupPanel = false;
@@ -433,11 +443,16 @@
             this.pvpMail.Location = new System.Drawing.Point(145, 4);
             this.pvpMail.Margin = new System.Windows.Forms.Padding(4);
             this.pvpMail.Name = "pvpMail";
-            this.pvpMail.Size = new System.Drawing.Size(798, 488);
+            this.pvpMail.Size = new System.Drawing.Size(798, 433);
             this.pvpMail.Text = "Mail Check";
             // 
             // panMailEdit
             // 
+            this.panMailEdit.Controls.Add(this.cbUseReply);
+            this.panMailEdit.Controls.Add(this.tbAbsName);
+            this.panMailEdit.Controls.Add(this.radLabel10);
+            this.panMailEdit.Controls.Add(this.tbReplyTo);
+            this.panMailEdit.Controls.Add(this.radLabel9);
             this.panMailEdit.Controls.Add(this.btnSmtpResponse);
             this.panMailEdit.Controls.Add(this.radLabel8);
             this.panMailEdit.Controls.Add(this.tbMailCheckInfo);
@@ -455,12 +470,22 @@
             this.panMailEdit.Controls.Add(this.tbSMTPServer);
             this.panMailEdit.Location = new System.Drawing.Point(18, 22);
             this.panMailEdit.Name = "panMailEdit";
-            this.panMailEdit.Size = new System.Drawing.Size(772, 446);
+            this.panMailEdit.Size = new System.Drawing.Size(772, 395);
             this.panMailEdit.TabIndex = 0;
+            // 
+            // btnSmtpResponse
+            // 
+            this.btnSmtpResponse.Location = new System.Drawing.Point(21, 49);
+            this.btnSmtpResponse.Name = "btnSmtpResponse";
+            this.btnSmtpResponse.Size = new System.Drawing.Size(167, 31);
+            this.btnSmtpResponse.TabIndex = 7;
+            this.btnSmtpResponse.Text = "Check Mail SMTP Response";
+            this.btnSmtpResponse.ThemeName = "ControlDefault";
+            this.btnSmtpResponse.Click += new System.EventHandler(this.btnSmtpResponse_Click);
             // 
             // radLabel8
             // 
-            this.radLabel8.Location = new System.Drawing.Point(395, 20);
+            this.radLabel8.Location = new System.Drawing.Point(21, 229);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(52, 18);
             this.radLabel8.TabIndex = 8;
@@ -469,17 +494,17 @@
             // tbMailCheckInfo
             // 
             this.tbMailCheckInfo.AutoSize = false;
-            this.tbMailCheckInfo.Location = new System.Drawing.Point(395, 44);
+            this.tbMailCheckInfo.Location = new System.Drawing.Point(21, 253);
             this.tbMailCheckInfo.Multiline = true;
             this.tbMailCheckInfo.Name = "tbMailCheckInfo";
-            this.tbMailCheckInfo.Size = new System.Drawing.Size(374, 368);
+            this.tbMailCheckInfo.Size = new System.Drawing.Size(735, 132);
             this.tbMailCheckInfo.TabIndex = 7;
             // 
             // tbtnMailCheck
             // 
-            this.tbtnMailCheck.Location = new System.Drawing.Point(39, 209);
+            this.tbtnMailCheck.Location = new System.Drawing.Point(21, 12);
             this.tbtnMailCheck.Name = "tbtnMailCheck";
-            this.tbtnMailCheck.Size = new System.Drawing.Size(318, 31);
+            this.tbtnMailCheck.Size = new System.Drawing.Size(167, 31);
             this.tbtnMailCheck.TabIndex = 6;
             this.tbtnMailCheck.Text = "Check Mail Account";
             this.tbtnMailCheck.ThemeName = "ControlDefault";
@@ -488,7 +513,7 @@
             // cbSMTPSSL
             // 
             this.cbSMTPSSL.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSMTPSSL.Location = new System.Drawing.Point(141, 167);
+            this.cbSMTPSSL.Location = new System.Drawing.Point(325, 210);
             this.cbSMTPSSL.Name = "cbSMTPSSL";
             this.cbSMTPSSL.Size = new System.Drawing.Size(75, 18);
             this.cbSMTPSSL.TabIndex = 5;
@@ -496,7 +521,7 @@
             // 
             // radLabel7
             // 
-            this.radLabel7.Location = new System.Drawing.Point(39, 142);
+            this.radLabel7.Location = new System.Drawing.Point(223, 185);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(27, 18);
             this.radLabel7.TabIndex = 4;
@@ -504,7 +529,7 @@
             // 
             // radLabel6
             // 
-            this.radLabel6.Location = new System.Drawing.Point(39, 117);
+            this.radLabel6.Location = new System.Drawing.Point(223, 91);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(65, 18);
             this.radLabel6.TabIndex = 3;
@@ -512,7 +537,7 @@
             // 
             // radLabel5
             // 
-            this.radLabel5.Location = new System.Drawing.Point(39, 92);
+            this.radLabel5.Location = new System.Drawing.Point(223, 66);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(50, 18);
             this.radLabel5.TabIndex = 3;
@@ -520,7 +545,7 @@
             // 
             // radLabel4
             // 
-            this.radLabel4.Location = new System.Drawing.Point(39, 68);
+            this.radLabel4.Location = new System.Drawing.Point(223, 42);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(60, 18);
             this.radLabel4.TabIndex = 3;
@@ -528,7 +553,7 @@
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(39, 44);
+            this.radLabel3.Location = new System.Drawing.Point(223, 18);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(69, 18);
             this.radLabel3.TabIndex = 2;
@@ -536,41 +561,41 @@
             // 
             // tbSMTPPort
             // 
-            this.tbSMTPPort.Location = new System.Drawing.Point(141, 141);
+            this.tbSMTPPort.Location = new System.Drawing.Point(325, 184);
             this.tbSMTPPort.Name = "tbSMTPPort";
-            this.tbSMTPPort.Size = new System.Drawing.Size(216, 24);
+            this.tbSMTPPort.Size = new System.Drawing.Size(431, 24);
             this.tbSMTPPort.TabIndex = 1;
             this.tbSMTPPort.Text = "587";
             // 
             // tbSMTPPass
             // 
-            this.tbSMTPPass.Location = new System.Drawing.Point(141, 91);
+            this.tbSMTPPass.Location = new System.Drawing.Point(325, 65);
             this.tbSMTPPass.Name = "tbSMTPPass";
-            this.tbSMTPPass.Size = new System.Drawing.Size(216, 24);
+            this.tbSMTPPass.Size = new System.Drawing.Size(431, 24);
             this.tbSMTPPass.TabIndex = 1;
             this.tbSMTPPass.Text = "[Passwort]";
             // 
             // tbSMTPUser
             // 
-            this.tbSMTPUser.Location = new System.Drawing.Point(141, 67);
+            this.tbSMTPUser.Location = new System.Drawing.Point(325, 41);
             this.tbSMTPUser.Name = "tbSMTPUser";
-            this.tbSMTPUser.Size = new System.Drawing.Size(216, 24);
+            this.tbSMTPUser.Size = new System.Drawing.Size(431, 24);
             this.tbSMTPUser.TabIndex = 1;
             this.tbSMTPUser.Text = "support@softkonzept.com";
             // 
             // tbMailAdress
             // 
-            this.tbMailAdress.Location = new System.Drawing.Point(141, 116);
+            this.tbMailAdress.Location = new System.Drawing.Point(325, 90);
             this.tbMailAdress.Name = "tbMailAdress";
-            this.tbMailAdress.Size = new System.Drawing.Size(216, 24);
+            this.tbMailAdress.Size = new System.Drawing.Size(431, 24);
             this.tbMailAdress.TabIndex = 1;
             this.tbMailAdress.Text = "support@softkonzept.com";
             // 
             // tbSMTPServer
             // 
-            this.tbSMTPServer.Location = new System.Drawing.Point(141, 44);
+            this.tbSMTPServer.Location = new System.Drawing.Point(325, 18);
             this.tbSMTPServer.Name = "tbSMTPServer";
-            this.tbSMTPServer.Size = new System.Drawing.Size(216, 24);
+            this.tbSMTPServer.Size = new System.Drawing.Size(431, 24);
             this.tbSMTPServer.TabIndex = 0;
             this.tbSMTPServer.Text = "smtp.1und1.de";
             // 
@@ -708,21 +733,51 @@
             this.tabPage_CleanAsn.Text = "Clean ASN";
             this.tabPage_CleanAsn.UseVisualStyleBackColor = true;
             // 
-            // btnSmtpResponse
+            // radLabel9
             // 
-            this.btnSmtpResponse.Location = new System.Drawing.Point(39, 257);
-            this.btnSmtpResponse.Name = "btnSmtpResponse";
-            this.btnSmtpResponse.Size = new System.Drawing.Size(318, 31);
-            this.btnSmtpResponse.TabIndex = 7;
-            this.btnSmtpResponse.Text = "Check Mail SMTP Response";
-            this.btnSmtpResponse.ThemeName = "ControlDefault";
-            this.btnSmtpResponse.Click += new System.EventHandler(this.btnSmtpResponse_Click);
+            this.radLabel9.Location = new System.Drawing.Point(223, 131);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(53, 18);
+            this.radLabel9.TabIndex = 4;
+            this.radLabel9.Text = "Reply-To:";
+            // 
+            // tbReplyTo
+            // 
+            this.tbReplyTo.Location = new System.Drawing.Point(325, 130);
+            this.tbReplyTo.Name = "tbReplyTo";
+            this.tbReplyTo.Size = new System.Drawing.Size(431, 24);
+            this.tbReplyTo.TabIndex = 2;
+            this.tbReplyTo.Text = "noreply@sle-gmbh.de";
+            // 
+            // tbAbsName
+            // 
+            this.tbAbsName.Location = new System.Drawing.Point(325, 156);
+            this.tbAbsName.Name = "tbAbsName";
+            this.tbAbsName.Size = new System.Drawing.Size(431, 24);
+            this.tbAbsName.TabIndex = 9;
+            this.tbAbsName.Text = "SLE Eisenhüttenstadt GmbH";
+            // 
+            // radLabel10
+            // 
+            this.radLabel10.Location = new System.Drawing.Point(223, 157);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Size = new System.Drawing.Size(60, 18);
+            this.radLabel10.TabIndex = 10;
+            this.radLabel10.Text = "Abs.Name:";
+            // 
+            // cbUseReply
+            // 
+            this.cbUseReply.Location = new System.Drawing.Point(138, 131);
+            this.cbUseReply.Name = "cbUseReply";
+            this.cbUseReply.Size = new System.Drawing.Size(69, 18);
+            this.cbUseReply.TabIndex = 11;
+            this.cbUseReply.Text = "UseReply";
             // 
             // frmAdminCockpit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 496);
+            this.ClientSize = new System.Drawing.Size(947, 441);
             this.Controls.Add(this.pageViewAdminCockpit);
             this.Name = "frmAdminCockpit";
             this.Text = "Administrations - Cockpit";
@@ -748,6 +803,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panMailEdit)).EndInit();
             this.panMailEdit.ResumeLayout(false);
             this.panMailEdit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSmtpResponse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbMailCheckInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbtnMailCheck)).EndInit();
@@ -768,7 +824,11 @@
             this.tabEdiBaseData.ResumeLayout(false);
             this.pvpToDo.ResumeLayout(false);
             this.tab_ToDo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnSmtpResponse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbReplyTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbAbsName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbUseReply)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -830,5 +890,10 @@
         private System.Windows.Forms.TabPage tabPage_PdfCombination;
         private System.Windows.Forms.TabPage tabPage_CleanAsn;
         private Telerik.WinControls.UI.RadButton btnSmtpResponse;
+        private Telerik.WinControls.UI.RadTextBox tbReplyTo;
+        private Telerik.WinControls.UI.RadLabel radLabel9;
+        private Telerik.WinControls.UI.RadCheckBox cbUseReply;
+        private Telerik.WinControls.UI.RadTextBox tbAbsName;
+        private Telerik.WinControls.UI.RadLabel radLabel10;
     }
 }
