@@ -96,10 +96,15 @@ namespace LVS.ZUGFeRD
                 }
 
                 // 4) Fonts für Telerik registrieren
-                RegisterFontFile(fontsFolder, "LiberationSans-Regular.ttf", "Liberation Sans", FontStyles.Normal, FontWeights.Normal);
-                RegisterFontFile(fontsFolder, "LiberationSans-Bold.ttf", "Liberation Sans", FontStyles.Normal, FontWeights.Bold);
-                RegisterFontFile(fontsFolder, "LiberationSans-Italic.ttf", "Liberation Sans", FontStyles.Italic, FontWeights.Normal);
-                RegisterFontFile(fontsFolder, "LiberationSans-BoldItalic.ttf", "Liberation Sans", FontStyles.Italic, FontWeights.Bold);
+                //RegisterFontFile(fontsFolder, "LiberationSans-Regular.ttf", "Liberation Sans", FontStyles.Normal, FontWeights.Normal);
+                //RegisterFontFile(fontsFolder, "LiberationSans-Bold.ttf", "Liberation Sans", FontStyles.Normal, FontWeights.Bold);
+                //RegisterFontFile(fontsFolder, "LiberationSans-Italic.ttf", "Liberation Sans", FontStyles.Italic, FontWeights.Normal);
+                //RegisterFontFile(fontsFolder, "LiberationSans-BoldItalic.ttf", "Liberation Sans", FontStyles.Italic, FontWeights.Bold);
+
+                RegisterFontFile(fontsFolder, "LiberationSans-Regular.ttf", "Liberation Sans", System.Windows.FontStyles.Normal, System.Windows.FontWeights.Normal);
+                RegisterFontFile(fontsFolder, "LiberationSans-Bold.ttf", "Liberation Sans", System.Windows.FontStyles.Normal, System.Windows.FontWeights.Bold);
+                RegisterFontFile(fontsFolder, "LiberationSans-Italic.ttf", "Liberation Sans", System.Windows.FontStyles.Italic, System.Windows.FontWeights.Normal);
+                RegisterFontFile(fontsFolder, "LiberationSans-BoldItalic.ttf", "Liberation Sans", System.Windows.FontStyles.Italic, System.Windows.FontWeights.Bold);
 
                 _fontsRegistered = true;
             }
@@ -110,12 +115,40 @@ namespace LVS.ZUGFeRD
             }
         }
 
+
+
+
+        //private static void RegisterFontFile(
+        //                                        string fontsFolder,
+        //                                        string fileName,
+        //                                        string fontFamilyName,
+        //                                        FontStyle fontStyle,
+        //                                        FontWeight fontWeight)
+        //{
+        //    string fullPath = Path.Combine(fontsFolder, fileName);
+        //    // helper_IOFile.CheckPath(fullPath); // schon sichergestellt
+        //    if (!File.Exists(fullPath))
+        //    {
+        //        throw new FileNotFoundException($"Schriftdatei nicht gefunden: {fullPath}");
+        //    }
+
+        //    byte[] fontData = File.ReadAllBytes(fullPath);
+        //    FontsRepository.RegisterFont(
+        //                                new Telerik.Documents.Core.Fonts.FontFamily(fontFamilyName),
+        //                                fontStyle,
+        //                                fontWeight,
+        //                                fontData);
+        //    //Debug.WriteLine($"Registered font: {fontFamilyName} ({fileName})");
+        //}
+
+
         private static void RegisterFontFile(
-            string fontsFolder,
-            string fileName,
-            string fontFamilyName,
-            FontStyle fontStyle,
-            FontWeight fontWeight)
+                                        string fontsFolder,
+                                        string fileName,
+                                        string fontFamilyName,
+                                        System.Windows.FontStyle fontStyle,
+                                        System.Windows.FontWeight fontWeight
+                                        )
         {
             string fullPath = Path.Combine(fontsFolder, fileName);
             // helper_IOFile.CheckPath(fullPath); // schon sichergestellt
@@ -126,7 +159,7 @@ namespace LVS.ZUGFeRD
 
             byte[] fontData = File.ReadAllBytes(fullPath);
             FontsRepository.RegisterFont(
-                                        new Telerik.Documents.Core.Fonts.FontFamily(fontFamilyName),
+                                        new System.Windows.Media.FontFamily(fontFamilyName),
                                         fontStyle,
                                         fontWeight,
                                         fontData);

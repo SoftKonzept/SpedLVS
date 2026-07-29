@@ -41,6 +41,7 @@
             this.dgv = new Telerik.WinControls.UI.RadGridView();
             this.toolTabStrip1 = new Telerik.WinControls.UI.Docking.ToolTabStrip();
             this.splittCtr = new System.Windows.Forms.SplitContainer();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.afToolStrip2 = new Sped4.Controls.AFToolStrip();
             this.tsbtnSearch = new System.Windows.Forms.ToolStripButton();
             this.tsbtnClear = new System.Windows.Forms.ToolStripButton();
@@ -67,7 +68,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpBis = new System.Windows.Forms.DateTimePicker();
             this.dtpVon = new System.Windows.Forms.DateTimePicker();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.afColorLabel1 = new Sped4.Controls.AFColorLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dockStatOutput)).BeginInit();
             this.dockStatOutput.SuspendLayout();
@@ -109,17 +109,13 @@
             this.dockStatOutput.Controls.Add(this.toolTabStrip1);
             this.dockStatOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dockStatOutput.IsCleanUpTarget = true;
-            this.dockStatOutput.Location = new System.Drawing.Point(0, 263);
+            this.dockStatOutput.Location = new System.Drawing.Point(0, 219);
             this.dockStatOutput.MainDocumentContainer = this.documentContainer1;
             this.dockStatOutput.Name = "dockStatOutput";
             this.dockStatOutput.Padding = new System.Windows.Forms.Padding(0);
-            // 
-            // 
-            // 
-            this.dockStatOutput.RootElement.MinSize = new System.Drawing.Size(0, 0);
             autoHideGroup1.Windows.Add(this.dockWindowPlaceholder1);
             this.dockStatOutput.SerializableAutoHideContainer.RightAutoHideGroups.Add(autoHideGroup1);
-            this.dockStatOutput.Size = new System.Drawing.Size(1005, 291);
+            this.dockStatOutput.Size = new System.Drawing.Size(753, 231);
             this.dockStatOutput.SplitterWidth = 8;
             this.dockStatOutput.TabIndex = 12;
             this.dockStatOutput.TabStop = false;
@@ -130,10 +126,9 @@
             this.windowChart.Controls.Add(this.cvStatChart);
             this.windowChart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.windowChart.Location = new System.Drawing.Point(4, 34);
-            this.windowChart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.windowChart.Name = "windowChart";
             this.windowChart.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.windowChart.Size = new System.Drawing.Size(367, 253);
+            this.windowChart.Size = new System.Drawing.Size(367, 193);
             this.windowChart.Text = "Ausgabe als Diagramm";
             // 
             // cvStatChart
@@ -143,7 +138,7 @@
             this.cvStatChart.Location = new System.Drawing.Point(0, 0);
             this.cvStatChart.Name = "cvStatChart";
             this.cvStatChart.ShowGrid = false;
-            this.cvStatChart.Size = new System.Drawing.Size(367, 253);
+            this.cvStatChart.Size = new System.Drawing.Size(367, 193);
             this.cvStatChart.TabIndex = 0;
             this.cvStatChart.ThemeName = "ControlDefault";
             // 
@@ -154,10 +149,6 @@
             this.documentContainer1.Controls.Add(this.documentTabStrip1);
             this.documentContainer1.Name = "documentContainer1";
             this.documentContainer1.Padding = new System.Windows.Forms.Padding(0);
-            // 
-            // 
-            // 
-            this.documentContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.documentContainer1.SizeInfo.AbsoluteSize = new System.Drawing.Size(448, 200);
             this.documentContainer1.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Fill;
             this.documentContainer1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-175, 0);
@@ -170,12 +161,8 @@
             this.documentTabStrip1.Controls.Add(this.windowGrid);
             this.documentTabStrip1.Location = new System.Drawing.Point(0, 0);
             this.documentTabStrip1.Name = "documentTabStrip1";
-            // 
-            // 
-            // 
-            this.documentTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.documentTabStrip1.SelectedIndex = 0;
-            this.documentTabStrip1.Size = new System.Drawing.Size(622, 291);
+            this.documentTabStrip1.Size = new System.Drawing.Size(370, 231);
             this.documentTabStrip1.TabIndex = 0;
             this.documentTabStrip1.TabStop = false;
             // 
@@ -186,10 +173,9 @@
             this.windowGrid.Controls.Add(this.dgv);
             this.windowGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.windowGrid.Location = new System.Drawing.Point(5, 35);
-            this.windowGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.windowGrid.Name = "windowGrid";
             this.windowGrid.PreviousDockState = Telerik.WinControls.UI.Docking.DockState.Docked;
-            this.windowGrid.Size = new System.Drawing.Size(610, 249);
+            this.windowGrid.Size = new System.Drawing.Size(358, 189);
             this.windowGrid.Text = "Ausgabe als Tabelle";
             // 
             // dgv
@@ -212,8 +198,7 @@
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dgv.ShowHeaderCellButtons = true;
-            this.dgv.Size = new System.Drawing.Size(610, 249);
+            this.dgv.Size = new System.Drawing.Size(358, 189);
             this.dgv.TabIndex = 25;
             this.dgv.ThemeName = "ControlDefault";
             this.dgv.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgv_CellFormatting);
@@ -221,14 +206,10 @@
             // toolTabStrip1
             // 
             this.toolTabStrip1.Controls.Add(this.windowChart);
-            this.toolTabStrip1.Location = new System.Drawing.Point(630, 0);
+            this.toolTabStrip1.Location = new System.Drawing.Point(378, 0);
             this.toolTabStrip1.Name = "toolTabStrip1";
-            // 
-            // 
-            // 
-            this.toolTabStrip1.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.toolTabStrip1.SelectedIndex = 0;
-            this.toolTabStrip1.Size = new System.Drawing.Size(375, 291);
+            this.toolTabStrip1.Size = new System.Drawing.Size(375, 231);
             this.toolTabStrip1.SizeInfo.AbsoluteSize = new System.Drawing.Size(375, 200);
             this.toolTabStrip1.SizeInfo.SplitterCorrection = new System.Drawing.Size(175, 0);
             this.toolTabStrip1.TabIndex = 1;
@@ -237,8 +218,7 @@
             // splittCtr
             // 
             this.splittCtr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splittCtr.Location = new System.Drawing.Point(0, 34);
-            this.splittCtr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splittCtr.Location = new System.Drawing.Point(0, 28);
             this.splittCtr.Name = "splittCtr";
             // 
             // splittCtr.Panel1
@@ -251,9 +231,8 @@
             // splittCtr.Panel2
             // 
             this.splittCtr.Panel2.BackColor = System.Drawing.Color.Silver;
-            this.splittCtr.Size = new System.Drawing.Size(1575, 554);
-            this.splittCtr.SplitterDistance = 1005;
-            this.splittCtr.SplitterWidth = 5;
+            this.splittCtr.Size = new System.Drawing.Size(1181, 450);
+            this.splittCtr.SplitterDistance = 753;
             this.splittCtr.TabIndex = 2;
             // 
             // afToolStrip2
@@ -267,13 +246,13 @@
             this.tsbtnClose,
             this.toolStripSeparator1,
             this.tsbtnPrintChart});
-            this.afToolStrip2.Location = new System.Drawing.Point(0, 236);
+            this.afToolStrip2.Location = new System.Drawing.Point(0, 192);
             this.afToolStrip2.myColorFrom = System.Drawing.Color.Azure;
             this.afToolStrip2.myColorTo = System.Drawing.Color.Blue;
             this.afToolStrip2.myUnderlineColor = System.Drawing.Color.White;
             this.afToolStrip2.myUnderlined = true;
             this.afToolStrip2.Name = "afToolStrip2";
-            this.afToolStrip2.Size = new System.Drawing.Size(1005, 27);
+            this.afToolStrip2.Size = new System.Drawing.Size(753, 27);
             this.afToolStrip2.TabIndex = 24;
             this.afToolStrip2.Text = "afToolStrip2";
             // 
@@ -283,7 +262,7 @@
             this.tsbtnSearch.Image = global::Sped4.Properties.Resources.selection_view_32x32;
             this.tsbtnSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnSearch.Name = "tsbtnSearch";
-            this.tsbtnSearch.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnSearch.Size = new System.Drawing.Size(24, 24);
             this.tsbtnSearch.Text = "Bestandsdaten laden";
             this.tsbtnSearch.Click += new System.EventHandler(this.tsbtnSearch_Click);
             // 
@@ -293,7 +272,7 @@
             this.tsbtnClear.Image = global::Sped4.Properties.Resources.selection_replace_32x32;
             this.tsbtnClear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnClear.Name = "tsbtnClear";
-            this.tsbtnClear.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnClear.Size = new System.Drawing.Size(24, 24);
             this.tsbtnClear.Text = "alle Vorgaben zurücksetzen";
             // 
             // tsbtnPrint
@@ -302,7 +281,7 @@
             this.tsbtnPrint.Image = global::Sped4.Properties.Resources.Printer1;
             this.tsbtnPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnPrint.Name = "tsbtnPrint";
-            this.tsbtnPrint.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnPrint.Size = new System.Drawing.Size(24, 24);
             this.tsbtnPrint.Text = "Bestand drucken";
             this.tsbtnPrint.Visible = false;
             this.tsbtnPrint.Click += new System.EventHandler(this.tsbtnPrint_Click);
@@ -313,7 +292,7 @@
             this.tsbtnExcel.Image = global::Sped4.Properties.Resources.Excel;
             this.tsbtnExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnExcel.Name = "tsbtnExcel";
-            this.tsbtnExcel.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnExcel.Size = new System.Drawing.Size(24, 24);
             this.tsbtnExcel.Text = "Export zu Excel";
             this.tsbtnExcel.Click += new System.EventHandler(this.tsbtnExcel_Click);
             // 
@@ -323,7 +302,7 @@
             this.tsbtnClose.Image = global::Sped4.Properties.Resources.delete;
             this.tsbtnClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnClose.Name = "tsbtnClose";
-            this.tsbtnClose.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnClose.Size = new System.Drawing.Size(24, 24);
             this.tsbtnClose.Text = "Suche schliessen";
             this.tsbtnClose.Click += new System.EventHandler(this.tsbtnClose_Click);
             // 
@@ -338,7 +317,7 @@
             this.tsbtnPrintChart.Image = global::Sped4.Properties.Resources.printer2_24x24;
             this.tsbtnPrintChart.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnPrintChart.Name = "tsbtnPrintChart";
-            this.tsbtnPrintChart.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnPrintChart.Size = new System.Drawing.Size(24, 24);
             this.tsbtnPrintChart.Text = "Diagramm drucken";
             this.tsbtnPrintChart.Click += new System.EventHandler(this.tsbtnPrintChart_Click);
             // 
@@ -365,13 +344,12 @@
             this.afMinMaxPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.afMinMaxPanel1.ExpandedCallapsed = Sped4.Controls.AFMinMaxPanel.EStatus.Expanded;
             this.afMinMaxPanel1.Location = new System.Drawing.Point(0, 0);
-            this.afMinMaxPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.afMinMaxPanel1.myFontColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             this.afMinMaxPanel1.myFontStyle = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.afMinMaxPanel1.myImage = global::Sped4.Properties.Resources.gears_preferences;
             this.afMinMaxPanel1.myText = "Optionen";
             this.afMinMaxPanel1.Name = "afMinMaxPanel1";
-            this.afMinMaxPanel1.Size = new System.Drawing.Size(1005, 236);
+            this.afMinMaxPanel1.Size = new System.Drawing.Size(753, 192);
             this.afMinMaxPanel1.TabIndex = 25;
             this.afMinMaxPanel1.Text = "afMinMaxPanel1";
             this.afMinMaxPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.afMinMaxPanel1_Paint);
@@ -380,10 +358,9 @@
             // 
             this.cbSPLExcl.AutoSize = true;
             this.cbSPLExcl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbSPLExcl.Location = new System.Drawing.Point(723, 95);
-            this.cbSPLExcl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbSPLExcl.Location = new System.Drawing.Point(542, 77);
             this.cbSPLExcl.Name = "cbSPLExcl";
-            this.cbSPLExcl.Size = new System.Drawing.Size(162, 20);
+            this.cbSPLExcl.Size = new System.Drawing.Size(133, 17);
             this.cbSPLExcl.TabIndex = 175;
             this.cbSPLExcl.Text = "Endbestand: ohne SPL";
             this.cbSPLExcl.UseVisualStyleBackColor = true;
@@ -392,10 +369,9 @@
             // 
             this.cbSchadenExcl.AutoSize = true;
             this.cbSchadenExcl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbSchadenExcl.Location = new System.Drawing.Point(723, 66);
-            this.cbSchadenExcl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbSchadenExcl.Location = new System.Drawing.Point(542, 54);
             this.cbSchadenExcl.Name = "cbSchadenExcl";
-            this.cbSchadenExcl.Size = new System.Drawing.Size(168, 20);
+            this.cbSchadenExcl.Size = new System.Drawing.Size(138, 17);
             this.cbSchadenExcl.TabIndex = 174;
             this.cbSchadenExcl.Text = "Eingang: ohne Schäden";
             this.cbSchadenExcl.UseVisualStyleBackColor = true;
@@ -404,10 +380,9 @@
             // 
             this.cbRLExcl.AutoSize = true;
             this.cbRLExcl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbRLExcl.Location = new System.Drawing.Point(723, 38);
-            this.cbRLExcl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbRLExcl.Location = new System.Drawing.Point(542, 31);
             this.cbRLExcl.Name = "cbRLExcl";
-            this.cbRLExcl.Size = new System.Drawing.Size(211, 20);
+            this.cbRLExcl.Size = new System.Drawing.Size(173, 17);
             this.cbRLExcl.TabIndex = 173;
             this.cbRLExcl.Text = "Eingang: ohne Rücklieferungen";
             this.cbRLExcl.UseVisualStyleBackColor = true;
@@ -415,10 +390,9 @@
             // btnSearchA
             // 
             this.btnSearchA.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnSearchA.Location = new System.Drawing.Point(33, 66);
-            this.btnSearchA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearchA.Location = new System.Drawing.Point(25, 54);
             this.btnSearchA.Name = "btnSearchA";
-            this.btnSearchA.Size = new System.Drawing.Size(113, 27);
+            this.btnSearchA.Size = new System.Drawing.Size(85, 22);
             this.btnSearchA.TabIndex = 160;
             this.btnSearchA.Text = "Adresse";
             this.btnSearchA.UseVisualStyleBackColor = true;
@@ -429,20 +403,18 @@
             this.tbAuftraggeber.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tbAuftraggeber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbAuftraggeber.Enabled = false;
-            this.tbAuftraggeber.Location = new System.Drawing.Point(292, 66);
-            this.tbAuftraggeber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbAuftraggeber.Location = new System.Drawing.Point(219, 54);
             this.tbAuftraggeber.Name = "tbAuftraggeber";
             this.tbAuftraggeber.ReadOnly = true;
-            this.tbAuftraggeber.Size = new System.Drawing.Size(358, 22);
+            this.tbAuftraggeber.Size = new System.Drawing.Size(269, 20);
             this.tbAuftraggeber.TabIndex = 162;
             // 
             // tbSearchA
             // 
             this.tbSearchA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbSearchA.Location = new System.Drawing.Point(155, 66);
-            this.tbSearchA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSearchA.Location = new System.Drawing.Point(116, 54);
             this.tbSearchA.Name = "tbSearchA";
-            this.tbSearchA.Size = new System.Drawing.Size(129, 22);
+            this.tbSearchA.Size = new System.Drawing.Size(97, 20);
             this.tbSearchA.TabIndex = 161;
             this.tbSearchA.TextChanged += new System.EventHandler(this.tbSearchA_TextChanged);
             // 
@@ -454,10 +426,9 @@
             this.comboChart.Items.AddRange(new object[] {
             "Balkendiagramm",
             "Kurvendiagramm"});
-            this.comboChart.Location = new System.Drawing.Point(155, 100);
-            this.comboChart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboChart.Location = new System.Drawing.Point(116, 81);
             this.comboChart.Name = "comboChart";
-            this.comboChart.Size = new System.Drawing.Size(495, 24);
+            this.comboChart.Size = new System.Drawing.Size(372, 21);
             this.comboChart.TabIndex = 62;
             this.comboChart.SelectedIndexChanged += new System.EventHandler(this.comboChart_SelectedIndexChanged);
             // 
@@ -465,10 +436,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label4.Location = new System.Drawing.Point(29, 108);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(22, 88);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 16);
+            this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 61;
             this.label4.Text = "Chart:";
             // 
@@ -476,10 +446,9 @@
             // 
             this.comboStatistikArt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboStatistikArt.FormattingEnabled = true;
-            this.comboStatistikArt.Location = new System.Drawing.Point(155, 33);
-            this.comboStatistikArt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboStatistikArt.Location = new System.Drawing.Point(116, 27);
             this.comboStatistikArt.Name = "comboStatistikArt";
-            this.comboStatistikArt.Size = new System.Drawing.Size(495, 24);
+            this.comboStatistikArt.Size = new System.Drawing.Size(372, 21);
             this.comboStatistikArt.TabIndex = 60;
             this.comboStatistikArt.SelectedIndexChanged += new System.EventHandler(this.comboStatistikArt_SelectedIndexChanged);
             // 
@@ -487,10 +456,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label3.Location = new System.Drawing.Point(29, 37);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(22, 30);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 16);
+            this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 59;
             this.label3.Text = "Statistik: ";
             // 
@@ -498,10 +466,9 @@
             // 
             this.comboListe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboListe.FormattingEnabled = true;
-            this.comboListe.Location = new System.Drawing.Point(452, 203);
-            this.comboListe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboListe.Location = new System.Drawing.Point(339, 165);
             this.comboListe.Name = "comboListe";
-            this.comboListe.Size = new System.Drawing.Size(244, 24);
+            this.comboListe.Size = new System.Drawing.Size(184, 21);
             this.comboListe.TabIndex = 58;
             this.comboListe.Visible = false;
             // 
@@ -509,10 +476,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label2.Location = new System.Drawing.Point(348, 207);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(261, 168);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 16);
+            this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 57;
             this.label2.Text = "Listenansicht:";
             this.label2.Visible = false;
@@ -521,10 +487,9 @@
             // 
             this.cbFilterActivate.AutoSize = true;
             this.cbFilterActivate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbFilterActivate.Location = new System.Drawing.Point(41, 212);
-            this.cbFilterActivate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbFilterActivate.Location = new System.Drawing.Point(31, 172);
             this.cbFilterActivate.Name = "cbFilterActivate";
-            this.cbFilterActivate.Size = new System.Drawing.Size(116, 20);
+            this.cbFilterActivate.Size = new System.Drawing.Size(95, 17);
             this.cbFilterActivate.TabIndex = 56;
             this.cbFilterActivate.Text = "Filter aktivieren";
             this.cbFilterActivate.UseVisualStyleBackColor = true;
@@ -535,10 +500,9 @@
             // 
             this.lZeitraumVon.AutoSize = true;
             this.lZeitraumVon.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lZeitraumVon.Location = new System.Drawing.Point(29, 142);
-            this.lZeitraumVon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lZeitraumVon.Location = new System.Drawing.Point(22, 115);
             this.lZeitraumVon.Name = "lZeitraumVon";
-            this.lZeitraumVon.Size = new System.Drawing.Size(87, 16);
+            this.lZeitraumVon.Size = new System.Drawing.Size(72, 13);
             this.lZeitraumVon.TabIndex = 53;
             this.lZeitraumVon.Text = "Zeitraum von:";
             // 
@@ -546,27 +510,24 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label1.Location = new System.Drawing.Point(29, 170);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(22, 138);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 16);
+            this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 54;
             this.label1.Text = "Zeitraum bis:";
             // 
             // dtpBis
             // 
-            this.dtpBis.Location = new System.Drawing.Point(155, 164);
-            this.dtpBis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpBis.Location = new System.Drawing.Point(116, 133);
             this.dtpBis.Name = "dtpBis";
-            this.dtpBis.Size = new System.Drawing.Size(495, 22);
+            this.dtpBis.Size = new System.Drawing.Size(372, 20);
             this.dtpBis.TabIndex = 55;
             // 
             // dtpVon
             // 
-            this.dtpVon.Location = new System.Drawing.Point(155, 135);
-            this.dtpVon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpVon.Location = new System.Drawing.Point(116, 110);
             this.dtpVon.Name = "dtpVon";
-            this.dtpVon.Size = new System.Drawing.Size(495, 22);
+            this.dtpVon.Size = new System.Drawing.Size(372, 20);
             this.dtpVon.TabIndex = 52;
             this.dtpVon.ValueChanged += new System.EventHandler(this.dtpVon_ValueChanged);
             // 
@@ -576,7 +537,6 @@
             this.afColorLabel1.DataBindings.Add(new System.Windows.Forms.Binding("myColorFrom", global::Sped4.Properties.Settings.Default, "EffectColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.afColorLabel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.afColorLabel1.Location = new System.Drawing.Point(0, 0);
-            this.afColorLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.afColorLabel1.myColorFrom = global::Sped4.Properties.Settings.Default.EffectColor;
             this.afColorLabel1.myColorTo = global::Sped4.Properties.Settings.Default.BaseColor;
             this.afColorLabel1.myFontStyle = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -584,19 +544,18 @@
             this.afColorLabel1.myUnderlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.afColorLabel1.myUnderlined = true;
             this.afColorLabel1.Name = "afColorLabel1";
-            this.afColorLabel1.Size = new System.Drawing.Size(1575, 34);
+            this.afColorLabel1.Size = new System.Drawing.Size(1181, 28);
             this.afColorLabel1.TabIndex = 10;
             this.afColorLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // ctrStatistik
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splittCtr);
             this.Controls.Add(this.afColorLabel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ctrStatistik";
-            this.Size = new System.Drawing.Size(1575, 588);
+            this.Size = new System.Drawing.Size(1181, 478);
             ((System.ComponentModel.ISupportInitialize)(this.dockStatOutput)).EndInit();
             this.dockStatOutput.ResumeLayout(false);
             this.windowChart.ResumeLayout(false);

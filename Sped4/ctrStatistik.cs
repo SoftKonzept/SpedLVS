@@ -173,6 +173,7 @@ namespace Sped4
         ///<remarks>Suche starten</remarks>
         private void tsbtnSearch_Click(object sender, EventArgs e)
         {
+            //cvStatChart = new RadChartView();
             cvStatChart.Series.Clear();
             decimal decTmp = 0;
             if (comboListe.SelectedValue != null)

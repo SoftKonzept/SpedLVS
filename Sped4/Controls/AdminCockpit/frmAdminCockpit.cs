@@ -19,6 +19,7 @@ namespace Sped4.Controls.AdminCockpit
 
         internal const string const_pageViewPageName_Report = "pvpReport";
         internal const string const_pageViewPageName_ASN = "pvpASN";
+        internal const string const_pageViewPageName_Mail = "pvpMail";
         internal const string const_pageViewPageName_CronJobs = "pvpCronJobs";
         internal const string const_pageViewPageName_EDIFACT = "pvpEDIFACT";
         internal const string const_pageViewPageName_CustomProcesses = "pvpCustomProcesses";
@@ -83,6 +84,10 @@ namespace Sped4.Controls.AdminCockpit
 
                 case const_pageViewPageName_ASN:
                     OpenCtrASNCenterHead();
+                    break;
+
+                case const_pageViewPageName_Mail:
+                    OpenCtrMailCheck();
                     break;
 
                 case const_pageViewPageName_CronJobs:
@@ -227,6 +232,15 @@ namespace Sped4.Controls.AdminCockpit
             _ctrCronJob.Show();
             _ctrCronJob.BringToFront();
         }
+
+        private void OpenCtrMailCheck()
+        {             
+            ctrMailCheck _ctrMailCheck = new ctrMailCheck(this._ctrMenu);
+            _ctrMailCheck.Parent = this.pvpMail;
+            _ctrMailCheck.Dock = DockStyle.Fill;
+            _ctrMailCheck.Show();
+            _ctrMailCheck.BringToFront();
+        }
         /// <summary>
         ///             ctrComMailingList -> Mailverteiler
         /// </summary>
@@ -280,19 +294,6 @@ namespace Sped4.Controls.AdminCockpit
         /// <summary>
         /// 
         /// </summary>
-        //private void Open123()
-        //{
-        //    ctrEdiAdrWorkspaceAssignment _ediAdrWorkspaceAssignment = new ctrEdiAdrWorkspaceAssignment();
-        //    _ediAdrWorkspaceAssignment.Parent = this.tabPage_EdiAdrWorkspaceAssignment;
-        //    _ediAdrWorkspaceAssignment.Dock = DockStyle.Fill;
-        //    _ediAdrWorkspaceAssignment._ctrMenu = this._ctrMenu;
-        //    _ediAdrWorkspaceAssignment.InitCtr();
-        //    _ediAdrWorkspaceAssignment.Show();
-        //    _ediAdrWorkspaceAssignment.BringToFront();
-        //}
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnINITReportDocSetting_Click(object sender, EventArgs e)
@@ -320,130 +321,148 @@ namespace Sped4.Controls.AdminCockpit
         ///<remarks></remarks>
         private async void tbtnMailCheck_Click(object sender, EventArgs e)
         {
-            string strError = string.Empty;
-            if (cbUseReply.Checked)
-            {
-                strError = string.Empty;
-                string strMessage = string.Empty;
-                string strSubject = string.Empty;
-                try
-                {
-                    tbMailCheckInfo.Text = string.Empty;
+            //string strError = string.Empty;
+            //if (cbUseReply.Checked)
+            //{
+            //    strError = string.Empty;
+            //    string strMessage = string.Empty;
+            //    string strSubject = string.Empty;
+            //    try
+            //    {
+            //        tbMailCheckInfo.Text = string.Empty;
 
-                    MailCredentials mc = new MailCredentials();
-                    mc.SmtpHost = tbSMTPServer.Text.Trim();
-                    mc.SmtpUser = tbSMTPUser.Text.Trim();
-                    mc.SmtpPassword = tbSMTPPass.Text.Trim();
-                    Int32 iTmp = 0;
-                    Int32.TryParse(tbSMTPPort.Text.Trim(), out iTmp);
-                    mc.SmtpPort = iTmp;
-                    mc.KeepAlive = false;
+            //        MailCredentials mc = new MailCredentials();
+            //        mc.SmtpHost = tbSMTPServer.Text.Trim();
+            //        mc.SmtpUser = tbSMTPUser.Text.Trim();
+            //        mc.SmtpPassword = tbSMTPPass.Text.Trim();
+            //        Int32 iTmp = 0;
+            //        Int32.TryParse(tbSMTPPort.Text.Trim(), out iTmp);
+            //        mc.SmtpPort = iTmp;
+            //        mc.KeepAlive = false;
 
-                    string strRepyTo = tbReplyTo.Text.Trim();
-                    string strReplyToName = tbAbsName.Text.Trim();
-                    mc.SmtpDisplayName = strReplyToName;
+            //        string strRepyTo = tbReplyTo.Text.Trim();
+            //        string strReplyToName = tbAbsName.Text.Trim();
+            //        mc.SmtpDisplayName = strReplyToName;
 
 
 
-                    // ✅ TEST-EMPFÄNGER
-                    List<string> MailReceivers = new List<string>();
-                    MailReceivers.Add("support@softkonzept.com");
-                    MailReceivers.Add("Marco-Rinscheid@gmx.de");
+            //        // ✅ TEST-EMPFÄNGER
+            //        List<string> MailReceivers = new List<string>();
+            //        MailReceivers.Add("support@softkonzept.com");
+            //        MailReceivers.Add("Marco-Rinscheid@gmx.de");
 
-                    // ✅ TEST-NACHRICHT
-                    strSubject = "SMTP-Test Reply-To " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    strMessage = "Dies ist eine Testnachricht für IONOS SMTP-Konfiguration." + Environment.NewLine +
-                                        "Server: " + mc.SmtpHost + Environment.NewLine +
-                                        "Port: " + mc.SmtpPort + Environment.NewLine +
-                                        //"Mode: " + (isRelayConnector ? "RELAY (ohne Auth)" : "AUTH (mit Authentifizierung)") + Environment.NewLine +
-                                        //"SSL/TLS: " + MailCheck.SMTPSsl ? "JA (STARTTLS)" : "NEIN (unverschlüsselt)") + Environment.NewLine +
-                                        "Login-Account: " + mc.SmtpUser + Environment.NewLine +
-                                        "Von (From): " + mc.SmtpUser + Environment.NewLine +
-                                        "Reply-To: " + strRepyTo + "|" + strReplyToName + Environment.NewLine;
+            //        // ✅ TEST-NACHRICHT
+            //        strSubject = "SMTP-Test Reply-To " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            //        strMessage = "Dies ist eine Testnachricht für IONOS SMTP-Konfiguration." + Environment.NewLine +
+            //                            "Server: " + mc.SmtpHost + Environment.NewLine +
+            //                            "Port: " + mc.SmtpPort + Environment.NewLine +
+            //                            //"Mode: " + (isRelayConnector ? "RELAY (ohne Auth)" : "AUTH (mit Authentifizierung)") + Environment.NewLine +
+            //                            //"SSL/TLS: " + MailCheck.SMTPSsl ? "JA (STARTTLS)" : "NEIN (unverschlüsselt)") + Environment.NewLine +
+            //                            "Login-Account: " + mc.SmtpUser + Environment.NewLine +
+            //                            "Von (From): " + mc.SmtpUser + Environment.NewLine +
+            //                            "Reply-To: " + strRepyTo + "|" + strReplyToName + Environment.NewLine;
 
-                    Mail mailCheck = new Mail(mc);
-                    // ✅ WICHTIG: await hinzufügen!
-                    await mailCheck.SendWithReplyToAsync(
-                        toEmail: tbMailAdress.Text.Trim(),
-                        subject: strSubject,
-                        body: strMessage,
-                        replyToEmail: strRepyTo,
-                        replyToName: strReplyToName);
+            //        Mail mailCheck = new Mail(mc);
+            //        // ✅ WICHTIG: await hinzufügen!
+            //        await mailCheck.SendWithReplyToAsync(
+            //            toEmail: tbMailAdress.Text.Trim(),
+            //            subject: strSubject,
+            //            body: strMessage,
+            //            replyToEmail: strRepyTo,
+            //            replyToName: strReplyToName);
 
-                    strError = "✅ SUCCESS: Testmail wurde erfolgreich versandt!" + Environment.NewLine +
-                               "Empfänger: support@softkonzept.com" + Environment.NewLine +
-                               "Zeit: " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
-                }
-                catch (Exception ex)
-                {
-                    strError = string.Empty;
-                    strError = "❌ EXCEPTION: Unerwarteter Fehler!" + Environment.NewLine;
-                    strError += Environment.NewLine;
-                    strError += "Exception Message:" + Environment.NewLine;
-                    strError += ex.Message + Environment.NewLine;
-                    strError += Environment.NewLine;
-                    strError += "Stack Trace:" + Environment.NewLine;
-                    strError += ex.StackTrace;
-                }
-                finally
-                {
-                    tbMailCheckInfo.Text = strError;
-                }
-            }
-            else
-            {
-                strError = string.Empty;
-                tbMailCheckInfo.Text = string.Empty;
-                clsMail MailCheck = new clsMail();
-                MailCheck.InitClass(this._ctrMenu._frmMain.GL_User, this._ctrMenu._frmMain.system);
+            //        strError = "✅ SUCCESS: Testmail wurde erfolgreich versandt!" + Environment.NewLine +
+            //                   "Empfänger: support@softkonzept.com" + Environment.NewLine +
+            //                   "Zeit: " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        strError = string.Empty;
+            //        strError = "❌ EXCEPTION: Unerwarteter Fehler!" + Environment.NewLine;
+            //        strError += Environment.NewLine;
+            //        strError += "Exception Message:" + Environment.NewLine;
+            //        strError += ex.Message + Environment.NewLine;
+            //        strError += Environment.NewLine;
+            //        strError += "Stack Trace:" + Environment.NewLine;
+            //        strError += ex.StackTrace;
+            //    }
+            //    finally
+            //    {
+            //        tbMailCheckInfo.Text = strError;
+            //    }
+            //}
+            //else
+            //{
+            //    try
+            //    { 
+            //        strError = string.Empty;
+            //        tbMailCheckInfo.Text = string.Empty;
+            //        clsMail MailCheck = new clsMail();
+            //        MailCheck.InitClass(this._ctrMenu._frmMain.GL_User, this._ctrMenu._frmMain.system);
 
-                // ✅ SMTP-EINSTELLUNGEN AUS UI
-                MailCheck.SMTPServer = tbSMTPServer.Text.Trim();
-                MailCheck.SMTPUser = tbSMTPUser.Text.Trim();
-                MailCheck.SMTPPasswort = tbSMTPPass.Text.Trim();
-                MailCheck.MailFrom = tbMailAdress.Text.Trim();
-                MailCheck.MailReplyTo = tbReplyTo.Text.Trim();
-                MailCheck.MailFromName = tbAbsName.Text.Trim();
-                Int32 iTmp = 0;
-                Int32.TryParse(tbSMTPPort.Text.Trim(), out iTmp);
-                MailCheck.SMTPPort = iTmp;
-                MailCheck.SMTPSsl = cbSMTPSSL.Checked;
+            //        // ✅ SMTP-EINSTELLUNGEN AUS UI
+            //        MailCheck.SMTPServer = tbSMTPServer.Text.Trim();
+            //        MailCheck.SMTPUser = tbSMTPUser.Text.Trim();
+            //        MailCheck.SMTPPasswort = tbSMTPPass.Text.Trim();
+            //        MailCheck.MailFrom = tbMailAdress.Text.Trim();
+            //        MailCheck.MailReplyTo = tbReplyTo.Text.Trim();
+            //        MailCheck.MailFromName = tbAbsName.Text.Trim();
+            //        Int32 iTmp = 0;
+            //        Int32.TryParse(tbSMTPPort.Text.Trim(), out iTmp);
+            //        MailCheck.SMTPPort = iTmp;
+            //        MailCheck.SMTPSsl = cbSMTPSSL.Checked;
 
-                // ✅ TEST-EMPFÄNGER
-                MailCheck.ListMailReceiver.Add("support@softkonzept.com");
-                MailCheck.ListMailReceiver.Add("Marco-Rinscheid@gmx.de");
+            //        // ✅ TEST-EMPFÄNGER
+            //        MailCheck.ListMailReceiver.Add("support@softkonzept.com");
+            //        MailCheck.ListMailReceiver.Add("Marco-Rinscheid@gmx.de");
 
-                //TestMailOld();
-                //string strError = string.Empty;
-                //tbMailCheckInfo.Text = string.Empty;
-                //clsMail MailCheck = new clsMail();
-                //MailCheck.InitClass(this._ctrMenu._frmMain.GL_User, this._ctrMenu._frmMain.system);
-                //MailCheck.SMTPServer = tbSMTPServer.Text.Trim();
-                //MailCheck.SMTPUser = tbSMTPUser.Text.Trim();
-                //MailCheck.SMTPPasswort = tbSMTPPass.Text.Trim();
-                //MailCheck.MailFrom = tbMailAdress.Text.Trim();
+            //        //TestMailOld();
+            //        //string strError = string.Empty;
+            //        //tbMailCheckInfo.Text = string.Empty;
+            //        //clsMail MailCheck = new clsMail();
+            //        //MailCheck.InitClass(this._ctrMenu._frmMain.GL_User, this._ctrMenu._frmMain.system);
+            //        //MailCheck.SMTPServer = tbSMTPServer.Text.Trim();
+            //        //MailCheck.SMTPUser = tbSMTPUser.Text.Trim();
+            //        //MailCheck.SMTPPasswort = tbSMTPPass.Text.Trim();
+            //        //MailCheck.MailFrom = tbMailAdress.Text.Trim();
 
-                //MailCheck.ListMailReceiver.Add("support@softkonzept.com");
-                //MailCheck.ListMailReceiver.Add("support@softkonzept.com");
+            //        //MailCheck.ListMailReceiver.Add("support@softkonzept.com");
+            //        //MailCheck.ListMailReceiver.Add("support@softkonzept.com");
 
-                //Int32 iTmp = 0;
-                //Int32.TryParse(tbSMTPPort.Text.Trim(), out iTmp);
-                //MailCheck.SMTPPort = iTmp;
-                //MailCheck.SMTPSsl = cbSMTPSSL.Checked;
-                MailCheck.Subject = "Check Mailaccount: " + tbMailAdress.Text.Trim();
-                strError = strError + "E-Mailcheck gestartet! " + Environment.NewLine;
-                MailCheck.Message = string.Empty;
-                if (MailCheck.Send())
-                {
-                    strError = strError + "Testmail wurde erfolgreich versandt!!! " + Environment.NewLine;
-                }
-                else
-                {
-                    strError = strError + "Testmail konnte NICHT versendet werden - Fehlermeldung: " + Environment.NewLine;
-                    strError = strError + MailCheck.Message + Environment.NewLine;
-                }
-                tbMailCheckInfo.Text = strError;
-            }
+            //        //Int32 iTmp = 0;
+            //        //Int32.TryParse(tbSMTPPort.Text.Trim(), out iTmp);
+            //        //MailCheck.SMTPPort = iTmp;
+            //        //MailCheck.SMTPSsl = cbSMTPSSL.Checked;
+            //        MailCheck.Subject = "Check Mailaccount: " + tbMailAdress.Text.Trim();
+            //        strError = strError + "E-Mailcheck gestartet! " + Environment.NewLine;
+            //        MailCheck.Message = string.Empty;
+            //        if (MailCheck.Send())
+            //        {
+            //            strError = strError + "Testmail wurde erfolgreich versandt!!! " + Environment.NewLine;
+            //        }
+            //        else
+            //        {
+            //            strError = strError + "Testmail konnte NICHT versendet werden - Fehlermeldung: " + Environment.NewLine;
+            //            strError = strError + MailCheck.Message + Environment.NewLine;
+            //        }
+            //        tbMailCheckInfo.Text = strError;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        strError = string.Empty;
+            //        strError = "❌ EXCEPTION: Unerwarteter Fehler!" + Environment.NewLine;
+            //        strError += Environment.NewLine;
+            //        strError += "Exception Message:" + Environment.NewLine;
+            //        strError += ex.Message + Environment.NewLine;
+            //        strError += Environment.NewLine;
+            //        strError += "Stack Trace:" + Environment.NewLine;
+            //        strError += ex.StackTrace;
+            //    }
+            //    finally
+            //    {
+            //        tbMailCheckInfo.Text = strError;
+            //    }
+            //}
         }
 
         private void TestMailOld()
@@ -833,9 +852,19 @@ namespace Sped4.Controls.AdminCockpit
 
             strError = strError + "Testmail wurde erfolgreich versandt!!! " + Environment.NewLine;
 
-
-
             tbMailCheckInfo.Text = strError;
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            tbSMTPServer.Text = "slegmbh-de0i.mail.protection.outlook.com";
+            tbSMTPUser.Text = "noreply@sle-gmbh.de";
+            tbSMTPPass.Text = string.Empty;
+            tbMailAdress.Text = "noreply@sle-gmbh.de";
+            tbReplyTo.Text = string.Empty;
+            tbAbsName.Text = string.Empty;
+            tbSMTPPort.Text = "25";
+            cbSMTPSSL.Checked = true;
         }
     }
 }

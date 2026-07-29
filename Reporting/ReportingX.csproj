@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -56,13 +56,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.Licensing.Runtime, Version=1.6.40.0, Culture=neutral, PublicKeyToken=98bb5b04e55c09ef, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Licensing.Runtime, Version=1.8.2.0, Culture=neutral, PublicKeyToken=98bb5b04e55c09ef, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Licensing.Runtime.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Licensing.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Reporting, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik Reporting 2026 Q1\bin\Telerik.Reporting.dll</HintPath>
-      <SpecificVersion>True</SpecificVersion>
+    <Reference Include="Telerik.Reporting, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

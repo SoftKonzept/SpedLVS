@@ -118,7 +118,7 @@ namespace Sped4
                 PdfFormatProvider provider = new PdfFormatProvider();
                 using (Stream stream = File.OpenRead(strFilePath))
                 {
-                    RadFixedDocument document = provider.Import(stream);
+                    //RadFixedDocument document = provider.Import(stream);
 
                     // Do your work with the document inside the using statement. 
                 }

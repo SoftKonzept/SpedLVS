@@ -55,6 +55,12 @@
             this.tabPage_CustomProcessException = new System.Windows.Forms.TabPage();
             this.pvpMail = new Telerik.WinControls.UI.RadPageViewPage();
             this.panMailEdit = new Telerik.WinControls.UI.RadPanel();
+            this.btnTest = new System.Windows.Forms.Button();
+            this.cbUseReply = new Telerik.WinControls.UI.RadCheckBox();
+            this.tbAbsName = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
+            this.tbReplyTo = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.btnSmtpResponse = new Telerik.WinControls.UI.RadButton();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.tbMailCheckInfo = new Telerik.WinControls.UI.RadTextBox();
@@ -83,11 +89,6 @@
             this.tabPage_AnonymousDatatable = new System.Windows.Forms.TabPage();
             this.tabPage_PdfCombination = new System.Windows.Forms.TabPage();
             this.tabPage_CleanAsn = new System.Windows.Forms.TabPage();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.tbReplyTo = new Telerik.WinControls.UI.RadTextBox();
-            this.tbAbsName = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
-            this.cbUseReply = new Telerik.WinControls.UI.RadCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pageViewAdminCockpit)).BeginInit();
             this.pageViewAdminCockpit.SuspendLayout();
             this.pvpReport.SuspendLayout();
@@ -107,6 +108,11 @@
             this.pvpMail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panMailEdit)).BeginInit();
             this.panMailEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbUseReply)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbAbsName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbReplyTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSmtpResponse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbMailCheckInfo)).BeginInit();
@@ -128,11 +134,6 @@
             this.tabEdiBaseData.SuspendLayout();
             this.pvpToDo.SuspendLayout();
             this.tab_ToDo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbReplyTo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbAbsName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbUseReply)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -152,7 +153,7 @@
             this.pageViewAdminCockpit.Margin = new System.Windows.Forms.Padding(5);
             this.pageViewAdminCockpit.Name = "pageViewAdminCockpit";
             this.pageViewAdminCockpit.PageBackColor = System.Drawing.Color.White;
-            this.pageViewAdminCockpit.SelectedPage = this.pvpMail;
+            this.pageViewAdminCockpit.SelectedPage = this.pvpReport;
             this.pageViewAdminCockpit.Size = new System.Drawing.Size(947, 441);
             this.pageViewAdminCockpit.TabIndex = 0;
             this.pageViewAdminCockpit.ThemeName = "ControlDefault";
@@ -173,7 +174,7 @@
             this.pvpReport.Location = new System.Drawing.Point(145, 4);
             this.pvpReport.Margin = new System.Windows.Forms.Padding(4);
             this.pvpReport.Name = "pvpReport";
-            this.pvpReport.Size = new System.Drawing.Size(798, 488);
+            this.pvpReport.Size = new System.Drawing.Size(798, 433);
             this.pvpReport.Text = "Docs / Report";
             // 
             // tabReport
@@ -186,7 +187,7 @@
             this.tabReport.Margin = new System.Windows.Forms.Padding(4);
             this.tabReport.Name = "tabReport";
             this.tabReport.SelectedIndex = 0;
-            this.tabReport.Size = new System.Drawing.Size(798, 488);
+            this.tabReport.Size = new System.Drawing.Size(798, 433);
             this.tabReport.TabIndex = 1;
             this.tabReport.SelectedIndexChanged += new System.EventHandler(this.tabReport_SelectedIndexChanged);
             // 
@@ -204,7 +205,7 @@
             this.tabPageInitRepDocSetting.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageInitRepDocSetting.Name = "tabPageInitRepDocSetting";
             this.tabPageInitRepDocSetting.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageInitRepDocSetting.Size = new System.Drawing.Size(790, 462);
+            this.tabPageInitRepDocSetting.Size = new System.Drawing.Size(790, 407);
             this.tabPageInitRepDocSetting.TabIndex = 2;
             this.tabPageInitRepDocSetting.Text = "INIT";
             this.tabPageInitRepDocSetting.UseVisualStyleBackColor = true;
@@ -235,7 +236,7 @@
             this.comboRefArbeitsbereich.Location = new System.Drawing.Point(282, 80);
             this.comboRefArbeitsbereich.Margin = new System.Windows.Forms.Padding(5);
             this.comboRefArbeitsbereich.Name = "comboRefArbeitsbereich";
-            this.comboRefArbeitsbereich.Size = new System.Drawing.Size(188, 24);
+            this.comboRefArbeitsbereich.Size = new System.Drawing.Size(188, 20);
             this.comboRefArbeitsbereich.TabIndex = 7;
             this.comboRefArbeitsbereich.TabStop = false;
             this.comboRefArbeitsbereich.Text = "radMultiColumnComboBox1";
@@ -319,7 +320,7 @@
             this.tabPage_ReportSettings.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_ReportSettings.Name = "tabPage_ReportSettings";
             this.tabPage_ReportSettings.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage_ReportSettings.Size = new System.Drawing.Size(790, 462);
+            this.tabPage_ReportSettings.Size = new System.Drawing.Size(790, 407);
             this.tabPage_ReportSettings.TabIndex = 0;
             this.tabPage_ReportSettings.Text = "Report Einstellungen";
             this.tabPage_ReportSettings.UseVisualStyleBackColor = true;
@@ -330,7 +331,7 @@
             this.tabPage_PrinterAssignment.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_PrinterAssignment.Name = "tabPage_PrinterAssignment";
             this.tabPage_PrinterAssignment.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage_PrinterAssignment.Size = new System.Drawing.Size(790, 462);
+            this.tabPage_PrinterAssignment.Size = new System.Drawing.Size(790, 407);
             this.tabPage_PrinterAssignment.TabIndex = 1;
             this.tabPage_PrinterAssignment.Text = "Drucker/Report Zuweisung";
             this.tabPage_PrinterAssignment.UseVisualStyleBackColor = true;
@@ -341,7 +342,7 @@
             this.pvpASN.Location = new System.Drawing.Point(145, 4);
             this.pvpASN.Margin = new System.Windows.Forms.Padding(4);
             this.pvpASN.Name = "pvpASN";
-            this.pvpASN.Size = new System.Drawing.Size(798, 488);
+            this.pvpASN.Size = new System.Drawing.Size(798, 433);
             this.pvpASN.Text = "ASN Einstellungen";
             // 
             // pvpEDIFACT
@@ -350,7 +351,7 @@
             this.pvpEDIFACT.ItemSize = new System.Drawing.SizeF(115F, 45F);
             this.pvpEDIFACT.Location = new System.Drawing.Point(145, 4);
             this.pvpEDIFACT.Name = "pvpEDIFACT";
-            this.pvpEDIFACT.Size = new System.Drawing.Size(798, 488);
+            this.pvpEDIFACT.Size = new System.Drawing.Size(798, 433);
             this.pvpEDIFACT.Text = "EDIFACT";
             // 
             // tabEdifactMain
@@ -362,7 +363,7 @@
             this.tabEdifactMain.Location = new System.Drawing.Point(0, 0);
             this.tabEdifactMain.Name = "tabEdifactMain";
             this.tabEdifactMain.SelectedIndex = 0;
-            this.tabEdifactMain.Size = new System.Drawing.Size(798, 488);
+            this.tabEdifactMain.Size = new System.Drawing.Size(798, 433);
             this.tabEdifactMain.TabIndex = 0;
             this.tabEdifactMain.SelectedIndexChanged += new System.EventHandler(this.tabEdifactMain_SelectedIndexChanged);
             // 
@@ -371,7 +372,7 @@
             this.tabPage_AsnArt.Location = new System.Drawing.Point(4, 22);
             this.tabPage_AsnArt.Name = "tabPage_AsnArt";
             this.tabPage_AsnArt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_AsnArt.Size = new System.Drawing.Size(790, 462);
+            this.tabPage_AsnArt.Size = new System.Drawing.Size(790, 407);
             this.tabPage_AsnArt.TabIndex = 0;
             this.tabPage_AsnArt.Text = "ASNArt";
             this.tabPage_AsnArt.UseVisualStyleBackColor = true;
@@ -381,7 +382,7 @@
             this.tabPage_EdiAdrWorkspaceAssignment.Location = new System.Drawing.Point(4, 22);
             this.tabPage_EdiAdrWorkspaceAssignment.Name = "tabPage_EdiAdrWorkspaceAssignment";
             this.tabPage_EdiAdrWorkspaceAssignment.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_EdiAdrWorkspaceAssignment.Size = new System.Drawing.Size(790, 462);
+            this.tabPage_EdiAdrWorkspaceAssignment.Size = new System.Drawing.Size(790, 407);
             this.tabPage_EdiAdrWorkspaceAssignment.TabIndex = 1;
             this.tabPage_EdiAdrWorkspaceAssignment.Text = "EdiAdrWorkspaceAssignment";
             this.tabPage_EdiAdrWorkspaceAssignment.UseVisualStyleBackColor = true;
@@ -390,7 +391,7 @@
             // 
             this.tabPage_CreateEdiStruckture.Location = new System.Drawing.Point(4, 22);
             this.tabPage_CreateEdiStruckture.Name = "tabPage_CreateEdiStruckture";
-            this.tabPage_CreateEdiStruckture.Size = new System.Drawing.Size(790, 462);
+            this.tabPage_CreateEdiStruckture.Size = new System.Drawing.Size(790, 407);
             this.tabPage_CreateEdiStruckture.TabIndex = 2;
             this.tabPage_CreateEdiStruckture.Text = "Create Edi Strucktur";
             this.tabPage_CreateEdiStruckture.UseVisualStyleBackColor = true;
@@ -401,7 +402,7 @@
             this.pvpCustomProcesses.ItemSize = new System.Drawing.SizeF(115F, 45F);
             this.pvpCustomProcesses.Location = new System.Drawing.Point(145, 4);
             this.pvpCustomProcesses.Name = "pvpCustomProcesses";
-            this.pvpCustomProcesses.Size = new System.Drawing.Size(798, 488);
+            this.pvpCustomProcesses.Size = new System.Drawing.Size(798, 433);
             this.pvpCustomProcesses.Text = "Prozesse";
             // 
             // tabProcesses
@@ -412,7 +413,7 @@
             this.tabProcesses.Location = new System.Drawing.Point(0, 0);
             this.tabProcesses.Name = "tabProcesses";
             this.tabProcesses.SelectedIndex = 0;
-            this.tabProcesses.Size = new System.Drawing.Size(798, 488);
+            this.tabProcesses.Size = new System.Drawing.Size(798, 433);
             this.tabProcesses.TabIndex = 1;
             this.tabProcesses.SelectedIndexChanged += new System.EventHandler(this.tabProcesses_SelectedIndexChanged);
             // 
@@ -421,7 +422,7 @@
             this.tabPage_CustomProcess.Location = new System.Drawing.Point(4, 22);
             this.tabPage_CustomProcess.Name = "tabPage_CustomProcess";
             this.tabPage_CustomProcess.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_CustomProcess.Size = new System.Drawing.Size(790, 462);
+            this.tabPage_CustomProcess.Size = new System.Drawing.Size(790, 407);
             this.tabPage_CustomProcess.TabIndex = 0;
             this.tabPage_CustomProcess.Text = "kundenspezifischer Prozess";
             this.tabPage_CustomProcess.UseVisualStyleBackColor = true;
@@ -431,7 +432,7 @@
             this.tabPage_CustomProcessException.Location = new System.Drawing.Point(4, 22);
             this.tabPage_CustomProcessException.Name = "tabPage_CustomProcessException";
             this.tabPage_CustomProcessException.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_CustomProcessException.Size = new System.Drawing.Size(790, 462);
+            this.tabPage_CustomProcessException.Size = new System.Drawing.Size(790, 407);
             this.tabPage_CustomProcessException.TabIndex = 1;
             this.tabPage_CustomProcessException.Text = "Exeption|Ausnahmen";
             this.tabPage_CustomProcessException.UseVisualStyleBackColor = true;
@@ -448,6 +449,7 @@
             // 
             // panMailEdit
             // 
+            this.panMailEdit.Controls.Add(this.btnTest);
             this.panMailEdit.Controls.Add(this.cbUseReply);
             this.panMailEdit.Controls.Add(this.tbAbsName);
             this.panMailEdit.Controls.Add(this.radLabel10);
@@ -472,6 +474,56 @@
             this.panMailEdit.Name = "panMailEdit";
             this.panMailEdit.Size = new System.Drawing.Size(772, 395);
             this.panMailEdit.TabIndex = 0;
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(37, 108);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(89, 23);
+            this.btnTest.TabIndex = 12;
+            this.btnTest.Text = "Test Mail SLE";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
+            // cbUseReply
+            // 
+            this.cbUseReply.Location = new System.Drawing.Point(226, 111);
+            this.cbUseReply.Name = "cbUseReply";
+            this.cbUseReply.Size = new System.Drawing.Size(66, 18);
+            this.cbUseReply.TabIndex = 11;
+            this.cbUseReply.Text = "UseReply";
+            // 
+            // tbAbsName
+            // 
+            this.tbAbsName.Location = new System.Drawing.Point(325, 156);
+            this.tbAbsName.Name = "tbAbsName";
+            this.tbAbsName.Size = new System.Drawing.Size(431, 20);
+            this.tbAbsName.TabIndex = 9;
+            this.tbAbsName.Text = "SLE Eisenhüttenstadt GmbH";
+            // 
+            // radLabel10
+            // 
+            this.radLabel10.Location = new System.Drawing.Point(223, 157);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Size = new System.Drawing.Size(60, 18);
+            this.radLabel10.TabIndex = 10;
+            this.radLabel10.Text = "Abs.Name:";
+            // 
+            // tbReplyTo
+            // 
+            this.tbReplyTo.Location = new System.Drawing.Point(325, 130);
+            this.tbReplyTo.Name = "tbReplyTo";
+            this.tbReplyTo.Size = new System.Drawing.Size(431, 20);
+            this.tbReplyTo.TabIndex = 2;
+            this.tbReplyTo.Text = "noreply@sle-gmbh.de";
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Location = new System.Drawing.Point(223, 131);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(53, 18);
+            this.radLabel9.TabIndex = 4;
+            this.radLabel9.Text = "Reply-To:";
             // 
             // btnSmtpResponse
             // 
@@ -515,7 +567,7 @@
             this.cbSMTPSSL.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbSMTPSSL.Location = new System.Drawing.Point(325, 210);
             this.cbSMTPSSL.Name = "cbSMTPSSL";
-            this.cbSMTPSSL.Size = new System.Drawing.Size(75, 18);
+            this.cbSMTPSSL.Size = new System.Drawing.Size(72, 18);
             this.cbSMTPSSL.TabIndex = 5;
             this.cbSMTPSSL.Text = " SMTP SSL";
             // 
@@ -563,7 +615,7 @@
             // 
             this.tbSMTPPort.Location = new System.Drawing.Point(325, 184);
             this.tbSMTPPort.Name = "tbSMTPPort";
-            this.tbSMTPPort.Size = new System.Drawing.Size(431, 24);
+            this.tbSMTPPort.Size = new System.Drawing.Size(431, 20);
             this.tbSMTPPort.TabIndex = 1;
             this.tbSMTPPort.Text = "587";
             // 
@@ -571,7 +623,7 @@
             // 
             this.tbSMTPPass.Location = new System.Drawing.Point(325, 65);
             this.tbSMTPPass.Name = "tbSMTPPass";
-            this.tbSMTPPass.Size = new System.Drawing.Size(431, 24);
+            this.tbSMTPPass.Size = new System.Drawing.Size(431, 20);
             this.tbSMTPPass.TabIndex = 1;
             this.tbSMTPPass.Text = "[Passwort]";
             // 
@@ -579,7 +631,7 @@
             // 
             this.tbSMTPUser.Location = new System.Drawing.Point(325, 41);
             this.tbSMTPUser.Name = "tbSMTPUser";
-            this.tbSMTPUser.Size = new System.Drawing.Size(431, 24);
+            this.tbSMTPUser.Size = new System.Drawing.Size(431, 20);
             this.tbSMTPUser.TabIndex = 1;
             this.tbSMTPUser.Text = "support@softkonzept.com";
             // 
@@ -587,7 +639,7 @@
             // 
             this.tbMailAdress.Location = new System.Drawing.Point(325, 90);
             this.tbMailAdress.Name = "tbMailAdress";
-            this.tbMailAdress.Size = new System.Drawing.Size(431, 24);
+            this.tbMailAdress.Size = new System.Drawing.Size(431, 20);
             this.tbMailAdress.TabIndex = 1;
             this.tbMailAdress.Text = "support@softkonzept.com";
             // 
@@ -595,7 +647,7 @@
             // 
             this.tbSMTPServer.Location = new System.Drawing.Point(325, 18);
             this.tbSMTPServer.Name = "tbSMTPServer";
-            this.tbSMTPServer.Size = new System.Drawing.Size(431, 24);
+            this.tbSMTPServer.Size = new System.Drawing.Size(431, 20);
             this.tbSMTPServer.TabIndex = 0;
             this.tbSMTPServer.Text = "smtp.1und1.de";
             // 
@@ -606,7 +658,7 @@
             this.pvpCronJobs.Location = new System.Drawing.Point(145, 4);
             this.pvpCronJobs.Margin = new System.Windows.Forms.Padding(4);
             this.pvpCronJobs.Name = "pvpCronJobs";
-            this.pvpCronJobs.Size = new System.Drawing.Size(798, 488);
+            this.pvpCronJobs.Size = new System.Drawing.Size(798, 433);
             this.pvpCronJobs.Text = "Cronjob";
             // 
             // tab_CronJob
@@ -618,7 +670,7 @@
             this.tab_CronJob.Margin = new System.Windows.Forms.Padding(4);
             this.tab_CronJob.Name = "tab_CronJob";
             this.tab_CronJob.SelectedIndex = 0;
-            this.tab_CronJob.Size = new System.Drawing.Size(798, 488);
+            this.tab_CronJob.Size = new System.Drawing.Size(798, 433);
             this.tab_CronJob.TabIndex = 1;
             this.tab_CronJob.SelectedIndexChanged += new System.EventHandler(this.tab_CronJob_SelectedIndexChanged);
             // 
@@ -628,7 +680,7 @@
             this.tabPage_CronJobEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_CronJobEdit.Name = "tabPage_CronJobEdit";
             this.tabPage_CronJobEdit.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage_CronJobEdit.Size = new System.Drawing.Size(790, 462);
+            this.tabPage_CronJobEdit.Size = new System.Drawing.Size(790, 407);
             this.tabPage_CronJobEdit.TabIndex = 0;
             this.tabPage_CronJobEdit.Text = "CronJobs";
             this.tabPage_CronJobEdit.UseVisualStyleBackColor = true;
@@ -639,7 +691,7 @@
             this.tabPage_CronJobMailingList.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_CronJobMailingList.Name = "tabPage_CronJobMailingList";
             this.tabPage_CronJobMailingList.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage_CronJobMailingList.Size = new System.Drawing.Size(790, 462);
+            this.tabPage_CronJobMailingList.Size = new System.Drawing.Size(790, 407);
             this.tabPage_CronJobMailingList.TabIndex = 1;
             this.tabPage_CronJobMailingList.Text = "Mailing - List";
             this.tabPage_CronJobMailingList.UseVisualStyleBackColor = true;
@@ -688,7 +740,7 @@
             this.pvpToDo.ItemSize = new System.Drawing.SizeF(115F, 45F);
             this.pvpToDo.Location = new System.Drawing.Point(145, 4);
             this.pvpToDo.Name = "pvpToDo";
-            this.pvpToDo.Size = new System.Drawing.Size(798, 488);
+            this.pvpToDo.Size = new System.Drawing.Size(798, 433);
             this.pvpToDo.Text = "ToDo";
             // 
             // tab_ToDo
@@ -700,7 +752,7 @@
             this.tab_ToDo.Location = new System.Drawing.Point(0, 0);
             this.tab_ToDo.Name = "tab_ToDo";
             this.tab_ToDo.SelectedIndex = 0;
-            this.tab_ToDo.Size = new System.Drawing.Size(798, 488);
+            this.tab_ToDo.Size = new System.Drawing.Size(798, 433);
             this.tab_ToDo.TabIndex = 0;
             this.tab_ToDo.SelectedIndexChanged += new System.EventHandler(this.tab_ToDo_SelectedIndexChanged);
             // 
@@ -709,7 +761,7 @@
             this.tabPage_AnonymousDatatable.Location = new System.Drawing.Point(4, 22);
             this.tabPage_AnonymousDatatable.Name = "tabPage_AnonymousDatatable";
             this.tabPage_AnonymousDatatable.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_AnonymousDatatable.Size = new System.Drawing.Size(790, 462);
+            this.tabPage_AnonymousDatatable.Size = new System.Drawing.Size(790, 407);
             this.tabPage_AnonymousDatatable.TabIndex = 0;
             this.tabPage_AnonymousDatatable.Text = "DB anonymisieren";
             this.tabPage_AnonymousDatatable.UseVisualStyleBackColor = true;
@@ -719,7 +771,7 @@
             this.tabPage_PdfCombination.Location = new System.Drawing.Point(4, 22);
             this.tabPage_PdfCombination.Name = "tabPage_PdfCombination";
             this.tabPage_PdfCombination.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_PdfCombination.Size = new System.Drawing.Size(790, 462);
+            this.tabPage_PdfCombination.Size = new System.Drawing.Size(790, 407);
             this.tabPage_PdfCombination.TabIndex = 1;
             this.tabPage_PdfCombination.Text = "Testseite";
             this.tabPage_PdfCombination.UseVisualStyleBackColor = true;
@@ -728,50 +780,10 @@
             // 
             this.tabPage_CleanAsn.Location = new System.Drawing.Point(4, 22);
             this.tabPage_CleanAsn.Name = "tabPage_CleanAsn";
-            this.tabPage_CleanAsn.Size = new System.Drawing.Size(790, 462);
+            this.tabPage_CleanAsn.Size = new System.Drawing.Size(790, 407);
             this.tabPage_CleanAsn.TabIndex = 2;
             this.tabPage_CleanAsn.Text = "Clean ASN";
             this.tabPage_CleanAsn.UseVisualStyleBackColor = true;
-            // 
-            // radLabel9
-            // 
-            this.radLabel9.Location = new System.Drawing.Point(223, 131);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(53, 18);
-            this.radLabel9.TabIndex = 4;
-            this.radLabel9.Text = "Reply-To:";
-            // 
-            // tbReplyTo
-            // 
-            this.tbReplyTo.Location = new System.Drawing.Point(325, 130);
-            this.tbReplyTo.Name = "tbReplyTo";
-            this.tbReplyTo.Size = new System.Drawing.Size(431, 24);
-            this.tbReplyTo.TabIndex = 2;
-            this.tbReplyTo.Text = "noreply@sle-gmbh.de";
-            // 
-            // tbAbsName
-            // 
-            this.tbAbsName.Location = new System.Drawing.Point(325, 156);
-            this.tbAbsName.Name = "tbAbsName";
-            this.tbAbsName.Size = new System.Drawing.Size(431, 24);
-            this.tbAbsName.TabIndex = 9;
-            this.tbAbsName.Text = "SLE Eisenhüttenstadt GmbH";
-            // 
-            // radLabel10
-            // 
-            this.radLabel10.Location = new System.Drawing.Point(223, 157);
-            this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(60, 18);
-            this.radLabel10.TabIndex = 10;
-            this.radLabel10.Text = "Abs.Name:";
-            // 
-            // cbUseReply
-            // 
-            this.cbUseReply.Location = new System.Drawing.Point(138, 131);
-            this.cbUseReply.Name = "cbUseReply";
-            this.cbUseReply.Size = new System.Drawing.Size(69, 18);
-            this.cbUseReply.TabIndex = 11;
-            this.cbUseReply.Text = "UseReply";
             // 
             // frmAdminCockpit
             // 
@@ -803,6 +815,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.panMailEdit)).EndInit();
             this.panMailEdit.ResumeLayout(false);
             this.panMailEdit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbUseReply)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbAbsName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbReplyTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSmtpResponse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbMailCheckInfo)).EndInit();
@@ -824,11 +841,6 @@
             this.tabEdiBaseData.ResumeLayout(false);
             this.pvpToDo.ResumeLayout(false);
             this.tab_ToDo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbReplyTo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbAbsName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbUseReply)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -895,5 +907,6 @@
         private Telerik.WinControls.UI.RadCheckBox cbUseReply;
         private Telerik.WinControls.UI.RadTextBox tbAbsName;
         private Telerik.WinControls.UI.RadLabel radLabel10;
+        private System.Windows.Forms.Button btnTest;
     }
 }

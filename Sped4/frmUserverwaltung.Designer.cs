@@ -149,7 +149,7 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(12, 347);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(58, 13);
+            this.label14.Size = new System.Drawing.Size(57, 13);
             this.label14.TabIndex = 28;
             this.label14.Text = "SMTP SSL:";
             // 
@@ -167,7 +167,7 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(10, 322);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(62, 13);
+            this.label13.Size = new System.Drawing.Size(61, 13);
             this.label13.TabIndex = 27;
             this.label13.Text = "SMTP Port:";
             // 
@@ -184,7 +184,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(10, 296);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 13);
+            this.label10.Size = new System.Drawing.Size(71, 13);
             this.label10.TabIndex = 25;
             this.label10.Text = "SMTP Server:";
             // 
@@ -195,13 +195,14 @@
             this.tbSMTPPass.Name = "tbSMTPPass";
             this.tbSMTPPass.Size = new System.Drawing.Size(260, 20);
             this.tbSMTPPass.TabIndex = 11;
+            this.tbSMTPPass.UseSystemPasswordChar = true;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(9, 270);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(66, 13);
+            this.label11.Size = new System.Drawing.Size(65, 13);
             this.label11.TabIndex = 24;
             this.label11.Text = "SMTP Pass.:";
             // 
@@ -218,7 +219,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(11, 244);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(64, 13);
+            this.label12.Size = new System.Drawing.Size(63, 13);
             this.label12.TabIndex = 23;
             this.label12.Text = "SMTP User:";
             // 
@@ -269,7 +270,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(12, 167);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 13);
+            this.label7.Size = new System.Drawing.Size(47, 13);
             this.label7.TabIndex = 15;
             this.label7.Text = "Telefon:";
             // 
@@ -407,7 +408,7 @@
             this.panDGVUserBerechtigungen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panDGVUserBerechtigungen.Location = new System.Drawing.Point(0, 0);
             this.panDGVUserBerechtigungen.Name = "panDGVUserBerechtigungen";
-            this.panDGVUserBerechtigungen.Size = new System.Drawing.Size(381, 350);
+            this.panDGVUserBerechtigungen.Size = new System.Drawing.Size(378, 348);
             this.panDGVUserBerechtigungen.TabIndex = 10;
             // 
             // dgvUserLoggedIn
@@ -420,7 +421,7 @@
             this.dgvUserLoggedIn.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.dgvUserLoggedIn.Name = "dgvUserLoggedIn";
             this.dgvUserLoggedIn.ReadOnly = true;
-            this.dgvUserLoggedIn.Size = new System.Drawing.Size(381, 325);
+            this.dgvUserLoggedIn.Size = new System.Drawing.Size(378, 323);
             this.dgvUserLoggedIn.TabIndex = 15;
             this.dgvUserLoggedIn.ThemeName = "ControlDefault";
             // 
@@ -434,7 +435,7 @@
             this.afToolStrip3.myUnderlineColor = System.Drawing.Color.White;
             this.afToolStrip3.myUnderlined = true;
             this.afToolStrip3.Name = "afToolStrip3";
-            this.afToolStrip3.Size = new System.Drawing.Size(381, 25);
+            this.afToolStrip3.Size = new System.Drawing.Size(378, 25);
             this.afToolStrip3.TabIndex = 14;
             this.afToolStrip3.Text = "afToolStrip3";
             // 
@@ -455,7 +456,7 @@
             this.panUserDaten.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panUserDaten.Location = new System.Drawing.Point(0, 25);
             this.panUserDaten.Name = "panUserDaten";
-            this.panUserDaten.Size = new System.Drawing.Size(381, 389);
+            this.panUserDaten.Size = new System.Drawing.Size(378, 387);
             this.panUserDaten.TabIndex = 8;
             // 
             // tabUser
@@ -466,7 +467,7 @@
             this.tabUser.Location = new System.Drawing.Point(0, 0);
             this.tabUser.Name = "tabUser";
             this.tabUser.SelectedIndex = 0;
-            this.tabUser.Size = new System.Drawing.Size(381, 389);
+            this.tabUser.Size = new System.Drawing.Size(378, 387);
             this.tabUser.TabIndex = 1;
             // 
             // tabPageUserdaten
@@ -506,7 +507,7 @@
             this.tabPageUserdaten.Location = new System.Drawing.Point(4, 22);
             this.tabPageUserdaten.Name = "tabPageUserdaten";
             this.tabPageUserdaten.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUserdaten.Size = new System.Drawing.Size(373, 363);
+            this.tabPageUserdaten.Size = new System.Drawing.Size(370, 361);
             this.tabPageUserdaten.TabIndex = 0;
             this.tabPageUserdaten.Text = "Userdaten";
             // 
@@ -574,11 +575,8 @@
             this.scUserVerwaltungContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scUserVerwaltungContainer.Location = new System.Drawing.Point(0, 0);
             this.scUserVerwaltungContainer.Name = "scUserVerwaltungContainer";
-            // 
-            // 
-            // 
-            this.scUserVerwaltungContainer.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.scUserVerwaltungContainer.Size = new System.Drawing.Size(1151, 768);
+            this.scUserVerwaltungContainer.SplitterWidth = 8;
             this.scUserVerwaltungContainer.TabIndex = 12;
             this.scUserVerwaltungContainer.TabStop = false;
             // 
@@ -587,11 +585,7 @@
             this.splitPanel1.Controls.Add(this.scUserInputDaten);
             this.splitPanel1.Location = new System.Drawing.Point(0, 0);
             this.splitPanel1.Name = "splitPanel1";
-            // 
-            // 
-            // 
-            this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(381, 768);
+            this.splitPanel1.Size = new System.Drawing.Size(378, 768);
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
@@ -604,11 +598,8 @@
             this.scUserInputDaten.Location = new System.Drawing.Point(0, 0);
             this.scUserInputDaten.Name = "scUserInputDaten";
             this.scUserInputDaten.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // 
-            // 
-            this.scUserInputDaten.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.scUserInputDaten.Size = new System.Drawing.Size(381, 768);
+            this.scUserInputDaten.Size = new System.Drawing.Size(378, 768);
+            this.scUserInputDaten.SplitterWidth = 8;
             this.scUserInputDaten.TabIndex = 0;
             this.scUserInputDaten.TabStop = false;
             // 
@@ -618,11 +609,7 @@
             this.splitPanel3.Controls.Add(this.afToolStrip1);
             this.splitPanel3.Location = new System.Drawing.Point(0, 0);
             this.splitPanel3.Name = "splitPanel3";
-            // 
-            // 
-            // 
-            this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel3.Size = new System.Drawing.Size(381, 414);
+            this.splitPanel3.Size = new System.Drawing.Size(378, 412);
             this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.04188482F);
             this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 22);
             this.splitPanel3.TabIndex = 0;
@@ -643,7 +630,7 @@
             this.afToolStrip1.myUnderlineColor = System.Drawing.Color.White;
             this.afToolStrip1.myUnderlined = true;
             this.afToolStrip1.Name = "afToolStrip1";
-            this.afToolStrip1.Size = new System.Drawing.Size(381, 25);
+            this.afToolStrip1.Size = new System.Drawing.Size(378, 25);
             this.afToolStrip1.TabIndex = 10;
             this.afToolStrip1.Text = "afToolStrip1";
             // 
@@ -701,13 +688,9 @@
             // splitPanel4
             // 
             this.splitPanel4.Controls.Add(this.panDGVUserBerechtigungen);
-            this.splitPanel4.Location = new System.Drawing.Point(0, 418);
+            this.splitPanel4.Location = new System.Drawing.Point(0, 420);
             this.splitPanel4.Name = "splitPanel4";
-            // 
-            // 
-            // 
-            this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel4.Size = new System.Drawing.Size(381, 350);
+            this.splitPanel4.Size = new System.Drawing.Size(378, 348);
             this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.04188482F);
             this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -22);
             this.splitPanel4.TabIndex = 1;
@@ -717,13 +700,9 @@
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.scUserListenContainer);
-            this.splitPanel2.Location = new System.Drawing.Point(385, 0);
+            this.splitPanel2.Location = new System.Drawing.Point(386, 0);
             this.splitPanel2.Name = "splitPanel2";
-            // 
-            // 
-            // 
-            this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(381, 768);
+            this.splitPanel2.Size = new System.Drawing.Size(378, 768);
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
@@ -735,11 +714,8 @@
             this.scUserListenContainer.Location = new System.Drawing.Point(0, 0);
             this.scUserListenContainer.Name = "scUserListenContainer";
             this.scUserListenContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // 
-            // 
-            this.scUserListenContainer.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.scUserListenContainer.Size = new System.Drawing.Size(381, 768);
+            this.scUserListenContainer.Size = new System.Drawing.Size(378, 768);
+            this.scUserListenContainer.SplitterWidth = 8;
             this.scUserListenContainer.TabIndex = 0;
             this.scUserListenContainer.TabStop = false;
             // 
@@ -749,11 +725,7 @@
             this.splitPanel5.Controls.Add(this.afToolStrip2);
             this.splitPanel5.Location = new System.Drawing.Point(0, 0);
             this.splitPanel5.Name = "splitPanel5";
-            // 
-            // 
-            // 
-            this.splitPanel5.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel5.Size = new System.Drawing.Size(381, 768);
+            this.splitPanel5.Size = new System.Drawing.Size(378, 768);
             this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.0577812F);
             this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 38);
             this.splitPanel5.TabIndex = 0;
@@ -777,7 +749,7 @@
             this.dgvUserList.Name = "dgvUserList";
             this.dgvUserList.ReadOnly = true;
             this.dgvUserList.ShowGroupPanel = false;
-            this.dgvUserList.Size = new System.Drawing.Size(381, 743);
+            this.dgvUserList.Size = new System.Drawing.Size(378, 743);
             this.dgvUserList.TabIndex = 13;
             this.dgvUserList.ThemeName = "ControlDefault";
             this.dgvUserList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvUser_CellDoubleClick);
@@ -792,7 +764,7 @@
             this.afToolStrip2.myUnderlineColor = System.Drawing.Color.White;
             this.afToolStrip2.myUnderlined = true;
             this.afToolStrip2.Name = "afToolStrip2";
-            this.afToolStrip2.Size = new System.Drawing.Size(381, 25);
+            this.afToolStrip2.Size = new System.Drawing.Size(378, 25);
             this.afToolStrip2.TabIndex = 12;
             this.afToolStrip2.Text = "afToolStrip2";
             // 
@@ -806,13 +778,9 @@
             // 
             this.splitPanel7.Controls.Add(this.dgvUserBerechtigungen);
             this.splitPanel7.Controls.Add(this.afToolStrip5);
-            this.splitPanel7.Location = new System.Drawing.Point(770, 0);
+            this.splitPanel7.Location = new System.Drawing.Point(772, 0);
             this.splitPanel7.Name = "splitPanel7";
-            // 
-            // 
-            // 
-            this.splitPanel7.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel7.Size = new System.Drawing.Size(381, 768);
+            this.splitPanel7.Size = new System.Drawing.Size(379, 768);
             this.splitPanel7.TabIndex = 2;
             this.splitPanel7.TabStop = false;
             this.splitPanel7.Text = "splitPanel7";
@@ -847,7 +815,7 @@
             this.dgvUserBerechtigungen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUserBerechtigungen.ShowEditingIcon = false;
             this.dgvUserBerechtigungen.ShowRowErrors = false;
-            this.dgvUserBerechtigungen.Size = new System.Drawing.Size(381, 743);
+            this.dgvUserBerechtigungen.Size = new System.Drawing.Size(379, 743);
             this.dgvUserBerechtigungen.TabIndex = 16;
             this.dgvUserBerechtigungen.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
             // 
@@ -861,7 +829,7 @@
             this.afToolStrip5.myUnderlineColor = System.Drawing.Color.White;
             this.afToolStrip5.myUnderlined = true;
             this.afToolStrip5.Name = "afToolStrip5";
-            this.afToolStrip5.Size = new System.Drawing.Size(381, 25);
+            this.afToolStrip5.Size = new System.Drawing.Size(379, 25);
             this.afToolStrip5.TabIndex = 15;
             this.afToolStrip5.Text = "afToolStrip5";
             // 

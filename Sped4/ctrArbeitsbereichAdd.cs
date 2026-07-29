@@ -81,8 +81,21 @@ namespace Sped4
                 decimal decAbIDTmp = 0;
                 Decimal.TryParse(this.tbABId.Text, out decAbIDTmp);
                 decimal decTmpMandant = -1;
-                Decimal.TryParse(cbMandant.SelectedValue.ToString(), out decTmpMandant);
-                if (decTmpMandant > 0)
+                // ❌ GEFÄHRLICH (aktuell):
+                //Decimal.TryParse(cbMandant.SelectedValue.ToString(), out decTmpMandant);
+
+                // ✅ SICHER:
+                if (cbMandant.SelectedValue != null)
+                {
+                    Decimal.TryParse(cbMandant.SelectedValue.ToString(), out decTmpMandant);
+                }
+                else
+                {
+                    decTmpMandant = -1; // Default fallback
+                }
+
+                //if (decTmpMandant > 0)
+                if (decTmpMandant > 0 && clsAB != null)  // ✅ clsAB NULL-Check
                 {
                     clsAB.ID = decAbIDTmp;
                     clsAB.ABName = tbABName.Text.Trim();
@@ -108,7 +121,7 @@ namespace Sped4
 
             //CHeck ob der Arbeitsbereichsname bereits existiert
             if (clsArbeitsbereiche.ExistArbeitsbereich(tbABName.Text, GL_User.User_ID)
-                & (tbABId.Text == string.Empty))
+                && (tbABId.Text == string.Empty))   // ✅ && statt &
             {
                 bOK = false;
                 strMes = strMes + "Das Arbeitsbereichsname ist bereits vergeben oder leer!" + Environment.NewLine;
@@ -124,14 +137,14 @@ namespace Sped4
                 //bOK = false;
                 strMes = strMes + "Das Eingabefeld Bemerkung ist leer!" + Environment.NewLine;
             }
-            //Mandant muss ausgwählt sein
+            // CHECK: Mandant muss ausgewählt sein (Pflichtfeld)
             if (cbMandant.SelectedIndex < 0)
             {
-                //Ist Pflichtfeld 
                 bOK = false;
-                strMes = strMes + "Das Eingabefeld Mandant ist leer!" + Environment.NewLine;
+                strMes += "Das Eingabefeld Mandant ist leer!" + Environment.NewLine;
             }
 
+            // Error-Meldung anzeigen falls Fehler vorhanden
             if (!bOK)
             {
                 clsMessages.Allgemein_EingabeDatenFehlerhaft(strMes);
@@ -153,8 +166,8 @@ namespace Sped4
             this.tbBemerkung.Text = this.clsAB.Bemerkung;
             this.cbStatus.Checked = this.clsAB.Aktiv;
             this.cbASNTransfer.Checked = this.clsAB.ASNTransfer;
-            //this.cbIsLager.Checked = this.clsAB.IsLager;
-            //this.cbIsSpedition.Checked=this.clsAB.IsSpedition;
+            this.cbIsLager.Checked = this.clsAB.IsLager;
+            this.cbIsSpedition.Checked=this.clsAB.IsSpedition;
             this.cbAutoRowAssignment.Checked = this.clsAB.UseAutoRowAssignment;
             this.nudMaxArtCountAusang.Value = (decimal)this.clsAB.ArtMaxCountInAusgang;
             Functions.SetComboToSelecetedValue(ref cbMandant, clsAB.MandantenID.ToString());

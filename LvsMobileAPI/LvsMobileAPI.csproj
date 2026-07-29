@@ -42,27 +42,25 @@
       <HintPath>..\..\lib\clsINI.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Reporting">
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.ReportViewer.Html5.WebForms">
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.Html5.WebForms.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.ReportViewer.Html5.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.ReportViewer.Mvc">
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.Mvc.dll</HintPath>
-		<Private>True</Private>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.ReportViewer.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.ReportViewer.WinForms">
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.WinForms.dll</HintPath>
-		<Private>True</Private>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.ReportViewer.Wpf">
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.Wpf.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.ReportViewer.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.ReportViewer.Wpf.Themes">
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.Wpf.Themes.dll</HintPath>
-		<Private>True</Private>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.ReportViewer.Wpf.Themes.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinUI.Controls">
+      <HintPath>..\..\lib\Progress\Telerik UI for WinUI 4.3.0\Binaries\Win32\Telerik.WinUI.Controls.dll</HintPath>
     </Reference>
   </ItemGroup>
 

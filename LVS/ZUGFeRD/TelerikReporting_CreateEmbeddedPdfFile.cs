@@ -57,11 +57,19 @@ namespace LVS.ZUGFeRD
                 //---- The document does not contain a font that can be used for rendering the text content."
                 
                 FontBase fontBase;
+                //bool fontFound = FontsRepository.TryCreateFont(
+                //                                                new Telerik.Documents.Core.Fonts.FontFamily("Liberation Sans"),
+                //                                                FontStyles.Normal,
+                //                                                FontWeights.Normal,
+                //                                                out fontBase);
+
                 bool fontFound = FontsRepository.TryCreateFont(
-                                                                new Telerik.Documents.Core.Fonts.FontFamily("Liberation Sans"),
-                                                                FontStyles.Normal,
-                                                                FontWeights.Normal,
-                                                                out fontBase);
+                                                new System.Windows.Media.FontFamily("Liberation Sans"),
+                                                System.Windows.FontStyles.Normal,
+                                                System.Windows.FontWeights.Normal,
+                                                out fontBase);
+
+
                 if (!fontFound)
                 {
                     LogMessages.Add("------------" + Environment.NewLine);

@@ -33,7 +33,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>26.07.10.%2a</ApplicationVersion>
+    <ApplicationVersion>26.07.29.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -105,8 +105,8 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="MediaFoundation, Version=3.1.0.32450, Culture=neutral, PublicKeyToken=36fa660e1d6ebf8d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\MediaFoundation.dll</HintPath>
+      <HintPath>..\lib\RCWF\2026.2.702.48\MediaFoundation.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AnalysisServices.AdomdClient, Version=19.94.1.1, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -139,8 +139,8 @@
       <HintPath>..\..\lib\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Toolkit.Uwp.Notifications, Version=7.0.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Microsoft.Toolkit.Uwp.Notifications.dll</HintPath>
+      <HintPath>..\lib\RCWF\2026.2.702.48\Microsoft.Toolkit.Uwp.Notifications.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PdfSharp, Version=6.2.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.6.2.1\lib\netstandard2.0\PdfSharp.dll</HintPath>
@@ -172,9 +172,9 @@
     <Reference Include="PresentationCore">
       <Private>True</Private>
     </Reference>
-    <Reference Include="RadControlSpy, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\RadControlSpy.dll</HintPath>
+    <Reference Include="RadControlSpy, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2026.2.702.48\RadControlSpy.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="RadGridReportingLite">
       <HintPath>.\RadGridReportingLite.dll</HintPath>
@@ -270,404 +270,245 @@
     <Reference Include="System.Xml">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Documents.AI.AgentTools.Conversion, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Documents.AI.AgentTools.Conversion.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Documents.AI.AgentTools.Fixed, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Documents.AI.AgentTools.Fixed.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Documents.AI.AgentTools.Spreadsheet, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Documents.AI.AgentTools.Spreadsheet.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Documents.AI.Core, Version=2026.1.402.20, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Documents.AI.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Documents.AI.RAG, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Documents.AI.RAG.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Documents.AI.Tools.Conversion.Core, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Documents.AI.Tools.Conversion.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Documents.AI.Tools.Core, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Documents.AI.Tools.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Documents.AI.Tools.Fixed.Core, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Documents.AI.Tools.Fixed.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Documents.AI.Tools.Flow.Core, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Documents.AI.Tools.Flow.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Documents.AI.Tools.Spreadsheet.Core, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Documents.AI.Tools.Spreadsheet.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Documents.SpreadsheetStreaming, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
-    </Reference>
     <Reference Include="Telerik.Licensing.Runtime, Version=1.8.2.0, Culture=neutral, PublicKeyToken=98bb5b04e55c09ef, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Licensing.1.8.2\lib\net462\Telerik.Licensing.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.Adomd, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.Adomd.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.Cache.Database, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.Cache.Database.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.Cache.StackExchangeRedis, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.Cache.StackExchangeRedis.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.Data.Schema, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.Data.Schema.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.Data.Schema.Provider, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.Data.Schema.Provider.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.JsonSerialization, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.JsonSerialization.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.OpenXmlRendering, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.OpenXmlRendering.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.OpenXmlRendering.2.7.2, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.OpenXmlRendering.2.7.2.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.OpenXmlRendering.3.0.1, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.OpenXmlRendering.3.0.1.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.Services.HttpClient, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.Services.HttpClient.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.Services.WebApi, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.Services.WebApi.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.WebServiceDataSource, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.WebServiceDataSource.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Reporting.XpsRendering, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.Reporting.XpsRendering.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.ReportViewer.Html5.WebForms, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.Html5.WebForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.ReportViewer.Mvc, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.ReportViewer.WinForms, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.ReportViewer.Wpf, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.ReportViewer.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WebReportDesigner.Services, Version=20.0.26.402, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q1\Bin\Telerik.WebReportDesigner.Services.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls.ChartView, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.ChartView.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.GridView.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls.PdfViewer, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.PdfViewer.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls.PivotGrid, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.PivotGrid.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls.RadChart, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.RadChart.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls.RadDiagram, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.RadDiagram.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls.RadDock, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.RadDock.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls.RadMap, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.RadMap.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls.RadMarkupEditor, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.RadMarkupEditor.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Licensing.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.RadSpreadsheet, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.RadSpreadsheet.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.RadToastNotification, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting.Adomd, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.RadToastNotification.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.Adomd.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.RadToastNotification.Design, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting.Cache.Database, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.RadToastNotification.Design.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.Cache.Database.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.RadWebCam, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting.Cache.StackExchangeRedis, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.RadWebCam.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.Cache.StackExchangeRedis.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting.Data.Schema, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.RichTextEditor.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.Data.Schema.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Scheduler, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting.OpenXmlRendering, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Scheduler.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.OpenXmlRendering.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.SpellChecker, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting.OpenXmlRendering.2.7.2, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.SpellChecker.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.OpenXmlRendering.2.7.2.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.SyntaxEditor, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting.OpenXmlRendering.3.0.1, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.SyntaxEditor.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.OpenXmlRendering.3.0.1.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Aqua, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting.Services.HttpClient, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Aqua.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.Services.HttpClient.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Breeze, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting.Services.WebApi, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Breeze.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.Services.WebApi.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Crystal, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting.WebServiceDataSource, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Crystal.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.WebServiceDataSource.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.CrystalDark, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Reporting.XpsRendering, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.CrystalDark.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.Reporting.XpsRendering.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Desert, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Desert.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.ReportViewer.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Fluent, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WebReportDesigner.Services, Version=20.1.26.707, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Fluent.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik Reporting 2026 Q2\Bin\Telerik.WebReportDesigner.Services.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.FluentDark, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.FluentDark.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.ChartView, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.HighContrastBlack.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.ChartView.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Material, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.GridView, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Material.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.GridView.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.MaterialBlueGrey, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.PdfViewer, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.MaterialBlueGrey.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.PdfViewer.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.MaterialPink, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.PivotGrid, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.MaterialPink.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.PivotGrid.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.MaterialTeal, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.RadChart, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.MaterialTeal.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.RadChart.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2007Black, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.RadDiagram, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Office2007Black.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.RadDiagram.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.RadDock, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Office2007Silver.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.RadDock.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2010Black, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.RadMap, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Office2010Black.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.RadMap.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2010Blue, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.RadMarkupEditor, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Office2010Blue.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.RadMarkupEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2010Silver, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.RadSpreadsheet, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Office2010Silver.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.RadSpreadsheet.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2013Dark, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.RadToastNotification, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Office2013Dark.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.RadToastNotification.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.RadToastNotification.Design, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.RadToastNotification.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2019, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.RadWebCam, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Office2019.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.RadWebCam.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.TelerikMetro.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.RichTextEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.Scheduler, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.Scheduler.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.SpellChecker, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.SpellChecker.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.SyntaxEditor, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.VisualStudio2012Dark.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.SyntaxEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.Themes.Aqua, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.VisualStudio2012Light.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.Themes.Aqua.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.VisualStudio2022, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.Themes.Fluent, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.VisualStudio2022.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.Themes.Fluent.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Windows11, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.Themes.Office2019, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Windows11.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.Themes.Office2019.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Windows7.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.Themes.TelerikMetro.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.Themes.Windows8.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2022, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.UI.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.Themes.VisualStudio2022.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI.Design, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.UI, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.WinControls.UI.Design.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.AIConnector, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.UI.Design, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.AIConnector.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.WinControls.UI.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.CMapUtils, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.AIConnector, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.CMapUtils.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.AIConnector.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Core, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.CMapUtils, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.Core.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.CMapUtils.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.DrawingML, Version=2026.1.210.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.DrawingML.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.DrawingML, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.Fixed.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.DrawingML.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Fixed.FormatProviders.Ocr, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.Fixed.FormatProviders.Ocr.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.Fixed.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Flow, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.Fixed.FormatProviders.Ocr, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.Flow.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.Fixed.FormatProviders.Ocr.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Doc, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.Flow, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.Flow.FormatProviders.Doc.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.Flow.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Doc, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.Flow.FormatProviders.Doc.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Json, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Json.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Json, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.TesseractOcr, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Documents.TesseractOcr.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.MediaFoundation, Version=2025.3.806.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Documents.TesseractOcr, Version=2026.2.624.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.MediaFoundation.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.Documents.TesseractOcr.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Zip, Version=2026.1.402.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.MediaFoundation, Version=2026.1.518.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\Telerik.Windows.Zip.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\Telerik.Windows.MediaFoundation.dll</HintPath>
     </Reference>
-    <Reference Include="TelerikCommon, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="TelerikCommon, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\TelerikCommon.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\TelerikCommon.dll</HintPath>
     </Reference>
-    <Reference Include="TelerikData, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="TelerikData, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\TelerikData.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\TelerikData.dll</HintPath>
     </Reference>
-    <Reference Include="TelerikExport, Version=2026.1.415.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="TelerikExport, Version=2026.2.702.48, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q1\Bin48\TelerikExport.dll</HintPath>
+      <HintPath>..\..\lib\Progress\Telerik UI for WinForms 2026 Q2\Bin48\TelerikExport.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase">
       <Private>True</Private>
@@ -762,6 +603,12 @@
     </Compile>
     <Compile Include="Controls\AdminCockpit\ctrCronJobs.Designer.cs">
       <DependentUpon>ctrCronJobs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AdminCockpit\ctrMailCheck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AdminCockpit\ctrMailCheck.Designer.cs">
+      <DependentUpon>ctrMailCheck.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\AFMethoden.cs" />
     <Compile Include="Controls\ASNCenter\ctrAdrVerweis.cs">
@@ -1841,6 +1688,9 @@
     <EmbeddedResource Include="Controls\AdminCockpit\ctrCronJobs.resx">
       <DependentUpon>ctrCronJobs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AdminCockpit\ctrMailCheck.resx">
+      <DependentUpon>ctrMailCheck.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ASNCenter\ctrAdrVerweis.resx">
       <DependentUpon>ctrAdrVerweis.cs</DependentUpon>
     </EmbeddedResource>
@@ -2420,6 +2270,7 @@
     <EmbeddedResource Include="ctrASNCall.resx">
       <DependentUpon>ctrASNCall.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

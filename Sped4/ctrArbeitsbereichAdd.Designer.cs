@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panAdd = new System.Windows.Forms.Panel();
+            this.nudMaxArtCountAusang = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             this.cbAutoRowAssignment = new System.Windows.Forms.CheckBox();
             this.cbMandant = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -47,8 +49,6 @@
             this.tbABName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.nudMaxArtCountAusang = new System.Windows.Forms.NumericUpDown();
             this.panAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxArtCountAusang)).BeginInit();
             this.SuspendLayout();
@@ -79,8 +79,26 @@
             this.panAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panAdd.Location = new System.Drawing.Point(0, 0);
             this.panAdd.Name = "panAdd";
-            this.panAdd.Size = new System.Drawing.Size(355, 344);
+            this.panAdd.Size = new System.Drawing.Size(355, 388);
             this.panAdd.TabIndex = 0;
+            // 
+            // nudMaxArtCountAusang
+            // 
+            this.nudMaxArtCountAusang.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nudMaxArtCountAusang.Location = new System.Drawing.Point(182, 345);
+            this.nudMaxArtCountAusang.Name = "nudMaxArtCountAusang";
+            this.nudMaxArtCountAusang.Size = new System.Drawing.Size(81, 20);
+            this.nudMaxArtCountAusang.TabIndex = 172;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label10.Location = new System.Drawing.Point(8, 347);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(151, 13);
+            this.label10.TabIndex = 171;
+            this.label10.Text = "max. Artikelanzahl je Ausgang:";
             // 
             // cbAutoRowAssignment
             // 
@@ -88,7 +106,7 @@
             this.cbAutoRowAssignment.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.cbAutoRowAssignment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbAutoRowAssignment.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbAutoRowAssignment.Location = new System.Drawing.Point(11, 271);
+            this.cbAutoRowAssignment.Location = new System.Drawing.Point(128, 311);
             this.cbAutoRowAssignment.Name = "cbAutoRowAssignment";
             this.cbAutoRowAssignment.Size = new System.Drawing.Size(123, 17);
             this.cbAutoRowAssignment.TabIndex = 170;
@@ -123,7 +141,7 @@
             this.cbIsSpedition.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.cbIsSpedition.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbIsSpedition.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbIsSpedition.Location = new System.Drawing.Point(253, 240);
+            this.cbIsSpedition.Location = new System.Drawing.Point(128, 288);
             this.cbIsSpedition.Name = "cbIsSpedition";
             this.cbIsSpedition.Size = new System.Drawing.Size(46, 17);
             this.cbIsSpedition.TabIndex = 32;
@@ -134,7 +152,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label7.Location = new System.Drawing.Point(173, 242);
+            this.label7.Location = new System.Drawing.Point(8, 290);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(51, 13);
             this.label7.TabIndex = 31;
@@ -146,7 +164,7 @@
             this.cbIsLager.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.cbIsLager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbIsLager.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbIsLager.Location = new System.Drawing.Point(253, 216);
+            this.cbIsLager.Location = new System.Drawing.Point(128, 262);
             this.cbIsLager.Name = "cbIsLager";
             this.cbIsLager.Size = new System.Drawing.Size(46, 17);
             this.cbIsLager.TabIndex = 30;
@@ -157,7 +175,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label8.Location = new System.Drawing.Point(173, 218);
+            this.label8.Location = new System.Drawing.Point(8, 264);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(34, 13);
             this.label8.TabIndex = 29;
@@ -169,7 +187,7 @@
             this.cbASNTransfer.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.cbASNTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbASNTransfer.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbASNTransfer.Location = new System.Drawing.Point(117, 238);
+            this.cbASNTransfer.Location = new System.Drawing.Point(128, 237);
             this.cbASNTransfer.Name = "cbASNTransfer";
             this.cbASNTransfer.Size = new System.Drawing.Size(46, 17);
             this.cbASNTransfer.TabIndex = 28;
@@ -212,7 +230,7 @@
             this.cbStatus.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.cbStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbStatus.ForeColor = System.Drawing.Color.DarkBlue;
-            this.cbStatus.Location = new System.Drawing.Point(117, 214);
+            this.cbStatus.Location = new System.Drawing.Point(128, 214);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(46, 17);
             this.cbStatus.TabIndex = 24;
@@ -279,31 +297,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Arbeitsbereichsname:";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label10.Location = new System.Drawing.Point(8, 300);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(151, 13);
-            this.label10.TabIndex = 171;
-            this.label10.Text = "max. Artikelanzahl je Ausgang:";
-            // 
-            // nudMaxArtCountAusang
-            // 
-            this.nudMaxArtCountAusang.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudMaxArtCountAusang.Location = new System.Drawing.Point(165, 298);
-            this.nudMaxArtCountAusang.Name = "nudMaxArtCountAusang";
-            this.nudMaxArtCountAusang.Size = new System.Drawing.Size(81, 20);
-            this.nudMaxArtCountAusang.TabIndex = 172;
-            // 
             // ctrArbeitsbereichAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panAdd);
             this.Name = "ctrArbeitsbereichAdd";
-            this.Size = new System.Drawing.Size(355, 344);
+            this.Size = new System.Drawing.Size(355, 388);
             this.Load += new System.EventHandler(this.ctrArbeitsbereichAdd_Load);
             this.panAdd.ResumeLayout(false);
             this.panAdd.PerformLayout();
