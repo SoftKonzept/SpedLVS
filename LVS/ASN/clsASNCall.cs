@@ -1,9 +1,11 @@
-﻿using LVS.sqlStatementCreater;
+﻿using LVS.Mail;
+using LVS.sqlStatementCreater;
 using LVS.ViewData;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace LVS
 {
@@ -868,6 +870,18 @@ namespace LVS
                                     strTxt = strTxt + "sql: " + strSQLFinal + Environment.NewLine;
                                     EMail.Message = strTxt;
                                     EMail.SendError();
+
+                                    // ✅ Mail asynchron versenden ohne Blockierung
+                                    _ = Task.Run(async () =>
+                                    {
+                                        MailSending mail = new MailSending(this._GL_User, this.sys);
+                                        //mail.recipients.AddRange(Mailinglist.ListMailadressen);
+                                        //mail.AddAttachments(listAttach);
+                                        mail.Subject = this.sys.Client.MatchCode + DateTime.Now.ToShortDateString() + "- Error clsASNCall: Fehler beim Einlesen eines Abrufs - NEU";
+                                        strTxt = Environment.NewLine + "Austausch - clsASNCAll Zeile 865" + Environment.NewLine;
+                                        mail.Message = strTxt;
+                                        await mail.Send(true);
+                                    });
                                 }
                             }
                             catch (Exception ex1)

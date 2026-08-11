@@ -2487,7 +2487,6 @@ namespace Communicator
                                 CronJobViewData tmpCronJobVD = new CronJobViewData(cronJob, 1);
                                 if (!system.DebugModeCOM)
                                 {
-
                                     CronJob_StoclistAutoSend stoclistAutoSend = new CronJob_StoclistAutoSend(tmpCronJobVD.CronJob, this.GLUser, this.GLSystem, this.system);
                                     if (stoclistAutoSend.ProzessExcecuted)
                                     {

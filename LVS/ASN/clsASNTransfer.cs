@@ -1,7 +1,9 @@
-﻿using System;
+﻿using LVS.Mail;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 
 
 namespace LVS
@@ -974,6 +976,19 @@ namespace LVS
             ErrorMail.Subject = "clsASNTransfer.CreateLM - Info Güterart IgnorEDI";
             ErrorMail.Message = strMes;
             ErrorMail.SendError();
+
+
+            // ✅ Mail asynchron versenden ohne Blockierung
+            _ = Task.Run(async () =>
+            {
+                MailSending mail = new MailSending(this.GL_User, new clsSystem());
+                //mail.recipients.AddRange(Mailinglist.ListMailadressen);
+                //mail.AddAttachments(listAttach);
+                mail.Subject = "clsASNTransfer.CreateLM - Info Güterart IgnorEDI - NEU";
+                strMes += Environment.NewLine + "Austausch - clsASNTransfer Zeile 974" + Environment.NewLine;
+                mail.Message = strMes;
+                await mail.Send(true);
+            });
         }
 
         /// <summary>

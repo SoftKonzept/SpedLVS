@@ -153,7 +153,7 @@
             this.pageViewAdminCockpit.Margin = new System.Windows.Forms.Padding(5);
             this.pageViewAdminCockpit.Name = "pageViewAdminCockpit";
             this.pageViewAdminCockpit.PageBackColor = System.Drawing.Color.White;
-            this.pageViewAdminCockpit.SelectedPage = this.pvpReport;
+            this.pageViewAdminCockpit.SelectedPage = this.pvpMail;
             this.pageViewAdminCockpit.Size = new System.Drawing.Size(947, 441);
             this.pageViewAdminCockpit.TabIndex = 0;
             this.pageViewAdminCockpit.ThemeName = "ControlDefault";
@@ -236,7 +236,7 @@
             this.comboRefArbeitsbereich.Location = new System.Drawing.Point(282, 80);
             this.comboRefArbeitsbereich.Margin = new System.Windows.Forms.Padding(5);
             this.comboRefArbeitsbereich.Name = "comboRefArbeitsbereich";
-            this.comboRefArbeitsbereich.Size = new System.Drawing.Size(188, 20);
+            this.comboRefArbeitsbereich.Size = new System.Drawing.Size(188, 24);
             this.comboRefArbeitsbereich.TabIndex = 7;
             this.comboRefArbeitsbereich.TabStop = false;
             this.comboRefArbeitsbereich.Text = "radMultiColumnComboBox1";
@@ -489,7 +489,7 @@
             // 
             this.cbUseReply.Location = new System.Drawing.Point(226, 111);
             this.cbUseReply.Name = "cbUseReply";
-            this.cbUseReply.Size = new System.Drawing.Size(66, 18);
+            this.cbUseReply.Size = new System.Drawing.Size(69, 18);
             this.cbUseReply.TabIndex = 11;
             this.cbUseReply.Text = "UseReply";
             // 
@@ -497,7 +497,7 @@
             // 
             this.tbAbsName.Location = new System.Drawing.Point(325, 156);
             this.tbAbsName.Name = "tbAbsName";
-            this.tbAbsName.Size = new System.Drawing.Size(431, 20);
+            this.tbAbsName.Size = new System.Drawing.Size(431, 24);
             this.tbAbsName.TabIndex = 9;
             this.tbAbsName.Text = "SLE Eisenhüttenstadt GmbH";
             // 
@@ -513,7 +513,7 @@
             // 
             this.tbReplyTo.Location = new System.Drawing.Point(325, 130);
             this.tbReplyTo.Name = "tbReplyTo";
-            this.tbReplyTo.Size = new System.Drawing.Size(431, 20);
+            this.tbReplyTo.Size = new System.Drawing.Size(431, 24);
             this.tbReplyTo.TabIndex = 2;
             this.tbReplyTo.Text = "noreply@sle-gmbh.de";
             // 
@@ -567,7 +567,7 @@
             this.cbSMTPSSL.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbSMTPSSL.Location = new System.Drawing.Point(325, 210);
             this.cbSMTPSSL.Name = "cbSMTPSSL";
-            this.cbSMTPSSL.Size = new System.Drawing.Size(72, 18);
+            this.cbSMTPSSL.Size = new System.Drawing.Size(75, 18);
             this.cbSMTPSSL.TabIndex = 5;
             this.cbSMTPSSL.Text = " SMTP SSL";
             // 
@@ -615,7 +615,7 @@
             // 
             this.tbSMTPPort.Location = new System.Drawing.Point(325, 184);
             this.tbSMTPPort.Name = "tbSMTPPort";
-            this.tbSMTPPort.Size = new System.Drawing.Size(431, 20);
+            this.tbSMTPPort.Size = new System.Drawing.Size(431, 24);
             this.tbSMTPPort.TabIndex = 1;
             this.tbSMTPPort.Text = "587";
             // 
@@ -623,7 +623,7 @@
             // 
             this.tbSMTPPass.Location = new System.Drawing.Point(325, 65);
             this.tbSMTPPass.Name = "tbSMTPPass";
-            this.tbSMTPPass.Size = new System.Drawing.Size(431, 20);
+            this.tbSMTPPass.Size = new System.Drawing.Size(431, 24);
             this.tbSMTPPass.TabIndex = 1;
             this.tbSMTPPass.Text = "[Passwort]";
             // 
@@ -631,7 +631,7 @@
             // 
             this.tbSMTPUser.Location = new System.Drawing.Point(325, 41);
             this.tbSMTPUser.Name = "tbSMTPUser";
-            this.tbSMTPUser.Size = new System.Drawing.Size(431, 20);
+            this.tbSMTPUser.Size = new System.Drawing.Size(431, 24);
             this.tbSMTPUser.TabIndex = 1;
             this.tbSMTPUser.Text = "support@softkonzept.com";
             // 
@@ -639,7 +639,7 @@
             // 
             this.tbMailAdress.Location = new System.Drawing.Point(325, 90);
             this.tbMailAdress.Name = "tbMailAdress";
-            this.tbMailAdress.Size = new System.Drawing.Size(431, 20);
+            this.tbMailAdress.Size = new System.Drawing.Size(431, 24);
             this.tbMailAdress.TabIndex = 1;
             this.tbMailAdress.Text = "support@softkonzept.com";
             // 
@@ -647,7 +647,7 @@
             // 
             this.tbSMTPServer.Location = new System.Drawing.Point(325, 18);
             this.tbSMTPServer.Name = "tbSMTPServer";
-            this.tbSMTPServer.Size = new System.Drawing.Size(431, 20);
+            this.tbSMTPServer.Size = new System.Drawing.Size(431, 24);
             this.tbSMTPServer.TabIndex = 0;
             this.tbSMTPServer.Text = "smtp.1und1.de";
             // 

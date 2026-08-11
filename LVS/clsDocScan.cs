@@ -1,4 +1,5 @@
 ﻿using Common.Enumerations;
+using LVS.Mail;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -6,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
 //using System.Windows.Forms;
 
 namespace LVS
@@ -490,6 +492,18 @@ namespace LVS
                         strError = strError + Environment.NewLine + ex.ToString();
                         EMail.Message = strError;
                         EMail.SendError();
+
+                        string strSubject = EMail.Subject;
+                        string strTxt = strError;
+                        // ✅ Mail asynchron versenden ohne Blockierung
+                        _ = Task.Run(async () =>
+                        {
+                            MailSending mail = new MailSending(this._GL_User, this.sys);
+                            mail.Subject = strSubject + " - NEU ";
+                            strTxt += Environment.NewLine + "Austausch LVS clsDocScan.cs Z. 494" + Environment.NewLine;
+                            mail.Message = strTxt;
+                            await mail.Send(true);
+                        });
                     }
                     finally
                     {

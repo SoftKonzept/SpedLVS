@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LVS.Mail;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LVS
 {
@@ -103,6 +105,19 @@ namespace LVS
                     {
                         AlarmMail.Subject += " -> !!! keine EMail-Adresse angegeben !!!";
                         AlarmMail.SendError();
+
+                        string strSubject = AlarmMail.Subject;
+                        string strTxt = AlarmMail.Message;
+                        // ✅ Mail asynchron versenden ohne Blockierung
+                        _ = Task.Run(async () =>
+                        {
+                            MailSending mail = new MailSending(this.GLUser, this.Sys);
+                            //mail.AddAttachment(myAttachmentFilePath);
+                            mail.Subject = strSubject + " - NEU ";
+                            strTxt += Environment.NewLine + "Austausch LVS clsWatchDog.cs Z. 106" + Environment.NewLine;
+                            mail.Message = strTxt;
+                            await mail.Send(true);
+                        });
                     }
                     InfoText += "Alarm-Mail versendet.... !!!";
                 }

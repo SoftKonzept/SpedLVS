@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Google.Protobuf.WellKnownTypes;
+using LVS.Mail;
+using System;
 using System.IO;
+using System.Threading.Tasks;
 //using System.Windows.Forms;
 
 
@@ -209,6 +212,18 @@ namespace LVS
                     this.Mail.Subject = strSystemInfo + ">>> ERROR-MESSAGE";
                     this.Mail.Message = this.ErrorText;
                     this.Mail.SendError();
+
+                    string strSubject = this.Mail.Subject;
+                    string strTxt = ErrorText;
+                    // ✅ Mail asynchron versenden ohne Blockierung
+                    _ = Task.Run(async () =>
+                    {
+                        MailSending mail = new MailSending(this._GL_User, this.Sys);
+                        mail.Subject = strSubject + " - NEU ";
+                        strTxt += Environment.NewLine + "Austausch LVS clsError.cs Z. 213" + Environment.NewLine;
+                        mail.Message = strTxt;
+                        await mail.Send(true);
+                    });
                 }
             }
         }
@@ -234,9 +249,9 @@ namespace LVS
             else
             {
                 // Initialisiere die Mail-Klasse
-                clsMail iMail = new clsMail();
-                iMail.InitClass(myGLUser, mySystem);
-                iMail.Subject = "Communicator - ACHTUNG - iDoc wurde in Check/Error Ordner verschoben!";
+                //clsMail iMail = new clsMail();
+                //iMail.InitClass(myGLUser, mySystem);
+                //iMail.Subject = "Communicator - ACHTUNG - iDoc wurde in Check/Error Ordner verschoben!";
 
                 MailText += string.Format("{0,-30}: {1}", "Prozess", myAsn.Prozess) + Environment.NewLine;
                 MailText += string.Format("{0,-30}: {1}", "Datum", DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss")) + Environment.NewLine;
@@ -254,16 +269,41 @@ namespace LVS
                 MailText += Environment.NewLine;
                 MailText += "Bitte finden Sie die angehängte Datei mit den Bewegungsinformationen.";
 
+                //iMail.Message = MailText;
 
-                iMail.Message = MailText;
-
-                // Anhang hinzufügen
-                iMail.ListAttachment.Add(myAttachmentFilePath);
+                //// Anhang hinzufügen
+                //iMail.ListAttachment.Add(myAttachmentFilePath);
 
                 // E-Mail senden
                 try
                 {
-                    iMail.SendError();
+                    //iMail.SendError();
+
+                    //string strSubject = iMail.Subject;
+                    //string strTxt = MailText;
+                    //// ✅ Mail asynchron versenden ohne Blockierung
+                    //_ = Task.Run(async () =>
+                    //{
+                    //    MailSending mail = new MailSending(myGLUser, mySystem);
+                    //    mail.AddAttachment(myAttachmentFilePath);
+                    //    mail.Subject = strSubject + " - NEU ";
+                    //    strTxt += Environment.NewLine + "Austausch LVS clsError.cs Z. 280" + Environment.NewLine;
+                    //    mail.Message = strTxt;
+                    //    await mail.Send(true);
+                    //});
+
+                    string strSubject = "Communicator - ACHTUNG - iDoc wurde in Check/Error Ordner verschoben!"; 
+                    string strTxt = MailText;
+                    // ✅ Mail asynchron versenden ohne Blockierung
+                    _ = Task.Run(async () =>
+                    {
+                        MailSending mail = new MailSending(myGLUser, mySystem);
+                        mail.AddAttachment(myAttachmentFilePath);
+                        mail.Subject = strSubject + " - NEU ";
+                        strTxt += Environment.NewLine + "Austausch LVS clsError.cs Z. 280 [ausgeklammert]" + Environment.NewLine;
+                        mail.Message = strTxt;
+                        await mail.Send(true);
+                    });
                 }
                 catch (Exception ex)
                 {

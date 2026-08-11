@@ -1,4 +1,5 @@
-﻿using LVS.Models;
+﻿using LVS.Mail;
+using LVS.Models;
 using LVS.sqlStatementCreater;
 using LVS.ViewData;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace LVS.Communicator.CronJob
 {
@@ -86,22 +88,49 @@ namespace LVS.Communicator.CronJob
                         listAttach.Add(FilePath);
                         if (listAttach.Count > 0)
                         {
-                            clsMail Mail = new clsMail();
-                            Mail.InitClass(GLUser, system);
-                            Mail.ListAttachment = listAttach;
+                            //clsMail Mail = new clsMail();
+                            //Mail.InitClass(GLUser, system);
+                            //Mail.ListAttachment = listAttach;
+                            string strSubject = string.Empty;
+                            if (system.DebugModeCOM)
+                            {
+                                strSubject += "[DEGBUG] - ";
+                            }
+                            strSubject += "Bestand Kunde:" + adrVD.Address.ViewId + " - " + adrVD.Address.Name1 + " vom " + DateTime.Now.ToString("dd.MM.yyyy HH:mm");
 
                             try
                             {
-                                string strSubject = string.Empty;
-                                if (system.DebugModeCOM)
-                                {
-                                    strSubject += "[DEGBUG] - ";
-                                }
-                                strSubject += "Bestand Kunde:" + adrVD.Address.ViewId + " - " + adrVD.Address.Name1 + " vom " + DateTime.Now.ToString("dd.MM.yyyy HH:mm");
+                                //Mail.ListMailReceiver = Mailinglist.ListMailadressen;
+                                //Mail.Subject = strSubject;
+                                //ProzessExcecuted = Mail.SendNoReply();
 
-                                Mail.ListMailReceiver = Mailinglist.ListMailadressen;
-                                Mail.Subject = strSubject;
-                                ProzessExcecuted = Mail.SendNoReply();
+                                // ✅ Mail asynchron versenden ohne Blockierung
+                                _ = Task.Run(async () =>
+                                {
+                                    MailSending mail = new MailSending(GLUser, system);
+                                    mail.recipients.AddRange(Mailinglist.ListMailadressen);
+                                    mail.AddAttachments(listAttach);
+                                    mail.Subject = strSubject + " - NEU - CronJob Zeile 114 ";
+                                    var ProzessExcecuted = await mail.SendNoReply();
+                                    if (!ProzessExcecuted)
+                                    {
+                                        MailSending errorMail = new MailSending(GLUser, system);
+                                        string strError = string.Empty;
+                                        strError = "Error - Info: " + Environment.NewLine;
+                                        strError = "Datum       : " + DateTime.Now.ToString("dd.MM.yyyy HH:mm") + " Uhr" + Environment.NewLine;
+                                        strError = "------------------------------------------" + Environment.NewLine;
+                                        foreach (var s in mail.infoMessages)
+                                        {
+                                            strError += s + Environment.NewLine;
+                                        }
+                                        strError += Environment.NewLine + "------------------------------------------" + Environment.NewLine;
+                                        strError += "Versand Mail AutoBestand nicht erfolgreich!" + Environment.NewLine;
+                                        errorMail.Subject = "COM - Error - MailSending CronJob-StocklistAutoSend Z. 125";
+                                        errorMail.Message = strError;
+                                        await errorMail.Send(true);
+                                    }
+                                });
+
                             }
                             finally
                             {

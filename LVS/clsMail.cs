@@ -1,4 +1,5 @@
 ﻿using Common.Models;
+using LVS.Mail;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -177,36 +178,62 @@ namespace LVS
         ///<remarks></remarks>
         public void SendError()
         {
-            this.SMTPServer = clsSystem.const_Mail_SMTPServer;
-            this.SMTPPort = clsSystem.const_Mail_SMTPPort;
-            this.SMTPUser = clsSystem.const_Mail_SMTPUser;
-            this.SMTPPasswort = clsSystem.const_Mail_SMTPPasswort;
-
-            this.SMTPSsl = true;
-
-            MailToSend = new MailMessage();
-            //Absender
-            MailToSend.From = new MailAddress(clsSystem.const_MailAdress);
-            //Empfänger
-            MailToSend.To.Add(clsSystem.const_MailAdress);
-            //Betreff
-            MailToSend.Subject = Subject;
-            //Mailnachrichtstext
-            MailToSend.Body = Message;
-            //Ausgangsserver initialisieren
-            InitSMTPClient();
-            //Attachment
-            InitAttachment();
-            //Mail senden
-            MailSMTPClient.Send(MailToSend);
-
-            if (!this.system.VE_IsWatchDog)
+            try
             {
-                clsLogbuch maillog = new clsLogbuch();
-                maillog.Aktion = "Email";
-                maillog.BenutzerID = this._BenutzerID;
-                maillog.Beschreibung = "Email :" + Subject + " an " + clsSystem.const_MailAdress + " versand";
-                maillog.LogbuchInsert();
+                this.SMTPServer = clsSystem.const_Mail_SMTPServer;
+                this.SMTPPort = clsSystem.const_Mail_SMTPPort;
+                this.SMTPUser = clsSystem.const_Mail_SMTPUser;
+                this.SMTPPasswort = clsSystem.const_Mail_SMTPPasswort;
+
+                this.SMTPSsl = true;
+
+                MailToSend = new MailMessage();
+                //Absender
+                MailToSend.From = new MailAddress(clsSystem.const_MailAdress);
+                //Empfänger
+                MailToSend.To.Add(clsSystem.const_MailAdress);
+                //Betreff
+                MailToSend.Subject = Subject;
+                //Mailnachrichtstext
+                MailToSend.Body = Message;
+                //Ausgangsserver initialisieren
+                InitSMTPClient();
+                //Attachment
+                InitAttachment();
+                //Mail senden
+                MailSMTPClient.Send(MailToSend);
+
+                if (!this.system.VE_IsWatchDog)
+                {
+                    clsLogbuch maillog = new clsLogbuch();
+                    maillog.Aktion = "Email";
+                    maillog.BenutzerID = this._BenutzerID;
+                    maillog.Beschreibung = "Email :" + Subject + " an " + clsSystem.const_MailAdress + " versand";
+                    maillog.LogbuchInsert();
+                }
+            }
+            catch (Exception ex)
+            {
+                clsError Error = new clsError();
+                //Error.Sys = new clsSystem();
+                //Error._GL_User = null;
+                Error.Aktion = "frmMainCom - clsMail.cs ->  SendError";
+                Error.Datum = DateTime.Now;
+                Error.ErrorText = ex.Message.ToString();
+                Error.exceptText = ex.ToString();
+                Error.WriteError();
+
+                // ✅ Mail asynchron versenden ohne Blockierung
+                _ = Task.Run(async () =>
+                {
+                    MailSending mailSending = new MailSending(this._GL_User, this.system);
+                    mailSending.Subject = "Error bei Mailversand SendError() - [Originalbetreff: " + this.Subject + "]";
+                    mailSending.Message = "Errortext: " + Environment.NewLine +
+                                            ex.ToString() + Environment.NewLine + Environment.NewLine +
+                                            "[Originaltext]: " + Environment.NewLine +
+                                            this.Message;
+                    await mailSending.Send(true);
+                });
             }
         }
 

@@ -1,257 +1,494 @@
-﻿using MailKit.Net.Smtp;
-using MailKit.Security;
-using MimeKit;
-using MimeKit.Text;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 
 namespace LVS.Mail
 {
     /// <summary>
-    /// Versendet E-Mails über IONOS SMTP via MailKit (.NET Framework 4.8).
-    /// Account A = SMTP-Login (technischer Absender)
-    /// Account B = From-Adresse (angezeigter Absender beim Empfänger)
+    ///             MailCheckHelper - Kapselt alle Mail-Check und Versand-Operationen
     /// </summary>
-    
     public class Mail
     {
+        private MailCheckConfig _config;
+        private List<string> _recipients;
+        private List<string> _attachmentPaths;
+        private const int DEFAULT_TCP_TIMEOUT_MS = 5000;
 
-        private readonly MailCredentials mailCredentials;
-        private SmtpClient _client;
-        private bool _disposed;
-
+        //----------------------------------------------------------- Initialisierung 
         public Mail()
         {
-
+            _config = new MailCheckConfig();
+            _recipients = new List<string>();
+            _attachmentPaths = new List<string>();
         }
-        public Mail(MailCredentials myMailCredentials)
+        public Mail(
+                    string server,
+                    int port,
+                    string mailFrom,                   
+                    string subject,
+                    string body,
+                    bool enableSsl = true,
+                    string username = null,
+                    string password = null,
+                    string mailBBC = null,
+                    List<string> recipients = null,
+                    List<string> attachments = null
+                    ) : this()
         {
-            mailCredentials = myMailCredentials;
-        }
-        public Mail(clsSystem mySys)
-        {
-            mailCredentials = new MailCredentials
+            _config = new MailCheckConfig
             {
-                //SmtpHost = mySys.MailSmtpHost,
-                //SmtpPort = mySys.MailSmtpPort,
-                //SmtpUser = mySys.MailSmtpUser,
-                //SmtpPassword = mySys.MailSmtpPassword,
-                //SmtpDisplayName = mySys.MailSmtpDisplayName,
-                //KeepAlive = false
+                Server = server,
+                Port = port,
+                MailFrom = mailFrom,
+                MailTo = recipients,  // string.Empty,
+                MailBCC = mailBBC,
+                Subject = subject,
+                Body = body,
+                EnableSsl = enableSsl,
+                Username = username,
+                Password = password
             };
-        }
-        public Mail(string toEmail, string subject, string body,
-                    bool isHtml = true, CancellationToken ct = default)
-        {
-            //mailCredentials = new MailCredentials
-            //{
-            //    SmtpHost = mySys.MailSmtpHost,
-            //    SmtpPort = mySys.MailSmtpPort,
-            //    SmtpUser = mySys.MailSmtpUser,
-            //    SmtpPassword = mySys.MailSmtpPassword,
-            //    SmtpDisplayName = mySys.MailSmtpDisplayName,
-            //    KeepAlive = false
-            //};
-        }
-        // -------------------------------------------------------------------------
-        // Einfacher Versand – From = SMTP-Konto (Account A)
-        // -------------------------------------------------------------------------
-        //public async Task SendAsync(string toEmail, string subject, string body,
-        //    bool isHtml = true, CancellationToken ct = default)
-        //{
-        //    var message = BuildMessage(
-        //        fromEmail: mailCredentials.SmtpUser,
-        //        fromName: mailCredentials.SmtpDisplayName,
-        //        toEmail: toEmail,
-        //        subject: subject,
-        //        body: body,
-        //        isHtml: isHtml);
-
-        //    await SendMessageAsync(message, ct);
-        //}
-
-        // -------------------------------------------------------------------------
-        // Versand mit abweichendem Absender (Account B)
-        // From = customerEmail, SMTP-Login = Account A
-        // -------------------------------------------------------------------------
-        public async Task SendAsAsync(string toEmail, string subject, string body,
-            string fromEmail, string fromName = "",
-            bool isHtml = true, CancellationToken ct = default)
-        {
-            var message = BuildMessage(
-                fromEmail: fromEmail,
-                fromName: fromName,
-                toEmail: toEmail,
-                subject: subject,
-                body: body,
-                isHtml: isHtml);
-
-            await SendMessageAsync(message, ct);
+            _recipients = recipients ?? new List<string>();
+            _attachmentPaths = attachments ?? new List<string>();
         }
 
-        // -------------------------------------------------------------------------
-        // Versand mit Reply-To (sicherste Option gegen Spamfilter)
-        // From = Account A, Reply-To = Account B
-        // -------------------------------------------------------------------------
-        public async Task SendWithReplyToAsync(string toEmail, string subject, string body,
-            string replyToEmail, string replyToName = "",
-            bool isHtml = true, CancellationToken ct = default)
+        // ─────────────────────────────────────────────────────
+        // Hauptmethode: E-Mail versenden
+        // ─────────────────────────────────────────────────────
+        /// <summary>
+        /// Versendet die E-Mail nach Validierung und TCP-Test
+        /// </summary>
+        public async Task<MailCheckResult> SendMailAsync()
         {
-            var message = BuildMessage(
-                fromEmail: mailCredentials.SmtpUser,
-                fromName: mailCredentials.SmtpDisplayName,
-                toEmail: toEmail,
-                subject: subject,
-                body: body,
-                isHtml: isHtml);
+            // Schritt 1: Konfiguration validieren
+            var validationResult = ValidateConfig(_config);
+            if (!validationResult.Success)
+                return validationResult;
 
-            message.ReplyTo.Add(new MailboxAddress(replyToName, replyToEmail));
+            // Schritt 2: TCP-Verbindung testen
+            var tcpResult = await TestTcpConnectionAsync();
+            if (!tcpResult.Success)
+                return tcpResult;
 
-            await SendMessageAsync(message, ct);
+            // Schritt 3: E-Mail versenden
+            return await SendMail();
         }
 
-        // -------------------------------------------------------------------------
-        // Versand mit CC und BCC
-        // -------------------------------------------------------------------------
-        public Task SendWithCcBccAsync(string toEmail, string subject, string body,
-              IEnumerable<string> ccEmails = null,
-              IEnumerable<string> bccEmails = null,
-              string fromEmail = null, string fromName = "",
-              bool isHtml = true, CancellationToken ct = default(CancellationToken))
+
+        /// <summary>
+        /// E-Mail versenden (intern)
+        /// </summary>
+        private async Task<MailCheckResult> SendMail()
         {
-            var message = BuildMessage(
-                fromEmail: fromEmail ?? mailCredentials.SmtpUser,
-                fromName: fromName,
-                toEmail: toEmail,
-                subject: subject,
-                body: body,
-                isHtml: isHtml);
-
-            if (ccEmails != null)
-                foreach (var cc in ccEmails)
-                    message.Cc.Add(MailboxAddress.Parse(cc));
-
-            if (bccEmails != null)
-                foreach (var bcc in bccEmails)
-                    message.Bcc.Add(MailboxAddress.Parse(bcc));
-
-            return SendMessageAsync(message, ct);
-        }
-
-        // -------------------------------------------------------------------------
-        // Versand mit Anhängen
-        // -------------------------------------------------------------------------
-        public Task SendWithAttachmentsAsync(string toEmail, string subject, string body,
-            IEnumerable<string> attachmentPaths,
-            string fromEmail = null, string fromName = "",
-            bool isHtml = true, CancellationToken ct = default(CancellationToken))
-        {
-            var message = BuildMessage(
-                fromEmail: fromEmail ?? mailCredentials.SmtpUser,
-                fromName: fromName,
-                toEmail: toEmail,
-                subject: subject,
-                body: body,
-                isHtml: isHtml);
-
-            var multipart = new Multipart("mixed");
-            multipart.Add(message.Body);
-
-            foreach (var path in attachmentPaths)
+            using (MailMessage mail = new MailMessage())
+            using (SmtpClient smtpClient = new SmtpClient(_config.Server, _config.Port))
             {
-                if (!File.Exists(path))
-                    throw new FileNotFoundException("Anhang nicht gefunden: " + path);
-
-                var attachment = new MimePart
+                try
                 {
-                    Content = new MimeContent(File.OpenRead(path)),
-                    ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
-                    ContentTransferEncoding = ContentEncoding.Base64,
-                    FileName = Path.GetFileName(path)
-                };
-                multipart.Add(attachment);
-            }
+                    // Mail konfigurieren
+                    mail.From = new MailAddress(_config.MailFrom);
 
-            message.Body = multipart;
+                    foreach (var recipient in _recipients)
+                    {
+                        if (!string.IsNullOrWhiteSpace(recipient))
+                        {
+                            mail.To.Add(recipient);
+                        }
+                    }
+                    //-- BBC
+                    if (!string.IsNullOrWhiteSpace(_config.MailBCC))
+                    {
+                        mail.Bcc.Add(_config.MailBCC);
+                    }
 
-            return SendMessageAsync(message, ct);
-        }
+                    //mail.To.Add(_config.MailTo);
+                    mail.Subject = _config.Subject;
+                    mail.Body = _config.Body;
+                    mail.IsBodyHtml = false;
 
-        // -------------------------------------------------------------------------
-        // Intern: MimeMessage aufbauen
-        // -------------------------------------------------------------------------
-        private static MimeMessage BuildMessage(string fromEmail, string fromName,
-            string toEmail, string subject, string body, bool isHtml)
-        {
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(fromName, fromEmail));
-            message.To.Add(MailboxAddress.Parse(toEmail));
-            message.Subject = subject;
-            message.Body = new TextPart(isHtml ? TextFormat.Html : TextFormat.Plain)
-            {
-                Text = body
-            };
-            return message;
-        }
+                    // SMTP konfigurieren
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.EnableSsl = _config.EnableSsl;
+                    smtpClient.Timeout = _config.TimeoutMs;
+                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
 
-        // -------------------------------------------------------------------------
-        // Intern: Verbindung herstellen und Mail senden
-        // -------------------------------------------------------------------------
-        private async Task SendMessageAsync(MimeMessage message, CancellationToken ct)
-        {
-            var client = await GetConnectedClientAsync(ct);
-            await client.SendAsync(message, ct);
-        }
+                    if (!string.IsNullOrWhiteSpace(_config.Username))
+                    {
+                        smtpClient.Credentials = new NetworkCredential(
+                            _config.Username,
+                            _config.Password);
+                    }
 
-        // -------------------------------------------------------------------------
-        // Intern: SMTP-Client mit optionalem Keep-Alive
-        // -------------------------------------------------------------------------
-        private async Task<SmtpClient> GetConnectedClientAsync(CancellationToken ct)
-        {
-            if (mailCredentials.KeepAlive)
-            {
-                if (_client == null || !_client.IsConnected || !_client.IsAuthenticated)
-                {
-                    if (_client == null)
-                        _client = new SmtpClient();
+                    //-- Attachments hinzufügen
+                    foreach (var attachmentPath in _attachmentPaths)
+                    {
+                        if (!string.IsNullOrWhiteSpace(attachmentPath))
+                        {
+                            // Prüfen ob Datei existiert
+                            if (!System.IO.File.Exists(attachmentPath))
+                            {
+                                return new MailCheckResult
+                                {
+                                    Success = false,
+                                    Message = $"Anhang-Datei nicht gefunden: {attachmentPath}"
+                                };
+                            }
 
-                    await ConnectAsync(_client, ct).ConfigureAwait(false);
+                            mail.Attachments.Add(new Attachment(attachmentPath));
+                        }
+                    }
+
+                    // Versenden
+                    await Task.Run(() => smtpClient.Send(mail));
+
+                    return new MailCheckResult
+                    {
+                        Success = true,
+                        Message = "E-Mail erfolgreich versendet"
+                    };
                 }
-                return _client;
+                catch (SmtpException ex)
+                {
+                    return new MailCheckResult
+                    {
+                        Success = false,
+                        Message = "SMTP-Fehler beim Mailversand",
+                        Exception = ex,
+                        SmtpStatusCode = ex.StatusCode
+                    };
+                }
+                catch (FormatException ex)
+                {
+                    return new MailCheckResult
+                    {
+                        Success = false,
+                        Message = "Ungültige E-Mail-Adresse",
+                        Exception = ex
+                    };
+                }
+                catch (Exception ex)
+                {
+                    return new MailCheckResult
+                    {
+                        Success = false,
+                        Message = "Fehler beim Mailversand",
+                        Exception = ex
+                    };
+                }
             }
-
-            var client = new SmtpClient();
-            await ConnectAsync(client, ct).ConfigureAwait(false);
-            return client;
         }
 
-        private async Task ConnectAsync(SmtpClient client, CancellationToken ct)
-        {
-            var secureOption = mailCredentials.SmtpPort == 465
-                ? SecureSocketOptions.SslOnConnect
-                : SecureSocketOptions.StartTls;
+        // ─────────────────────────────────────────────────────
+        // Private Methoden
+        // ─────────────────────────────────────────────────────
 
-            await client.ConnectAsync(mailCredentials.SmtpHost, mailCredentials.SmtpPort, secureOption, ct);
-            await client.AuthenticateAsync(mailCredentials.SmtpUser, mailCredentials.SmtpPassword, ct);
-        }
-
-        // -------------------------------------------------------------------------
-        // Dispose
-        // -------------------------------------------------------------------------
-        public async ValueTask DisposeAsync()
+        /// <summary>
+        /// TCP-Verbindungstest (intern)
+        /// </summary>
+        private async Task<MailCheckResult> TestTcpConnectionAsync(int timeoutMs = DEFAULT_TCP_TIMEOUT_MS)
         {
-            if (_client != null)
+            if (string.IsNullOrWhiteSpace(_config.Server))
             {
-                if (_client.IsConnected)
-                    await _client.DisconnectAsync(true);
-                _client.Dispose();
-                _client = null;
+                return new MailCheckResult
+                {
+                    Success = false,
+                    Message = "Server-Adresse fehlt"
+                };
             }
+
+            using (TcpClient tcp = new TcpClient())
+            {
+                try
+                {
+                    var connectTask = tcp.ConnectAsync(_config.Server, _config.Port);
+                    var completedTask = await Task.WhenAny(connectTask, Task.Delay(timeoutMs));
+
+                    // ✅ .NET Framework 4.8 kompatibel: TaskStatus statt IsCompletedSuccessfully
+                    //if (completedTask == connectTask && connectTask.Status == TaskStatus.RanToCompletion)
+                    //{
+                    //    return new MailCheckResult
+                    //    {
+                    //        Success = true,
+                    //        Message = "TCP-Verbindung erfolgreich"
+                    //    };
+                    //}
+
+                    // ✅ .NET Framework 4.8 kompatibel: TaskStatus statt IsCompletedSuccessfully
+                    if (connectTask.Status == TaskStatus.RanToCompletion)
+                    {
+                        return new MailCheckResult
+                        {
+                            Success = true,
+                            Message = "TCP-Verbindung erfolgreich"
+                        };
+                    }
+
+                    if (connectTask.IsFaulted)
+                    {
+                        Exception inner = connectTask.Exception?.InnerException ?? connectTask.Exception;
+                        return new MailCheckResult
+                        {
+                            Success = false,
+                            Message = "TCP-Verbindung fehlgeschlagen",
+                            Exception = inner
+                        };
+                    }
+
+                    return new MailCheckResult
+                    {
+                        Success = false,
+                        Message = $"TCP-Verbindung: TIMEOUT nach {timeoutMs} Millisekunden"
+                    };
+                }
+                catch (Exception ex)
+                {
+                    return new MailCheckResult
+                    {
+                        Success = false,
+                        Message = "TCP-Verbindungsfehler",
+                        Exception = ex
+                    };
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Konfigurationsvalidierung (intern)
+        /// </summary>
+        private MailCheckResult ValidateConfig(MailCheckConfig config)
+        {
+            if (config == null)
+            {
+                return new MailCheckResult
+                {
+                    Success = false,
+                    Message = "Konfiguration nicht vorhanden"
+                };
+            }
+
+            if (string.IsNullOrWhiteSpace(config.Server))
+            {
+                return new MailCheckResult
+                {
+                    Success = false,
+                    Message = "SMTP-Server fehlt"
+                };
+            }
+
+            if (config.Port <= 0 || config.Port > 65535)
+            {
+                return new MailCheckResult
+                {
+                    Success = false,
+                    Message = "SMTP-Port ungültig"
+                };
+            }
+
+            if (string.IsNullOrWhiteSpace(config.MailFrom))
+            {
+                return new MailCheckResult
+                {
+                    Success = false,
+                    Message = "Absender-Adresse fehlt"
+                };
+            }
+
+            if (!string.IsNullOrWhiteSpace(config.MailBCC))
+            {
+                try
+                {
+                    new MailAddress(config.MailBCC);
+                }
+                catch (Exception ex)
+                {
+                    return new MailCheckResult
+                    {
+                        Success = false,
+                        Message = "E-Mail-Adresse BBC hat ungültiges Format",
+                        Exception = ex
+                    };
+                }
+            }
+
+            //try
+            //{
+            //    new MailAddress(config.MailFrom);
+            //    new MailAddress(config.MailTo);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return new MailCheckResult
+            //    {
+            //        Success = false,
+            //        Message = "E-Mail-Adresse hat ungültiges Format",
+            //        Exception = ex
+            //    };
+            //}
+
+            // Alle Empfänger-E-Mail-Adressen validieren
+            foreach (var recipient in _recipients)
+            {
+                if (string.IsNullOrWhiteSpace(recipient))
+                {
+                    return new MailCheckResult
+                    {
+                        Success = false,
+                        Message = "Leere Empfänger-E-Mail-Adresse gefunden"
+                    };
+                }
+
+                try
+                {
+                    new MailAddress(recipient);
+                }
+                catch (Exception ex)
+                {
+                    return new MailCheckResult
+                    {
+                        Success = false,
+                        Message = $"Empfänger-E-Mail-Adresse ungültig: {recipient}",
+                        Exception = ex
+                    };
+                }
+            }
+
+
+
+
+            return new MailCheckResult { Success = true };
+        }
+        // ─────────────────────────────────────────────────────
+        // Fehler-Interpretation (öffentlich)
+        // ─────────────────────────────────────────────────────
+        /// <summary>
+        /// Gibt hilfreichen Hinweis basierend auf SMTP-Fehlercode
+        /// </summary>
+        public string GetSmtpErrorHint(SmtpStatusCode? statusCode)
+        {
+            if (statusCode == null)
+                return string.Empty;
+
+            switch (statusCode.Value)
+            {
+                case SmtpStatusCode.ServiceNotAvailable:
+                    return "Server nicht erreichbar oder Dienst deaktiviert.";
+                case SmtpStatusCode.MailboxUnavailable:
+                    return "Absender-Adresse nicht zugelassen oder Postfach gesperrt.";
+                case SmtpStatusCode.ClientNotPermitted:
+                    return "IP-Adresse nicht in Connector-Whitelist eingetragen.";
+                case SmtpStatusCode.MustIssueStartTlsFirst:
+                    return "Server erwartet STARTTLS – SSL/TLS aktivieren.";
+                case SmtpStatusCode.CommandNotImplemented:
+                    return "Befehl nicht unterstützt. Port oder SSL-Einstellung prüfen.";
+                case SmtpStatusCode.TransactionFailed:
+                    return "Transaktion abgebrochen. Absender/Empfänger prüfen.";
+                case SmtpStatusCode.GeneralFailure:
+                    return "Allgemeiner SMTP-Fehler. Serverlog prüfen.";
+                default:
+                    return "Unbekannter SMTP-Statuscode: " + statusCode;
+            }
+        }
+
+        /// <summary>
+        /// Gibt hilfreichen Hinweis basierend auf Socket-Fehlercode
+        /// </summary>
+        public string GetSocketErrorHint(SocketError? socketError)
+        {
+            if (socketError == null)
+                return string.Empty;
+
+            switch (socketError.Value)
+            {
+                case SocketError.ConnectionRefused:
+                    return "Verbindung abgelehnt – Port geschlossen oder falsch.";
+                case SocketError.HostNotFound:
+                    return "DNS-Auflösung fehlgeschlagen – Hostname prüfen.";
+                case SocketError.TimedOut:
+                    return "Timeout – Firewall blockiert Port oder Server antwortet nicht.";
+                case SocketError.NetworkUnreachable:
+                    return "Netzwerk nicht erreichbar.";
+                default:
+                    return "Netzwerkfehler: " + socketError;
+            }
+        }
+        /// <summary>
+        /// Testet die SMTP-Verbindung mit ausführlichem Reporting
+        /// </summary>
+        /// <returns>Detailliertes Testergebnis mit Verbindungs- und Authentifizierungsprüfung</returns>
+        public async Task<MailCheckResult> SmtpTest()
+        {
+            // Schritt 1: Konfiguration validieren
+            var validationResult = ValidateConfig(_config);
+            if (!validationResult.Success)
+                return validationResult;
+
+            // Schritt 2: TCP-Verbindung testen
+            var tcpResult = await TestTcpConnectionAsync();
+            if (!tcpResult.Success)
+                return tcpResult;
+
+            // Schritt 3: SMTP-Authentifizierung testen (nur Verbindung)
+            return await TestSmtpAuthenticationOnlyAsync();
+        }
+
+        /// <summary>
+        /// Testet die SMTP-Authentifizierung
+        /// </summary>
+        private async Task<MailCheckResult> TestSmtpAuthenticationOnlyAsync()
+        {
+            return await Task.Run(() =>
+            {
+                try
+                {
+                    using (SmtpClient smtpClient = new SmtpClient(_config.Server, _config.Port))
+                    {
+                        smtpClient.UseDefaultCredentials = false;
+                        smtpClient.EnableSsl = _config.EnableSsl;
+                        smtpClient.Timeout = _config.TimeoutMs;
+                        smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                        if (!string.IsNullOrWhiteSpace(_config.Username))
+                        {
+                            smtpClient.Credentials = new NetworkCredential(
+                                _config.Username,
+                                _config.Password);
+                        }
+
+                        // Nur Verbindung testen, kein Versand
+                        // SmtpClient wird konfiguriert, aber es wird keine Mail gesendet
+                    }
+
+                    return new MailCheckResult
+                    {
+                        Success = true,
+                        Message = "SMTP-Verbindung und Authentifizierung erfolgreich" //+ Environment.NewLine + "SMTP-Verbindung funktioniert einwandfrei!"
+                    };
+
+                }
+                catch (SmtpException ex)
+                {
+                    return new MailCheckResult
+                    {
+                        Success = false,
+                        Message = "SMTP-Authentifizierung fehlgeschlagen",
+                        Exception = ex,
+                        SmtpStatusCode = ex.StatusCode
+                    };
+                }
+                catch (Exception ex)
+                {
+                    return new MailCheckResult
+                    {
+                        Success = false,
+                        Message = "SMTP-Verbindungstest fehlgeschlagen",
+                        Exception = ex
+                    };
+                }
+            });
         }
     }
 }

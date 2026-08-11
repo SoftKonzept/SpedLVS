@@ -1,4 +1,5 @@
 ﻿using LVS;
+using LVS.Mail;
 using System;
 using System.Threading;
 using System.Windows.Forms;
@@ -43,7 +44,7 @@ namespace Communicator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        static async void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             //MessageBox.Show((e.ExceptionObject as Exception).Message, "Unhandled UI Exception");
             // here you can log the exception ...
@@ -65,6 +66,12 @@ namespace Communicator
             strMes += "e.ToString(): " + e.ToString() + Environment.NewLine;
             ErrorMail.Message = strMes;
             ErrorMail.SendError();
+
+            MailSending mail = new MailSending(new Globals._GL_USER(), null);
+            mail.Subject = "Unhandled UI Exception - Error Mail - NEU ";
+            strMes += Environment.NewLine + "Austausch COM Zeile Programm.cs 61" + Environment.NewLine;
+            mail.Message = strMes;
+            await mail.Send(true);
 
         }
 

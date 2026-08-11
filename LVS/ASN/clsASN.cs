@@ -1,8 +1,10 @@
 ﻿using Common.Models;
+using Google.Protobuf.WellKnownTypes;
 using LVS.ASN;
 using LVS.ASN.EDIFACT;
 using LVS.Communicator.EdiVDA;
 using LVS.Constants;
+using LVS.Mail;
 using LVS.Models;
 using LVS.Uniport;
 using LVS.ViewData;
@@ -11,6 +13,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
+using System.Threading.Tasks;
 
 
 namespace LVS
@@ -601,6 +604,16 @@ namespace LVS
                             EMail.Subject = strSubject;
                             EMail.Message = tmpLog.LogText;
                             EMail.SendError();
+
+                            // ✅ Mail asynchron versenden ohne Blockierung
+                            _ = Task.Run(async () =>
+                            {
+                                MailSending mail = new MailSending(new Globals._GL_USER(), null);
+                                mail.Subject = strSubject + " - NEU ";
+                                tmpLog.LogText += Environment.NewLine + "Austausch LVS Zeile clsASN.cs 600" + Environment.NewLine;
+                                mail.Message = tmpLog.LogText;
+                                await mail.Send(true);
+                            });
                         }
                         this.ListError = this.ASNArt.ListError;
                         break;
@@ -689,6 +702,9 @@ namespace LVS
                                     EMail.Subject = strSubject;
                                     EMail.Message = tmpLog.LogText;
                                     EMail.SendError();
+
+
+
                                 }
                             }//--- Check Verweis -> Arbeitsbereich und Mandant
                             else
@@ -703,8 +719,19 @@ namespace LVS
                                 }
                                 strSubject += "ERROR - TASK_VDAread: Datei enthält kein Daten !!! - " + this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString();
                                 EMail.Subject = strSubject;
-                                EMail.Message = ((clsLogbuchCon)this.ASNArt.ListError[0]).LogText;
+                                string tmpLog = ((clsLogbuchCon)this.ASNArt.ListError[0]).LogText;
+                                EMail.Message = tmpLog;
                                 EMail.SendError();
+
+                                // ✅ Mail asynchron versenden ohne Blockierung
+                                _ = Task.Run(async () =>
+                                {
+                                    MailSending mail = new MailSending(new Globals._GL_USER(), null);
+                                    mail.Subject = strSubject + " - NEU ";
+                                    tmpLog += Environment.NewLine + "Austausch LVS clsASN.cs Z. 723" + Environment.NewLine;
+                                    mail.Message = tmpLog;
+                                    await mail.Send(true);
+                                });
                             }
                         }
                         else
@@ -733,6 +760,16 @@ namespace LVS
                             EMail.Subject = strSubject;
                             EMail.Message = tmpLog.LogText;
                             EMail.SendError();
+
+                            // ✅ Mail asynchron versenden ohne Blockierung
+                            _ = Task.Run(async () =>
+                            {
+                                MailSending mail = new MailSending(new Globals._GL_USER(), null);
+                                mail.Subject = strSubject + " - NEU ";
+                                tmpLog.LogText += Environment.NewLine + "Austausch LVS clsASN.cs Z. 761" + Environment.NewLine;
+                                mail.Message = tmpLog.LogText;
+                                await mail.Send(true);
+                            });
                         }
                         this.ListError = this.ASNArt.ListError;
                         //Check auf Error
@@ -1273,6 +1310,16 @@ namespace LVS
                         }
                         EMail.Message = strTxt;
                         EMail.SendError();
+
+                        // ✅ Mail asynchron versenden ohne Blockierung
+                        _ = Task.Run(async () =>
+                        {
+                            MailSending mail = new MailSending(this.GL_User, this.Sys);
+                            mail.Subject = strSubject + " - NEU ";
+                            strTxt += Environment.NewLine + "Austausch LVS clsASN.cs Z. 1310" + Environment.NewLine;
+                            mail.Message = strTxt;
+                            await mail.Send(true);
+                        });
                     }
 
                     if (vda.ListErrorVDA.Count > 0)
@@ -1296,6 +1343,16 @@ namespace LVS
                         EMail.Subject = strSubject;
                         EMail.Message = strTxt;
                         EMail.SendError();
+
+                        // ✅ Mail asynchron versenden ohne Blockierung
+                        _ = Task.Run(async () =>
+                        {
+                            MailSending mail = new MailSending(new Globals._GL_USER(), null);
+                            mail.Subject = strSubject + " - NEU ";
+                            strTxt += Environment.NewLine + "Austausch LVS clsASN.cs Z. 1344" + Environment.NewLine;
+                            mail.Message = strTxt;
+                            await mail.Send(true);
+                        });
                     }
                     else
                     {
@@ -1349,6 +1406,18 @@ namespace LVS
                             EMail.Subject = strSubject;
                             EMail.Message = tmpLog.LogText;
                             EMail.SendError();
+
+                            string strTxt = tmpLog.LogText;
+
+                            // ✅ Mail asynchron versenden ohne Blockierung
+                            _ = Task.Run(async () =>
+                            {
+                                MailSending mail = new MailSending(this.GL_User, this.Sys);
+                                mail.Subject = strSubject + " - NEU ";
+                                strTxt += Environment.NewLine + "Austausch LVS clsASN.cs Z. 1408" + Environment.NewLine;
+                                mail.Message = strTxt;
+                                await mail.Send(true);
+                            });
                         }
                     }
                 }
@@ -1418,6 +1487,16 @@ namespace LVS
                     }
                     EMail.Message = strTxt;
                     EMail.SendError();
+
+                    // ✅ Mail asynchron versenden ohne Blockierung
+                    _ = Task.Run(async () =>
+                    {
+                        MailSending mail = new MailSending(this.GL_User, this.Sys);
+                        mail.Subject = strSubject + " - NEU ";
+                        strTxt += Environment.NewLine + "Austausch LVS clsASN.cs Z. 1489" + Environment.NewLine;
+                        mail.Message = strTxt;
+                        await mail.Send(true);
+                    });
                 }
 
                 if (ediVDA.ListErrorVDA.Count > 0)
@@ -1435,6 +1514,17 @@ namespace LVS
                     EMail.Subject = this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString() + "- Error TASK_VDAwrite: Fehler bei Erstellung einer Edi-VDA4987 iDoc";
                     EMail.Message = strTxt;
                     EMail.SendError();
+
+                    string strSubject = EMail.Subject;
+                    // ✅ Mail asynchron versenden ohne Blockierung
+                    _ = Task.Run(async () =>
+                    {
+                        MailSending mail = new MailSending(this.GL_User, this.Sys);
+                        mail.Subject = strSubject + " - NEU ";
+                        strTxt += Environment.NewLine + "Austausch LVS clsASN.cs Z. 1516" + Environment.NewLine;
+                        mail.Message = strTxt;
+                        await mail.Send(true);
+                    });
                 }
                 else
                 {
@@ -1490,6 +1580,18 @@ namespace LVS
                         EMail.Subject = this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString() + "- Error TASK_VDAwrite: Fehler bei Erstellung einer VDA4913 iDoc";
                         EMail.Message = tmpLog.LogText;
                         EMail.SendError();
+
+                        string strSubject = EMail.Subject;
+                        string strTxt = tmpLog.LogText;
+                        // ✅ Mail asynchron versenden ohne Blockierung
+                        _ = Task.Run(async () =>
+                        {
+                            MailSending mail = new MailSending(this.GL_User, this.Sys);
+                            mail.Subject = strSubject + " - NEU ";
+                            strTxt += Environment.NewLine + "Austausch LVS clsASN.cs Z. 1582" + Environment.NewLine;
+                            mail.Message = strTxt;
+                            await mail.Send(true);
+                        });
                     }
                 }
 
@@ -1556,6 +1658,18 @@ namespace LVS
                     EMail.Subject = this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString() + "- Error TASK_VDAwrite: Fehler bei Erstellung einer Edi-VDA4987 iDoc";
                     EMail.Message = strTxt;
                     EMail.SendError();
+
+                    string strSubject = EMail.Subject;
+                    //string strTxt = tmpLog.LogText;
+                    // ✅ Mail asynchron versenden ohne Blockierung
+                    _ = Task.Run(async () =>
+                    {
+                        MailSending mail = new MailSending(this.GL_User, this.Sys);
+                        mail.Subject = strSubject + " - NEU ";
+                        strTxt += Environment.NewLine + "Austausch LVS clsASN.cs Z. 1660" + Environment.NewLine;
+                        mail.Message = strTxt;
+                        await mail.Send(true);
+                    });
                 }
                 else
                 {
@@ -1611,6 +1725,18 @@ namespace LVS
                         EMail.Subject = this.Sys.Client.MatchCode + DateTime.Now.ToShortDateString() + "- Error TASK_VDAwrite: Fehler bei Erstellung einer VDA4913 iDoc";
                         EMail.Message = tmpLog.LogText;
                         EMail.SendError();
+
+                        string strSubject = EMail.Subject;
+                        string strTxt = tmpLog.LogText;
+                        // ✅ Mail asynchron versenden ohne Blockierung
+                        _ = Task.Run(async () =>
+                        {
+                            MailSending mail = new MailSending(this.GL_User, this.Sys);
+                            mail.Subject = strSubject + " - NEU ";
+                            strTxt += Environment.NewLine + "Austausch LVS clsASN.cs Z. 1727" + Environment.NewLine;
+                            mail.Message = strTxt;
+                            await mail.Send(true);
+                        });
                     }
                 }
             }

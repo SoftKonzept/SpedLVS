@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LVS;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Net;
 using System.Net.Mail;
@@ -23,99 +25,141 @@ namespace Sped4.Controls.AdminCockpit
 
         private void MailCheck_Load(object sender, EventArgs e)
         {
+            // Designer-Control verwenden, nicht neu erstellen
+            rtbLog.ReadOnly = true;
+            rtbLog.BackColor = Color.FromArgb(30, 30, 30);
+            rtbLog.ForeColor = Color.LightGreen;
+            rtbLog.Font = new Font("Consolas", 9f);
+            rtbLog.ScrollBars = RichTextBoxScrollBars.Vertical;
 
-            //--- Log Formating
-            rtbLog = new RichTextBox
+            // StatusBar-Label initialisieren
+            lblStatus = new ToolStripStatusLabel
             {
-                Dock = DockStyle.Fill,
-                ReadOnly = true,
-                BackColor = Color.FromArgb(30, 30, 30),
-                ForeColor = Color.LightGreen,
-                Font = new Font("Consolas", 9f),
-                ScrollBars = RichTextBoxScrollBars.Vertical
+                Text = "Bereit",
+                Spring = true,
+                TextAlign = ContentAlignment.MiddleLeft
             };
+            statusStrip.Items.Add(lblStatus);
+
+            // ProgressBar initialisieren
+            progressBar = new ToolStripProgressBar
+            {
+                Visible = false,
+                Style = ProgressBarStyle.Marquee
+            };
+            statusStrip.Items.Add(progressBar);
         }
 
-        private void SetCredentialValues()
-        {
-
-            tbServer.Text = "slegmbh-de0i.mail.protection.outlook.com";
-
-            cbSmtpAuth.Checked = false;
-            cbSSLTLS.Checked = true;
-            nudPort.Value = 25;
-
-            tbUser.Text = "";
-            tbPass.Text = "";
-
-            tbMailFrom.Text = "noreply@sle-gmbh.de";
-            tbMailTo.Text = "info@softkonzept.com";
-            tbBetreff.Text = "Testmail aus AdminCockpit";
-            tbMessage.Text = "Dies ist eine Testmail aus dem AdminCockpit.";
-        }
         // ═══════════════════════════════════════════════════════
         //  Aktionen
         // ═══════════════════════════════════════════════════════
 
         private async void btnSmtpTest_Click(object sender, EventArgs e)
         {
-            // Fix: Validierung auch hier, damit kein ArgumentException bei leerem Servernamen
+            // Validierung
             if (string.IsNullOrWhiteSpace(tbServer.Text))
             {
                 MessageBox.Show("Bitte Server eingeben.", "Pflichtfeld", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            SetBusy(true, "SMTP-Test läuft...");
+            Log("── SMTP-Verbindungstest ─────────────────────────", Color.Cyan);
+
+            // UI-Werte auslesen (vor Task.Run)
             string server = tbServer.Text.Trim();
             int port = (int)nudPort.Value;
-
-            SetBusy(true, "Verbindungstest läuft...");
-            Log("── Verbindungstest ──────────────────────────────", Color.Cyan);
-            Log($"Ziel:  {server}:{port}");
+            bool ssl = cbSSLTLS.Checked;
+            bool useAuth = cbSmtpAuth.Checked;
+            string user = useAuth ? tbUser.Text.Trim() : null;
+            string pass = useAuth ? tbPass.Text : null;
+            string mailFrom = tbMailFrom.Text.Trim();
+            string mailTo = tbMailTo.Text.Trim();
+            List<string> recipients = new List<string>();
+            recipients.Add(mailTo);
 
             try
             {
-                TcpClient tcp = new System.Net.Sockets.TcpClient();
-                try
-                {
-                    var connectTask = tcp.ConnectAsync(server, port);
-                    var winner = await System.Threading.Tasks.Task.WhenAny(
-                        connectTask, System.Threading.Tasks.Task.Delay(5000));
+                Log($"Server:  {server}:{port}", Color.White);
+                Log($"SSL/TLS: {(ssl ? "JA" : "NEIN")}", Color.White);
+                Log($"Auth:    {(useAuth ? "JA" : "NEIN")}", Color.White);
+                Log(string.Empty);
 
-                    if (winner == connectTask)
-                    {
-                        // Fix: gefaulte Task explizit prüfen – WhenAny wirft selbst keine Exception
-                        if (connectTask.IsFaulted)
-                        {
-                            Exception inner = connectTask.Exception?.InnerException ?? connectTask.Exception;
-                            if (inner != null)
-                                throw inner;
-                            else
-                                throw new Exception("Unbekannter Verbindungsfehler.");
-                        }
-                        Log("TCP-Verbindung:  OK ✓", Color.LightGreen);
-                        SetStatus("TCP-Verbindung erfolgreich.");
-                    }
-                    else
-                    {
-                        Log("TCP-Verbindung:  TIMEOUT nach 5 s ✗", Color.OrangeRed);
-                        SetStatus("Timeout.");
-                    }
-                }
-                finally
+                // Mail-Klasse instanziieren
+                var mailChecker = new LVS.Mail.Mail(
+                    server: server,
+                    port: port,
+                    mailFrom: mailFrom,
+                    subject: "SMTP-Verbindungstest",
+                    body: "Automatischer Test – bitte ignorieren.",
+                    enableSsl: ssl,
+                    username: user,
+                    password: pass,
+                    recipients: recipients,
+                    attachments: null
+                    );
+
+                // SmtpTest() aufrufen
+                var result = await mailChecker.SmtpTest();
+
+                // Ergebnis verarbeiten
+                if (result.Success)
                 {
-                    if (tcp != null)
-                        tcp.Dispose();
+                    Log("Ergebnis: "+ result.Message  +" ✓", Color.LightGreen);
+                    //Log("Ergebnis: SMTP-Test erfolgreich ✓", Color.LightGreen);
+                    //Log(result.Message, Color.LightGreen);
+                    SetStatus("SMTP-Test erfolgreich.");
+                    //MessageBox.Show(
+                    //    "SMTP-Verbindung funktioniert einwandfrei!\n\n" + result.Message,
+                    //    "Info",
+                    //    MessageBoxButtons.OK,
+                    //    MessageBoxIcon.Information);
+                    MessageBox.Show(
+                                    result.Message,
+                                    "Info",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                }
+                else
+                {
+                    Log("Ergebnis: SMTP-Test fehlgeschlagen ✗", Color.OrangeRed);
+                    Log($"Fehler: {result.Message}", Color.OrangeRed);
+                    SetStatus("SMTP-Test fehlgeschlagen.");
+
+                    // Fehlerbehandlung
+                    if (result.SmtpStatusCode.HasValue)
+                    {
+                        string hinweis = mailChecker.GetSmtpErrorHint(result.SmtpStatusCode);
+                        Log($"Hinweis: {hinweis}", Color.Yellow);
+                    }
+
+                    if (result.Exception is SocketException se)
+                    {
+                        string socketHint = mailChecker.GetSocketErrorHint(se.SocketErrorCode);
+                        Log($"Netzwerk-Hinweis: {socketHint}", Color.Yellow);
+                    }
+                    else if (result.Exception != null)
+                    {
+                        Log($"Exception: {result.Exception.Message}", Color.Orange);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                LogError("TCP-Fehler", ex);
-                SetStatus("Verbindung fehlgeschlagen.");
+                Log("Ergebnis: Allgemeiner Fehler ✗", Color.OrangeRed);
+                LogError("Fehler", ex);
+                SetStatus("Fehler beim Test.");
             }
-            finally { SetBusy(false); }
+            finally
+            {
+                SetBusy(false);
+            }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnMailSend_Click(object sender, EventArgs e)
         {
             if (!Validieren()) return;
@@ -126,69 +170,89 @@ namespace Sped4.Controls.AdminCockpit
             Log($"Von:     {tbMailFrom.Text.Trim()}");
             Log($"An:      {tbMailTo.Text.Trim()}");
             Log($"Betreff: {tbBetreff.Text.Trim()}");
+            Log(string.Empty);
 
-            // UI-Werte VOR Task.Run auslesen (nur UI-Thread darf auf Controls zugreifen)
+            // UI-Werte auslesen (vor async Operation)
             string server = tbServer.Text.Trim();
             int port = (int)nudPort.Value;
             bool ssl = cbSSLTLS.Checked;
             bool useAuth = cbSmtpAuth.Checked;
-            string user = tbUser.Text.Trim();
-            string pass = tbPass.Text;
-            string von = tbMailFrom.Text.Trim();
-            string an = tbMailTo.Text.Trim();
-            string betreff = tbBetreff.Text.Trim();
-            string body = rtbLog.Text;
+            string user = useAuth ? tbUser.Text.Trim() : null;
+            string pass = useAuth ? tbPass.Text : null;
+            string mailFrom = tbMailFrom.Text.Trim();
+            string mailTo = tbMailTo.Text.Trim();
+            string subject = tbBetreff.Text.Trim();
+            string body = tbMessage.Text;
+
+            List<string> recipients = new List<string>();
+            recipients.Add(mailTo);
 
             try
             {
-                await System.Threading.Tasks.Task.Run(() =>
+                // Mail-Klasse instanziieren
+                var mailSender = new LVS.Mail.Mail(
+                    server: server,
+                    port: port,
+                    mailFrom: mailFrom,
+                    subject: subject,
+                    body: body,
+                    enableSsl: ssl,
+                    username: user,
+                    password: pass,
+                    recipients: recipients,
+                    attachments: null
+                );
+
+                // E-Mail versenden
+                var result = await mailSender.SendMailAsync();
+
+                // Ergebnis verarbeiten
+                if (result.Success)
                 {
-                    using (var client = new SmtpClient(server, port))
+                    string successMessage = "Ergebnis: Mail erfolgreich versendet ✓" + Environment.NewLine +
+                                           "Die E-Mail wurde erfolgreich versendet!" + Environment.NewLine;
+                    Log(successMessage, Color.LightGreen);
+                    SetStatus("Mail versendet.");
+                    MessageBox.Show(
+                        successMessage + Environment.NewLine + result.Message,
+                        "Erfolg",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    Log("Ergebnis: Mailversand fehlgeschlagen ✗", Color.OrangeRed);
+                    Log($"Fehler: {result.Message}", Color.OrangeRed);
+                    SetStatus("Fehler beim Versand.");
+
+                    // Detaillierte Fehlerbehandlung
+                    if (result.SmtpStatusCode.HasValue)
                     {
-                        client.EnableSsl = ssl;
-                        client.Timeout = 15000;
-                        client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                        client.UseDefaultCredentials = false;
-
-                        if (useAuth)
-                            client.Credentials = new NetworkCredential(user, pass);
-
-                        MailMessage mail = new MailMessage();
-                        try
-                        {
-                            mail.From = new MailAddress(von);
-                            mail.Subject = betreff;
-                            mail.Body = body;
-                            mail.IsBodyHtml = false;
-                            mail.To.Add(an);
-
-                            client.Send(mail);
-                        }
-                        finally
-                        {
-                            if (mail != null)
-                                mail.Dispose();
-                        }
+                        string hinweis = mailSender.GetSmtpErrorHint(result.SmtpStatusCode);
+                        Log($"SMTP-Hinweis: {hinweis}", Color.Yellow);
                     }
-                });
 
-                Log("Ergebnis: Mail erfolgreich versendet ✓", Color.LightGreen);
-                SetStatus("Mail versendet.");
-                MessageBox.Show("Die Testmail wurde erfolgreich versendet!", "Erfolg",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (SmtpException ex)
-            {
-                Log("Ergebnis: SMTP-Fehler ✗", Color.OrangeRed);
-                LogSmtpError(ex);
-                SetStatus("Fehler beim Senden.");
-            }
-            catch (FormatException ex)
-            {
-                Log("Ergebnis: Ungültige E-Mail-Adresse ✗", Color.OrangeRed);
-                Log($"Meldung: {ex.Message}", Color.OrangeRed);
-                Log("Hinweis: Absender- und Empfängeradresse auf korrektes Format prüfen (z.B. name@domain.de).", Color.Yellow);
-                SetStatus("Ungültige E-Mail-Adresse.");
+                    if (result.Exception is SocketException se)
+                    {
+                        string socketHint = mailSender.GetSocketErrorHint(se.SocketErrorCode);
+                        Log($"Netzwerk-Hinweis: {socketHint}", Color.Yellow);
+                    }
+                    else if (result.Exception is FormatException)
+                    {
+                        Log("Ungültige E-Mail-Adresse – Format prüfen (z.B. name@domain.de)", Color.Yellow);
+                    }
+                    else if (result.Exception != null)
+                    {
+                        Log($"Exception: {result.Exception.GetType().Name}", Color.Orange);
+                        Log($"Message: {result.Exception.Message}", Color.Orange);
+                    }
+
+                    MessageBox.Show(
+                        $"Fehler beim Mailversand:\n\n{result.Message}",
+                        "Fehler",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -196,62 +260,23 @@ namespace Sped4.Controls.AdminCockpit
                 LogError("Fehler", ex);
                 SetStatus("Fehler.");
             }
-            finally { SetBusy(false); }
+            finally
+            {
+                SetBusy(false);
+            }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLog_Click(object sender, EventArgs e)
         {
-
+            rtbLog.Clear();
+            Log("Log geleert.", Color.Yellow);
         }
 
-        // ═══════════════════════════════════════════════════════
-        //  Fehler-Logging
-        // ═══════════════════════════════════════════════════════
-        private void LogSmtpError(SmtpException ex)
-        {
-            Log($"SMTP-StatusCode:  {ex.StatusCode} ({(int)ex.StatusCode})", Color.OrangeRed);
-            Log($"Meldung:          {ex.Message}", Color.OrangeRed);
 
-            // Hinweise je nach StatusCode
-            string hinweis;
-            switch (ex.StatusCode)
-            {
-                case SmtpStatusCode.ServiceNotAvailable:
-                    hinweis = "Server nicht erreichbar oder Dienst deaktiviert.";
-                    break;
-                case SmtpStatusCode.MailboxUnavailable:
-                    hinweis = "Absender-Adresse nicht zugelassen oder Postfach gesperrt.";
-                    break;
-                case SmtpStatusCode.ClientNotPermitted:
-                    hinweis = "IP-Adresse nicht in Connector-Whitelist eingetragen.";
-                    break;
-                case SmtpStatusCode.MustIssueStartTlsFirst:
-                    hinweis = "Server erwartet STARTTLS – SSL/TLS aktivieren.";
-                    break;
-                case SmtpStatusCode.CommandNotImplemented:
-                    hinweis = "Befehl nicht unterstützt. Port oder SSL-Einstellung prüfen.";
-                    break;
-                case SmtpStatusCode.TransactionFailed:
-                    hinweis = "Transaktion abgebrochen. Absender/Empfänger prüfen.";
-                    break;
-                case SmtpStatusCode.GeneralFailure:
-                    hinweis = "Allgemeiner SMTP-Fehler. Serverlog prüfen.";
-                    break;
-                default:
-                    hinweis = "Unbekannter SMTP-Statuscode.";
-                    break;
-            }
-            Log($"Hinweis:          {hinweis}", Color.Yellow);
-
-            if (ex.InnerException != null)
-                Log($"Inner:            {ex.InnerException.Message}", Color.Orange);
-
-            Log("── Mögliche Ursachen ────────────────────────────", Color.Gray);
-            Log("  • IP des Absenders nicht im Exchange-Connector hinterlegt", Color.Gray);
-            Log("  • Port 25 durch Firewall/Provider blockiert", Color.Gray);
-            Log("  • SSL-Einstellung passt nicht zum Port (25=kein SSL, 587=STARTTLS)", Color.Gray);
-            Log("  • Absender-Domain nicht als akzeptierte Domain konfiguriert", Color.Gray);
-        }
 
         private void LogError(string titel, Exception ex)
         {
@@ -314,33 +339,65 @@ namespace Sped4.Controls.AdminCockpit
 
         private void SetStatus(string text)
         {
-            if (statusStrip.InvokeRequired) { statusStrip.Invoke(new Action(() => SetStatus(text))); return; }
-            lblStatus.Text = text;
+            if (statusStrip.InvokeRequired)
+            {
+                statusStrip.Invoke(new Action(() => SetStatus(text)));
+                return;
+            }
+            if (lblStatus != null)
+                lblStatus.Text = text;
         }
-
         private void SetBusy(bool busy, string status = "Bereit")
         {
-            if (InvokeRequired) { Invoke(new Action(() => SetBusy(busy, status))); return; }
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => SetBusy(busy, status)));
+                return;
+            }
             btnMailSend.Enabled = !busy;
             btnSmtpTest.Enabled = !busy;
-            progressBar.Visible = busy;
-            progressBar.Style = busy ? ProgressBarStyle.Marquee : ProgressBarStyle.Blocks;
-            lblStatus.Text = status;
+            if (progressBar != null)
+                progressBar.Visible = busy;
+            if (lblStatus != null)
+                lblStatus.Text = status;
         }
 
-        // ── Control-Helfer ──────────────────────────────────────
-        //private static Label MakeLabel(string text, int x, int y) =>
-        //    new Label { Text = text, Location = new Point(x, y + 3), AutoSize = true };
+        private void btnMaildaten_Click(object sender, EventArgs e)
+        {
+            if (this.ctrMenu._frmMain.system.Client is clsClient)
+            {
+                tbServer.Text = this.ctrMenu._frmMain.system.Client.Modul.Mail_SMTPServer;
+                nudPort.Value = this.ctrMenu._frmMain.system.Client.Modul.Mail_SMTPPort;
+                cbSSLTLS.Checked = this.ctrMenu._frmMain.system.Client.Modul.Mail_SMTPSSL;
 
-        //private static TextBox MakeTextBox(int x, int y, int w, string def,
-        //    bool password = false, bool enabled = true) =>
-        //    new TextBox
-        //    {
-        //        Location = new Point(x, y),
-        //        Width = w,
-        //        Text = def,
-        //        UseSystemPasswordChar = password,
-        //        Enabled = enabled
-        //    };
+                cbSmtpAuth.Checked = !string.IsNullOrWhiteSpace(this.ctrMenu._frmMain.system.Client.Modul.Mail_SMTPUser) &&
+                                     !string.IsNullOrWhiteSpace(this.ctrMenu._frmMain.system.Client.Modul.Mail_SMTPPasswort);
+
+                tbUser.Text = this.ctrMenu._frmMain.system.Client.Modul.Mail_SMTPUser;
+                tbPass.Text = this.ctrMenu._frmMain.system.Client.Modul.Mail_SMTPPasswort;
+
+                tbMailFrom.Text = this.ctrMenu._frmMain.system.Client.Modul.Mail_MailAdress;
+                tbMailTo.Text = "support@softkonzept.com";
+                tbBetreff.Text = "Testmail aus AdminCockpit";
+                tbMessage.Text = "Dies ist eine Testmail aus dem AdminCockpit.";
+            }
+        }
+
+        private void btnSKData_Click(object sender, EventArgs e)
+        {
+            tbServer.Text = "smtp.ionos.de";
+            nudPort.Value = 587;
+            cbSSLTLS.Checked = true;
+
+            cbSmtpAuth.Checked = true;
+
+            tbUser.Text = "support@softkonzept.com";
+            tbPass.Text = "!29suPP%1Ay33e&fcdW";
+
+            tbMailFrom.Text = "support@softkonzept.com";
+            tbMailTo.Text = "info@softkonzept.com";
+            tbBetreff.Text = "Testmail aus AdminCockpit";
+            tbMessage.Text = "Dies ist eine Testmail aus dem AdminCockpit.";
+        }
     }
 }

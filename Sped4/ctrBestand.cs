@@ -704,8 +704,9 @@ namespace Sped4
             strBestandZeitraum = string.Empty;
             bool openExportFile = false;
             FileDateForMail = DateTime.Now;
+            // NEU (tsbtnExcel_Click, oben)
+            string exportPath = string.Empty; // Neuer, konsistenter Pfad-Container
 
-            string exportPath = string.Empty; // <--- Neuer, konsistenter Pfad-Container
 
             if (this._ctrMenu._frmMain.system.Client.Modul.Excel_UseOldExport)
             {
@@ -751,19 +752,6 @@ namespace Sped4
                 if (openExportFile)
                 {
                     exportPath = strFileName;
-
-                    //try
-                    //{
-                    //    System.Diagnostics.Process.Start(strFileName);
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    clsError error = new clsError();
-                    //    error._GL_User = this.GL_User;
-                    //    error.Code = clsError.code1_501;
-                    //    error.Aktion = "Bestand - Excelexport öffnen";
-                    //    error.exceptText = ex.ToString();
-                    //}
                 }
             }
             else
@@ -820,33 +808,96 @@ namespace Sped4
                 dtGewBestand = clsSQLcon.ExecuteSQL_GetDataTable(strSql, this.GL_User.User_ID, "Bestand");
                 LVS.clsExcel Excel = new clsExcel();
                 string FileName = "BestandKW" + (Functions.GetCalendarWeek(DateTime.Now)) + "_" + ADR.ViewID;
+
                 string FilePath = Excel.ExportDataTableToWorksheet(dtGewBestand, AttachmentPath + "\\" + FileName);
                 // <<ÄNDERUNG_START: exportPath setzen auch in diesem Zweig
                 exportPath = FilePath; // <<ÄNDERUNG
-
                 openExportFile = true;
             }
 
             if (openExportFile)
             {
+                //--neu 2026_08_10
+                OpenExportFileOrExplorer(exportPath);
+
+                //try
+                //{
+                //    if (!string.IsNullOrEmpty(exportPath) && System.IO.File.Exists(exportPath))
+                //    {
+                //        System.Diagnostics.Process.Start(exportPath);
+                //    }
+                //    else
+                //    {
+                //        // Log + Info
+                //        string message = $"Die Exportdatei konnte nicht gefunden werden: {exportPath}";
+                //        clsMessages.Allgemein_ERRORTextShow(message);
+                //    }
+
+                //    //System.Diagnostics.Process.Start(FileName);
+                //}
+                //catch (Exception ex)
+                //{
+                //    clsError error = new clsError();
+                //    error._GL_User = this.GL_User;
+                //    error.Code = clsError.code1_501;
+                //    error.Aktion = "Bestandsliste - Excelexport öffnen";
+                //    error.exceptText = ex.ToString();
+                //    error.WriteError();
+                //}
+            }
+        }
+
+        // NEU: robustes Öffnen mit Logging und Fallback
+        private void OpenExportFileOrExplorer(string exportPath)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(exportPath))
+                {
+                    clsMessages.Allgemein_ERRORTextShow("Exportpfad ist leer.");
+                    return;
+                }
+
+                bool exists = System.IO.File.Exists(exportPath);
+                System.Diagnostics.Debug.WriteLine($"[ctrBestand] ExportPath='{exportPath}', Exists={exists}");
+
+                if (!exists)
+                {
+                    clsMessages.Allgemein_ERRORTextShow($"Die Exportdatei konnte nicht gefunden werden: {exportPath}");
+                    return;
+                }
+
                 try
                 {
-                    //if (!string.IsNullOrEmpty(exportPath))
-                    //{
-                    //    System.Diagnostics.Process.Start(exportPath); // <<ÄNDERUNG
-                    //}
-                    if (!string.IsNullOrEmpty(exportPath) && System.IO.File.Exists(exportPath))
+                    // Verwende ProcessStartInfo für explizites Verhalten
+                    var psi = new System.Diagnostics.ProcessStartInfo(exportPath)
                     {
-                        System.Diagnostics.Process.Start(exportPath);
-                    }
-                    else
+                        UseShellExecute = true,
+                        Verb = "open",
+                        WorkingDirectory = System.IO.Path.GetDirectoryName(exportPath)
+                    };
+                    System.Diagnostics.Process.Start(psi);
+                }
+                catch (System.ComponentModel.Win32Exception wex)
+                {
+                    // häufig: keine Zuordnung oder andere Shell-Probleme -> Explorer Fallback
+                    System.Diagnostics.Debug.WriteLine($"[ctrBestand] Win32Exception beim Start: {wex.Message}");
+                    try
                     {
-                        // Log + Info
-                        string message = $"Die Exportdatei konnte nicht gefunden werden: {exportPath}";
-                        clsMessages.Allgemein_ERRORTextShow(message);
+                        // Explorer öffnen und die Datei markieren (funktioniert, auch wenn keine Dateizuordnung vorhanden)
+                        System.Diagnostics.Process.Start("explorer.exe", $"/select,\"{exportPath}\"");
                     }
-
-                    //System.Diagnostics.Process.Start(FileName);
+                    catch (Exception exExplorer)
+                    {
+                        // Beide Versuche fehlgeschlagen -> Fehler loggen und Benutzer informieren
+                        clsError error = new clsError();
+                        error._GL_User = this.GL_User;
+                        error.Code = clsError.code1_501;
+                        error.Aktion = "Bestandsliste - Excelexport öffnen";
+                        error.exceptText = "Win32Exception: " + wex.ToString() + Environment.NewLine + "ExplorerFallback: " + exExplorer.ToString();
+                        error.WriteError();
+                        clsMessages.Allgemein_ERRORTextShow("Fehler beim Öffnen der Exportdatei. Pfad: " + exportPath);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -856,9 +907,21 @@ namespace Sped4
                     error.Aktion = "Bestandsliste - Excelexport öffnen";
                     error.exceptText = ex.ToString();
                     error.WriteError();
+                    clsMessages.Allgemein_ERRORTextShow("Fehler beim Öffnen der Exportdatei. Pfad: " + exportPath);
                 }
             }
+            catch (Exception exOuter)
+            {
+                clsError error = new clsError();
+                error._GL_User = this.GL_User;
+                error.Code = clsError.code1_501;
+                error.Aktion = "Bestandsliste - Excelexport öffnen (outer)";
+                error.exceptText = exOuter.ToString();
+                error.WriteError();
+                clsMessages.Allgemein_ERRORTextShow("Unbekannter Fehler beim Öffnen der Exportdatei.");
+            }
         }
+
         ///<summary>ctrBestand / tsbtnMail_Click</summary>
         ///<remarks>Bestandsliste per Mail versenden</remarks>
         private void tsbtnMail_Click(object sender, EventArgs e)

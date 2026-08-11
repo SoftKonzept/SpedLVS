@@ -1,7 +1,9 @@
 ﻿using LVS;
+using LVS.Mail;
 using System;
 using System.Data.SqlClient;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Communicator.Classes
 {
@@ -109,18 +111,53 @@ namespace Communicator.Classes
 
                 try
                 {
-                    Globals._GL_USER tmpGLUser = new Globals._GL_USER();
+                    //Globals._GL_USER tmpGLUser = new Globals._GL_USER();
 
-                    clsMail EMail = new clsMail();
-                    EMail.InitClass(tmpGLUser, this.system);
-                    EMail.Subject = this.system.strClient + DateTime.Now.ToShortDateString() + "- Error Communicator Update ";
-                    string strTxt = string.Empty;
+                    //clsMail EMail = new clsMail();
+                    //EMail.InitClass(tmpGLUser, this.system);
+                    //EMail.Subject = this.system.strClient + DateTime.Now.ToShortDateString() + "- Error Communicator Update ";
+                    //string strTxt = string.Empty;
 
-                    strTxt += "Client: " + this.system.strClient + Environment.NewLine;
-                    strTxt += "sql: " + tmpSQL + Environment.NewLine;
-                    strTxt += "Exception: " + Environment.NewLine + ex.ToString();
-                    EMail.Message = strTxt;
-                    EMail.SendError();
+                    //strTxt += "Client: " + this.system.strClient + Environment.NewLine;
+                    //strTxt += "sql: " + tmpSQL + Environment.NewLine;
+                    //strTxt += "Exception: " + Environment.NewLine + ex.ToString();
+                    //EMail.Message = strTxt;
+                    //EMail.SendError();
+
+
+                    //MailSending mail = new MailSending(tmpGLUser, this.system);
+                    //mail.Subject = this.system.strClient + DateTime.Now.ToShortDateString() + "- Error Communicator Update NEU ";
+                    //strTxt += Environment.NewLine + "Austausch COM Zeile clsUpdate 115" + Environment.NewLine;
+                    //mail.Message = strTxt;
+                    //await mail.Send(true);
+
+                    try
+                    {
+                        // Mail asynchron versenden, ohne zu warten
+                        _ = Task.Run(async () => await SendErrorMailAsync(ex, tmpSQL));
+                    }
+                    catch (Exception ex1) 
+                    {
+                        // Fallback: Synchroner Mail-Versand
+                        try
+                        {
+                            Globals._GL_USER tmpGLUser = new Globals._GL_USER();
+                            clsMail EMail = new clsMail();
+                            EMail.InitClass(tmpGLUser, this.system);
+                            EMail.Subject = this.system.strClient + DateTime.Now.ToShortDateString() + "- Error Communicator Update ";
+                            string strTxt = string.Empty;
+
+                            strTxt += "Client: " + this.system.strClient + Environment.NewLine;
+                            strTxt += "Error in Zeile: 137 cls Update:" + Environment.NewLine;
+                            strTxt += "_ = Task.Run(async () => await SendErrorMailAsync(ex, tmpSQL));" + Environment.NewLine + ex.ToString();
+                            strTxt += "Exception:" + Environment.NewLine;
+                            strTxt +=  ex.ToString();
+                            EMail.Message = strTxt;
+                            EMail.SendError();
+                        }
+                        catch { } // Silent fail - Mail ist optional
+                    }
+
                 }
                 catch (Exception ex1)
                 {
@@ -130,6 +167,35 @@ namespace Communicator.Classes
             tAction.Dispose();
             return updateOK;
         }
+
+        private async Task SendErrorMailAsync(Exception ex, string tmpSQL)
+        {
+            try
+            {
+                Globals._GL_USER tmpGLUser = new Globals._GL_USER();
+
+                clsMail EMail = new clsMail();
+                EMail.InitClass(tmpGLUser, this.system);
+                EMail.Subject = this.system.strClient + DateTime.Now.ToShortDateString() + "- Error Communicator Update ";
+                string strTxt = string.Empty;
+
+                strTxt += "Client: " + this.system.strClient + Environment.NewLine;
+                strTxt += "sql: " + tmpSQL + Environment.NewLine;
+                strTxt += "Exception: " + Environment.NewLine + ex.ToString();
+                EMail.Message = strTxt;
+                EMail.SendError();
+
+
+                MailSending mail = new MailSending(tmpGLUser, this.system);
+                mail.Subject = this.system.strClient + DateTime.Now.ToShortDateString() + "- Error Communicator Update NEU ";
+                strTxt += Environment.NewLine + "Austausch COM Zeile clsUpdate 115" + Environment.NewLine;
+                mail.Message = strTxt;
+                await mail.Send(true);
+            }
+            catch { } // Fehler ignorieren, da Mail optional ist
+        }
+
+
         ///<summary>AddToLog(string strVersionsupdate) / clsUpdate</summary>
         ///<remarks>Die Update-Aktion wird im Logbuch dokumentiert.</remarks>
         ///<param name="strVersionsupdate">neue Versionsnummer nach dem Update</param>

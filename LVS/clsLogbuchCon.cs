@@ -1,8 +1,10 @@
-﻿using System;
+﻿using LVS.Mail;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace LVS
 {
@@ -226,6 +228,19 @@ namespace LVS
                                     strMes += "Zeit: " + DateTime.Now.ToString() + Environment.NewLine;
                                     ErrorMail.Message = strMes;
                                     ErrorMail.SendError();
+
+                                    string strSubject = ErrorMail.Subject;
+                                    string strTxt = strMes;
+                                    // ✅ Mail asynchron versenden ohne Blockierung
+                                    _ = Task.Run(async () =>
+                                    {
+                                        MailSending mail = new MailSending(new Globals._GL_USER(), mySys);
+                                        //mail.AddAttachment(myAttachmentFilePath);
+                                        mail.Subject = strSubject + " - NEU ";
+                                        strTxt += Environment.NewLine + "Austausch LVS clsLogbuchCon.cs Z. 230" + Environment.NewLine;
+                                        mail.Message = strTxt;
+                                        await mail.Send(true);
+                                    });
                                 }
                                 catch (Exception ex1)
                                 { }

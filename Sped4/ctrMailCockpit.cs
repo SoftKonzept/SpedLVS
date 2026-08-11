@@ -1,14 +1,18 @@
 ﻿using Common.Enumerations;
 using LVS;
+using LVS.Mail;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Net.Sockets;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.Data;
 //using Telerik.WinControls.RichTextBox.FormatProviders.Txt;
 using Telerik.WinControls.UI;
+
 
 namespace Sped4
 {
@@ -22,7 +26,10 @@ namespace Sped4
         internal const string const_MailReceiver = "<Mailempfänger>";
         internal const string const_MailAttachinglist = "<Anhänge>";
         private clsADR ADR;
+        
         private clsMail Mail;
+        
+        
         public Globals._GL_USER GL_User;
         public frmTmp frmTmp;
         public ctrMenu ctrMenu;
@@ -31,6 +38,10 @@ namespace Sped4
         internal DataTable dtContactSource;
         public string MailBetreff = string.Empty;
         public Common.Enumerations.enumDokumentenArt eDocumentArt;
+
+        public List<string> ListAttachment { get; set; } = new List<string>();
+
+        private MailSending mailSending = new MailSending();
 
         /**********************************************************************************
          *                          Procedure
@@ -47,6 +58,10 @@ namespace Sped4
         ///<remarks>.</remarks>
         private void ctrMailCockpit_Load(object sender, EventArgs e)
         {
+            //-- neu Mailversand 
+            mailSending = new MailSending(ctrMenu._frmMain.GL_User, ctrMenu._frmMain.system);
+            ListAttachment = new List<string>();
+
             //User Daten auf das CTR
             SetUserDatenToCtr();
             //Init clsMail
@@ -57,7 +72,6 @@ namespace Sped4
             this.tbMailSender.Text = Mail.MailFrom;
             this.MailText = const_MailText;
 
-
             /***********************************************************************************************
              * Übernahme der Anhänge aus den entsprechenden CTRs, aus denen das MailCockpit gestartet wurde
              *    Hier können noch weitere CTR hinzugefügt werden
@@ -67,6 +81,7 @@ namespace Sped4
                 if (this.ctrMenu._ctrJournal.GetType() == typeof(ctrJournal))
                 {
                     Mail.ListAttachment.AddRange(this.ctrMenu._ctrJournal.ListAttachmentPath);
+                    ListAttachment.AddRange(this.ctrMenu._ctrJournal.ListAttachmentPath);
                 }
             }
             if (this.ctrMenu._ctrBestand != null)
@@ -76,6 +91,7 @@ namespace Sped4
                     if (this.ctrMenu._ctrBestand.ListAttachmentPath.Count > 0)
                     {
                         Mail.ListAttachment.AddRange(this.ctrMenu._ctrBestand.ListAttachmentPath);
+                        ListAttachment.AddRange(this.ctrMenu._ctrBestand.ListAttachmentPath);
                     }
                 }
             }
@@ -86,6 +102,7 @@ namespace Sped4
                     if (this.ctrMenu._ctrFreeForCall.ListAttachmentPath.Count > 0)
                     {
                         Mail.ListAttachment.AddRange(this.ctrMenu._ctrFreeForCall.ListAttachmentPath);
+                        ListAttachment.AddRange(this.ctrMenu._ctrFreeForCall.ListAttachmentPath);
                         this.ADR = new clsADR();
                         this.ADR.ID = this.ctrMenu._ctrFreeForCall.Lager.ADR.ID;
                         this.ADR.Fill();
@@ -99,6 +116,7 @@ namespace Sped4
                     if (this.ctrMenu._ctrSPLAdd.ListAttachmentPath.Count > 0)
                     {
                         Mail.ListAttachment.AddRange(this.ctrMenu._ctrSPLAdd.ListAttachmentPath);
+                        ListAttachment.AddRange(this.ctrMenu._ctrSPLAdd.ListAttachmentPath);
                     }
                 }
             }
@@ -109,6 +127,7 @@ namespace Sped4
                     if (this.ctrMenu._ctrFaktLager.AttachmentList.Count > 0)
                     {
                         Mail.ListAttachment.AddRange(this.ctrMenu._ctrFaktLager.AttachmentList);
+                        ListAttachment.AddRange(this.ctrMenu._ctrFaktLager.AttachmentList);
                     }
                 }
             }
@@ -119,9 +138,14 @@ namespace Sped4
                     if (this.ctrMenu._ctrRGList.AttachmentList.Count > 0)
                     {
                         Mail.ListAttachment.AddRange(this.ctrMenu._ctrRGList.AttachmentList);
+                        ListAttachment.AddRange(this.ctrMenu._ctrRGList.AttachmentList);
                     }
                 }
             }
+
+            //-- neu Zusweisung 
+            mailSending.AddAttachments(ListAttachment);
+
             InitLVAttachment();
             InitDGVMails();
             InitMailText();
@@ -135,6 +159,7 @@ namespace Sped4
             {
                 if (this.ctrMenu._ctrJournal.GetType() == typeof(ctrJournal))
                 {
+                    tbBetreff.Text = "Journal";
                     MailText = "Sehr geehrte Damen und Herren," + Environment.NewLine +
                                 Environment.NewLine +
                                 "anhängend finden Sie die Excel-Tabelle: " + Environment.NewLine +
@@ -151,6 +176,7 @@ namespace Sped4
             {
                 if (this.ctrMenu._ctrBestand.GetType() == typeof(ctrBestand))
                 {
+                    tbBetreff.Text = "Bestandsmeldung";
                     MailText = "Sehr geehrte Damen und Herren," + Environment.NewLine +
                                 Environment.NewLine +
                                 "anhängend finden Sie die Excel-Tabelle: " + Environment.NewLine +
@@ -393,13 +419,13 @@ namespace Sped4
                 else
                 {
                     this.tspBarMailSend.Value = this.tspBarMailSend.Maximum;
-                    this.tslMailSendInfo.Text = "E-Mail wurde erfolgreich versendet....";
+                    this.tslMailSendInfo.Text = "E-Mail Versandprozess abgeschlossen....";
                 }
             }
         }
         ///<summary>ctrMailCockpit / tsbtnSendMail_Click</summary>
         ///<remarks>Mail versenden</remarks>
-        private void tsbtnSendMail_Click(object sender, EventArgs e)
+        private async void tsbtnSendMail_Click(object sender, EventArgs e)
         {
             if (
                 (tbMailReceiver.Text != const_MailReceiver) &&
@@ -407,11 +433,18 @@ namespace Sped4
                )
             {
                 //Prozessbar init
-                SetProzessBarMailSend(true, 0);
+                int iVal= 0;
+                SetProzessBarMailSend(true, iVal);
+                //-- einmal +1 und wird immer verwendet, um die Prozessbar zu erhöhen
+                iVal++;
+
                 bool bError = false;
                 try
                 {
-                    SetProzessBarMailSend(false, 1);
+                    iVal++;
+                    SetProzessBarMailSend(false, iVal);
+
+                    // Empfänger aufbereiten
                     string[] reciever = tbMailReceiver.Text.Split(',', ';');
                     Mail.ListMailReceiver = new List<string>();
                     foreach (string strEmail in reciever)
@@ -420,15 +453,22 @@ namespace Sped4
                         if (Functions.CheckForEmail(strTmpEmail))
                         {
                             Mail.ListMailReceiver.Add(strTmpEmail);
+                            if (!mailSending.recipients.Contains(strTmpEmail))
+                            {
+                                mailSending.recipients.Add(strTmpEmail);
+                            }
                         }
                     }
-                    SetProzessBarMailSend(false, 2);
-                    //BlindCopy Mail
+
+                    SetProzessBarMailSend(false, iVal);
+
+                    // BCC hinzufügen
                     if (cbMailCopy.Checked)
                     {
                         if (!this.GL_User.Mail.Equals(string.Empty))
                         {
                             Mail.MailBCC = this.GL_User.Mail;
+                            mailSending.MailBCC = this.GL_User.Mail;
                         }
                         clsClient.ctrMailCockpi_CustomizeAddMailBCC(this.ctrMenu._frmMain.system.Client.MatchCode, ref this.Mail);
                     }
@@ -436,7 +476,7 @@ namespace Sped4
                 catch (Exception ex)
                 {
                     bError = true;
-                    SetProzessBarMailSend(true, 0);
+                    SetProzessBarMailSend(false, iVal);
                     Mail.strErrorInfo = ex.ToString();
                     clsMessages.Allgemein_ERRORTextShow(Mail.strErrorInfo);
                 }
@@ -444,31 +484,20 @@ namespace Sped4
                 {
                     if (bError == false)
                     {
-                        SetProzessBarMailSend(false, 1);
-                        Thread.Sleep(500);
-                        Mail.Subject = this.tbBetreff.Text;
-                        Mail.Message = this.tbMailText.Text;
-                        SetProzessBarMailSend(false, 1);
-                        bool bSendOK = Mail.Send();
-                        SetProzessBarMailSend(false, 1);
+                        SetProzessBarMailSend(false, iVal);
 
-                        if (bSendOK)
-                        {
-                            ////Eingabefelder leeren
-                            ClearCtr();
-                            ////Attachment / Anhänge Liste leeren und init
-                            this.lvAttachment.Items.Clear();
-                            Mail.ListAttachment.Clear();
-                            InitLVAttachment();
-                            //Init Mailkontakte Source
-                            InitDGVContactSource(true);
-                            InitDGVMails();
-                        }
-                        else
-                        {
-                            SetProzessBarMailSend(true, 0);
-                            clsMessages.Allgemein_ERRORTextShow(Mail.strErrorInfo);
-                        }
+                        mailSending.Subject = this.tbBetreff.Text;
+                        mailSending.Message = this.tbMailText.Text;
+
+                        SetProzessBarMailSend(false, iVal);
+
+                        // === NEUE Mail-KLASSE VERWENDEN ===
+                        await SendMailWithNewClass();
+
+                        SetProzessBarMailSend(false, iVal);
+
+                        Thread.Sleep(2000);
+                        SetProzessBarMailSend(true,0);
                     }
                 }
             }
@@ -476,6 +505,64 @@ namespace Sped4
             {
                 SetProzessBarMailSend(true, 0);
                 clsMessages.Mail_MailReceiverMissing();
+            }
+        }
+        /// <summary>
+        ///             Versendet Mail mit der neuen LVS.Mail.Mail-Klasse
+        /// </summary>
+        private async Task SendMailWithNewClass()
+        {
+            try
+            {
+                // E-Mail versenden
+                var result = await mailSending.Send(false);
+
+                if (result)
+                {
+                    // Erfolgreicher Versand
+                    foreach (var msg in mailSending.infoMessages)
+                    {
+                        // Meldungen verarbeiten
+                    }
+                    // Empfänger als String mit ";" trennen
+                    string recipientsAsString = string.Join(";", mailSending.recipients);
+
+                    Mail.emails.Absender = mailSending.MailFrom;
+                    Mail.emails.Empfaenger = recipientsAsString;
+                    Mail.emails.Text = mailSending.Message;
+                    Mail.emails.Betreff = mailSending.Subject;
+                    Mail.emails.Dateien = string.Join(",", mailSending.attachment);
+                    Mail.emails.Add();
+                    // Erfolgreicher Versand
+                    Mail.strErrorInfo = string.Empty;
+
+                    clsMessages.Allgemein_InfoTextShow("Die E-Mail wurde erfolgreich versandt!");
+
+                    // Eingabefelder leeren
+                    ClearCtr();
+                    this.lvAttachment.Items.Clear();
+                    Mail.ListAttachment.Clear();
+                    InitLVAttachment();
+                    InitDGVContactSource(true);
+                    InitDGVMails();
+                }
+                else
+                {
+                    string errorMessages = string.Empty;
+                    if (mailSending.infoMessages.Count > 0)
+                    {
+                        foreach (var infoMessage in mailSending.infoMessages)
+                        {
+                            errorMessages += infoMessage + Environment.NewLine;
+                        }
+                    }
+                    clsMessages.Allgemein_ERRORTextShow(errorMessages);
+                }
+            }
+            catch (Exception ex)
+            {
+                Mail.strErrorInfo = "Fehler beim Mailversand: " + ex.Message;
+                clsMessages.Allgemein_ERRORTextShow(Mail.strErrorInfo);
             }
         }
         ///<summary>ctrMailCockpit / ClearCtr</summary>
@@ -687,6 +774,9 @@ namespace Sped4
             }
             this.Mail.ListAttachment.Clear();
             this.Mail.ListAttachment.AddRange(ListTmp);
+
+            this.mailSending.attachment.Clear();
+            this.mailSending.AddAttachments(ListTmp);
             InitLVAttachment();
         }
         ///<summary>ctrMailCockpit / tsbtnRefreshMails_Click</summary>

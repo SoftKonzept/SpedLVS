@@ -55,6 +55,8 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.scMain = new System.Windows.Forms.SplitContainer();
+            this.btnMaildaten = new System.Windows.Forms.Button();
+            this.btnSKData = new System.Windows.Forms.Button();
             this.gbSMTP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPort)).BeginInit();
             this.gbMailMessage.SuspendLayout();
@@ -139,6 +141,11 @@
             // nudPort
             // 
             this.nudPort.Location = new System.Drawing.Point(80, 56);
+            this.nudPort.Maximum = new decimal(new int[] {
+            600,
+            0,
+            0,
+            0});
             this.nudPort.Name = "nudPort";
             this.nudPort.Size = new System.Drawing.Size(64, 20);
             this.nudPort.TabIndex = 4;
@@ -254,7 +261,7 @@
             // 
             this.btnSmtpTest.Location = new System.Drawing.Point(12, 217);
             this.btnSmtpTest.Name = "btnSmtpTest";
-            this.btnSmtpTest.Size = new System.Drawing.Size(207, 34);
+            this.btnSmtpTest.Size = new System.Drawing.Size(144, 34);
             this.btnSmtpTest.TabIndex = 11;
             this.btnSmtpTest.Text = "SMTP Verbindung testen";
             this.btnSmtpTest.UseVisualStyleBackColor = true;
@@ -264,9 +271,9 @@
             // 
             this.btnMailSend.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnMailSend.ForeColor = System.Drawing.Color.White;
-            this.btnMailSend.Location = new System.Drawing.Point(225, 217);
+            this.btnMailSend.Location = new System.Drawing.Point(162, 217);
             this.btnMailSend.Name = "btnMailSend";
-            this.btnMailSend.Size = new System.Drawing.Size(207, 34);
+            this.btnMailSend.Size = new System.Drawing.Size(131, 34);
             this.btnMailSend.TabIndex = 12;
             this.btnMailSend.Text = "Testmail senden";
             this.btnMailSend.UseVisualStyleBackColor = false;
@@ -274,9 +281,9 @@
             // 
             // btnLog
             // 
-            this.btnLog.Location = new System.Drawing.Point(438, 217);
+            this.btnLog.Location = new System.Drawing.Point(299, 217);
             this.btnLog.Name = "btnLog";
-            this.btnLog.Size = new System.Drawing.Size(207, 34);
+            this.btnLog.Size = new System.Drawing.Size(108, 34);
             this.btnLog.TabIndex = 13;
             this.btnLog.Text = "Log leeren";
             this.btnLog.UseVisualStyleBackColor = true;
@@ -318,6 +325,8 @@
             // 
             // scMain.Panel1
             // 
+            this.scMain.Panel1.Controls.Add(this.btnSKData);
+            this.scMain.Panel1.Controls.Add(this.btnMaildaten);
             this.scMain.Panel1.Controls.Add(this.gbSMTP);
             this.scMain.Panel1.Controls.Add(this.btnLog);
             this.scMain.Panel1.Controls.Add(this.gbMailMessage);
@@ -333,6 +342,28 @@
             this.scMain.Size = new System.Drawing.Size(731, 484);
             this.scMain.SplitterDistance = 280;
             this.scMain.TabIndex = 15;
+            // 
+            // btnMaildaten
+            // 
+            this.btnMaildaten.BackColor = System.Drawing.Color.Wheat;
+            this.btnMaildaten.Location = new System.Drawing.Point(419, 223);
+            this.btnMaildaten.Name = "btnMaildaten";
+            this.btnMaildaten.Size = new System.Drawing.Size(166, 23);
+            this.btnMaildaten.TabIndex = 14;
+            this.btnMaildaten.Text = "Standart Maildaten setzen";
+            this.btnMaildaten.UseVisualStyleBackColor = false;
+            this.btnMaildaten.Click += new System.EventHandler(this.btnMaildaten_Click);
+            // 
+            // btnSKData
+            // 
+            this.btnSKData.BackColor = System.Drawing.Color.Wheat;
+            this.btnSKData.Location = new System.Drawing.Point(419, 252);
+            this.btnSKData.Name = "btnSKData";
+            this.btnSKData.Size = new System.Drawing.Size(166, 23);
+            this.btnSKData.TabIndex = 15;
+            this.btnSKData.Text = "SK Maildaten setzen";
+            this.btnSKData.UseVisualStyleBackColor = false;
+            this.btnSKData.Click += new System.EventHandler(this.btnSKData_Click);
             // 
             // ctrMailCheck
             // 
@@ -386,5 +417,7 @@
         private System.Windows.Forms.SplitContainer scMain;
         private System.Windows.Forms.RichTextBox rtbLog;
         private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.Button btnMaildaten;
+        private System.Windows.Forms.Button btnSKData;
     }
 }
