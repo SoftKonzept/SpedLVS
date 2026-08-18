@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using DataTable = System.Data.DataTable;
 
 namespace LVS.ViewData
@@ -16,12 +17,20 @@ namespace LVS.ViewData
         {
             InitCls();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myVdaClientValue"></param>
         public VDAClientValueViewData(VDAClientValues myVdaClientValue)
         {
             this.VdaClientValue = myVdaClientValue;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myId"></param>
+        /// <param name="myUserId"></param>
+        /// <param name="mybInclSub"></param>
         public VDAClientValueViewData(int myId, int myUserId, bool mybInclSub) : this()
         {
             //InitCls();
@@ -32,12 +41,18 @@ namespace LVS.ViewData
                 Fill(mybInclSub);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         private void InitCls()
         {
             VdaClientValue = new VDAClientValues();
             ListVdaClientValues = new List<VDAClientValues>();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mybInclSub"></param>
         public void Fill(bool mybInclSub)
         {
             string strSQL = sql_Get;
@@ -50,9 +65,36 @@ namespace LVS.ViewData
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mybInclSub"></param>
+        /// <param name="myAdrId"></param>
+        public void FillList(bool mybInclSub, int myAdrId)
+        {
+            ListVdaClientValues= new List<VDAClientValues>();
+            string strSql = this.sql_Get_Main + " WHERE AdrID=" + myAdrId;
+            DataTable dt = clsSQLCOM.ExecuteSQL_GetDataTable(strSql, BenutzerID, "VDAClientValue");
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    SetValue(dr, mybInclSub);
+                    if(!ListVdaClientValues.Contains(VdaClientValue))
+                    {
+                        ListVdaClientValues.Add(VdaClientValue);
+                    }   
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="mybInclSub"></param>
         public void SetValue(DataRow row, bool mybInclSub)
         {
+            this.VdaClientValue = new VDAClientValues();
             int iTmp = 0;
             int.TryParse(row["ID"].ToString(), out iTmp);
             VdaClientValue.Id = iTmp;
@@ -100,7 +142,45 @@ namespace LVS.ViewData
             //    ListEdiSegmentElementFields.Add(EdiSegmentElementField);
             //}
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="myVdaClientValueList"></param>
+        public void ImportVdaClientValueList(List<VDAClientValues> myVdaClientValueList)
+        {
+            string strSql = string.Empty;
+            if (myVdaClientValueList.Count > 0)
+            {
+                //---- AdrId ermitteln
+                var firsItem = myVdaClientValueList.FirstOrDefault();
+                if(firsItem != null)
+                {
+                    VdaClientValue.AdrId = firsItem.AdrId;
 
+                    //--- alle Einträge der AdrId löschen
+                    if(DeleteByAdrId(VdaClientValue.AdrId))
+                    {
+                        //--- Einträge hinzufügen
+                        foreach (VDAClientValues v in myVdaClientValueList)
+                        {
+                            if (v.Kennung.ToString().Equals(string.Empty))
+                            {
+                                clsASNArtSatzFeld field = new clsASNArtSatzFeld();
+                                field.ID = v.AsnFieldId;
+                                field.Fill();
+                                v.Kennung = field.Kennung;
+                            }
+                            VDAClientValueViewData vdTmp = new VDAClientValueViewData(v);
+                            strSql += vdTmp.sql_Add;
+                        }
+                        if (strSql.Length > 0)
+                        {
+                            clsSQLCOM.ExecuteSQLWithTRANSACTION(strSql, "AddVDAClientValue", BenutzerID);
+                        }
+                    }
+                }
+            }        
+        }
         /// <summary>
         ///             ADD
         /// </summary>
@@ -122,6 +202,12 @@ namespace LVS.ViewData
         public bool Delete()
         {
             string strSql = sql_Delete;
+            bool retVal = clsSQLCOM.ExecuteSQL(strSql, BenutzerID);
+            return retVal;
+        }
+        public bool DeleteByAdrId(int myAdrId)
+        {
+            string strSql = "DELETE VDAClientOUT WHERE AdrId=" + myAdrId;
             bool retVal = clsSQLCOM.ExecuteSQL(strSql, BenutzerID);
             return retVal;
         }

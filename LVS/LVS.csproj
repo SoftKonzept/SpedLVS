@@ -1275,10 +1275,8 @@
     <Compile Include="InitValue\InitValue_GlobalSettings.cs" />
     <Compile Include="IniValuePrinter\InitValuePrinter_Druckereinstellungen.cs" />
     <Compile Include="Mail\Mail.cs" />
-    <Compile Include="Mail\MailCheckConfig.cs" />
-    <Compile Include="Mail\MailCheckResult.cs" />
-    <Compile Include="Mail\MailCredentials.cs" />
     <Compile Include="Mail\MailCredentialsManager.cs" />
+    <Compile Include="Mail\MailExtensions.cs" />
     <Compile Include="Mail\MailSending.cs" />
     <Compile Include="Models\ArticleVita.cs" />
     <Compile Include="Models\AsnTableCombiValues.cs" />
@@ -1518,8 +1516,6 @@
     <Folder Include="ASN\ASNArtFieldAssignmentFunctions\" />
     <Folder Include="Fonts\liberation_sans\NewFolder1\" />
     <Folder Include="InitValueLvsMobileAPI\" />
-    <Folder Include="NewFolder1\" />
-    <Folder Include="NewFolder2\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Xml.Linq;
+using Common.Models;
 
 namespace LVS.Mail
 {
@@ -16,6 +17,7 @@ namespace LVS.Mail
         private readonly string _credentialsFilePath;
         private const string XML_ROOT = "MailCredentials";
         private const string XML_CREDENTIALS = "Credential";
+        public const string const_MailCredentials_MainFilename = "MailCredentials.xml";
 
         public MailCredentialsManager(string credentialsFilePath = null)
         {
@@ -30,7 +32,8 @@ namespace LVS.Mail
                     Directory.CreateDirectory(configPath);
                 }
                 
-                _credentialsFilePath = Path.Combine(configPath, "mail_credentials.xml");
+                string strFileName = MailCredentialsManager.GetDefaultCredentialsFileName(string.Empty);
+                _credentialsFilePath = Path.Combine(configPath, strFileName);
             }
             else
             {
@@ -88,6 +91,47 @@ namespace LVS.Mail
             {
                 System.Diagnostics.Debug.WriteLine($"Fehler beim Speichern der Credentials: {ex.Message}");
                 return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Neue Methode: liefert die verschlüsselte Credential-XML als UTF8-Byte-Array (ohne Dateizugriff).
+        /// Eignet sich, um die verschlüsselte Darstellung direkt in eine DB-Spalte zu speichern.
+        /// </summary>
+        public byte[] CreateEncryptedCredentialsBytes(string profileName, MailCheckConfig config)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(profileName) || config == null)
+                    return null;
+
+                var doc = new XDocument(
+                    new XDeclaration("1.0", "utf-8", "yes"),
+                    new XElement(XML_ROOT)
+                );
+
+                var credElement = new XElement(XML_CREDENTIALS,
+                    new XAttribute("name", profileName),
+                    new XAttribute("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
+                    new XElement("Server", EncryptString(config.Server ?? string.Empty)),
+                    new XElement("Port", EncryptString(config.Port.ToString())),
+                    new XElement("Username", EncryptString(config.Username ?? string.Empty)),
+                    new XElement("Password", EncryptString(config.Password ?? string.Empty)),
+                    new XElement("MailFrom", EncryptString(config.MailFrom ?? string.Empty)),
+                    new XElement("EnableSsl", EncryptString(config.EnableSsl.ToString())),
+                    new XElement("MailBCC", EncryptString(config.MailBCC ?? string.Empty))
+                );
+
+                doc.Root.Add(credElement);
+
+                string xml = doc.ToString();
+                return Encoding.UTF8.GetBytes(xml);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Fehler beim Erstellen der verschlüsselten Bytes: {ex.Message}");
+                return null;
             }
         }
 
@@ -255,6 +299,21 @@ namespace LVS.Mail
         public string GetCredentialsFilePath()
         {
             return _credentialsFilePath;
+        }
+
+
+        public static string GetDefaultCredentialsFileName(string myAddition)
+        {
+            string fileName = string.Empty;
+            if(!string.IsNullOrWhiteSpace(myAddition))
+            {
+                fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "_" + myAddition + "_" + MailCredentialsManager.const_MailCredentials_MainFilename;
+            }
+            else
+            {
+                fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "_" + MailCredentialsManager.const_MailCredentials_MainFilename;
+            }   
+            return fileName;
         }
     }
 }

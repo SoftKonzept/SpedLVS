@@ -57,6 +57,10 @@ namespace LVS
         public bool SMTPSSL { get; set; }
         public bool IsAdmin { get; set; }
 
+        // Neue Felder: verschlüsselte Credentials als Binärdaten + optionaler Dateiname/Metadaten
+        public byte[] MailCredentialsData { get; set; }
+        public string MailCredentialsFileName { get; set; }
+
         public List<decimal> ListArbeitsbereichAccess { get; set; }
         /****************************************************************************************************************
          * 
@@ -98,22 +102,55 @@ namespace LVS
         ///<remarks></remarks>
         private void AddNewDatenToUser()
         {
+            // MailCredentialsData initial bei Neu-Anlage NULL, MailCredentialsFileName leer
+            string safeName = (Name ?? string.Empty).Replace("'", "''");
+            string safeLogin = (LoginName ?? string.Empty).Replace("'", "''");
+            string safePass = (pass ?? string.Empty).Replace("'", "''");
+            string safeInitialen = (Initialen ?? string.Empty).Replace("'", "''");
+            string safeVorname = (Vorname ?? string.Empty).Replace("'", "''");
+            string safeTel = (Tel ?? string.Empty).Replace("'", "''");
+            string safeFax = (Fax ?? string.Empty).Replace("'", "''");
+            string safeMail = (Mail ?? string.Empty).Replace("'", "''");
+            string safeSMTPUser = (SMTPUser ?? string.Empty).Replace("'", "''");
+            string safeSMTPPass = (SMTPPasswort ?? string.Empty).Replace("'", "''");
+            string safeSMTPServer = (SMTPServer ?? string.Empty).Replace("'", "''");
+            string safeFileName = (MailCredentialsFileName ?? string.Empty).Replace("'", "''");
+
             string strSQL = "INSERT INTO [User] (Name, LoginName, Pass, Initialen, Vorname, Tel, Fax, Mail, " +
-                                                "SMTPUser, SMTPPass, SMTPServer, SMTPPort, IsAdmin) " +
-                                              "VALUES ('" + Name + "'" +
-                                                        ", '" + LoginName + "'" +
-                                                        ", '" + pass + "'" +
-                                                        ", '" + Initialen + "'" +
-                                                        ", '" + Vorname + "'" +
-                                                        ", '" + Tel + "'" +
-                                                        ", '" + Fax + "'" +
-                                                        ", '" + Mail + "'" +
-                                                        ", '" + SMTPUser + "'" +
-                                                        ", '" + SMTPPasswort + "'" +
-                                                        ", '" + SMTPServer + "'" +
-                                                        ", " + SMTPPort +
-                                                        ", " + Convert.ToInt32(IsAdmin) +
-                                                        ")";
+                                    "SMTPUser, SMTPPass, SMTPServer, SMTPPort, IsAdmin, MailCredentialsData, MailCredentialsFileName) " +
+                                  "VALUES ('" + safeName + "'" +
+                                            ", '" + safeLogin + "'" +
+                                            ", '" + safePass + "'" +
+                                            ", '" + safeInitialen + "'" +
+                                            ", '" + safeVorname + "'" +
+                                            ", '" + safeTel + "'" +
+                                            ", '" + safeFax + "'" +
+                                            ", '" + safeMail + "'" +
+                                            ", '" + safeSMTPUser + "'" +
+                                            ", '" + safeSMTPPass + "'" +
+                                            ", '" + safeSMTPServer + "'" +
+                                            ", " + SMTPPort +
+                                            ", " + Convert.ToInt32(IsAdmin) +
+                                            ", NULL" + // MailCredentialsData = NULL bei Neu-Anlage
+                                            ", '" + safeFileName + "'" +
+                                            ")";
+
+            //string strSQL = "INSERT INTO [User] (Name, LoginName, Pass, Initialen, Vorname, Tel, Fax, Mail, " +
+            //                                    "SMTPUser, SMTPPass, SMTPServer, SMTPPort, IsAdmin) " +
+            //                                  "VALUES ('" + Name + "'" +
+            //                                            ", '" + LoginName + "'" +
+            //                                            ", '" + pass + "'" +
+            //                                            ", '" + Initialen + "'" +
+            //                                            ", '" + Vorname + "'" +
+            //                                            ", '" + Tel + "'" +
+            //                                            ", '" + Fax + "'" +
+            //                                            ", '" + Mail + "'" +
+            //                                            ", '" + SMTPUser + "'" +
+            //                                            ", '" + SMTPPasswort + "'" +
+            //                                            ", '" + SMTPServer + "'" +
+            //                                            ", " + SMTPPort +
+            //                                            ", " + Convert.ToInt32(IsAdmin) +
+            //                                            ")";
             strSQL = strSQL + "Select @@IDENTITY as 'ID' ";
             string strTmp = clsSQLcon.ExecuteSQL_GetValue(strSQL, BenutzerID);
             decimal decTmp = 0;
@@ -134,20 +171,49 @@ namespace LVS
         ///<remarks>Ändern Userdatensatz</remarks>
         public void Update()
         {
-            string strSQL = "Update [User] SET Name='" + Name + "' " +
-                                              ", LoginName='" + LoginName + "' " +
-                                              ", Pass='" + pass + "' " +
-                                              ", Initialen='" + Initialen + "' " +
-                                              ", Vorname='" + Vorname + "' " +
-                                              ", Tel='" + Tel + "' " +
-                                              ", Fax='" + Fax + "' " +
-                                              ", Mail='" + Mail + "' " +
-                                              ", SMTPUser='" + SMTPUser + "' " +
-                                              ", SMTPPass='" + SMTPPasswort + "' " +
-                                              ", SMTPServer='" + SMTPServer + "' " +
+            string safeName = (Name ?? string.Empty).Replace("'", "''");
+            string safeLogin = (LoginName ?? string.Empty).Replace("'", "''");
+            string safePass = (pass ?? string.Empty).Replace("'", "''");
+            string safeInitialen = (Initialen ?? string.Empty).Replace("'", "''");
+            string safeVorname = (Vorname ?? string.Empty).Replace("'", "''");
+            string safeTel = (Tel ?? string.Empty).Replace("'", "''");
+            string safeFax = (Fax ?? string.Empty).Replace("'", "''");
+            string safeMail = (Mail ?? string.Empty).Replace("'", "''");
+            string safeSMTPUser = (SMTPUser ?? string.Empty).Replace("'", "''");
+            string safeSMTPPass = (SMTPPasswort ?? string.Empty).Replace("'", "''");
+            string safeSMTPServer = (SMTPServer ?? string.Empty).Replace("'", "''");
+            string safeFileName = (MailCredentialsFileName ?? string.Empty).Replace("'", "''");
+
+            string strSQL = "Update [User] SET Name='" + safeName + "' " +
+                                              ", LoginName='" + safeLogin + "' " +
+                                              ", Pass='" + safePass + "' " +
+                                              ", Initialen='" + safeInitialen + "' " +
+                                              ", Vorname='" + safeVorname + "' " +
+                                              ", Tel='" + safeTel + "' " +
+                                              ", Fax='" + safeFax + "' " +
+                                              ", Mail='" + safeMail + "' " +
+                                              ", SMTPUser='" + safeSMTPUser + "' " +
+                                              ", SMTPPass='" + safeSMTPPass + "' " +
+                                              ", SMTPServer='" + safeSMTPServer + "' " +
                                               ", SMTPPort=" + SMTPPort +
                                               ", IsAdmin = " + Convert.ToInt32(IsAdmin) +
+                                              ", MailCredentialsFileName = '" + safeFileName + "'" +
                                                       " WHERE ID=" + (int)ID;
+
+            //string strSQL = "Update [User] SET Name='" + Name + "' " +
+            //                                  ", LoginName='" + LoginName + "' " +
+            //                                  ", Pass='" + pass + "' " +
+            //                                  ", Initialen='" + Initialen + "' " +
+            //                                  ", Vorname='" + Vorname + "' " +
+            //                                  ", Tel='" + Tel + "' " +
+            //                                  ", Fax='" + Fax + "' " +
+            //                                  ", Mail='" + Mail + "' " +
+            //                                  ", SMTPUser='" + SMTPUser + "' " +
+            //                                  ", SMTPPass='" + SMTPPasswort + "' " +
+            //                                  ", SMTPServer='" + SMTPServer + "' " +
+            //                                  ", SMTPPort=" + SMTPPort +
+            //                                  ", IsAdmin = " + Convert.ToInt32(IsAdmin) +
+            //                                          " WHERE ID=" + (int)ID;
 
             bool bOK = clsSQLcon.ExecuteSQL(strSQL, BenutzerID);
             if (bOK)
@@ -159,6 +225,46 @@ namespace LVS
                 Functions.AddLogbuch(BenutzerID, enumLogbuchAktion.Aenderung.ToString(), Beschreibung);
             }
         }
+        /// <summary>
+        /// Speichert verschlüsselte Credentials (binary) und optional Dateiname in die User-Tabelle.
+        /// Nutzt parameterisierte Abfrage für varbinary(max).
+        /// </summary>
+        public bool SaveMailCredentialsToUser(byte[] encryptedData, string fileName)
+        {
+            if (this.ID <= 0) return false;
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = Globals.SQLcon.Connection;
+                    cmd.CommandText = "UPDATE [User] SET MailCredentialsData = @data, MailCredentialsFileName = @fileName WHERE ID = @id";
+                    cmd.Parameters.Add("@data", SqlDbType.VarBinary, -1).Value = (object)encryptedData ?? DBNull.Value;
+                    cmd.Parameters.Add("@fileName", SqlDbType.NVarChar, 260).Value = (object)(fileName ?? string.Empty);
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = (int)this.ID;
+
+                    Globals.SQLcon.Open();
+                    int rows = cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                    Globals.SQLcon.Close();
+
+                    if (rows > 0)
+                    {
+                        // lokale Werte aktualisieren
+                        this.MailCredentialsData = encryptedData;
+                        this.MailCredentialsFileName = fileName;
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch
+            {
+                try { Globals.SQLcon.Close(); } catch { }
+                return false;
+            }
+        }
+
         ///<summary>clsUser / Fill</summary>
         ///<remarks></remarks>
         public Globals._GL_USER Fill()
@@ -195,7 +301,7 @@ namespace LVS
                 {
                     this.dtDispoVon = DateTime.Now.Date;
                 }
-                if (dt.Rows[i]["dtDispoVon"] != DBNull.Value)
+                if (dt.Rows[i]["dtDispoBis"] != DBNull.Value)
                 {
                     this.dtDispoBis = (DateTime)dt.Rows[i]["dtDispoBis"];
                 }
@@ -210,6 +316,35 @@ namespace LVS
                 Int32.TryParse(dt.Rows[i]["SMTPPort"].ToString(), out iTmp);
                 this.SMTPPort = iTmp;
                 this.IsAdmin = (bool)dt.Rows[i]["IsAdmin"];
+
+                // Lade neue Felder (falls vorhanden)
+                if (dt.Rows[i].Table.Columns.Contains("MailCredentialsFileName"))
+                {
+                    this.MailCredentialsFileName = dt.Rows[i]["MailCredentialsFileName"] != DBNull.Value
+                        ? dt.Rows[i]["MailCredentialsFileName"].ToString()
+                        : string.Empty;
+                }
+                else
+                {
+                    this.MailCredentialsFileName = string.Empty;
+                }
+
+                if (dt.Rows[i].Table.Columns.Contains("MailCredentialsData") && dt.Rows[i]["MailCredentialsData"] != DBNull.Value)
+                {
+                    try
+                    {
+                        this.MailCredentialsData = (byte[])dt.Rows[i]["MailCredentialsData"];
+                    }
+                    catch
+                    {
+                        this.MailCredentialsData = null;
+                    }
+                }
+                else
+                {
+                    this.MailCredentialsData = null;
+                }
+
 
                 //GLobal User setzen
                 _GL_User.User_ID = this.ID;
@@ -368,25 +503,54 @@ namespace LVS
         public bool CheckLogin(string LoginName, string Pass)
         {
             bool LoginOK = false;
-            SqlDataAdapter ada = new SqlDataAdapter();
-            SqlCommand Command = new SqlCommand();
-            Command.Connection = Globals.SQLcon.Connection;
-            ada.SelectCommand = Command;
-            Command.CommandText = "SELECT ID FROM [USER] WHERE LoginName='" + LoginName + "' AND Pass='" + Pass + "'";
-            Globals.SQLcon.Open();
+            using (SqlCommand Command = new SqlCommand())
+            {
+                Command.Connection = Globals.SQLcon.Connection;
+                Command.CommandText = "SELECT ID FROM [USER] WHERE LoginName = @login AND Pass = @pass";
+                Command.Parameters.AddWithValue("@login", LoginName ?? string.Empty);
+                Command.Parameters.AddWithValue("@pass", Pass ?? string.Empty);
 
-            object obj = Command.ExecuteScalar();
-            if (obj != null)
-            {
-                ID = (decimal)obj;
-                LoginOK = true;
+                try
+                {
+                    Globals.SQLcon.Open();
+                    object obj = Command.ExecuteScalar();
+                    if (obj != null && obj != DBNull.Value)
+                    {
+                        // DB liefert numeric -> cast zu decimal
+                        ID = Convert.ToDecimal(obj);
+                        LoginOK = true;
+                    }
+                    else
+                    {
+                        LoginOK = false;
+                    }
+                }
+                finally
+                {
+                    Command.Dispose();
+                    Globals.SQLcon.Close();
+                }
             }
-            else
-            {
-                LoginOK = false;
-            }
-            Command.Dispose();
-            Globals.SQLcon.Close();
+
+            //SqlDataAdapter ada = new SqlDataAdapter();
+            //SqlCommand Command = new SqlCommand();
+            //Command.Connection = Globals.SQLcon.Connection;
+            //ada.SelectCommand = Command;
+            //Command.CommandText = "SELECT ID FROM [USER] WHERE LoginName='" + LoginName + "' AND Pass='" + Pass + "'";
+            //Globals.SQLcon.Open();
+
+            //object obj = Command.ExecuteScalar();
+            //if (obj != null)
+            //{
+            //    ID = (decimal)obj;
+            //    LoginOK = true;
+            //}
+            //else
+            //{
+            //    LoginOK = false;
+            //}
+            //Command.Dispose();
+            //Globals.SQLcon.Close();
             return LoginOK;
         }
 
@@ -398,24 +562,51 @@ namespace LVS
         public static decimal GetUserIDByLoginNameAndPass(string LoginName, string Pass)
         {
             decimal id = 0;
-            SqlDataAdapter ada = new SqlDataAdapter();
-            SqlCommand Command = new SqlCommand();
-            Command.Connection = Globals.SQLcon.Connection;
-            ada.SelectCommand = Command;
-            Command.CommandText = "SELECT ID FROM [USER] WHERE LoginName='" + LoginName + "' AND Pass='" + Pass + "'";
-            Globals.SQLcon.Open();
+            using (SqlCommand Command = new SqlCommand())
+            {
+                Command.Connection = Globals.SQLcon.Connection;
+                Command.CommandText = "SELECT ID FROM [USER] WHERE LoginName = @login AND Pass = @pass";
+                Command.Parameters.AddWithValue("@login", LoginName ?? string.Empty);
+                Command.Parameters.AddWithValue("@pass", Pass ?? string.Empty);
 
-            object obj = Command.ExecuteScalar();
-            if (obj != null)
-            {
-                id = (decimal)obj;
+                try
+                {
+                    Globals.SQLcon.Open();
+                    object obj = Command.ExecuteScalar();
+                    if (obj != null && obj != DBNull.Value)
+                    {
+                        id = Convert.ToDecimal(obj);
+                    }
+                    else
+                    {
+                        id = 0;
+                    }
+                }
+                finally
+                {
+                    Command.Dispose();
+                    Globals.SQLcon.Close();
+                }
             }
-            else
-            {
-                id = 0;
-            }
-            Command.Dispose();
-            Globals.SQLcon.Close();
+
+            //SqlDataAdapter ada = new SqlDataAdapter();
+            //SqlCommand Command = new SqlCommand();
+            //Command.Connection = Globals.SQLcon.Connection;
+            //ada.SelectCommand = Command;
+            //Command.CommandText = "SELECT ID FROM [USER] WHERE LoginName='" + LoginName + "' AND Pass='" + Pass + "'";
+            //Globals.SQLcon.Open();
+
+            //object obj = Command.ExecuteScalar();
+            //if (obj != null)
+            //{
+            //    id = (decimal)obj;
+            //}
+            //else
+            //{
+            //    id = 0;
+            //}
+            //Command.Dispose();
+            //Globals.SQLcon.Close();
             return id;
         }
 
@@ -424,16 +615,18 @@ namespace LVS
             this.BenutzerID = 0;
             this.Name = "Administrator";
             this.LoginName = "Admin";
-            this.pass = "lvs@comtec";
+            this.pass = "lvs";
             this.Initialen = "admin";
             this.Vorname = string.Empty;
             this.Tel = string.Empty;
             this.Fax = string.Empty;
-            this.Mail = clsSystem.const_MailAdress;
-            this.SMTPUser = clsSystem.const_Mail_SMTPUser;
-            this.SMTPPasswort = clsSystem.const_Mail_SMTPPasswort;
-            this.SMTPServer = clsSystem.const_Mail_SMTPServer;
-            this.SMTPPort = clsSystem.const_Mail_SMTPPort;
+            this.Mail = string.Empty; //clsSystem.const_MailAdress;
+            this.SMTPUser = string.Empty; //clsSystem.const_Mail_SMTPUser;
+            this.SMTPPasswort = string.Empty; //clsSystem.const_Mail_SMTPPasswort;
+            this.SMTPServer = string.Empty; //clsSystem.const_Mail_SMTPServer;
+            this.SMTPPort = 587; //clsSystem.const_Mail_SMTPPort;
+            this.MailCredentialsData = null;
+            this.MailCredentialsFileName = string.Empty;
             AddNewDatenToUser();
             Fill();
             this.Berechtigung.CreateAdminAuth();

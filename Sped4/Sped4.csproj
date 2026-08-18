@@ -33,7 +33,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>26.08.11.%2a</ApplicationVersion>
+    <ApplicationVersion>26.08.14.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -141,6 +141,9 @@
     <Reference Include="Microsoft.Toolkit.Uwp.Notifications, Version=7.0.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2026.2.702.48\Microsoft.Toolkit.Uwp.Notifications.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp, Version=6.2.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.6.2.1\lib\netstandard2.0\PdfSharp.dll</HintPath>
@@ -526,6 +529,7 @@
     <Compile Include="Classes\clsSQLStatement.cs" />
     <Compile Include="Classes\clsPrint.cs" />
     <Compile Include="Classes\Helper\helper_TelerikGridViewRowInfo.cs" />
+    <Compile Include="Classes\Update\up1342.cs" />
     <Compile Include="Classes\Update\up1341.cs" />
     <Compile Include="Classes\Update\up1340.cs" />
     <Compile Include="Classes\Update\up1339.cs" />
@@ -767,6 +771,12 @@
     </Compile>
     <Compile Include="Controls\ToDo\ctrPdfCombinationTest.Designer.cs">
       <DependentUpon>ctrPdfCombinationTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToDo\ctrUserlistMailCredentials.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ToDo\ctrUserlistMailCredentials.Designer.cs">
+      <DependentUpon>ctrUserlistMailCredentials.cs</DependentUpon>
     </Compile>
     <Compile Include="ctrADRSearch.cs">
       <SubType>UserControl</SubType>
@@ -1768,6 +1778,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ToDo\ctrPdfCombinationTest.resx">
       <DependentUpon>ctrPdfCombinationTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ToDo\ctrUserlistMailCredentials.resx">
+      <DependentUpon>ctrUserlistMailCredentials.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctrADRSearch.resx">
       <DependentUpon>ctrADRSearch.cs</DependentUpon>

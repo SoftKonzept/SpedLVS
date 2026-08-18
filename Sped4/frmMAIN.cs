@@ -1301,6 +1301,24 @@ namespace Sped4
         private void adminCockpitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AdminCockpit = new frmAdminCockpit(this.ctrMenu);
+            // Auf dem gleichen Monitor wie frmMAIN zentrieren
+            try
+            {
+                var screen = Screen.FromControl(this);
+                var wa = screen.WorkingArea;
+
+                // Designer-Größe des Formulars verwenden (wird beim Erstellen gesetzt)
+                AdminCockpit.StartPosition = FormStartPosition.Manual;
+                int x = wa.Left + Math.Max(0, (wa.Width - AdminCockpit.Width) / 2);
+                int y = wa.Top + Math.Max(0, (wa.Height - AdminCockpit.Height) / 2);
+                AdminCockpit.Location = new System.Drawing.Point(x, y);
+            }
+            catch
+            {
+                // Best effort: falls Positionierung fehlschlägt, Standard-Startposition verwenden
+                AdminCockpit.StartPosition = FormStartPosition.CenterScreen;
+            }
+
             AdminCockpit.Show();
             AdminCockpit.BringToFront();
         }

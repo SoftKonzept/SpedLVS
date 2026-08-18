@@ -55,8 +55,10 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.scMain = new System.Windows.Forms.SplitContainer();
-            this.btnMaildaten = new System.Windows.Forms.Button();
             this.btnSKData = new System.Windows.Forms.Button();
+            this.btnMaildaten = new System.Windows.Forms.Button();
+            this.btnCredentialCreate = new System.Windows.Forms.Button();
+            this.btnCredentialsImport = new System.Windows.Forms.Button();
             this.gbSMTP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPort)).BeginInit();
             this.gbMailMessage.SuspendLayout();
@@ -231,6 +233,7 @@
             this.tbMailTo.Name = "tbMailTo";
             this.tbMailTo.Size = new System.Drawing.Size(247, 20);
             this.tbMailTo.TabIndex = 11;
+            this.tbMailTo.Text = "info@softkonzept.com";
             // 
             // label9
             // 
@@ -325,6 +328,8 @@
             // 
             // scMain.Panel1
             // 
+            this.scMain.Panel1.Controls.Add(this.btnCredentialsImport);
+            this.scMain.Panel1.Controls.Add(this.btnCredentialCreate);
             this.scMain.Panel1.Controls.Add(this.btnSKData);
             this.scMain.Panel1.Controls.Add(this.btnMaildaten);
             this.scMain.Panel1.Controls.Add(this.gbSMTP);
@@ -343,21 +348,10 @@
             this.scMain.SplitterDistance = 280;
             this.scMain.TabIndex = 15;
             // 
-            // btnMaildaten
-            // 
-            this.btnMaildaten.BackColor = System.Drawing.Color.Wheat;
-            this.btnMaildaten.Location = new System.Drawing.Point(419, 223);
-            this.btnMaildaten.Name = "btnMaildaten";
-            this.btnMaildaten.Size = new System.Drawing.Size(166, 23);
-            this.btnMaildaten.TabIndex = 14;
-            this.btnMaildaten.Text = "Standart Maildaten setzen";
-            this.btnMaildaten.UseVisualStyleBackColor = false;
-            this.btnMaildaten.Click += new System.EventHandler(this.btnMaildaten_Click);
-            // 
             // btnSKData
             // 
             this.btnSKData.BackColor = System.Drawing.Color.Wheat;
-            this.btnSKData.Location = new System.Drawing.Point(419, 252);
+            this.btnSKData.Location = new System.Drawing.Point(184, 252);
             this.btnSKData.Name = "btnSKData";
             this.btnSKData.Size = new System.Drawing.Size(166, 23);
             this.btnSKData.TabIndex = 15;
@@ -365,13 +359,46 @@
             this.btnSKData.UseVisualStyleBackColor = false;
             this.btnSKData.Click += new System.EventHandler(this.btnSKData_Click);
             // 
+            // btnMaildaten
+            // 
+            this.btnMaildaten.BackColor = System.Drawing.Color.Wheat;
+            this.btnMaildaten.Location = new System.Drawing.Point(12, 252);
+            this.btnMaildaten.Name = "btnMaildaten";
+            this.btnMaildaten.Size = new System.Drawing.Size(166, 23);
+            this.btnMaildaten.TabIndex = 14;
+            this.btnMaildaten.Text = "Standart Maildaten setzen";
+            this.btnMaildaten.UseVisualStyleBackColor = false;
+            this.btnMaildaten.Click += new System.EventHandler(this.btnMaildaten_Click);
+            // 
+            // btnCredentialCreate
+            // 
+            this.btnCredentialCreate.BackColor = System.Drawing.Color.Wheat;
+            this.btnCredentialCreate.Location = new System.Drawing.Point(451, 217);
+            this.btnCredentialCreate.Name = "btnCredentialCreate";
+            this.btnCredentialCreate.Size = new System.Drawing.Size(134, 52);
+            this.btnCredentialCreate.TabIndex = 16;
+            this.btnCredentialCreate.Text = "Mail Credential erstellen";
+            this.btnCredentialCreate.UseVisualStyleBackColor = false;
+            this.btnCredentialCreate.Click += new System.EventHandler(this.btnCredentialCreate_Click);
+            // 
+            // btnCredentialsImport
+            // 
+            this.btnCredentialsImport.BackColor = System.Drawing.Color.Wheat;
+            this.btnCredentialsImport.Location = new System.Drawing.Point(591, 217);
+            this.btnCredentialsImport.Name = "btnCredentialsImport";
+            this.btnCredentialsImport.Size = new System.Drawing.Size(134, 52);
+            this.btnCredentialsImport.TabIndex = 17;
+            this.btnCredentialsImport.Text = "Credentials importieren";
+            this.btnCredentialsImport.UseVisualStyleBackColor = false;
+            this.btnCredentialsImport.Click += new System.EventHandler(this.btnCredentialsImport_Click);
+            // 
             // ctrMailCheck
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.scMain);
             this.Name = "ctrMailCheck";
-            this.Size = new System.Drawing.Size(781, 490);
+            this.Size = new System.Drawing.Size(781, 532);
             this.Load += new System.EventHandler(this.MailCheck_Load);
             this.gbSMTP.ResumeLayout(false);
             this.gbSMTP.PerformLayout();
@@ -419,5 +446,7 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.Button btnMaildaten;
         private System.Windows.Forms.Button btnSKData;
+        private System.Windows.Forms.Button btnCredentialCreate;
+        private System.Windows.Forms.Button btnCredentialsImport;
     }
 }

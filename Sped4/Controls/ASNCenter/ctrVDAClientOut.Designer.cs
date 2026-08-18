@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.panPreview = new Telerik.WinControls.UI.RadPanel();
             this.rMenu_VDAClientOutPreview = new Telerik.WinControls.UI.RadMenu();
@@ -39,8 +39,8 @@
             this.sc_MainTop = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel4 = new Telerik.WinControls.UI.SplitPanel();
             this.panVDAClientOutList = new Telerik.WinControls.UI.RadPanel();
-            this.dgvVDAClientOut = new Telerik.WinControls.UI.RadGridView();
             this.rMenuVDAClientOut_List = new Telerik.WinControls.UI.RadMenu();
+            this.dgvVDAClientOut = new Telerik.WinControls.UI.RadGridView();
             this.btnList_Refresh = new Telerik.WinControls.UI.RadMenuItem();
             this.btnList_Add = new Telerik.WinControls.UI.RadMenuItem();
             this.btnAddShape = new Telerik.WinControls.UI.RadMenuButtonItem();
@@ -72,6 +72,8 @@
             this.btnEdit_Delete = new Telerik.WinControls.UI.RadMenuButtonItem();
             this.btnEdit_Copy = new Telerik.WinControls.UI.RadMenuButtonItem();
             this.sc_Main = new Telerik.WinControls.UI.RadSplitContainer();
+            this.btnImport = new Telerik.WinControls.UI.RadMenuButtonItem();
+            this.btnExport = new Telerik.WinControls.UI.RadMenuButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panPreview)).BeginInit();
@@ -85,10 +87,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel4)).BeginInit();
             this.splitPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panVDAClientOutList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rMenuVDAClientOut_List)).BeginInit();
             this.panVDAClientOutList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVDAClientOut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVDAClientOut.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rMenuVDAClientOut_List)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rMenu_VDAClientOut_List)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rMenu_VDAClientOutList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).BeginInit();
@@ -119,10 +121,6 @@
             this.splitPanel2.Controls.Add(this.panPreview);
             this.splitPanel2.Location = new System.Drawing.Point(0, 465);
             this.splitPanel2.Name = "splitPanel2";
-            // 
-            // 
-            // 
-            this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.splitPanel2.Size = new System.Drawing.Size(1171, 170);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.2290016F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -139);
@@ -167,7 +165,6 @@
             // 
             // 
             this.comboPreview.ComboBoxElement.ArrowButtonMinWidth = 17;
-            this.comboPreview.ComboBoxElement.DropDownAnimationEnabled = true;
             this.comboPreview.Name = "comboPreview";
             this.comboPreview.Text = "radMenuComboItem1";
             // 
@@ -176,10 +173,6 @@
             this.splitPanel1.Controls.Add(this.sc_MainTop);
             this.splitPanel1.Location = new System.Drawing.Point(0, 0);
             this.splitPanel1.Name = "splitPanel1";
-            // 
-            // 
-            // 
-            this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.splitPanel1.Size = new System.Drawing.Size(1171, 457);
             this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.2290016F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 139);
@@ -194,10 +187,6 @@
             this.sc_MainTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sc_MainTop.Location = new System.Drawing.Point(0, 0);
             this.sc_MainTop.Name = "sc_MainTop";
-            // 
-            // 
-            // 
-            this.sc_MainTop.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.sc_MainTop.Size = new System.Drawing.Size(1171, 457);
             this.sc_MainTop.SplitterWidth = 8;
             this.sc_MainTop.TabIndex = 0;
@@ -208,10 +197,6 @@
             this.splitPanel4.Controls.Add(this.panVDAClientOutList);
             this.splitPanel4.Location = new System.Drawing.Point(0, 0);
             this.splitPanel4.Name = "splitPanel4";
-            // 
-            // 
-            // 
-            this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.splitPanel4.Size = new System.Drawing.Size(535, 457);
             this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.03984576F, 0F);
             this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(-41, 0);
@@ -222,6 +207,20 @@
             // panVDAClientOutList
             // 
             this.panVDAClientOutList.BackColor = System.Drawing.Color.White;
+            // 
+            // rMenuVDAClientOut_List
+            // 
+            this.rMenuVDAClientOut_List.AllItemsEqualHeight = true;
+            this.rMenuVDAClientOut_List.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnList_Refresh,
+            this.btnList_Add,
+            this.btnAddShape,
+            this.btnImport,
+            this.btnExport});
+            this.rMenuVDAClientOut_List.Location = new System.Drawing.Point(0, 0);
+            this.rMenuVDAClientOut_List.Name = "rMenuVDAClientOut_List";
+            this.rMenuVDAClientOut_List.Size = new System.Drawing.Size(535, 44);
+            this.rMenuVDAClientOut_List.TabIndex = 10;
             this.panVDAClientOutList.Controls.Add(this.dgvVDAClientOut);
             this.panVDAClientOutList.Controls.Add(this.rMenuVDAClientOut_List);
             this.panVDAClientOutList.Controls.Add(this.rMenu_VDAClientOut_List);
@@ -248,32 +247,19 @@
             this.dgvVDAClientOut.MasterTemplate.EnableFiltering = true;
             this.dgvVDAClientOut.MasterTemplate.ShowFilteringRow = false;
             this.dgvVDAClientOut.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvVDAClientOut.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.dgvVDAClientOut.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.dgvVDAClientOut.Name = "dgvVDAClientOut";
             this.dgvVDAClientOut.ReadOnly = true;
             this.dgvVDAClientOut.RightToLeft = System.Windows.Forms.RightToLeft.No;
             // 
             // 
             // 
-            this.dgvVDAClientOut.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 42, 240, 150);
-            this.dgvVDAClientOut.ShowHeaderCellButtons = true;
+            this.dgvVDAClientOut.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 44, 240, 150);
             this.dgvVDAClientOut.Size = new System.Drawing.Size(535, 413);
             this.dgvVDAClientOut.TabIndex = 30;
             this.dgvVDAClientOut.ThemeName = "ControlDefault";
             this.dgvVDAClientOut.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvVDAClientOut_MouseClick);
             this.dgvVDAClientOut.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvVDAClientOut_MouseDoubleClick);
-            // 
-            // rMenuVDAClientOut_List
-            // 
-            this.rMenuVDAClientOut_List.AllItemsEqualHeight = true;
-            this.rMenuVDAClientOut_List.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.btnList_Refresh,
-            this.btnList_Add,
-            this.btnAddShape});
-            this.rMenuVDAClientOut_List.Location = new System.Drawing.Point(0, 0);
-            this.rMenuVDAClientOut_List.Name = "rMenuVDAClientOut_List";
-            this.rMenuVDAClientOut_List.Size = new System.Drawing.Size(535, 44);
-            this.rMenuVDAClientOut_List.TabIndex = 10;
             // 
             // btnList_Refresh
             // 
@@ -374,10 +360,6 @@
             this.splitPanel5.Controls.Add(this.panVDAClientOutEdit);
             this.splitPanel5.Location = new System.Drawing.Point(543, 0);
             this.splitPanel5.Name = "splitPanel5";
-            // 
-            // 
-            // 
-            this.splitPanel5.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.splitPanel5.Size = new System.Drawing.Size(628, 457);
             this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.03984576F, 0F);
             this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(41, 0);
@@ -403,10 +385,6 @@
             this.sc_Edit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sc_Edit.Location = new System.Drawing.Point(0, 36);
             this.sc_Edit.Name = "sc_Edit";
-            // 
-            // 
-            // 
-            this.sc_Edit.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.sc_Edit.Size = new System.Drawing.Size(628, 421);
             this.sc_Edit.SplitterWidth = 8;
             this.sc_Edit.TabIndex = 11;
@@ -417,10 +395,6 @@
             this.splitPanel3.Controls.Add(this.panEdit);
             this.splitPanel3.Location = new System.Drawing.Point(0, 0);
             this.splitPanel3.Name = "splitPanel3";
-            // 
-            // 
-            // 
-            this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.splitPanel3.Size = new System.Drawing.Size(320, 421);
             this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.05451715F, 0F);
             this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(41, 0);
@@ -578,10 +552,6 @@
             this.splitPanel6.Controls.Add(this.dgvInputSelections);
             this.splitPanel6.Location = new System.Drawing.Point(328, 0);
             this.splitPanel6.Name = "splitPanel6";
-            // 
-            // 
-            // 
-            this.splitPanel6.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.splitPanel6.Size = new System.Drawing.Size(300, 421);
             this.splitPanel6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.05451712F, 0F);
             this.splitPanel6.SizeInfo.MaximumSize = new System.Drawing.Size(300, 0);
@@ -607,7 +577,7 @@
             this.dgvInputSelections.MasterTemplate.EnableFiltering = true;
             this.dgvInputSelections.MasterTemplate.ShowFilteringRow = false;
             this.dgvInputSelections.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvInputSelections.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.dgvInputSelections.MasterTemplate.ViewDefinition = tableViewDefinition6;
             this.dgvInputSelections.Name = "dgvInputSelections";
             this.dgvInputSelections.ReadOnly = true;
             this.dgvInputSelections.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -615,7 +585,6 @@
             // 
             // 
             this.dgvInputSelections.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
-            this.dgvInputSelections.ShowHeaderCellButtons = true;
             this.dgvInputSelections.Size = new System.Drawing.Size(300, 421);
             this.dgvInputSelections.TabIndex = 31;
             this.dgvInputSelections.ThemeName = "ControlDefault";
@@ -688,14 +657,32 @@
             this.sc_Main.Location = new System.Drawing.Point(0, 0);
             this.sc_Main.Name = "sc_Main";
             this.sc_Main.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // 
-            // 
-            this.sc_Main.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.sc_Main.Size = new System.Drawing.Size(1171, 635);
             this.sc_Main.SplitterWidth = 8;
             this.sc_Main.TabIndex = 8;
             this.sc_Main.TabStop = false;
+            // 
+            // btnImport
+            // 
+            // 
+            // 
+            // 
+            this.btnImport.ButtonElement.ShowBorder = false;
+            this.btnImport.Image = global::Sped4.Properties.Resources.box_into_32x32;
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Text = "";
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
+            // btnExport
+            // 
+            // 
+            // 
+            // 
+            this.btnExport.ButtonElement.ShowBorder = false;
+            this.btnExport.Image = global::Sped4.Properties.Resources.box_out_32x32;
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Text = "";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // ctrVDAClientOut
             // 
@@ -718,12 +705,12 @@
             this.sc_MainTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel4)).EndInit();
             this.splitPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rMenuVDAClientOut_List)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panVDAClientOutList)).EndInit();
             this.panVDAClientOutList.ResumeLayout(false);
             this.panVDAClientOutList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVDAClientOut.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVDAClientOut)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rMenuVDAClientOut_List)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rMenu_VDAClientOut_List)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rMenu_VDAClientOutList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).EndInit();
@@ -794,7 +781,9 @@
         private System.Windows.Forms.Label ljob;
         private System.Windows.Forms.TextBox tbNextSatz;
         private Telerik.WinControls.UI.RadMenuComboItem comboPreview;
-        private Telerik.WinControls.UI.RadMenu rMenuVDAClientOut_List;
         private Telerik.WinControls.UI.RadMenuButtonItem btnAddShape;
+        private Telerik.WinControls.UI.RadMenu rMenuVDAClientOut_List;
+        private Telerik.WinControls.UI.RadMenuButtonItem btnImport;
+        private Telerik.WinControls.UI.RadMenuButtonItem btnExport;
     }
 }

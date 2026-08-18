@@ -118,6 +118,19 @@ namespace LVS.ViewData
             this.User.SMTPPasswort = string.Empty;
             this.User.SMTPSSL = false;
             this.User.IsAdmin = false;
+
+            // Neu: MailCredentials in der ViewData initialisieren (Base64 + Dateiname)
+            // Diese Properties müssen in Common\Models\Users.cs ergänzt werden (MailCredentialsBase64, MailCredentialsFileName)
+            try
+            {
+                this.User.GetType().GetProperty("MailCredentialsBase64")?.SetValue(this.User, string.Empty, null);
+                this.User.GetType().GetProperty("MailCredentialsFileName")?.SetValue(this.User, string.Empty, null);
+            }
+            catch
+            {
+                // ignore bei älteren Models ohne Felder
+            }
+
         }
         /// <summary>
         /// 
@@ -354,7 +367,7 @@ namespace LVS.ViewData
             {
                 this.User.dtDispoVon = DateTime.Now.Date;
             }
-            if (myRow["dtDispoVon"] != DBNull.Value)
+            if (myRow["dtDispoBis"] != DBNull.Value)
             {
                 this.User.dtDispoBis = (DateTime)myRow["dtDispoBis"];
             }
@@ -367,8 +380,38 @@ namespace LVS.ViewData
             this.User.SMTPServer = myRow["SMTPServer"].ToString();
             Int32 iTmp = clsSystem.const_Mail_SMTPPort;
             Int32.TryParse(myRow["SMTPPort"].ToString(), out iTmp);
-            this.User.SMTPPort = iTmp;
+            this.User.SMTPPort =  iTmp;
             this.User.IsAdmin = (bool)myRow["IsAdmin"];
+
+            // Neu: MailCredentialsFileName und MailCredentialsBase64 lesen, falls Spalten vorhanden
+            if (myRow.Table.Columns.Contains("MailCredentialsFileName"))
+            {
+                this.User.GetType().GetProperty("MailCredentialsFileName")?
+                    .SetValue(this.User, myRow["MailCredentialsFileName"] != DBNull.Value ? myRow["MailCredentialsFileName"].ToString() : string.Empty, null);
+            }
+            if (myRow.Table.Columns.Contains("MailCredentialsData"))
+            {
+                // wenn DB speichert varbinary, konvertiere in Base64-String im Users-Model (falls Property vorhanden)
+                try
+                {
+                    if (myRow["MailCredentialsData"] != DBNull.Value)
+                    {
+                        var bytes = (byte[])myRow["MailCredentialsData"];
+                        var base64 = Convert.ToBase64String(bytes);
+                        this.User.GetType().GetProperty("MailCredentialsBase64")?
+                            .SetValue(this.User, base64, null);
+                    }
+                    else
+                    {
+                        this.User.GetType().GetProperty("MailCredentialsBase64")?
+                            .SetValue(this.User, string.Empty, null);
+                    }
+                }
+                catch
+                {
+                    // ignore bei nicht vorhandenem Feld / Typfehlern
+                }
+            }
         }
 
 

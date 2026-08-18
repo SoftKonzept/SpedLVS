@@ -1,10 +1,12 @@
 ﻿using Common.Enumerations;
 using Common.Helper;
 using Common.Models;
-using System;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Text;
+
 
 namespace Common.Models
 {
@@ -123,7 +125,8 @@ namespace Common.Models
         [JsonProperty("SMTPUser")]
         public string SMTPUser { get; set; } = string.Empty;
 
-        [DataMember]
+        [JsonIgnore]
+        [IgnoreDataMember]
         [JsonProperty("SMTPPasswort")]
         public string SMTPPasswort { get; set; } = string.Empty;
 
@@ -139,6 +142,97 @@ namespace Common.Models
         [JsonProperty("userAuthorization")]
         public UserAuthorizations UserAuthorization { get; set; }
 
+        /// <summary>
+        /// Deserialisierte Mail-Credentials (wenn MailCredentialsData erfolgreich verarbeitet wurde).
+        /// Nur lesend, damit Aufrufer Zugriff ohne erneute Deserialisierung haben.
+        /// </summary>
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public MailCredentials MailCredentials => _internalMailCredentials;
+
+        [DataMember]
+        [JsonProperty("MailCredentialsFileName")]
+        public string MailCredentialsFileName { get; set; } = string.Empty;
+
+        // intern gehaltene, deserialisierte Credentials (falls erfolgreich gefunden)
+        private MailCredentials _internalMailCredentials = null;
+
+        /// <summary>
+        /// Versucht die Bytes als UTF8-JSON oder als DPAPI-geschützte Bytes zu interpretieren.
+        /// Setzt bei Erfolg _internalMailCredentials und wendet die Werte auf die Felder an.
+        /// </summary>
+        private void ProcessMailCredentialsBytes(byte[] bytes)
+        {
+            if (bytes == null || bytes.Length == 0)
+            {
+                _internalMailCredentials = null;
+                return;
+            }
+
+            // Versuch 1: direkte JSON (UTF8)
+            try
+            {
+                var json = Encoding.UTF8.GetString(bytes);
+                var creds = JsonConvert.DeserializeObject<MailCredentials>(json);
+                if (creds != null)
+                {
+                    _internalMailCredentials = creds;
+                    ApplyMailCredentialsToFields(creds);
+                    return;
+                }
+            }
+            catch
+            {
+                // kein valides JSON - _internalMailCredentials bleibt null
+                _internalMailCredentials = null;
+            }
+        }
+        /// <summary>
+        /// Öffentliche Hilfs-Methode: verarbeitet bereits entschlüsselte JSON-Bytes (UTF8).
+        /// Aufruf durch plattformspezifischen Code (z.B. LVS) möglich.
+        /// </summary>
+        public void SetMailCredentialsFromJsonBytes(byte[] jsonUtf8Bytes)
+        {
+            ProcessMailCredentialsBytes(jsonUtf8Bytes);
+        }
+        /// <summary>
+        /// Wendet deserialisierte MailCredentials auf die Benutzerfelder an.
+        /// Überschreibt nur, wenn Credential-Werte vorhanden sind.
+        /// </summary>
+        private void ApplyMailCredentialsToFields(MailCredentials creds)
+        {
+            if (creds == null) return;
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(creds.SmtpHost))
+                    this.SMTPServer = creds.SmtpHost;
+
+                if (creds.SmtpPort > 0)
+                    this.SMTPPort = creds.SmtpPort;
+
+                if (!string.IsNullOrWhiteSpace(creds.SmtpUser))
+                    this.SMTPUser = creds.SmtpUser;
+
+                if (!string.IsNullOrWhiteSpace(creds.SmtpPassword))
+                    this.SMTPPasswort = creds.SmtpPassword;
+
+                if (!string.IsNullOrWhiteSpace(creds.SmtpDisplayName))
+                    this.Mail = creds.SmtpDisplayName;
+                else if (!string.IsNullOrWhiteSpace(creds.SmtpUser))
+                    this.Mail = creds.SmtpUser;
+
+                // heuristische SMTPSSL-Setzung
+                if (creds.SmtpPort == 465 || creds.SmtpPort == 587)
+                    this.SMTPSSL = true;
+            }
+            catch
+            {
+                // defensiv: keine Ausnahme nach außen
+            }
+        }
+
+
+
         public Users Copy()
         {
             return (Users)this.MemberwiseClone();
@@ -149,3 +243,4 @@ namespace Common.Models
     }
 
 }
+

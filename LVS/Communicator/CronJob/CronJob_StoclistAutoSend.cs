@@ -1,4 +1,5 @@
-﻿using LVS.Mail;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using LVS.Mail;
 using LVS.Models;
 using LVS.sqlStatementCreater;
 using LVS.ViewData;
@@ -104,33 +105,102 @@ namespace LVS.Communicator.CronJob
                                 //Mail.Subject = strSubject;
                                 //ProzessExcecuted = Mail.SendNoReply();
 
-                                // ✅ Mail asynchron versenden ohne Blockierung
-                                _ = Task.Run(async () =>
-                                {
-                                    MailSending mail = new MailSending(GLUser, system);
-                                    mail.recipients.AddRange(Mailinglist.ListMailadressen);
-                                    mail.AddAttachments(listAttach);
-                                    mail.Subject = strSubject + " - NEU - CronJob Zeile 114 ";
-                                    var ProzessExcecuted = await mail.SendNoReply();
-                                    if (!ProzessExcecuted)
-                                    {
-                                        MailSending errorMail = new MailSending(GLUser, system);
-                                        string strError = string.Empty;
-                                        strError = "Error - Info: " + Environment.NewLine;
-                                        strError = "Datum       : " + DateTime.Now.ToString("dd.MM.yyyy HH:mm") + " Uhr" + Environment.NewLine;
-                                        strError = "------------------------------------------" + Environment.NewLine;
-                                        foreach (var s in mail.infoMessages)
-                                        {
-                                            strError += s + Environment.NewLine;
-                                        }
-                                        strError += Environment.NewLine + "------------------------------------------" + Environment.NewLine;
-                                        strError += "Versand Mail AutoBestand nicht erfolgreich!" + Environment.NewLine;
-                                        errorMail.Subject = "COM - Error - MailSending CronJob-StocklistAutoSend Z. 125";
-                                        errorMail.Message = strError;
-                                        await errorMail.Send(true);
-                                    }
-                                });
+                                MailSending mail = new MailSending(GLUser, system);
+                                mail.recipients.AddRange(Mailinglist.ListMailadressen);
+                                mail.AddAttachments(listAttach);
+                                mail.Subject = strSubject; // + " - NEU - CronJob Zeile 114 ";
+                                ProzessExcecuted = mail.SendNoReplySync();
+                                //var sendResult = await mail.SendNoReply().ConfigureAwait(false);
 
+                                if (!ProzessExcecuted)
+                                {
+                                    MailSending errorMail = new MailSending(GLUser, system);
+                                    string strError = string.Empty;
+                                    string strClient = InitValueCommunicator.InitValueCom_Client.Matchcode().Replace("_", "");
+                                    errorMail.Subject = strClient + "|Error - " + strSubject;
+
+                                    strError += "Datum       : " + DateTime.Now.ToString("dd.MM.yyyy HH:mm") + " Uhr" + Environment.NewLine;
+                                    strError += "Datei       : CronJob_StocklistAutoSend - Zeile 114 "+ Environment.NewLine;
+                                    strError += "------------------------------------------" + Environment.NewLine;
+                                    foreach (var s in mail.infoMessages)
+                                    {
+                                        strError += s + Environment.NewLine;
+                                    }
+
+                                    string strCronJob = "[" + myCronJob.Id + "] - Aktion:" + myCronJob.Beschreibung + "";
+                                    strError += "Client:           " + strClient + Environment.NewLine;
+                                    strError += "CronJob:          " + "[" + myCronJob.Id + "]" + Environment.NewLine;
+                                    strError += " |- ID:           " + myCronJob.Id + Environment.NewLine;
+                                    strError += " |- Aktion:       " + myCronJob.Aktion + Environment.NewLine;
+                                    strError += " |- Beschreibung: " + myCronJob.Beschreibung + Environment.NewLine;
+                                    strError += " |- Ak.Datum:     " + myCronJob.Aktionsdatum.ToString("dd.MM.yyyy HH:mm") + " Uhr" + Environment.NewLine;
+                                    strError += " |- Periode:      " + myCronJob.Periode + Environment.NewLine;
+                                    strError += " |- von Zeitraum: " + myCronJob.vZeitraum.ToString("dd.MM.yyyy HH:mm") + Environment.NewLine;
+                                    strError += " |- bis Zeitraum: " + myCronJob.bZeitraum.ToString("dd.MM.yyyy HH:mm") + Environment.NewLine;
+                                    strError += Environment.NewLine;
+
+                                    strError += "Absender:" + mail.MailFrom + Environment.NewLine;
+                                    strError += "Empfänger:" + mail.recipients[0] + Environment.NewLine;
+                                    strError += Environment.NewLine;
+                                    strError += Environment.NewLine + "------------------------------------------" + Environment.NewLine;
+                                    strError += "Versand Mail AutoBestand nicht erfolgreich!" + Environment.NewLine;
+
+                                    errorMail.Message = strError;
+                                    errorMail.SendSync(true);
+                                }
+
+
+                                // ✅ Mail asynchron versenden ohne Blockierung
+                                //_ = Task.Run(async () =>
+                                //var sendTask = await Task.Run(async () =>
+                                // {
+                                //     MailSending mail = new MailSending(GLUser, system);
+                                //     mail.recipients.AddRange(Mailinglist.ListMailadressen);
+                                //     mail.AddAttachments(listAttach);
+                                //     mail.Subject = strSubject + " - NEU - CronJob Zeile 114 ";
+                                //     var sendResult = await mail.SendNoReply().ConfigureAwait(false); 
+
+                                //     if (!sendResult)
+                                //     {
+                                //         MailSending errorMail = new MailSending(GLUser, system);
+                                //         string strError = string.Empty;
+                                //         string strClient = InitValueCommunicator.InitValueCom_Client.Matchcode().Replace("_", "");
+                                //         errorMail.Subject = strClient + "|Error - " + strSubject;
+
+                                //         strError += "Datum       : " + DateTime.Now.ToString("dd.MM.yyyy HH:mm") + " Uhr" + Environment.NewLine;
+                                //         strError += "------------------------------------------" + Environment.NewLine;
+                                //         foreach (var s in mail.infoMessages)
+                                //         {
+                                //             strError += s + Environment.NewLine;
+                                //         }
+
+                                //         string strCronJob = "[" + myCronJob.Id + "] - Aktion:" + myCronJob.Beschreibung + "";
+                                //         strError += "Client:           " + strClient + Environment.NewLine;
+                                //         strError += "CronJob:          " + "[" + myCronJob.Id + "]" + Environment.NewLine;
+                                //         strError += " |- ID:           " + myCronJob.Id + Environment.NewLine;
+                                //         strError += " |- Aktion:       " + myCronJob.Aktion + Environment.NewLine;
+                                //         strError += " |- Beschreibung: " + myCronJob.Beschreibung + Environment.NewLine;
+                                //         strError += " |- Ak.Datum:     " + myCronJob.Aktionsdatum.ToString("dd.MM.yyyy HH:mm") + " Uhr" + Environment.NewLine;
+                                //         strError += " |- Periode:      " + myCronJob.Periode + Environment.NewLine;
+                                //         strError += " |- von Zeitraum: " + myCronJob.vZeitraum.ToString("dd.MM.yyyy HH:mm") + Environment.NewLine;
+                                //         strError += " |- bis Zeitraum: " + myCronJob.bZeitraum.ToString("dd.MM.yyyy HH:mm") + Environment.NewLine;
+                                //         strError += Environment.NewLine;
+
+                                //         strError += "Absender:" + mail.MailFrom + Environment.NewLine;
+                                //         strError += "Empfänger:" + mail.recipients[0] + Environment.NewLine;
+                                //         strError += Environment.NewLine;
+                                //         strError += Environment.NewLine + "------------------------------------------" + Environment.NewLine;
+                                //         strError += "Versand Mail AutoBestand nicht erfolgreich!" + Environment.NewLine;
+
+                                //         errorMail.Message = strError;
+                                //         await errorMail.Send(true).ConfigureAwait(false); 
+                                //     }
+                                //     // ✅ Rückgabewert: bool für weiterverarbeitung
+                                //     return sendResult;
+                                // });
+
+                                //// synchron auf das Task-Ergebnis warten (kein await möglich im Konstruktor)
+                                //ProzessExcecuted = sendTask.GetAwaiter().GetResult();
                             }
                             finally
                             {

@@ -91,6 +91,52 @@ namespace Sped4
             //tbSMTPPort.Text = User.SMTPPort.ToString();
             //cbIsAdmin.Checked = User.IsAdmin;
 
+            // Credential-Name (falls Property vorhanden)
+            try
+            {
+                var fileNameProp = UserVM.User.GetType().GetProperty("MailCredentialsFileName");
+                if (fileNameProp != null)
+                    tbCredentialName.Text = (fileNameProp.GetValue(UserVM.User) as string) ?? string.Empty;
+            }
+            catch
+            {
+                tbCredentialName.Text = string.Empty;
+            }
+
+            // Ermitteln, ob Credentials vorhanden sind (unterstützt verschiedene Modelle)
+            bool hasCredentials = false;
+            try
+            {
+                var propBytes = UserVM.User.GetType().GetProperty("MailCredentialsData"); // byte[]
+                if (propBytes != null)
+                {
+                    var val = propBytes.GetValue(UserVM.User) as byte[];
+                    hasCredentials = (val != null && val.Length > 0);
+                }
+                else
+                {
+                    // ggf. Base64-String im Model
+                    var propBase64 = UserVM.User.GetType().GetProperty("MailCredentialsBase64");
+                    if (propBase64 != null)
+                    {
+                        var s = propBase64.GetValue(UserVM.User) as string;
+                        hasCredentials = !string.IsNullOrWhiteSpace(s);
+                    }
+                }
+            }
+            catch
+            {
+                hasCredentials = false;
+            }
+
+            var indicatorColor = hasCredentials ? System.Drawing.Color.LightGreen : System.Drawing.Color.Yellow;
+
+            // tbCredentialName Background color setzen (sicher prüfen)
+            if (this.tbCredentialName != null && !this.tbCredentialName.IsDisposed)
+            {
+                tbCredentialName.BackColor = indicatorColor;
+            }
+
             tbName.Text = UserVM.User.Name;
             tbLogin.Text = UserVM.User.LoginName;
             tbInitialen.Text = UserVM.User.Initialen;
@@ -101,11 +147,15 @@ namespace Sped4
             tbFax.Text = UserVM.User.Fax;
             tbMail.Text = UserVM.User.Mail;
             tsbSpeichern.Enabled = true;
-            tbSMTPUser.Text = UserVM.User.SMTPUser;
-            tbSMTPPass.Text = UserVM.User.SMTPPasswort;
-            tbSMTPServer.Text = UserVM.User.SMTPServer;
-            tbSMTPPort.Text = UserVM.User.SMTPPort.ToString();
+            //tbSMTPUser.Text = UserVM.User.SMTPUser;
+            //tbSMTPPass.Text = UserVM.User.SMTPPasswort;
+            //tbSMTPServer.Text = UserVM.User.SMTPServer;
+            //tbSMTPPort.Text = UserVM.User.SMTPPort.ToString();
+
             cbIsAdmin.Checked = UserVM.User.IsAdmin;
+            tbCredentialName.Text = UserVM.User.MailCredentialsFileName;
+
+
         }
         ///<summary>frmUserverwaltung / InitForm</summary>
         ///<remarks></remarks>
@@ -674,8 +724,174 @@ namespace Sped4
             InitLVAbBereich();
         }
 
+        private void btnMailUserCredentialsCreate_Click(object sender, EventArgs e)
+        {
+            // 1) Prüfen: Userdaten geladen
+            if (UserVM == null || UserVM.User == null || UserVM.User.Id <= 0)
+            {
+                MessageBox.Show("Bitte zuerst einen Benutzer auswählen.", "Hinweis", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            // 2) Prüfen: Button verwendbar
+            if (!btnMailUserCredentialsCreate.Enabled)
+            {
+                MessageBox.Show("Die Aktion ist derzeit deaktiviert.", "Hinweis", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
+            // 3) Prüfen, ob notwendige Daten vorhanden sind
+            string server = (UserVM.User.SMTPServer ?? string.Empty).Trim();
+            int port = UserVM.User.SMTPPort;
+            if (port <= 0) port = clsUser.Default_SMTPPort;
+            string smtpUser = (UserVM.User.SMTPUser ?? string.Empty).Trim();
+            string smtpPass = UserVM.User.SMTPPasswort ?? string.Empty;
+            string mailFrom = (UserVM.User.Mail ?? string.Empty).Trim();
+            bool enableSsl = UserVM.User.SMTPSSL;
 
+            var errors = new System.Collections.Generic.List<string>();
+            if (string.IsNullOrWhiteSpace(server)) errors.Add("SMTP-Server fehlt.");
+            if (string.IsNullOrWhiteSpace(mailFrom)) errors.Add("E-Mail-Adresse des Benutzers fehlt.");
+            if (port < 1 || port > 65535) errors.Add("SMTP-Port ist ungültig.");
+            // Wenn SMTP-Auth konfiguriert ist, müssen User und Passwort vorhanden sein
+            if (!string.IsNullOrWhiteSpace(smtpUser) && string.IsNullOrWhiteSpace(smtpPass))
+                errors.Add("SMTP-Passwort fehlt für den konfigurierten SMTP-Benutzer.");
+            if (errors.Count > 0)
+            {
+                MessageBox.Show(string.Join(Environment.NewLine, errors), "Fehlende Daten", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 4) Ordnerauswahl für Export
+            using (var fbd = new FolderBrowserDialog())
+            {
+                fbd.Description = "Wählen Sie einen Ordner zum Export der verschlüsselten Mail-Credentials";
+                try
+                {
+                    var defaultPath = LVS.InitValue.DefaultPath_LvsExport.DefaultPath();
+                    if (!string.IsNullOrWhiteSpace(defaultPath) && System.IO.Directory.Exists(defaultPath))
+                        fbd.SelectedPath = defaultPath;
+                }
+                catch
+                {
+                    // ignore
+                }
+
+                if (fbd.ShowDialog() != DialogResult.OK)
+                {
+                    MessageBox.Show("Export abgebrochen.", "Abbruch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string exportFolder = fbd.SelectedPath;
+                // 5) Erstellen der Credentials und Export
+                try
+                {
+                    string profileName = (UserVM.User.LoginName ?? $"User_{UserVM.User.Id}").Trim();
+                    // Dateiname mit Zeitstempel, eindeutig pro Export
+                    string fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "_user_" + UserVM.User.Id.ToString()+"_" + UserVM.User.Vorname+UserVM.User.Name + "_mail_credentials.xml";
+                    string filePath = System.IO.Path.Combine(exportFolder, fileName);
+
+                    var config = new Common.Models.MailCheckConfig
+                    {
+                        Server = server,
+                        Port = port,
+                        Username = smtpUser,
+                        Password = smtpPass,
+                        MailFrom = mailFrom,
+                        EnableSsl = enableSsl,
+                        MailBCC = string.Empty
+                    };
+
+                    var manager = new LVS.Mail.MailCredentialsManager(filePath);
+                    bool saved = manager.SaveCredentials(profileName, config);
+
+                    if (saved)
+                    {
+                        MessageBox.Show("Credentials erfolgreich verschlüsselt und exportiert." + Environment.NewLine + filePath,
+                                        "Export erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Fehler beim Export der Credentials. Bitte Dateiberechtigungen prüfen.",
+                                        "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fehler beim Export der Credentials: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnAddUserCredentials_Click(object sender, EventArgs e)
+        {
+            // 1) Prüfen: User ausgewählt
+            if (UserVM == null || UserVM.User == null || UserVM.User.Id <= 0)
+            {
+                MessageBox.Show("Bitte zuerst einen Benutzer auswählen.", "Hinweis", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2) Dialog: Datei auswählen (verschlüsselte Credentials-Datei)
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.Title = "Wählen Sie die verschlüsselte Mail-Credentials-Datei";
+                ofd.Filter = "Mail-Credentials (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
+                try
+                {
+                    var defaultPath = LVS.InitValue.DefaultPath_LvsExport.DefaultPath();
+                    if (!string.IsNullOrWhiteSpace(defaultPath) && System.IO.Directory.Exists(defaultPath))
+                        ofd.InitialDirectory = defaultPath;
+                }
+                catch
+                {
+                    // ignore
+                }
+
+                if (ofd.ShowDialog() != DialogResult.OK)
+                {
+                    MessageBox.Show("Import abgebrochen.", "Abbruch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string filePath = ofd.FileName;
+                if (!System.IO.File.Exists(filePath))
+                {
+                    MessageBox.Show("Die ausgewählte Datei existiert nicht.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                try
+                {
+                    // 3) Datei einlesen (binär)
+                    byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+                    string fileName = System.IO.Path.GetFileName(filePath);
+
+                    // 4) Laden des clsUser-Objekts und Speichern in DB
+                    var dbUser = new clsUser((int)UserVM.User.Id);
+                    dbUser._GL_User = this.GL_User; // sicherstellen, dass Kontext vorhanden ist
+
+                    bool ok = dbUser.SaveMailCredentialsToUser(fileBytes, fileName);
+                    if (ok)
+                    {
+                        MessageBox.Show("Credentials erfolgreich in der Datenbank gespeichert.", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // 5) UI aktualisieren: User neu laden und Felder aktualisieren
+                        UserVM = new UsersViewData(this.GL_User, (int)dbUser.ID);
+                        InitForm(false);                 // Form neu befüllen ohne Userliste neu zu laden
+                        SetUserDatenToForm();            // Felder anzeigen
+                    }
+                    else
+                    {
+                        MessageBox.Show("Fehler beim Speichern der Credentials in der Datenbank. Prüfen Sie Berechtigungen.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fehler beim Importieren der Credentials: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

@@ -190,7 +190,7 @@ namespace Communicator.Classes
                 mail.Subject = this.system.strClient + DateTime.Now.ToShortDateString() + "- Error Communicator Update NEU ";
                 strTxt += Environment.NewLine + "Austausch COM Zeile clsUpdate 115" + Environment.NewLine;
                 mail.Message = strTxt;
-                await mail.Send(true);
+                mail.SendSync(true);
             }
             catch { } // Fehler ignorieren, da Mail optional ist
         }

@@ -1,7 +1,14 @@
 ﻿using LVS;
 using LVS.ASN;
+using LVS.Models;
+using LVS.ViewData;
+using Newtonsoft.Json;
 using System;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Sped4.Controls.ASNCenter
 {
@@ -390,6 +397,152 @@ namespace Sped4.Controls.ASNCenter
             //Adressauswahl öffnen
             SearchButton = 1;
             _ctrMenu.OpenADRSearch(this);
+        }
+        /// <summary>
+        ///     
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string impPath = null;
+                try
+                {
+                    impPath = _ctrMenu?._frmMain?.systemSped?.DefaultPath_LVS_Export;
+                }
+                catch
+                {
+                    impPath = null;
+                }
+                if (string.IsNullOrWhiteSpace(impPath))
+                {
+                    impPath = AppDomain.CurrentDomain.BaseDirectory;
+                }
+
+                using (OpenFileDialog ofd = new OpenFileDialog())
+                {
+                    ofd.Title = "Importiere VDA Client Out (JSON)";
+                    ofd.Filter = "JSON Dateien (*.json)|*.json|Alle Dateien (*.*)|*.*";
+                    ofd.InitialDirectory = impPath;
+
+                    if (ofd.ShowDialog() != DialogResult.OK) return;
+
+                    string json = File.ReadAllText(ofd.FileName, Encoding.UTF8);
+                    var list = JsonConvert.DeserializeObject<System.Collections.Generic.List<VDAClientValues>>(json);
+                    if (list == null || list.Count == 0)
+                    {
+                        clsMessages.Allgemein_InfoTextShow("Die ausgewählte Datei enthält keine Einträge.");
+                        return;
+                    }
+
+                    int currentAdrId = (int)(this.asnWizz.AuftragggeberAdr?.ID ?? 0);
+                    bool adrMismatch = list.Any(x => x.AdrId != currentAdrId);
+                    if (adrMismatch)
+                    {
+                        var res = MessageBox.Show("Die Datei enthält Einträge mit abweichender AdrID. Alle Einträge auf die aktuelle AdrID setzen und importieren?", "AdrID abweichend", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (res == DialogResult.Yes)
+                        {
+                            foreach (var v in list)
+                            {
+                                v.AdrId = currentAdrId;
+                            }
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                    VDAClientValueViewData vd = new VDAClientValueViewData();
+                    vd.ImportVdaClientValueList(list);
+
+                    clsMessages.Allgemein_InfoTextShow($"Import erfolgreich. {list.Count} Datensätze importiert.");
+                    InitDVGVdaClientOut();
+                }
+            }
+            catch (Exception ex)
+            {
+                clsMessages.Allgemein_InfoTextShow("Fehler beim Import: " + ex.Message);
+            }
+        }
+        /// <summary>
+        ///            Handles the click event of the Export button, exporting data to a JSON file.    
+        /// </summary>
+        /// <remarks>This method checks if exportable data is available and, if so, serializes it into a
+        ///          JSON file. The file is saved to a default export directory or a specified path. If no data is available, an
+        ///          informational message is displayed to the user.
+        ///</remarks>
+        /// <param name="sender">The source of the event, typically the Export button.</param>
+        /// <param name="e">The event data associated with the click event.</param>
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.asnWizz == null || this.asnWizz.VdaClientOut == null)
+                {
+                    clsMessages.Allgemein_InfoTextShow("Keine Daten zum Export vorhanden.");
+                    return;
+                }
+
+                var dt = this.asnWizz.VdaClientOut.dtVDAClientOutByAdrId;
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    clsMessages.Allgemein_InfoTextShow("Keine Daten zum Export vorhanden.");
+                    return;
+                }
+
+                // Dateiname + Pfad bestimmen
+                string fileName = DateTime.Now.ToString("yyyy_MM_dd_HHmmss") + "_AdrId_" +
+                                  (this.asnWizz.AuftragggeberAdr?.ID.ToString() ?? "0") + "_VDAClientOut.json";
+
+                string exportPath = null;
+                try
+                {
+                    exportPath = _ctrMenu?._frmMain?.systemSped?.DefaultPath_LVS_Export;
+                }
+                catch
+                {
+                    exportPath = null;
+                }
+
+                if (string.IsNullOrWhiteSpace(exportPath))
+                {
+                    exportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Export");
+                }
+
+                if (!Directory.Exists(exportPath))
+                {
+                    Directory.CreateDirectory(exportPath);
+                }
+
+                string filePath = Path.Combine(exportPath, fileName);
+
+                VDAClientValueViewData vdaClientValueViewData = new VDAClientValueViewData();
+                vdaClientValueViewData.FillList(false, (int)this.asnWizz.AuftragggeberAdr.ID);
+                if (vdaClientValueViewData.ListVdaClientValues.Count > 0)
+                {
+                    // serialize the viewdata list (not the DataTable)
+                    string json = JsonConvert.SerializeObject(vdaClientValueViewData.ListVdaClientValues, Newtonsoft.Json.Formatting.Indented);
+                    File.WriteAllText(filePath, json, Encoding.UTF8);
+
+                    string msg = "Export erfolgreich!" + Environment.NewLine +
+                                 "Pfad: " + filePath + Environment.NewLine +
+                                 "Datei: " + fileName;
+                    clsMessages.Allgemein_InfoTextShow(msg);
+                }
+                else
+                {
+                    clsMessages.Allgemein_InfoTextShow("Keine Werte zum Export in ListVdaClientValues.");
+                }
+
+                InitDVGVdaClientOut();
+            }
+            catch (Exception ex)
+            {
+                clsMessages.Allgemein_InfoTextShow("Fehler beim Export: " + ex.Message);
+            }
         }
     }
 }

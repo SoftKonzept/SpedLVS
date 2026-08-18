@@ -1,7 +1,9 @@
 ﻿using LVS;
+using LVS.Mail;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Sockets;
@@ -12,6 +14,10 @@ namespace Sped4.Controls.AdminCockpit
 {
     public partial class ctrMailCheck : UserControl
     {
+
+        internal string strMailTo = "info@softkonzept.com";
+        internal string strSubject = "Testmail aus AdminCockpit";
+        internal string strBody = "Dies ist eine Testmail aus dem AdminCockpit.";
         // ── Log / Status ────────────────────────────────────────
         private ToolStripStatusLabel lblStatus;
         private ToolStripProgressBar progressBar;
@@ -22,7 +28,11 @@ namespace Sped4.Controls.AdminCockpit
             InitializeComponent();
             ctrMenu = myMenu;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MailCheck_Load(object sender, EventArgs e)
         {
             // Designer-Control verwenden, nicht neu erstellen
@@ -48,6 +58,18 @@ namespace Sped4.Controls.AdminCockpit
                 Style = ProgressBarStyle.Marquee
             };
             statusStrip.Items.Add(progressBar);
+            SetImportValues();
+        }
+        /// <summary>
+        /// Sets the values of the email fields to the imported data.
+        /// </summary>
+        /// <remarks>This method updates the text fields for the email recipient, subject, and body with
+        /// the corresponding imported values.</remarks>
+        private void SetImportValues()
+        { 
+            tbMailTo.Text = strMailTo;
+            tbBetreff.Text = strSubject;
+            tbMessage.Text = strBody;
         }
 
         // ═══════════════════════════════════════════════════════
@@ -398,6 +420,204 @@ namespace Sped4.Controls.AdminCockpit
             tbMailTo.Text = "info@softkonzept.com";
             tbBetreff.Text = "Testmail aus AdminCockpit";
             tbMessage.Text = "Dies ist eine Testmail aus dem AdminCockpit.";
+        }
+
+        private void btnCredentialCreate_Click(object sender, EventArgs e)
+        {
+            // 1) Pflichtfelder prüfen
+            if (string.IsNullOrWhiteSpace(tbServer.Text))
+            {
+                MessageBox.Show("SMTP-Server fehlt.", "Pflichtfeld", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(tbMailFrom.Text))
+            {
+                MessageBox.Show("Absender (MailFrom) fehlt.", "Pflichtfeld", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            bool useAuth = cbSmtpAuth.Checked;
+            if (useAuth)
+            {
+                if (string.IsNullOrWhiteSpace(tbUser.Text))
+                {
+                    MessageBox.Show("SMTP-Benutzer fehlt.", "Pflichtfeld", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(tbPass.Text))
+                {
+                    MessageBox.Show("SMTP-Passwort fehlt.", "Pflichtfeld", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            // 2) Ordnerauswahl für Exportpfad öffnen
+            using (var fbd = new FolderBrowserDialog())
+            {
+                fbd.Description = "Wählen Sie einen Ordner zum Export der verschlüsselten Mail-Credentials";
+                // Default-Pfad setzen, falls verfügbar
+                try
+                {
+                    var defaultPath = LVS.InitValue.DefaultPath_LvsExport.DefaultPath();
+                    if (!string.IsNullOrWhiteSpace(defaultPath) && Directory.Exists(defaultPath))
+                        fbd.SelectedPath = defaultPath;
+                }
+                catch
+                {
+                    // Ignorieren, falls Pfad nicht vorhanden
+                }
+
+                if (fbd.ShowDialog() != DialogResult.OK)
+                {
+                    Log("Export abgebrochen.", Color.Yellow);
+                    return;
+                }
+
+                string exportFolder = fbd.SelectedPath;
+
+                // 3) Profilname bestimmen (Servername + Timestamp)
+                string profileName = tbServer.Text.Trim();
+                if (string.IsNullOrWhiteSpace(profileName))
+                {
+                    profileName = "MailProfile";
+                }
+                profileName = profileName + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
+
+                // 4) Datei-Pfad für verschlüsselte Datei (mail_credentials.xml) im gewählten Ordner
+                string fileName = MailCredentialsManager.GetDefaultCredentialsFileName(string.Empty);
+                string filePath = Path.Combine(exportFolder, fileName);
+
+                try
+                {
+                    // 5) MailCheckConfig füllen und speichern
+                    var config = new Common.Models.MailCheckConfig
+                    {
+                        Server = tbServer.Text.Trim(),
+                        Port = (int)nudPort.Value,
+                        Username = useAuth ? tbUser.Text.Trim() : string.Empty,
+                        Password = useAuth ? tbPass.Text : string.Empty,
+                        MailFrom = tbMailFrom.Text.Trim(),
+                        EnableSsl = cbSSLTLS.Checked,
+                        MailBCC = string.Empty
+                    };
+
+                    var manager = new LVS.Mail.MailCredentialsManager(filePath);
+                    bool saved = manager.SaveCredentials(profileName, config);
+
+                    if (saved)
+                    {
+                        string msg = "Credentials erfolgreich verschlüsselt und exportiert." + Environment.NewLine +
+                                     "Profil: " + profileName + Environment.NewLine +
+                                     "Datei: " + filePath;
+                        Log(msg, Color.LightGreen);
+                        MessageBox.Show(msg, "Export erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        string msg = "Fehler beim Export der Credentials. Prüfen Sie Dateiberechtigungen.";
+                        Log(msg, Color.OrangeRed);
+                        MessageBox.Show(msg, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log("Fehler beim Export der Credentials.", Color.OrangeRed);
+                    LogError("Export-Fehler", ex);
+                    MessageBox.Show("Fehler beim Export der Credentials: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>    
+        private void btnCredentialsImport_Click(object sender, EventArgs e)
+        {
+            // Öffnet eine Datei zum Importieren der verschlüsselten Credentials (XML).
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.Title = "Wählen Sie die Mail-Credentials-Datei zum Import";
+                ofd.Filter = "Mail-Credentials (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
+                try
+                {
+                    var defaultPath = LVS.InitValue.DefaultPath_LvsExport.DefaultPath();
+                    if (!string.IsNullOrWhiteSpace(defaultPath) && Directory.Exists(defaultPath))
+                        ofd.InitialDirectory = defaultPath;
+                }
+                catch
+                {
+                    // ignore
+                }
+
+                if (ofd.ShowDialog() != DialogResult.OK)
+                {
+                    Log("Import abgebrochen.", Color.Yellow);
+                    return;
+                }
+
+                string filePath = ofd.FileName;
+                if (!File.Exists(filePath))
+                {
+                    MessageBox.Show("Die ausgewählte Datei existiert nicht.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Log("Import fehlgeschlagen: Datei nicht gefunden.", Color.OrangeRed);
+                    return;
+                }
+
+                try
+                {
+                    var manager = new MailCredentialsManager(filePath);
+                    string[] profiles = manager.GetAllProfileNames();
+                    if (profiles == null || profiles.Length == 0)
+                    {
+                        MessageBox.Show("Keine Credential-Profile in der Datei gefunden.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Log("Keine Profile in Datei gefunden.", Color.Yellow);
+                        return;
+                    }
+
+                    // Neu: nur genau ein Profil pro Import zulassen
+                    if (profiles.Length > 1)
+                    {
+                        MessageBox.Show("Die Datei enthält mehrere Profile. Bitte exportieren Sie eine Datei mit genau einem Profil für den Import.", "Mehrere Profile gefunden", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Log("Import abgebrochen: Datei enthält mehrere Profile.", Color.Orange);
+                        return;
+                    }
+
+                    string chosenProfile = profiles[0];
+
+                    var config = manager.LoadCredentials(chosenProfile);
+                    if (config == null)
+                    {
+                        MessageBox.Show("Profil konnte nicht geladen werden (möglicherweise falsches Format oder Benutzerberechtigungen).", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Log("Profil konnte nicht geladen werden.", Color.OrangeRed);
+                        return;
+                    }
+
+                    // Felder befüllen
+                    tbServer.Text = config.Server ?? string.Empty;
+
+                    // Port sicher setzen
+                    int port = config.Port;
+                    if (port < (int)nudPort.Minimum) port = (int)nudPort.Minimum;
+                    if (port > (int)nudPort.Maximum) port = (int)nudPort.Maximum;
+                    nudPort.Value = port;
+
+                    cbSSLTLS.Checked = config.EnableSsl;
+                    cbSmtpAuth.Checked = !string.IsNullOrWhiteSpace(config.Username);
+                    tbUser.Text = config.Username ?? string.Empty;
+                    tbPass.Text = config.Password ?? string.Empty;
+                    tbMailFrom.Text = config.MailFrom ?? string.Empty;
+
+                    Log($"Credentials aus Profil '{chosenProfile}' importiert.", Color.LightGreen);
+                    MessageBox.Show("Credentials erfolgreich importiert und in die Felder übernommen.", "Import erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SetStatus("Credentials importiert.");
+                }
+                catch (Exception ex)
+                {
+                    Log("Fehler beim Import der Credentials.", Color.OrangeRed);
+                    LogError("Import-Fehler", ex);
+                    MessageBox.Show("Fehler beim Import der Credentials: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

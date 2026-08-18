@@ -154,7 +154,7 @@
             this.pageViewAdminCockpit.Name = "pageViewAdminCockpit";
             this.pageViewAdminCockpit.PageBackColor = System.Drawing.Color.White;
             this.pageViewAdminCockpit.SelectedPage = this.pvpMail;
-            this.pageViewAdminCockpit.Size = new System.Drawing.Size(947, 441);
+            this.pageViewAdminCockpit.Size = new System.Drawing.Size(947, 469);
             this.pageViewAdminCockpit.TabIndex = 0;
             this.pageViewAdminCockpit.ThemeName = "ControlDefault";
             this.pageViewAdminCockpit.ViewMode = Telerik.WinControls.UI.PageViewMode.Backstage;
@@ -444,7 +444,7 @@
             this.pvpMail.Location = new System.Drawing.Point(145, 4);
             this.pvpMail.Margin = new System.Windows.Forms.Padding(4);
             this.pvpMail.Name = "pvpMail";
-            this.pvpMail.Size = new System.Drawing.Size(798, 433);
+            this.pvpMail.Size = new System.Drawing.Size(798, 461);
             this.pvpMail.Text = "Mail Check";
             // 
             // panMailEdit
@@ -472,7 +472,7 @@
             this.panMailEdit.Controls.Add(this.tbSMTPServer);
             this.panMailEdit.Location = new System.Drawing.Point(18, 22);
             this.panMailEdit.Name = "panMailEdit";
-            this.panMailEdit.Size = new System.Drawing.Size(772, 395);
+            this.panMailEdit.Size = new System.Drawing.Size(772, 431);
             this.panMailEdit.TabIndex = 0;
             // 
             // btnTest
@@ -549,7 +549,7 @@
             this.tbMailCheckInfo.Location = new System.Drawing.Point(21, 253);
             this.tbMailCheckInfo.Multiline = true;
             this.tbMailCheckInfo.Name = "tbMailCheckInfo";
-            this.tbMailCheckInfo.Size = new System.Drawing.Size(735, 132);
+            this.tbMailCheckInfo.Size = new System.Drawing.Size(735, 175);
             this.tbMailCheckInfo.TabIndex = 7;
             // 
             // tbtnMailCheck
@@ -789,7 +789,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 441);
+            this.ClientSize = new System.Drawing.Size(947, 469);
             this.Controls.Add(this.pageViewAdminCockpit);
             this.Name = "frmAdminCockpit";
             this.Text = "Administrations - Cockpit";

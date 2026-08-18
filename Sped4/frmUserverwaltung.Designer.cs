@@ -69,6 +69,10 @@
             this.panUserDaten = new System.Windows.Forms.Panel();
             this.tabUser = new System.Windows.Forms.TabControl();
             this.tabPageUserdaten = new System.Windows.Forms.TabPage();
+            this.tbCredentialName = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnAddUserCredentials = new System.Windows.Forms.Button();
+            this.btnMailUserCredentialsCreate = new System.Windows.Forms.Button();
             this.cbIsAdmin = new System.Windows.Forms.CheckBox();
             this.tabPageArbeitsbereiche = new System.Windows.Forms.TabPage();
             this.lvAbBereiche = new Telerik.WinControls.UI.RadListView();
@@ -158,6 +162,7 @@
             this.tbSMTPPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbSMTPPort.Location = new System.Drawing.Point(85, 320);
             this.tbSMTPPort.Name = "tbSMTPPort";
+            this.tbSMTPPort.ReadOnly = true;
             this.tbSMTPPort.Size = new System.Drawing.Size(260, 20);
             this.tbSMTPPort.TabIndex = 13;
             this.tbSMTPPort.Text = "25";
@@ -176,8 +181,10 @@
             this.tbSMTPServer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbSMTPServer.Location = new System.Drawing.Point(85, 294);
             this.tbSMTPServer.Name = "tbSMTPServer";
+            this.tbSMTPServer.ReadOnly = true;
             this.tbSMTPServer.Size = new System.Drawing.Size(260, 20);
             this.tbSMTPServer.TabIndex = 12;
+            this.tbSMTPServer.UseSystemPasswordChar = true;
             // 
             // label10
             // 
@@ -193,6 +200,7 @@
             this.tbSMTPPass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbSMTPPass.Location = new System.Drawing.Point(86, 268);
             this.tbSMTPPass.Name = "tbSMTPPass";
+            this.tbSMTPPass.ReadOnly = true;
             this.tbSMTPPass.Size = new System.Drawing.Size(260, 20);
             this.tbSMTPPass.TabIndex = 11;
             this.tbSMTPPass.UseSystemPasswordChar = true;
@@ -211,8 +219,10 @@
             this.tbSMTPUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbSMTPUser.Location = new System.Drawing.Point(86, 242);
             this.tbSMTPUser.Name = "tbSMTPUser";
+            this.tbSMTPUser.ReadOnly = true;
             this.tbSMTPUser.Size = new System.Drawing.Size(260, 20);
             this.tbSMTPUser.TabIndex = 10;
+            this.tbSMTPUser.UseSystemPasswordChar = true;
             // 
             // label12
             // 
@@ -228,6 +238,7 @@
             this.tbMail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbMail.Location = new System.Drawing.Point(86, 217);
             this.tbMail.Name = "tbMail";
+            this.tbMail.ReadOnly = true;
             this.tbMail.Size = new System.Drawing.Size(260, 20);
             this.tbMail.TabIndex = 9;
             // 
@@ -408,7 +419,7 @@
             this.panDGVUserBerechtigungen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panDGVUserBerechtigungen.Location = new System.Drawing.Point(0, 0);
             this.panDGVUserBerechtigungen.Name = "panDGVUserBerechtigungen";
-            this.panDGVUserBerechtigungen.Size = new System.Drawing.Size(378, 348);
+            this.panDGVUserBerechtigungen.Size = new System.Drawing.Size(378, 241);
             this.panDGVUserBerechtigungen.TabIndex = 10;
             // 
             // dgvUserLoggedIn
@@ -421,7 +432,7 @@
             this.dgvUserLoggedIn.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.dgvUserLoggedIn.Name = "dgvUserLoggedIn";
             this.dgvUserLoggedIn.ReadOnly = true;
-            this.dgvUserLoggedIn.Size = new System.Drawing.Size(378, 323);
+            this.dgvUserLoggedIn.Size = new System.Drawing.Size(378, 216);
             this.dgvUserLoggedIn.TabIndex = 15;
             this.dgvUserLoggedIn.ThemeName = "ControlDefault";
             // 
@@ -456,7 +467,7 @@
             this.panUserDaten.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panUserDaten.Location = new System.Drawing.Point(0, 25);
             this.panUserDaten.Name = "panUserDaten";
-            this.panUserDaten.Size = new System.Drawing.Size(378, 387);
+            this.panUserDaten.Size = new System.Drawing.Size(378, 494);
             this.panUserDaten.TabIndex = 8;
             // 
             // tabUser
@@ -467,12 +478,16 @@
             this.tabUser.Location = new System.Drawing.Point(0, 0);
             this.tabUser.Name = "tabUser";
             this.tabUser.SelectedIndex = 0;
-            this.tabUser.Size = new System.Drawing.Size(378, 387);
+            this.tabUser.Size = new System.Drawing.Size(378, 494);
             this.tabUser.TabIndex = 1;
             // 
             // tabPageUserdaten
             // 
             this.tabPageUserdaten.BackColor = System.Drawing.Color.White;
+            this.tabPageUserdaten.Controls.Add(this.tbCredentialName);
+            this.tabPageUserdaten.Controls.Add(this.label15);
+            this.tabPageUserdaten.Controls.Add(this.btnAddUserCredentials);
+            this.tabPageUserdaten.Controls.Add(this.btnMailUserCredentialsCreate);
             this.tabPageUserdaten.Controls.Add(this.cbIsAdmin);
             this.tabPageUserdaten.Controls.Add(this.tbName);
             this.tabPageUserdaten.Controls.Add(this.cbSSL);
@@ -507,9 +522,46 @@
             this.tabPageUserdaten.Location = new System.Drawing.Point(4, 22);
             this.tabPageUserdaten.Name = "tabPageUserdaten";
             this.tabPageUserdaten.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUserdaten.Size = new System.Drawing.Size(370, 361);
+            this.tabPageUserdaten.Size = new System.Drawing.Size(370, 468);
             this.tabPageUserdaten.TabIndex = 0;
             this.tabPageUserdaten.Text = "Userdaten";
+            // 
+            // tbCredentialName
+            // 
+            this.tbCredentialName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbCredentialName.Location = new System.Drawing.Point(85, 370);
+            this.tbCredentialName.Name = "tbCredentialName";
+            this.tbCredentialName.Size = new System.Drawing.Size(260, 20);
+            this.tbCredentialName.TabIndex = 34;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(11, 372);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(68, 13);
+            this.label15.TabIndex = 33;
+            this.label15.Text = "Credentials:";
+            // 
+            // btnAddUserCredentials
+            // 
+            this.btnAddUserCredentials.Location = new System.Drawing.Point(15, 431);
+            this.btnAddUserCredentials.Name = "btnAddUserCredentials";
+            this.btnAddUserCredentials.Size = new System.Drawing.Size(332, 23);
+            this.btnAddUserCredentials.TabIndex = 32;
+            this.btnAddUserCredentials.Text = "Credentials User hinzufügen";
+            this.btnAddUserCredentials.UseVisualStyleBackColor = true;
+            this.btnAddUserCredentials.Click += new System.EventHandler(this.btnAddUserCredentials_Click);
+            // 
+            // btnMailUserCredentialsCreate
+            // 
+            this.btnMailUserCredentialsCreate.Location = new System.Drawing.Point(15, 402);
+            this.btnMailUserCredentialsCreate.Name = "btnMailUserCredentialsCreate";
+            this.btnMailUserCredentialsCreate.Size = new System.Drawing.Size(332, 23);
+            this.btnMailUserCredentialsCreate.TabIndex = 31;
+            this.btnMailUserCredentialsCreate.Text = "Credentials";
+            this.btnMailUserCredentialsCreate.UseVisualStyleBackColor = true;
+            this.btnMailUserCredentialsCreate.Click += new System.EventHandler(this.btnMailUserCredentialsCreate_Click);
             // 
             // cbIsAdmin
             // 
@@ -532,7 +584,7 @@
             this.tabPageArbeitsbereiche.Location = new System.Drawing.Point(4, 22);
             this.tabPageArbeitsbereiche.Name = "tabPageArbeitsbereiche";
             this.tabPageArbeitsbereiche.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageArbeitsbereiche.Size = new System.Drawing.Size(373, 363);
+            this.tabPageArbeitsbereiche.Size = new System.Drawing.Size(370, 468);
             this.tabPageArbeitsbereiche.TabIndex = 1;
             this.tabPageArbeitsbereiche.Text = "Arbeitsbereiche";
             // 
@@ -543,7 +595,7 @@
             this.lvAbBereiche.ItemSize = new System.Drawing.Size(200, 28);
             this.lvAbBereiche.Location = new System.Drawing.Point(3, 28);
             this.lvAbBereiche.Name = "lvAbBereiche";
-            this.lvAbBereiche.Size = new System.Drawing.Size(367, 332);
+            this.lvAbBereiche.Size = new System.Drawing.Size(364, 437);
             this.lvAbBereiche.TabIndex = 150;
             this.lvAbBereiche.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.lvAbBereiche_ItemCheckedChanged);
             // 
@@ -557,7 +609,7 @@
             this.tsmTarifAbBreich.myUnderlineColor = System.Drawing.Color.White;
             this.tsmTarifAbBreich.myUnderlined = true;
             this.tsmTarifAbBreich.Name = "tsmTarifAbBreich";
-            this.tsmTarifAbBreich.Size = new System.Drawing.Size(367, 25);
+            this.tsmTarifAbBreich.Size = new System.Drawing.Size(364, 25);
             this.tsmTarifAbBreich.TabIndex = 149;
             this.tsmTarifAbBreich.Text = "afToolStrip2";
             // 
@@ -609,9 +661,9 @@
             this.splitPanel3.Controls.Add(this.afToolStrip1);
             this.splitPanel3.Location = new System.Drawing.Point(0, 0);
             this.splitPanel3.Name = "splitPanel3";
-            this.splitPanel3.Size = new System.Drawing.Size(378, 412);
-            this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.04188482F);
-            this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 22);
+            this.splitPanel3.Size = new System.Drawing.Size(378, 519);
+            this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1828948F);
+            this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 129);
             this.splitPanel3.TabIndex = 0;
             this.splitPanel3.TabStop = false;
             this.splitPanel3.Text = "splitPanel3";
@@ -688,11 +740,11 @@
             // splitPanel4
             // 
             this.splitPanel4.Controls.Add(this.panDGVUserBerechtigungen);
-            this.splitPanel4.Location = new System.Drawing.Point(0, 420);
+            this.splitPanel4.Location = new System.Drawing.Point(0, 527);
             this.splitPanel4.Name = "splitPanel4";
-            this.splitPanel4.Size = new System.Drawing.Size(378, 348);
-            this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.04188482F);
-            this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -22);
+            this.splitPanel4.Size = new System.Drawing.Size(378, 241);
+            this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1828947F);
+            this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -129);
             this.splitPanel4.TabIndex = 1;
             this.splitPanel4.TabStop = false;
             this.splitPanel4.Text = "splitPanel4";
@@ -963,5 +1015,9 @@
     private Controls.AFToolStrip tsmTarifAbBreich;
     private System.Windows.Forms.ToolStripLabel toolStripLabel3;
     private Telerik.WinControls.UI.RadListView lvAbBereiche;
-  }
+        private System.Windows.Forms.Button btnMailUserCredentialsCreate;
+        private System.Windows.Forms.Button btnAddUserCredentials;
+        private System.Windows.Forms.TextBox tbCredentialName;
+        private System.Windows.Forms.Label label15;
+    }
 }

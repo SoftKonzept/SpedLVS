@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Mail;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-
+using Common.Models;
 
 namespace LVS.Mail
 {
@@ -260,6 +260,20 @@ namespace LVS.Mail
 
         //------------------------------------------------------------------------ SendMail
         /// <summary>
+        /// Synchroner Wrapper für das asynchrone Send(bool)
+        /// </summary>
+        public bool SendSync(bool myIsError)
+        {
+            try
+            {
+                return Task.Run(() => Send(myIsError)).GetAwaiter().GetResult();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException ?? ae;
+            }
+        }
+        /// <summary>
         /// Versendet die E-Mail asynchron nach Validierung
         /// </summary>
         /// <param name="myIsError">Bei true werden System-Mail-Credentials verwendet</param>
@@ -310,6 +324,20 @@ namespace LVS.Mail
 
             await SendProzess();
             return this.SuccessSending;
+        }
+        /// <summary>
+        /// Synchroner Wrapper für das asynchrone SendNoReply()
+        /// </summary>
+        public bool SendNoReplySync()
+        {
+            try
+            {
+                return Task.Run(() => SendNoReply()).GetAwaiter().GetResult();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException ?? ae;
+            }
         }
         /// <summary>
         /// 
@@ -402,6 +430,8 @@ namespace LVS.Mail
                         this.infoMessages.Add($"Exception: {result.Exception.GetType().Name}");
                         this.infoMessages.Add($"Message: {result.Exception.Message}");
                     }
+
+
                 }
             }
             catch (Exception ex)

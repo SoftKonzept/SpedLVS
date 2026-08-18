@@ -605,15 +605,21 @@ namespace LVS
                             EMail.Message = tmpLog.LogText;
                             EMail.SendError();
 
-                            // ✅ Mail asynchron versenden ohne Blockierung
-                            _ = Task.Run(async () =>
-                            {
-                                MailSending mail = new MailSending(new Globals._GL_USER(), null);
-                                mail.Subject = strSubject + " - NEU ";
-                                tmpLog.LogText += Environment.NewLine + "Austausch LVS Zeile clsASN.cs 600" + Environment.NewLine;
-                                mail.Message = tmpLog.LogText;
-                                await mail.Send(true);
-                            });
+                            MailSending mail = new MailSending(new Globals._GL_USER(), null);
+                            mail.Subject = strSubject + " - NEU ";
+                            tmpLog.LogText += Environment.NewLine + "Austausch LVS Zeile clsASN.cs 600" + Environment.NewLine;
+                            mail.Message = tmpLog.LogText;
+                            mail.SendSync(true);
+
+                            //// ✅ Mail asynchron versenden ohne Blockierung
+                            //_ = Task.Run(async () =>
+                            //{
+                            //    MailSending mail = new MailSending(new Globals._GL_USER(), null);
+                            //    mail.Subject = strSubject + " - NEU ";
+                            //    tmpLog.LogText += Environment.NewLine + "Austausch LVS Zeile clsASN.cs 600" + Environment.NewLine;
+                            //    mail.Message = tmpLog.LogText;
+                            //    await mail.Send(true);
+                            //});
                         }
                         this.ListError = this.ASNArt.ListError;
                         break;

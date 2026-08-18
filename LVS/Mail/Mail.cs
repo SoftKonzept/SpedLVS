@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using Common.Models;
 
 namespace LVS.Mail
 {
@@ -61,7 +62,7 @@ namespace LVS.Mail
         /// <summary>
         /// Versendet die E-Mail nach Validierung und TCP-Test
         /// </summary>
-        public async Task<MailCheckResult> SendMailAsync()
+        public async Task<Common.Models.MailCheckResult> SendMailAsync()
         {
             // Schritt 1: Konfiguration validieren
             var validationResult = ValidateConfig(_config);
@@ -76,8 +77,22 @@ namespace LVS.Mail
             // Schritt 3: E-Mail versenden
             return await SendMail();
         }
-
-
+        /// <summary>
+        /// Synchroner Wrapper für SendMail() (führt das async-Task auf dem ThreadPool aus und liefert Ergebnis).
+        /// </summary>
+        public MailCheckResult SendMailSync()
+        {
+            try
+            {
+                // Task.Run stellt sicher, dass der async-Code auf dem ThreadPool läuft (verringert Deadlock-Risiko).
+                return Task.Run(() => SendMail()).GetAwaiter().GetResult();
+            }
+            catch (AggregateException ae)
+            {
+                // Unwrappen, damit Aufrufer klare Exception bekommen
+                throw ae.InnerException ?? ae;
+            }
+        }
         /// <summary>
         /// E-Mail versenden (intern)
         /// </summary>
@@ -136,7 +151,6 @@ namespace LVS.Mail
                                     Message = $"Anhang-Datei nicht gefunden: {attachmentPath}"
                                 };
                             }
-
                             mail.Attachments.Add(new Attachment(attachmentPath));
                         }
                     }
@@ -254,8 +268,6 @@ namespace LVS.Mail
                 }
             }
         }
-
-
         /// <summary>
         /// Konfigurationsvalidierung (intern)
         /// </summary>
@@ -355,10 +367,6 @@ namespace LVS.Mail
                     };
                 }
             }
-
-
-
-
             return new MailCheckResult { Success = true };
         }
         // ─────────────────────────────────────────────────────
@@ -415,6 +423,21 @@ namespace LVS.Mail
                     return "Netzwerkfehler: " + socketError;
             }
         }
+        /// <summary>
+        /// Synchroner Wrapper für SmtpTest()
+        /// </summary>
+        public MailCheckResult SmtpTestSync()
+        {
+            try
+            {
+                return Task.Run(() => SmtpTest()).GetAwaiter().GetResult();
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.InnerException ?? ae;
+            }
+        }
+
         /// <summary>
         /// Testet die SMTP-Verbindung mit ausführlichem Reporting
         /// </summary>

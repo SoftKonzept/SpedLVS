@@ -1,11 +1,6 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Mail;
-using System.Net.Sockets;
-using System.Threading.Tasks;
 
-namespace LVS.Mail
+namespace Common.Models
 {
     public class MailCheckConfig
     {
@@ -15,7 +10,6 @@ namespace LVS.Mail
         public string Password { get; set; } = string.Empty;
         public bool EnableSsl { get; set; } = true;
         public string MailFrom { get; set; } = string.Empty;
-        //public string MailTo { get; set; } = string.Empty;
         public List<string> MailTo { get; set; } = new List<string>();
         public string MailBCC { get; set; } = string.Empty;
         public string Subject { get; set; } = string.Empty;

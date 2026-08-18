@@ -71,7 +71,7 @@ namespace Communicator
             mail.Subject = "Unhandled UI Exception - Error Mail - NEU ";
             strMes += Environment.NewLine + "Austausch COM Zeile Programm.cs 61" + Environment.NewLine;
             mail.Message = strMes;
-            await mail.Send(true);
+            mail.SendSync(true);
 
         }
 

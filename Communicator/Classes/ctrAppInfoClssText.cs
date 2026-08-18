@@ -9,7 +9,7 @@ namespace Communicator.Classes
         {
             get
             {
-                _InfoText += "10.08.2026 / Build: 260810_1      : " + Environment.NewLine +
+                _InfoText += "17.08.2026 / Build: 260817_1      : " + Environment.NewLine +
                              " - Anpassungen E-Mail Prozess" + Environment.NewLine +
                              Environment.NewLine;
 
