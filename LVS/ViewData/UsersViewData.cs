@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Security.Cryptography;
 
 namespace LVS.ViewData
 {
@@ -397,24 +398,41 @@ namespace LVS.ViewData
                     if (myRow["MailCredentialsData"] != DBNull.Value)
                     {
                         var bytes = (byte[])myRow["MailCredentialsData"];
-                        var base64 = Convert.ToBase64String(bytes);
-                        this.User.GetType().GetProperty("MailCredentialsBase64")?
-                            .SetValue(this.User, base64, null);
+
+                        // Bytes sind XML mit verschlüsselten Einzelfeldern - direkt an Users übergeben
+                         try
+                        {
+                            var manager = new LVS.Mail.MailCredentialsManager();
+                            var creds = manager.ProcessCredentialsBytes(bytes);
+
+                            if (creds != null)
+                            {
+                                this.User.MailCredentials = creds;
+                            }
+                            else
+                            {
+                                this.User.MailCredentials = null;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Debug.WriteLine($"Fehler beim Laden der Mail-Credentials: {ex.Message}");
+                            this.User.MailCredentials = null;
+                        }
                     }
                     else
                     {
-                        this.User.GetType().GetProperty("MailCredentialsBase64")?
-                            .SetValue(this.User, string.Empty, null);
+                        this.User.MailCredentials = null;
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
                     // ignore bei nicht vorhandenem Feld / Typfehlern
+                    System.Diagnostics.Debug.WriteLine($"Fehler beim Laden der Mail-Credentials: {ex.Message}");
+                    // Credentials bleiben ungesetzt, normale SMTP-Felder werden verwendet
                 }
             }
         }
-
-
         /// <summary>
         ///         TEST MR
         /// </summary>

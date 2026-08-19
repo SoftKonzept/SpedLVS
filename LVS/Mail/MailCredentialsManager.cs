@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Xml.Linq;
 using Common.Models;
+using Newtonsoft.Json;
 
 namespace LVS.Mail
 {
@@ -314,6 +315,95 @@ namespace LVS.Mail
                 fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "_" + MailCredentialsManager.const_MailCredentials_MainFilename;
             }   
             return fileName;
+        }
+        /// <summary>
+        /// Deserialisiert verschlüsselte Credential-Bytes zu einem MailCheckConfig-Objekt
+        /// </summary>
+        public MailCheckConfig DecryptCredentialsFromBytes(byte[] encryptedBytes)
+        {
+            try
+            {
+                if (encryptedBytes == null || encryptedBytes.Length == 0)
+                    return null;
+
+                var xml = Encoding.UTF8.GetString(encryptedBytes);
+                if (xml.Length > 0 && xml[0] == '\uFEFF')
+                    xml = xml.Substring(1);
+
+                XDocument doc = XDocument.Parse(xml);
+                var credElement = doc.Root?.Elements("Credential").FirstOrDefault();
+
+                if (credElement == null)
+                    return null;
+
+                var config = new MailCheckConfig
+                {
+                    Server = DecryptString(credElement.Element("Server")?.Value ?? string.Empty),
+                    Port = int.TryParse(DecryptString(credElement.Element("Port")?.Value ?? "0"), out int port) ? port : 0,
+                    Username = DecryptString(credElement.Element("Username")?.Value ?? string.Empty),
+                    Password = DecryptString(credElement.Element("Password")?.Value ?? string.Empty),
+                    MailFrom = DecryptString(credElement.Element("MailFrom")?.Value ?? string.Empty),
+                    EnableSsl = bool.TryParse(DecryptString(credElement.Element("EnableSsl")?.Value ?? "true"), out bool ssl) ? ssl : true,
+                    MailBCC = DecryptString(credElement.Element("MailBCC")?.Value ?? string.Empty)
+                };
+
+                return config;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Fehler beim Deserialisieren der Credentials-Bytes: {ex.Message}");
+                return null;
+            }
+        }
+        /// <summary>
+        /// Verarbeitet verschlüsselte oder unverschlüsselte Credential-Bytes 
+        /// und gibt ein MailCredentials-Objekt zurück.
+        /// </summary>
+        public MailCredentials ProcessCredentialsBytes(byte[] bytes)
+        {
+            if (bytes == null || bytes.Length == 0)
+                return null;
+
+            // Versuch 1: Als verschlüsselte XML-Bytes interpretieren
+            try
+            {
+                var config = DecryptCredentialsFromBytes(bytes);
+                if (config != null)
+                {
+                    var creds = new MailCredentials
+                    {
+                        SmtpHost = config.Server,
+                        SmtpPort = config.Port,
+                        SmtpUser = config.Username,
+                        SmtpPassword = config.Password,
+                        SmtpDisplayName = config.MailFrom
+                    };
+
+                    if (!string.IsNullOrWhiteSpace(creds.SmtpHost))
+                        return creds;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Fehler bei XML-Deserialisierung: {ex.Message}");
+            }
+
+            // Versuch 2: Direkt als JSON (unverschlüsselt)
+            try
+            {
+                var json = Encoding.UTF8.GetString(bytes);
+                if (json.Length > 0 && json[0] == '\uFEFF')
+                    json = json.Substring(1);
+
+                var creds = JsonConvert.DeserializeObject<MailCredentials>(json);
+                if (creds != null && !string.IsNullOrWhiteSpace(creds.SmtpHost))
+                    return creds;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Fehler bei JSON-Deserialisierung: {ex.Message}");
+            }
+            return null;
         }
     }
 }

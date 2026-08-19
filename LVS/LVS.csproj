@@ -1276,7 +1276,6 @@
     <Compile Include="IniValuePrinter\InitValuePrinter_Druckereinstellungen.cs" />
     <Compile Include="Mail\Mail.cs" />
     <Compile Include="Mail\MailCredentialsManager.cs" />
-    <Compile Include="Mail\MailExtensions.cs" />
     <Compile Include="Mail\MailSending.cs" />
     <Compile Include="Models\ArticleVita.cs" />
     <Compile Include="Models\AsnTableCombiValues.cs" />

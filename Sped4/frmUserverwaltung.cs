@@ -131,11 +131,12 @@ namespace Sped4
 
             var indicatorColor = hasCredentials ? System.Drawing.Color.LightGreen : System.Drawing.Color.Yellow;
 
-            // tbCredentialName Background color setzen (sicher prüfen)
-            if (this.tbCredentialName != null && !this.tbCredentialName.IsDisposed)
-            {
-                tbCredentialName.BackColor = indicatorColor;
-            }
+            //// tbCredentialName Background color setzen (sicher prüfen)
+            //if (this.tbCredentialName != null && !this.tbCredentialName.IsDisposed)
+            //{
+            //    tbCredentialName.BackColor = indicatorColor;
+            //}
+            tbCredentialName.BackColor = indicatorColor;
 
             tbName.Text = UserVM.User.Name;
             tbLogin.Text = UserVM.User.LoginName;
@@ -147,15 +148,23 @@ namespace Sped4
             tbFax.Text = UserVM.User.Fax;
             tbMail.Text = UserVM.User.Mail;
             tsbSpeichern.Enabled = true;
-            //tbSMTPUser.Text = UserVM.User.SMTPUser;
-            //tbSMTPPass.Text = UserVM.User.SMTPPasswort;
-            //tbSMTPServer.Text = UserVM.User.SMTPServer;
-            //tbSMTPPort.Text = UserVM.User.SMTPPort.ToString();
 
+            if(hasCredentials)
+            {
+                tbSMTPUser.Text = string.Empty; // UserVM.User.SMTPUser;
+                tbSMTPPass.Text = string.Empty; //  UserVM.User.SMTPPasswort;
+                tbSMTPServer.Text = string.Empty; //  UserVM.User.SMTPServer;
+                tbSMTPPort.Text = string.Empty; //  UserVM.User.SMTPPort.ToString();
+            }
+            else
+            {
+                tbSMTPUser.Text = UserVM.User.SMTPUser;
+                tbSMTPPass.Text = UserVM.User.SMTPPasswort;
+                tbSMTPServer.Text = UserVM.User.SMTPServer;
+                tbSMTPPort.Text = UserVM.User.SMTPPort.ToString();
+            }
             cbIsAdmin.Checked = UserVM.User.IsAdmin;
             tbCredentialName.Text = UserVM.User.MailCredentialsFileName;
-
-
         }
         ///<summary>frmUserverwaltung / InitForm</summary>
         ///<remarks></remarks>
