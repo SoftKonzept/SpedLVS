@@ -9,7 +9,8 @@ namespace Sped4
         {
             get
             {
-                _InfoText += "14.08.2026 / Build: 26.08.14.1      : " + Environment.NewLine +
+
+                _InfoText += "20.08.2026 / Build: 26.08.20.1      : " + Environment.NewLine +
                              " - Mailversand: Credentials werden in verschlüsselter Datei in Datenbank gespeichert" + Environment.NewLine +
                              Environment.NewLine;
 
