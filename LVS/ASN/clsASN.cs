@@ -605,7 +605,7 @@ namespace LVS
                             EMail.Message = tmpLog.LogText;
                             EMail.SendError();
 
-                            MailSending mail = new MailSending(new Globals._GL_USER(), null);
+                            MailSending mail = new MailSending(this.GL_User, this.Sys);
                             mail.Subject = strSubject + " - NEU ";
                             tmpLog.LogText += Environment.NewLine + "Austausch LVS Zeile clsASN.cs 600" + Environment.NewLine;
                             mail.Message = tmpLog.LogText;
@@ -732,7 +732,7 @@ namespace LVS
                                 // ✅ Mail asynchron versenden ohne Blockierung
                                 _ = Task.Run(async () =>
                                 {
-                                    MailSending mail = new MailSending(new Globals._GL_USER(), null);
+                                    MailSending mail = new MailSending(this.GL_User, this.Sys);
                                     mail.Subject = strSubject + " - NEU ";
                                     tmpLog += Environment.NewLine + "Austausch LVS clsASN.cs Z. 723" + Environment.NewLine;
                                     mail.Message = tmpLog;
@@ -770,7 +770,7 @@ namespace LVS
                             // ✅ Mail asynchron versenden ohne Blockierung
                             _ = Task.Run(async () =>
                             {
-                                MailSending mail = new MailSending(new Globals._GL_USER(), null);
+                                MailSending mail = new MailSending(this.GL_User, this.Sys);
                                 mail.Subject = strSubject + " - NEU ";
                                 tmpLog.LogText += Environment.NewLine + "Austausch LVS clsASN.cs Z. 761" + Environment.NewLine;
                                 mail.Message = tmpLog.LogText;
@@ -1353,7 +1353,7 @@ namespace LVS
                         // ✅ Mail asynchron versenden ohne Blockierung
                         _ = Task.Run(async () =>
                         {
-                            MailSending mail = new MailSending(new Globals._GL_USER(), null);
+                            MailSending mail = new MailSending(this.GL_User, this.Sys);
                             mail.Subject = strSubject + " - NEU ";
                             strTxt += Environment.NewLine + "Austausch LVS clsASN.cs Z. 1344" + Environment.NewLine;
                             mail.Message = strTxt;
