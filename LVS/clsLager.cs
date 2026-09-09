@@ -19,6 +19,7 @@ namespace LVS
         public const string const_Bestandsart_TagesbestandAllExclSPL = "Tagesbestand [Lager komplett (ohne SPL)]";
         public const string const_Bestandsart_TagesbestandAllExclDamSPL = "Tagesbestand [Lager komplett (ohne Schaden, SPL)]";
         public const string const_Bestandsart_TagesbestandAccrossAllWorkspaces = "Tagesbestand [über alle Arbeitsbereiche]";
+        public const string const_Bestandsart_TagesbestandAccrossAllWorkspacesCustomer = "Tagesbestand [über alle Arbeitsbereiche/Kunden]";
         public const string const_Bestandsart_Inventur = "Inventur";
         public const string const_Bestandsart_SPL = "Sperrlager[SPL]";
         public const string const_Bestandsart_RL = "Rücklieferungen[RL]";
@@ -1282,6 +1283,7 @@ namespace LVS
                     break;
 
                 case clsLager.const_Bestandsart_TagesbestandAccrossAllWorkspaces:
+                case clsLager.const_Bestandsart_TagesbestandAccrossAllWorkspacesCustomer:
 
                     break;
 

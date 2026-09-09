@@ -20,8 +20,13 @@ namespace LVS
         public const string const_cFunction_SZG_LVSForVW = VW_LVSForVW.const_VW_LVSForVW;   // "#LVSForVW#";
         public const string const_cFunction_SZG_TMN = SZG_TMN.const_SZG_TMN;                // "#SZG_TMN#";
         public const string const_cFunction_SLE_VGS = "#SLE_VGS#";
+
+        public const string const_cFunction_AluDuffel_EA_712F03_SLB = AluDuffel_EA_712F03_SLB.const_AluDuffel_EA_712F03_SLB;
+        public const string const_cFunction_AluDuffel_EA_712F05_FF = AluDuffel_EA_712F05_FF.const_AluDuffel_EA_712F05_FF;
+
         public const string const_cFunction_Arcelor_EABmwFormat = Arcelor_EA_BMWFormat.const_Arcelor_EA_BMWFormat;
         public const string const_cFunction_Arcelor_EA_713F20 = Arcelor_EA_713F20.const_Arcelor_EA_713F20;
+
         public const string const_cFunction_BMW_VGS = BMW_VGS.const_BMW_VGS;
         public const string const_cFunction_BMW_SLB = BMW_SLB.const_BMW_SLB;
         public const string const_cFunction_BMW_EANo = BMW_EANo.const_BMW_EANo;
@@ -162,6 +167,8 @@ namespace LVS
                 List<string> tmp = new List<string>()
                 {
                     const_cFunction_VDACustomizedValue
+                    ,const_cFunction_AluDuffel_EA_712F03_SLB
+                    ,const_cFunction_AluDuffel_EA_712F05_FF
                     ,const_cFunction_Arcelor_EABmwFormat
                     ,const_cFunction_Arcelor_EA_713F20
                     ,const_cFunction_BMW_713F17_KGorSTK

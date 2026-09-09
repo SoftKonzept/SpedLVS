@@ -2774,7 +2774,7 @@ namespace Sped4
                     {
                         if (this._ctrMenu._frmMain.system.Client.Modul.Lager_Einlagerung_GArt_InfoMessageAllData)
                         {
-                            //Der KUnde möchte vorher noch ein abfrage haben ob die Daten wirklich übernommen werden sollen
+                            //Der Kunde möchte vorher noch ein abfrage haben ob die Daten wirklich übernommen werden sollen
                             if (clsMessages.Artikel_GetAllGArtenData())
                             {
                                 SetGArtValueToCtr();

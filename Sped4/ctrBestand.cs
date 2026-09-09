@@ -418,6 +418,7 @@ namespace Sped4
                     break;
 
                 case clsLager.const_Bestandsart_TagesbestandAccrossAllWorkspaces:
+                case clsLager.const_Bestandsart_TagesbestandAccrossAllWorkspacesCustomer:
                     dtpVon.Enabled = true;
                     dtpVon.Value = DateTime.Now.Date;
                     lZeitraumVon.Text = "Stichtag:";
@@ -1217,6 +1218,7 @@ namespace Sped4
                         }
                         break;
                     case clsLager.const_Bestandsart_TagesbestandAccrossAllWorkspaces:
+                    case clsLager.const_Bestandsart_TagesbestandAccrossAllWorkspacesCustomer:
                         //kein Menü
                         break;
 

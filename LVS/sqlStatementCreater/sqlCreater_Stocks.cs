@@ -166,6 +166,11 @@ namespace LVS.sqlStatementCreater
                     sql_MainSelection = sqlCreater_DailyStockAllWs.sql_Statement;
                     break;
 
+                case clsLager.const_Bestandsart_TagesbestandAccrossAllWorkspacesCustomer:
+                    sqlCreater_Stocks_DailyStockAcrossAllWorkspacesCustomer sqlCreater_DailyStockAllWsCustomer = new sqlCreater_Stocks_DailyStockAcrossAllWorkspacesCustomer(myStockAdrId, (int)myGArtID, mySqlGoodsTypeIdString, myDateFrom, myDateTo, bFilterJournal, bUseBKZ);
+                    sql_MainSelection = sqlCreater_DailyStockAllWsCustomer.sql_Statement;
+                    break;
+
                 //Sperrlager - case "Sperrlager[SPL]":
                 case clsLager.const_Bestandsart_SPL:
                     sqlCreater_Stocks_DailyStockSPL sqlCreater_SPL = new sqlCreater_Stocks_DailyStockSPL(myWorkspaceId, myStockAdrId, myDateFrom, myDateTo, bFilterJournal, bUseBKZ);

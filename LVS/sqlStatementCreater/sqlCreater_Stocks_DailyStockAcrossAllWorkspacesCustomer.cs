@@ -2,7 +2,7 @@
 
 namespace LVS.sqlStatementCreater
 {
-    public class sqlCreater_Stocks_DailyStockAcrossAllWorkspaces
+    public class sqlCreater_Stocks_DailyStockAcrossAllWorkspacesCustomer
     {
         //Tagesbestand
         /**********************************************************************************************************
@@ -33,7 +33,7 @@ namespace LVS.sqlStatementCreater
         internal string SqlGoodsTypeIdString { get; set; } = string.Empty;
 
 
-        public sqlCreater_Stocks_DailyStockAcrossAllWorkspaces(
+        public sqlCreater_Stocks_DailyStockAcrossAllWorkspacesCustomer(
                                                                 //,int myWorkspaceId
                                                                 int myStockAdrId
                                                                , int myGArtID
@@ -78,25 +78,23 @@ namespace LVS.sqlStatementCreater
 
             strSql2 += "WHERE ";
 
-            //strSql2 += " b.AbBereich=" + myWorkspaceId + " AND ";
-            //strSql2 += "(( b.Auftraggeber=" + myStockAdrId + " ";
-            strSql2 += "(";
+            ////strSql2 += " b.AbBereich=" + myWorkspaceId + " AND ";
+            strSql2 += "(( b.Auftraggeber=" + myStockAdrId + " ";
 
             if (bUseBKZ)
             {
-                //strSql2 += " AND a.BKZ=1 AND a.CheckArt=1 AND b.[Check]=1 ";
-                strSql2 += "(a.BKZ=1 AND a.CheckArt=1 AND b.[Check]=1 ";
+                strSql2 += " AND a.BKZ=1 AND a.CheckArt=1 AND b.[Check]=1 ";
+                //strSql2 += "a.BKZ=1 AND a.CheckArt=1 AND b.[Check]=1 ";
             }
             else
             {
-                //strSql2 += " AND a.CheckArt=1 AND b.[Check]=1 and (c.Checked is Null or c.Checked=0) ";
-                strSql2 += "(a.CheckArt=1 AND b.[Check]=1 and (c.Checked is Null or c.Checked=0) ";
+                strSql2 += " AND a.CheckArt=1 AND b.[Check]=1 and (c.Checked is Null or c.Checked=0) ";
+                //strSql2 += "a.CheckArt=1 AND b.[Check]=1 and (c.Checked is Null or c.Checked=0) ";
             }
             //"AND b.Mandant=" + MandantenID + " " +
             strSql2 += " AND b.DirectDelivery=0 "; //  AND b.AbBereich=" + myWorkspaceId + " " +
             strSql2 += " AND b.Date <'" + myDateFrom.Date.AddDays(1).ToShortDateString() + "' ";
             //"AND b.Date <'" + BestandVon.Date.ToShortDateString() + "' " ;
-
             if (bFilterJournal)
             {
                 if (SqlGoodsTypeIdString != string.Empty)
@@ -114,25 +112,21 @@ namespace LVS.sqlStatementCreater
             strSql2 = strSql2 +
                                 ") " +
                                 "OR " +
-                                "(";
-                                    //"b.Auftraggeber=" + myStockAdrId + " ";
+                                "(" +
+                                    "b.Auftraggeber=" + myStockAdrId + " ";
             if (bUseBKZ)
             {
-                //strSql2 += " AND a.BKZ=0 AND a.CheckArt=1 AND b.[Check]=1 ";
-                strSql2 += " a.BKZ=0 AND a.CheckArt=1 AND b.[Check]=1 ";
-                strSql2 += " AND";
+                strSql2 += " AND a.BKZ=0 AND a.CheckArt=1 AND b.[Check]=1 ";
             }
             else
             {
                 if (myGArtID > 0)
                 {
-                    //strSql2 += " AND a.GArtID IN (" + (Int32)myGArtID + ") ";
-                    strSql2 += "a.GArtID IN (" + (Int32)myGArtID + ") ";
-                    strSql2 += " AND";
+                    strSql2 += " AND a.GArtID IN (" + (Int32)myGArtID + ") ";
                 }
             }
             //"AND b.Mandant=" + MandantenID + " " +
-            strSql2 += " b.DirectDelivery=0 "; // AND b.AbBereich=" + myWorkspaceId + " " +
+            strSql2 += " AND b.DirectDelivery=0 "; // AND b.AbBereich=" + myWorkspaceId + " " +
             strSql2 += " AND c.Datum>='" + myDateFrom.Date.AddDays(1).ToShortDateString() + "' " +
                        " AND b.Date <'" + myDateFrom.Date.AddDays(1).ToShortDateString() + "' ";
             if (bFilterJournal)
@@ -154,10 +148,9 @@ namespace LVS.sqlStatementCreater
             strSql2 += ") ";
 
             strSql2 += " OR (" +
-                                //"b.Auftraggeber=" + myStockAdrId + " " +
-                                //" AND a.ID IN(SELECT a.ArtikelID FROM Sperrlager a WHERE a.BKZ = 'IN' AND a.ID NOT IN (SELECT DISTINCT c.SPLIDIn FROM Sperrlager c WHERE c.SPLIDIn> 0))" +
-                                "a.ID IN(SELECT a.ArtikelID FROM Sperrlager a WHERE a.BKZ = 'IN' AND a.ID NOT IN (SELECT DISTINCT c.SPLIDIn FROM Sperrlager c WHERE c.SPLIDIn> 0))" +
-                             ") ";
+                                "b.Auftraggeber=" + myStockAdrId + " " +
+                                " AND a.ID IN(SELECT a.ArtikelID FROM Sperrlager a WHERE a.BKZ = 'IN' AND a.ID NOT IN (SELECT DISTINCT c.SPLIDIn FROM Sperrlager c WHERE c.SPLIDIn> 0))" +
+                            ") ";
             strSql2 += " order by a.AB_ID, a.ID ";
 
             //ohne sPL

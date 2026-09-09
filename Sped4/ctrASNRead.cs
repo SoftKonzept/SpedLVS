@@ -1539,12 +1539,6 @@ namespace Sped4.Classes
                 clsMessages.Allgemein_InfoTextShow(strMes);
             }
         }
-        ///<summary>ctrArtSearchFilter / tsbtnDeleteASN_Click</summary>
-        ///<remarks></remarks>
-        private void dgv_RowFormatting(object sender, RowFormattingEventArgs e)
-        {
-
-        }
         /// <summary>  
         ///             Formatiert Zeilen im EDIFACT-Grid und setzt Select-Zelle auf ReadOnly,   
         ///             wenn Auftraggeber oder Empfänger fehlen.  

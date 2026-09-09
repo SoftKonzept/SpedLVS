@@ -9,11 +9,14 @@ namespace Sped4
         {
             get
             {
+                _InfoText += "09.09.2026 / Build: 26.09.09.1      : " + Environment.NewLine +
+                             " - Bugfix: Bestandsliste|Bestandsart: Bestand über alle Arbeitsbereiche" + Environment.NewLine +
+                             Environment.NewLine;
+
 
                 _InfoText += "20.08.2026 / Build: 26.08.20.1      : " + Environment.NewLine +
                              " - Mailversand: Credentials werden in verschlüsselter Datei in Datenbank gespeichert" + Environment.NewLine +
                              Environment.NewLine;
-
                 _InfoText += "11.08.2026 / Build: 26.08.11.1      : " + Environment.NewLine +
                              " - Bestand Export zu Excel: Bug interne Fehlermeldung behoben" + Environment.NewLine +
                              " - Mailversand: Fehlerbehandlung erweitert" + Environment.NewLine +

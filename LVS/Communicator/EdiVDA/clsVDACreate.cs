@@ -2417,6 +2417,18 @@ namespace LVS
                     strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
                     break;
 
+                case clsEdiVDAValueAlias.const_cFunction_AluDuffel_EA_712F03_SLB:
+                    strTmp = string.Empty;
+                    strTmp = AluDuffel_EA_712F03_SLB.Execute(asnTyp, this.Lager);
+                    strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
+                    break;
+
+                case clsEdiVDAValueAlias.const_cFunction_AluDuffel_EA_712F05_FF:
+                    strTmp = string.Empty;
+                    strTmp = AluDuffel_EA_712F05_FF.Execute(asnTyp, this.Lager);
+                    strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
+                    break;
+
                 case clsEdiVDAValueAlias.const_cFunction_Arcelor_EABmwFormat:
                     strTmp = string.Empty;
                     strTmp = Arcelor_EA_BMWFormat.Execute(asnTyp, this.Lager);

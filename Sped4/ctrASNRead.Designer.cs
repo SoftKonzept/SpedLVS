@@ -128,7 +128,7 @@
             this.cbUseAutoRowAssignment.Location = new System.Drawing.Point(615, 4);
             this.cbUseAutoRowAssignment.Margin = new System.Windows.Forms.Padding(4);
             this.cbUseAutoRowAssignment.Name = "cbUseAutoRowAssignment";
-            this.cbUseAutoRowAssignment.Size = new System.Drawing.Size(184, 18);
+            this.cbUseAutoRowAssignment.Size = new System.Drawing.Size(181, 18);
             this.cbUseAutoRowAssignment.TabIndex = 27;
             this.cbUseAutoRowAssignment.Text = "auto. Reihenvergabe verwenden";
             // 
@@ -179,7 +179,6 @@
             this.dgv.Size = new System.Drawing.Size(721, 418);
             this.dgv.TabIndex = 25;
             this.dgv.ThemeName = "ControlDefault";
-            this.dgv.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.dgv_RowFormatting);
             this.dgv.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgv_CellFormatting);
             this.dgv.ChildViewExpanding += new Telerik.WinControls.UI.ChildViewExpandingEventHandler(this.dgv_ChildViewExpanding);
             this.dgv.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgv_CellClick);

@@ -117,6 +117,17 @@ namespace Sped4.Settings
                 dt.Rows.Add(row);
             }
 
+            if (myClient.Modul.Lager_Bestandsliste_BestandOverAllWorkspaces)
+            {
+                i++;
+                row = dt.NewRow();
+                row["ID"] = i;
+                row["Bestandsart"] = clsLager.const_Bestandsart_TagesbestandAccrossAllWorkspacesCustomer.ToString();
+                row["ADRRequire"] = true;
+                row["DateRequire"] = false;
+                dt.Rows.Add(row);
+            }
+
             i++;
             row = dt.NewRow();
             row["ID"] = i;

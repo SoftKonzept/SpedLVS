@@ -605,7 +605,7 @@ namespace LVS.Communicator.EdiVDA
                         {
                             string str = string.Empty;
                         }
-                        if (strKennung.Equals("SATZ715F05"))
+                        if (strKennung.Equals("SATZ714F03"))
                         {
                             string str = string.Empty;
                         }
