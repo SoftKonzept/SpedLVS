@@ -447,6 +447,7 @@ namespace Sped4
                     // Empfänger aufbereiten
                     string[] reciever = tbMailReceiver.Text.Split(',', ';');
                     Mail.ListMailReceiver = new List<string>();
+                    //-- - Empfänger hinzufügen 
                     foreach (string strEmail in reciever)
                     {
                         string strTmpEmail = strEmail.Trim();
@@ -457,6 +458,14 @@ namespace Sped4
                             {
                                 mailSending.recipients.Add(strTmpEmail);
                             }
+                        }
+                    }
+                    //--- Attachments hinzufügen
+                    foreach (string strAttachment in Mail.ListAttachment)
+                    {
+                        if (!mailSending.attachment.Contains(strAttachment))
+                        {
+                            mailSending.attachment.Add(strAttachment);
                         }
                     }
 

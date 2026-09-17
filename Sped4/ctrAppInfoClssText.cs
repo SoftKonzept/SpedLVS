@@ -9,8 +9,9 @@ namespace Sped4
         {
             get
             {
-                _InfoText += "09.09.2026 / Build: 26.09.09.1      : " + Environment.NewLine +
+                _InfoText += "17.09.2026 / Build: 26.09.17.1      : " + Environment.NewLine +
                              " - Bugfix: Bestandsliste|Bestandsart: Bestand über alle Arbeitsbereiche" + Environment.NewLine +
+                             " - Bugfix: Mailversand von hinzugefügten Dateien als Anhang" + Environment.NewLine +
                              Environment.NewLine;
 
 
