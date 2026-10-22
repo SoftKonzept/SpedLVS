@@ -146,7 +146,7 @@ namespace LVS
             myModul.Lager_SPL_OutFromEingang = true;  //können direkt aus Eingang wieder ausgebucht werden
             myModul.Lager_SPL_SchadenRequire = false;
             myModul.Lager_SPL_AutoSPL = false;
-            myModul.Lager_SPL_PrintSPLDocument = false;
+            myModul.Lager_SPL_PrintSPLDocument = true; // false;
             myModul.Lager_SPL_AutoPrintSPLDocument = false;
             myModul.Lager_SPL_RebookInAltEingang = true;
 

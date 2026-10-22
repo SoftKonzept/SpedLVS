@@ -128,7 +128,7 @@
             this.cbUseAutoRowAssignment.Location = new System.Drawing.Point(615, 4);
             this.cbUseAutoRowAssignment.Margin = new System.Windows.Forms.Padding(4);
             this.cbUseAutoRowAssignment.Name = "cbUseAutoRowAssignment";
-            this.cbUseAutoRowAssignment.Size = new System.Drawing.Size(181, 18);
+            this.cbUseAutoRowAssignment.Size = new System.Drawing.Size(184, 18);
             this.cbUseAutoRowAssignment.TabIndex = 27;
             this.cbUseAutoRowAssignment.Text = "auto. Reihenvergabe verwenden";
             // 

@@ -7116,18 +7116,22 @@ namespace Sped4
                 //DoPrintLabelOrDoc(sender, e);
                 if (this._ctrMenu._frmMain.system.Client.Modul.Lager_SPL_PrintSPLDocument)
                 {
-                    if (this._ctrMenu._frmMain.system.Client.MatchCode.Equals(clsClient.const_ClientMatchcode_SZG + "_"))
-                    {
-                        this.tsbtnSchadenDoc.Tag = enumDokumentenArt.SchadenDoc;
-                        this.PrintAktion(sender, e);
-                    }
-                    else
-                    {
-                        if (this.Lager.Artikel.ID > 0)
-                        {
-                            PrintSPLDoc(sender, e);
-                        }
-                    }
+                    this.tsbtnSchadenDoc.Tag = enumDokumentenArt.SchadenDoc;
+                    this.PrintAktion(sender, e);
+
+                    //-- mr 2026_10_07 Freigabe für SLE
+                    //if (this._ctrMenu._frmMain.system.Client.MatchCode.Equals(clsClient.const_ClientMatchcode_SZG + "_"))
+                    //{
+                    //    this.tsbtnSchadenDoc.Tag = enumDokumentenArt.SchadenDoc;
+                    //    this.PrintAktion(sender, e);
+                    //}
+                    //else
+                    //{
+                    //    if (this.Lager.Artikel.ID > 0)
+                    //    {
+                    //        PrintSPLDoc(sender, e);
+                    //    }
+                    //}
                 }
                 else
                 {
@@ -7378,6 +7382,16 @@ namespace Sped4
         {
             //SetArtikelMenuBtnEnabled(true);
             //SetArtikelEingabefelderDatenEnable(true);
+        }
+
+        private void tstbMaxSPLMes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tslMaxImageSPLMessage_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

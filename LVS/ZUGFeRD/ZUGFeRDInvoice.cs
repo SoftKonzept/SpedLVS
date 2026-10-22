@@ -344,8 +344,8 @@ namespace LVS.ZUGFeRD
                 Party Seller = ZUGFeRD.ZUGFeRD_Party.GetPartyItem(InvoiceVD.mandantenVD.Mandant.Address, InvoiceVD.mandantenVD.Mandant.Mail);
                 desc.Seller = Seller;
 
-                //-- Handeslregister  BT-33 / BT-34 / BT-35 (Seller legal registration)
-                //LegalOrganization legalOrg = new LegalOrganization(null, string.Empty, string.Empty);
+                //--- Handeslregister  BT-33 / BT-34 / BT-35 (Seller legal registration)
+                //--  LegalOrganization legalOrg = new LegalOrganization(null, string.Empty, string.Empty);
                 LegalOrganization legalOrg = null;
                 if (
                     (InvoiceVD.mandantenVD.Mandant.Register.Length > 0) && (InvoiceVD.mandantenVD.Mandant.MagistrateCourt.Length > 0)

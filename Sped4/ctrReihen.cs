@@ -1,4 +1,5 @@
 ﻿using LVS;
+using LVS.ViewData;
 using Sped4.Classes;
 using System;
 using System.Data;
@@ -39,7 +40,7 @@ namespace Sped4
         internal bool bReiheUpdate = false;
 
         internal string _lTextGArtID = "Güterart ID: #";
-
+        internal ReiheViewData ReiheVD = new ReiheViewData();
 
 
         protected override CreateParams CreateParams
@@ -59,8 +60,6 @@ namespace Sped4
             InitializeComponent();
 
             //Menü für die Güterarten nach den ARbeitsbereichen erstellen
-
-            InitTsddbtnGArtenListen();
             RadGridLocalizationProvider.CurrentProvider = new clsGermanRadGridLocalizationProvider();
             bUpdateGArtDaten = false;
 
@@ -68,7 +67,7 @@ namespace Sped4
             iListWidth = this.scGArt.Panel1.Width + 80;
             iTabGArtEditWidth = this.scGArt.Panel2.Width + 20;
             this.scGArt.Panel2Collapsed = true;
-            ResetCtrGueterArtListeWidth();
+            //ResetCtrGueterArtListeWidth();
 
             if (SearchGArt == true)
             {
@@ -103,65 +102,7 @@ namespace Sped4
                 this.tsbtnOpenEdit.Image = Sped4.Properties.Resources.layout;
             }
         }
-        ///<summary>ctrGueterArtListe / InitTsddbtnGArtenListen</summary>
-        ///<remarks>Erstellt das DropDownMenüliste der verfügbaren Güterartenlisten für die verschiedenen Arbeitsbereiche
-        ///         und eine Gesamtübersicht.Das ClickEvent wird in der Funktion TsddbtnGArtenListenItem_click ausgeführt</remarks>
-        private void InitTsddbtnGArtenListen()
-        {
-            //tsbtnListGArtenListen.DropDownItems.Clear();
-            //DataTable dtArbeitsbereiche = clsArbeitsbereiche.GetArbeitsbereichList(this.GL_User.User_ID);
-            ////Alle Güterarten
-            //ToolStripMenuItem tsmItem = new ToolStripMenuItem("Alle");
-            //tsmItem.Tag = "0";
-            //tsmItem.Text = "Alle";
-            //tsmItem.Click += new EventHandler(TsddbtnGArtenListenItem_click);
-            //tsbtnListGArtenListen.DropDownItems.Add(tsmItem);
-
-            //tsmItem = new ToolStripMenuItem("aktiv");
-            //tsmItem.Tag = "-1";
-            //tsmItem.Text = "aktiv";
-            //tsmItem.Click += new EventHandler(TsddbtnGArtenListenItem_click);
-            //tsbtnListGArtenListen.DropDownItems.Add(tsmItem);
-
-            //tsmItem = new ToolStripMenuItem("deaktiviert");
-            //tsmItem.Tag = "-2";
-            //tsmItem.Text = "deaktiviert";
-            //tsmItem.Click += new EventHandler(TsddbtnGArtenListenItem_click);
-            //tsbtnListGArtenListen.DropDownItems.Add(tsmItem);
-
-            //for (Int32 i = 0; i <= dtArbeitsbereiche.Rows.Count - 1; i++)
-            //{
-            //    //Liste der Arbeitsbereiche
-            //    string strABName = dtArbeitsbereiche.Rows[i]["Arbeitsbereich"].ToString();
-            //    tsmItem = new ToolStripMenuItem(strABName);
-            //    tsmItem.Tag = dtArbeitsbereiche.Rows[i]["ID"].ToString();
-            //    tsmItem.Text = strABName;
-            //    tsmItem.Click += new EventHandler(TsddbtnGArtenListenItem_click);
-
-            //    tsbtnListGArtenListen.DropDownItems.Add(tsmItem);
-            //}
-        }
-        ///<summary>ctrGueterArtListe / TsddbtnGArtenListenItem_click</summary>
-        ///<remarks></remarks>
-        private void TsddbtnGArtenListenItem_click(object sender, EventArgs e)
-        {
-            //txtSearch.Text = string.Empty;
-            //ToolStripMenuItem tmpClicked = (ToolStripMenuItem)sender;
-            //Int32 iTmp = 0;
-            //Int32.TryParse(tmpClicked.Tag.ToString(), out iTmp);
-            //MenuItemListArt = iTmp;
-            //string strHeadline = string.Empty;
-            //if (this._ctrMenu._frmMain.system.Client.Modul.Stammdaten_Gut_UseGutDefinition)
-            //{ 
-            //    strHeadline = const_ExportFileName_GArt +" ["+tmpClicked.Text+"]";
-            //}
-            //else 
-            //{
-            //    strHeadline = const_ExportFileName_WG + " [" + tmpClicked.Text + "]";        
-            //}
-            //afColorLabel1.myText = strHeadline;
-            //InitDGV();
-        }
+ 
         ///<summary>ctrGueterArtListe / InitDGVGart</summary>
         ///<remarks></remarks>
         public void InitDGV()
@@ -209,11 +150,9 @@ namespace Sped4
                 this.scGArt.Panel2Collapsed = true;
                 SettsbtnOpenEditImage();
             }
-            ResetCtrGueterArtListeWidth();
+            //ResetCtrGueterArtListeWidth();
         }
-        ///<summary>ctrGueterArtListe / dgvGArtList_ToolTipTextNeeded</summary>
-        ///<remarks>Zeigt den Zelleninhalt als ToolTip an</remarks>
-        private void dgvGArtList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        private void dgvReihe_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
             GridDataCellElement cell = sender as GridDataCellElement;
             if (cell != null)
@@ -227,7 +166,7 @@ namespace Sped4
         {
             bUpdateGArtDaten = true;
             scGArt.Panel2Collapsed = false;
-            ResetCtrGueterArtListeWidth();
+            //ResetCtrGueterArtListeWidth();
             InitTabGArtEingabeFelder();
         }
         ///<summary>ctrGueterArtListe / tsbtnVerpackungsdatenChange_Click</summary>
@@ -262,7 +201,6 @@ namespace Sped4
                     InitTabGArtEingabeFelder();
                 }
                 scGArt.Panel2Collapsed = false;
-                ResetCtrGueterArtListeWidth();
             }
         }
         ///<summary>ctrGueterArtListe / miCloseCtr_Click</summary>
@@ -270,37 +208,15 @@ namespace Sped4
         private void miCloseCtr_Click(object sender, EventArgs e)
         {
             this._ctrMenu.CloseCtrReihe();
-            //if (this._frmGArtenAuftragserfassung != null)
-            //{
-            //    ClosefrmGArtenAuftragserfassung();
-            //}
-            //else
-            //{
-            //    Int32 Count = this.ParentForm.Controls.Count;
-
-            //    for (Int32 i = 0; (i <= (Count - 1)); i++)
-            //    {
-            //        if (this.ParentForm.Controls[i].Name == "TempSplitterGut")
-            //        {
-            //            this.ParentForm.Controls.Remove(this.ParentForm.Controls[i]);
-            //            //i = Count - 1;      // ist nur ein Controll vorhanden
-            //        }
-            //        if (this.ParentForm.Controls[i].GetType() == typeof(ctrGueterArtListe))
-            //        {
-            //            this.ParentForm.Controls.Remove(this.ParentForm.Controls[i]);
-            //            i = Count - 1;      // ist nur ein Controll vorhanden
-            //        }
-            //    }
-            //}
         }
         ///<summary>ctrGueterArtListe / dgvGArtList_MouseClick</summary>
         ///<remarks></remarks>
-        private void dgvGArtList_MouseClick(object sender, MouseEventArgs e)
+        private void dgvReihe_MouseClick(object sender, MouseEventArgs e)
         {
             if (!this.scGArt.Panel2Collapsed)
             {
                 this.scGArt.Panel2Collapsed = true;
-                ResetCtrGueterArtListeWidth();
+                //ResetCtrGueterArtListeWidth();
             }
             if (e.Button == MouseButtons.Right)
             {
@@ -309,34 +225,36 @@ namespace Sped4
         }
         ///<summary>ctrGueterArtListe / dgvGArtList_CellDoubleClick</summary>
         ///<remarks></remarks>
-        private void dgvGArtList_CellClick(object sender, GridViewCellEventArgs e)
+        private void dgvReihe_CellClick(object sender, GridViewCellEventArgs e)
         {
             decimal decTmpReihe = 0;
-            string strTmp = this.dgvReihe.Rows[this.dgvReihe.CurrentRow.Index].Cells["ID"].Value.ToString();
+            //string strTmp = this.dgvReihe.Rows[this.dgvReihe.CurrentRow.Index].Cells["ID"].Value.ToString();
+            string strTmp = this.dgvReihe.CurrentRow.Cells["Id"].Value.ToString();
             if (Decimal.TryParse(strTmp, out decTmpReihe))
             {
                 this.LagerOrt.Werk.Halle.Reihe.ID = decTmpReihe;
-                this.LagerOrt.Werk.Halle.Reihe.FillDaten();
+                this.LagerOrt.Werk.Halle.Reihe.FillDaten();              
             }
         }
-        ///<summary>ctrGueterArtListe / dgvGArtList_CellDoubleClick</summary>
-        ///<remarks></remarks>
-        private void dgvGArtList_CellDoubleClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvReihe_CellDoubleClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (this.LagerOrt.Werk.Halle.Reihe.ID > 0)
             {
-                //Unterscheidung Suche und Bearbeitung der Daten
+                // Sicherstellen, dass Daten geladen sind
+                this.LagerOrt.Werk.Halle.Reihe.GetReiheGutAssignmentList();
+
+                // Panel öffnen
                 this.scGArt.Panel2Collapsed = false;
-                ResetCtrGueterArtListeWidth();
                 bReiheUpdate = true;
 
+                // UI aktualisieren
                 InitTabGArtEingabeFelder();
                 SetReiheEingabeFelderEnabled(true);
-                //}
-                //else
-                //{
-                //   InitTabPageWG();
-                //}
             }
         }
         ///<summary>ctrGueterArtListe / dgvGArtList_CellDoubleClick</summary>
@@ -348,7 +266,7 @@ namespace Sped4
             if (this._ctrMenu._frmMain.system.Client.Modul.Stammdaten_Gut_UseGutDefinition)
             {
                 InitTabGArtEingabeFelder();
-                ClearTabGArtEdit();
+                //ClearTabGArtEdit();
             }
             else
             {
@@ -356,7 +274,7 @@ namespace Sped4
                 ClearTabPageWGInputFields();
             }
             this.scGArt.Panel2Collapsed = false;
-            ResetCtrGueterArtListeWidth();
+            //ResetCtrGueterArtListeWidth();
         }
         ///<summary>ctrGueterArtListe / toolStripButton1_Click</summary>
         ///<remarks>Aüteratenliste neuladen</remarks>
@@ -377,54 +295,6 @@ namespace Sped4
             }
 
             ShowAndHideTabPage();
-        }
-        ///<summary>ctrGueterArtListe / DeleteGArtenDaten</summary>
-        ///<remarks>Gewählten Datensatz löschen</remarks>
-        private void DeleteGArtenDaten()
-        {
-            //if (GL_User.write_Gut)
-            //{
-            //    if (this.dgvReihe.Rows.Count > 0)
-            //    {
-            //        decimal decTmp = 0;
-            //        string strTmp = this.dgvReihe.Rows[this.dgvReihe.CurrentRow.Index].Cells["ID"].Value.ToString();
-            //        Decimal.TryParse(strTmp, out decTmp);
-
-            //        //ID 1 ist ViewID 0 alle Güter
-            //        if (decTmp > 1)
-            //        {
-            //            Gut.ID = decTmp;
-            //            Gut.Fill();
-            //            if (Gut.GArtIsUsed)
-            //            {
-            //                clsMessages.Gut_GueterartIsInUse();
-            //                Gut.Aktiv = false;
-            //                Gut.UpdateGueterArt();
-            //                Gut.Fill();
-            //            }
-            //            else
-            //            {
-            //                if (clsMessages.DeleteAllgemein())
-            //                {
-            //                    Gut.Delete();
-            //                    if (this._ctrMenu._frmMain.system.Client.Modul.Stammdaten_Gut_UseGutDefinition)
-            //                    {
-
-            //                    }
-            //                    else
-            //                    {
-            //                        ClearTabPageWGInputFields();
-            //                    }                           
-            //                }
-            //            }
-            //        }
-            //        InitDGV();
-            //    }
-            //}
-            //else
-            //{
-            //    clsMessages.User_NoAuthen();
-            //}
         }
         ///<summary>frmGueterArten/ tsbExcel_Click</summary>
         ///<remarks></remarks>
@@ -506,36 +376,6 @@ namespace Sped4
                 cbGArt.Checked = false;
             }
         }
-        ///<summary>frmGueterArten/ ResetCtrGueterArtListeWidth</summary>
-        ///<remarks></remarks>
-        private void ResetCtrGueterArtListeWidth()
-        {
-            //breite neu ermitteln
-            //iListWidth = 30;
-            //for (Int32 i = 0; i <= this.dgvReihe.Columns.Count - 1; i++)
-            //{
-            //    if (this.dgvReihe.Columns[i].IsVisible)
-            //    {
-            //        iListWidth = iListWidth + this.dgvReihe.Columns[i].Width;
-            //    }
-            //}
-
-            //if (this.scGArt.Panel2Collapsed)
-            //{
-
-            //    this.Width = iListWidth + 10;
-            //    this.Width = 700;
-            //    //this.scGArt.Panel1.Width = this.Width;
-            //}
-            //else
-            //{
-            //    this.Width = iListWidth + iTabGArtEditWidth + 10; 
-            //    this.scGArt.SplitterDistance = iListWidth+20;
-            //    this.Width = 700;
-            //}
-
-            //this.Refresh();
-        }
         ///<summary>frmGueterArten/ InitTabGArtEingabeFelder</summary>
         ///<remarks></remarks>
         private void InitTabGArtEingabeFelder()
@@ -553,10 +393,11 @@ namespace Sped4
         private void InitTabGArtEdit()
         {
             MinMAxPanelExpand();
-            ClearTabGArtEdit();
+            //ClearTabGArtEdit();      // ist komplett leer
             this.scGArt.Panel2Collapsed = false;
-            ResetCtrGueterArtListeWidth();
+            //ResetCtrGueterArtListeWidth(); // ist komplett auskommentiert
             SettsbtnOpenEditImage();
+            //-- Daten auf das Ctr in die Eingabefelder setzen
             SetGArtenWGDatenToTab();
         }
         ///<summary>frmGueterArten/ ResetEnableTbBox</summary>
@@ -720,42 +561,8 @@ namespace Sped4
             {
                 nudBruttoBis.Value = LagerOrt.Werk.Halle.Reihe.BruttoBis;
             }
-            TakeOverGueterArt(this.LagerOrt.Werk.Halle.Reihe.GArt.ID);
-        }
-        ///<summary>frmGueterArten/ ResetEnableTbBox</summary>
-        ///<remarks></remarks>
-        private void ClearTabGArtEdit()
-        {
-
-
-        }
-        ///<summary>frmGueterArten/ tsbtnGArtenEditDelete_Click</summary>
-        ///<remarks></remarks>
-        private void tsbtnGArtenEditDelete_Click(object sender, EventArgs e)
-        {
-
-        }
-        ///<summary>frmGueterArten/ tsbSpeichern_Click</summary>
-        ///<remarks></remarks>
-        private void tsbSpeichern_Click(object sender, EventArgs e)
-        {
-        }
-        ///<summary>frmGueterArten/ SaveGutDaten</summary>
-        ///<remarks></remarks>
-        private void SaveGutDaten()
-        {
-        }
-        ///<summary>ctrADR_List / tbViewID_Validated</summary>
-        ///<remarks>Bei Eingabe werden alle anderen Eingabefelder freigegeben</remarks>
-        private void tbViewID_Validated(object sender, EventArgs e)
-        {
-
-        }
-        ///<summary>ctrADR_List / SetTabGArtEditEingabeFelderEnabled</summary>
-        ///<remarks></remarks>
-        private void SetTabGArtEditEingabeFelderEnabled(bool bEnabled, Int32 iMassZahl)
-        {
-
+            InitDgvGutList();
+            //TakeOverGueterArt(this.LagerOrt.Werk.Halle.Reihe.GArt.ID);
         }
         /************************************************************************
          *                    TABVerpackungEdit
@@ -764,31 +571,13 @@ namespace Sped4
         ///<remarks></remarks>
         private void InitTabVerpackungEdit()
         {
-            ClearTabVerpackungEdit();
+            //ClearTabVerpackungEdit();   // ist komplett leer
             this.scGArt.Panel2Collapsed = false;
-            ResetCtrGueterArtListeWidth();
+            //ResetCtrGueterArtListeWidth();   // ist komplett auskommentiert
             SettsbtnOpenEditImage();
-            SetGArtenDatenToTabVerpackungenEdit();
+            //SetGArtenDatenToTabVerpackungenEdit(); // ist komplett leer
         }
-        ///<summary>ctrADR_List / ClearTabVerpackungEdit</summary>
-        ///<remarks>Leert die Eingabefelder im TabVerpackungenEdit</remarks>
-        private void ClearTabVerpackungEdit()
-        {
-
-        }
-        ///<summary>ctrADR_List / SetGArtenDatenToTabVerpackungenEdit</summary>
-        ///<remarks></remarks>
-        private void SetGArtenDatenToTabVerpackungenEdit()
-        {
-
-        }
-        ///<summary>ctrADR_List / tbBolzenME_Validated</summary>
-        ///<remarks>Check Eingabe auf Decimal</remarks>
-        private void tsbtnSaveVerpackungEdit_Click(object sender, EventArgs e)
-        {
-
-        }
-        /************************************************************************
+         /************************************************************************
         *                    TabStyleSheet
         * **********************************************************************/
         ///<summary>ctrADR_List / tsbtnStyleAdd_Click</summary>
@@ -831,7 +620,7 @@ namespace Sped4
         private void tsbtnCloseFormat_Click(object sender, EventArgs e)
         {
             this.scGArt.Panel2Collapsed = true;
-            ResetCtrGueterArtListeWidth();
+            //ResetCtrGueterArtListeWidth();
             ClearTabStyleSheet();
         }
         ///<summary>ctrADR_List / dgvStyleSheet_CellClick</summary>
@@ -854,33 +643,11 @@ namespace Sped4
         ///<remarks></remarks>
         private void SetStyleSheetDataToTabStyleSheet()
         {
-
-            //decimal decTmp = 0;
-            //Decimal.TryParse(Gut.Style.Length.ToString(), out decTmp);
-
         }
         ///<summary>ctrADR_List / SetStyleSheetDataToTabStyleSheet</summary>
         ///<remarks></remarks>
         private void AssignVarStyleSheet()
         {
-            //decimal decTmpStyleID = Gut.Style.ID;
-
-            //Gut.Style = new clsStyleSheetColumn();
-            //Gut.Style._GL_User = this.GL_User;
-
-
-        }
-        ///<summary>ctrADR_List / SetStyleSheetDataToTabStyleSheet</summary>
-        ///<remarks></remarks>
-        private void tsbtnStyleDelete_Click(object sender, EventArgs e)
-        {
-            //if (clsMessages.StyleSheet_Delete())
-            //{
-            //    Gut.Style.Delete();
-            //    ClearTabStyleSheet();
-            //    InitTabStyleSheet();
-            //    SetTabStyleSheetEingabefelderEnabled(false);
-            //}
         }
         ///<summary>ctrADR_List / dgvStyleSheet_ToolTipTextNeeded</summary>
         ///<remarks></remarks>
@@ -896,7 +663,7 @@ namespace Sped4
         ///<remarks></remarks>
         private void tsbGArtenEditSave_Click(object sender, EventArgs e)
         {
-            SaveGutDaten();
+            //SaveGutDaten();
             bUpdateGArtDaten = false;
         }
         ///<summary>ctrADR_List / tsbGArtenEditSave_Click</summary>
@@ -904,7 +671,7 @@ namespace Sped4
         private void tsbtnGArtEditClose_Click(object sender, EventArgs e)
         {
             this.scGArt.Panel2Collapsed = true;
-            ResetCtrGueterArtListeWidth();
+            //ResetCtrGueterArtListeWidth();
         }
         /***************************************************************************************
          *                        tabPage WG
@@ -914,13 +681,13 @@ namespace Sped4
         private void tsbtnWGClose_Click(object sender, EventArgs e)
         {
             this.scGArt.Panel2Collapsed = true;
-            ResetCtrGueterArtListeWidth();
+            //ResetCtrGueterArtListeWidth();
         }
         ///<summary>ctrADR_List / tsbtnWGSave_Click</summary>
         ///<remarks></remarks>
         private void tsbtnWGSave_Click(object sender, EventArgs e)
         {
-            SaveGutDaten();
+            //SaveGutDaten();
             bReiheUpdate = false;
         }
         ///<summary>frmGueterArten/ InitTabPageWG</summary>
@@ -930,8 +697,9 @@ namespace Sped4
             MinMAxPanelExpand();
             ClearTabPageWGInputFields();
             this.scGArt.Panel2Collapsed = false;
-            ResetCtrGueterArtListeWidth();
+            //ResetCtrGueterArtListeWidth();
             SettsbtnOpenEditImage();
+            //-- Daten auf das Ctr in die Eingabefelder setzen
             SetGArtenWGDatenToTab();
         }
         ///<summary>frmGueterArten/ ClearTabPageWGInputFields</summary>
@@ -1017,9 +785,9 @@ namespace Sped4
             nudBruttoVon.Enabled = bEnabled;
             nudBruttoBis.Enabled = bEnabled;
 
-            tbGArtSearch.Enabled = bEnabled;
-            btnGArt.Enabled = bEnabled;
-            tbGArt.Enabled = bEnabled;
+            //tbGArtSearch.Enabled = bEnabled;
+            //btnGArt.Enabled = bEnabled;
+            //tbGArt.Enabled = bEnabled;
 
         }
         ///<summary>ctrLagerOrt / ClearHalleEingabeFelder</summary>
@@ -1041,8 +809,10 @@ namespace Sped4
             nudBruttoVon.Value = 0;
             nudBruttoBis.Value = 0;
 
-            tbGArtSearch.Text = string.Empty;
-            tbGArt.Text = string.Empty;
+            dgvGutlist.DataSource = null;
+
+            //tbGArtSearch.Text = string.Empty;
+            //tbGArt.Text = string.Empty;
 
         }
         ///<summary>ctrLagerOrt / InitReihe</summary>
@@ -1092,15 +862,13 @@ namespace Sped4
             ClearReiheEingabeFelder();
             //Schritt 2
 
-            // MODUL MAXIMAL WERT für REIHEN ?
-            //nudReiheOrderID.Maximum = (decimal)LagerOrt.Werk.Halle.maxOrderIDReihe;
-
             LagerOrt.Werk.Halle.Reihe.Init();
-            //Datatable for dgvWerk
+            //Datatable
             if (LagerOrt.Werk.Halle.Reihe.dtReihe.Columns.Contains("Belegung"))
                 LagerOrt.Werk.Halle.Reihe.dtReihe.Columns["Belegung"].SetOrdinal(5);
             this.dgvReihe.DataSource = LagerOrt.Werk.Halle.Reihe.dtReihe;
-            this.dgvReihe.Columns["ID"].IsVisible = false;
+            //this.dgvReihe.Columns["ID"].IsVisible = false;
+            this.dgvReihe.Columns["ID"].IsVisible = (this.GL_User.IsAdmin);
             this.dgvReihe.Columns["HalleID"].IsVisible = false;
             this.dgvReihe.Columns["GArtID"].IsVisible = false;
 
@@ -1152,7 +920,11 @@ namespace Sped4
             }
             return EingabeOK;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsbtnReiheAdd_Click(object sender, EventArgs e)
         {
             bReiheUpdate = false;
@@ -1162,8 +934,8 @@ namespace Sped4
             tbReiheBezeichnung.Focus();
 
             //OrderID maximum setzen
-            //nudReiheOrderID.Maximum = nudReiheOrderID.Maximum + 1;
-            //nudReiheOrderID.Value = LagerOrt.Werk.Halle.Reihe.maxOrderID + 1;
+            nudReiheOrderID.Maximum = nudReiheOrderID.Maximum + 1;
+            nudReiheOrderID.Value = LagerOrt.Werk.Halle.Reihe.maxOrderID + 1;
 
             //nudReiheOrderID.Maximum = LagerOrt.Werk.Halle.maxOrderIDReihe + 1;
             //nudReiheOrderID.Value = nudReiheOrderID.Maximum;
@@ -1197,57 +969,47 @@ namespace Sped4
 
         internal void TakeOverGueterArt(decimal TakeOver_ID)
         {
-            LagerOrt.Werk.Halle.Reihe.GArt.ID = TakeOver_ID;
-            LagerOrt.Werk.Halle.Reihe.GArt.InitClass(this.GL_User, this._ctrMenu._frmMain.GL_System);
-            LagerOrt.Werk.Halle.Reihe.GArt.Fill();
-            SetGArtDatenFromSelectedGut();
-        }
+            //-- bis 21.10.2026
+            //LagerOrt.Werk.Halle.Reihe.GArt.ID = TakeOver_ID;
+            //LagerOrt.Werk.Halle.Reihe.GArt.InitClass(this.GL_User, this._ctrMenu._frmMain.GL_System);
+            //LagerOrt.Werk.Halle.Reihe.GArt.Fill();
 
-        private void SetGArtDatenFromSelectedGut()
-        {
-            tbGArtSearch.Text = LagerOrt.Werk.Halle.Reihe.GArt.ViewID;
-            tbGArt.Text = LagerOrt.Werk.Halle.Reihe.GArt.Bezeichnung;
-        }
-
-        private void tbGArtSearch_TextChanged(object sender, EventArgs e)
-        {
-            //Güterarten laden
-            DataTable dt = new DataTable();
-            dt = clsGut.GetGArtenForCombo(this.GL_User.User_ID);
-            string Filter = tbGArtSearch.Text.Trim();
-            DataTable dtTmp = new DataTable();
-
-            if (Filter != string.Empty)
+            //--- Güterart wird hinterlegt
+            //----- Save in Table 
+            if ((LagerOrt.Werk.Halle.Reihe.ID > 0) && (TakeOver_ID > 0))
             {
-                dt.DefaultView.RowFilter = "ViewID ='" + Filter + "'";
-                dtTmp = dt.DefaultView.ToTable();
-
-                if (dtTmp.Rows.Count > 0)
+                if (!ReiheGutAssignmentViewData.ExistByReiheAndGArt((int)LagerOrt.Werk.Halle.Reihe.ID, (int)TakeOver_ID, (int)GL_User.User_ID))
                 {
-                    tbGArtSearch.Text = dtTmp.Rows[0]["ViewID"].ToString();
-                    tbGArt.Text = dtTmp.Rows[0]["Bezeichnung"].ToString();
-                    LagerOrt.Werk.Halle.Reihe.GArt.ID = (decimal)dtTmp.Rows[0]["ID"];
+                    ReiheGutAssignmentViewData rgaVD = new ReiheGutAssignmentViewData();
+                    rgaVD.ReiheGutAssignment.Id = 0;
+                    decimal decTmp = 0;
+                    Decimal.TryParse(LagerOrt.Werk.Halle.Reihe.ID.ToString(), out decTmp);
+                    rgaVD.ReiheGutAssignment.ReiheId = decTmp;
+                    rgaVD.ReiheGutAssignment.GArtId = TakeOver_ID;
+                    rgaVD.Add();
 
-                    LagerOrt.Werk.Halle.Reihe.GArt.InitClass(this.GL_User, this._ctrMenu._frmMain.GL_System);
+                    LagerOrt.Werk.Halle.Reihe.GetReiheGutAssignmentList();
+
                 }
                 else
                 {
-                    tbGArt.Text = string.Empty;
-                    LagerOrt.Werk.Halle.Reihe.GArt.ID = 0;
+                    string strMes = "Die Güterart ist bereits der Reihe zugeordnet.";
+                    clsMessages.Allgemein_ERRORTextShow(strMes);
                 }
             }
             else
             {
-                tbGArt.Text = string.Empty;
-                LagerOrt.Werk.Halle.Reihe.GArt.ID = 0;
+                string strMes = "Keine Güterart gewählt bzw. Id=0.";
+                clsMessages.Allgemein_ERRORTextShow(strMes);
             }
-            SetLabelGArdIDInfo();
+            InitDgvGutList();
+            //SetGArtDatenFromSelectedGut();
         }
         ///<summary>ctrEinlagerung / SetLabelGArdIDInfo</summary>
         ///<remarks>Set den GüterartID Info.</remarks>  
         private void SetLabelGArdIDInfo()
         {
-            lGArtID.Text = _lTextGArtID + LagerOrt.Werk.Halle.Reihe.GArt.ID;
+            //lGArtID.Text = _lTextGArtID + LagerOrt.Werk.Halle.Reihe.GArt.ID;
         }
 
 
@@ -1261,6 +1023,111 @@ namespace Sped4
         {
             this._ctrMenu.OpenFrmReporView(this, false);
         }
+
+        private void tsbtnOpenGut_Click(object sender, EventArgs e)
+        {
+            this._ctrMenu.OpenFrmGArtenList(this);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsbtnGutDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvGutlist.CurrentRow != null && dgvGutlist.CurrentRow.Index >= 0)
+                {
+                    // ✅ KORREKT: Direkt CurrentRow verwenden, nicht Rows[Index]
+                    int iGutAssignmentId = 0;
+
+                    if (int.TryParse(dgvGutlist.CurrentRow.Cells["Id"].Value?.ToString() ?? "0", out iGutAssignmentId))
+                    {
+                        if (iGutAssignmentId > 0)
+                        {
+                            if (ReiheGutAssignmentViewData.ExistByReiheGutAssignmentById(iGutAssignmentId, (int)GL_User.User_ID))
+                            {
+                                ReiheGutAssignmentViewData rgaVD = new ReiheGutAssignmentViewData(iGutAssignmentId);
+
+                                if (clsMessages.DeleteAllgemein())
+                                {
+                                    rgaVD.Delete();
+                                    LagerOrt.Werk.Halle.Reihe.GetReiheGutAssignmentList();
+                                    InitDgvGutList();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Fehler in tsbtnGutDelete_Click: " + ex.Message);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void InitDgvGutList()
+        {
+            dgvGutlist.DataSource = null;
+            dgvGutlist.DataSource = LagerOrt.Werk.Halle.Reihe.ListReiheGutAssignmentView;
+
+            // Scrollbalken anzeigen
+            dgvGutlist.TableElement.VScrollBar.Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            dgvGutlist.TableElement.HScrollBar.Visibility = Telerik.WinControls.ElementVisibility.Visible;
+
+            // Spalten ausblenden
+            //dgvGutlist.Columns["Reihe"].IsVisible = false;
+            //dgvGutlist.Columns["Gut"].IsVisible = false;
+
+            dgvGutlist.Columns["Id"].IsVisible = true;
+            dgvGutlist.Columns["ReiheId"].IsVisible = false;
+            dgvGutlist.Columns["ReihenBezeichnung"].IsVisible = true;
+            dgvGutlist.Columns["ReiheOrderId"].IsVisible = false;
+            dgvGutlist.Columns["GArtId"].IsVisible = false;
+            dgvGutlist.Columns["HalleId"].IsVisible = false;
+
+            // Spaltenbreite individuell festlegen
+            dgvGutlist.Columns["Id"].Width = 30;
+            dgvGutlist.Columns["ReihenBezeichnung"].Width = 70;
+            dgvGutlist.Columns["Matchcode"].Width = 100;
+            dgvGutlist.Columns["Güterart"].Width = 250;
+
+            // Optional: AutoSizeMode deaktivieren für feste Breiten
+            dgvGutlist.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.None;
+
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsbtnRefreshReiheGutAssignment_Click(object sender, EventArgs e)
+        {
+            InitDgvGutList();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvGutlist_Click(object sender, EventArgs e)
+        {
+            if (dgvGutlist.CurrentRow != null)
+            {
+                decimal decTmp = 0;
+                Decimal.TryParse(dgvGutlist.CurrentRow.Cells["Id"].Value.ToString(), out decTmp);
+                if (decTmp > 0)
+                {
+                   
+                }
+            }
+        }
+
+
     }
 }
 

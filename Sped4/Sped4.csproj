@@ -529,6 +529,7 @@
     <Compile Include="Classes\clsSQLStatement.cs" />
     <Compile Include="Classes\clsPrint.cs" />
     <Compile Include="Classes\Helper\helper_TelerikGridViewRowInfo.cs" />
+    <Compile Include="Classes\Update\up1343.cs" />
     <Compile Include="Classes\Update\up1342.cs" />
     <Compile Include="Classes\Update\up1341.cs" />
     <Compile Include="Classes\Update\up1340.cs" />

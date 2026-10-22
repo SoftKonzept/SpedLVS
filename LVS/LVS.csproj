@@ -1292,8 +1292,12 @@
     <Compile Include="Models\EdiDelforD97AValues.cs" />
     <Compile Include="Models\EdifactValue.cs" />
     <Compile Include="Models\EdiZQMQalityXml.cs" />
+    <Compile Include="Models\Halle.cs" />
     <Compile Include="Models\InvoiceItems.cs" />
     <Compile Include="Models\Invoices.cs" />
+    <Compile Include="Models\Reihe.cs" />
+    <Compile Include="Models\ReiheGutAssignment.cs" />
+    <Compile Include="Models\Werk.cs" />
     <Compile Include="Models\_EdiQalityD96A.cs" />
     <Compile Include="Models\_EdiQalityD96AValue.cs" />
     <Compile Include="Models\VDAClientValues.cs" />
@@ -1357,6 +1361,10 @@
     <Compile Include="ViewData\ASNArtFieldAssignmentViewData.cs" />
     <Compile Include="ViewData\AsnValueViewData.cs" />
     <Compile Include="ViewData\ASNArtFieldAssignmentViewData.cs" />
+    <Compile Include="ViewData\HalleViewData.cs" />
+    <Compile Include="ViewData\WerkViewData.cs" />
+    <Compile Include="ViewData\ReiheViewData.cs" />
+    <Compile Include="ViewData\ReiheGutAssignmentViewData.cs" />
     <Compile Include="ViewData\CronJobViewData.cs" />
     <Compile Include="ViewData\CustomProcessExceptionsViewData.cs" />
     <Compile Include="ViewData\InvoiceItemViewData.cs" />
@@ -1411,6 +1419,7 @@
     <Compile Include="Views\ctrASNRead_AsnEdifactView.cs" />
     <Compile Include="Views\ctrCleanAsnTables_EingangArtikel.cs" />
     <Compile Include="Views\ctrCleanAsnTables_Eingang.cs" />
+    <Compile Include="Views\ctrReihe_ReiheGutAssignmentView.cs" />
     <Compile Include="Views\viewSql_Journal.cs" />
     <Compile Include="ZUGFeRD\InvoiceToZUGFeRD_Head.cs" />
     <Compile Include="ZUGFeRD\MergeEInvoicewithPDF.cs" />

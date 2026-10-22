@@ -601,7 +601,7 @@ namespace LVS.Communicator.EdiVDA
                         string Value = dtASNValue.Rows[x]["Value"].ToString();
 
                         //Bestellnummer
-                        if (strKennung.Equals("SATZ713F03"))
+                        if (strKennung.Equals("SATZ713F20"))
                         {
                             string str = string.Empty;
                         }
@@ -613,6 +613,16 @@ namespace LVS.Communicator.EdiVDA
                         if (DictASNArtFieldAssignment.TryGetValue(strKennung, out ASNArtFieldAssign))
                         {
                             SetASNArtFieldAssignment(ASNArtFieldAssign.ArtField, ref AddArtikel, ref ASNArtFieldAssign, Value, iArtikelPos, false);
+
+                            //--- check GlobalVal Lfs
+                            if ((ASNArtFieldAssign.IsGlobalFieldVar) && (ASNArtFieldAssign.GlobalFieldVar.Equals(GlobalFieldVal_DeliveryNote.const_GlobalVar_DeliveryNote)))
+                            {
+                                row["LfsNr"] = Value;
+                                strLastLfsNr = Value;
+                                AddArtikel.Lfs = Value;
+
+                                UpdateLfsDict712_TM(Value);
+                            }
 
                             //Bestellnummer
                             if (strKennung.Equals("SATZ713F08"))
@@ -1852,6 +1862,25 @@ namespace LVS.Communicator.EdiVDA
                         bReturn = true;
                         break;
 
+                    case clsArtikel.ArtikelField_Lfs:
+                    case EA_LfsNr.const_EA_LfsNr:
+                        if (myArtAssign.IsDefValue)
+                        {
+                            strValue = myArtAssign.DefValue;
+                        }
+                        if (
+                            (!IsFieldCopy) &&
+                            (myArtAssign.FormatFunction != null) &&
+                            (!myArtAssign.FormatFunction.Equals(string.Empty))
+                          )
+                        {
+                            //strValue = ASNfunc.CustomFormatValue(myArtAssign.FormatFunction, strValue, ref myArt);
+                            strValue = ASNfunc.CustomFormatValue(myArtAssign.FormatFunction, strValue, myArt);
+                        }
+                        myArt.Lfs = strValue;
+                        bReturn = true;
+                        break;
+
                     default:
                         break;
                 }
@@ -2140,5 +2169,28 @@ namespace LVS.Communicator.EdiVDA
                 }
             }
         }
+
+        private void UpdateLfsDict712_TM(string myNewLfs)
+        {
+            if (!myNewLfs.Equals(string.Empty) && this.Dict712_Transportmittel.Count > 0)
+            {
+                // Schritt 1: Kopie des aktuellen Dictionary erstellen
+                var dictBackup = new Dictionary<string, ediHelper_712_TM>(this.Dict712_Transportmittel);
+
+                // Schritt 2: Original-Dictionary leeren
+                this.Dict712_Transportmittel.Clear();
+
+                // Schritt 3: Dictionary mit neuem Key neu aufbauen
+                foreach (var entry in dictBackup)
+                {
+                    // Alle Einträge mit dem neuen Schlüssel hinzufügen
+                    if (!this.Dict712_Transportmittel.ContainsKey(myNewLfs))
+                    {
+                        this.Dict712_Transportmittel.Add(myNewLfs, entry.Value);
+                    }
+                }
+            }
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LVS.ViewData;
+using System;
 using System.Data;
 
 
@@ -20,6 +21,8 @@ namespace LVS
         }
 
         public clsReihe Reihe = new clsReihe();
+        public ReiheViewData ReiheViewData = new ReiheViewData();
+
         public DataTable dtHalle = new DataTable("Halle");
 
         private decimal _ID;
@@ -90,6 +93,9 @@ namespace LVS
             }
             if (ExistHalleByWerkID())
             {
+                ReiheViewData = new ReiheViewData();
+
+
                 Reihe.Init();
             }
         }
@@ -143,22 +149,7 @@ namespace LVS
                 return false;
             }
         }
-        ///<summary>clsHalle / ExistHalle</summary>
-        ///<remarks>Prüft ob der Datensatz mit der ID existiert.</remarks>
-        ///<returns>Returns BOOL</returns>
-        private bool ExistHalle()
-        {
-            if (ID > 0)
-            {
-                string strSql = string.Empty;
-                strSql = "Select * FROM Halle WHERE ID=" + ID + " ;";
-                return clsSQLcon.ExecuteSQL_GetValueBool(strSql, BenutzerID);
-            }
-            else
-            {
-                return false;
-            }
-        }
+
         ///<summary>clsHalle / DeleteLEingangByLEingangTableID</summary>
         ///<remarks></remarks>
         public void Delete()
@@ -298,6 +289,22 @@ namespace LVS
             {
                 string strSql = string.Empty;
                 strSql = "Select * FROM Halle WHERE WerkID=" + WerkID + " ;";
+                return clsSQLcon.ExecuteSQL_GetValueBool(strSql, BenutzerID);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        ///<summary>clsHalle / ExistHalle</summary>
+        ///<remarks>Prüft ob der Datensatz mit der ID existiert.</remarks>
+        ///<returns>Returns BOOL</returns>
+        private bool ExistHalle()
+        {
+            if (ID > 0)
+            {
+                string strSql = string.Empty;
+                strSql = "Select * FROM Halle WHERE ID=" + ID + " ;";
                 return clsSQLcon.ExecuteSQL_GetValueBool(strSql, BenutzerID);
             }
             else

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using LVS.ViewData;
+using LVS.Views;
+using System;
+using System.Collections.Generic;
 using System.Data;
 
 
@@ -21,6 +24,8 @@ namespace LVS
 
         public clsEbene Ebene = new clsEbene();
         public DataTable dtReihe = new DataTable("Reihen");
+
+        public List<ctrReihe_ReiheGutAssignmentView> ListReiheGutAssignmentView = new List<ctrReihe_ReiheGutAssignmentView>();
 
         private decimal _ID;
         private string _Bezeichnung;
@@ -156,17 +161,17 @@ namespace LVS
             get { return _Anzahl; }
             set { _Anzahl = value; }
         }
-        private clsGut _GArt;
+        //private clsGut _GArt;
 
-        public clsGut GArt
-        {
-            get
-            {
-                if (_GArt == null) _GArt = new clsGut();
-                return _GArt;
-            }
-            set { _GArt = value; }
-        }
+        //public clsGut GArt
+        //{
+        //    get
+        //    {
+        //        if (_GArt == null) _GArt = new clsGut();
+        //        return _GArt;
+        //    }
+        //    set { _GArt = value; }
+        //}
 
         /**********************************************************************************************************************
          *                                               Methoden
@@ -208,7 +213,8 @@ namespace LVS
                                                    ", " + BruttoVon.ToString().Replace(',', '.') + " " +
                                                    ", " + BruttoBis.ToString().Replace(',', '.') + " " +
                                                    ", " + Anzahl + " " +
-                                                   ", " + GArt.ID + " " +
+                                                   ", 0 " +
+                                                   //", " + GArt.ID + " " +
                                                      ")";
             strSql = strSql + "Select @@IDENTITY as 'ID' ";
 
@@ -222,6 +228,30 @@ namespace LVS
             Functions.AddLogbuch(BenutzerID, enumLogbuchAktion.Eintrag.ToString(), strInfo);
 
             GetReihenDatenForDataTableExtra();
+            GetReiheGutAssignmentList();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GetReiheGutAssignmentList()
+        {
+            ListReiheGutAssignmentView.Clear();
+            string sql = "SELECT * FROM ReiheGutAssignment rga " +
+                         "INNER JOIN GueterArt g ON g.ID = rga.GArtID " +
+                         "WHERE rga.ReiheID = " + ID + " " +
+                         "ORDER BY rga.GArtId";
+            DataTable dtTmp = clsSQLcon.ExecuteSQL_GetDataTable(sql, _GL_User.User_ID, "ReiheGutAssignment");
+            foreach (DataRow row in dtTmp.Rows)
+            {
+                int iId = Convert.ToInt32(row["Id"]);
+                int iReiheId = Convert.ToInt32(row["ReiheID"]);
+                ReiheViewData reiheViewData = new ReiheViewData(iReiheId);
+
+                int iGArtId = Convert.ToInt32(row["GArtID"]);
+                GoodstypeViewData gutViewData = new GoodstypeViewData(iGArtId, 1);
+                ctrReihe_ReiheGutAssignmentView assignmentView = new ctrReihe_ReiheGutAssignmentView(iId, reiheViewData.Reihe, gutViewData.Gut);
+                ListReiheGutAssignmentView.Add(assignmentView);
+            }
         }
         ///<summary>clsReihe / UpdateLagerEingang</summary>
         ///<remarks>Update eines Datensatzes in der DB über die ID.</remarks>
@@ -246,7 +276,7 @@ namespace LVS
                                           ",BruttoVon= '" + BruttoVon.ToString().Replace(',', '.') + "' " +
                                           ",BruttoBis= '" + BruttoBis.ToString().Replace(',', '.') + "' " +
                                           ",Anzahl= '" + Anzahl.ToString().Replace(',', '.') + "' " +
-                                          ",GArtID= " + (Int32)GArt.ID + " " +
+                                          ",GArtID= 0 " + //(Int32)GArt.ID + " " +
                                         " WHERE ID='" + ID + "'";
                 bool bReturn = clsSQLcon.ExecuteSQL(strSql, BenutzerID);
                 // Logbucheintrag Eintrag
@@ -303,7 +333,7 @@ namespace LVS
                                                             "AND a.LagerOrt IN (" +
                                                                                 "Select p.ID FROM Platz p INNER JOIN Ebene e ON p.EbeneID=e.ID WHERE e.ReiheID=" + ID + " " +
                                                                                ") " +
-                                            ") ";
+                                                                               ") ";
 
                 strSql = strSql + "Delete FROM Reihe WHERE ID=" + ID + " ";
 
@@ -349,9 +379,10 @@ namespace LVS
                         this.BruttoVon = Convert.ToDecimal(dt.Rows[i]["BruttoVon"]);
                         this.BruttoBis = Convert.ToDecimal(dt.Rows[i]["BruttoBis"]);
                         this.Anzahl = Convert.ToInt32(dt.Rows[i]["Anzahl"]);
-                        this.GArt.ID = Convert.ToInt32(dt.Rows[i]["GArtID"]);
-                        this.GArt.Fill();
-
+                        //this.GArt.ID = 0; // Convert.ToInt32(dt.Rows[i]["GArtID"]);
+                        //this.GArt.Fill();
+                        //-- liste der zugewiesenen Güterarten werden geladen
+                        GetReiheGutAssignmentList();
                     }
                     return true;
                 }
@@ -414,8 +445,6 @@ namespace LVS
                 dtReihe.Rows.Clear();
             }
         }
-
-
         ///<summary>clsReihe / ExistWerk</summary>
         ///<remarks>Prüft ob der Datensatz mit der ID existiert.</remarks>
         ///<returns>Returns BOOL</returns>
@@ -529,27 +558,48 @@ namespace LVS
 
         public string GetVorschlag(string dicke, string breite, string laenge, string hoehe, string brutto, string GArtID)
         {
-            string sql = "Select " +
-                            "* " +
-                            ",(Select count(a.ID) from Artikel a " +
-                                                        "inner join LEingang e on a.LEingangTableID = e.ID " +
-                                                        "left join Lausgang c on a.LAusgangTableID = c.ID " +
-                                                            "where Reihe=r.Bezeichnung and (c.Checked=0 or c.Checked is null))" +
-                                                "as Anz " +
-                         "from Reihe r " +
-                                "where " +
-                                    "(DickeVon<=" + dicke.Replace(".", "").Replace(",", ".") + " and DickeBis>=" + dicke.Replace(".", "").Replace(',', '.') + " or (DickeVon = 0 and DickeBis=0)) and  " +
-                                    "(BreiteVon<=" + breite.Replace(".", "").Replace(',', '.') + " and BreiteBis>=" + breite.Replace(".", "").Replace(',', '.') + " or (BreiteVon = 0 and BreiteBis=0)) and " +
-                                    "(LaengeVon<=" + laenge.Replace(".", "").Replace(',', '.') + " and LaengeBis>=" + laenge.Replace(".", "").Replace(',', '.') + " or (LaengeVon = 0 and LaengeBis=0)) and " +
-                                    "(HoeheVon<=" + hoehe.Replace(".", "").Replace(',', '.') + " and HoeheBis>=" + hoehe.Replace(".", "").Replace(',', '.') + " or (HoeheVon = 0 and HoeheBis=0)) and " +
-                                    "(BruttoVon<=" + brutto.Replace(".", "").Replace(',', '.') + " and BruttoBis>=" + brutto.Replace(".", "").Replace(',', '.') + " or (BruttoVon = 0 and BruttoBis=0)) " +
-                                    "and (GArtID=" + GArtID + " or  GArtID=0) " +
-                                    "and (Select count(a.ID) from Artikel a " +
-                                                                    "inner join LEingang e on a.LEingangTableID = e.ID " +
-                                                                    "left join Lausgang c on a.LAusgangTableID = c.ID " +
-                                                                        "where " +
-                                                                            "a.Reihe=r.Bezeichnung and (c.Checked=0 or checked is null))<Anzahl " +
-                        " order by OrderID desc";
+            //string sql = "Select " +
+            //                "* " +
+            //                ",(Select count(a.ID) from Artikel a " +
+            //                                            "inner join LEingang e on a.LEingangTableID = e.ID " +
+            //                                            "left join Lausgang c on a.LAusgangTableID = c.ID " +
+            //                                                "where Reihe=r.Bezeichnung and (c.Checked=0 or c.Checked is null))" +
+            //                                    "as Anz " +
+            //             "from Reihe r " +
+            //                    "where " +
+            //                        "(DickeVon<=" + dicke.Replace(".", "").Replace(",", ".") + " and DickeBis>=" + dicke.Replace(".", "").Replace(',', '.') + " or (DickeVon = 0 and DickeBis=0)) and  " +
+            //                        "(BreiteVon<=" + breite.Replace(".", "").Replace(',', '.') + " and BreiteBis>=" + breite.Replace(".", "").Replace(',', '.') + " or (BreiteVon = 0 and BreiteBis=0)) and " +
+            //                        "(LaengeVon<=" + laenge.Replace(".", "").Replace(',', '.') + " and LaengeBis>=" + laenge.Replace(".", "").Replace(',', '.') + " or (LaengeVon = 0 and LaengeBis=0)) and " +
+            //                        "(HoeheVon<=" + hoehe.Replace(".", "").Replace(',', '.') + " and HoeheBis>=" + hoehe.Replace(".", "").Replace(',', '.') + " or (HoeheVon = 0 and HoeheBis=0)) and " +
+            //                        "(BruttoVon<=" + brutto.Replace(".", "").Replace(',', '.') + " and BruttoBis>=" + brutto.Replace(".", "").Replace(',', '.') + " or (BruttoVon = 0 and BruttoBis=0)) " +
+            //                        "and (GArtID=" + GArtID + " or  GArtID=0) " +
+            //                        "and (Select count(a.ID) from Artikel a " +
+            //                                                        "inner join LEingang e on a.LEingangTableID = e.ID " +
+            //                                                        "left join Lausgang c on a.LAusgangTableID = c.ID " +
+            //                                                            "where " +
+            //                                                                "a.Reihe=r.Bezeichnung and (c.Checked=0 or checked is null))<Anzahl " +
+            //            " order by OrderID desc";
+
+            string sql = "SELECT " +
+                            "r.* " +
+                            ",(SELECT COUNT(a.ID) FROM Artikel a " +
+                                "INNER JOIN LEingang e ON a.LEingangTableID = e.ID " +
+                                "LEFT JOIN LAusgang c ON a.LAusgangTableID = c.ID " +
+                                "WHERE a.Reihe = r.Bezeichnung AND (c.Checked = 0 OR c.Checked IS NULL)) AS Anz " +
+                         "FROM Reihe r " +
+                         "INNER JOIN ReiheGutAssignment rga ON rga.ReiheID = r.ID " +
+                         "WHERE rga.GArtID = " + GArtID + " " +
+                            "AND (DickeVon <= " + dicke.Replace(".", "").Replace(",", ".") + " AND DickeBis >= " + dicke.Replace(".", "").Replace(',', '.') + " OR (DickeVon = 0 AND DickeBis = 0)) " +
+                            "AND (BreiteVon <= " + breite.Replace(".", "").Replace(',', '.') + " AND BreiteBis >= " + breite.Replace(".", "").Replace(',', '.') + " OR (BreiteVon = 0 AND BreiteBis = 0)) " +
+                            "AND (LaengeVon <= " + laenge.Replace(".", "").Replace(',', '.') + " AND LaengeBis >= " + laenge.Replace(".", "").Replace(',', '.') + " OR (LaengeVon = 0 AND LaengeBis = 0)) " +
+                            "AND (HoeheVon <= " + hoehe.Replace(".", "").Replace(',', '.') + " AND HoeheBis >= " + hoehe.Replace(".", "").Replace(',', '.') + " OR (HoeheVon = 0 AND HoeheBis = 0)) " +
+                            "AND (BruttoVon <= " + brutto.Replace(".", "").Replace(',', '.') + " AND BruttoBis >= " + brutto.Replace(".", "").Replace(',', '.') + " OR (BruttoVon = 0 AND BruttoBis = 0)) " +
+                            "AND (SELECT COUNT(a.ID) FROM Artikel a " +
+                                "INNER JOIN LEingang e ON a.LEingangTableID = e.ID " +
+                                "LEFT JOIN LAusgang c ON a.LAusgangTableID = c.ID " +
+                                "WHERE a.Reihe = r.Bezeichnung AND (c.Checked = 0 OR c.Checked IS NULL)) < r.Anzahl " +
+                         "ORDER BY r.OrderID DESC";
+                         //"ORDER BY rga.Sortierung ASC, r.OrderID DESC";
 
             DataTable dtTmp = clsSQLcon.ExecuteSQL_GetDataTable(sql, _GL_User.User_ID, "Reihen");
 

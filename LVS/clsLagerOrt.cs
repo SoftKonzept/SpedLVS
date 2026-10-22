@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LVS.Models;
+using LVS.ViewData;
+using System;
 using System.Data;
 
 namespace LVS
@@ -19,6 +21,10 @@ namespace LVS
         }
 
         public clsWerk Werk = new clsWerk();
+        public WerkViewData werkVd = new WerkViewData();
+        public Werk LO_Werk = new Werk();
+
+
         private decimal _LagerPlatzID;
         private string _WerkBezeichnung;
         private string _HalleBezeichnung;
@@ -182,6 +188,9 @@ namespace LVS
             Werk.ID = WerkID;
             //Init läuft durch bis zum Platz
             Werk.Init();
+
+
+            werkVd = new WerkViewData((int)WerkID, (int)this._GL_User.User_ID);
         }
         ///<summary>clsLagerOrt / GetLagerortDataTable</summary>
         ///<remarks></remarks>

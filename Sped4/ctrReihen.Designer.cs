@@ -30,12 +30,16 @@
     {
             this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.miAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.miUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.miExportExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.miDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.miCloseCtr = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scGArt = new System.Windows.Forms.SplitContainer();
+            this.dgvReihe = new Telerik.WinControls.UI.RadGridView();
             this.minMaxOption = new Sped4.Controls.AFMinMaxPanel();
             this.afToolStrip1 = new Sped4.Controls.AFToolStrip();
             this.tsbtnOpenEdit = new System.Windows.Forms.ToolStripButton();
@@ -49,15 +53,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbGArt = new System.Windows.Forms.CheckBox();
             this.cbMC = new System.Windows.Forms.CheckBox();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.afColorLabel1 = new Sped4.Controls.AFColorLabel();
-            this.scGArt = new System.Windows.Forms.SplitContainer();
-            this.dgvReihe = new Telerik.WinControls.UI.RadGridView();
+            this.scGut = new System.Windows.Forms.SplitContainer();
             this.panGArtEditContainer = new System.Windows.Forms.Panel();
-            this.tbGArtSearch = new System.Windows.Forms.TextBox();
-            this.lGArtID = new System.Windows.Forms.Label();
-            this.tbGArt = new System.Windows.Forms.TextBox();
-            this.btnGArt = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -85,6 +82,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.nudMassAnzahl = new System.Windows.Forms.NumericUpDown();
             this.lMassAnzahl = new System.Windows.Forms.Label();
+            this.panGutlist = new System.Windows.Forms.Panel();
+            this.dgvGutlist = new Telerik.WinControls.UI.RadGridView();
+            this.tsmGutlist = new Sped4.Controls.AFToolStrip();
+            this.tsbtnOpenGut = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnRefreshReiheGutAssignment = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnGutDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tslGutSelected = new System.Windows.Forms.ToolStripLabel();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel1 = new System.Windows.Forms.Panel();
             this.afTSReihe = new Sped4.Controls.AFToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
@@ -102,15 +108,20 @@
             this.label4 = new System.Windows.Forms.Label();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.afColorLabel1 = new Sped4.Controls.AFColorLabel();
             this.contextMenuStrip1.SuspendLayout();
-            this.minMaxOption.SuspendLayout();
-            this.afToolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scGArt)).BeginInit();
             this.scGArt.Panel1.SuspendLayout();
             this.scGArt.Panel2.SuspendLayout();
             this.scGArt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReihe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReihe.MasterTemplate)).BeginInit();
+            this.minMaxOption.SuspendLayout();
+            this.afToolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scGut)).BeginInit();
+            this.scGut.Panel1.SuspendLayout();
+            this.scGut.Panel2.SuspendLayout();
+            this.scGut.SuspendLayout();
             this.panGArtEditContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBruttoVon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLaengeVon)).BeginInit();
@@ -123,6 +134,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudBruttoBis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDickeBis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMassAnzahl)).BeginInit();
+            this.panGutlist.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGutlist)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGutlist.MasterTemplate)).BeginInit();
+            this.tsmGutlist.SuspendLayout();
             this.panel1.SuspendLayout();
             this.afTSReihe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReiheOrderID)).BeginInit();
@@ -139,40 +154,97 @@
             this.miCloseCtr});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(187, 124);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 114);
             // 
             // miAdd
             // 
             this.miAdd.Name = "miAdd";
-            this.miAdd.Size = new System.Drawing.Size(186, 24);
+            this.miAdd.Size = new System.Drawing.Size(161, 22);
             this.miAdd.Text = "Neue Güterart";
             this.miAdd.Click += new System.EventHandler(this.miAdd_Click);
             // 
             // miUpdate
             // 
             this.miUpdate.Name = "miUpdate";
-            this.miUpdate.Size = new System.Drawing.Size(186, 24);
+            this.miUpdate.Size = new System.Drawing.Size(161, 22);
             this.miUpdate.Text = "Güterart ändern";
             // 
             // miExportExcel
             // 
             this.miExportExcel.Name = "miExportExcel";
-            this.miExportExcel.Size = new System.Drawing.Size(186, 24);
+            this.miExportExcel.Size = new System.Drawing.Size(161, 22);
             this.miExportExcel.Text = "Excel Export";
             // 
             // miDelete
             // 
             this.miDelete.Name = "miDelete";
-            this.miDelete.Size = new System.Drawing.Size(186, 24);
+            this.miDelete.Size = new System.Drawing.Size(161, 22);
             this.miDelete.Text = "Güterart löschen";
             this.miDelete.Click += new System.EventHandler(this.miDelete_Click);
             // 
             // miCloseCtr
             // 
             this.miCloseCtr.Name = "miCloseCtr";
-            this.miCloseCtr.Size = new System.Drawing.Size(186, 24);
+            this.miCloseCtr.Size = new System.Drawing.Size(161, 22);
             this.miCloseCtr.Text = "Liste schliessen";
             this.miCloseCtr.Click += new System.EventHandler(this.miCloseCtr_Click);
+            // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.testToolStripMenuItem.Text = "Test";
+            // 
+            // scGArt
+            // 
+            this.scGArt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scGArt.IsSplitterFixed = true;
+            this.scGArt.Location = new System.Drawing.Point(0, 28);
+            this.scGArt.Name = "scGArt";
+            // 
+            // scGArt.Panel1
+            // 
+            this.scGArt.Panel1.Controls.Add(this.dgvReihe);
+            this.scGArt.Panel1.Controls.Add(this.minMaxOption);
+            // 
+            // scGArt.Panel2
+            // 
+            this.scGArt.Panel2.Controls.Add(this.scGut);
+            this.scGArt.Panel2.Controls.Add(this.splitter1);
+            this.scGArt.Panel2.Controls.Add(this.panel1);
+            this.scGArt.Size = new System.Drawing.Size(1325, 697);
+            this.scGArt.SplitterDistance = 726;
+            this.scGArt.TabIndex = 12;
+            // 
+            // dgvReihe
+            // 
+            this.dgvReihe.BackColor = System.Drawing.Color.White;
+            this.dgvReihe.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dgvReihe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvReihe.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.dgvReihe.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.dgvReihe.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dgvReihe.Location = new System.Drawing.Point(0, 128);
+            this.dgvReihe.Margin = new System.Windows.Forms.Padding(4);
+            // 
+            // 
+            // 
+            this.dgvReihe.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.dgvReihe.MasterTemplate.EnableAlternatingRowColor = true;
+            this.dgvReihe.MasterTemplate.EnableFiltering = true;
+            this.dgvReihe.MasterTemplate.ShowFilteringRow = false;
+            this.dgvReihe.MasterTemplate.ShowHeaderCellButtons = true;
+            this.dgvReihe.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.dgvReihe.Name = "dgvReihe";
+            this.dgvReihe.ReadOnly = true;
+            this.dgvReihe.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgvReihe.Size = new System.Drawing.Size(726, 569);
+            this.dgvReihe.TabIndex = 26;
+            this.dgvReihe.ThemeName = "ControlDefault";
+            this.dgvReihe.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvReihe_CellClick);
+            this.dgvReihe.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvReihe_CellDoubleClick);
+            this.dgvReihe.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.dgvReihe_ToolTipTextNeeded);
+            this.dgvReihe.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvReihe_MouseClick);
             // 
             // minMaxOption
             // 
@@ -212,7 +284,7 @@
             this.afToolStrip1.myUnderlineColor = System.Drawing.Color.White;
             this.afToolStrip1.myUnderlined = true;
             this.afToolStrip1.Name = "afToolStrip1";
-            this.afToolStrip1.Size = new System.Drawing.Size(216, 27);
+            this.afToolStrip1.Size = new System.Drawing.Size(179, 27);
             this.afToolStrip1.TabIndex = 8;
             this.afToolStrip1.Text = "afToolStrip1";
             // 
@@ -222,7 +294,7 @@
             this.tsbtnOpenEdit.Image = global::Sped4.Properties.Resources.layout_left;
             this.tsbtnOpenEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnOpenEdit.Name = "tsbtnOpenEdit";
-            this.tsbtnOpenEdit.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnOpenEdit.Size = new System.Drawing.Size(24, 24);
             this.tsbtnOpenEdit.Text = "Datenerfassung ein-/ausblenden";
             this.tsbtnOpenEdit.Click += new System.EventHandler(this.tsbtnOpenEdit_Click);
             // 
@@ -232,7 +304,7 @@
             this.tsbtnListGArtDatenChange.Image = global::Sped4.Properties.Resources.form_green_edit;
             this.tsbtnListGArtDatenChange.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnListGArtDatenChange.Name = "tsbtnListGArtDatenChange";
-            this.tsbtnListGArtDatenChange.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnListGArtDatenChange.Size = new System.Drawing.Size(24, 24);
             this.tsbtnListGArtDatenChange.Text = "Reihe ändern";
             this.tsbtnListGArtDatenChange.Click += new System.EventHandler(this.tsbGArtDatenChange_Click);
             // 
@@ -242,7 +314,7 @@
             this.tsbtnListNeu.Image = global::Sped4.Properties.Resources.form_green_add;
             this.tsbtnListNeu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnListNeu.Name = "tsbtnListNeu";
-            this.tsbtnListNeu.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnListNeu.Size = new System.Drawing.Size(24, 24);
             this.tsbtnListNeu.Text = "Neue Reihe";
             this.tsbtnListNeu.Click += new System.EventHandler(this.miAdd_Click);
             // 
@@ -252,7 +324,7 @@
             this.tsbExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbExcel.Name = "tsbExcel";
-            this.tsbExcel.Size = new System.Drawing.Size(29, 24);
+            this.tsbExcel.Size = new System.Drawing.Size(23, 24);
             this.tsbExcel.Text = "Excel Export";
             this.tsbExcel.Click += new System.EventHandler(this.tsbExcel_Click);
             // 
@@ -262,7 +334,7 @@
             this.toolStripButton1.Image = global::Sped4.Properties.Resources.refresh;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton1.Size = new System.Drawing.Size(24, 24);
             this.toolStripButton1.Text = "aktualisieren";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -272,7 +344,7 @@
             this.tsbtnListDelete.Image = global::Sped4.Properties.Resources.garbage_delete;
             this.tsbtnListDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnListDelete.Name = "tsbtnListDelete";
-            this.tsbtnListDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnListDelete.Size = new System.Drawing.Size(24, 24);
             this.tsbtnListDelete.Text = "Reihe löschen";
             this.tsbtnListDelete.Click += new System.EventHandler(this.miDelete_Click);
             // 
@@ -282,7 +354,7 @@
             this.tsbClose.Image = global::Sped4.Properties.Resources.delete;
             this.tsbClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClose.Name = "tsbClose";
-            this.tsbClose.Size = new System.Drawing.Size(29, 24);
+            this.tsbClose.Size = new System.Drawing.Size(24, 24);
             this.tsbClose.Text = "schliessen";
             this.tsbClose.Click += new System.EventHandler(this.miCloseCtr_Click);
             // 
@@ -292,7 +364,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Location = new System.Drawing.Point(95, 96);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(587, 22);
+            this.txtSearch.Size = new System.Drawing.Size(587, 20);
             this.txtSearch.TabIndex = 3;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -301,7 +373,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(37, 99);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 16);
+            this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 11;
             this.label1.Text = "Suche";
             // 
@@ -310,7 +382,7 @@
             this.cbGArt.AutoSize = true;
             this.cbGArt.Location = new System.Drawing.Point(14, 73);
             this.cbGArt.Name = "cbGArt";
-            this.cbGArt.Size = new System.Drawing.Size(171, 20);
+            this.cbGArt.Size = new System.Drawing.Size(139, 17);
             this.cbGArt.TabIndex = 10;
             this.cbGArt.Text = "Suche über alle Spalten";
             this.cbGArt.UseVisualStyleBackColor = true;
@@ -321,91 +393,32 @@
             this.cbMC.AutoSize = true;
             this.cbMC.Location = new System.Drawing.Point(14, 56);
             this.cbMC.Name = "cbMC";
-            this.cbMC.Size = new System.Drawing.Size(169, 20);
+            this.cbMC.Size = new System.Drawing.Size(141, 17);
             this.cbMC.TabIndex = 9;
             this.cbMC.Text = "Suche nach Matchcode";
             this.cbMC.UseVisualStyleBackColor = true;
             this.cbMC.CheckedChanged += new System.EventHandler(this.cbMC_CheckedChanged);
             // 
-            // testToolStripMenuItem
+            // scGut
             // 
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
-            this.testToolStripMenuItem.Text = "Test";
+            this.scGut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scGut.Location = new System.Drawing.Point(3, 201);
+            this.scGut.Name = "scGut";
+            this.scGut.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // afColorLabel1
+            // scGut.Panel1
             // 
-            this.afColorLabel1.DataBindings.Add(new System.Windows.Forms.Binding("myColorTo", global::Sped4.Properties.Settings.Default, "BaseColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.afColorLabel1.DataBindings.Add(new System.Windows.Forms.Binding("myColorFrom", global::Sped4.Properties.Settings.Default, "EffectColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.afColorLabel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.afColorLabel1.Location = new System.Drawing.Point(0, 0);
-            this.afColorLabel1.myColorFrom = global::Sped4.Properties.Settings.Default.EffectColor;
-            this.afColorLabel1.myColorTo = global::Sped4.Properties.Settings.Default.BaseColor;
-            this.afColorLabel1.myFontStyle = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.afColorLabel1.myText = "Lagerortverwaltung";
-            this.afColorLabel1.myUnderlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.afColorLabel1.myUnderlined = true;
-            this.afColorLabel1.Name = "afColorLabel1";
-            this.afColorLabel1.Size = new System.Drawing.Size(1325, 28);
-            this.afColorLabel1.TabIndex = 5;
+            this.scGut.Panel1.Controls.Add(this.panGArtEditContainer);
             // 
-            // scGArt
+            // scGut.Panel2
             // 
-            this.scGArt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scGArt.IsSplitterFixed = true;
-            this.scGArt.Location = new System.Drawing.Point(0, 28);
-            this.scGArt.Name = "scGArt";
-            // 
-            // scGArt.Panel1
-            // 
-            this.scGArt.Panel1.Controls.Add(this.dgvReihe);
-            this.scGArt.Panel1.Controls.Add(this.minMaxOption);
-            // 
-            // scGArt.Panel2
-            // 
-            this.scGArt.Panel2.Controls.Add(this.panGArtEditContainer);
-            this.scGArt.Panel2.Controls.Add(this.panel1);
-            this.scGArt.Size = new System.Drawing.Size(1325, 697);
-            this.scGArt.SplitterDistance = 726;
-            this.scGArt.TabIndex = 12;
-            // 
-            // dgvReihe
-            // 
-            this.dgvReihe.BackColor = System.Drawing.Color.White;
-            this.dgvReihe.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dgvReihe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvReihe.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.dgvReihe.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.dgvReihe.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgvReihe.Location = new System.Drawing.Point(0, 128);
-            this.dgvReihe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            // 
-            // 
-            // 
-            this.dgvReihe.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.dgvReihe.MasterTemplate.EnableAlternatingRowColor = true;
-            this.dgvReihe.MasterTemplate.EnableFiltering = true;
-            this.dgvReihe.MasterTemplate.ShowFilteringRow = false;
-            this.dgvReihe.MasterTemplate.ShowHeaderCellButtons = true;
-            this.dgvReihe.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.dgvReihe.Name = "dgvReihe";
-            this.dgvReihe.ReadOnly = true;
-            this.dgvReihe.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dgvReihe.ShowHeaderCellButtons = true;
-            this.dgvReihe.Size = new System.Drawing.Size(726, 569);
-            this.dgvReihe.TabIndex = 26;
-            this.dgvReihe.ThemeName = "ControlDefault";
-            this.dgvReihe.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvGArtList_CellClick);
-            this.dgvReihe.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvGArtList_CellDoubleClick);
-            this.dgvReihe.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.dgvGArtList_ToolTipTextNeeded);
-            this.dgvReihe.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvGArtList_MouseClick);
+            this.scGut.Panel2.Controls.Add(this.panGutlist);
+            this.scGut.Size = new System.Drawing.Size(592, 496);
+            this.scGut.SplitterDistance = 200;
+            this.scGut.TabIndex = 125;
             // 
             // panGArtEditContainer
             // 
-            this.panGArtEditContainer.Controls.Add(this.tbGArtSearch);
-            this.panGArtEditContainer.Controls.Add(this.lGArtID);
-            this.panGArtEditContainer.Controls.Add(this.tbGArt);
-            this.panGArtEditContainer.Controls.Add(this.btnGArt);
             this.panGArtEditContainer.Controls.Add(this.label16);
             this.panGArtEditContainer.Controls.Add(this.label17);
             this.panGArtEditContainer.Controls.Add(this.label18);
@@ -434,52 +447,10 @@
             this.panGArtEditContainer.Controls.Add(this.nudMassAnzahl);
             this.panGArtEditContainer.Controls.Add(this.lMassAnzahl);
             this.panGArtEditContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panGArtEditContainer.Location = new System.Drawing.Point(0, 201);
+            this.panGArtEditContainer.Location = new System.Drawing.Point(0, 0);
             this.panGArtEditContainer.Name = "panGArtEditContainer";
-            this.panGArtEditContainer.Size = new System.Drawing.Size(595, 496);
+            this.panGArtEditContainer.Size = new System.Drawing.Size(592, 200);
             this.panGArtEditContainer.TabIndex = 123;
-            // 
-            // tbGArtSearch
-            // 
-            this.tbGArtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbGArtSearch.Location = new System.Drawing.Point(116, 188);
-            this.tbGArtSearch.Name = "tbGArtSearch";
-            this.tbGArtSearch.Size = new System.Drawing.Size(126, 22);
-            this.tbGArtSearch.TabIndex = 302;
-            this.tbGArtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbGArtSearch.TextChanged += new System.EventHandler(this.tbGArtSearch_TextChanged);
-            // 
-            // lGArtID
-            // 
-            this.lGArtID.AutoSize = true;
-            this.lGArtID.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lGArtID.Location = new System.Drawing.Point(19, 190);
-            this.lGArtID.Name = "lGArtID";
-            this.lGArtID.Size = new System.Drawing.Size(90, 16);
-            this.lGArtID.TabIndex = 304;
-            this.lGArtID.Text = "Güterart ID: #0";
-            // 
-            // tbGArt
-            // 
-            this.tbGArt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbGArt.Location = new System.Drawing.Point(219, 217);
-            this.tbGArt.Name = "tbGArt";
-            this.tbGArt.ReadOnly = true;
-            this.tbGArt.Size = new System.Drawing.Size(225, 22);
-            this.tbGArt.TabIndex = 303;
-            this.tbGArt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // btnGArt
-            // 
-            this.btnGArt.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGArt.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnGArt.Location = new System.Drawing.Point(116, 214);
-            this.btnGArt.Name = "btnGArt";
-            this.btnGArt.Size = new System.Drawing.Size(97, 22);
-            this.btnGArt.TabIndex = 305;
-            this.btnGArt.Text = "[Güterart]";
-            this.btnGArt.UseVisualStyleBackColor = true;
-            this.btnGArt.Click += new System.EventHandler(this.btnGArt_Click);
             // 
             // label16
             // 
@@ -487,7 +458,7 @@
             this.label16.ForeColor = System.Drawing.Color.DarkBlue;
             this.label16.Location = new System.Drawing.Point(291, 54);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(25, 16);
+            this.label16.Size = new System.Drawing.Size(20, 13);
             this.label16.TabIndex = 115;
             this.label16.Text = "bis";
             // 
@@ -497,7 +468,7 @@
             this.label17.ForeColor = System.Drawing.Color.DarkBlue;
             this.label17.Location = new System.Drawing.Point(291, 80);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(25, 16);
+            this.label17.Size = new System.Drawing.Size(20, 13);
             this.label17.TabIndex = 114;
             this.label17.Text = "bis";
             // 
@@ -507,7 +478,7 @@
             this.label18.ForeColor = System.Drawing.Color.DarkBlue;
             this.label18.Location = new System.Drawing.Point(291, 108);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(25, 16);
+            this.label18.Size = new System.Drawing.Size(20, 13);
             this.label18.TabIndex = 113;
             this.label18.Text = "bis";
             // 
@@ -517,7 +488,7 @@
             this.label19.ForeColor = System.Drawing.Color.DarkBlue;
             this.label19.Location = new System.Drawing.Point(291, 134);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(25, 16);
+            this.label19.Size = new System.Drawing.Size(20, 13);
             this.label19.TabIndex = 112;
             this.label19.Text = "bis";
             // 
@@ -527,7 +498,7 @@
             this.label20.ForeColor = System.Drawing.Color.DarkBlue;
             this.label20.Location = new System.Drawing.Point(291, 164);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(25, 16);
+            this.label20.Size = new System.Drawing.Size(20, 13);
             this.label20.TabIndex = 111;
             this.label20.Text = "bis";
             // 
@@ -537,7 +508,7 @@
             this.label11.ForeColor = System.Drawing.Color.DarkBlue;
             this.label11.Location = new System.Drawing.Point(85, 54);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(29, 16);
+            this.label11.Size = new System.Drawing.Size(25, 13);
             this.label11.TabIndex = 110;
             this.label11.Text = "von";
             // 
@@ -547,7 +518,7 @@
             this.label12.ForeColor = System.Drawing.Color.DarkBlue;
             this.label12.Location = new System.Drawing.Point(85, 82);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(29, 16);
+            this.label12.Size = new System.Drawing.Size(25, 13);
             this.label12.TabIndex = 109;
             this.label12.Text = "von";
             // 
@@ -557,7 +528,7 @@
             this.label13.ForeColor = System.Drawing.Color.DarkBlue;
             this.label13.Location = new System.Drawing.Point(85, 108);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(29, 16);
+            this.label13.Size = new System.Drawing.Size(25, 13);
             this.label13.TabIndex = 108;
             this.label13.Text = "von";
             // 
@@ -567,7 +538,7 @@
             this.label14.ForeColor = System.Drawing.Color.DarkBlue;
             this.label14.Location = new System.Drawing.Point(85, 134);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(29, 16);
+            this.label14.Size = new System.Drawing.Size(25, 13);
             this.label14.TabIndex = 107;
             this.label14.Text = "von";
             // 
@@ -577,7 +548,7 @@
             this.label15.ForeColor = System.Drawing.Color.DarkBlue;
             this.label15.Location = new System.Drawing.Point(85, 164);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(29, 16);
+            this.label15.Size = new System.Drawing.Size(25, 13);
             this.label15.TabIndex = 106;
             this.label15.Text = "von";
             // 
@@ -590,7 +561,7 @@
             0,
             0});
             this.nudBruttoVon.Name = "nudBruttoVon";
-            this.nudBruttoVon.Size = new System.Drawing.Size(126, 22);
+            this.nudBruttoVon.Size = new System.Drawing.Size(126, 20);
             this.nudBruttoVon.TabIndex = 127;
             this.nudBruttoVon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -603,7 +574,7 @@
             0,
             0});
             this.nudLaengeVon.Name = "nudLaengeVon";
-            this.nudLaengeVon.Size = new System.Drawing.Size(126, 22);
+            this.nudLaengeVon.Size = new System.Drawing.Size(126, 20);
             this.nudLaengeVon.TabIndex = 123;
             this.nudLaengeVon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -616,7 +587,7 @@
             0,
             0});
             this.nudHoeheVon.Name = "nudHoeheVon";
-            this.nudHoeheVon.Size = new System.Drawing.Size(126, 22);
+            this.nudHoeheVon.Size = new System.Drawing.Size(126, 20);
             this.nudHoeheVon.TabIndex = 125;
             this.nudHoeheVon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -629,7 +600,7 @@
             0,
             0});
             this.nudHoeheBis.Name = "nudHoeheBis";
-            this.nudHoeheBis.Size = new System.Drawing.Size(126, 22);
+            this.nudHoeheBis.Size = new System.Drawing.Size(126, 20);
             this.nudHoeheBis.TabIndex = 126;
             this.nudHoeheBis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -642,7 +613,7 @@
             0,
             0});
             this.nudLaengeBis.Name = "nudLaengeBis";
-            this.nudLaengeBis.Size = new System.Drawing.Size(126, 22);
+            this.nudLaengeBis.Size = new System.Drawing.Size(126, 20);
             this.nudLaengeBis.TabIndex = 124;
             this.nudLaengeBis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -655,7 +626,7 @@
             0,
             0});
             this.nudBreiteBis.Name = "nudBreiteBis";
-            this.nudBreiteBis.Size = new System.Drawing.Size(126, 22);
+            this.nudBreiteBis.Size = new System.Drawing.Size(126, 20);
             this.nudBreiteBis.TabIndex = 122;
             this.nudBreiteBis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -668,7 +639,7 @@
             0,
             0});
             this.nudDickeVon.Name = "nudDickeVon";
-            this.nudDickeVon.Size = new System.Drawing.Size(126, 22);
+            this.nudDickeVon.Size = new System.Drawing.Size(126, 20);
             this.nudDickeVon.TabIndex = 119;
             this.nudDickeVon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -678,7 +649,7 @@
             this.label3.ForeColor = System.Drawing.Color.DarkBlue;
             this.label3.Location = new System.Drawing.Point(19, 54);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 16);
+            this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 99;
             this.label3.Text = "Dicke";
             // 
@@ -688,7 +659,7 @@
             this.label6.ForeColor = System.Drawing.Color.DarkBlue;
             this.label6.Location = new System.Drawing.Point(19, 80);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 16);
+            this.label6.Size = new System.Drawing.Size(34, 13);
             this.label6.TabIndex = 98;
             this.label6.Text = "Breite";
             // 
@@ -698,7 +669,7 @@
             this.label7.ForeColor = System.Drawing.Color.DarkBlue;
             this.label7.Location = new System.Drawing.Point(19, 108);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 16);
+            this.label7.Size = new System.Drawing.Size(37, 13);
             this.label7.TabIndex = 97;
             this.label7.Text = "Länge";
             // 
@@ -708,7 +679,7 @@
             this.label8.ForeColor = System.Drawing.Color.DarkBlue;
             this.label8.Location = new System.Drawing.Point(19, 134);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 16);
+            this.label8.Size = new System.Drawing.Size(33, 13);
             this.label8.TabIndex = 96;
             this.label8.Text = "Höhe";
             // 
@@ -721,7 +692,7 @@
             0,
             0});
             this.nudBreiteVon.Name = "nudBreiteVon";
-            this.nudBreiteVon.Size = new System.Drawing.Size(126, 22);
+            this.nudBreiteVon.Size = new System.Drawing.Size(126, 20);
             this.nudBreiteVon.TabIndex = 121;
             this.nudBreiteVon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -734,7 +705,7 @@
             0,
             0});
             this.nudBruttoBis.Name = "nudBruttoBis";
-            this.nudBruttoBis.Size = new System.Drawing.Size(126, 22);
+            this.nudBruttoBis.Size = new System.Drawing.Size(126, 20);
             this.nudBruttoBis.TabIndex = 128;
             this.nudBruttoBis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -747,7 +718,7 @@
             0,
             0});
             this.nudDickeBis.Name = "nudDickeBis";
-            this.nudDickeBis.Size = new System.Drawing.Size(126, 22);
+            this.nudDickeBis.Size = new System.Drawing.Size(126, 20);
             this.nudDickeBis.TabIndex = 120;
             this.nudDickeBis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -757,7 +728,7 @@
             this.label5.ForeColor = System.Drawing.Color.DarkBlue;
             this.label5.Location = new System.Drawing.Point(19, 164);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 16);
+            this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 91;
             this.label5.Text = "Brutto [kg]";
             // 
@@ -770,7 +741,7 @@
             0,
             0});
             this.nudMassAnzahl.Name = "nudMassAnzahl";
-            this.nudMassAnzahl.Size = new System.Drawing.Size(327, 22);
+            this.nudMassAnzahl.Size = new System.Drawing.Size(327, 20);
             this.nudMassAnzahl.TabIndex = 118;
             this.nudMassAnzahl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -780,9 +751,114 @@
             this.lMassAnzahl.ForeColor = System.Drawing.Color.DarkBlue;
             this.lMassAnzahl.Location = new System.Drawing.Point(19, 28);
             this.lMassAnzahl.Name = "lMassAnzahl";
-            this.lMassAnzahl.Size = new System.Drawing.Size(47, 16);
+            this.lMassAnzahl.Size = new System.Drawing.Size(39, 13);
             this.lMassAnzahl.TabIndex = 87;
             this.lMassAnzahl.Text = "Anzahl";
+            // 
+            // panGutlist
+            // 
+            this.panGutlist.Controls.Add(this.dgvGutlist);
+            this.panGutlist.Controls.Add(this.tsmGutlist);
+            this.panGutlist.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panGutlist.Location = new System.Drawing.Point(0, 0);
+            this.panGutlist.Name = "panGutlist";
+            this.panGutlist.Size = new System.Drawing.Size(592, 292);
+            this.panGutlist.TabIndex = 0;
+            // 
+            // dgvGutlist
+            // 
+            this.dgvGutlist.BackColor = System.Drawing.Color.White;
+            this.dgvGutlist.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dgvGutlist.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvGutlist.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.dgvGutlist.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.dgvGutlist.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dgvGutlist.Location = new System.Drawing.Point(0, 27);
+            this.dgvGutlist.Margin = new System.Windows.Forms.Padding(4);
+            // 
+            // 
+            // 
+            this.dgvGutlist.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.dgvGutlist.MasterTemplate.EnableAlternatingRowColor = true;
+            this.dgvGutlist.MasterTemplate.EnableFiltering = true;
+            this.dgvGutlist.MasterTemplate.ShowFilteringRow = false;
+            this.dgvGutlist.MasterTemplate.ShowHeaderCellButtons = true;
+            this.dgvGutlist.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.dgvGutlist.Name = "dgvGutlist";
+            this.dgvGutlist.ReadOnly = true;
+            this.dgvGutlist.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgvGutlist.Size = new System.Drawing.Size(592, 265);
+            this.dgvGutlist.TabIndex = 120;
+            this.dgvGutlist.ThemeName = "ControlDefault";
+            this.dgvGutlist.Click += new System.EventHandler(this.dgvGutlist_Click);
+            // 
+            // tsmGutlist
+            // 
+            this.tsmGutlist.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsmGutlist.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnOpenGut,
+            this.tsbtnRefreshReiheGutAssignment,
+            this.tsbtnGutDelete,
+            this.toolStripSeparator1,
+            this.tslGutSelected});
+            this.tsmGutlist.Location = new System.Drawing.Point(0, 0);
+            this.tsmGutlist.myColorFrom = System.Drawing.Color.Azure;
+            this.tsmGutlist.myColorTo = System.Drawing.Color.Blue;
+            this.tsmGutlist.myUnderlineColor = System.Drawing.Color.White;
+            this.tsmGutlist.myUnderlined = true;
+            this.tsmGutlist.Name = "tsmGutlist";
+            this.tsmGutlist.Size = new System.Drawing.Size(592, 27);
+            this.tsmGutlist.TabIndex = 119;
+            this.tsmGutlist.Text = "afToolStrip4";
+            // 
+            // tsbtnOpenGut
+            // 
+            this.tsbtnOpenGut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnOpenGut.Image = global::Sped4.Properties.Resources.book_blue_open_24x24;
+            this.tsbtnOpenGut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnOpenGut.Name = "tsbtnOpenGut";
+            this.tsbtnOpenGut.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnOpenGut.Text = "Eingabefelder leeren";
+            this.tsbtnOpenGut.Click += new System.EventHandler(this.tsbtnOpenGut_Click);
+            // 
+            // tsbtnRefreshReiheGutAssignment
+            // 
+            this.tsbtnRefreshReiheGutAssignment.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnRefreshReiheGutAssignment.Image = global::Sped4.Properties.Resources.refresh_24x24;
+            this.tsbtnRefreshReiheGutAssignment.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnRefreshReiheGutAssignment.Name = "tsbtnRefreshReiheGutAssignment";
+            this.tsbtnRefreshReiheGutAssignment.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnRefreshReiheGutAssignment.Text = "Liste aktualisieren";
+            this.tsbtnRefreshReiheGutAssignment.Click += new System.EventHandler(this.tsbtnRefreshReiheGutAssignment_Click);
+            // 
+            // tsbtnGutDelete
+            // 
+            this.tsbtnGutDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnGutDelete.Image = global::Sped4.Properties.Resources.garbage_delete;
+            this.tsbtnGutDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnGutDelete.Name = "tsbtnGutDelete";
+            this.tsbtnGutDelete.Size = new System.Drawing.Size(24, 24);
+            this.tsbtnGutDelete.Text = "Reihe löschen";
+            this.tsbtnGutDelete.Click += new System.EventHandler(this.tsbtnGutDelete_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tslGutSelected
+            // 
+            this.tslGutSelected.Name = "tslGutSelected";
+            this.tslGutSelected.Size = new System.Drawing.Size(123, 24);
+            this.tslGutSelected.Text = "hinterlegte Güterarten";
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(0, 201);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 496);
+            this.splitter1.TabIndex = 124;
+            this.splitter1.TabStop = false;
             // 
             // panel1
             // 
@@ -825,7 +901,7 @@
             this.toolStripLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.toolStripLabel2.ForeColor = System.Drawing.Color.DarkBlue;
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(60, 24);
+            this.toolStripLabel2.Size = new System.Drawing.Size(48, 24);
             this.toolStripLabel2.Text = "Reihe : ";
             // 
             // tsbtnReiheAdd
@@ -834,7 +910,7 @@
             this.tsbtnReiheAdd.Image = global::Sped4.Properties.Resources.add;
             this.tsbtnReiheAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnReiheAdd.Name = "tsbtnReiheAdd";
-            this.tsbtnReiheAdd.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnReiheAdd.Size = new System.Drawing.Size(24, 24);
             this.tsbtnReiheAdd.Text = "Neue Reihe anlegen";
             this.tsbtnReiheAdd.Click += new System.EventHandler(this.tsbtnReiheAdd_Click);
             // 
@@ -844,7 +920,7 @@
             this.tsbtnReiheSave.Image = global::Sped4.Properties.Resources.check;
             this.tsbtnReiheSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnReiheSave.Name = "tsbtnReiheSave";
-            this.tsbtnReiheSave.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnReiheSave.Size = new System.Drawing.Size(24, 24);
             this.tsbtnReiheSave.Text = "Reihendaten speichern";
             this.tsbtnReiheSave.Click += new System.EventHandler(this.tsbtnReiheSave_Click);
             // 
@@ -854,7 +930,7 @@
             this.tsbtnReiheClear.Image = global::Sped4.Properties.Resources.form_green_delete;
             this.tsbtnReiheClear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnReiheClear.Name = "tsbtnReiheClear";
-            this.tsbtnReiheClear.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnReiheClear.Size = new System.Drawing.Size(24, 24);
             this.tsbtnReiheClear.Text = "Eingabefelder leeren";
             this.tsbtnReiheClear.Click += new System.EventHandler(this.tsbtnReiheClear_Click);
             // 
@@ -864,7 +940,7 @@
             this.tsbtnReiheDelete.Image = global::Sped4.Properties.Resources.garbage_delete;
             this.tsbtnReiheDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnReiheDelete.Name = "tsbtnReiheDelete";
-            this.tsbtnReiheDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnReiheDelete.Size = new System.Drawing.Size(24, 24);
             this.tsbtnReiheDelete.Text = "Reihe löschen";
             this.tsbtnReiheDelete.Click += new System.EventHandler(this.tsbtnReiheDelete_Click);
             // 
@@ -879,7 +955,7 @@
             this.tsbtnReiheLabelPrint.Image = global::Sped4.Properties.Resources.Printer1;
             this.tsbtnReiheLabelPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnReiheLabelPrint.Name = "tsbtnReiheLabelPrint";
-            this.tsbtnReiheLabelPrint.Size = new System.Drawing.Size(29, 24);
+            this.tsbtnReiheLabelPrint.Size = new System.Drawing.Size(24, 24);
             this.tsbtnReiheLabelPrint.Text = "Label drucken";
             this.tsbtnReiheLabelPrint.Click += new System.EventHandler(this.tsbtnReiheLabelPrint_Click);
             // 
@@ -898,7 +974,7 @@
             0,
             0});
             this.nudReiheOrderID.Name = "nudReiheOrderID";
-            this.nudReiheOrderID.Size = new System.Drawing.Size(344, 22);
+            this.nudReiheOrderID.Size = new System.Drawing.Size(344, 20);
             this.nudReiheOrderID.TabIndex = 117;
             this.nudReiheOrderID.Value = new decimal(new int[] {
             1,
@@ -911,7 +987,7 @@
             this.tbReiheBezeichnung.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbReiheBezeichnung.Location = new System.Drawing.Point(100, 64);
             this.tbReiheBezeichnung.Name = "tbReiheBezeichnung";
-            this.tbReiheBezeichnung.Size = new System.Drawing.Size(344, 22);
+            this.tbReiheBezeichnung.Size = new System.Drawing.Size(344, 20);
             this.tbReiheBezeichnung.TabIndex = 115;
             // 
             // label9
@@ -920,7 +996,7 @@
             this.label9.ForeColor = System.Drawing.Color.DarkBlue;
             this.label9.Location = new System.Drawing.Point(19, 154);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(60, 16);
+            this.label9.Size = new System.Drawing.Size(50, 13);
             this.label9.TabIndex = 121;
             this.label9.Text = "Order ID:";
             // 
@@ -939,7 +1015,7 @@
             this.label10.ForeColor = System.Drawing.Color.DarkBlue;
             this.label10.Location = new System.Drawing.Point(22, 89);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(93, 16);
+            this.label10.Size = new System.Drawing.Size(75, 13);
             this.label10.TabIndex = 120;
             this.label10.Text = "Beschreibung:";
             // 
@@ -949,7 +1025,7 @@
             this.label4.ForeColor = System.Drawing.Color.DarkBlue;
             this.label4.Location = new System.Drawing.Point(22, 66);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 16);
+            this.label4.Size = new System.Drawing.Size(72, 13);
             this.label4.TabIndex = 119;
             this.label4.Text = "Bezeichnung:";
             // 
@@ -957,6 +1033,22 @@
             // 
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(13, 22);
+            // 
+            // afColorLabel1
+            // 
+            this.afColorLabel1.DataBindings.Add(new System.Windows.Forms.Binding("myColorTo", global::Sped4.Properties.Settings.Default, "BaseColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.afColorLabel1.DataBindings.Add(new System.Windows.Forms.Binding("myColorFrom", global::Sped4.Properties.Settings.Default, "EffectColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.afColorLabel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.afColorLabel1.Location = new System.Drawing.Point(0, 0);
+            this.afColorLabel1.myColorFrom = global::Sped4.Properties.Settings.Default.EffectColor;
+            this.afColorLabel1.myColorTo = global::Sped4.Properties.Settings.Default.BaseColor;
+            this.afColorLabel1.myFontStyle = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.afColorLabel1.myText = "Lagerortverwaltung";
+            this.afColorLabel1.myUnderlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.afColorLabel1.myUnderlined = true;
+            this.afColorLabel1.Name = "afColorLabel1";
+            this.afColorLabel1.Size = new System.Drawing.Size(1325, 28);
+            this.afColorLabel1.TabIndex = 5;
             // 
             // ctrReihen
             // 
@@ -968,16 +1060,20 @@
             this.Size = new System.Drawing.Size(1325, 725);
             this.Load += new System.EventHandler(this.ctrGueterArtListe_Load);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.minMaxOption.ResumeLayout(false);
-            this.minMaxOption.PerformLayout();
-            this.afToolStrip1.ResumeLayout(false);
-            this.afToolStrip1.PerformLayout();
             this.scGArt.Panel1.ResumeLayout(false);
             this.scGArt.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.scGArt)).EndInit();
             this.scGArt.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReihe.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReihe)).EndInit();
+            this.minMaxOption.ResumeLayout(false);
+            this.minMaxOption.PerformLayout();
+            this.afToolStrip1.ResumeLayout(false);
+            this.afToolStrip1.PerformLayout();
+            this.scGut.Panel1.ResumeLayout(false);
+            this.scGut.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.scGut)).EndInit();
+            this.scGut.ResumeLayout(false);
             this.panGArtEditContainer.ResumeLayout(false);
             this.panGArtEditContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBruttoVon)).EndInit();
@@ -991,6 +1087,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudBruttoBis)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDickeBis)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMassAnzahl)).EndInit();
+            this.panGutlist.ResumeLayout(false);
+            this.panGutlist.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGutlist.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGutlist)).EndInit();
+            this.tsmGutlist.ResumeLayout(false);
+            this.tsmGutlist.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.afTSReihe.ResumeLayout(false);
@@ -1070,10 +1172,16 @@
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.NumericUpDown nudMassAnzahl;
     private System.Windows.Forms.Label lMassAnzahl;
-    private System.Windows.Forms.TextBox tbGArtSearch;
-    private System.Windows.Forms.Label lGArtID;
-    private System.Windows.Forms.TextBox tbGArt;
-    private System.Windows.Forms.Button btnGArt;
 		private System.Windows.Forms.ToolStripButton tsbtnReiheLabelPrint;
-	}
+        private System.Windows.Forms.SplitContainer scGut;
+        private System.Windows.Forms.Panel panGutlist;
+        private Controls.AFToolStrip tsmGutlist;
+        private System.Windows.Forms.ToolStripButton tsbtnOpenGut;
+        private System.Windows.Forms.ToolStripButton tsbtnGutDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.Splitter splitter1;
+        public Telerik.WinControls.UI.RadGridView dgvGutlist;
+        private System.Windows.Forms.ToolStripLabel tslGutSelected;
+        private System.Windows.Forms.ToolStripButton tsbtnRefreshReiheGutAssignment;
+    }
 }

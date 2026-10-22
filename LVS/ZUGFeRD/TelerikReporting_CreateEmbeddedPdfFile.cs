@@ -1,10 +1,5 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using LVS.Models;
-using LVS.ViewData;
-using PdfSharp.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.IO;
 using System.Threading;
 using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf;
@@ -12,7 +7,6 @@ using Telerik.Windows.Documents.Fixed.FormatProviders.Pdf.Export;
 using Telerik.Windows.Documents.Fixed.Model;
 using Telerik.Windows.Documents.Fixed.Model.Editing;
 using Telerik.Windows.Documents.Fixed.Model.Fonts;
-using Telerik.Documents.Core.Fonts;
 
 namespace LVS.ZUGFeRD
 {

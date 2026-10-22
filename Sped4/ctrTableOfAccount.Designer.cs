@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.afColorLabel1 = new Sped4.Controls.AFColorLabel();
             this.scTableOfAccountContainer = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
@@ -104,12 +105,9 @@
             // 
             // 
             this.scTableOfAccountContainer.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 28, 200, 200);
-            this.scTableOfAccountContainer.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.scTableOfAccountContainer.Size = new System.Drawing.Size(911, 489);
-            this.scTableOfAccountContainer.SplitterWidth = 4;
             this.scTableOfAccountContainer.TabIndex = 12;
             this.scTableOfAccountContainer.TabStop = false;
-            this.scTableOfAccountContainer.Text = "radSplitContainer1";
             // 
             // splitPanel1
             // 
@@ -122,7 +120,6 @@
             // 
             // 
             this.splitPanel1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 200, 200);
-            this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.splitPanel1.Size = new System.Drawing.Size(454, 489);
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
@@ -138,12 +135,13 @@
             this.dgvTableOfAccounts.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgvTableOfAccounts.Location = new System.Drawing.Point(0, 58);
             // 
-            // dgvTableOfAccounts
+            // 
             // 
             this.dgvTableOfAccounts.MasterTemplate.EnableAlternatingRowColor = true;
             this.dgvTableOfAccounts.MasterTemplate.EnableFiltering = true;
             this.dgvTableOfAccounts.MasterTemplate.ShowFilteringRow = false;
             this.dgvTableOfAccounts.MasterTemplate.ShowHeaderCellButtons = true;
+            this.dgvTableOfAccounts.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.dgvTableOfAccounts.Name = "dgvTableOfAccounts";
             this.dgvTableOfAccounts.ReadOnly = true;
             this.dgvTableOfAccounts.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -151,9 +149,9 @@
             // 
             // 
             this.dgvTableOfAccounts.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 58, 240, 150);
-            this.dgvTableOfAccounts.ShowHeaderCellButtons = true;
             this.dgvTableOfAccounts.Size = new System.Drawing.Size(454, 431);
             this.dgvTableOfAccounts.TabIndex = 27;
+            this.dgvTableOfAccounts.ThemeName = "ControlDefault";
             this.dgvTableOfAccounts.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvTableOfAccounts_MouseClick);
             this.dgvTableOfAccounts.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvTableOfAccounts_MouseDoubleClick);
             // 
@@ -274,7 +272,6 @@
             // 
             // 
             this.splitPanel2.RootElement.ControlBounds = new System.Drawing.Rectangle(458, 0, 200, 200);
-            this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
             this.splitPanel2.Size = new System.Drawing.Size(453, 489);
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
@@ -322,7 +319,7 @@
             this.label3.ForeColor = System.Drawing.Color.DarkBlue;
             this.label3.Location = new System.Drawing.Point(12, 320);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.Size = new System.Drawing.Size(75, 13);
             this.label3.TabIndex = 63;
             this.label3.Text = "Verfällt nicht:";
             // 
@@ -370,7 +367,7 @@
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(16, 71);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 13);
+            this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 57;
             this.label2.Text = "Konto Text:";
             // 
