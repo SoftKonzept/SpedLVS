@@ -9,7 +9,7 @@ namespace Sped4
         {
             get
             {
-                _InfoText += "22.10.2026 / Build: 26.10.22.1      : " + Environment.NewLine +
+                _InfoText += "28.10.2026 / Build: 26.10.28.1      : " + Environment.NewLine +
                              " - Lagerreihenverwaltung erweitert" + Environment.NewLine +
                              Environment.NewLine;
 

@@ -2036,47 +2036,11 @@ namespace LVS
                 case clsEdiVDAValueAlias.const_EA_ExTransportRef:
                     strTmp = string.Empty;
                     strTmp = EA_exTransportRef.Execute(asnTyp, this.Lager);
-                    //switch (asnTyp.Typ)
-                    //{
-                    //    case "EML":
-                    //    case "EME":
-                    //    case "BML":
-                    //    case "BME":
-                    //        strTmp = this.Lager.Eingang.ExTransportRef;
-                    //        break;
-
-                    //    case "AML":
-                    //    case "AME":
-                    //    case "AVL":
-                    //    case "AVE":
-                    //    case "RLL":
-                    //    case "RLE":
-                    //        strTmp = this.Lager.Ausgang.exTransportRef;
-                    //        break;
-                    //}
                     strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
                     break;
                 case clsEdiVDAValueAlias.const_EA_ExAuftragRef:
                     strTmp = string.Empty;
                     strTmp = EA_exAuftragRef.Execute(asnTyp, this.Lager);
-                    //switch (asnTyp.Typ)
-                    //{
-                    //    case "EML":
-                    //    case "EME":
-                    //    case "BML":
-                    //    case "BME":
-                    //        strTmp = this.Lager.Eingang.ExAuftragRef;
-                    //        break;
-
-                    //    case "AML":
-                    //    case "AME":
-                    //    case "AVL":
-                    //    case "AVE":
-                    //    case "RLL":
-                    //    case "RLE":
-                    //        strTmp = string.Empty;
-                    //        break;
-                    //}
                     strFeldSub = FillValueWithstringToLenth(tmpCV.Fill0, StringFillValue, strTmp, myClFeld.Length, bFillLeft);
                     break;
                 case clsEdiVDAValueAlias.const_EA_Brutto:
@@ -2329,7 +2293,7 @@ namespace LVS
                     strTmp = string.Empty;
                     if (this.VDAClientWorkspaceValue.DictVDAClientWorkspaceValue.Count > 0)
                     {
-                        if (tmpCV.ASNFieldID > 90)
+                        if (tmpCV.ASNFieldID ==58)
                         {
                             string str = string.Empty;
                         }
